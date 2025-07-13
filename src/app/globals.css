@@ -1,0 +1,242 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+/* Custom CSS Variables */
+:root {
+  --retro-pattern: url('data:image/svg+xml,%3Csvg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="%239C92AC" fill-opacity="0.05"%3E%3Ccircle cx="3" cy="3" r="1"/%3E%3Ccircle cx="13" cy="13" r="1"/%3E%3C/g%3E%3C/svg%3E');
+}
+
+/* Base Styles */
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  font-family: 'Inter', sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+}
+
+/* Retro Gaming Font */
+.font-retro {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.75rem;
+  line-height: 1.2;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Achievement Card Animations */
+.achievement-unlock {
+  animation: achievementUnlock 0.5s ease-out;
+}
+
+@keyframes achievementUnlock {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Trophy Glow Animation */
+@keyframes trophy-glow {
+  0% {
+    box-shadow: 0 0 5px #FFD700, 0 0 10px #FFD700, 0 0 15px #FFD700;
+  }
+  100% {
+    box-shadow: 0 0 10px #FFD700, 0 0 20px #FFD700, 0 0 30px #FFD700;
+  }
+}
+
+/* Shimmer Animation */
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Retro Pattern Background */
+.retro-pattern {
+  background-image: var(--retro-pattern);
+  background-size: 20px 20px;
+}
+
+/* Custom Button Styles */
+.btn-retro {
+  @apply font-retro text-sm px-4 py-2 rounded-lg border-2 transition-all duration-200;
+  @apply hover:scale-105 active:scale-95;
+}
+
+.btn-primary {
+  @apply btn-retro bg-n64-blue text-white border-n64-blue;
+  @apply hover:bg-blue-600 hover:border-blue-600;
+}
+
+.btn-secondary {
+  @apply btn-retro bg-gray-200 text-gray-800 border-gray-300;
+  @apply hover:bg-gray-300 hover:border-gray-400;
+}
+
+.btn-success {
+  @apply btn-retro bg-n64-green text-white border-n64-green;
+  @apply hover:bg-green-600 hover:border-green-600;
+}
+
+/* Card Styles */
+.card-retro {
+  @apply bg-white rounded-lg border-2 border-gray-200 shadow-md;
+  @apply hover:shadow-lg transition-all duration-200;
+}
+
+/* Progress Bar Styles */
+.progress-bar {
+  @apply w-full bg-gray-200 rounded-full h-2 overflow-hidden;
+}
+
+.progress-fill {
+  @apply h-full bg-gradient-to-r from-blue-400 to-blue-600 rounded-full;
+  transition: width 0.5s ease-in-out;
+}
+
+/* Trophy Colors */
+.trophy-bronze {
+  @apply text-bronze;
+}
+
+.trophy-silver {
+  @apply text-silver;
+}
+
+.trophy-gold {
+  @apply text-gold;
+}
+
+.trophy-platinum {
+  @apply text-platinum;
+}
+
+/* Category Colors */
+.category-game-specific {
+  @apply bg-game-specific;
+}
+
+.category-platform {
+  @apply bg-platform;
+}
+
+.category-community {
+  @apply bg-community;
+}
+
+.category-collector {
+  @apply bg-collector;
+}
+
+.category-recurring {
+  @apply bg-recurring;
+}
+
+.category-limited {
+  @apply bg-limited;
+}
+
+/* Rarity Colors */
+.rarity-common {
+  @apply text-gray-400;
+}
+
+.rarity-uncommon {
+  @apply text-green-400;
+}
+
+.rarity-rare {
+  @apply text-blue-400;
+}
+
+.rarity-epic {
+  @apply text-purple-400;
+}
+
+.rarity-legendary {
+  @apply text-yellow-400;
+}
+
+/* Loading Animation */
+.loading-spinner {
+  @apply animate-spin rounded-full h-8 w-8 border-b-2 border-n64-blue;
+}
+
+/* Notification Styles */
+.notification {
+  @apply fixed top-4 right-4 z-50 p-4 rounded-lg shadow-lg;
+  @apply animate-slide-in;
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Grid Layout */
+.achievement-grid {
+  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6;
+}
+
+/* Responsive Design */
+@media (max-width: 640px) {
+  .achievement-grid {
+    @apply grid-cols-1 gap-4;
+  }
+  
+  .font-retro {
+    font-size: 0.6rem;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  .achievement-grid {
+    @apply grid-cols-2 gap-5;
+  }
+}

@@ -1,0 +1,332 @@
+{
+  "achievements": [
+    {
+      "id": "rainbow_road_master",
+      "title": "Rainbow Road Master",
+      "description": "Beende 100 Runden auf Rainbow Road",
+      "category": "game-specific",
+      "trophyType": "gold",
+      "rarity": "rare",
+      "xpReward": 500,
+      "rules": [
+        {
+          "type": "count_based",
+          "condition": "rainbow_road_completions",
+          "value": 100,
+          "eventType": "mario_kart_64"
+        }
+      ],
+      "isRepeatable": false,
+      "isLimited": false,
+      "icon": "🏁",
+      "backgroundColor": "#4A90E2",
+      "borderColor": "#FFD700",
+      "status": "locked",
+      "rewards": {
+        "title": "Rainbow King",
+        "cosmetic": "rainbow_trail"
+      },
+      "isPublic": true
+    },
+    {
+      "id": "ntsc_speedrun_first",
+      "title": "NTSC Speedrun Pioneer",
+      "description": "Erster NTSC-Speedrun in der Community",
+      "category": "platform",
+      "trophyType": "platinum",
+      "rarity": "legendary",
+      "xpReward": 1000,
+      "rules": [
+        {
+          "type": "first_place",
+          "condition": "first_ntsc_speedrun",
+          "value": 1,
+          "platform": "NTSC"
+        }
+      ],
+      "isRepeatable": false,
+      "isLimited": false,
+      "icon": "⚡",
+      "backgroundColor": "#7ED321",
+      "borderColor": "#E5E4E2",
+      "status": "locked",
+      "rewards": {
+        "title": "Speed Demon",
+        "frame": "platinum_frame"
+      },
+      "isPublic": true
+    },
+    {
+      "id": "fanart_critic",
+      "title": "Fanart Kritiker",
+      "description": "Bewerte 10 Fanarts in der Community",
+      "category": "community",
+      "trophyType": "silver",
+      "rarity": "uncommon",
+      "xpReward": 200,
+      "rules": [
+        {
+          "type": "count_based",
+          "condition": "fanart_ratings",
+          "value": 10
+        }
+      ],
+      "isRepeatable": false,
+      "isLimited": false,
+      "icon": "🎨",
+      "backgroundColor": "#F5A623",
+      "borderColor": "#C0C0C0",
+      "status": "locked",
+      "rewards": {
+        "title": "Art Critic"
+      },
+      "isPublic": true
+    },
+    {
+      "id": "rarest_item_share",
+      "title": "Seltenstes Item Sammler",
+      "description": "Teile das seltenste Item in der Community",
+      "category": "collector",
+      "trophyType": "gold",
+      "rarity": "epic",
+      "xpReward": 750,
+      "rules": [
+        {
+          "type": "collection_complete",
+          "condition": "rarest_item_shared",
+          "value": 1
+        }
+      ],
+      "isRepeatable": false,
+      "isLimited": false,
+      "icon": "💎",
+      "backgroundColor": "#D0021B",
+      "borderColor": "#FFD700",
+      "status": "locked",
+      "rewards": {
+        "title": "Treasure Hunter",
+        "cosmetic": "diamond_aura"
+      },
+      "isPublic": true
+    },
+    {
+      "id": "event_marathon",
+      "title": "Event Marathon",
+      "description": "Schließe 30 Events ab",
+      "category": "recurring",
+      "trophyType": "bronze",
+      "rarity": "common",
+      "xpReward": 100,
+      "rules": [
+        {
+          "type": "count_based",
+          "condition": "events_completed",
+          "value": 30
+        }
+      ],
+      "isRepeatable": true,
+      "isLimited": false,
+      "icon": "🏃",
+      "backgroundColor": "#9B9B9B",
+      "borderColor": "#CD7F32",
+      "status": "locked",
+      "rewards": {
+        "title": "Event Runner"
+      },
+      "isPublic": true
+    },
+    {
+      "id": "oktoberfest_champion_2025",
+      "title": "Oktoberfest-Champion 2025",
+      "description": "Gewinne das Oktoberfest-Event 2025",
+      "category": "limited",
+      "trophyType": "platinum",
+      "rarity": "legendary",
+      "xpReward": 1500,
+      "rules": [
+        {
+          "type": "first_place",
+          "condition": "oktoberfest_winner",
+          "value": 1,
+          "eventType": "oktoberfest_2025"
+        }
+      ],
+      "isRepeatable": false,
+      "isLimited": true,
+      "limitedTime": {
+        "start": "2025-10-01T00:00:00Z",
+        "end": "2025-10-31T23:59:59Z"
+      },
+      "icon": "🍺",
+      "backgroundColor": "#5A4A9F",
+      "borderColor": "#E5E4E2",
+      "status": "locked",
+      "rewards": {
+        "title": "Oktoberfest King",
+        "frame": "oktoberfest_frame"
+      },
+      "isPublic": true
+    },
+    {
+      "id": "weekly_champion",
+      "title": "Wöchentlicher Champion",
+      "description": "Erreiche 1. Platz in einer wöchentlichen Challenge",
+      "category": "recurring",
+      "trophyType": "silver",
+      "rarity": "uncommon",
+      "xpReward": 300,
+      "rules": [
+        {
+          "type": "first_place",
+          "condition": "weekly_first_place",
+          "value": 1
+        }
+      ],
+      "isRepeatable": true,
+      "isLimited": false,
+      "icon": "👑",
+      "backgroundColor": "#9B9B9B",
+      "borderColor": "#C0C0C0",
+      "status": "locked",
+      "rewards": {
+        "title": "Weekly Warrior"
+      },
+      "isPublic": true
+    },
+    {
+      "id": "n64_drift_hero",
+      "title": "N64 Drift Hero",
+      "description": "Perfekte Drift in Mario Kart 64 unter 2 Minuten",
+      "category": "game-specific",
+      "trophyType": "gold",
+      "rarity": "rare",
+      "xpReward": 400,
+      "rules": [
+        {
+          "type": "time_based",
+          "condition": "perfect_drift_time",
+          "value": 120,
+          "timeLimit": 120,
+          "eventType": "mario_kart_64"
+        }
+      ],
+      "isRepeatable": false,
+      "isLimited": false,
+      "icon": "🔄",
+      "backgroundColor": "#4A90E2",
+      "borderColor": "#FFD700",
+      "status": "locked",
+      "rewards": {
+        "title": "Drift Master"
+      },
+      "isPublic": true
+    },
+    {
+      "id": "community_helper",
+      "title": "Community Helper",
+      "description": "Hilfe 50 neuen Spielern beim Start",
+      "category": "community",
+      "trophyType": "gold",
+      "rarity": "rare",
+      "xpReward": 600,
+      "rules": [
+        {
+          "type": "count_based",
+          "condition": "new_players_helped",
+          "value": 50
+        }
+      ],
+      "isRepeatable": false,
+      "isLimited": false,
+      "icon": "🤝",
+      "backgroundColor": "#F5A623",
+      "borderColor": "#FFD700",
+      "status": "locked",
+      "rewards": {
+        "title": "Community Guardian"
+      },
+      "isPublic": true
+    },
+    {
+      "id": "retro_collector",
+      "title": "Retro Collector",
+      "description": "Sammle alle Retro-Items einer Kategorie",
+      "category": "collector",
+      "trophyType": "platinum",
+      "rarity": "epic",
+      "xpReward": 800,
+      "rules": [
+        {
+          "type": "collection_complete",
+          "condition": "retro_category_complete",
+          "value": 1
+        }
+      ],
+      "isRepeatable": false,
+      "isLimited": false,
+      "icon": "🎮",
+      "backgroundColor": "#D0021B",
+      "borderColor": "#E5E4E2",
+      "status": "locked",
+      "rewards": {
+        "title": "Retro Master",
+        "cosmetic": "retro_glow"
+      },
+      "isPublic": true
+    },
+    {
+      "id": "pal_speedrun",
+      "title": "PAL Speedrun Expert",
+      "description": "Erste PAL-Speedrun unter 1:30",
+      "category": "platform",
+      "trophyType": "silver",
+      "rarity": "uncommon",
+      "xpReward": 250,
+      "rules": [
+        {
+          "type": "time_based",
+          "condition": "pal_speedrun_time",
+          "value": 90,
+          "timeLimit": 90,
+          "platform": "PAL"
+        }
+      ],
+      "isRepeatable": false,
+      "isLimited": false,
+      "icon": "🏁",
+      "backgroundColor": "#7ED321",
+      "borderColor": "#C0C0C0",
+      "status": "locked",
+      "rewards": {
+        "title": "PAL Runner"
+      },
+      "isPublic": true
+    },
+    {
+      "id": "daily_login_streak",
+      "title": "Daily Login Streak",
+      "description": "Logge dich 7 Tage in Folge ein",
+      "category": "recurring",
+      "trophyType": "bronze",
+      "rarity": "common",
+      "xpReward": 50,
+      "rules": [
+        {
+          "type": "count_based",
+          "condition": "consecutive_logins",
+          "value": 7
+        }
+      ],
+      "isRepeatable": true,
+      "isLimited": false,
+      "icon": "📅",
+      "backgroundColor": "#9B9B9B",
+      "borderColor": "#CD7F32",
+      "status": "locked",
+      "rewards": {
+        "title": "Loyal Player"
+      },
+      "isPublic": true
+    }
+  ]
+}
