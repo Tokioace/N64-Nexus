@@ -1,0 +1,67 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: 'Courier New', monospace;
+  }
+  
+  body {
+    @apply bg-retro-dark text-retro-green;
+  }
+}
+
+@layer components {
+  .admin-card {
+    @apply bg-retro-gray border border-retro-light-gray rounded-lg p-6 shadow-lg;
+  }
+  
+  .admin-button {
+    @apply bg-retro-green text-retro-dark px-4 py-2 rounded font-bold hover:bg-retro-blue hover:text-white transition-all duration-200;
+  }
+  
+  .admin-button-danger {
+    @apply bg-retro-red text-white px-4 py-2 rounded font-bold hover:bg-red-700 transition-all duration-200;
+  }
+  
+  .admin-input {
+    @apply bg-retro-light-gray border border-retro-green text-retro-green px-3 py-2 rounded focus:outline-none focus:ring-2 focus:ring-retro-blue;
+  }
+  
+  .admin-table {
+    @apply w-full border-collapse;
+  }
+  
+  .admin-table th {
+    @apply bg-retro-light-gray text-retro-green px-4 py-2 text-left border border-retro-gray;
+  }
+  
+  .admin-table td {
+    @apply px-4 py-2 border border-retro-gray;
+  }
+  
+  .admin-table tr:hover {
+    @apply bg-retro-light-gray;
+  }
+  
+  .status-active {
+    @apply text-retro-green;
+  }
+  
+  .status-banned {
+    @apply text-retro-red;
+  }
+  
+  .status-verified {
+    @apply text-retro-blue;
+  }
+  
+  .pixel-border {
+    border-image: linear-gradient(45deg, #00ff41, #0080ff, #ff0040, #ffff00) 1;
+  }
+  
+  .retro-glow {
+    box-shadow: 0 0 10px #00ff41;
+  }
+}
