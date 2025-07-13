@@ -1,0 +1,22 @@
+/* Additional App-specific styles */
+.container {
+  max-width: 1200px;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1a1a1a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #663399, #0066CC);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #0066CC, #663399);
+}
