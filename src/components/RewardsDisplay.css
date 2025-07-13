@@ -1,0 +1,214 @@
+/* Rewards Display Component */
+.rewards-container {
+  background: linear-gradient(135deg, #34495e 0%, #2c3e50 100%);
+  border: 2px solid #7f8c8d;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 20px 0;
+  font-family: 'Courier New', monospace;
+}
+
+.rewards-title {
+  color: #ecf0f1;
+  font-size: 1.4em;
+  margin-bottom: 20px;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.5);
+}
+
+.rewards-section {
+  margin-bottom: 25px;
+}
+
+.rewards-section-title {
+  font-size: 1.2em;
+  margin-bottom: 15px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: bold;
+}
+
+.rewards-section-title.unlocked {
+  background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+  color: #ecf0f1;
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.5);
+}
+
+.rewards-section-title.locked {
+  background: linear-gradient(135deg, #7f8c8d 0%, #95a5a6 100%);
+  color: #2c3e50;
+  text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.rewards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 15px;
+}
+
+.reward-card {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  border-radius: 8px;
+  border: 2px solid;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.reward-card.unlocked {
+  background: linear-gradient(135deg, rgba(39, 174, 96, 0.2) 0%, rgba(46, 204, 113, 0.2) 100%);
+  border-color: #27ae60;
+}
+
+.reward-card.locked {
+  background: linear-gradient(135deg, rgba(127, 140, 141, 0.2) 0%, rgba(149, 165, 166, 0.2) 100%);
+  border-color: #7f8c8d;
+  opacity: 0.7;
+}
+
+.reward-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+.reward-card.unlocked:hover {
+  border-color: #2ecc71;
+  box-shadow: 0 6px 15px rgba(46, 204, 113, 0.3);
+}
+
+.reward-card.locked:hover {
+  border-color: #95a5a6;
+  opacity: 0.9;
+}
+
+.reward-icon {
+  font-size: 2.5em;
+  margin-right: 15px;
+  flex-shrink: 0;
+  animation: reward-glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes reward-glow {
+  from { filter: brightness(1); }
+  to { filter: brightness(1.2); }
+}
+
+.reward-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.reward-title {
+  color: #ecf0f1;
+  font-size: 1.1em;
+  font-weight: bold;
+  margin-bottom: 5px;
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.5);
+}
+
+.reward-description {
+  color: #bdc3c7;
+  font-size: 0.9em;
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+
+.reward-level {
+  color: #f39c12;
+  font-size: 0.9em;
+  font-weight: bold;
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.5);
+}
+
+.level-progress {
+  color: #95a5a6;
+  margin-left: 8px;
+  font-weight: normal;
+}
+
+.reward-status {
+  font-size: 1.5em;
+  margin-left: 10px;
+  flex-shrink: 0;
+}
+
+.reward-card.unlocked .reward-status {
+  color: #2ecc71;
+  animation: check-pulse 2s ease-in-out infinite;
+}
+
+@keyframes check-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+.reward-card.locked .reward-status {
+  color: #7f8c8d;
+  animation: lock-bounce 3s ease-in-out infinite;
+}
+
+@keyframes lock-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+
+.rewards-empty {
+  text-align: center;
+  color: #95a5a6;
+  font-style: italic;
+  padding: 40px;
+  font-size: 1.1em;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .rewards-container {
+    padding: 15px;
+  }
+  
+  .rewards-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  
+  .reward-card {
+    padding: 12px;
+  }
+  
+  .reward-icon {
+    font-size: 2em;
+    margin-right: 12px;
+  }
+  
+  .reward-title {
+    font-size: 1em;
+  }
+  
+  .reward-description {
+    font-size: 0.85em;
+  }
+}
+
+/* Retro scanlines effect */
+.reward-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.02) 2px,
+    rgba(0, 0, 0, 0.02) 4px
+  );
+  pointer-events: none;
+}

@@ -1,0 +1,130 @@
+/* XP History Component */
+.xp-history-container {
+  background: linear-gradient(135deg, #34495e 0%, #2c3e50 100%);
+  border: 2px solid #7f8c8d;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 20px 0;
+  font-family: 'Courier New', monospace;
+}
+
+.xp-history-title {
+  color: #ecf0f1;
+  font-size: 1.4em;
+  margin-bottom: 15px;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.5);
+}
+
+.xp-history-list {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.xp-history-entry {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  margin-bottom: 8px;
+  background: rgba(52, 73, 94, 0.6);
+  border: 1px solid #5d6d7e;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.xp-history-entry:hover {
+  background: rgba(52, 73, 94, 0.8);
+  border-color: #f39c12;
+  transform: translateX(5px);
+}
+
+.xp-history-icon {
+  margin-right: 12px;
+  flex-shrink: 0;
+}
+
+.xp-icon {
+  font-size: 1.5em;
+  animation: sparkle 2s ease-in-out infinite;
+}
+
+@keyframes sparkle {
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  50% { transform: scale(1.1) rotate(10deg); }
+}
+
+.xp-history-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.xp-history-description {
+  color: #ecf0f1;
+  font-weight: bold;
+  font-size: 1em;
+  margin-bottom: 4px;
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.5);
+}
+
+.xp-history-time {
+  color: #bdc3c7;
+  font-size: 0.9em;
+  font-style: italic;
+}
+
+.xp-history-amount {
+  color: #f39c12;
+  font-weight: bold;
+  font-size: 1.1em;
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.5);
+  margin-left: 12px;
+  flex-shrink: 0;
+}
+
+.xp-history-empty {
+  text-align: center;
+  color: #95a5a6;
+  font-style: italic;
+  padding: 30px;
+  font-size: 1.1em;
+}
+
+/* Scrollbar styling */
+.xp-history-list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.xp-history-list::-webkit-scrollbar-track {
+  background: #2c3e50;
+  border-radius: 4px;
+}
+
+.xp-history-list::-webkit-scrollbar-thumb {
+  background: #7f8c8d;
+  border-radius: 4px;
+}
+
+.xp-history-list::-webkit-scrollbar-thumb:hover {
+  background: #f39c12;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .xp-history-container {
+    padding: 15px;
+  }
+  
+  .xp-history-entry {
+    padding: 10px;
+  }
+  
+  .xp-history-description {
+    font-size: 0.9em;
+  }
+  
+  .xp-history-amount {
+    font-size: 1em;
+  }
+}

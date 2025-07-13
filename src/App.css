@@ -1,0 +1,109 @@
+/* App.css - Main Application Styles */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Courier New', monospace;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  color: #ecf0f1;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.App {
+  min-height: 100vh;
+  width: 100%;
+}
+
+/* Global scrollbar styling */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #2c3e50;
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+  border-radius: 6px;
+  border: 2px solid #2c3e50;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #e67e22 0%, #d35400 100%);
+}
+
+/* Selection styling */
+::selection {
+  background: rgba(243, 156, 18, 0.3);
+  color: #ecf0f1;
+}
+
+/* Focus styles for accessibility */
+button:focus,
+input:focus,
+select:focus {
+  outline: 2px solid #f39c12;
+  outline-offset: 2px;
+}
+
+/* Loading animation */
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-size: 2em;
+  color: #f39c12;
+  text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.5);
+}
+
+.loading::after {
+  content: '';
+  width: 20px;
+  height: 20px;
+  border: 3px solid #f39c12;
+  border-top: 3px solid transparent;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-left: 10px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Error message styling */
+.error-message {
+  background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+  border: 2px solid #f39c12;
+  border-radius: 8px;
+  padding: 15px;
+  margin: 20px;
+  text-align: center;
+  color: #ecf0f1;
+  font-weight: bold;
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.5);
+  box-shadow: 0 4px 8px rgba(231, 76, 60, 0.3);
+}
+
+/* Success message styling */
+.success-message {
+  background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+  border: 2px solid #f39c12;
+  border-radius: 8px;
+  padding: 15px;
+  margin: 20px;
+  text-align: center;
+  color: #ecf0f1;
+  font-weight: bold;
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.5);
+  box-shadow: 0 4px 8px rgba(39, 174, 96, 0.3);
+}
