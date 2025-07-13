@@ -1,0 +1,72 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-n64-dark text-white;
+  }
+}
+
+@layer components {
+  .n64-card {
+    @apply bg-n64-gray/20 border-2 border-n64-blue/50 rounded-lg p-4 backdrop-blur-sm;
+    box-shadow: 0 0 20px rgba(0, 102, 204, 0.3);
+  }
+  
+  .n64-button {
+    @apply bg-n64-blue hover:bg-n64-blue/80 text-white font-n64 px-4 py-2 rounded border-2 border-white/20 transition-all duration-200;
+    box-shadow: 0 4px 0 rgba(0, 0, 0, 0.3);
+  }
+  
+  .n64-button:active {
+    transform: translateY(2px);
+    box-shadow: 0 2px 0 rgba(0, 0, 0, 0.3);
+  }
+  
+  .n64-input {
+    @apply bg-n64-dark border-2 border-n64-blue/50 text-white font-n64 px-3 py-2 rounded focus:border-n64-blue focus:outline-none;
+  }
+  
+  .news-banner {
+    @apply relative overflow-hidden rounded-lg p-4 mb-4;
+  }
+  
+  .news-banner.event {
+    @apply bg-gradient-to-r from-n64-red/20 to-n64-orange/20 border-2 border-n64-red/50;
+  }
+  
+  .news-banner.fanart {
+    @apply bg-gradient-to-r from-n64-blue/20 to-n64-purple/20 border-2 border-n64-blue/50;
+  }
+  
+  .news-banner.official {
+    @apply bg-gradient-to-r from-n64-silver/20 to-n64-gray/20 border-2 border-n64-silver/50;
+  }
+  
+  .news-banner.highlight {
+    @apply bg-gradient-to-r from-n64-gold/20 to-n64-yellow/20 border-2 border-n64-gold/50;
+  }
+  
+  .news-banner.tip {
+    @apply bg-gradient-to-r from-n64-green/20 to-n64-blue/20 border-2 border-n64-green/50;
+  }
+  
+  .pixel-border {
+    image-rendering: pixelated;
+    border-style: solid;
+    border-width: 2px;
+  }
+  
+  .glow-text {
+    text-shadow: 0 0 10px currentColor;
+  }
+  
+  .new-badge {
+    @apply bg-n64-red text-white text-xs font-pixel px-2 py-1 rounded animate-pulse-slow;
+  }
+}
