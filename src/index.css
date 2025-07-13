@@ -1,0 +1,171 @@
+:root {
+  --n64-gray: #4a4a4a;
+  --n64-dark-gray: #2a2a2a;
+  --n64-light-gray: #6a6a6a;
+  --n64-gold: #ffd700;
+  --n64-silver: #c0c0c0;
+  --n64-bronze: #cd7f32;
+  --n64-green: #00ff00;
+  --n64-red: #ff0000;
+  --n64-blue: #0080ff;
+  --n64-purple: #8000ff;
+  --n64-orange: #ff8000;
+  --n64-yellow: #ffff00;
+  --n64-cyan: #00ffff;
+  --n64-magenta: #ff00ff;
+  --n64-white: #ffffff;
+  --n64-black: #000000;
+  
+  --retro-border: 3px solid var(--n64-gray);
+  --retro-shadow: 4px 4px 0px var(--n64-black);
+  --retro-inner-shadow: inset 2px 2px 0px var(--n64-black);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Courier New', monospace;
+  background: linear-gradient(135deg, var(--n64-dark-gray) 0%, var(--n64-gray) 100%);
+  color: var(--n64-white);
+  min-height: 100vh;
+  padding: 20px;
+}
+
+#root {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Retro N64 Button Styles */
+.retro-button {
+  background: var(--n64-gray);
+  border: var(--retro-border);
+  box-shadow: var(--retro-shadow);
+  color: var(--n64-white);
+  padding: 8px 16px;
+  font-family: 'Courier New', monospace;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+}
+
+.retro-button:hover {
+  background: var(--n64-light-gray);
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px var(--n64-black);
+}
+
+.retro-button:active {
+  transform: translate(0px, 0px);
+  box-shadow: var(--retro-shadow);
+}
+
+/* Retro Card Styles */
+.retro-card {
+  background: var(--n64-gray);
+  border: var(--retro-border);
+  box-shadow: var(--retro-shadow);
+  padding: 16px;
+  margin: 16px 0;
+  position: relative;
+}
+
+.retro-card::before {
+  content: '';
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  right: 4px;
+  bottom: 4px;
+  border: 1px solid var(--n64-light-gray);
+  pointer-events: none;
+}
+
+/* Star Rating Styles */
+.star-rating {
+  display: inline-flex;
+  gap: 2px;
+}
+
+.star {
+  color: var(--n64-gold);
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.star.filled {
+  text-shadow: 0 0 8px var(--n64-gold);
+}
+
+.star.empty {
+  color: var(--n64-light-gray);
+}
+
+/* Progress Bar Styles */
+.progress-bar {
+  width: 100%;
+  height: 20px;
+  background: var(--n64-dark-gray);
+  border: 2px solid var(--n64-black);
+  position: relative;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--n64-green) 0%, var(--n64-yellow) 50%, var(--n64-red) 100%);
+  transition: width 0.5s ease;
+  position: relative;
+}
+
+.progress-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.3) 50%, transparent 100%);
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* Animation Classes */
+.fade-in {
+  animation: fadeIn 0.5s ease-in;
+}
+
+.slide-up {
+  animation: slideUp 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  body {
+    padding: 10px;
+  }
+  
+  .retro-card {
+    padding: 12px;
+    margin: 12px 0;
+  }
+}

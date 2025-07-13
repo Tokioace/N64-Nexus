@@ -1,0 +1,118 @@
+.battle64-container {
+  max-width: 800px;
+  margin: 0 auto;
+  background: var(--n64-dark-gray);
+  border: var(--retro-border);
+  box-shadow: var(--retro-shadow);
+  overflow: hidden;
+}
+
+.battle64-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  background: var(--n64-gray);
+  border-bottom: var(--retro-border);
+}
+
+.tab-navigation {
+  display: flex;
+  gap: 8px;
+}
+
+.tab-button {
+  background: var(--n64-dark-gray);
+  border: 2px solid var(--n64-black);
+  color: var(--n64-white);
+  padding: 8px 16px;
+  font-family: 'Courier New', monospace;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  font-size: 14px;
+}
+
+.tab-button:hover {
+  background: var(--n64-light-gray);
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0px var(--n64-black);
+}
+
+.tab-button.active {
+  background: var(--n64-gold);
+  color: var(--n64-black);
+  box-shadow: inset 2px 2px 0px var(--n64-black);
+  transform: none;
+}
+
+.privacy-toggle {
+  display: flex;
+  gap: 8px;
+}
+
+.privacy-toggle .retro-button {
+  font-size: 12px;
+  padding: 6px 12px;
+}
+
+.privacy-toggle .retro-button.public {
+  background: var(--n64-green);
+  color: var(--n64-black);
+}
+
+.privacy-toggle .retro-button.private {
+  background: var(--n64-red);
+  color: var(--n64-white);
+}
+
+.tooltip {
+  position: fixed;
+  background: var(--n64-black);
+  color: var(--n64-white);
+  padding: 8px 12px;
+  border: 2px solid var(--n64-gold);
+  border-radius: 4px;
+  font-size: 12px;
+  z-index: 1000;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  max-width: 200px;
+  text-align: center;
+}
+
+.tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 4px solid transparent;
+  border-top-color: var(--n64-gold);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .battle64-header {
+    flex-direction: column;
+    gap: 12px;
+    padding: 12px;
+  }
+  
+  .tab-navigation {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .tab-button {
+    flex: 1;
+    font-size: 12px;
+    padding: 6px 8px;
+  }
+  
+  .privacy-toggle {
+    width: 100%;
+    justify-content: center;
+  }
+}

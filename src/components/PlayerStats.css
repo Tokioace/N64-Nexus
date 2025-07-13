@@ -1,0 +1,244 @@
+.player-stats {
+  padding: 20px;
+  background: var(--n64-dark-gray);
+  position: relative;
+}
+
+.stats-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.stats-title {
+  font-size: 20px;
+  font-weight: bold;
+  color: var(--n64-gold);
+  text-transform: uppercase;
+  margin: 0;
+  text-shadow: 2px 2px 0px var(--n64-black);
+  letter-spacing: 1px;
+}
+
+.stats-divider {
+  height: 3px;
+  background: var(--n64-gray);
+  border: 1px solid var(--n64-black);
+  margin-top: 8px;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.stat-item {
+  background: var(--n64-gray);
+  border: 2px solid var(--n64-black);
+  padding: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.stat-item:hover {
+  background: var(--n64-light-gray);
+  transform: translate(-2px, -2px);
+  box-shadow: 4px 4px 0px var(--n64-black);
+}
+
+.stat-item::before {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  right: 2px;
+  bottom: 2px;
+  border: 1px solid var(--n64-light-gray);
+  pointer-events: none;
+}
+
+.stat-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.stat-icon {
+  font-size: 20px;
+  width: 24px;
+  text-align: center;
+}
+
+.stat-name {
+  font-size: 14px;
+  font-weight: bold;
+  color: var(--n64-white);
+  text-transform: uppercase;
+}
+
+.stat-value {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.stat-display {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.stat-number {
+  font-size: 16px;
+  font-weight: bold;
+  text-shadow: 1px 1px 0px var(--n64-black);
+}
+
+.special-ability {
+  background: linear-gradient(135deg, var(--n64-purple) 0%, var(--n64-blue) 100%);
+  border: 3px solid var(--n64-gold);
+  padding: 20px;
+  margin-top: 24px;
+  position: relative;
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+}
+
+.special-ability::before {
+  content: '';
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  right: 4px;
+  bottom: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  pointer-events: none;
+}
+
+.ability-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.ability-icon {
+  font-size: 24px;
+}
+
+.ability-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--n64-white);
+  margin: 0;
+  text-shadow: 2px 2px 0px var(--n64-black);
+}
+
+.ability-description {
+  font-size: 14px;
+  color: var(--n64-white);
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+
+.ability-requirements {
+  font-size: 12px;
+  color: var(--n64-white);
+}
+
+.ability-requirements strong {
+  color: var(--n64-gold);
+  display: block;
+  margin-bottom: 4px;
+}
+
+.ability-requirements ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.ability-requirements li {
+  margin-bottom: 2px;
+}
+
+.stats-tooltip {
+  position: fixed;
+  background: var(--n64-black);
+  color: var(--n64-white);
+  padding: 8px 12px;
+  border: 2px solid var(--n64-gold);
+  border-radius: 4px;
+  font-size: 12px;
+  z-index: 1000;
+  pointer-events: none;
+  max-width: 250px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.stats-tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 4px solid transparent;
+  border-top-color: var(--n64-gold);
+}
+
+/* Star Rating Specific Styles */
+.star-rating {
+  display: inline-flex;
+  gap: 2px;
+}
+
+.star {
+  color: var(--n64-gold);
+  font-size: 18px;
+  transition: all 0.3s ease;
+  text-shadow: 0 0 4px var(--n64-gold);
+}
+
+.star.filled {
+  animation: starGlow 2s infinite alternate;
+}
+
+.star.empty {
+  color: var(--n64-light-gray);
+  text-shadow: none;
+}
+
+@keyframes starGlow {
+  from { text-shadow: 0 0 4px var(--n64-gold); }
+  to { text-shadow: 0 0 8px var(--n64-gold), 0 0 12px var(--n64-gold); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  
+  .stat-item {
+    padding: 12px;
+  }
+  
+  .stat-value {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  
+  .special-ability {
+    padding: 16px;
+  }
+  
+  .ability-header {
+    flex-direction: column;
+    text-align: center;
+    gap: 8px;
+  }
+}
