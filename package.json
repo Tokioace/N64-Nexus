@@ -1,0 +1,21 @@
+{
+  "name": "n64-nexus",
+  "version": "1.0.0",
+  "description": "Nintendo 64 game library and emulator manager",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "jest"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "bcrypt": "^5.1.0",
+    "jsonwebtoken": "^9.0.0",
+    "sqlite3": "^5.1.6"
+  },
+  "devDependencies": {
+    "jest": "^29.0.0"
+  },
+  "author": "N64-Nexus Team",
+  "license": "MIT"
+}
