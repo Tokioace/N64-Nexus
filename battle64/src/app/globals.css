@@ -1,0 +1,85 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --neon-blue: #00ffff;
+  --neon-pink: #ff00ff;
+  --neon-green: #00ff00;
+  --neon-yellow: #ffff00;
+  --dark-bg: #0a0a0a;
+  --card-bg: #1a1a1a;
+  --glow-blue: 0 0 20px #00ffff;
+  --glow-pink: 0 0 20px #ff00ff;
+  --glow-green: 0 0 20px #00ff00;
+}
+
+@layer base {
+  body {
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+    color: #ffffff;
+    font-family: 'Courier New', monospace;
+    min-height: 100vh;
+  }
+}
+
+@layer components {
+  .neon-button {
+    @apply relative overflow-hidden rounded-lg px-6 py-3 font-bold text-white transition-all duration-300;
+    background: linear-gradient(45deg, var(--neon-blue), var(--neon-pink));
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+  }
+  
+  .neon-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 30px rgba(0, 255, 255, 0.8);
+  }
+  
+  .retro-card {
+    @apply rounded-lg border-2 p-6 backdrop-blur-sm;
+    background: rgba(26, 26, 26, 0.8);
+    border-color: var(--neon-blue);
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+  }
+  
+  .retro-card:hover {
+    box-shadow: 0 0 25px rgba(0, 255, 255, 0.6);
+  }
+  
+  .neon-text {
+    text-shadow: 0 0 10px var(--neon-blue);
+  }
+  
+  .pixel-border {
+    border-image: linear-gradient(45deg, var(--neon-blue), var(--neon-pink)) 1;
+  }
+  
+  .glow-effect {
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+  
+  @keyframes glow {
+    from {
+      box-shadow: 0 0 10px var(--neon-blue);
+    }
+    to {
+      box-shadow: 0 0 20px var(--neon-blue), 0 0 30px var(--neon-blue);
+    }
+  }
+  
+  .cartridge-animation {
+    animation: bounce 2s infinite;
+  }
+  
+  @keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+      transform: translateY(0);
+    }
+    40% {
+      transform: translateY(-10px);
+    }
+    60% {
+      transform: translateY(-5px);
+    }
+  }
+}
