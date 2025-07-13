@@ -1,0 +1,68 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-retro-black text-retro-white font-retro;
+    background-image: 
+      radial-gradient(circle at 25% 25%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 75% 75%, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
+  }
+}
+
+@layer components {
+  .quiz-card {
+    @apply bg-gradient-to-br from-n64-purple/20 to-n64-blue/20 
+           border-2 border-n64-purple/50 rounded-lg p-6 
+           backdrop-blur-sm shadow-lg hover:shadow-xl 
+           transition-all duration-300 hover:scale-105;
+  }
+  
+  .retro-button {
+    @apply bg-gradient-to-r from-n64-purple to-n64-blue 
+           text-white font-pixel text-sm px-6 py-3 
+           rounded-lg border-2 border-white/20 
+           hover:from-n64-blue hover:to-n64-purple 
+           transition-all duration-200 hover:scale-105 
+           active:scale-95 shadow-lg;
+  }
+  
+  .answer-option {
+    @apply bg-white/10 border-2 border-white/20 rounded-lg p-4 
+           hover:bg-white/20 hover:border-n64-green/50 
+           transition-all duration-200 cursor-pointer
+           hover:scale-105 active:scale-95;
+  }
+  
+  .answer-option.correct {
+    @apply bg-n64-green/30 border-n64-green text-n64-green;
+  }
+  
+  .answer-option.incorrect {
+    @apply bg-n64-red/30 border-n64-red text-n64-red;
+  }
+  
+  .score-display {
+    @apply font-pixel text-2xl text-n64-yellow 
+           animate-score-pop;
+  }
+  
+  .countdown-timer {
+    @apply font-pixel text-4xl text-n64-red 
+           animate-countdown;
+  }
+}
+
+@layer utilities {
+  .pixel-border {
+    border-image: linear-gradient(45deg, #8B5CF6, #3B82F6) 1;
+  }
+  
+  .retro-shadow {
+    box-shadow: 
+      0 0 0 2px #8B5CF6,
+      0 0 0 4px #3B82F6,
+      0 4px 8px rgba(0, 0, 0, 0.3);
+  }
+}
