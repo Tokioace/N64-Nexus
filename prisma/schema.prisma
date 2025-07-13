@@ -1,0 +1,223 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  username      String    @unique
+  password      String
+  avatar        String?
+  bio           String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  
+  // Gamification
+  totalPoints   Int       @default(0)
+  fanartLevel   String    @default("Bronze") // Bronze, Silver, Gold, Platinum
+  badges        Badge[]
+  
+  // Content
+  fanarts       Fanart[]
+  screenshots   Screenshot[]
+  comments      Comment[]
+  likes         Like[]
+  favorites     Favorite[]
+  
+  // Reports
+  reportedContent Report[]
+  
+  @@map("users")
+}
+
+model Game {
+  id          String    @id @default(cuid())
+  name        String    @unique
+  slug        String    @unique
+  description String?
+  coverImage  String?
+  platform    String    @default("N64")
+  region      String    @default("NTSC")
+  createdAt   DateTime  @default(now())
+  
+  // Content
+  fanarts     Fanart[]
+  screenshots Screenshot[]
+  
+  @@map("games")
+}
+
+model Fanart {
+  id          String    @id @default(cuid())
+  title       String
+  description String?
+  imageUrl    String
+  tags        String[]  @default([])
+  tools       String?
+  isNSFW      Boolean   @default(false)
+  isApproved  Boolean   @default(false)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  
+  // Relationships
+  authorId    String
+  author      User      @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  gameId      String
+  game        Game      @relation(fields: [gameId], references: [id], onDelete: Cascade)
+  
+  // Interactions
+  likes       Like[]
+  comments    Comment[]
+  favorites   Favorite[]
+  reports     Report[]
+  
+  // Weekly/Monthly rankings
+  weeklyPoints  Int     @default(0)
+  monthlyPoints Int     @default(0)
+  
+  @@map("fanarts")
+}
+
+model Screenshot {
+  id          String    @id @default(cuid())
+  title       String
+  description String?
+  imageUrl    String
+  platform    String    // N64, SNES, etc.
+  region      String    // PAL, NTSC
+  isNSFW      Boolean   @default(false)
+  isApproved  Boolean   @default(false)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  
+  // Relationships
+  authorId    String
+  author      User      @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  gameId      String
+  game        Game      @relation(fields: [gameId], references: [id], onDelete: Cascade)
+  
+  // Interactions
+  likes       Like[]
+  comments    Comment[]
+  favorites   Favorite[]
+  reports     Report[]
+  
+  // Weekly/Monthly rankings
+  weeklyPoints  Int     @default(0)
+  monthlyPoints Int     @default(0)
+  
+  @@map("screenshots")
+}
+
+model Comment {
+  id        String    @id @default(cuid())
+  content   String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  
+  // Relationships
+  authorId  String
+  author    User      @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  fanartId  String?
+  fanart    Fanart?   @relation(fields: [fanartId], references: [id], onDelete: Cascade)
+  screenshotId String?
+  screenshot Screenshot? @relation(fields: [screenshotId], references: [id], onDelete: Cascade)
+  
+  // Top comments get bonus points
+  isTopComment Boolean @default(false)
+  
+  @@map("comments")
+}
+
+model Like {
+  id        String    @id @default(cuid())
+  createdAt DateTime  @default(now())
+  
+  // Relationships
+  userId    String
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  fanartId  String?
+  fanart    Fanart?   @relation(fields: [fanartId], references: [id], onDelete: Cascade)
+  screenshotId String?
+  screenshot Screenshot? @relation(fields: [screenshotId], references: [id], onDelete: Cascade)
+  
+  @@unique([userId, fanartId])
+  @@unique([userId, screenshotId])
+  @@map("likes")
+}
+
+model Favorite {
+  id        String    @id @default(cuid())
+  createdAt DateTime  @default(now())
+  
+  // Relationships
+  userId    String
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  fanartId  String?
+  fanart    Fanart?   @relation(fields: [fanartId], references: [id], onDelete: Cascade)
+  screenshotId String?
+  screenshot Screenshot? @relation(fields: [screenshotId], references: [id], onDelete: Cascade)
+  
+  @@unique([userId, fanartId])
+  @@unique([userId, screenshotId])
+  @@map("favorites")
+}
+
+model Badge {
+  id          String    @id @default(cuid())
+  name        String
+  description String
+  icon        String
+  color       String
+  createdAt   DateTime  @default(now())
+  
+  // Relationships
+  userId      String
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@map("badges")
+}
+
+model Report {
+  id          String    @id @default(cuid())
+  reason      String
+  description String?
+  status      String    @default("pending") // pending, reviewed, resolved
+  createdAt   DateTime  @default(now())
+  
+  // Relationships
+  reporterId  String
+  reporter    User      @relation(fields: [reporterId], references: [id], onDelete: Cascade)
+  fanartId    String?
+  fanart      Fanart?   @relation(fields: [fanartId], references: [id], onDelete: Cascade)
+  screenshotId String?
+  screenshot  Screenshot? @relation(fields: [screenshotId], references: [id], onDelete: Cascade)
+  
+  @@map("reports")
+}
+
+model Competition {
+  id          String    @id @default(cuid())
+  title       String
+  description String
+  theme       String
+  startDate   DateTime
+  endDate     DateTime
+  isActive    Boolean   @default(true)
+  createdAt   DateTime  @default(now())
+  
+  // Winners
+  winnerId    String?
+  runnerUpId  String?
+  thirdPlaceId String?
+  
+  @@map("competitions")
+}
