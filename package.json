@@ -1,0 +1,25 @@
+{
+  "name": "battle64-seasonal-events",
+  "version": "1.0.0",
+  "description": "Saisonale Events & Belohnungen für Battle64",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js",
+    "test": "jest"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "moment": "^2.29.4",
+    "uuid": "^9.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22",
+    "jest": "^29.5.0"
+  },
+  "keywords": ["battle64", "seasonal", "events", "gaming", "n64"],
+  "author": "Battle64 Team",
+  "license": "MIT"
+}
