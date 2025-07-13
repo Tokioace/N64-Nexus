@@ -1,0 +1,125 @@
+export const mockEventData = {
+  currentEvent: {
+    id: 'event-001',
+    game: 'F-Zero X',
+    track: 'Silence',
+    title: 'F-Zero X – Silence',
+    description: 'Weekly N64 Speedrun Saturday',
+    startTime: '18:00',
+    endTime: '22:00',
+    date: 'Samstag',
+    image: 'https://via.placeholder.com/300x200/FF6B35/FFFFFF?text=F-Zero+X',
+  },
+  
+  submissions: [
+    {
+      id: 'sub-001',
+      username: 'SpeedRunner99',
+      time: '0:58.43',
+      region: 'PAL',
+      comment: 'Perfekter Lauf! Neuer PB!',
+      imageUri: 'https://via.placeholder.com/400x300/4ECDC4/FFFFFF?text=0:58.43',
+      timestamp: '2024-01-13T19:30:00Z',
+      points: 10,
+    },
+    {
+      id: 'sub-002',
+      username: 'N64Master',
+      time: '1:02.15',
+      region: 'NTSC',
+      comment: 'Solider Run, kann besser werden',
+      imageUri: 'https://via.placeholder.com/400x300/FF6B35/FFFFFF?text=1:02.15',
+      timestamp: '2024-01-13T19:45:00Z',
+      points: 8,
+    },
+    {
+      id: 'sub-003',
+      username: 'RetroGamer',
+      time: '1:05.87',
+      region: 'JP',
+      comment: 'Erste Teilnahme, bin zufrieden!',
+      imageUri: 'https://via.placeholder.com/400x300/9B59B6/FFFFFF?text=1:05.87',
+      timestamp: '2024-01-13T20:15:00Z',
+      points: 6,
+    },
+    {
+      id: 'sub-004',
+      username: 'FastFinish',
+      time: '1:08.92',
+      region: 'PAL',
+      comment: 'Paar Fehler gemacht, aber okay',
+      imageUri: 'https://via.placeholder.com/400x300/E74C3C/FFFFFF?text=1:08.92',
+      timestamp: '2024-01-13T20:30:00Z',
+      points: 4,
+    },
+  ],
+  
+  chatMessages: [
+    {
+      id: 'msg-001',
+      username: 'SpeedRunner99',
+      message: 'Hallo alle zusammen! Bereit für F-Zero X? 🏎️',
+      timestamp: '2024-01-13T18:05:00Z',
+    },
+    {
+      id: 'msg-002',
+      username: 'N64Master',
+      message: 'Definitiv! Silence ist einer meiner Lieblings-Tracks!',
+      timestamp: '2024-01-13T18:07:00Z',
+    },
+    {
+      id: 'msg-003',
+      username: 'RetroGamer',
+      message: 'Erste Teilnahme hier. Tipps für Anfänger?',
+      timestamp: '2024-01-13T18:10:00Z',
+    },
+    {
+      id: 'msg-004',
+      username: 'FastFinish',
+      message: '@RetroGamer Boost timing ist key! Übe die Kurven.',
+      timestamp: '2024-01-13T18:12:00Z',
+    },
+    {
+      id: 'msg-005',
+      username: 'SpeedRunner99',
+      message: 'Gerade meinen PB geknackt! 58.43 - bin hyped! 🎉',
+      timestamp: '2024-01-13T19:31:00Z',
+    },
+  ],
+  
+  eventHistory: [
+    {
+      id: 'hist-001',
+      game: 'Mario Kart 64',
+      track: 'Rainbow Road',
+      date: '2024-01-06',
+      winners: [
+        { username: 'RainbowKing', time: '5:42.33', region: 'NTSC' },
+        { username: 'N64Legend', time: '5:45.12', region: 'PAL' },
+        { username: 'KartMaster', time: '5:47.89', region: 'JP' },
+      ],
+    },
+    {
+      id: 'hist-002',
+      game: 'GoldenEye 007',
+      track: 'Facility (Agent)',
+      date: '2023-12-30',
+      winners: [
+        { username: 'BondFan', time: '0:53.00', region: 'PAL' },
+        { username: 'Agent007', time: '0:54.15', region: 'NTSC' },
+        { username: 'GoldenGun', time: '0:55.32', region: 'JP' },
+      ],
+    },
+    {
+      id: 'hist-003',
+      game: 'Super Mario 64',
+      track: '16 Star',
+      date: '2023-12-23',
+      winners: [
+        { username: 'MarioSpeed', time: '15:23.45', region: 'JP' },
+        { username: 'StarCollector', time: '15:41.22', region: 'NTSC' },
+        { username: 'PlatformKing', time: '15:58.67', region: 'PAL' },
+      ],
+    },
+  ],
+};
