@@ -1,0 +1,218 @@
+.event-card {
+  background: var(--card-bg);
+  padding: 20px;
+  border-radius: 8px;
+  position: relative;
+  transition: all 0.3s ease;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+}
+
+.event-card.hovered {
+  transform: translateY(-5px);
+  box-shadow: 
+    0 0 30px var(--glow-color),
+    inset 0 0 30px rgba(0, 255, 0, 0.1);
+}
+
+.event-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--border-color);
+}
+
+.event-name {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.9rem;
+  color: var(--primary-color);
+  margin: 0;
+  line-height: 1.4;
+  flex: 1;
+}
+
+.status-badge {
+  font-family: 'VT323', monospace;
+  font-size: 0.8rem;
+  padding: 4px 8px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.status-badge.active {
+  background: rgba(0, 255, 0, 0.2);
+  color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+}
+
+.status-badge.completed {
+  background: rgba(255, 255, 0, 0.2);
+  color: var(--accent-color);
+  border: 1px solid var(--accent-color);
+}
+
+.status-badge.upcoming {
+  background: rgba(255, 0, 255, 0.2);
+  color: var(--secondary-color);
+  border: 1px solid var(--secondary-color);
+}
+
+.event-info {
+  flex: 1;
+  margin-bottom: 20px;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(0, 255, 0, 0.2);
+}
+
+.info-label {
+  font-family: 'VT323', monospace;
+  font-size: 1rem;
+  color: var(--text-color);
+  font-weight: bold;
+}
+
+.info-value {
+  font-family: 'VT323', monospace;
+  font-size: 1rem;
+  color: var(--primary-color);
+  text-align: right;
+  max-width: 60%;
+}
+
+.countdown {
+  color: var(--accent-color);
+  font-weight: bold;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.event-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: auto;
+}
+
+.participate-btn {
+  background: var(--primary-color);
+  color: var(--background-color);
+  flex: 1;
+}
+
+.screenshot-btn {
+  background: var(--accent-color);
+  color: var(--background-color);
+  flex: 1;
+}
+
+.details-btn {
+  background: var(--secondary-color);
+  color: var(--background-color);
+  flex: 1;
+}
+
+.event-details {
+  margin-top: 20px;
+  padding: 15px;
+  background: rgba(0, 255, 0, 0.1);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+}
+
+.event-details h4 {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.7rem;
+  color: var(--accent-color);
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+.event-details p {
+  font-family: 'VT323', monospace;
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+  color: var(--text-color);
+}
+
+.hover-preview {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.9);
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  padding: 20px;
+  z-index: 10;
+  min-width: 250px;
+  text-align: center;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.preview-content h4 {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.8rem;
+  color: var(--accent-color);
+  margin-bottom: 10px;
+}
+
+.best-time {
+  font-family: 'VT323', monospace;
+  font-size: 1.2rem;
+  color: var(--primary-color);
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.preview-note {
+  font-family: 'VT323', monospace;
+  font-size: 0.8rem;
+  color: var(--text-color);
+  opacity: 0.7;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .event-card {
+    min-height: auto;
+    padding: 15px;
+  }
+  
+  .event-name {
+    font-size: 0.7rem;
+  }
+  
+  .info-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
+  
+  .info-value {
+    text-align: left;
+    max-width: 100%;
+  }
+  
+  .event-actions {
+    flex-direction: column;
+  }
+  
+  .hover-preview {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 300px;
+  }
+}

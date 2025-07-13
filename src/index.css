@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap');
+
+:root {
+  --primary-color: #00ff00;
+  --secondary-color: #ff00ff;
+  --accent-color: #ffff00;
+  --background-color: #000000;
+  --card-bg: #1a1a1a;
+  --text-color: #ffffff;
+  --border-color: #00ff00;
+  --glow-color: #00ff00;
+  --scanline-color: rgba(0, 255, 0, 0.1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'VT323', monospace;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* Retro scanline effect */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    transparent 50%,
+    var(--scanline-color) 50%
+  );
+  background-size: 100% 4px;
+  pointer-events: none;
+  z-index: 1000;
+}
+
+/* Pixel art border utility */
+.pixel-border {
+  border: 2px solid var(--border-color);
+  box-shadow: 
+    0 0 10px var(--glow-color),
+    inset 0 0 10px rgba(0, 255, 0, 0.1);
+}
+
+.pixel-border:hover {
+  box-shadow: 
+    0 0 20px var(--glow-color),
+    inset 0 0 20px rgba(0, 255, 0, 0.2);
+  transform: scale(1.02);
+  transition: all 0.3s ease;
+}
+
+/* Retro button styling */
+.retro-button {
+  background: var(--card-bg);
+  border: 2px solid var(--border-color);
+  color: var(--text-color);
+  font-family: 'Press Start 2P', cursive;
+  font-size: 12px;
+  padding: 8px 16px;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+}
+
+.retro-button:hover {
+  background: var(--border-color);
+  color: var(--background-color);
+  box-shadow: 0 0 15px var(--glow-color);
+}
+
+.retro-button:active {
+  transform: translateY(2px);
+}
+
+/* Glitch effect */
+@keyframes glitch {
+  0% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(-2px, -2px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(2px, -2px); }
+  100% { transform: translate(0); }
+}
+
+.glitch {
+  animation: glitch 0.3s ease-in-out;
+}
+
+/* Fade in animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-out;
+}
