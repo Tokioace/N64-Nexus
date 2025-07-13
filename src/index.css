@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-battle64-dark text-battle64-light font-retro;
+  }
+}
+
+@layer components {
+  .pixel-border {
+    @apply border-2 border-battle64-primary;
+    box-shadow: 
+      0 0 0 2px #000,
+      0 0 0 4px #fff,
+      0 0 0 6px #000;
+  }
+  
+  .event-card {
+    @apply bg-battle64-dark border border-battle64-primary rounded-lg p-4 transition-all duration-300 hover:scale-105 hover:shadow-lg;
+  }
+  
+  .calendar-day {
+    @apply border border-battle64-light bg-battle64-dark hover:bg-battle64-primary/20 transition-colors duration-200 cursor-pointer;
+  }
+  
+  .calendar-day.has-events {
+    @apply relative;
+  }
+  
+  .calendar-day.has-events::after {
+    content: '';
+    @apply absolute bottom-1 right-1 w-2 h-2 rounded-full bg-battle64-primary;
+  }
+  
+  .countdown-timer {
+    @apply font-pixel text-battle64-primary animate-countdown;
+  }
+  
+  .notification-popup {
+    @apply fixed top-4 right-4 bg-battle64-primary text-white p-4 rounded-lg shadow-lg z-50;
+    animation: slideIn 0.3s ease-out;
+  }
+  
+  @keyframes slideIn {
+    from {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+}
