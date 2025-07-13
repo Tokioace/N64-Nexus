@@ -1,0 +1,38 @@
+{
+  "name": "battle64",
+  "version": "1.0.0",
+  "description": "Battle64 - Retro Gaming Platform with Notifications & Trophy System",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint . --ext js,jsx,ts,tsx",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.8.0",
+    "zustand": "^4.3.0",
+    "axios": "^1.3.0",
+    "date-fns": "^2.29.0",
+    "framer-motion": "^10.0.0",
+    "react-hot-toast": "^2.4.0",
+    "react-icons": "^4.8.0",
+    "styled-components": "^5.3.9"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.28",
+    "@types/react-dom": "^18.0.11",
+    "@vitejs/plugin-react": "^3.1.0",
+    "typescript": "^4.9.5",
+    "vite": "^4.1.0",
+    "eslint": "^8.35.0",
+    "@typescript-eslint/eslint-plugin": "^5.54.0",
+    "@typescript-eslint/parser": "^5.54.0"
+  },
+  "keywords": ["gaming", "retro", "notifications", "trophies", "battle64"],
+  "author": "Battle64 Team",
+  "license": "MIT"
+}
