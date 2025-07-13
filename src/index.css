@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-retro-dark text-white font-retro;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-n64-purple hover:bg-purple-700 text-white font-bold py-2 px-4 rounded transition-colors;
+  }
+  
+  .btn-secondary {
+    @apply bg-n64-blue hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition-colors;
+  }
+  
+  .btn-success {
+    @apply bg-n64-green hover:bg-green-700 text-white font-bold py-2 px-4 rounded transition-colors;
+  }
+  
+  .btn-danger {
+    @apply bg-n64-red hover:bg-red-700 text-white font-bold py-2 px-4 rounded transition-colors;
+  }
+  
+  .card {
+    @apply bg-retro-gray rounded-lg p-6 shadow-lg border border-gray-600;
+  }
+  
+  .input-field {
+    @apply bg-gray-700 border border-gray-600 rounded px-3 py-2 text-white placeholder-gray-400 focus:outline-none focus:border-n64-purple;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-800;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-n64-purple rounded;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-purple-600;
+}
