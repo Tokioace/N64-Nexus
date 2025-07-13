@@ -1,0 +1,36 @@
+.App {
+  min-height: 100vh;
+}
+
+/* Retro gradient background animation */
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.bg-gradient-animated {
+  background: linear-gradient(-45deg, #667eea, #764ba2, #f093fb, #f5576c);
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+}
+
+/* Retro text shadow effect */
+.text-retro-shadow {
+  text-shadow: 2px 2px 0px #000, 4px 4px 0px #333;
+}
+
+/* Glowing effect for active elements */
+.glow-effect {
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.glow-effect:hover {
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+}
