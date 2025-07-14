@@ -1,0 +1,111 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: 'Courier New', monospace;
+  }
+  
+  body {
+    @apply bg-retro-gray-900 text-retro-gray-100;
+    background-image: 
+      radial-gradient(circle at 25% 25%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 75% 75%, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
+  }
+}
+
+@layer components {
+  .retro-card {
+    @apply bg-retro-gray-800 border border-retro-gray-700 rounded-lg shadow-retro;
+    backdrop-filter: blur(10px);
+  }
+  
+  .retro-card-hover {
+    @apply hover:bg-retro-gray-700 hover:border-n64-purple-500 hover:shadow-retro-lg transition-all duration-300;
+  }
+  
+  .game-box {
+    @apply bg-gradient-to-br from-n64-purple-600 to-n64-blue-600 rounded-lg shadow-game-box;
+    transform-style: preserve-3d;
+  }
+  
+  .memory-card {
+    @apply bg-gradient-to-br from-n64-yellow-400 to-n64-yellow-600 rounded-lg shadow-retro;
+    animation: memoryCard 0.3s ease-in-out;
+  }
+  
+  .favorite-button {
+    @apply relative p-2 rounded-full bg-retro-gray-700 hover:bg-n64-red-500 transition-all duration-300;
+  }
+  
+  .favorite-button.active {
+    @apply bg-n64-red-500 text-white;
+    animation: starTwinkle 0.5s ease-in-out;
+  }
+  
+  .type-badge {
+    @apply px-2 py-1 text-xs font-bold rounded-full;
+  }
+  
+  .type-badge.game {
+    @apply bg-n64-purple-500 text-white;
+  }
+  
+  .type-badge.track {
+    @apply bg-n64-blue-500 text-white;
+  }
+  
+  .type-badge.fanart {
+    @apply bg-n64-green-500 text-white;
+  }
+  
+  .type-badge.event {
+    @apply bg-n64-yellow-500 text-black;
+  }
+  
+  .type-badge.user {
+    @apply bg-n64-red-500 text-white;
+  }
+  
+  .type-badge.quiz {
+    @apply bg-n64-purple-400 text-white;
+  }
+  
+  .type-badge.trade {
+    @apply bg-n64-green-400 text-white;
+  }
+}
+
+@layer utilities {
+  .text-shadow {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  }
+  
+  .text-glow {
+    text-shadow: 0 0 10px currentColor;
+  }
+  
+  .scrollbar-retro {
+    scrollbar-width: thin;
+    scrollbar-color: theme('colors.n64-purple.500') theme('colors.retro-gray.800');
+  }
+  
+  .scrollbar-retro::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .scrollbar-retro::-webkit-scrollbar-track {
+    background: theme('colors.retro-gray.800');
+    border-radius: 4px;
+  }
+  
+  .scrollbar-retro::-webkit-scrollbar-thumb {
+    background: theme('colors.n64-purple.500');
+    border-radius: 4px;
+  }
+  
+  .scrollbar-retro::-webkit-scrollbar-thumb:hover {
+    background: theme('colors.n64-purple.400');
+  }
+}
