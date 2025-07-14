@@ -1,0 +1,70 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* Custom scrollbar for webkit browsers */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+/* Retro gaming font for headers */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+.retro-font {
+  font-family: 'Press Start 2P', cursive;
+}
+
+/* Glow effect for buttons */
+.glow-effect {
+  box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+  transition: box-shadow 0.3s ease;
+}
+
+.glow-effect:hover {
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.8);
+}
+
+/* Pixel art border effect */
+.pixel-border {
+  border: 2px solid;
+  border-image: linear-gradient(45deg, #3b82f6, #8b5cf6, #ec4899) 1;
+}
+
+/* Animation for XP counter */
+@keyframes xpPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+.xp-pulse {
+  animation: xpPulse 0.5s ease-in-out;
+}
