@@ -1,0 +1,39 @@
+body.dark-mode {
+  background-color: #000014;
+  color: #e0e0ff;
+}
+
+.dark-mode h1, .dark-mode h2, .dark-mode h3 {
+  color: #ffccee;
+  text-shadow: 1px 1px 0 #333399;
+}
+
+.dark-mode button {
+  background-color: #6633cc;
+  border: 2px solid #fff;
+  color: #fff;
+}
+
+.dark-mode button:hover {
+  background-color: #9955ff;
+  box-shadow: 0 0 10px #9955ff;
+}
+
+.dark-mode .card {
+  background-color: #111144;
+  border-color: #77ddff;
+  box-shadow: 0 0 10px #77ddff;
+}
+
+.dark-mode .navbar {
+  background-color: #000033;
+  box-shadow: 0 0 12px #330066;
+}
+
+.dark-mode .navbar a {
+  color: #eee;
+}
+
+.dark-mode footer {
+  color: #aaa;
+}
