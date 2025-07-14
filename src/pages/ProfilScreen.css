@@ -1,0 +1,472 @@
+/* Retro N64-inspired Profile Screen Styles */
+.profil-screen {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  font-family: 'Courier New', monospace;
+  color: #ffffff;
+  padding: 20px;
+}
+
+.profil-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  background: rgba(0, 0, 0, 0.8);
+  border: 3px solid #4b5663;
+  border-radius: 15px;
+  padding: 30px;
+  box-shadow: 0 0 30px rgba(75, 86, 99, 0.5);
+}
+
+/* Header Section */
+.profil-header {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin-bottom: 40px;
+  padding: 20px;
+  background: linear-gradient(90deg, #2c3e50 0%, #34495e 100%);
+  border-radius: 10px;
+  border: 2px solid #4b5663;
+}
+
+.avatar-section {
+  flex-shrink: 0;
+}
+
+.avatar-container {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 4px solid #f39c12;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(243, 156, 18, 0.6);
+  background: #4b5663;
+}
+
+.player-avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.player-info {
+  flex: 1;
+}
+
+.player-name {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin: 0 0 10px 0;
+  color: #f39c12;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  letter-spacing: 2px;
+}
+
+.player-rank {
+  font-size: 1.2rem;
+  color: #3498db;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.player-level {
+  font-size: 1.1rem;
+  color: #e74c3c;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+/* Progress Bar */
+.progress-container {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.progress-bar {
+  flex: 1;
+  height: 20px;
+  background: #2c3e50;
+  border: 2px solid #4b5663;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #e74c3c 0%, #f39c12 50%, #27ae60 100%);
+  transition: width 0.5s ease;
+  box-shadow: 0 0 10px rgba(231, 76, 60, 0.6);
+}
+
+.progress-text {
+  font-size: 0.9rem;
+  color: #bdc3c7;
+  font-weight: bold;
+  min-width: 120px;
+}
+
+/* Section Titles */
+.section-title {
+  font-size: 1.8rem;
+  color: #f39c12;
+  margin: 0 0 20px 0;
+  text-align: center;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  border-bottom: 2px solid #4b5663;
+  padding-bottom: 10px;
+}
+
+/* Stats Section */
+.stats-section {
+  margin-bottom: 40px;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.stat-card {
+  background: linear-gradient(135deg, #34495e 0%, #2c3e50 100%);
+  border: 2px solid #4b5663;
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(243, 156, 18, 0.3);
+}
+
+.stat-icon {
+  font-size: 2.5rem;
+  width: 60px;
+  text-align: center;
+}
+
+.stat-content {
+  flex: 1;
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  color: #bdc3c7;
+  margin-bottom: 5px;
+}
+
+.stat-value {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #f39c12;
+}
+
+.stat-stars {
+  display: flex;
+  gap: 2px;
+}
+
+.star {
+  font-size: 1.2rem;
+  transition: color 0.2s ease;
+}
+
+.star.filled {
+  color: #f39c12;
+  text-shadow: 0 0 5px rgba(243, 156, 18, 0.8);
+}
+
+.star.empty {
+  color: #4b5663;
+}
+
+/* Speedrun Section */
+.speedrun-section {
+  margin-bottom: 40px;
+}
+
+.speedrun-list {
+  display: grid;
+  gap: 15px;
+}
+
+.speedrun-item {
+  background: linear-gradient(135deg, #34495e 0%, #2c3e50 100%);
+  border: 2px solid #4b5663;
+  border-radius: 10px;
+  padding: 15px;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 15px;
+  align-items: center;
+  transition: transform 0.2s ease;
+}
+
+.speedrun-item:hover {
+  transform: translateX(5px);
+  border-color: #f39c12;
+}
+
+.speedrun-game {
+  font-weight: bold;
+  color: #f39c12;
+}
+
+.speedrun-time {
+  font-family: 'Courier New', monospace;
+  font-weight: bold;
+  color: #27ae60;
+  text-align: center;
+}
+
+.speedrun-category {
+  color: #3498db;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.speedrun-date {
+  color: #bdc3c7;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+/* Locations Section */
+.locations-section {
+  margin-bottom: 40px;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.map-toggle {
+  background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+  border: 2px solid #4b5663;
+  border-radius: 8px;
+  color: white;
+  padding: 10px 20px;
+  font-family: 'Courier New', monospace;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.map-toggle:hover {
+  background: linear-gradient(135deg, #c0392b 0%, #a93226 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 3px 10px rgba(231, 76, 60, 0.4);
+}
+
+.map-placeholder {
+  background: linear-gradient(135deg, #34495e 0%, #2c3e50 100%);
+  border: 2px solid #4b5663;
+  border-radius: 10px;
+  padding: 40px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.map-content {
+  color: #bdc3c7;
+}
+
+.map-icon {
+  font-size: 3rem;
+  margin-bottom: 15px;
+}
+
+.locations-list {
+  display: grid;
+  gap: 15px;
+}
+
+.location-item {
+  background: linear-gradient(135deg, #34495e 0%, #2c3e50 100%);
+  border: 2px solid #4b5663;
+  border-radius: 10px;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: transform 0.2s ease;
+}
+
+.location-item:hover {
+  transform: translateX(5px);
+  border-color: #3498db;
+}
+
+.location-name {
+  font-weight: bold;
+  color: #3498db;
+}
+
+.location-stats {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  color: #bdc3c7;
+  font-size: 0.9rem;
+}
+
+.location-rarity {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* Achievements Section */
+.achievements-section {
+  margin-bottom: 40px;
+}
+
+.achievements-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.achievement-card {
+  background: linear-gradient(135deg, #34495e 0%, #2c3e50 100%);
+  border: 3px solid;
+  border-radius: 10px;
+  padding: 20px;
+  position: relative;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  overflow: hidden;
+}
+
+.achievement-card.unlocked {
+  box-shadow: 0 0 20px rgba(243, 156, 18, 0.3);
+}
+
+.achievement-card.locked {
+  opacity: 0.6;
+  filter: grayscale(50%);
+}
+
+.achievement-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(243, 156, 18, 0.4);
+}
+
+.achievement-icon {
+  font-size: 3rem;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.achievement-content {
+  text-align: center;
+}
+
+.achievement-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #f39c12;
+  margin: 0 0 10px 0;
+}
+
+.achievement-description {
+  color: #bdc3c7;
+  font-size: 0.9rem;
+  margin: 0 0 10px 0;
+  line-height: 1.4;
+}
+
+.achievement-date {
+  color: #27ae60;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.achievement-rarity {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 0.7rem;
+  font-weight: bold;
+  color: white;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .profil-header {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .player-name {
+    font-size: 2rem;
+  }
+  
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .speedrun-item {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  
+  .location-item {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+  
+  .achievements-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .section-header {
+    flex-direction: column;
+    gap: 15px;
+  }
+}
+
+/* Animation for loading states */
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.5; }
+  100% { opacity: 1; }
+}
+
+.loading {
+  animation: pulse 1.5s infinite;
+}
+
+/* Retro scanlines effect */
+.profil-screen::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    transparent 50%,
+    rgba(0, 0, 0, 0.1) 50%
+  );
+  background-size: 100% 4px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.profil-container {
+  position: relative;
+  z-index: 2;
+}
