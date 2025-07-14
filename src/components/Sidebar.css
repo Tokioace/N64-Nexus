@@ -1,0 +1,40 @@
+.sidebar {
+  width: 200px;
+  height: 100vh;
+  background-color: #220044;
+  color: white;
+  padding: 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  box-shadow: 2px 0 10px #ff00cc;
+  z-index: 1000;
+}
+
+.sidebar h2 {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 12px;
+  color: #fdfd96;
+  margin-bottom: 30px;
+  text-shadow: 1px 1px #cc33ff;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar li {
+  margin-bottom: 15px;
+}
+
+.sidebar a {
+  color: #66ffcc;
+  text-decoration: none;
+  font-size: 12px;
+  font-family: 'Press Start 2P', cursive;
+}
+
+.sidebar a:hover {
+  text-shadow: 0 0 8px #66ffcc;
+}
