@@ -1,0 +1,26 @@
+.App {
+  min-height: 100vh;
+  background: var(--background-color);
+}
+
+.retro-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  color: var(--primary-color);
+}
+
+.retro-header p {
+  font-size: 1.2rem;
+  color: var(--text-color);
+  opacity: 0.8;
+}
+
+@media (max-width: 768px) {
+  .retro-header h1 {
+    font-size: 1.8rem;
+  }
+  
+  .retro-header p {
+    font-size: 1rem;
+  }
+}
