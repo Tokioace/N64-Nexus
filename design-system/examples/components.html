@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎮 Battle64 Design System - Components</title>
+    <link rel="stylesheet" href="../css/battle64.css">
+    <style>
+        .showcase-section {
+            margin-bottom: var(--spacing-3xl);
+            padding: var(--spacing-xl);
+            background: var(--color-surface);
+            border-radius: var(--radius-xl);
+            border: 2px solid var(--color-primary);
+        }
+        
+        .showcase-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-lg);
+        }
+        
+        .component-demo {
+            padding: var(--spacing-lg);
+            background: var(--color-background);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--color-dark-gray-lighter);
+        }
+        
+        .demo-title {
+            font-family: var(--font-primary);
+            font-size: 1rem;
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-md);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="py-6">
+            <h1 class="text-center text-glow-primary">🎮 Battle64 Design System</h1>
+            <p class="text-center text-body text-muted">Premium Retro-Style Component Showcase</p>
+        </header>
+
+        <!-- Color Palette -->
+        <section class="showcase-section">
+            <h2 class="text-center mb-4">🎨 Color Palette</h2>
+            <div class="showcase-grid">
+                <div class="component-demo">
+                    <div class="demo-title">Primary Colors</div>
+                    <div class="flex flex-col gap-2">
+                        <div class="flex items-center gap-3">
+                            <div class="w-8 h-8 rounded bg-primary"></div>
+                            <span class="text-sm">Retro Violet (#6E4AFF)</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-8 h-8 rounded bg-secondary"></div>
+                            <span class="text-sm">Pixel Orange (#FFB800)</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-8 h-8 rounded bg-accent"></div>
+                            <span class="text-sm">Module Blue (#228DFF)</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="component-demo">
+                    <div class="demo-title">Semantic Colors</div>
+                    <div class="flex flex-col gap-2">
+                        <div class="flex items-center gap-3">
+                            <div class="w-8 h-8 rounded bg-success"></div>
+                            <span class="text-sm">Neon Green (#00FFAA)</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-8 h-8 rounded bg-error"></div>
+                            <span class="text-sm">Pixel Red (#FF3D5A)</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-8 h-8 rounded bg-background"></div>
+                            <span class="text-sm">Dark Gray (#1C1C1C)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Typography -->
+        <section class="showcase-section">
+            <h2 class="text-center mb-4">📝 Typography</h2>
+            <div class="showcase-grid">
+                <div class="component-demo">
+                    <div class="demo-title">Headings</div>
+                    <div class="flex flex-col gap-3">
+                        <h1 class="text-game-title">Game Title</h1>
+                        <h2 class="h2">Heading 2</h2>
+                        <h3 class="h3">Heading 3</h3>
+                        <h4 class="h4">Heading 4</h4>
+                    </div>
+                </div>
+                
+                <div class="component-demo">
+                    <div class="demo-title">Text Styles</div>
+                    <div class="flex flex-col gap-2">
+                        <p class="text-body">Body text with good readability</p>
+                        <p class="text-body-small">Smaller body text for secondary information</p>
+                        <p class="text-caption">Caption text for labels and metadata</p>
+                        <p class="text-score">Score: 1,234,567</p>
+                        <p class="text-timer">00:12:34</p>
+                    </div>
+                </div>
+                
+                <div class="component-demo">
+                    <div class="demo-title">Text Effects</div>
+                    <div class="flex flex-col gap-2">
+                        <p class="text-glow-primary">Glowing Primary Text</p>
+                        <p class="text-glow-orange">Glowing Orange Text</p>
+                        <p class="text-glow-green">Glowing Green Text</p>
+                        <p class="text-retro">Retro Style Text</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Buttons -->
+        <section class="showcase-section">
+            <h2 class="text-center mb-4">🎯 Buttons</h2>
+            <div class="showcase-grid">
+                <div class="component-demo">
+                    <div class="demo-title">Button Variants</div>
+                    <div class="flex flex-col gap-3">
+                        <button class="btn btn-primary retro-click">Primary Button</button>
+                        <button class="btn btn-secondary retro-click">Secondary Button</button>
+                        <button class="btn btn-outline retro-click">Outline Button</button>
+                        <button class="btn btn-ghost retro-click">Ghost Button</button>
+                    </div>
+                </div>
+                
+                <div class="component-demo">
+                    <div class="demo-title">Button Sizes</div>
+                    <div class="flex flex-col gap-3">
+                        <button class="btn btn-primary btn-sm retro-click">Small Button</button>
+                        <button class="btn btn-primary retro-click">Default Button</button>
+                        <button class="btn btn-primary btn-lg retro-click">Large Button</button>
+                    </div>
+                </div>
+                
+                <div class="component-demo">
+                    <div class="demo-title">Retro Buttons</div>
+                    <div class="flex flex-col gap-3">
+                        <button class="btn btn-retro retro-click">Retro Button</button>
+                        <button class="btn btn-retro btn-pulse retro-click">Pulsing Button</button>
+                        <button class="btn btn-primary sparkle retro-click">Sparkle Button</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cards -->
+        <section class="showcase-section">
+            <h2 class="text-center mb-4">🧱 Cards</h2>
+            <div class="showcase-grid">
+                <div class="component-demo">
+                    <div class="demo-title">Profile Card</div>
+                    <div class="profile-card">
+                        <img src="https://via.placeholder.com/80" alt="Avatar" class="profile-avatar">
+                        <h3 class="h3">Player Name</h3>
+                        <p class="text-body-small">Speedrunner & Collector</p>
+                        <div class="profile-stats">
+                            <div class="stat-item">
+                                <span class="stat-value">156</span>
+                                <span class="stat-label">Games</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-value">23</span>
+                                <span class="stat-label">Records</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-value">89</span>
+                                <span class="stat-label">Hours</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="component-demo">
+                    <div class="demo-title">Event Card</div>
+                    <div class="event-card">
+                        <div class="event-header">
+                            <div class="event-icon">🏆</div>
+                            <h4 class="event-title">Speedrun Tournament</h4>
+                        </div>
+                        <p class="text-body-small">Join the ultimate N64 speedrunning challenge!</p>
+                        <div class="event-meta">
+                            <div class="event-meta-item">
+                                <span>📅</span>
+                                <span>Dec 15, 2024</span>
+                            </div>
+                            <div class="event-meta-item">
+                                <span>⏰</span>
+                                <span>2:00 PM</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="component-demo">
+                    <div class="demo-title">Gallery Tile</div>
+                    <div class="gallery-tile">
+                        <img src="https://via.placeholder.com/300x200" alt="Game Screenshot" class="gallery-image">
+                        <div class="gallery-content">
+                            <h5 class="gallery-title">Super Mario 64</h5>
+                            <p class="gallery-description">Classic 3D platformer that defined a generation</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Form Elements -->
+        <section class="showcase-section">
+            <h2 class="text-center mb-4">📝 Form Elements</h2>
+            <div class="showcase-grid">
+                <div class="component-demo">
+                    <div class="demo-title">Input Fields</div>
+                    <div class="flex flex-col gap-3">
+                        <input type="text" class="input" placeholder="Regular input">
+                        <input type="text" class="input input-retro" placeholder="Retro input">
+                        <input type="text" class="input error" placeholder="Error input">
+                    </div>
+                </div>
+                
+                <div class="component-demo">
+                    <div class="demo-title">Badges</div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="badge badge-primary">Primary</span>
+                        <span class="badge badge-secondary">Secondary</span>
+                        <span class="badge badge-success">Success</span>
+                        <span class="badge badge-warning">Warning</span>
+                        <span class="badge badge-error">Error</span>
+                        <span class="badge badge-retro">Retro</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Alerts -->
+        <section class="showcase-section">
+            <h2 class="text-center mb-4">🚨 Alerts</h2>
+            <div class="showcase-grid">
+                <div class="component-demo">
+                    <div class="demo-title">Alert Types</div>
+                    <div class="flex flex-col gap-3">
+                        <div class="alert alert-success">
+                            <strong>Success!</strong> Your record has been saved.
+                        </div>
+                        <div class="alert alert-warning">
+                            <strong>Warning!</strong> Your session will expire soon.
+                        </div>
+                        <div class="alert alert-error">
+                            <strong>Error!</strong> Failed to load game data.
+                        </div>
+                        <div class="alert alert-info">
+                            <strong>Info!</strong> New tournament starting soon.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tabs -->
+        <section class="showcase-section">
+            <h2 class="text-center mb-4">📑 Tabs</h2>
+            <div class="showcase-grid">
+                <div class="component-demo">
+                    <div class="demo-title">Regular Tabs</div>
+                    <div class="tab-container">
+                        <ul class="tab-list">
+                            <li class="tab-item">
+                                <button class="tab-button active">Games</button>
+                            </li>
+                            <li class="tab-item">
+                                <button class="tab-button">Records</button>
+                            </li>
+                            <li class="tab-item">
+                                <button class="tab-button">Profile</button>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <p class="text-body">Tab content goes here...</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="component-demo">
+                    <div class="demo-title">Retro Tabs</div>
+                    <div class="tab-container tab-retro">
+                        <ul class="tab-list">
+                            <li class="tab-item">
+                                <button class="tab-button active">Games</button>
+                            </li>
+                            <li class="tab-item">
+                                <button class="tab-button">Records</button>
+                            </li>
+                            <li class="tab-item">
+                                <button class="tab-button">Profile</button>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <p class="text-body">Retro tab content...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Loading States -->
+        <section class="showcase-section">
+            <h2 class="text-center mb-4">⏳ Loading States</h2>
+            <div class="showcase-grid">
+                <div class="component-demo">
+                    <div class="demo-title">Loading Animations</div>
+                    <div class="flex flex-col gap-4">
+                        <div class="loading-cartridge"></div>
+                        <div class="flex justify-center">
+                            <div class="loading" style="position: relative; width: 100px; height: 100px;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Animations -->
+        <section class="showcase-section">
+            <h2 class="text-center mb-4">🎭 Animations</h2>
+            <div class="showcase-grid">
+                <div class="component-demo">
+                    <div class="demo-title">Animation Classes</div>
+                    <div class="flex flex-col gap-3">
+                        <button class="btn btn-primary hover-shimmer">Hover Shimmer</button>
+                        <button class="btn btn-secondary hover-shake">Hover Shake</button>
+                        <div class="p-4 bg-surface rounded">
+                            <p class="text-bounce">Bouncing Text</p>
+                        </div>
+                        <div class="star-rain p-4 bg-surface rounded">
+                            <p>Star Rain Effect</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="component-demo">
+                    <div class="demo-title">Glitch Effect</div>
+                    <div class="p-4 bg-surface rounded">
+                        <p class="glitch" data-text="GLITCH TEXT">GLITCH TEXT</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Responsive Demo -->
+        <section class="showcase-section">
+            <h2 class="text-center mb-4">📱 Responsive Design</h2>
+            <div class="showcase-grid">
+                <div class="component-demo">
+                    <div class="demo-title">Grid Layout</div>
+                    <div class="grid grid-cols-1 md-grid-cols-2 lg-grid-cols-3 gap-3">
+                        <div class="p-3 bg-primary rounded text-center">1</div>
+                        <div class="p-3 bg-secondary rounded text-center">2</div>
+                        <div class="p-3 bg-accent rounded text-center">3</div>
+                        <div class="p-3 bg-success rounded text-center">4</div>
+                        <div class="p-3 bg-warning rounded text-center">5</div>
+                        <div class="p-3 bg-error rounded text-center">6</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="py-6 text-center">
+            <p class="text-body-small text-muted">
+                🎮 Battle64 Design System - Premium Retro-Style Components
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        // Simple tab functionality for demo
+        document.querySelectorAll('.tab-button').forEach(button => {
+            button.addEventListener('click', () => {
+                const tabContainer = button.closest('.tab-container');
+                tabContainer.querySelectorAll('.tab-button').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                button.classList.add('active');
+            });
+        });
+
+        // Add some interactive effects
+        document.querySelectorAll('.btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                btn.classList.add('success-bounce');
+                setTimeout(() => {
+                    btn.classList.remove('success-bounce');
+                }, 600);
+            });
+        });
+    </script>
+</body>
+</html>
