@@ -11,6 +11,7 @@ const GameDatabase = require('./src/database/GameDatabase');
 const BirthdayService = require('./src/services/BirthdayService');
 const NewsfeedService = require('./src/services/NewsfeedService');
 const EventService = require('./src/services/EventService');
+const SecurityRoutes = require('./src/routes/securityRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -81,14 +82,17 @@ async function createBirthdaySpecial(birthday) {
 
 // API Routes
 
+// Security & Privacy Center routes
+app.use('/api/security', SecurityRoutes);
+
 // Get all games
 app.get('/api/games', async (req, res) => {
-  try {
-    const games = await gameDB.getAllGames();
-    res.json(games);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
+    try {
+        const games = await gameDB.getAllGames();
+        res.json(games);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
 });
 
 // Get upcoming birthdays

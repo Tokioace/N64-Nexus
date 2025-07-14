@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Battle64 Security & Privacy Center - Demo</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            background: #000;
+            color: #00ff00;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .header {
+            text-align: center;
+            border-bottom: 2px solid #00ff00;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .feature-card {
+            border: 1px solid #00ff00;
+            padding: 20px;
+            background: rgba(0, 255, 0, 0.1);
+        }
+        .feature-card h3 {
+            color: #00cc00;
+            margin-top: 0;
+        }
+        .status {
+            display: inline-block;
+            padding: 5px 10px;
+            background: #00ff00;
+            color: #000;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        .demo-link {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #001100;
+            border: 2px solid #00ff00;
+            color: #00ff00;
+            text-decoration: none;
+            margin: 10px 5px;
+            transition: all 0.3s;
+        }
+        .demo-link:hover {
+            background: #00ff00;
+            color: #000;
+        }
+        .test-results {
+            background: #001100;
+            border: 1px solid #00ff00;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        pre {
+            background: #001100;
+            padding: 15px;
+            overflow-x: auto;
+            border: 1px solid #003300;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔐 BATTLE64 SICHERHEITS- & DATENSCHUTZCENTER</h1>
+            <p>Demo & Funktionsübersicht</p>
+        </div>
+
+        <div class="feature-grid">
+            <div class="feature-card">
+                <h3>🛡️ Sicherheitsfunktionen</h3>
+                <ul>
+                    <li>Zwei-Faktor-Authentifizierung (2FA)</li>
+                    <li>Sicherheitsfragen</li>
+                    <li>Login-Verlauf mit Standort</li>
+                    <li>Geräteverwaltung</li>
+                    <li>Auto-Logout</li>
+                    <li>Meldesystem</li>
+                    <li>Kindersicherung</li>
+                </ul>
+                <div class="status">✅ Implementiert</div>
+            </div>
+
+            <div class="feature-card">
+                <h3>🕵️ Datenschutz</h3>
+                <ul>
+                    <li>Sichtbarkeits-Einstellungen</li>
+                    <li>DSGVO-konforme Verarbeitung</li>
+                    <li>Daten-Download</li>
+                    <li>Account-Löschung</li>
+                    <li>Transparente Datenschutzerklärung</li>
+                    <li>Kontakt zum Datenschutzbeauftragten</li>
+                </ul>
+                <div class="status">✅ Implementiert</div>
+            </div>
+
+            <div class="feature-card">
+                <h3>🎨 Retro-Design</h3>
+                <ul>
+                    <li>Terminal-Optik mit grüner Schrift</li>
+                    <li>Authentische Animationen</li>
+                    <li>Responsive Design</li>
+                    <li>Intuitive Navigation</li>
+                    <li>Real-time Updates</li>
+                </ul>
+                <div class="status">✅ Implementiert</div>
+            </div>
+
+            <div class="feature-card">
+                <h3>🔧 API & Backend</h3>
+                <ul>
+                    <li>RESTful API</li>
+                    <li>SQLite-Datenbank</li>
+                    <li>Sichere Verschlüsselung</li>
+                    <li>Session-Management</li>
+                    <li>Security-Scan</li>
+                    <li>Daten-Export</li>
+                </ul>
+                <div class="status">✅ Implementiert</div>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin: 30px 0;">
+            <a href="http://localhost:3000" class="demo-link" target="_blank">
+                🚀 Vollständige Demo öffnen
+            </a>
+            <a href="http://localhost:3000/api/security/health" class="demo-link" target="_blank">
+                🔍 API Health Check
+            </a>
+        </div>
+
+        <div class="test-results">
+            <h3>🧪 Test-Ergebnisse</h3>
+            <p>Das System wurde erfolgreich getestet und alle Funktionen sind implementiert:</p>
+            <ul>
+                <li>✅ Datenbank-Initialisierung</li>
+                <li>✅ Sicherheitseinstellungen</li>
+                <li>✅ Datenschutzeinstellungen</li>
+                <li>✅ Security-Scan (Score: 75/100)</li>
+                <li>✅ Sicherheitsbericht</li>
+                <li>✅ Daten-Export</li>
+                <li>✅ API-Endpunkte</li>
+                <li>✅ Frontend-Interface</li>
+            </ul>
+        </div>
+
+        <div class="test-results">
+            <h3>📊 Beispiel-Sicherheitsbericht</h3>
+            <pre>{
+  "security_score": 75,
+  "issues": [
+    "Zwei-Faktor-Authentifizierung ist deaktiviert"
+  ],
+  "recommendations": [
+    "Aktivieren Sie 2FA für zusätzlichen Schutz",
+    "Aktivieren Sie Inhaltsfilterung für besseren Schutz"
+  ],
+  "timestamp": "2025-07-14T05:12:33.657Z"
+}</pre>
+        </div>
+
+        <div class="test-results">
+            <h3>🔗 Verfügbare API-Endpunkte</h3>
+            <ul>
+                <li><code>GET /api/security/health</code> - System-Status</li>
+                <li><code>GET /api/security/settings/security/:userId</code> - Sicherheitseinstellungen</li>
+                <li><code>GET /api/security/settings/privacy/:userId</code> - Datenschutzeinstellungen</li>
+                <li><code>POST /api/security/security-scan/:userId</code> - Security-Scan</li>
+                <li><code>GET /api/security/security-report/:userId</code> - Sicherheitsbericht</li>
+                <li><code>POST /api/security/data-export/:userId</code> - Daten-Export</li>
+                <li><code>GET /api/security/login-history/:userId</code> - Login-Verlauf</li>
+                <li><code>GET /api/security/sessions/:userId</code> - Aktive Sessions</li>
+            </ul>
+        </div>
+
+        <div style="text-align: center; margin: 30px 0; padding: 20px; border: 2px solid #00ff00;">
+            <h2>🎮 Battle64 Security & Privacy Center</h2>
+            <p><strong>Status:</strong> Vollständig implementiert und funktionsfähig</p>
+            <p><strong>Design:</strong> Retro-Terminal im authentischen Stil</p>
+            <p><strong>Compliance:</strong> DSGVO-konform</p>
+            <p><strong>Sicherheit:</strong> Umfassende Schutzmechanismen</p>
+        </div>
+    </div>
+</body>
+</html>

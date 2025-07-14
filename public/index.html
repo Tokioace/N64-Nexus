@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Battle64 - Sicherheits- & Datenschutzcenter</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="terminal-container">
+        <div class="terminal-header">
+            <div class="terminal-title">
+                <span class="blink">█</span> BATTLE64 - SICHERHEITS- & DATENSCHUTZCENTER v1.0
+            </div>
+            <div class="terminal-controls">
+                <span class="control">[X]</span>
+                <span class="control">[_]</span>
+                <span class="control">[□]</span>
+            </div>
+        </div>
+        
+        <div class="terminal-body">
+            <div class="welcome-screen" id="welcomeScreen">
+                <div class="ascii-art">
+                    <pre>
+██╗   ██╗███████╗ ██████╗██╗  ██╗███████╗██████╗ 
+██║   ██║██╔════╝██╔════╝██║  ██║██╔════╝██╔══██╗
+██║   ██║███████╗██║     ███████║█████╗  ██████╔╝
+╚██╗ ██╔╝╚════██║██║     ██╔══██║██╔══╝  ██╔══██╗
+ ╚████╔╝ ███████║╚██████╗██║  ██║███████╗██║  ██║
+  ╚═══╝  ╚══════╝ ╚═════╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝
+                    </pre>
+                </div>
+                <div class="welcome-text">
+                    <h1>🔐 SICHERHEITS- & DATENSCHUTZCENTER</h1>
+                    <p>Willkommen im Battle64 Sicherheitszentrum</p>
+                    <p>Hier haben Sie volle Kontrolle über Ihre Daten und Sicherheit</p>
+                    <button class="retro-btn" onclick="startCenter()">STARTEN</button>
+                </div>
+            </div>
+            
+            <div class="main-interface" id="mainInterface" style="display: none;">
+                <div class="tab-container">
+                    <div class="tab-header">
+                        <button class="tab-btn active" data-tab="security">
+                            🔐 SICHERHEIT
+                        </button>
+                        <button class="tab-btn" data-tab="privacy">
+                            🕵️ DATENSCHUTZ
+                        </button>
+                    </div>
+                    
+                    <div class="tab-content">
+                        <!-- Security Tab -->
+                        <div class="tab-panel active" id="securityTab">
+                            <div class="section">
+                                <h2>🛡️ KONTOSCHUTZ</h2>
+                                <div class="security-grid">
+                                    <div class="security-item">
+                                        <h3>Zwei-Faktor-Authentifizierung</h3>
+                                        <div class="toggle-container">
+                                            <label class="toggle">
+                                                <input type="checkbox" id="twoFactorAuth">
+                                                <span class="slider"></span>
+                                            </label>
+                                            <span class="status">Deaktiviert</span>
+                                        </div>
+                                        <p>Schützen Sie Ihr Konto mit 2FA via App oder SMS</p>
+                                    </div>
+                                    
+                                    <div class="security-item">
+                                        <h3>Sicherheitsfragen</h3>
+                                        <button class="retro-btn small" onclick="setupSecurityQuestions()">
+                                            Einrichten
+                                        </button>
+                                        <p>Notfallzugang für Ihr Konto</p>
+                                    </div>
+                                    
+                                    <div class="security-item">
+                                        <h3>Login-Verlauf</h3>
+                                        <button class="retro-btn small" onclick="showLoginHistory()">
+                                            Anzeigen
+                                        </button>
+                                        <p>Überprüfen Sie Ihre Anmeldeaktivitäten</p>
+                                    </div>
+                                    
+                                    <div class="security-item">
+                                        <h3>Geräteverwaltung</h3>
+                                        <button class="retro-btn small" onclick="manageDevices()">
+                                            Verwalten
+                                        </button>
+                                        <p>Aktive Logins anzeigen und beenden</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="section">
+                                <h2>⚙️ SCHUTZMECHANISMEN</h2>
+                                <div class="security-grid">
+                                    <div class="security-item">
+                                        <h3>Auto-Logout</h3>
+                                        <select class="retro-select" id="autoLogout">
+                                            <option value="15">15 Minuten</option>
+                                            <option value="30" selected>30 Minuten</option>
+                                            <option value="60">1 Stunde</option>
+                                            <option value="0">Deaktiviert</option>
+                                        </select>
+                                        <p>Automatisches Abmelden bei Inaktivität</p>
+                                    </div>
+                                    
+                                    <div class="security-item">
+                                        <h3>Meldesystem</h3>
+                                        <button class="retro-btn small" onclick="reportSystem()">
+                                            Melden
+                                        </button>
+                                        <p>Verdächtige Profile oder Inhalte melden</p>
+                                    </div>
+                                    
+                                    <div class="security-item">
+                                        <h3>Sichere Handelsmechanik</h3>
+                                        <div class="toggle-container">
+                                            <label class="toggle">
+                                                <input type="checkbox" id="secureTrading" checked>
+                                                <span class="slider"></span>
+                                            </label>
+                                            <span class="status">Aktiviert</span>
+                                        </div>
+                                        <p>Bewertungspflicht nach Tausch</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="section">
+                                <h2>🔔 BENACHRICHTIGUNGEN</h2>
+                                <div class="security-grid">
+                                    <div class="security-item">
+                                        <h3>E-Mail Benachrichtigungen</h3>
+                                        <div class="toggle-container">
+                                            <label class="toggle">
+                                                <input type="checkbox" id="emailNotifications" checked>
+                                                <span class="slider"></span>
+                                            </label>
+                                            <span class="status">Aktiviert</span>
+                                        </div>
+                                        <p>Warnungen bei unüblichen Aktivitäten</p>
+                                    </div>
+                                    
+                                    <div class="security-item">
+                                        <h3>SMS Benachrichtigungen</h3>
+                                        <div class="toggle-container">
+                                            <label class="toggle">
+                                                <input type="checkbox" id="smsNotifications">
+                                                <span class="slider"></span>
+                                            </label>
+                                            <span class="status">Deaktiviert</span>
+                                        </div>
+                                        <p>Warnungen bei Loginversuchen von neuen Geräten</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="section">
+                                <h2>👶 KINDERSICHERUNG</h2>
+                                <div class="security-grid">
+                                    <div class="security-item">
+                                        <h3>Inhalte filtern</h3>
+                                        <div class="toggle-container">
+                                            <label class="toggle">
+                                                <input type="checkbox" id="contentFilter">
+                                                <span class="slider"></span>
+                                            </label>
+                                            <span class="status">Deaktiviert</span>
+                                        </div>
+                                        <p>Fanart, Chat und Marktplatz filtern</p>
+                                    </div>
+                                    
+                                    <div class="security-item">
+                                        <h3>Zeitlimits</h3>
+                                        <select class="retro-select" id="timeLimit">
+                                            <option value="30">30 Minuten</option>
+                                            <option value="60" selected>1 Stunde</option>
+                                            <option value="120">2 Stunden</option>
+                                            <option value="0">Kein Limit</option>
+                                        </select>
+                                        <p>Tägliches Zeitlimit für App-Nutzung</p>
+                                    </div>
+                                    
+                                    <div class="security-item">
+                                        <h3>Elternbereich</h3>
+                                        <button class="retro-btn small" onclick="parentalControls()">
+                                            Einrichten
+                                        </button>
+                                        <p>Passwortgeschützter Elternbereich</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Privacy Tab -->
+                        <div class="tab-panel" id="privacyTab">
+                            <div class="section">
+                                <h2>👁️ SICHTBARKEIT</h2>
+                                <div class="privacy-grid">
+                                    <div class="privacy-item">
+                                        <h3>Profil-Sichtbarkeit</h3>
+                                        <select class="retro-select" id="profileVisibility">
+                                            <option value="public">Öffentlich</option>
+                                            <option value="friends" selected>Nur Freunde</option>
+                                            <option value="private">Privat</option>
+                                        </select>
+                                        <p>Wer kann Ihr Profil sehen?</p>
+                                    </div>
+                                    
+                                    <div class="privacy-item">
+                                        <h3>Fanart-Sichtbarkeit</h3>
+                                        <select class="retro-select" id="fanartVisibility">
+                                            <option value="public">Öffentlich</option>
+                                            <option value="friends" selected>Nur Freunde</option>
+                                            <option value="private">Privat</option>
+                                        </select>
+                                        <p>Sichtbarkeit Ihrer Fanart</p>
+                                    </div>
+                                    
+                                    <div class="privacy-item">
+                                        <h3>Sammlung-Sichtbarkeit</h3>
+                                        <select class="retro-select" id="collectionVisibility">
+                                            <option value="public">Öffentlich</option>
+                                            <option value="friends" selected>Nur Freunde</option>
+                                            <option value="private">Privat</option>
+                                        </select>
+                                        <p>Sichtbarkeit Ihrer Sammlung</p>
+                                    </div>
+                                    
+                                    <div class="privacy-item">
+                                        <h3>Highscores-Sichtbarkeit</h3>
+                                        <select class="retro-select" id="highscoresVisibility">
+                                            <option value="public">Öffentlich</option>
+                                            <option value="friends" selected>Nur Freunde</option>
+                                            <option value="private">Privat</option>
+                                        </select>
+                                        <p>Sichtbarkeit Ihrer Highscores</p>
+                                    </div>
+                                    
+                                    <div class="privacy-item">
+                                        <h3>Profil in Suche</h3>
+                                        <div class="toggle-container">
+                                            <label class="toggle">
+                                                <input type="checkbox" id="searchableProfile" checked>
+                                                <span class="slider"></span>
+                                            </label>
+                                            <span class="status">Auffindbar</span>
+                                        </div>
+                                        <p>Profil in der Suche anzeigen</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="section">
+                                <h2>📊 DATENNUTZUNG</h2>
+                                <div class="privacy-grid">
+                                    <div class="privacy-item">
+                                        <h3>Matchmaking-Vorschläge</h3>
+                                        <div class="toggle-container">
+                                            <label class="toggle">
+                                                <input type="checkbox" id="matchmakingData" checked>
+                                                <span class="slider"></span>
+                                            </label>
+                                            <span class="status">Erlaubt</span>
+                                        </div>
+                                        <p>Daten für bessere Spielvorschläge verwenden</p>
+                                    </div>
+                                    
+                                    <div class="privacy-item">
+                                        <h3>Community-Statistiken</h3>
+                                        <div class="toggle-container">
+                                            <label class="toggle">
+                                                <input type="checkbox" id="communityStats" checked>
+                                                <span class="slider"></span>
+                                            </label>
+                                            <span class="status">Erlaubt</span>
+                                        </div>
+                                        <p>Anonyme Daten für Statistiken verwenden</p>
+                                    </div>
+                                    
+                                    <div class="privacy-item">
+                                        <h3>Daten-Download</h3>
+                                        <button class="retro-btn small" onclick="downloadData()">
+                                            Herunterladen
+                                        </button>
+                                        <p>Alle persönlichen Daten als ZIP herunterladen</p>
+                                    </div>
+                                    
+                                    <div class="privacy-item">
+                                        <h3>Account löschen</h3>
+                                        <button class="retro-btn small danger" onclick="deleteAccount()">
+                                            Löschen
+                                        </button>
+                                        <p>Account und alle Daten unwiderruflich löschen</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="section">
+                                <h2>📋 DSGVO & RECHTE</h2>
+                                <div class="privacy-grid">
+                                    <div class="privacy-item">
+                                        <h3>Datenschutzerklärung</h3>
+                                        <button class="retro-btn small" onclick="showPrivacyPolicy()">
+                                            Anzeigen
+                                        </button>
+                                        <p>Vollständige Datenschutzerklärung in einfacher Sprache</p>
+                                    </div>
+                                    
+                                    <div class="privacy-item">
+                                        <h3>Meine Rechte</h3>
+                                        <button class="retro-btn small" onclick="showMyRights()">
+                                            Anzeigen
+                                        </button>
+                                        <p>Übersicht über Ihre DSGVO-Rechte</p>
+                                    </div>
+                                    
+                                    <div class="privacy-item">
+                                        <h3>Kontakt Datenschutz</h3>
+                                        <button class="retro-btn small" onclick="contactPrivacy()">
+                                            Kontaktieren
+                                        </button>
+                                        <p>Direkter Kontakt zum Datenschutzbeauftragten</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="action-bar">
+                    <button class="retro-btn" onclick="securityScan()">
+                        🔍 Sicherheits-Scan starten
+                    </button>
+                    <button class="retro-btn" onclick="exportReport()">
+                        📄 Bericht exportieren
+                    </button>
+                    <button class="retro-btn" onclick="saveSettings()">
+                        💾 Einstellungen speichern
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="terminal-footer">
+            <span class="status-line">Bereit</span>
+            <span class="time" id="currentTime"></span>
+        </div>
+    </div>
+    
+    <!-- Modal for various dialogs -->
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Dialog</h3>
+                <span class="close" onclick="closeModal()">&times;</span>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Modal content will be inserted here -->
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
