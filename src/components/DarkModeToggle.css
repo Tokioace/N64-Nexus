@@ -1,0 +1,33 @@
+.dark-mode-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  background-color: var(--bg-primary);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.dark-mode-toggle:hover {
+  background-color: var(--bg-tertiary);
+  border-color: var(--border-hover);
+  color: var(--text-primary);
+  transform: scale(1.05);
+}
+
+.dark-mode-toggle:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgb(59 130 246 / 0.1);
+}
+
+.dark-mode-toggle svg {
+  transition: transform var(--transition-fast);
+}
+
+.dark-mode-toggle:hover svg {
+  transform: rotate(15deg);
+}

@@ -1,0 +1,114 @@
+.speedruns-page {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.speedruns-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: var(--spacing-lg);
+}
+
+.speedrun-card {
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-fast);
+}
+
+.speedrun-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.speedrun-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: var(--spacing-md);
+}
+
+.speedrun-header h3 {
+  margin: 0;
+  color: var(--text-primary);
+  font-size: 1.25rem;
+}
+
+.category {
+  background-color: var(--bg-tertiary);
+  color: var(--text-secondary);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--radius-sm);
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.speedrun-stats {
+  display: flex;
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-lg);
+}
+
+.stat {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+}
+
+.timer-display {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-lg);
+  background-color: var(--bg-tertiary);
+  border-radius: var(--radius-lg);
+  margin-bottom: var(--spacing-lg);
+}
+
+.current-time {
+  font-size: 2rem;
+  font-weight: 700;
+  font-family: 'Courier New', monospace;
+  color: var(--text-primary);
+}
+
+.speedrun-controls {
+  display: flex;
+  gap: var(--spacing-md);
+}
+
+.speedrun-controls .btn {
+  flex: 1;
+  justify-content: center;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .speedruns-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .speedrun-header {
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+  
+  .speedrun-stats {
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+  
+  .speedrun-controls {
+    flex-direction: column;
+  }
+  
+  .current-time {
+    font-size: 1.5rem;
+  }
+}

@@ -1,0 +1,23 @@
+.layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1;
+  padding: var(--spacing-lg);
+  background-color: var(--bg-secondary);
+  overflow-y: auto;
+  transition: background-color var(--transition-normal);
+}
+
+/* Responsive layout */
+@media (max-width: 768px) {
+  .layout {
+    flex-direction: column;
+  }
+  
+  .main-content {
+    padding: var(--spacing-md);
+  }
+}

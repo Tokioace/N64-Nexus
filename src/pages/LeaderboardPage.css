@@ -1,0 +1,141 @@
+.leaderboard-page {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.leaderboard-filters {
+  background-color: var(--bg-primary);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+  margin-bottom: var(--spacing-xl);
+  box-shadow: var(--shadow-sm);
+}
+
+.search-box {
+  position: relative;
+  margin-bottom: var(--spacing-lg);
+}
+
+.search-box svg {
+  position: absolute;
+  left: var(--spacing-md);
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-secondary);
+}
+
+.search-box input {
+  padding-left: 2.5rem;
+}
+
+.filter-controls {
+  display: flex;
+  gap: var(--spacing-lg);
+  flex-wrap: wrap;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  min-width: 150px;
+}
+
+.filter-group label {
+  font-weight: 500;
+  color: var(--text-primary);
+  font-size: 0.875rem;
+}
+
+.leaderboard-table {
+  background-color: var(--bg-primary);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+.rank-cell {
+  text-align: center;
+  font-weight: 600;
+}
+
+.rank-icon {
+  width: 2rem;
+  height: 2rem;
+}
+
+.rank-icon.gold {
+  color: #fbbf24;
+}
+
+.rank-icon.silver {
+  color: #9ca3af;
+}
+
+.rank-icon.bronze {
+  color: #d97706;
+}
+
+.rank-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  background-color: var(--bg-tertiary);
+  border-radius: 50%;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.username-cell {
+  font-weight: 500;
+}
+
+.username {
+  color: var(--text-primary);
+}
+
+.time-cell {
+  font-family: 'Courier New', monospace;
+  font-weight: 600;
+}
+
+.time {
+  color: var(--text-primary);
+}
+
+tr.verified {
+  background-color: rgba(16, 185, 129, 0.05);
+}
+
+tr.unverified {
+  background-color: rgba(245, 158, 11, 0.05);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .filter-controls {
+    flex-direction: column;
+    gap: var(--spacing-md);
+  }
+  
+  .filter-group {
+    min-width: auto;
+  }
+  
+  .leaderboard-table {
+    font-size: 0.875rem;
+  }
+  
+  th, td {
+    padding: var(--spacing-sm);
+  }
+  
+  .rank-icon,
+  .rank-number {
+    width: 1.5rem;
+    height: 1.5rem;
+    font-size: 0.75rem;
+  }
+}
