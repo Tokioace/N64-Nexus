@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-retro-darker text-retro-light font-retro;
+    background-image: 
+      radial-gradient(circle at 25% 25%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 75% 75%, rgba(236, 72, 153, 0.1) 0%, transparent 50%);
+  }
+}
+
+@layer components {
+  .retro-card {
+    @apply bg-retro-dark border border-retro-purple rounded-lg p-6 shadow-lg;
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.2);
+  }
+  
+  .retro-button {
+    @apply bg-gradient-to-r from-retro-purple to-retro-pink text-white px-6 py-3 rounded-lg font-arcade text-sm uppercase tracking-wider transition-all duration-300 hover:scale-105 hover:shadow-lg;
+    box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+  }
+  
+  .retro-button:active {
+    @apply scale-95;
+  }
+  
+  .progress-ring {
+    @apply transform -rotate-90;
+  }
+  
+  .stat-card {
+    @apply bg-gradient-to-br from-retro-dark to-retro-darker border border-retro-gray rounded-lg p-4 hover:border-retro-purple transition-all duration-300;
+  }
+  
+  .achievement-badge {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-arcade uppercase tracking-wider;
+  }
+  
+  .achievement-gold {
+    @apply bg-gradient-to-r from-retro-yellow to-retro-orange text-retro-darker;
+  }
+  
+  .achievement-silver {
+    @apply bg-gradient-to-r from-retro-gray to-retro-light text-retro-darker;
+  }
+  
+  .achievement-bronze {
+    @apply bg-gradient-to-r from-retro-orange to-retro-red text-white;
+  }
+}
+
+@layer utilities {
+  .text-glow {
+    text-shadow: 0 0 10px currentColor;
+  }
+  
+  .border-glow {
+    box-shadow: 0 0 10px currentColor;
+  }
+}
