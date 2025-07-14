@@ -1,0 +1,58 @@
+{
+  "expo": {
+    "name": "Battle64",
+    "slug": "battle64-app",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#1a1a2e"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSCameraUsageDescription": "Battle64 benötigt Zugriff auf die Kamera, um Screenshots und Videos für Events aufzunehmen.",
+        "NSMicrophoneUsageDescription": "Battle64 benötigt Zugriff auf das Mikrofon für Videoaufnahmen.",
+        "NSLocationWhenInUseUsageDescription": "Battle64 verwendet Ihren Standort für die Metadaten der Einreichungen.",
+        "NSPhotoLibraryUsageDescription": "Battle64 benötigt Zugriff auf die Fotobibliothek, um aufgenommene Medien zu speichern."
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#1a1a2e"
+      },
+      "permissions": [
+        "android.permission.CAMERA",
+        "android.permission.RECORD_AUDIO",
+        "android.permission.ACCESS_FINE_LOCATION",
+        "android.permission.ACCESS_COARSE_LOCATION",
+        "android.permission.READ_EXTERNAL_STORAGE",
+        "android.permission.WRITE_EXTERNAL_STORAGE"
+      ]
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Battle64 benötigt Zugriff auf die Kamera, um Screenshots und Videos für Events aufzunehmen."
+        }
+      ],
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "Battle64 verwendet Ihren Standort für die Metadaten der Einreichungen."
+        }
+      ]
+    ]
+  }
+}
