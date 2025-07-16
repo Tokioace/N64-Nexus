@@ -2,6 +2,7 @@
   "name": "battle64-quiz",
   "version": "1.0.0",
   "description": "Quizsystem & Minigames für Battle64 - N64-Wissen und Spieleklassiker",
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "dev": "vite",

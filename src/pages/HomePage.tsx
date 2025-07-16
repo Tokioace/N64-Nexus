@@ -54,7 +54,6 @@ const HomePage: React.FC = () => {
           variant="success"
           hover3D={true}
           className="text-center animate-bounce-in"
-          style={{ animationDelay: '0.1s' }}
         >
           <div className="text-3xl font-bold text-n64-green font-tech mb-2">{accuracy}%</div>
           <div className="text-sm text-white/70 font-game">Genauigkeit</div>
@@ -64,7 +63,6 @@ const HomePage: React.FC = () => {
           variant="secondary"
           hover3D={true}
           className="text-center animate-bounce-in"
-          style={{ animationDelay: '0.2s' }}
         >
           <div className="text-3xl font-bold text-n64-blue font-tech mb-2">{user.totalQuizzes}</div>
           <div className="text-sm text-white/70 font-game">Quizzes gespielt</div>
@@ -74,7 +72,6 @@ const HomePage: React.FC = () => {
           variant="primary"
           hover3D={true}
           className="text-center animate-bounce-in"
-          style={{ animationDelay: '0.3s' }}
         >
           <div className="text-3xl font-bold text-n64-yellow font-tech mb-2">{user.correctAnswers}</div>
           <div className="text-sm text-white/70 font-game">Richtige Antworten</div>
@@ -84,7 +81,6 @@ const HomePage: React.FC = () => {
           variant="primary"
           hover3D={true}
           className="text-center animate-bounce-in"
-          style={{ animationDelay: '0.4s' }}
           onClick={handlePowerUp}
         >
           <div className="text-3xl font-bold text-n64-purple font-tech mb-2">{user.achievements.length}</div>
@@ -165,7 +161,6 @@ const HomePage: React.FC = () => {
             variant="success"
             hover3D={true}
             className="text-center animate-bounce-in"
-            style={{ animationDelay: '0.5s' }}
           >
             <div className="text-4xl mb-3 animate-float">🎮</div>
             <div className="text-sm text-white/70 font-game">Spaßige Spiele</div>
@@ -179,7 +174,6 @@ const HomePage: React.FC = () => {
             variant="primary"
             hover3D={true}
             className="text-center animate-bounce-in"
-            style={{ animationDelay: '0.6s' }}
           >
             <div className="text-4xl mb-3 animate-float">🏆</div>
             <div className="text-sm text-white/70 font-game">Vergleiche dich</div>
@@ -200,7 +194,6 @@ const HomePage: React.FC = () => {
                 variant="success"
                 hover3D={true}
                 className="animate-slide-in-left"
-                style={{ animationDelay: `${0.7 + index * 0.1}s` }}
               >
                 <div className="flex items-center space-x-4">
                   <div className="text-3xl animate-pulse">{achievement.icon}</div>
