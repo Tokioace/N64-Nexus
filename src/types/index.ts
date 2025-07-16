@@ -105,3 +105,57 @@ export interface UserContextType {
   updateQuizProgress: (questionId: string, isCorrect: boolean) => void
   unlockAchievement: (achievementId: string) => void
 }
+
+// Event System Types
+export interface GameEvent {
+  id: string
+  title: string
+  game: string
+  type: 'Speedrun' | 'Time Trial' | 'Challenge' | 'Collection' | 'Anniversary'
+  startDate: string
+  endDate: string
+  description: string
+  rewards: string[]
+  image: string
+  isActive?: boolean
+  isCompleted?: boolean
+  participants?: number
+  maxParticipants?: number
+  difficulty?: 'easy' | 'medium' | 'hard'
+  category?: string
+}
+
+export interface EventParticipation {
+  eventId: string
+  userId: string
+  joinedAt: Date
+  completedAt?: Date
+  progress: number
+  rewards: string[]
+  isCompleted: boolean
+}
+
+export interface EventReward {
+  id: string
+  name: string
+  type: 'XP' | 'Badge' | 'Token' | 'Cosmetic'
+  value: number | string
+  icon: string
+  description: string
+  rarity: 'common' | 'rare' | 'epic' | 'legendary'
+}
+
+export interface EventContextType {
+  events: GameEvent[]
+  activeEvents: GameEvent[]
+  upcomingEvents: GameEvent[]
+  completedEvents: GameEvent[]
+  participations: EventParticipation[]
+  getEventById: (id: string) => GameEvent | null
+  joinEvent: (eventId: string) => void
+  completeEvent: (eventId: string) => void
+  getEventProgress: (eventId: string) => number
+  getEventRewards: (eventId: string) => EventReward[]
+  isEventActive: (event: GameEvent) => boolean
+  getTimeRemaining: (event: GameEvent) => { days: number; hours: number; minutes: number; seconds: number }
+}
