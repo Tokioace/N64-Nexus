@@ -8,11 +8,13 @@ import LeaderboardPage from './pages/LeaderboardPage'
 import ProfilePage from './pages/ProfilePage'
 import MinigamesPage from './pages/MinigamesPage'
 import Layout from './components/Layout'
+import RetroSoundEffects from './components/RetroSoundEffects'
 
 function App() {
   return (
     <UserProvider>
       <QuizProvider>
+        <RetroSoundEffects enabled={true} />
         <Layout>
           <Routes>
             <Route path="/" element={<HomePage />} />
