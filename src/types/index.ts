@@ -159,3 +159,86 @@ export interface EventContextType {
   isEventActive: (event: GameEvent) => boolean
   getTimeRemaining: (event: GameEvent) => { days: number; hours: number; minutes: number; seconds: number }
 }
+
+// Media Capture & Verification Types
+export interface MediaMeta {
+  id: string
+  userId: string
+  gameId: string
+  eventId?: string
+  type: 'photo' | 'video' | 'stream'
+  url: string
+  timestamp: string
+  isEventRun: boolean
+  isPublic: boolean
+  isVerified: boolean
+  comment?: string
+  gameTime?: string
+  metadata: {
+    deviceInfo?: string
+    resolution?: string
+    duration?: number
+    fileSize?: number
+  }
+  votes: {
+    likes: number
+    dislikes: number
+    userVote?: 'like' | 'dislike'
+  }
+  reports: number
+  status: 'pending' | 'approved' | 'rejected'
+  createdAt: Date
+  updatedAt: Date
+}
+
+export interface MediaCaptureSettings {
+  allowPhoto: boolean
+  allowVideo: boolean
+  allowStream: boolean
+  maxVideoDuration: number
+  maxFileSize: number
+  requiredFields: string[]
+  eventTimeWindow?: {
+    start: Date
+    end: Date
+  }
+}
+
+export interface MediaUploadProgress {
+  mediaId: string
+  progress: number
+  status: 'uploading' | 'processing' | 'completed' | 'error'
+  error?: string
+}
+
+export interface Leaderboard {
+  id: string
+  gameId: string
+  eventId?: string
+  type: 'daily' | 'weekly' | 'monthly' | 'event'
+  entries: LeaderboardEntry[]
+  lastUpdated: Date
+}
+
+export interface SpeedrunEntry extends LeaderboardEntry {
+  gameTime: string
+  media?: MediaMeta
+  isVerified: boolean
+  submittedAt: Date
+}
+
+export interface MediaContextType {
+  mediaList: MediaMeta[]
+  uploadProgress: MediaUploadProgress[]
+  settings: MediaCaptureSettings
+  captureMedia: (type: 'photo' | 'video', gameId: string, eventId?: string) => Promise<string>
+  uploadMedia: (file: File, metadata: Partial<MediaMeta>) => Promise<string>
+  deleteMedia: (mediaId: string) => Promise<void>
+  voteOnMedia: (mediaId: string, vote: 'like' | 'dislike') => Promise<void>
+  reportMedia: (mediaId: string, reason: string) => Promise<void>
+  getMediaByUser: (userId: string) => MediaMeta[]
+  getMediaByEvent: (eventId: string) => MediaMeta[]
+  getMediaByGame: (gameId: string) => MediaMeta[]
+  verifyMedia: (mediaId: string, isVerified: boolean) => Promise<void>
+  isCapturingAllowed: (eventId?: string) => boolean
+}
