@@ -1,16 +1,18 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useUser } from '../contexts/UserContext'
 import { Brain, Clock, Calendar, Zap, Trophy, Star, Gamepad2 } from 'lucide-react'
 import RetroCard3D from '../components/RetroCard3D'
 import RetroButton3D from '../components/RetroButton3D'
 import RetroSwitch3D from '../components/RetroSwitch3D'
 import { useRetroSounds } from '../components/RetroSoundEffects'
+import UpcomingEventsWidget from '../components/Event/UpcomingEventsWidget'
 
 const HomePage: React.FC = () => {
   const { user } = useUser()
   const { playStartSound, playPowerUpSound } = useRetroSounds()
   const [soundEnabled, setSoundEnabled] = React.useState(true)
+  const navigate = useNavigate()
 
   if (!user) return null
 
@@ -150,6 +152,14 @@ const HomePage: React.FC = () => {
             </div>
           </RetroCard3D>
         </Link>
+      </div>
+
+      {/* Events Widget */}
+      <div className="mb-8">
+        <UpcomingEventsWidget
+          onViewAllEvents={() => navigate('/events')}
+          onViewEventDetails={(eventId) => navigate(`/events?event=${eventId}`)}
+        />
       </div>
 
       {/* Quick Actions */}
