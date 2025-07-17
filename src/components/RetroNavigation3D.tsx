@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Home, Brain, Trophy, User, Gamepad2, Menu, X } from 'lucide-react'
+import { Home, Brain, Trophy, User, Gamepad2, Menu, X, Calendar, Camera } from 'lucide-react'
 
 interface NavItem {
   to: string
@@ -13,9 +13,11 @@ interface NavItem {
 const navItems: NavItem[] = [
   { to: '/', icon: Home, label: 'Home', color: 'n64-purple' },
   { to: '/quiz', icon: Brain, label: 'Quiz', color: 'n64-blue' },
-  { to: '/minigames', icon: Gamepad2, label: 'Minigames', color: 'n64-green' },
-  { to: '/leaderboard', icon: Trophy, label: 'Rangliste', color: 'n64-yellow' },
-  { to: '/profile', icon: User, label: 'Profil', color: 'n64-red' }
+  { to: '/events', icon: Calendar, label: 'Events', color: 'n64-green' },
+  { to: '/speedrun-media', icon: Camera, label: 'Speedrun Media', color: 'n64-orange' },
+  { to: '/minigames', icon: Gamepad2, label: 'Minigames', color: 'n64-yellow' },
+  { to: '/leaderboard', icon: Trophy, label: 'Rangliste', color: 'n64-red' },
+  { to: '/profile', icon: User, label: 'Profil', color: 'n64-blue' }
 ]
 
 const RetroNavigation3D: React.FC = () => {
