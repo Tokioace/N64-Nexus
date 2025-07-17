@@ -24,8 +24,8 @@ function App() {
             <RetroSoundEffects enabled={true} />
             <Layout>
               <Routes>
-                <Route path="/" element={<HomePage />} />
-                <Route path="/retro" element={<HomeScreenRetro />} />
+                <Route path="/" element={<HomeScreenRetro />} />
+                <Route path="/classic" element={<HomePage />} />
                 <Route path="/quiz" element={<QuizPage />} />
                 <Route path="/quiz/result" element={<QuizResultPage />} />
                 <Route path="/leaderboard" element={<LeaderboardPage />} />
