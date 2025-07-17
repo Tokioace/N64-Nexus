@@ -85,7 +85,7 @@ const LoginForm: React.FC = () => {
       <RetroButton3D
         variant="primary"
         size="lg"
-        onClick={handleSubmit}
+        onClick={() => handleSubmit(new Event('click') as any)}
         className="w-full"
       >
         Spiel starten
