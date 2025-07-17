@@ -134,24 +134,24 @@ const EventCard: React.FC<EventCardProps> = ({
         <div className="relative z-10">
           {/* Header */}
           <div className="flex items-start justify-between mb-4">
-            <div className="flex items-center space-x-3">
-              <div className="p-3 bg-n64-purple/20 rounded-lg border border-n64-purple/30">
+            <div className="flex items-center space-x-3 flex-1 min-w-0">
+              <div className="p-3 bg-n64-purple/20 rounded-lg border border-n64-purple/30 flex-shrink-0">
                 {getEventIcon(event.type)}
               </div>
-              <div>
-                <h2 className="text-xl font-bold text-white font-tech neon-text">
+              <div className="flex-1 min-w-0">
+                <h2 className="text-xl font-bold text-white font-tech neon-text truncate">
                   {event.title}
                 </h2>
-                <p className="text-n64-blue font-game">{event.game}</p>
+                <p className="text-n64-blue font-game truncate">{event.game}</p>
               </div>
             </div>
-            <div className={`px-3 py-1 rounded-full text-xs font-tech ${getTypeColor(event.type)}`}>
+            <div className={`px-3 py-1 rounded-full text-xs font-tech whitespace-nowrap ml-3 flex-shrink-0 ${getTypeColor(event.type)}`}>
               {event.type}
             </div>
           </div>
 
           {/* Description */}
-          <p className="text-white/80 text-sm font-game mb-4 leading-relaxed">
+          <p className="text-white/80 text-sm font-game mb-4 leading-relaxed break-words">
             {event.description}
           </p>
 
