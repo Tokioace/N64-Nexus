@@ -126,7 +126,10 @@ const HomePage: React.FC = () => {
           >
             <p className="text-white/70 text-sm font-game mb-4">5 Fragen, jeden Tag neu</p>
             <div className="flex justify-between items-center">
-              <span className="text-n64-blue font-tech">⏰ Täglich</span>
+              <span className="text-n64-blue font-tech flex items-center space-x-1">
+                <span>⏰</span>
+                <span>Täglich</span>
+              </span>
               <div className="text-n64-blue animate-pulse">
                 <Clock size={20} />
               </div>
@@ -145,7 +148,10 @@ const HomePage: React.FC = () => {
           >
             <p className="text-white/70 text-sm font-game mb-4">Schnell antworten für Bonuspunkte</p>
             <div className="flex justify-between items-center">
-              <span className="text-n64-red font-tech">⚡ Schnell</span>
+              <span className="text-n64-red font-tech flex items-center space-x-1">
+                <span>⚡</span>
+                <span>Schnell</span>
+              </span>
               <div className="text-n64-red animate-pulse">
                 <Zap size={20} />
               </div>
@@ -220,6 +226,22 @@ const HomePage: React.FC = () => {
           </div>
         </div>
       )}
+
+      {/* Floating Retro Switch Button */}
+      <div className="fixed bottom-6 right-6 z-50">
+        <button
+          onClick={() => {
+            playPowerUpSound()
+            navigate('/retro')
+          }}
+          className="retro-switch-button"
+          title="Switch to Retro View"
+        >
+          <div className="retro-n64-logo">
+            <span className="font-tech text-xs text-white">N64</span>
+          </div>
+        </button>
+      </div>
     </div>
   )
 }

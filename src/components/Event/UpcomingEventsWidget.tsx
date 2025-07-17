@@ -51,8 +51,14 @@ const UpcomingEventsWidget: React.FC<UpcomingEventsWidgetProps> = ({
             <h2 className="text-xl font-bold text-white font-tech neon-text">
               Aktuelle Events
             </h2>
-            <p className="text-white/70 text-sm font-game">
-              {activeEvents.length} aktiv • {upcomingEvents.length} kommend
+            <p className="text-white/70 text-sm font-game break-words">
+              <span className="inline-block mr-2">
+                {activeEvents.length} aktiv
+              </span>
+              <span className="text-white/50">•</span>
+              <span className="inline-block ml-2">
+                {upcomingEvents.length} kommend
+              </span>
             </p>
           </div>
         </div>
