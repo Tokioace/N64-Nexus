@@ -24,10 +24,10 @@ export const EventProvider: React.FC<EventProviderProps> = ({ children }) => {
     // Load events from JSON
     const loadedEvents = eventsData.map(event => ({
       ...event,
-      isActive: isEventActive(event),
+      isActive: isEventActive(event as GameEvent),
       isCompleted: new Date(event.endDate) < new Date(),
       participants: Math.floor(Math.random() * (event.maxParticipants || 100)) // Mock participants
-    }))
+    })) as GameEvent[]
     setEvents(loadedEvents)
 
     // Load participations from localStorage

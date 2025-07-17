@@ -4,6 +4,7 @@ import { UserProvider } from './contexts/UserContext'
 import { EventProvider } from './contexts/EventContext'
 import { MediaProvider } from './contexts/MediaContext'
 import HomePage from './pages/HomePage'
+import HomeScreenRetro from './components/HomeScreenRetro'
 import QuizPage from './pages/QuizPage'
 import QuizResultPage from './pages/QuizResultPage'
 import LeaderboardPage from './pages/LeaderboardPage'
@@ -24,6 +25,7 @@ function App() {
             <Layout>
               <Routes>
                 <Route path="/" element={<HomePage />} />
+                <Route path="/retro" element={<HomeScreenRetro />} />
                 <Route path="/quiz" element={<QuizPage />} />
                 <Route path="/quiz/result" element={<QuizResultPage />} />
                 <Route path="/leaderboard" element={<LeaderboardPage />} />
