@@ -4,11 +4,11 @@
     "title": "Mario Kart 64 Birthday Bash",
     "game": "Mario Kart 64",
     "type": "Speedrun",
-    "startDate": "2025-02-10T00:00:00Z",
-    "endDate": "2025-02-17T23:59:59Z",
+    "startDate": "2024-12-01T00:00:00Z",
+    "endDate": "2024-12-31T23:59:59Z",
     "description": "Feiere das Jubiläum mit einem Special Time Trial auf Rainbow Road! Zeige deine Drifting-Skills und kämpfe um die Bestzeit.",
     "rewards": ["50XP", "Golden Kart Badge", "Rainbow Road Token"],
-    "image": "/assets/events/mk64_birthday.png",
+    "image": "https://via.placeholder.com/400x200/6B46C1/FFFFFF?text=Mario+Kart+64",
     "difficulty": "medium",
     "category": "Racing",
     "maxParticipants": 100
@@ -22,7 +22,7 @@
     "endDate": "2025-11-02T23:59:59Z",
     "description": "Halloween-Event: Fahre durch Mystic Cave und besiege deine Bestzeit! Sammle Geister-Tokens für extra Belohnungen.",
     "rewards": ["66XP", "Spooky Badge", "Ghost Token", "Halloween Avatar"],
-    "image": "/assets/events/halloween2025.png",
+    "image": "https://via.placeholder.com/400x200/FF6B35/FFFFFF?text=Halloween+Event",
     "difficulty": "hard",
     "category": "Halloween",
     "maxParticipants": 150
@@ -36,7 +36,7 @@
     "endDate": "2025-11-28T23:59:59Z",
     "description": "Feiere 27 Jahre Ocarina of Time! Löse spezielle Rätsel und sammle Triforce-Fragmente.",
     "rewards": ["100XP", "Triforce Master Badge", "Hyrule Shield", "Link's Tunic"],
-    "image": "/assets/events/zelda_anniversary.png",
+    "image": "https://via.placeholder.com/400x200/228B22/FFFFFF?text=Zelda+Anniversary",
     "difficulty": "medium",
     "category": "Adventure",
     "maxParticipants": 200
@@ -46,11 +46,11 @@
     "title": "Super Mario 64 Speedrun Championship",
     "game": "Super Mario 64",
     "type": "Speedrun",
-    "startDate": "2025-01-15T00:00:00Z",
-    "endDate": "2025-01-22T23:59:59Z",
+    "startDate": "2024-12-15T00:00:00Z",
+    "endDate": "2024-12-22T23:59:59Z",
     "description": "Das ultimative Speedrun-Event! Sammle alle 120 Sterne so schnell wie möglich und werde zum Champion.",
     "rewards": ["200XP", "Speedrun Master Badge", "Golden Star", "Mario's Cap"],
-    "image": "/assets/events/sm64_speedrun.png",
+    "image": "https://via.placeholder.com/400x200/DC143C/FFFFFF?text=Mario+64+Speedrun",
     "difficulty": "hard",
     "category": "Platformer",
     "maxParticipants": 500
@@ -64,7 +64,7 @@
     "endDate": "2025-03-08T23:59:59Z",
     "description": "Infiltriere die Facility und komplettiere alle Missionen auf Secret Agent Schwierigkeit. Stealth ist der Schlüssel!",
     "rewards": ["75XP", "007 Agent Badge", "Golden Gun", "Spy Gadget"],
-    "image": "/assets/events/goldeneye_challenge.png",
+    "image": "https://via.placeholder.com/400x200/FFD700/000000?text=GoldenEye+007",
     "difficulty": "hard",
     "category": "Shooter",
     "maxParticipants": 250
@@ -78,7 +78,7 @@
     "endDate": "2025-04-07T23:59:59Z",
     "description": "Tritt gegen die Elite Four an und werde zum Pokémon Master! Nutze verschiedene Pokémon-Teams für maximale Punkte.",
     "rewards": ["80XP", "Pokémon Master Badge", "Poké Ball", "Champion Crown"],
-    "image": "/assets/events/pokemon_tournament.png",
+    "image": "https://via.placeholder.com/400x200/4169E1/FFFFFF?text=Pokemon+Tournament",
     "difficulty": "medium",
     "category": "RPG",
     "maxParticipants": 300
@@ -92,7 +92,7 @@
     "endDate": "2025-05-17T23:59:59Z",
     "description": "Sammle alle Jigsaw-Puzzleteile in Spiral Mountain! Jedes gefundene Teil bringt dir näher zur Komplettierung.",
     "rewards": ["60XP", "Jigsaw Master Badge", "Kazooie Feather", "Banjo's Backpack"],
-    "image": "/assets/events/banjo_collection.png",
+    "image": "https://via.placeholder.com/400x200/8B4513/FFFFFF?text=Banjo+Collection",
     "difficulty": "easy",
     "category": "Platformer",
     "maxParticipants": 400
@@ -106,7 +106,7 @@
     "endDate": "2025-06-22T23:59:59Z",
     "description": "Erlebe die Geschichte von Paper Mario neu! Sammle alle Star Spirits und rette Prinzessin Peach.",
     "rewards": ["90XP", "Paper Hero Badge", "Star Spirit", "Peach's Crown"],
-    "image": "/assets/events/paper_mario_story.png",
+    "image": "https://via.placeholder.com/400x200/FF1493/FFFFFF?text=Paper+Mario",
     "difficulty": "medium",
     "category": "RPG",
     "maxParticipants": 180
