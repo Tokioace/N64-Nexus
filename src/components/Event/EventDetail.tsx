@@ -16,8 +16,8 @@ import {
   CheckCircle,
   AlertCircle
 } from 'lucide-react'
-import RetroCard3D from '../RetroCard3D'
-import RetroButton3D from '../RetroButton3D'
+import SimpleCard from '../SimpleCard'
+import SimpleButton from '../SimpleButton'
 
 interface EventDetailProps {
   event: GameEvent
@@ -72,21 +72,21 @@ const EventDetail: React.FC<EventDetailProps> = ({
 
   const getDifficultyColor = (difficulty?: string) => {
     switch (difficulty) {
-      case 'easy': return 'text-n64-green'
-      case 'medium': return 'text-n64-yellow'
-      case 'hard': return 'text-n64-red'
-      default: return 'text-n64-blue'
+      case 'easy': return 'text-green-600'
+      case 'medium': return 'text-yellow-600'
+      case 'hard': return 'text-red-600'
+      default: return 'text-blue-600'
     }
   }
 
   const getStatusIcon = () => {
     if (new Date(event.endDate) < new Date()) {
-      return <CheckCircle className="w-6 h-6 text-n64-green" />
+      return <CheckCircle className="w-6 h-6 text-green-600" />
     }
     if (isEventActive(event)) {
-      return <Play className="w-6 h-6 text-n64-yellow animate-pulse" />
+      return <Play className="w-6 h-6 text-yellow-600 " />
     }
-    return <AlertCircle className="w-6 h-6 text-n64-blue" />
+    return <AlertCircle className="w-6 h-6 text-blue-600" />
   }
 
   const getStatusText = () => {
@@ -126,7 +126,7 @@ const EventDetail: React.FC<EventDetailProps> = ({
       {/* Header */}
       <div className="flex items-center justify-between">
         {onBack && (
-          <RetroButton3D
+          <SimpleButton
             variant="secondary"
             onClick={onBack}
             className="text-sm"
@@ -135,41 +135,41 @@ const EventDetail: React.FC<EventDetailProps> = ({
               <ArrowLeft className="w-4 h-4" />
               <span>Zurück</span>
             </div>
-          </RetroButton3D>
+          </SimpleButton>
         )}
         <div className="flex items-center space-x-2">
           {getStatusIcon()}
-          <span className="text-sm font-tech text-white/70">{getStatusText()}</span>
+          <span className="text-sm ">{getStatusText()}</span>
         </div>
       </div>
 
       {/* Hero Section */}
-      <RetroCard3D
+      <SimpleCard
         variant="primary"
-        className="p-6 relative overflow-hidden animate-slide-in-up"
+        className="p-6 relative overflow-hidden "
       >
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-10">
-          <div className="absolute inset-0 bg-gradient-to-br from-n64-purple via-n64-blue to-n64-green" />
-          <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGcgZmlsbD0iI2ZmZmZmZiIgZmlsbC1vcGFjaXR5PSIwLjA1Ij4KPHA+CjxwYXRoIGQ9Ik0wIDBoNDB2NDBIMHoiLz4KPHA+CjxwYXRoIGQ9Ik0yMCAwbDIwIDIwLTIwIDIwTDAgMjB6Ii8+CjwvZz4KPC9zdmc+')] animate-pulse" />
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-600 via-blue-600 to-green-600" />
+          <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGcgZmlsbD0iI2ZmZmZmZiIgZmlsbC1vcGFjaXR5PSIwLjA1Ij4KPHA+CjxwYXRoIGQ9Ik0wIDBoNDB2NDBIMHoiLz4KPHA+CjxwYXRoIGQ9Ik0yMCAwbDIwIDIwLTIwIDIwTDAgMjB6Ii8+CjwvZz4KPC9zdmc+')] " />
         </div>
 
         <div className="relative z-10">
           {/* Title and Game */}
           <div className="flex items-start justify-between mb-6">
             <div className="flex items-center space-x-4">
-              <div className="p-4 bg-n64-purple/20 rounded-xl border border-n64-purple/30">
-                <div className="text-n64-purple">
+              <div className="p-4 bg-blue-600/20 rounded-xl border border-blue-600/30">
+                <div className="text-blue-600">
                   {getEventIcon(event.type)}
                 </div>
               </div>
               <div>
-                <h1 className="text-3xl font-bold text-white font-tech neon-text mb-2">
+                <h1 className="text-3xl font-bold text-white ">
                   {event.title}
                 </h1>
                 <div className="flex items-center space-x-4">
-                  <span className="text-n64-blue font-game text-lg">{event.game}</span>
-                  <span className="px-3 py-1 bg-n64-purple/20 text-n64-purple rounded-full text-sm font-tech">
+                  <span className="text-blue-600 ">{event.game}</span>
+                  <span className="px-3 py-1 bg-blue-600/20 text-blue-600 rounded-full text-sm ">
                     {event.type}
                   </span>
                 </div>
@@ -178,35 +178,35 @@ const EventDetail: React.FC<EventDetailProps> = ({
           </div>
 
           {/* Description */}
-          <p className="text-white/80 font-game text-lg leading-relaxed mb-6">
+          <p className="text-white/80 ">
             {event.description}
           </p>
 
           {/* Stats Grid */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
             <div className="text-center p-4 bg-black/20 rounded-lg border border-white/10">
-              <div className="text-2xl font-bold text-n64-yellow font-tech mb-1">
+              <div className="text-2xl font-bold text-yellow-600 ">
                 {event.participants || 0}
               </div>
-              <div className="text-xs text-white/70 font-game">Teilnehmer</div>
+              <div className="text-xs text-white/70 ">Teilnehmer</div>
             </div>
             <div className="text-center p-4 bg-black/20 rounded-lg border border-white/10">
-              <div className={`text-2xl font-bold font-tech mb-1 ${getDifficultyColor(event.difficulty)}`}>
+              <div className={`text-2xl font-bold 
                 {event.difficulty?.toUpperCase() || 'NORMAL'}
               </div>
-              <div className="text-xs text-white/70 font-game">Schwierigkeit</div>
+              <div className="text-xs text-white/70 ">Schwierigkeit</div>
             </div>
             <div className="text-center p-4 bg-black/20 rounded-lg border border-white/10">
-              <div className="text-2xl font-bold text-n64-green font-tech mb-1">
+              <div className="text-2xl font-bold text-green-600 ">
                 {event.rewards.length}
               </div>
-              <div className="text-xs text-white/70 font-game">Belohnungen</div>
+              <div className="text-xs text-white/70 ">Belohnungen</div>
             </div>
             <div className="text-center p-4 bg-black/20 rounded-lg border border-white/10">
-              <div className="text-2xl font-bold text-n64-red font-tech mb-1">
+              <div className="text-2xl font-bold text-red-600 ">
                 {event.maxParticipants || '∞'}
               </div>
-              <div className="text-xs text-white/70 font-game">Max. Teilnehmer</div>
+              <div className="text-xs text-white/70 ">Max. Teilnehmer</div>
             </div>
           </div>
 
@@ -214,62 +214,59 @@ const EventDetail: React.FC<EventDetailProps> = ({
           {isParticipating && (
             <div className="mb-6">
               <div className="flex items-center justify-between mb-2">
-                <span className="text-sm font-tech text-white/70">Fortschritt</span>
-                <span className="text-sm font-tech text-n64-yellow">{progress}%</span>
+                                  <span className="text-sm">Fortschritt</span>
+                <span className="text-sm">{progress}%</span>
               </div>
               <div className="w-full bg-black/30 rounded-full h-3 border border-white/10">
-                <div 
-                  className="bg-gradient-to-r from-n64-green to-n64-yellow h-full rounded-full transition-all duration-500"
-                  style={{ width: `${progress}%` }}
-                />
+                                  <div className="bg-gradient-to-r from-green-600 to-yellow-600 h-full rounded-full transition-all duration-500" style={{ width: progress + '%' }} />
               </div>
             </div>
           )}
         </div>
-      </RetroCard3D>
+      </SimpleCard>
 
       {/* Countdown */}
-      <RetroCard3D
+      <SimpleCard
         variant="secondary"
-        className="p-6 animate-slide-in-left"
+        className="p-6 "
       >
         <div className="text-center">
-          <h2 className="text-xl font-bold text-white font-tech mb-4 flex items-center justify-center space-x-2">
-            <Clock className="w-6 h-6 text-n64-yellow" />
+          <h2 className="text-xl font-bold text-white ">
+            <Clock className="w-6 h-6 text-yellow-600" />
             <span>{isEventActive(event) ? 'Endet in:' : 'Startet in:'}</span>
           </h2>
           
           <div className="grid grid-cols-4 gap-4 mb-6">
             <div className="text-center">
-              <div className="text-3xl font-bold text-n64-red font-tech animate-pulse">
+              <div className="text-3xl font-bold text-red-600 ">
                 {timeLeft.days.toString().padStart(2, '0')}
               </div>
-              <div className="text-xs text-white/70 font-game">Tage</div>
+              <div className="text-xs text-white/70 ">Tage</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-n64-blue font-tech animate-pulse">
+              <div className="text-3xl font-bold text-blue-600 ">
                 {timeLeft.hours.toString().padStart(2, '0')}
               </div>
-              <div className="text-xs text-white/70 font-game">Stunden</div>
+              <div className="text-xs text-white/70 ">Stunden</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-n64-green font-tech animate-pulse">
+              <div className="text-3xl font-bold text-green-600 ">
                 {timeLeft.minutes.toString().padStart(2, '0')}
               </div>
-              <div className="text-xs text-white/70 font-game">Minuten</div>
+              <div className="text-xs text-white/70 ">Minuten</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-n64-yellow font-tech animate-pulse">
+              <div className="text-3xl font-bold text-yellow-600 ">
                 {timeLeft.seconds.toString().padStart(2, '0')}
               </div>
-              <div className="text-xs text-white/70 font-game">Sekunden</div>
+              <div className="text-xs text-white/70 ">Sekunden</div>
             </div>
           </div>
 
           {/* Action Buttons */}
           <div className="flex space-x-4 justify-center">
             {isEventActive(event) && !isParticipating && (
-              <RetroButton3D
+              <SimpleButton
                 variant="primary"
                 onClick={handleJoin}
                 className="flex-1 max-w-xs"
@@ -278,11 +275,11 @@ const EventDetail: React.FC<EventDetailProps> = ({
                   <Users className="w-5 h-5" />
                   <span>Event beitreten</span>
                 </div>
-              </RetroButton3D>
+              </SimpleButton>
             )}
             
             {isParticipating && (
-              <RetroButton3D
+              <SimpleButton
                 variant="success"
                 onClick={handleStartGame}
                 className="flex-1 max-w-xs"
@@ -291,19 +288,19 @@ const EventDetail: React.FC<EventDetailProps> = ({
                   <Play className="w-5 h-5" />
                   <span>Spiel starten</span>
                 </div>
-              </RetroButton3D>
+              </SimpleButton>
             )}
           </div>
         </div>
-      </RetroCard3D>
+      </SimpleCard>
 
       {/* Rewards */}
-      <RetroCard3D
+      <SimpleCard
         variant="primary"
-        className="p-6 animate-slide-in-right"
+        className="p-6 "
       >
-        <h2 className="text-xl font-bold text-white font-tech mb-4 flex items-center space-x-2">
-          <Gift className="w-6 h-6 text-n64-yellow" />
+        <h2 className="text-xl font-bold text-white ">
+          <Gift className="w-6 h-6 text-yellow-600" />
           <span>Belohnungen</span>
         </h2>
         
@@ -311,51 +308,46 @@ const EventDetail: React.FC<EventDetailProps> = ({
           {rewards.map((reward, index) => (
             <div 
               key={reward.id}
-              className="flex items-center space-x-3 p-4 bg-black/20 rounded-lg border border-white/10 animate-fade-in"
-              style={{ animationDelay: `${index * 0.1}s` }}
+                              className="flex items-center space-x-3 p-4 bg-black/20 rounded-lg border border-white/10"
+                              style={{ animationDelay: (index * 0.1) + 's' }}
             >
               <div className="text-2xl">
                 {reward.icon}
               </div>
               <div className="flex-1">
-                <div className="font-tech font-bold text-white">
+                <div className="">
                   {reward.name}
                 </div>
-                <div className="text-sm text-white/70 font-game">
+                <div className="text-sm text-white/70 ">
                   {reward.description}
                 </div>
               </div>
-              <div className={`px-2 py-1 rounded text-xs font-tech ${
-                reward.rarity === 'legendary' ? 'bg-n64-yellow/20 text-n64-yellow' :
-                reward.rarity === 'epic' ? 'bg-n64-purple/20 text-n64-purple' :
-                reward.rarity === 'rare' ? 'bg-n64-blue/20 text-n64-blue' :
-                'bg-n64-green/20 text-n64-green'
-              }`}>
+              <div className="px-2 py-1 rounded text-xs bg-gray-100 text-gray-700">
                 {reward.rarity.toUpperCase()}
               </div>
             </div>
           ))}
         </div>
-      </RetroCard3D>
+      </SimpleCard>
 
       {/* Event Info */}
-      <RetroCard3D
+      <SimpleCard
         variant="secondary"
-        className="p-6 animate-slide-in-up"
+        className="p-6 "
       >
-        <h2 className="text-xl font-bold text-white font-tech mb-4 flex items-center space-x-2">
-          <Award className="w-6 h-6 text-n64-blue" />
+        <h2 className="text-xl font-bold text-white ">
+          <Award className="w-6 h-6 text-blue-600" />
           <span>Event-Informationen</span>
         </h2>
         
         <div className="space-y-4">
           <div className="flex items-center justify-between py-2 border-b border-white/10">
-            <span className="text-white/70 font-game">Kategorie:</span>
-            <span className="text-white font-tech">{event.category || 'Allgemein'}</span>
+            <span className="text-white/70 ">Kategorie:</span>
+            <span className="text-white ">{event.category || 'Allgemein'}</span>
           </div>
           <div className="flex items-center justify-between py-2 border-b border-white/10">
-            <span className="text-white/70 font-game">Startdatum:</span>
-            <span className="text-white font-tech">
+            <span className="text-white/70 ">Startdatum:</span>
+            <span className="text-white ">
               {new Date(event.startDate).toLocaleDateString('de-DE', {
                 day: '2-digit',
                 month: '2-digit',
@@ -366,8 +358,8 @@ const EventDetail: React.FC<EventDetailProps> = ({
             </span>
           </div>
           <div className="flex items-center justify-between py-2 border-b border-white/10">
-            <span className="text-white/70 font-game">Enddatum:</span>
-            <span className="text-white font-tech">
+            <span className="text-white/70 ">Enddatum:</span>
+            <span className="text-white ">
               {new Date(event.endDate).toLocaleDateString('de-DE', {
                 day: '2-digit',
                 month: '2-digit',
@@ -378,11 +370,11 @@ const EventDetail: React.FC<EventDetailProps> = ({
             </span>
           </div>
           <div className="flex items-center justify-between py-2">
-            <span className="text-white/70 font-game">Event-ID:</span>
-            <span className="text-white font-tech text-sm">{event.id}</span>
+            <span className="text-white/70 ">Event-ID:</span>
+            <span className="text-white ">{event.id}</span>
           </div>
         </div>
-      </RetroCard3D>
+      </SimpleCard>
     </div>
   )
 }

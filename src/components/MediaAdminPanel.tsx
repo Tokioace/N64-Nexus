@@ -20,8 +20,8 @@ import {
 import { useMedia } from '../contexts/MediaContext'
 import { useUser } from '../contexts/UserContext'
 import { MediaMeta } from '../types'
-import RetroCard3D from './RetroCard3D'
-import RetroButton3D from './RetroButton3D'
+import SimpleCard from './SimpleCard'
+import SimpleButton from './SimpleButton'
 
 interface MediaAdminPanelProps {
   onClose?: () => void
@@ -152,13 +152,13 @@ const MediaAdminPanel: React.FC<MediaAdminPanelProps> = ({ onClose }) => {
 
   if (!isAdmin) {
     return (
-      <RetroCard3D className="max-w-md mx-auto">
+      <SimpleCard className="max-w-md mx-auto">
         <div className="text-center p-6">
           <Shield className="w-16 h-16 text-red-400 mx-auto mb-4" />
           <h3 className="text-xl font-bold text-white mb-2">Zugriff verweigert</h3>
           <p className="text-gray-300">Sie haben keine Berechtigung für diesen Bereich.</p>
         </div>
-      </RetroCard3D>
+      </SimpleCard>
     )
   }
 
@@ -171,42 +171,42 @@ const MediaAdminPanel: React.FC<MediaAdminPanelProps> = ({ onClose }) => {
           Media Admin Panel
         </h1>
         {onClose && (
-          <RetroButton3D variant="secondary" onClick={onClose}>
+          <SimpleButton variant="secondary" onClick={onClose}>
             Schließen
-          </RetroButton3D>
+          </SimpleButton>
         )}
       </div>
 
       {/* Stats Overview */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <RetroCard3D className="p-4 text-center">
+        <SimpleCard className="p-4 text-center">
           <div className="text-2xl font-bold text-yellow-400">
             {mediaList.filter(m => m.status === 'pending').length}
           </div>
           <div className="text-sm text-gray-400">Ausstehend</div>
-        </RetroCard3D>
-        <RetroCard3D className="p-4 text-center">
+        </SimpleCard>
+        <SimpleCard className="p-4 text-center">
           <div className="text-2xl font-bold text-red-400">
             {mediaList.filter(m => m.reports > 0).length}
           </div>
           <div className="text-sm text-gray-400">Gemeldet</div>
-        </RetroCard3D>
-        <RetroCard3D className="p-4 text-center">
+        </SimpleCard>
+        <SimpleCard className="p-4 text-center">
           <div className="text-2xl font-bold text-green-400">
             {mediaList.filter(m => m.status === 'approved').length}
           </div>
           <div className="text-sm text-gray-400">Genehmigt</div>
-        </RetroCard3D>
-        <RetroCard3D className="p-4 text-center">
+        </SimpleCard>
+        <SimpleCard className="p-4 text-center">
           <div className="text-2xl font-bold text-blue-400">
             {mediaList.length}
           </div>
           <div className="text-sm text-gray-400">Gesamt</div>
-        </RetroCard3D>
+        </SimpleCard>
       </div>
 
       {/* Filters */}
-      <RetroCard3D className="p-4">
+      <SimpleCard className="p-4">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
           <div>
             <label className="block text-sm font-medium text-gray-300 mb-2">Status</label>
@@ -275,7 +275,7 @@ const MediaAdminPanel: React.FC<MediaAdminPanelProps> = ({ onClose }) => {
             <span className="text-sm text-gray-300">Nur gemeldete Medien</span>
           </label>
 
-          <RetroButton3D
+          <SimpleButton
             variant="secondary"
             onClick={() => {
               setStatusFilter('all')
@@ -286,23 +286,23 @@ const MediaAdminPanel: React.FC<MediaAdminPanelProps> = ({ onClose }) => {
             }}
           >
             Filter zurücksetzen
-          </RetroButton3D>
+          </SimpleButton>
         </div>
-      </RetroCard3D>
+      </SimpleCard>
 
       {/* Media List */}
       <div className="space-y-4">
         {filteredMedia.length === 0 ? (
-          <RetroCard3D className="text-center p-8">
+          <SimpleCard className="text-center p-8">
             <div className="text-gray-400">
               <Filter className="w-16 h-16 mx-auto mb-4 opacity-50" />
               <h3 className="text-lg font-semibold mb-2">Keine Medien gefunden</h3>
               <p className="text-sm">Keine Medien entsprechen den aktuellen Filterkriterien.</p>
             </div>
-          </RetroCard3D>
+          </SimpleCard>
         ) : (
           filteredMedia.map((media) => (
-            <RetroCard3D key={media.id} className={`border-2 ${getPriorityColor(media)}`}>
+            <SimpleCard key={media.id} className={`border-2 ${getPriorityColor(media)}`}>
               <div className="p-4">
                 <div className="flex gap-4">
                   {/* Media Preview */}
@@ -388,50 +388,50 @@ const MediaAdminPanel: React.FC<MediaAdminPanelProps> = ({ onClose }) => {
                       </div>
 
                       <div className="flex items-center gap-2">
-                        <RetroButton3D
+                        <SimpleButton
                           variant="secondary"
                           onClick={() => setSelectedMedia(media)}
                           className="text-xs px-2 py-1"
                         >
                           <Eye className="w-3 h-3 mr-1" />
                           Details
-                        </RetroButton3D>
+                        </SimpleButton>
 
                         {media.status === 'pending' && (
                           <>
-                            <RetroButton3D
+                            <SimpleButton
                               variant="primary"
                               onClick={() => handleVerify(media.id, true)}
                               className="text-xs px-2 py-1"
                             >
                               <CheckCircle className="w-3 h-3 mr-1" />
                               Genehmigen
-                            </RetroButton3D>
-                            <RetroButton3D
+                            </SimpleButton>
+                            <SimpleButton
                               variant="danger"
                               onClick={() => handleVerify(media.id, false)}
                               className="text-xs px-2 py-1"
                             >
                               <XCircle className="w-3 h-3 mr-1" />
                               Ablehnen
-                            </RetroButton3D>
+                            </SimpleButton>
                           </>
                         )}
 
-                        <RetroButton3D
+                        <SimpleButton
                           variant="danger"
                           onClick={() => handleDelete(media.id)}
                           className="text-xs px-2 py-1"
                         >
                           <Trash2 className="w-3 h-3 mr-1" />
                           Löschen
-                        </RetroButton3D>
+                        </SimpleButton>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </RetroCard3D>
+            </SimpleCard>
           ))
         )}
       </div>
@@ -439,7 +439,7 @@ const MediaAdminPanel: React.FC<MediaAdminPanelProps> = ({ onClose }) => {
       {/* Media Detail Modal */}
       {selectedMedia && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-          <RetroCard3D className="max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+          <SimpleCard className="max-w-2xl w-full max-h-[90vh] overflow-y-auto">
             <div className="p-6">
               <div className="flex justify-between items-center mb-4">
                 <h3 className="text-xl font-bold text-white">Media Details</h3>
@@ -499,43 +499,43 @@ const MediaAdminPanel: React.FC<MediaAdminPanelProps> = ({ onClose }) => {
 
                 {/* Actions */}
                 <div className="flex justify-end gap-2 pt-4 border-t border-gray-600">
-                  <RetroButton3D
+                  <SimpleButton
                     variant="secondary"
                     onClick={() => setSelectedMedia(null)}
                   >
                     Schließen
-                  </RetroButton3D>
+                  </SimpleButton>
                   
                   {selectedMedia.status === 'pending' && (
                     <>
-                      <RetroButton3D
+                      <SimpleButton
                         variant="primary"
                         onClick={() => handleVerify(selectedMedia.id, true)}
                       >
                         <CheckCircle className="w-4 h-4 mr-2" />
                         Genehmigen
-                      </RetroButton3D>
-                      <RetroButton3D
+                      </SimpleButton>
+                      <SimpleButton
                         variant="danger"
                         onClick={() => handleVerify(selectedMedia.id, false)}
                       >
                         <XCircle className="w-4 h-4 mr-2" />
                         Ablehnen
-                      </RetroButton3D>
+                      </SimpleButton>
                     </>
                   )}
                   
-                  <RetroButton3D
+                  <SimpleButton
                     variant="danger"
                     onClick={() => handleDelete(selectedMedia.id)}
                   >
                     <Trash2 className="w-4 h-4 mr-2" />
                     Löschen
-                  </RetroButton3D>
+                  </SimpleButton>
                 </div>
               </div>
             </div>
-          </RetroCard3D>
+          </SimpleCard>
         </div>
       )}
     </div>

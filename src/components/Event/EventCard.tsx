@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { GameEvent } from '../../types'
 import { useEvents } from '../../contexts/EventContext'
 import { Calendar, Clock, Users, Trophy, Zap, Target, Star } from 'lucide-react'
-import RetroCard3D from '../RetroCard3D'
-import RetroButton3D from '../RetroButton3D'
+import SimpleCard from '../SimpleCard'
+import SimpleButton from '../SimpleButton'
 
 interface EventCardProps {
   event: GameEvent
@@ -48,20 +48,20 @@ const EventCard: React.FC<EventCardProps> = ({
 
   const getDifficultyColor = (difficulty?: string) => {
     switch (difficulty) {
-      case 'easy': return 'text-n64-green'
-      case 'medium': return 'text-n64-yellow'
-      case 'hard': return 'text-n64-red'
-      default: return 'text-n64-blue'
+      case 'easy': return 'text-green-600'
+      case 'medium': return 'text-yellow-600'
+      case 'hard': return 'text-red-600'
+      default: return 'text-blue-600'
     }
   }
 
   const getTypeColor = (type: string) => {
     switch (type) {
-      case 'Speedrun': return 'bg-n64-red/30 text-n64-red border border-n64-red/50'
-      case 'Time Trial': return 'bg-n64-blue/30 text-n64-blue border border-n64-blue/50'
-      case 'Challenge': return 'bg-n64-purple/30 text-n64-purple border border-n64-purple/50'
-      case 'Collection': return 'bg-n64-green/30 text-n64-green border border-n64-green/50'
-      case 'Anniversary': return 'bg-n64-yellow/30 text-n64-yellow border border-n64-yellow/50'
+      case 'Speedrun': return 'bg-red-600/30 text-red-600 border border-red-600/50'
+      case 'Time Trial': return 'bg-blue-600/30 text-blue-600 border border-blue-600/50'
+      case 'Challenge': return 'bg-blue-600/30 text-blue-600 border border-blue-600/50'
+      case 'Collection': return 'bg-green-600/30 text-green-600 border border-green-600/50'
+      case 'Anniversary': return 'bg-yellow-600/30 text-yellow-600 border border-yellow-600/50'
       default: return 'bg-gray-500/30 text-gray-300 border border-gray-500/50'
     }
   }
@@ -89,76 +89,76 @@ const EventCard: React.FC<EventCardProps> = ({
 
   if (variant === 'compact') {
     return (
-      <RetroCard3D
+      <SimpleCard
         variant="primary"
         hover3D={false}
-        className="p-4 cursor-pointer animate-slide-in-left hover:scale-105 transition-transform duration-200"
+                  className="p-4 cursor-pointer"
         onClick={handleViewDetails}
       >
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-3 flex-1 min-w-0">
-            <div className="text-n64-purple flex-shrink-0">
+            <div className="text-blue-600 flex-shrink-0">
               {getEventIcon(event.type)}
             </div>
             <div className="flex-1 min-w-0">
-              <h3 className="font-tech text-sm font-bold text-white truncate">
+              <h3 className="text-white font-medium">
                 {event.title}
               </h3>
-              <p className="text-xs text-white/80 font-game truncate">
+              <p className="text-xs text-white/80">
                 {event.game}
               </p>
             </div>
           </div>
           <div className="text-right flex-shrink-0 ml-3">
-            <div className={`text-xs font-tech mb-1 ${isEventActive(event) ? 'text-n64-green' : 'text-n64-yellow'}`}>
+            <div className="text-xs text-white">
               {isEventActive(event) ? 'LIVE' : 'BALD'}
             </div>
-            <div className="text-xs text-white/80 font-game">
+            <div className="text-xs text-white/80">
               {formatTimeRemaining()}
             </div>
           </div>
         </div>
-      </RetroCard3D>
+      </SimpleCard>
     )
   }
 
   if (variant === 'featured') {
     return (
-      <RetroCard3D
+      <SimpleCard
         variant="primary"
         hover3D={false}
-        className="p-6 animate-bounce-in relative overflow-hidden hover:scale-102 transition-transform duration-300"
+        className="p-6"
       >
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-5">
-          <div className="absolute inset-0 bg-gradient-to-br from-n64-purple to-n64-blue" />
-          <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHZpZXdCb3g9IjAgMCAyMCAyMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGcgZmlsbD0iI2ZmZmZmZiIgZmlsbC1vcGFjaXR5PSIwLjEiPgo8cG9seWdvbiBwb2ludHM9IjAsMCAyMCwwIDEwLDIwIi8+CjwvZz4KPC9zdmc+')] animate-pulse" />
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-600 to-blue-600" />
+          <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHZpZXdCb3g9IjAgMCAyMCAyMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGcgZmlsbD0iI2ZmZmZmZiIgZmlsbC1vcGFjaXR5PSIwLjEiPgo8cG9seWdvbiBwb2ludHM9IjAsMCAyMCwwIDEwLDIwIi8+CjwvZz4KPC9zdmc+')]" />
         </div>
 
         <div className="relative z-10">
           {/* Header */}
           <div className="flex items-start justify-between mb-6">
             <div className="flex items-center space-x-4 flex-1 min-w-0">
-              <div className="p-3 bg-n64-purple/20 rounded-lg border border-n64-purple/30 flex-shrink-0">
+              <div className="p-3 bg-blue-600/20 rounded-lg border border-blue-600/30 flex-shrink-0">
                 {getEventIcon(event.type)}
               </div>
               <div className="flex-1 min-w-0">
-                <h2 className="text-xl font-bold text-white font-tech neon-text mb-1">
+                <h2 className="text-xl font-bold text-white">
                   {event.title}
                 </h2>
-                <p className="text-n64-blue font-game text-base">
+                <p className="text-blue-600">
                   {event.game}
                 </p>
               </div>
             </div>
-            <div className={`px-3 py-2 rounded-lg text-sm font-tech whitespace-nowrap ml-4 flex-shrink-0 ${getTypeColor(event.type)}`}>
+            <div className="px-3 py-2 rounded-lg text-sm bg-gray-100 text-gray-700">
               {event.type}
             </div>
           </div>
 
           {/* Description */}
           <div className="mb-6">
-            <p className="text-white/90 text-base font-game leading-relaxed">
+            <p className="text-white/90 text-base">
               {event.description}
             </p>
           </div>
@@ -166,35 +166,35 @@ const EventCard: React.FC<EventCardProps> = ({
           {/* Stats Grid */}
           <div className="grid grid-cols-3 gap-6 mb-6">
             <div className="text-center bg-black/20 rounded-lg p-4 border border-white/10">
-              <div className="text-2xl font-bold text-n64-yellow font-tech mb-1">
+              <div className="text-2xl font-bold text-yellow-600">
                 {event.participants || 0}
               </div>
-              <div className="text-sm text-white/80 font-game">Teilnehmer</div>
+              <div className="text-sm text-white/80">Teilnehmer</div>
             </div>
             <div className="text-center bg-black/20 rounded-lg p-4 border border-white/10">
-              <div className={`text-2xl font-bold font-tech mb-1 ${getDifficultyColor(event.difficulty)}`}>
+              <div className="text-2xl font-bold text-white">
                 {event.difficulty?.toUpperCase() || 'NORMAL'}
               </div>
-              <div className="text-sm text-white/80 font-game">Schwierigkeit</div>
+              <div className="text-sm text-white/80">Schwierigkeit</div>
             </div>
             <div className="text-center bg-black/20 rounded-lg p-4 border border-white/10">
-              <div className="text-2xl font-bold text-n64-green font-tech mb-1">
+              <div className="text-2xl font-bold text-green-600">
                 {event.rewards.length}
               </div>
-              <div className="text-sm text-white/80 font-game">Belohnungen</div>
+              <div className="text-sm text-white/80">Belohnungen</div>
             </div>
           </div>
 
           {/* Countdown */}
-          <div className="bg-black/30 rounded-lg p-4 mb-6 border border-n64-purple/30">
+          <div className="bg-black/30 rounded-lg p-4 mb-6 border border-blue-600/30">
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-3">
-                <Clock className="w-5 h-5 text-n64-yellow" />
-                <span className="text-base font-game text-white/90">
+                <Clock className="w-5 h-5 text-yellow-600" />
+                <span className="text-base">
                   {isEventActive(event) ? 'Endet in:' : 'Startet in:'}
                 </span>
               </div>
-              <div className="text-xl text-n64-yellow font-tech font-bold">
+              <div className="text-xl text-yellow-600">
                 {formatTimeRemaining()}
               </div>
             </div>
@@ -203,7 +203,7 @@ const EventCard: React.FC<EventCardProps> = ({
           {/* Actions */}
           <div className="flex space-x-4">
             {isEventActive(event) && (
-              <RetroButton3D
+              <SimpleButton
                 variant={isParticipating ? 'success' : 'primary'}
                 onClick={handleJoin}
                 disabled={isParticipating}
@@ -211,52 +211,52 @@ const EventCard: React.FC<EventCardProps> = ({
                 size="lg"
               >
                 {isParticipating ? '✓ Teilgenommen' : 'Teilnehmen'}
-              </RetroButton3D>
+              </SimpleButton>
             )}
-            <RetroButton3D
+            <SimpleButton
               variant="secondary"
               onClick={handleViewDetails}
               className="flex-1"
               size="lg"
             >
               Details ansehen
-            </RetroButton3D>
+            </SimpleButton>
           </div>
         </div>
-      </RetroCard3D>
+      </SimpleCard>
     )
   }
 
   // Default variant - Fixed layout and readability
   return (
-    <RetroCard3D
+    <SimpleCard
       variant="primary"
       hover3D={false}
-      className="p-5 animate-slide-in-up hover:scale-102 transition-transform duration-300"
+      className="p-5"
     >
       {/* Header */}
       <div className="flex items-start justify-between mb-4">
         <div className="flex items-center space-x-3 flex-1 min-w-0">
-          <div className="text-n64-purple flex-shrink-0">
+          <div className="text-blue-600 flex-shrink-0">
             {getEventIcon(event.type)}
           </div>
           <div className="flex-1 min-w-0">
-            <h3 className="font-tech font-bold text-white text-lg mb-1 leading-tight">
+            <h3 className="">
               {event.title}
             </h3>
-            <p className="text-n64-blue font-game text-sm">
+            <p className="text-blue-600">
               {event.game}
             </p>
           </div>
         </div>
-        <div className={`px-3 py-1 rounded-lg text-xs font-tech whitespace-nowrap ml-3 flex-shrink-0 ${getTypeColor(event.type)}`}>
-          {event.type}
-        </div>
+                  <div className="px-3 py-1 rounded-lg text-xs bg-gray-100 text-gray-700">
+            {event.type}
+          </div>
       </div>
 
       {/* Description */}
       <div className="mb-4">
-        <p className="text-white/80 text-sm font-game leading-relaxed line-clamp-2">
+        <p className="text-white/80 text-sm">
           {event.description}
         </p>
       </div>
@@ -265,18 +265,18 @@ const EventCard: React.FC<EventCardProps> = ({
       <div className="flex items-center justify-between mb-4 bg-black/20 rounded-lg p-3 border border-white/10">
         <div className="flex items-center space-x-4">
           <div className="flex items-center space-x-2">
-            <Users className="w-4 h-4 text-n64-green" />
-            <span className="text-sm text-white/90 font-game">
+            <Users className="w-4 h-4 text-green-600" />
+            <span className="text-sm text-white/90">
               {event.participants || 0}
             </span>
           </div>
-          <div className={`text-sm font-tech ${getDifficultyColor(event.difficulty)}`}>
-            {event.difficulty?.toUpperCase() || 'NORMAL'}
-          </div>
+                      <div className="text-sm text-gray-600">
+              {event.difficulty?.toUpperCase() || 'NORMAL'}
+            </div>
         </div>
         <div className="flex items-center space-x-2">
-          <Clock className="w-4 h-4 text-n64-yellow" />
-          <span className="text-sm text-n64-yellow font-tech">
+          <Clock className="w-4 h-4 text-yellow-600" />
+          <span className="text-sm text-yellow-600">
             {formatTimeRemaining()}
           </span>
         </div>
@@ -285,17 +285,17 @@ const EventCard: React.FC<EventCardProps> = ({
       {/* Rewards Preview */}
       <div className="mb-4">
         <div className="flex items-center space-x-2 mb-2">
-          <Trophy className="w-4 h-4 text-n64-yellow" />
-          <span className="text-sm text-white/90 font-game">Belohnungen:</span>
+          <Trophy className="w-4 h-4 text-yellow-600" />
+          <span className="text-sm text-white/90">Belohnungen:</span>
         </div>
         <div className="flex flex-wrap gap-2">
           {event.rewards.slice(0, 3).map((reward, index) => (
-            <span key={index} className="text-xs bg-n64-yellow/20 text-n64-yellow px-2 py-1 rounded-lg font-game border border-n64-yellow/30">
+            <span key={index} className="text-xs bg-yellow-600/20 text-yellow-600 px-2 py-1 rounded-lg">
               {reward}
             </span>
           ))}
           {event.rewards.length > 3 && (
-            <span className="text-xs text-white/60 font-game px-2 py-1">
+            <span className="text-xs text-white/60">
               +{event.rewards.length - 3} weitere
             </span>
           )}
@@ -305,7 +305,7 @@ const EventCard: React.FC<EventCardProps> = ({
       {/* Actions */}
       <div className="flex space-x-3">
         {isEventActive(event) && (
-          <RetroButton3D
+          <SimpleButton
             variant={isParticipating ? 'success' : 'primary'}
             onClick={handleJoin}
             disabled={isParticipating}
@@ -313,18 +313,18 @@ const EventCard: React.FC<EventCardProps> = ({
             size="md"
           >
             {isParticipating ? '✓ Dabei' : 'Teilnehmen'}
-          </RetroButton3D>
+          </SimpleButton>
         )}
-        <RetroButton3D
+        <SimpleButton
           variant="secondary"
           onClick={handleViewDetails}
           className="flex-1"
           size="md"
         >
           Details
-        </RetroButton3D>
+        </SimpleButton>
       </div>
-    </RetroCard3D>
+    </SimpleCard>
   )
 }
 

@@ -23,8 +23,8 @@ import MediaCaptureComponent from '../components/MediaCaptureComponent'
 import MediaGallery from '../components/MediaGallery'
 import SpeedrunLeaderboard from '../components/SpeedrunLeaderboard'
 import MediaAdminPanel from '../components/MediaAdminPanel'
-import RetroCard3D from '../components/RetroCard3D'
-import RetroButton3D from '../components/RetroButton3D'
+import SimpleCard from '../components/SimpleCard'
+import SimpleButton from '../components/SimpleButton'
 
 type TabType = 'capture' | 'gallery' | 'community' | 'leaderboard' | 'admin'
 type MediaType = 'photo' | 'video' | 'stream'
@@ -100,11 +100,11 @@ const SpeedrunMediaPage: React.FC = () => {
   ]
 
   const tabs = [
-    { id: 'capture' as TabType, label: 'Aufnahme', icon: Camera, color: 'text-n64-purple' },
-    { id: 'gallery' as TabType, label: 'Galerie', icon: Image, color: 'text-n64-blue' },
-    { id: 'community' as TabType, label: 'Community', icon: Users, color: 'text-n64-green' },
-    { id: 'leaderboard' as TabType, label: 'Bestenliste', icon: Trophy, color: 'text-n64-yellow' },
-    ...(user?.username === 'admin' ? [{ id: 'admin' as TabType, label: 'Admin', icon: Shield, color: 'text-n64-red' }] : [])
+    { id: 'capture' as TabType, label: 'Aufnahme', icon: Camera, color: 'text-blue-600' },
+    { id: 'gallery' as TabType, label: 'Galerie', icon: Image, color: 'text-blue-600' },
+    { id: 'community' as TabType, label: 'Community', icon: Users, color: 'text-green-600' },
+    { id: 'leaderboard' as TabType, label: 'Bestenliste', icon: Trophy, color: 'text-yellow-600' },
+    ...(user?.username === 'admin' ? [{ id: 'admin' as TabType, label: 'Admin', icon: Shield, color: 'text-red-600' }] : [])
   ]
 
   const handleDrag = useCallback((e: React.DragEvent) => {
@@ -183,37 +183,37 @@ const SpeedrunMediaPage: React.FC = () => {
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-blue-900 p-4">
       <div className="max-w-7xl mx-auto space-y-6">
         {/* Header */}
-        <RetroCard3D className="p-6">
+        <SimpleCard className="p-6">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-3xl font-bold text-white mb-2 flex items-center gap-3 font-tech">
-                <Camera className="w-8 h-8 text-n64-purple" />
+              <h1 className="text-3xl font-bold text-white mb-2 flex items-center gap-3 ">
+                <Camera className="w-8 h-8 text-blue-600" />
                 Speedrun Media Center
               </h1>
-              <p className="text-gray-300 font-game">
+              <p className="text-gray-300 ">
                 Teile deine besten Speedrun-Momente mit der Community
               </p>
             </div>
             <div className="flex items-center space-x-4">
               <div className="text-right">
-                <div className="text-sm text-white/70 font-game">Aktuelle Events</div>
-                <div className="text-n64-yellow font-tech">
+                <div className="text-sm text-white/70 ">Aktuelle Events</div>
+                <div className="text-yellow-600 ">
                   {activeEvents.length} aktiv
                 </div>
               </div>
             </div>
           </div>
-        </RetroCard3D>
+        </SimpleCard>
 
         {/* Game Selection */}
-        <RetroCard3D className="p-4">
+        <SimpleCard className="p-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
-              <span className="text-white font-game">Spiel:</span>
+              <span className="text-white ">Spiel:</span>
               <select 
                 value={selectedGame} 
                 onChange={(e) => setSelectedGame(e.target.value)}
-                className="bg-black/30 border border-white/20 rounded-lg px-3 py-2 text-white font-game focus:border-n64-purple focus:outline-none"
+                className="bg-black/30 border border-white/20 rounded-lg px-3 py-2 text-white "
               >
                 {games.map(game => (
                   <option key={game.id} value={game.id} className="bg-gray-900">
@@ -225,56 +225,56 @@ const SpeedrunMediaPage: React.FC = () => {
             
             {selectedEvent && (
               <div className="flex items-center space-x-2">
-                <span className="text-white/70 font-game text-sm">Event:</span>
-                <span className="text-n64-green font-tech text-sm">
+                <span className="text-white/70 ">Event:</span>
+                <span className="text-green-600 ">
                   {activeEvents.find(e => e.id === selectedEvent)?.title || 'Aktuelles Event'}
                 </span>
               </div>
             )}
           </div>
-        </RetroCard3D>
+        </SimpleCard>
 
         {/* Latest Media Highlight */}
         {latestMedia && (
-          <RetroCard3D className="p-6 bg-gradient-to-r from-n64-purple/20 to-n64-blue/20 border-n64-purple/50">
+          <SimpleCard className="p-6 bg-gradient-to-r from-blue-600/20 to-blue-600/20 border-blue-600/50">
             <div className="flex items-center space-x-4">
               <div className="flex-shrink-0">
-                <div className="w-16 h-16 bg-n64-purple/30 rounded-lg flex items-center justify-center">
+                <div className="w-16 h-16 bg-blue-600/30 rounded-lg flex items-center justify-center">
                   {latestMedia.type === 'video' ? 
-                    <Video className="w-8 h-8 text-n64-purple" /> : 
-                    <Image className="w-8 h-8 text-n64-purple" />
+                    <Video className="w-8 h-8 text-blue-600" /> : 
+                    <Image className="w-8 h-8 text-blue-600" />
                   }
                 </div>
               </div>
               <div className="flex-1">
                 <div className="flex items-center space-x-2 mb-1">
-                  <Star className="w-5 h-5 text-n64-yellow" />
-                  <span className="text-n64-yellow font-tech">NEUESTE AUFNAHME</span>
+                  <Star className="w-5 h-5 text-yellow-600" />
+                  <span className="text-yellow-600 ">NEUESTE AUFNAHME</span>
                 </div>
-                <h3 className="text-white font-game text-lg">{latestMedia.filename}</h3>
-                <p className="text-white/70 font-game text-sm">
+                <h3 className="text-white ">{latestMedia.filename}</h3>
+                <p className="text-white/70 ">
                   Hochgeladen von {latestMedia.username} • {formatFileSize(latestMedia.size)}
                 </p>
               </div>
               <div className="text-right">
                 {latestMedia.verified ? (
-                  <div className="flex items-center space-x-1 text-n64-green">
+                  <div className="flex items-center space-x-1 text-green-600">
                     <Check className="w-4 h-4" />
-                    <span className="font-game text-sm">Verifiziert</span>
+                    <span className="">Verifiziert</span>
                   </div>
                 ) : (
-                  <div className="flex items-center space-x-1 text-n64-yellow">
+                  <div className="flex items-center space-x-1 text-yellow-600">
                     <Clock className="w-4 h-4" />
-                    <span className="font-game text-sm">Wartend</span>
+                    <span className="">Wartend</span>
                   </div>
                 )}
               </div>
             </div>
-          </RetroCard3D>
+          </SimpleCard>
         )}
 
         {/* Tab Navigation */}
-        <RetroCard3D className="p-2">
+        <SimpleCard className="p-2">
           <div className="flex space-x-2">
             {tabs.map(tab => {
               const Icon = tab.icon
@@ -282,9 +282,9 @@ const SpeedrunMediaPage: React.FC = () => {
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
-                  className={`flex items-center space-x-2 px-4 py-3 rounded-lg font-game transition-all duration-200 ${
+                  className={`flex items-center space-x-2 px-4 py-3 rounded-lg 
                     activeTab === tab.id 
-                      ? 'bg-n64-purple/30 text-white border border-n64-purple/50' 
+                      ? 'bg-blue-600/30 text-white border border-blue-600/50' 
                       : 'text-white/70 hover:text-white hover:bg-white/5'
                   }`}
                 >
@@ -294,7 +294,7 @@ const SpeedrunMediaPage: React.FC = () => {
               )
             })}
           </div>
-        </RetroCard3D>
+        </SimpleCard>
 
         {/* Tab Content */}
         <div className="space-y-6">
@@ -302,12 +302,12 @@ const SpeedrunMediaPage: React.FC = () => {
           {activeTab === 'capture' && (
             <div className="space-y-6">
               {/* GDPR Consent */}
-              <RetroCard3D className="p-6 border-n64-yellow/50">
+              <SimpleCard className="p-6 border-yellow-600/50">
                 <div className="flex items-start space-x-4">
-                  <Shield className="w-8 h-8 text-n64-yellow flex-shrink-0 mt-1" />
+                  <Shield className="w-8 h-8 text-yellow-600 flex-shrink-0 mt-1" />
                   <div className="flex-1">
-                    <h3 className="text-xl font-tech text-white mb-3">DSGVO-Hinweis</h3>
-                    <p className="text-white/80 font-game mb-4 leading-relaxed">
+                    <h3 className="text-xl ">DSGVO-Hinweis</h3>
+                    <p className="text-white/80 ">
                       Ihre Medien werden lokal gespeichert und nur mit Ihrer ausdrücklichen Zustimmung hochgeladen. 
                       Nur verifizierte Medien mit Zeitstempel werden für die Bestenlisten berücksichtigt. 
                       Sie können Ihre Daten jederzeit löschen lassen.
@@ -317,22 +317,22 @@ const SpeedrunMediaPage: React.FC = () => {
                         type="checkbox" 
                         checked={gdprConsent}
                         onChange={(e) => setGdprConsent(e.target.checked)}
-                        className="w-5 h-5 rounded border-2 border-white/20 bg-black/30 text-n64-purple focus:ring-n64-purple"
+                        className="w-5 h-5 rounded border-2 border-white/20 bg-black/30 text-blue-600 focus:ring-blue-600"
                       />
-                      <span className="text-white font-game">
+                      <span className="text-white ">
                         Ich stimme der DSGVO-konformen Verarbeitung meiner Medien zu
                       </span>
                     </label>
                   </div>
                 </div>
-              </RetroCard3D>
+              </SimpleCard>
 
               {/* Upload Area */}
-              <RetroCard3D 
+              <SimpleCard 
                 className={`p-8 border-2 border-dashed transition-all duration-300 ${
                   dragActive 
-                    ? 'border-n64-purple bg-n64-purple/10' 
-                    : 'border-white/30 hover:border-n64-purple/50'
+                    ? 'border-blue-600 bg-blue-600/10' 
+                    : 'border-white/30 hover:border-blue-600/50'
                 }`}
                 onDragEnter={handleDrag}
                 onDragLeave={handleDrag}
@@ -340,11 +340,11 @@ const SpeedrunMediaPage: React.FC = () => {
                 onDrop={handleDrop}
               >
                 <div className="text-center">
-                  <Upload className="w-16 h-16 text-n64-purple mx-auto mb-4" />
-                  <h3 className="text-xl font-tech text-white mb-2">
+                  <Upload className="w-16 h-16 text-blue-600 mx-auto mb-4" />
+                  <h3 className="text-xl ">
                     Dateien hochladen
                   </h3>
-                  <p className="text-white/70 font-game mb-6">
+                  <p className="text-white/70 ">
                     Ziehen Sie Ihre Speedrun-Videos oder Screenshots hierher oder klicken Sie zum Auswählen
                   </p>
                   
@@ -357,52 +357,52 @@ const SpeedrunMediaPage: React.FC = () => {
                         onChange={handleFileSelect}
                         className="hidden"
                       />
-                      <RetroButton3D variant="primary">
+                      <SimpleButton variant="primary">
                         <Camera className="w-5 h-5 mr-2" />
                         Dateien auswählen
-                      </RetroButton3D>
+                      </SimpleButton>
                     </label>
                     
-                    <RetroButton3D 
+                    <SimpleButton 
                       variant="secondary"
                       onClick={() => setShowCaptureModal(true)}
                     >
                       <Video className="w-5 h-5 mr-2" />
                       Live aufnehmen
-                    </RetroButton3D>
+                    </SimpleButton>
                   </div>
                 </div>
-              </RetroCard3D>
+              </SimpleCard>
 
               {/* Upload Queue */}
               {uploadQueue.length > 0 && (
-                <RetroCard3D className="p-6">
-                  <h3 className="text-xl font-tech text-white mb-4">Upload-Warteschlange</h3>
+                <SimpleCard className="p-6">
+                  <h3 className="text-xl ">Upload-Warteschlange</h3>
                   <div className="space-y-3">
                     {uploadQueue.map((file, index) => (
                       <div key={index} className="flex items-center justify-between bg-black/20 rounded-lg p-4 border border-white/10">
                         <div className="flex items-center space-x-3">
                           {file.type.startsWith('video/') ? 
-                            <Video className="w-6 h-6 text-n64-blue" /> : 
-                            <Image className="w-6 h-6 text-n64-green" />
+                            <Video className="w-6 h-6 text-blue-600" /> : 
+                            <Image className="w-6 h-6 text-green-600" />
                           }
                           <div>
-                            <div className="text-white font-game">{file.name}</div>
-                            <div className="text-white/60 font-game text-sm">{formatFileSize(file.size)}</div>
+                            <div className="text-white ">{file.name}</div>
+                            <div className="text-white/60 ">{formatFileSize(file.size)}</div>
                           </div>
                         </div>
                         <div className="flex items-center space-x-3">
-                          <RetroButton3D 
+                          <SimpleButton 
                             variant="success" 
                             size="sm"
                             onClick={() => handleUpload(file)}
                             disabled={!gdprConsent}
                           >
                             Upload
-                          </RetroButton3D>
+                          </SimpleButton>
                           <button 
                             onClick={() => removeFromQueue(file)}
-                            className="text-n64-red hover:text-red-400 transition-colors"
+                            className="text-red-600 hover:text-red-400 transition-colors"
                           >
                             <Trash2 className="w-5 h-5" />
                           </button>
@@ -410,7 +410,7 @@ const SpeedrunMediaPage: React.FC = () => {
                       </div>
                     ))}
                   </div>
-                </RetroCard3D>
+                </SimpleCard>
               )}
             </div>
           )}
@@ -426,38 +426,38 @@ const SpeedrunMediaPage: React.FC = () => {
           {/* Community Tab */}
           {activeTab === 'community' && (
             <div className="space-y-6">
-              <RetroCard3D className="p-6">
-                <h3 className="text-xl font-tech text-white mb-4">Community Runs</h3>
+              <SimpleCard className="p-6">
+                <h3 className="text-xl ">Community Runs</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                   {mediaFiles.map(media => (
                     <div key={media.id} className="bg-black/20 rounded-lg p-4 border border-white/10">
                       <div className="flex items-center justify-between mb-3">
                         <div className="flex items-center space-x-2">
                           {media.type === 'video' ? 
-                            <Video className="w-5 h-5 text-n64-blue" /> : 
-                            <Image className="w-5 h-5 text-n64-green" />
+                            <Video className="w-5 h-5 text-blue-600" /> : 
+                            <Image className="w-5 h-5 text-green-600" />
                           }
-                          <span className="text-white font-game text-sm">{media.username}</span>
+                          <span className="text-white ">{media.username}</span>
                         </div>
                         {media.verified && (
-                          <div className="flex items-center space-x-1 text-n64-green">
+                          <div className="flex items-center space-x-1 text-green-600">
                             <Check className="w-4 h-4" />
                           </div>
                         )}
                       </div>
-                      <div className="text-white/80 font-game text-sm mb-2">{media.filename}</div>
+                      <div className="text-white/80 ">{media.filename}</div>
                       {media.timestamp && (
-                        <div className="text-n64-yellow font-tech text-lg mb-2">{media.timestamp}</div>
+                        <div className="text-yellow-600 ">{media.timestamp}</div>
                       )}
                       <div className="flex justify-between items-center">
-                        <span className="text-white/60 font-game text-xs">
+                        <span className="text-white/60 ">
                           {new Date(media.uploadDate).toLocaleDateString('de-DE')}
                         </span>
                         <div className="flex space-x-2">
-                          <button className="text-n64-blue hover:text-blue-400 transition-colors">
+                          <button className="text-blue-600 hover:text-blue-400 transition-colors">
                             <Eye className="w-4 h-4" />
                           </button>
-                          <button className="text-n64-green hover:text-green-400 transition-colors">
+                          <button className="text-green-600 hover:text-green-400 transition-colors">
                             <Download className="w-4 h-4" />
                           </button>
                         </div>
@@ -465,7 +465,7 @@ const SpeedrunMediaPage: React.FC = () => {
                     </div>
                   ))}
                 </div>
-              </RetroCard3D>
+              </SimpleCard>
             </div>
           )}
 
@@ -488,7 +488,7 @@ const SpeedrunMediaPage: React.FC = () => {
           <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
             <div className="bg-gray-900 rounded-xl p-6 max-w-4xl w-full max-h-[90vh] overflow-y-auto">
               <div className="flex items-center justify-between mb-6">
-                <h2 className="text-2xl font-tech text-white">Live-Aufnahme</h2>
+                <h2 className="text-2xl ">Live-Aufnahme</h2>
                 <button 
                   onClick={() => setShowCaptureModal(false)}
                   className="text-white/70 hover:text-white transition-colors"
