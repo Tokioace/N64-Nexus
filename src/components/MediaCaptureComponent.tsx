@@ -19,8 +19,8 @@ import { useMedia } from '../contexts/MediaContext'
 import { useUser } from '../contexts/UserContext'
 import { useEvents } from '../contexts/EventContext'
 import { GameEvent } from '../types'
-import RetroCard3D from './RetroCard3D'
-import RetroButton3D from './RetroButton3D'
+import SimpleCard from './SimpleCard'
+import SimpleButton from './SimpleButton'
 
 interface MediaCaptureComponentProps {
   gameId: string
@@ -275,18 +275,18 @@ const MediaCaptureComponent: React.FC<MediaCaptureComponentProps> = ({
 
   if (!user) {
     return (
-      <RetroCard3D className="max-w-md mx-auto">
+      <SimpleCard className="max-w-md mx-auto">
         <div className="text-center p-6">
           <AlertCircle className="w-16 h-16 text-yellow-400 mx-auto mb-4" />
           <h3 className="text-xl font-bold text-white mb-2">Anmeldung erforderlich</h3>
           <p className="text-gray-300">Sie müssen angemeldet sein, um Medien aufzunehmen.</p>
         </div>
-      </RetroCard3D>
+      </SimpleCard>
     )
   }
 
   return (
-    <RetroCard3D className="max-w-2xl mx-auto">
+    <SimpleCard className="max-w-2xl mx-auto">
       <div className="p-6">
         {/* Header */}
         <div className="flex justify-between items-center mb-6">
@@ -320,30 +320,30 @@ const MediaCaptureComponent: React.FC<MediaCaptureComponentProps> = ({
 
         {/* Mode Selection */}
         <div className="flex gap-2 mb-6">
-          <RetroButton3D
+          <SimpleButton
             variant={mode === 'photo' ? 'primary' : 'secondary'}
             onClick={() => setMode('photo')}
             disabled={isRecording || isProcessing}
           >
             <Camera className="w-4 h-4 mr-2" />
             Foto
-          </RetroButton3D>
-          <RetroButton3D
+          </SimpleButton>
+          <SimpleButton
             variant={mode === 'video' ? 'primary' : 'secondary'}
             onClick={() => setMode('video')}
             disabled={isRecording || isProcessing}
           >
             <Video className="w-4 h-4 mr-2" />
             Video
-          </RetroButton3D>
-          <RetroButton3D
+          </SimpleButton>
+          <SimpleButton
             variant={mode === 'upload' ? 'primary' : 'secondary'}
             onClick={() => setMode('upload')}
             disabled={isRecording || isProcessing}
           >
             <Upload className="w-4 h-4 mr-2" />
             Upload
-          </RetroButton3D>
+          </SimpleButton>
         </div>
 
         {/* Required Fields */}
@@ -450,14 +450,14 @@ const MediaCaptureComponent: React.FC<MediaCaptureComponentProps> = ({
                 className="hidden"
                 disabled={isProcessing}
               />
-              <RetroButton3D
+              <SimpleButton
                 onClick={() => fileInputRef.current?.click()}
                 disabled={!gameTime.trim() || isProcessing || (!hasConsented && (mode === 'video' || isPublic))}
                 className="w-full"
               >
                 {isProcessing ? (
                   <>
-                    <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                    <Loader2 className="w-4 h-4 mr-2 " />
                     Wird hochgeladen...
                   </>
                 ) : (
@@ -466,7 +466,7 @@ const MediaCaptureComponent: React.FC<MediaCaptureComponentProps> = ({
                     Datei auswählen
                   </>
                 )}
-              </RetroButton3D>
+              </SimpleButton>
             </div>
           ) : (
             <div className="space-y-4">
@@ -483,7 +483,7 @@ const MediaCaptureComponent: React.FC<MediaCaptureComponentProps> = ({
                 
                 {isRecording && (
                   <div className="absolute top-4 left-4 bg-red-600 px-3 py-1 rounded-full flex items-center gap-2">
-                    <div className="w-2 h-2 bg-white rounded-full animate-pulse" />
+                    <div className="w-2 h-2 bg-white rounded-full " />
                     <span className="text-white text-sm font-medium">
                       REC {formatTime(recordingTime)}
                     </span>
@@ -500,14 +500,14 @@ const MediaCaptureComponent: React.FC<MediaCaptureComponentProps> = ({
               {/* Camera Controls */}
               <div className="flex gap-2 justify-center">
                 {mode === 'photo' ? (
-                  <RetroButton3D
+                  <SimpleButton
                     onClick={takePhoto}
                     disabled={!canCapture || !gameTime.trim() || isCapturing || (!hasConsented && isPublic)}
                     className="flex-1"
                   >
                     {isCapturing ? (
                       <>
-                        <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                        <Loader2 className="w-4 h-4 mr-2 " />
                         Aufnehmen...
                       </>
                     ) : (
@@ -516,11 +516,11 @@ const MediaCaptureComponent: React.FC<MediaCaptureComponentProps> = ({
                         Foto aufnehmen
                       </>
                     )}
-                  </RetroButton3D>
+                  </SimpleButton>
                 ) : (
                   <>
                     {!isRecording ? (
-                      <RetroButton3D
+                      <SimpleButton
                         onClick={startVideoRecording}
                         disabled={!canCapture || !gameTime.trim() || isProcessing || (!hasConsented && (mode === 'video' || isPublic))}
                         variant="primary"
@@ -528,16 +528,16 @@ const MediaCaptureComponent: React.FC<MediaCaptureComponentProps> = ({
                       >
                         <Play className="w-4 h-4 mr-2" />
                         Aufnahme starten
-                      </RetroButton3D>
+                      </SimpleButton>
                     ) : (
-                      <RetroButton3D
+                      <SimpleButton
                         onClick={stopVideoRecording}
                         variant="danger"
                         className="flex-1"
                       >
                         <Square className="w-4 h-4 mr-2" />
                         Aufnahme stoppen
-                      </RetroButton3D>
+                      </SimpleButton>
                     )}
                   </>
                 )}
@@ -576,7 +576,7 @@ const MediaCaptureComponent: React.FC<MediaCaptureComponentProps> = ({
           </p>
         </div>
       </div>
-    </RetroCard3D>
+    </SimpleCard>
   )
 }
 

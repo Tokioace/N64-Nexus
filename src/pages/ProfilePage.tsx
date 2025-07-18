@@ -24,10 +24,10 @@ const ProfilePage: React.FC = () => {
     <div className="container mx-auto px-4 py-6">
       {/* Header */}
       <div className="text-center mb-8">
-        <div className="w-24 h-24 bg-n64-purple/20 rounded-full flex items-center justify-center mx-auto mb-4 text-4xl">
+        <div className="w-24 h-24 bg-blue-600/20 rounded-full flex items-center justify-center mx-auto mb-4 text-4xl">
           👤
         </div>
-        <h1 className="text-3xl font-bold text-shadow mb-2">
+        <h1 className="text-3xl font-bold ">
           {user.username}
         </h1>
         <p className="text-white/70">
@@ -45,7 +45,7 @@ const ProfilePage: React.FC = () => {
         </div>
         <div className="w-full bg-white/10 rounded-full h-3 mb-2">
           <div 
-            className="bg-n64-purple h-3 rounded-full transition-all duration-300"
+            className="bg-blue-600 h-3 rounded-full transition-all duration-300"
             style={{ width: `${getLevelProgress()}%` }}
           ></div>
         </div>
@@ -57,19 +57,19 @@ const ProfilePage: React.FC = () => {
       {/* Stats Grid */}
       <div className="grid grid-cols-2 gap-4 mb-6">
         <div className="card text-center">
-          <div className="text-2xl font-bold text-n64-green">{accuracy}%</div>
+          <div className="text-2xl font-bold text-green-600">{accuracy}%</div>
           <div className="text-sm text-white/70">Genauigkeit</div>
         </div>
         <div className="card text-center">
-          <div className="text-2xl font-bold text-n64-blue">{user.totalQuizzes}</div>
+          <div className="text-2xl font-bold text-blue-600">{user.totalQuizzes}</div>
           <div className="text-sm text-white/70">Quizzes gespielt</div>
         </div>
         <div className="card text-center">
-          <div className="text-2xl font-bold text-n64-yellow">{user.correctAnswers}</div>
+          <div className="text-2xl font-bold text-yellow-600">{user.correctAnswers}</div>
           <div className="text-sm text-white/70">Richtige Antworten</div>
         </div>
         <div className="card text-center">
-          <div className="text-2xl font-bold text-n64-purple">{user.achievements.length}</div>
+          <div className="text-2xl font-bold text-blue-600">{user.achievements.length}</div>
           <div className="text-sm text-white/70">Errungenschaften</div>
         </div>
       </div>
@@ -92,10 +92,10 @@ const ProfilePage: React.FC = () => {
                   </div>
                 </div>
                 <div className="text-right">
-                  <div className="font-bold text-n64-purple">{percentage}%</div>
+                  <div className="font-bold text-blue-600">{percentage}%</div>
                   <div className="w-16 bg-white/10 rounded-full h-2 mt-1">
                     <div 
-                      className="bg-n64-purple h-2 rounded-full"
+                      className="bg-blue-600 h-2 rounded-full"
                       style={{ width: `${percentage}%` }}
                     ></div>
                   </div>
@@ -152,7 +152,7 @@ const ProfilePage: React.FC = () => {
           </div>
           <div className="flex justify-between">
             <span>Beste Punktzahl</span>
-            <span className="text-n64-purple font-bold">150 Punkte</span>
+            <span className="text-blue-600 font-bold">150 Punkte</span>
           </div>
           <div className="flex justify-between">
             <span>Längste Serie</span>
@@ -173,7 +173,7 @@ const ProfilePage: React.FC = () => {
 
         <button 
           onClick={logout}
-          className="card w-full flex items-center justify-between hover:bg-white/15 transition-all duration-200 text-n64-red"
+          className="card w-full flex items-center justify-between hover:bg-white/15 transition-all duration-200 text-red-600"
         >
           <div className="flex items-center space-x-3">
             <LogOut size={20} />

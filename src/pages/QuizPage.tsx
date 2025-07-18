@@ -51,7 +51,7 @@ const QuizPage: React.FC = () => {
     return (
       <div className="container mx-auto px-4 py-6">
         <div className="card text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-n64-purple mx-auto mb-4"></div>
+          <div className=""></div>
           <p>Quiz wird geladen...</p>
         </div>
       </div>
@@ -129,7 +129,7 @@ const QuizPage: React.FC = () => {
         </div>
         <div className="w-full bg-white/10 rounded-full h-2">
           <div 
-            className="bg-n64-purple h-2 rounded-full transition-all duration-300"
+            className="bg-blue-600 h-2 rounded-full transition-all duration-300"
             style={{ width: `${progress.percentage}%` }}
           ></div>
         </div>
@@ -138,7 +138,7 @@ const QuizPage: React.FC = () => {
       {/* Timer for Speed Mode */}
       {currentSession.mode === 'speed' && timeLeft !== null && (
         <div className="text-center mb-4">
-          <div className={`text-2xl font-bold ${timeLeft <= 3 ? 'text-n64-red' : 'text-n64-yellow'}`}>
+          <div className={`text-2xl font-bold ${timeLeft <= 3 ? 'text-red-600' : 'text-yellow-600'}`}>
             <Clock className="inline mr-2" size={24} />
             {timeLeft}s
           </div>
@@ -148,10 +148,10 @@ const QuizPage: React.FC = () => {
       {/* Question */}
       <div className="card mb-6">
         <div className="mb-4">
-          <span className="inline-block bg-n64-purple/20 text-n64-purple px-3 py-1 rounded-full text-sm font-medium mb-3">
+          <span className="inline-block bg-blue-600/20 text-blue-600 px-3 py-1 rounded-full text-sm font-medium mb-3">
             {currentQuestion.category}
           </span>
-          <span className="inline-block bg-n64-yellow/20 text-n64-yellow px-3 py-1 rounded-full text-sm font-medium ml-2">
+          <span className="inline-block bg-yellow-600/20 text-yellow-600 px-3 py-1 rounded-full text-sm font-medium ml-2">
             {currentQuestion.difficulty}
           </span>
         </div>
@@ -186,8 +186,8 @@ const QuizPage: React.FC = () => {
               <span className="font-medium">{option}</span>
               {showResult && (
                 <div className="text-xl">
-                  {getOptionClass(option) === 'correct' && <Check className="text-n64-green" />}
-                  {getOptionClass(option) === 'incorrect' && <X className="text-n64-red" />}
+                  {getOptionClass(option) === 'correct' && <Check className="text-green-600" />}
+                  {getOptionClass(option) === 'incorrect' && <X className="text-red-600" />}
                 </div>
               )}
             </div>

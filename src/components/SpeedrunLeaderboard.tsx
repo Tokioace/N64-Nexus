@@ -20,8 +20,8 @@ import { useMedia } from '../contexts/MediaContext'
 import { useUser } from '../contexts/UserContext'
 import { useEvents } from '../contexts/EventContext'
 import { MediaMeta, SpeedrunEntry } from '../types'
-import RetroCard3D from './RetroCard3D'
-import RetroButton3D from './RetroButton3D'
+import SimpleCard from './SimpleCard'
+import SimpleButton from './SimpleButton'
 
 interface SpeedrunLeaderboardProps {
   gameId?: string
@@ -220,7 +220,7 @@ const SpeedrunLeaderboard: React.FC<SpeedrunLeaderboardProps> = ({
 
   if (leaderboard.length === 0) {
     return (
-      <RetroCard3D className="text-center p-8">
+      <SimpleCard className="text-center p-8">
         <div className="text-gray-400">
           <Trophy className="w-16 h-16 mx-auto mb-4 opacity-50" />
           <h3 className="text-lg font-semibold mb-2">Keine Einträge gefunden</h3>
@@ -230,7 +230,7 @@ const SpeedrunLeaderboard: React.FC<SpeedrunLeaderboardProps> = ({
             {!gameId && !eventId && 'Es wurden noch keine Zeiten eingereicht.'}
           </p>
         </div>
-      </RetroCard3D>
+      </SimpleCard>
     )
   }
 
@@ -244,31 +244,31 @@ const SpeedrunLeaderboard: React.FC<SpeedrunLeaderboardProps> = ({
         </h2>
         
         <div className="flex items-center gap-2">
-          <RetroButton3D
+          <SimpleButton
             variant="secondary"
             onClick={() => setFilterVerified(!filterVerified)}
             className={filterVerified ? 'bg-blue-600' : ''}
           >
             <CheckCircle className="w-4 h-4 mr-1" />
             Nur verifiziert
-          </RetroButton3D>
+          </SimpleButton>
           
           {showMedia && (
-            <RetroButton3D
+            <SimpleButton
               variant="secondary"
               onClick={() => setShowOnlyWithMedia(!showOnlyWithMedia)}
               className={showOnlyWithMedia ? 'bg-blue-600' : ''}
             >
               <Eye className="w-4 h-4 mr-1" />
               Nur mit Medien
-            </RetroButton3D>
+            </SimpleButton>
           )}
         </div>
       </div>
 
       {/* Event Info */}
       {event && (
-        <RetroCard3D className="p-4 bg-blue-900/20 border-blue-500/30">
+        <SimpleCard className="p-4 bg-blue-900/20 border-blue-500/30">
           <div className="flex items-center gap-4">
             <div className="w-16 h-16 rounded-lg overflow-hidden">
               <img src={event.image} alt={event.title} className="w-full h-full object-cover" />
@@ -281,13 +281,13 @@ const SpeedrunLeaderboard: React.FC<SpeedrunLeaderboardProps> = ({
               </p>
             </div>
           </div>
-        </RetroCard3D>
+        </SimpleCard>
       )}
 
       {/* Leaderboard */}
       <div className="space-y-3">
         {leaderboard.map((entry, index) => (
-          <RetroCard3D 
+          <SimpleCard 
             key={`${entry.user.id}-${entry.submittedAt.getTime()}`}
             className={`${getRankColor(entry.rank)} transition-all duration-300 hover:scale-[1.02]`}
           >
@@ -346,7 +346,7 @@ const SpeedrunLeaderboard: React.FC<SpeedrunLeaderboardProps> = ({
                   {/* Media Actions */}
                   {showMedia && entry.media && (
                     <div className="flex items-center gap-2">
-                      <RetroButton3D
+                      <SimpleButton
                         variant="secondary"
                         onClick={() => handleViewMedia(entry)}
                         className="text-xs px-2 py-1"
@@ -362,7 +362,7 @@ const SpeedrunLeaderboard: React.FC<SpeedrunLeaderboardProps> = ({
                             Foto
                           </>
                         )}
-                      </RetroButton3D>
+                      </SimpleButton>
                       
                       {entry.media.votes && (
                         <div className="flex items-center gap-1 text-xs text-gray-400">
@@ -381,24 +381,24 @@ const SpeedrunLeaderboard: React.FC<SpeedrunLeaderboardProps> = ({
                 </div>
               )}
             </div>
-          </RetroCard3D>
+          </SimpleCard>
         ))}
       </div>
 
       {/* Show More Button */}
       {leaderboard.length >= maxEntries && (
         <div className="text-center">
-          <RetroButton3D variant="secondary">
+          <SimpleButton variant="secondary">
             <TrendingUp className="w-4 h-4 mr-2" />
             Mehr anzeigen
-          </RetroButton3D>
+          </SimpleButton>
         </div>
       )}
 
       {/* Media Detail Modal */}
       {selectedEntry && selectedEntry.media && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-          <RetroCard3D className="max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+          <SimpleCard className="max-w-2xl w-full max-h-[90vh] overflow-y-auto">
             <div className="p-6">
               <div className="flex justify-between items-center mb-4">
                 <div>
@@ -469,16 +469,16 @@ const SpeedrunLeaderboard: React.FC<SpeedrunLeaderboardProps> = ({
 
                 {/* Close Button */}
                 <div className="flex justify-end">
-                  <RetroButton3D
+                  <SimpleButton
                     variant="secondary"
                     onClick={() => setSelectedEntry(null)}
                   >
                     Schließen
-                  </RetroButton3D>
+                  </SimpleButton>
                 </div>
               </div>
             </div>
-          </RetroCard3D>
+          </SimpleCard>
         </div>
       )}
     </div>
