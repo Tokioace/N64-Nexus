@@ -24,6 +24,7 @@ const Sidebar: React.FC = () => {
             <li className={location.pathname === '/marktplatz' ? 'active' : ''}><Link to="/marktplatz">🛒 Marktplatz</Link></li>
             <li className={location.pathname === '/freunde' ? 'active' : ''}><Link to="/freunde">👥 Freunde</Link></li>
             <li className={location.pathname === '/quiz' ? 'active' : ''}><Link to="/quiz">❓ Quiz</Link></li>
+            <li className={location.pathname.startsWith('/forum') ? 'active' : ''}><Link to="/forum">💬 Forum</Link></li>
             <li className={location.pathname === '/fanart' ? 'active' : ''}><Link to="/fanart">🎨 Fanart</Link></li>
             <li className={location.pathname === '/newsfeed' ? 'active' : ''}><Link to="/newsfeed">📰 News</Link></li>
           </ul>
