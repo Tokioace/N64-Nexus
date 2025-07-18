@@ -175,13 +175,13 @@ const ForumNewThreadPage: React.FC = () => {
                   onChange={handleImageUpload}
                   className="hidden"
                 />
-                <label
-                  htmlFor="image-upload"
-                  className="flex items-center space-x-2 px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-slate-100 hover:bg-slate-600 cursor-pointer transition-colors"
-                >
-                  <ImageIcon className="w-4 h-4" />
-                  <span>Bild auswählen</span>
-                </label>
+                                  <label
+                    htmlFor="image-upload"
+                    className="flex items-center space-x-2 px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-slate-100 cursor-pointer"
+                  >
+                    <ImageIcon className="w-4 h-4" />
+                    <span>Bild auswählen</span>
+                  </label>
                 <span className="text-sm text-slate-400">
                   Max. 5MB, JPG/PNG
                 </span>
@@ -194,7 +194,7 @@ const ForumNewThreadPage: React.FC = () => {
                     <button
                       type="button"
                       onClick={() => setImage(null)}
-                      className="text-red-400 hover:text-red-300 text-sm"
+                      className="text-red-400 text-sm"
                     >
                       Entfernen
                     </button>

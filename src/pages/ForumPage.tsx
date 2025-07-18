@@ -122,7 +122,7 @@ const ForumPage: React.FC = () => {
             key={category.id}
             to={`/forum/category/${category.id}`}
             onClick={() => selectCategory(category)}
-            className="simple-tile hover:scale-105 transition-all duration-200 block"
+            className="simple-tile block"
           >
             <div className="simple-tile-header">
               <div className="flex items-center justify-between">

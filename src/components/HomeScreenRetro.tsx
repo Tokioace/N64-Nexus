@@ -214,7 +214,7 @@ const HomeScreenRetro: React.FC = () => {
           </Link>
 
           {/* Forum Tile */}
-          <Link to="/forum" className="simple-tile simple-tile-small hover:scale-105 transition-transform">
+          <Link to="/forum" className="simple-tile simple-tile-small">
             <div className="simple-tile-icon">
               <MessageSquare className="w-7 h-7 text-cyan-400 mx-auto" />
             </div>

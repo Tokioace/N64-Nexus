@@ -173,7 +173,7 @@ const ForumThreadPage: React.FC = () => {
                 <div className="text-sm">
                   <Link 
                     to={`/profile/${post.authorId}`}
-                    className="font-medium text-blue-400 hover:text-blue-300 transition-colors"
+                    className="font-medium text-blue-400"
                   >
                     {post.authorName}
                   </Link>
@@ -257,13 +257,13 @@ const ForumThreadPage: React.FC = () => {
                     onChange={handleImageUpload}
                     className="hidden"
                   />
-                  <label
-                    htmlFor="image-upload"
-                    className="flex items-center space-x-2 px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-slate-100 hover:bg-slate-600 cursor-pointer transition-colors"
-                  >
-                    <ImageIcon className="w-4 h-4" />
-                    <span>Bild anhängen</span>
-                  </label>
+                                     <label
+                     htmlFor="image-upload"
+                     className="flex items-center space-x-2 px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-slate-100 cursor-pointer"
+                   >
+                     <ImageIcon className="w-4 h-4" />
+                     <span>Bild anhängen</span>
+                   </label>
                 </div>
 
                 <button
@@ -291,11 +291,11 @@ const ForumThreadPage: React.FC = () => {
                     <span className="text-sm text-slate-400">Angehängtes Bild:</span>
                     <button
                       type="button"
-                      onClick={() => setNewPostImage(null)}
-                      className="text-red-400 hover:text-red-300 text-sm"
-                    >
-                      Entfernen
-                    </button>
+                                           onClick={() => setNewPostImage(null)}
+                     className="text-red-400 text-sm"
+                   >
+                     Entfernen
+                   </button>
                   </div>
                   <img 
                     src={newPostImage} 

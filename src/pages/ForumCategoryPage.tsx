@@ -177,7 +177,7 @@ const ForumCategoryPage: React.FC = () => {
             <div
               key={thread.id}
               onClick={() => handleThreadClick(thread)}
-              className="simple-tile hover:scale-105 transition-all duration-200 cursor-pointer"
+              className="simple-tile cursor-pointer"
             >
               <div className="flex items-start justify-between">
                 <div className="flex-1">
@@ -188,7 +188,7 @@ const ForumCategoryPage: React.FC = () => {
                     {thread.isLocked && (
                       <Lock className="w-4 h-4 text-red-400" />
                     )}
-                    <h3 className="text-lg font-bold text-slate-100 hover:text-blue-400 transition-colors">
+                    <h3 className="text-lg font-bold text-slate-100">
                       {thread.title}
                     </h3>
                   </div>

@@ -54,15 +54,9 @@
 
   /* Retro N64 Tile Styles */
   .simple-tile {
-    @apply bg-slate-800 border border-slate-700 rounded-lg p-4 shadow-lg 
-           transition-all duration-200 hover:shadow-xl hover:scale-105;
+    @apply bg-slate-800 border border-slate-700 rounded-lg p-4 shadow-lg;
     background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
     border: 1px solid #475569;
-  }
-
-  .simple-tile:hover {
-    border-color: #3b82f6;
-    box-shadow: 0 10px 25px rgba(59, 130, 246, 0.2);
   }
 
   .simple-tile-header {
@@ -135,9 +129,8 @@
 
 /* Kompakte Tile-Styles für No-Scroll Layout */
 .simple-tile {
-  @apply bg-slate-800 border border-slate-700 rounded-lg p-3 cursor-pointer 
-         transition-all duration-200 hover:bg-slate-700 hover:border-slate-600 
-         text-slate-100 shadow-lg hover:shadow-xl;
+  @apply bg-slate-800 border border-slate-700 rounded-lg p-3 
+         text-slate-100 shadow-lg;
 }
 
 .simple-tile-large {
