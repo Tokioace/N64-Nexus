@@ -69,6 +69,13 @@ const EventsPage: React.FC = () => {
     setSelectedEvent(event)
   }
 
+  const handleEventDetails = (eventId: string) => {
+    const event = events.find(e => e.id === eventId)
+    if (event) {
+      setSelectedEvent(event)
+    }
+  }
+
   const handleBackToList = () => {
     setSelectedEvent(null)
   }
@@ -121,7 +128,7 @@ const EventsPage: React.FC = () => {
               placeholder="Events durchsuchen..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 bg-black/30 border border-white/20 rounded-lg text-white "
+              className="w-full pl-10 pr-4 py-2 bg-white border border-gray-300 rounded-lg text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             />
           </div>
 
@@ -131,7 +138,7 @@ const EventsPage: React.FC = () => {
             <select
               value={filter}
               onChange={(e) => setFilter(e.target.value as FilterType)}
-              className="bg-black/30 border border-white/20 rounded-lg px-3 py-2 text-white "
+              className="bg-white border border-gray-300 rounded-lg px-3 py-2 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             >
               <option value="all">Alle Events</option>
               <option value="active">Aktive Events</option>
@@ -142,7 +149,7 @@ const EventsPage: React.FC = () => {
             <select
               value={eventTypeFilter}
               onChange={(e) => setEventTypeFilter(e.target.value as EventType)}
-              className="bg-black/30 border border-white/20 rounded-lg px-3 py-2 text-white "
+              className="bg-white border border-gray-300 rounded-lg px-3 py-2 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             >
               <option value="all">Alle Typen</option>
               <option value="Speedrun">Speedrun</option>
@@ -274,7 +281,7 @@ const EventsPage: React.FC = () => {
                   key={event.id}
                   event={event}
                   variant={viewMode === 'list' ? 'compact' : 'default'}
-                  onViewDetails={handleEventClick}
+                  onViewDetails={handleEventDetails}
                 />
               ))}
             </div>

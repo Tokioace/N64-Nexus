@@ -91,8 +91,7 @@ const EventCard: React.FC<EventCardProps> = ({
     return (
       <SimpleCard
         variant="primary"
-        hover3D={false}
-                  className="p-4 cursor-pointer"
+        className="p-4 cursor-pointer"
         onClick={handleViewDetails}
       >
         <div className="flex items-center justify-between">
@@ -126,7 +125,6 @@ const EventCard: React.FC<EventCardProps> = ({
     return (
       <SimpleCard
         variant="primary"
-        hover3D={false}
         className="p-6"
       >
         {/* Background Pattern */}
@@ -231,7 +229,6 @@ const EventCard: React.FC<EventCardProps> = ({
   return (
     <SimpleCard
       variant="primary"
-      hover3D={false}
       className="p-5"
     >
       {/* Header */}
