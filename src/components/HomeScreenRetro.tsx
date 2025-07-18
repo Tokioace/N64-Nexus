@@ -16,7 +16,8 @@ import {
   Star,
   Users,
   Camera,
-  Package
+  Package,
+  MessageSquare
 } from 'lucide-react'
 
 const HomeScreenRetro: React.FC = () => {
@@ -209,6 +210,17 @@ const HomeScreenRetro: React.FC = () => {
             <div className="simple-tile-label">
               <div className="font-medium text-slate-100 text-sm">Sammlung</div>
               <div className="text-xs text-slate-400">N64 Games</div>
+            </div>
+          </Link>
+
+          {/* Forum Tile */}
+          <Link to="/forum" className="simple-tile simple-tile-small hover:scale-105 transition-transform">
+            <div className="simple-tile-icon">
+              <MessageSquare className="w-7 h-7 text-cyan-400 mx-auto" />
+            </div>
+            <div className="simple-tile-label">
+              <div className="font-medium text-slate-100 text-sm">Forum</div>
+              <div className="text-xs text-slate-400">Community</div>
             </div>
           </Link>
 

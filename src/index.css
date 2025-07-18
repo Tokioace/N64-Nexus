@@ -189,3 +189,69 @@
     @apply min-h-[140px] p-3;
   }
 }
+
+/* Forum-specific styles */
+.forum-post {
+  @apply bg-slate-800 border border-slate-700 rounded-lg p-4 mb-4;
+}
+
+.forum-post-header {
+  @apply flex items-center justify-between mb-3 pb-2 border-b border-slate-600;
+}
+
+.forum-post-content {
+  @apply text-slate-100 leading-relaxed;
+}
+
+.forum-post-content p {
+  @apply mb-3 last:mb-0;
+}
+
+.forum-post-meta {
+  @apply text-sm text-slate-400 flex items-center space-x-2;
+}
+
+.forum-thread-title {
+  @apply text-xl font-bold text-slate-100 hover:text-blue-400 transition-colors cursor-pointer;
+}
+
+.forum-category-icon {
+  @apply w-6 h-6 flex-shrink-0;
+}
+
+.forum-stats-tile {
+  @apply bg-slate-800 border border-slate-700 rounded-lg p-4 text-center;
+}
+
+.forum-stats-number {
+  @apply text-2xl font-bold text-blue-400;
+}
+
+.forum-stats-label {
+  @apply text-sm text-slate-400 mt-1;
+}
+
+/* Forum user badges */
+.forum-user-badge {
+  @apply inline-flex items-center px-2 py-1 rounded-full text-xs font-medium;
+}
+
+.forum-user-badge.newbie {
+  @apply bg-gray-700 text-gray-200;
+}
+
+.forum-user-badge.collector {
+  @apply bg-green-700 text-green-200;
+}
+
+.forum-user-badge.veteran {
+  @apply bg-blue-700 text-blue-200;
+}
+
+.forum-user-badge.expert {
+  @apply bg-purple-700 text-purple-200;
+}
+
+.forum-user-badge.master {
+  @apply bg-yellow-700 text-yellow-200;
+}
