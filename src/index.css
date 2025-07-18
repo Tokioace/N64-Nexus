@@ -57,23 +57,24 @@
   }
 }
 
-/* Simple tile styles with dark blue theme */
+/* Kompakte Tile-Styles für No-Scroll Layout */
 .simple-tile {
-  @apply bg-slate-800 border border-slate-700 rounded-lg p-4 cursor-pointer 
+  @apply bg-slate-800 border border-slate-700 rounded-lg p-3 cursor-pointer 
          transition-all duration-200 hover:bg-slate-700 hover:border-slate-600 
          text-slate-100 shadow-lg hover:shadow-xl;
 }
 
 .simple-tile-large {
-  @apply min-h-[200px] p-6;
+  @apply min-h-[180px] p-4;
 }
 
 .simple-tile-small {
-  @apply min-h-[80px] p-3 flex flex-col items-center justify-center text-center;
+  @apply min-h-[100px] p-3 flex flex-col items-center justify-center text-center
+         aspect-square;
 }
 
 .simple-tile-header {
-  @apply mb-4 pb-3 border-b border-slate-600;
+  @apply mb-3 pb-2 border-b border-slate-600;
 }
 
 .simple-tile-content {
@@ -81,9 +82,34 @@
 }
 
 .simple-tile-icon {
-  @apply mb-3;
+  @apply mb-2;
 }
 
 .simple-tile-label {
   @apply mt-2 font-medium text-slate-200;
+}
+
+/* Responsive Anpassungen für kompaktes Layout */
+@media (max-width: 768px) {
+  .simple-tile-small {
+    @apply min-h-[80px] p-2;
+  }
+  
+  .simple-tile-large {
+    @apply min-h-[160px] p-3;
+  }
+  
+  .simple-tile-header {
+    @apply mb-2 pb-2;
+  }
+}
+
+@media (max-width: 640px) {
+  .simple-tile-small {
+    @apply min-h-[70px] p-2;
+  }
+  
+  .simple-tile-large {
+    @apply min-h-[140px] p-3;
+  }
 }
