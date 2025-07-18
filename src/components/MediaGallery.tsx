@@ -21,8 +21,8 @@ import { useMedia } from '../contexts/MediaContext'
 import { useUser } from '../contexts/UserContext'
 import { useEvents } from '../contexts/EventContext'
 import { MediaMeta } from '../types'
-import RetroCard3D from './RetroCard3D'
-import RetroButton3D from './RetroButton3D'
+import SimpleCard from './SimpleCard'
+import SimpleButton from './SimpleButton'
 
 interface MediaGalleryProps {
   gameId?: string
@@ -171,7 +171,7 @@ const MediaGallery: React.FC<MediaGalleryProps> = ({
 
   if (filteredMedia.length === 0) {
     return (
-      <RetroCard3D className="text-center p-8">
+      <SimpleCard className="text-center p-8">
         <div className="text-gray-400">
           <GamepadIcon className="w-16 h-16 mx-auto mb-4 opacity-50" />
           <h3 className="text-lg font-semibold mb-2">Keine Medien gefunden</h3>
@@ -182,7 +182,7 @@ const MediaGallery: React.FC<MediaGalleryProps> = ({
             {!gameId && !eventId && !userId && 'Es wurden noch keine Medien hochgeladen.'}
           </p>
         </div>
-      </RetroCard3D>
+      </SimpleCard>
     )
   }
 
@@ -195,18 +195,18 @@ const MediaGallery: React.FC<MediaGalleryProps> = ({
           Speedrun Medien ({filteredMedia.length})
         </h2>
         
-        <RetroButton3D
+        <SimpleButton
           variant="secondary"
           onClick={() => setShowFilters(!showFilters)}
         >
           <Filter className="w-4 h-4 mr-2" />
           Filter
-        </RetroButton3D>
+        </SimpleButton>
       </div>
 
       {/* Filters */}
       {showFilters && (
-        <RetroCard3D className="p-4">
+        <SimpleCard className="p-4">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div>
               <label className="block text-sm font-medium text-gray-300 mb-2">
@@ -240,7 +240,7 @@ const MediaGallery: React.FC<MediaGalleryProps> = ({
             </div>
 
             <div className="flex items-end">
-              <RetroButton3D
+              <SimpleButton
                 variant="secondary"
                 onClick={() => {
                   setSortBy('newest')
@@ -249,10 +249,10 @@ const MediaGallery: React.FC<MediaGalleryProps> = ({
                 className="w-full"
               >
                 Filter zurücksetzen
-              </RetroButton3D>
+              </SimpleButton>
             </div>
           </div>
-        </RetroCard3D>
+        </SimpleCard>
       )}
 
       {/* Media Grid */}
@@ -263,7 +263,7 @@ const MediaGallery: React.FC<MediaGalleryProps> = ({
           const userVote = media.votes.userVote
 
           return (
-            <RetroCard3D key={media.id} className="overflow-hidden">
+            <SimpleCard key={media.id} className="overflow-hidden">
               {/* Media Content */}
               <div className="relative">
                 {media.type === 'photo' ? (
@@ -383,13 +383,13 @@ const MediaGallery: React.FC<MediaGalleryProps> = ({
                   {/* Owner Actions */}
                   <div className="flex items-center gap-2">
                     {isOwner && (
-                      <RetroButton3D
+                      <SimpleButton
                         variant="danger"
                         onClick={() => handleDelete(media.id)}
                         className="text-xs px-2 py-1"
                       >
                         Löschen
-                      </RetroButton3D>
+                      </SimpleButton>
                     )}
                     
                     {!isOwner && user && (
@@ -416,15 +416,15 @@ const MediaGallery: React.FC<MediaGalleryProps> = ({
                       className="w-full px-2 py-1 bg-gray-800 border border-gray-600 rounded text-white text-sm placeholder-gray-400 focus:border-red-500 focus:outline-none resize-none"
                     />
                     <div className="flex gap-2 mt-2">
-                      <RetroButton3D
+                      <SimpleButton
                         variant="danger"
                         onClick={() => handleReport(media.id)}
                         disabled={!reportReason.trim()}
                         className="text-xs px-2 py-1"
                       >
                         Melden
-                      </RetroButton3D>
-                      <RetroButton3D
+                      </SimpleButton>
+                      <SimpleButton
                         variant="secondary"
                         onClick={() => {
                           setReportingMedia(null)
@@ -433,12 +433,12 @@ const MediaGallery: React.FC<MediaGalleryProps> = ({
                         className="text-xs px-2 py-1"
                       >
                         Abbrechen
-                      </RetroButton3D>
+                      </SimpleButton>
                     </div>
                   </div>
                 )}
               </div>
-            </RetroCard3D>
+            </SimpleCard>
           )
         })}
       </div>

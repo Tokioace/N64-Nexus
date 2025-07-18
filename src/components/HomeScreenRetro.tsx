@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import React from 'react'
+import { Link } from 'react-router-dom'
 import { useUser } from '../contexts/UserContext'
 import { useEvents } from '../contexts/EventContext'
-import { useRetroSounds } from './RetroSoundEffects'
 import { 
   Brain, 
   Calendar, 
@@ -13,304 +12,213 @@ import {
   Target,
   Award,
   Timer,
-  Sparkles
+  Clock,
+  Star,
+  Users,
+  Camera
 } from 'lucide-react'
-
-interface NewsFeedData {
-  date: string
-  eventWinner: string
-  n64Game: string
-  gameHistory: string
-}
-
-interface EventData {
-  name: string
-  mode: string
-  topUsers: Array<{ name: string; score: string }>
-  isActive: boolean
-  timeRemaining?: string
-}
 
 const HomeScreenRetro: React.FC = () => {
   const { user } = useUser()
   const { activeEvents, upcomingEvents } = useEvents()
-  const { playStartSound, playPowerUpSound } = useRetroSounds()
-  const navigate = useNavigate()
   
-  const [newsExpanded, setNewsExpanded] = useState(false)
-  const [currentTime, setCurrentTime] = useState(new Date())
-
-  // Update time every second for live clock
-  useEffect(() => {
-    const timer = setInterval(() => setCurrentTime(new Date()), 1000)
-    return () => clearInterval(timer)
-  }, [])
-
-  // Mock news data - in real app this would come from API
-  const newsData: NewsFeedData = {
-    date: currentTime.toLocaleDateString('de-DE', { 
-      weekday: 'long', 
-      year: 'numeric', 
-      month: 'long', 
-      day: 'numeric' 
-    }),
-    eventWinner: user?.username || 'Mario64Pro',
-    n64Game: 'Super Mario 64',
-    gameHistory: 'Released on June 23, 1996, Super Mario 64 was a revolutionary 3D platformer that launched alongside the Nintendo 64 console. It introduced analog control and full 3D movement to the Mario series.'
-  }
-
-  // Get current/active event data
   const currentEvent = activeEvents[0] || upcomingEvents[0]
-  const eventData: EventData = currentEvent ? {
-    name: currentEvent.title,
-    mode: currentEvent.type === 'Time Trial' ? 'Time Trial' : 'Competition',
-    topUsers: [
-      { name: 'Oli', score: ':55' },
-      { name: 'Delia', score: '1:06*7' },
-      { name: 'Erik', score: '1:10:22' }
-    ],
-    isActive: currentEvent.isActive || false,
-    timeRemaining: currentEvent.isActive ? '2d 14h' : 'Starts in 1d 5h'
-  } : {
-    name: 'Tata Tuga Volcano',
-    mode: 'Time Trial',
-    topUsers: [
-      { name: 'Oli', score: ':55' },
-      { name: 'Delia', score: '1:06*7' },
-      { name: 'Erik', score: '1:10:22' }
-    ],
-    isActive: true,
-    timeRemaining: '2d 14h'
-  }
-
-  const handleTileClick = (sound: 'start' | 'powerup') => {
-    if (sound === 'start') playStartSound()
-    else playPowerUpSound()
-  }
 
   if (!user) return null
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-n64-gray via-gray-900 to-n64-gray p-4 relative overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.1%22%3E%3Cpolygon%20points%3D%2230%200%2060%2030%2030%2060%200%2030%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')]"></div>
-      </div>
-
+    <div className="min-h-screen bg-gray-50 p-4">
       {/* Header */}
-      <div className="relative z-10 text-center mb-6">
-        <h1 className="text-3xl md:text-4xl font-bold text-shadow-lg mb-2 neon-text text-n64-purple font-tech animate-pulse">
+      <div className="text-center mb-8">
+        <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-3">
           🎮 BATTLE64
         </h1>
-        <p className="text-white/70 font-game text-sm md:text-base">
-          Welcome back, {user.username}! • Level {user.level}
-        </p>
+        <div className="flex items-center justify-center space-x-4 text-gray-600 text-sm">
+          <span>Welcome back, {user.username}!</span>
+          <span>•</span>
+          <span>Level {user.level}</span>
+          <span>•</span>
+          <div className="flex items-center space-x-1">
+            <Clock className="w-4 h-4" />
+            <span>{new Date().toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' })}</span>
+          </div>
+        </div>
       </div>
 
       {/* Main Grid Layout */}
-      <div className="relative z-10 max-w-6xl mx-auto">
-        {/* Top Row - Large Tiles */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+      <div className="max-w-7xl mx-auto">
+        {/* Top Row - Large Feature Tiles */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
           {/* News Feed Tile */}
-          <div 
-            className={`retro-tile retro-tile-news ${newsExpanded ? 'expanded' : ''} cursor-pointer`}
-            onClick={() => {
-              setNewsExpanded(!newsExpanded)
-              handleTileClick('start')
-            }}
-          >
-            <div className="retro-tile-header">
+          <div className="simple-tile simple-tile-large">
+            <div className="simple-tile-header">
               <div className="flex items-center justify-between">
-                <div className="flex items-center space-x-2">
-                  <Calendar className="w-5 h-5 text-n64-yellow" />
-                  <span className="font-tech text-n64-yellow text-sm">NEWS FEED</span>
+                <div className="flex items-center space-x-3">
+                  <Calendar className="w-6 h-6 text-blue-600" />
+                  <span className="font-medium text-blue-600 text-lg">NEWS FEED</span>
                 </div>
-                <div className="text-n64-yellow animate-pulse">
-                  <Sparkles className="w-4 h-4" />
+                <div className="text-blue-600">
+                  <Star className="w-5 h-5" />
                 </div>
               </div>
             </div>
             
-            <div className="retro-tile-content">
-              <div className="text-xs text-white/80 font-game mb-2">
-                {newsData.date}
+            <div className="simple-tile-content">
+              <div className="text-sm text-gray-600 mb-4">
+                {new Date().toLocaleDateString('de-DE', { 
+                  weekday: 'long', 
+                  year: 'numeric', 
+                  month: 'long', 
+                  day: 'numeric' 
+                })}
               </div>
               
-              <div className="space-y-2">
-                <div className="flex items-center space-x-2">
-                  <Trophy className="w-4 h-4 text-n64-yellow" />
-                  <span className="text-sm font-game text-white">
-                    Winner: <span className="text-n64-yellow">{newsData.eventWinner}</span>
-                  </span>
+              <div className="space-y-4">
+                {/* Event Winner Section */}
+                <div className="bg-gray-100 rounded-lg p-4 border border-gray-200">
+                  <div className="flex items-center space-x-2 mb-2">
+                    <Trophy className="w-5 h-5 text-yellow-600" />
+                    <span className="font-medium text-gray-900">Latest Winner</span>
+                  </div>
+                  <div className="text-gray-700">
+                    <div className="font-medium">{user.username}</div>
+                    <div className="text-sm text-gray-500">Tata Tuga Volcano Time Trial - 1:02.55</div>
+                  </div>
                 </div>
-                
-                <div className="flex items-center space-x-2">
-                  <Gamepad2 className="w-4 h-4 text-n64-blue" />
-                  <span className="text-sm font-game text-white">
-                    Game: <span className="text-n64-blue">{newsData.n64Game}</span>
-                  </span>
+
+                {/* Today in History */}
+                <div className="bg-gray-100 rounded-lg p-4 border border-gray-200">
+                  <div className="flex items-center space-x-2 mb-2">
+                    <Gamepad2 className="w-5 h-5 text-green-600" />
+                    <span className="font-medium text-gray-900">Today in N64 History</span>
+                  </div>
+                  <div className="text-gray-700">
+                    <div className="font-medium">Super Mario 64</div>
+                    <div className="text-sm text-gray-500">Launched alongside the N64, introducing 3D analog movement to Mario.</div>
+                  </div>
                 </div>
               </div>
-              
-              {newsExpanded && (
-                <div className="mt-4 pt-4 border-t border-white/20 animate-fade-in">
-                  <p className="text-xs text-white/70 font-game leading-relaxed">
-                    {newsData.gameHistory}
-                  </p>
-                </div>
-              )}
             </div>
           </div>
 
-          {/* Event Info Tile */}
-          <div className="retro-tile retro-tile-event">
-            <div className="retro-tile-header">
+          {/* Live Event Tile */}
+          <div className="simple-tile simple-tile-large">
+            <div className="simple-tile-header">
               <div className="flex items-center justify-between">
-                <div className="flex items-center space-x-2">
-                  <Zap className="w-5 h-5 text-n64-red animate-pulse" />
-                  <span className="font-tech text-n64-red text-sm">EVENTS</span>
-                  <span className="text-xs text-n64-green font-game">1 ACTIVE</span>
+                <div className="flex items-center space-x-3">
+                  <Zap className="w-6 h-6 text-red-600" />
+                  <span className="font-medium text-red-600 text-lg">LIVE EVENT</span>
                 </div>
-                <div className="text-n64-red animate-bounce">
-                  <Timer className="w-4 h-4" />
+                <div className="text-red-600">
+                  <Timer className="w-5 h-5" />
                 </div>
               </div>
             </div>
             
-            <div className="retro-tile-content">
-              <div className="mb-3">
-                <h3 className="text-sm font-tech text-white mb-1">{eventData.name}</h3>
-                <div className="flex items-center space-x-2 text-xs">
-                  <span className="text-n64-purple font-game">{eventData.mode}</span>
-                  <span className="text-white/60">•</span>
-                  <span className="text-n64-green font-game">{eventData.timeRemaining}</span>
-                </div>
+            <div className="simple-tile-content">
+              <div className="text-2xl font-bold text-gray-900 mb-2">
+                {currentEvent?.title || 'Tata Tuga Volcano'}
+              </div>
+              <div className="text-sm text-gray-600 mb-4">
+                {currentEvent?.type || 'Time Trial'} • 2d 14h 23m remaining
               </div>
               
-              <div className="space-y-1">
-                <div className="text-xs text-n64-yellow font-tech mb-1">TOP 3</div>
-                {eventData.topUsers.map((user, index) => (
-                  <div key={index} className="flex items-center justify-between text-xs">
-                    <div className="flex items-center space-x-2">
-                      <span className="text-n64-yellow font-tech">{index + 1}.</span>
-                      <span className="text-white font-game">{user.name}</span>
+              <div className="space-y-3">
+                <div className="flex items-center justify-between text-sm">
+                  <span className="text-gray-600">Participants</span>
+                  <span className="font-medium text-gray-900">{currentEvent?.participants || 47}</span>
+                </div>
+                
+                <div className="space-y-2">
+                  <div className="text-sm font-medium text-gray-900">Top Players</div>
+                  <div className="space-y-1">
+                    <div className="flex items-center justify-between text-sm">
+                      <span className="text-gray-700">1. Oli</span>
+                      <span className="font-medium text-gray-900">:55</span>
                     </div>
-                    <span className="text-n64-green font-tech">{user.score}</span>
+                    <div className="flex items-center justify-between text-sm">
+                      <span className="text-gray-700">2. Delia</span>
+                      <span className="font-medium text-gray-900">1:06.97</span>
+                    </div>
+                    <div className="flex items-center justify-between text-sm">
+                      <span className="text-gray-700">3. Erik</span>
+                      <span className="font-medium text-gray-900">1:10.22</span>
+                    </div>
                   </div>
-                ))}
+                </div>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Navigation Tiles Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+        {/* Bottom Row - Navigation Tiles */}
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
           {/* Quiz Tile */}
-          <Link to="/quiz" className="block">
-            <div 
-              className="retro-tile retro-tile-small retro-tile-quiz"
-              onClick={() => handleTileClick('start')}
-            >
-              <div className="retro-tile-icon">
-                <Brain className="w-6 h-6 text-n64-purple" />
-              </div>
-              <div className="retro-tile-label">
-                <span className="font-tech text-xs text-white">QUIZ</span>
-              </div>
+          <Link to="/quiz" className="simple-tile simple-tile-small">
+            <div className="simple-tile-icon">
+              <Brain className="w-8 h-8 text-purple-600 mx-auto" />
+            </div>
+            <div className="simple-tile-label">
+              <div className="font-medium text-gray-900">Quiz</div>
+              <div className="text-xs text-gray-500">Test Knowledge</div>
             </div>
           </Link>
 
           {/* Minigames Tile */}
-          <Link to="/minigames" className="block">
-            <div 
-              className="retro-tile retro-tile-small retro-tile-minigames"
-              onClick={() => handleTileClick('start')}
-            >
-              <div className="retro-tile-icon">
-                <Gamepad2 className="w-6 h-6 text-n64-blue" />
-              </div>
-              <div className="retro-tile-label">
-                <span className="font-tech text-xs text-white">MINI</span>
-              </div>
+          <Link to="/minigames" className="simple-tile simple-tile-small">
+            <div className="simple-tile-icon">
+              <Gamepad2 className="w-8 h-8 text-blue-600 mx-auto" />
             </div>
-          </Link>
-
-          {/* Leaderboard Tile */}
-          <Link to="/leaderboard" className="block">
-            <div 
-              className="retro-tile retro-tile-small retro-tile-leaderboard"
-              onClick={() => handleTileClick('start')}
-            >
-              <div className="retro-tile-icon">
-                <Trophy className="w-6 h-6 text-n64-yellow" />
-              </div>
-              <div className="retro-tile-label">
-                <span className="font-tech text-xs text-white">RANKS</span>
-              </div>
-            </div>
-          </Link>
-
-          {/* Profile Tile */}
-          <Link to="/profile" className="block">
-            <div 
-              className="retro-tile retro-tile-small retro-tile-profile"
-              onClick={() => handleTileClick('start')}
-            >
-              <div className="retro-tile-icon">
-                <User className="w-6 h-6 text-n64-green" />
-              </div>
-              <div className="retro-tile-label">
-                <span className="font-tech text-xs text-white">PROFILE</span>
-              </div>
-            </div>
-          </Link>
-
-          {/* Events Tile */}
-          <Link to="/events" className="block">
-            <div 
-              className="retro-tile retro-tile-small retro-tile-events"
-              onClick={() => handleTileClick('powerup')}
-            >
-              <div className="retro-tile-icon">
-                <Target className="w-6 h-6 text-n64-red" />
-              </div>
-              <div className="retro-tile-label">
-                <span className="font-tech text-xs text-white">EVENTS</span>
-              </div>
+            <div className="simple-tile-label">
+              <div className="font-medium text-gray-900">Minigames</div>
+              <div className="text-xs text-gray-500">Play Games</div>
             </div>
           </Link>
 
           {/* Speedrun Media Tile */}
-          <Link to="/speedrun-media" className="block">
-            <div 
-              className="retro-tile retro-tile-small retro-tile-media"
-              onClick={() => handleTileClick('powerup')}
-            >
-              <div className="retro-tile-icon">
-                <Award className="w-6 h-6 text-n64-purple" />
-              </div>
-              <div className="retro-tile-label">
-                <span className="font-tech text-xs text-white">MEDIA</span>
-              </div>
+          <Link to="/speedrun-media" className="simple-tile simple-tile-small">
+            <div className="simple-tile-icon">
+              <Camera className="w-8 h-8 text-yellow-600 mx-auto" />
+            </div>
+            <div className="simple-tile-label">
+              <div className="font-medium text-gray-900">Media</div>
+              <div className="text-xs text-gray-500">Speedrun Videos</div>
+            </div>
+          </Link>
+
+          {/* Leaderboard Tile */}
+          <Link to="/leaderboard" className="simple-tile simple-tile-small">
+            <div className="simple-tile-icon">
+              <Trophy className="w-8 h-8 text-green-600 mx-auto" />
+            </div>
+            <div className="simple-tile-label">
+              <div className="font-medium text-gray-900">Leaderboard</div>
+              <div className="text-xs text-gray-500">Rankings</div>
+            </div>
+          </Link>
+
+          {/* Events Tile */}
+          <Link to="/events" className="simple-tile simple-tile-small">
+            <div className="simple-tile-icon">
+              <Calendar className="w-8 h-8 text-red-600 mx-auto" />
+            </div>
+            <div className="simple-tile-label">
+              <div className="font-medium text-gray-900">Events</div>
+              <div className="text-xs text-gray-500">Competitions</div>
+            </div>
+          </Link>
+
+          {/* Profile Tile */}
+          <Link to="/profile" className="simple-tile simple-tile-small">
+            <div className="simple-tile-icon">
+              <User className="w-8 h-8 text-indigo-600 mx-auto" />
+            </div>
+            <div className="simple-tile-label">
+              <div className="font-medium text-gray-900">Profile</div>
+              <div className="text-xs text-gray-500">Your Stats</div>
             </div>
           </Link>
         </div>
-      </div>
-
-      {/* Floating N64 Logo Switch Button */}
-      <div className="fixed bottom-6 right-6 z-50">
-        <button
-          onClick={() => {
-            handleTileClick('powerup')
-            navigate('/')
-          }}
-          className="retro-switch-button"
-          title="Switch to Classic View"
-        >
-          <div className="retro-n64-logo">
-            <span className="font-tech text-xs text-white">N64</span>
-          </div>
-        </button>
       </div>
     </div>
   )

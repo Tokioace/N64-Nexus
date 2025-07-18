@@ -55,7 +55,7 @@ const QuizResultPage: React.FC = () => {
     <div className="container mx-auto px-4 py-6">
       {/* Header */}
       <div className="text-center mb-8">
-        <h1 className="text-4xl font-bold text-shadow mb-2">
+        <h1 className="text-4xl font-bold ">
           Quiz beendet! 🎉
         </h1>
         <p className="text-white/70">
@@ -71,7 +71,7 @@ const QuizResultPage: React.FC = () => {
           <span className={rank.color}>{rank.rank}</span>
         </div>
         <h2 className="text-2xl font-bold mb-2">{rank.title}</h2>
-        <div className="text-4xl font-bold text-n64-purple mb-2">
+        <div className="text-4xl font-bold text-blue-600 mb-2">
           {score.current} / {score.max}
         </div>
         <div className="text-white/70">
@@ -82,19 +82,19 @@ const QuizResultPage: React.FC = () => {
       {/* Stats Grid */}
       <div className="grid grid-cols-2 gap-4 mb-6">
         <div className="card text-center">
-          <div className="text-2xl font-bold text-n64-green">{accuracy}%</div>
+          <div className="text-2xl font-bold text-green-600">{accuracy}%</div>
           <div className="text-sm text-white/70">Genauigkeit</div>
         </div>
         <div className="card text-center">
-          <div className="text-2xl font-bold text-n64-blue">{correctAnswers}</div>
+          <div className="text-2xl font-bold text-blue-600">{correctAnswers}</div>
           <div className="text-sm text-white/70">Richtige Antworten</div>
         </div>
         <div className="card text-center">
-          <div className="text-2xl font-bold text-n64-yellow">{totalQuestions - correctAnswers}</div>
+          <div className="text-2xl font-bold text-yellow-600">{totalQuestions - correctAnswers}</div>
           <div className="text-sm text-white/70">Falsche Antworten</div>
         </div>
         <div className="card text-center">
-          <div className="text-2xl font-bold text-n64-purple">+{score.current}</div>
+          <div className="text-2xl font-bold text-blue-600">+{score.current}</div>
           <div className="text-sm text-white/70">Punkte verdient</div>
         </div>
       </div>
@@ -107,7 +107,7 @@ const QuizResultPage: React.FC = () => {
             const question = currentSession.questions[index]
             return (
               <div key={index} className="flex items-center space-x-3 p-3 bg-white/5 rounded-lg">
-                <div className={`text-xl ${answer.isCorrect ? 'text-n64-green' : 'text-n64-red'}`}>
+                <div className={`text-xl ${answer.isCorrect ? 'text-green-600' : 'text-red-600'}`}>
                   {answer.isCorrect ? '✓' : '✗'}
                 </div>
                 <div className="flex-1">
@@ -152,7 +152,7 @@ const QuizResultPage: React.FC = () => {
       {/* Achievements */}
       {user.achievements.length > 0 && (
         <div className="mt-8">
-          <h3 className="text-xl font-bold text-shadow mb-4">Neue Errungenschaften</h3>
+          <h3 className="text-xl font-bold ">Neue Errungenschaften</h3>
           <div className="space-y-2">
             {user.achievements.slice(-2).map((achievement) => (
               <div key={achievement.id} className="card flex items-center space-x-3">

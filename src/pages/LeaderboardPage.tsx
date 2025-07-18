@@ -38,7 +38,7 @@ const LeaderboardPage: React.FC = () => {
     <div className="container mx-auto px-4 py-6">
       {/* Header */}
       <div className="text-center mb-8">
-        <h1 className="text-4xl font-bold text-shadow mb-2">
+        <h1 className="text-4xl font-bold ">
           🏆 Rangliste
         </h1>
         <p className="text-white/70">
@@ -48,7 +48,7 @@ const LeaderboardPage: React.FC = () => {
 
       {/* User's Current Rank */}
       {user && userRank && (
-        <div className="card mb-6 bg-n64-purple/20 border-n64-purple/50">
+        <div className="card mb-6 bg-blue-600/20 border-blue-600/50">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
               <div className="text-2xl">👤</div>
@@ -58,7 +58,7 @@ const LeaderboardPage: React.FC = () => {
               </div>
             </div>
             <div className="text-right">
-              <div className="text-2xl font-bold text-n64-purple">#{userRank}</div>
+              <div className="text-2xl font-bold text-blue-600">#{userRank}</div>
               <div className="text-sm text-white/70">{user.points} Punkte</div>
             </div>
           </div>
@@ -71,7 +71,7 @@ const LeaderboardPage: React.FC = () => {
           <div 
             key={entry.id} 
             className={`card flex items-center justify-between ${
-              entry.username === user?.username ? 'bg-n64-purple/20 border-n64-purple/50' : ''
+              entry.username === user?.username ? 'bg-blue-600/20 border-blue-600/50' : ''
             }`}
           >
             <div className="flex items-center space-x-3">
@@ -86,7 +86,7 @@ const LeaderboardPage: React.FC = () => {
               </div>
             </div>
             <div className="text-right">
-              <div className="font-bold text-n64-purple">{entry.points}</div>
+              <div className="font-bold text-blue-600">{entry.points}</div>
               <div className="text-sm text-white/70">{entry.quizzes} Quizzes</div>
             </div>
           </div>
@@ -95,28 +95,28 @@ const LeaderboardPage: React.FC = () => {
 
       {/* Stats Summary */}
       <div className="mt-8">
-        <h2 className="text-2xl font-bold text-shadow mb-4">Statistiken</h2>
+        <h2 className="text-2xl font-bold ">Statistiken</h2>
         <div className="grid grid-cols-2 gap-4">
           <div className="card text-center">
-            <div className="text-2xl font-bold text-n64-green">
+            <div className="text-2xl font-bold text-green-600">
               {Math.round(leaderboardData.reduce((sum, entry) => sum + entry.accuracy, 0) / leaderboardData.length)}%
             </div>
             <div className="text-sm text-white/70">Durchschnittliche Genauigkeit</div>
           </div>
           <div className="card text-center">
-            <div className="text-2xl font-bold text-n64-blue">
+            <div className="text-2xl font-bold text-blue-600">
               {leaderboardData.reduce((sum, entry) => sum + entry.quizzes, 0)}
             </div>
             <div className="text-sm text-white/70">Gesamte Quizzes gespielt</div>
           </div>
           <div className="card text-center">
-            <div className="text-2xl font-bold text-n64-yellow">
+            <div className="text-2xl font-bold text-yellow-600">
               {leaderboardData[0]?.points || 0}
             </div>
             <div className="text-sm text-white/70">Höchste Punktzahl</div>
           </div>
           <div className="card text-center">
-            <div className="text-2xl font-bold text-n64-purple">
+            <div className="text-2xl font-bold text-blue-600">
               {leaderboardData.length}
             </div>
             <div className="text-sm text-white/70">Aktive Spieler</div>

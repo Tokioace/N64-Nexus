@@ -11,8 +11,8 @@ import {
   Star,
   Trophy
 } from 'lucide-react'
-import RetroCard3D from '../RetroCard3D'
-import RetroButton3D from '../RetroButton3D'
+import SimpleCard from '../SimpleCard'
+import SimpleButton from '../SimpleButton'
 
 interface EventCalendarProps {
   onEventClick?: (event: GameEvent) => void
@@ -94,11 +94,11 @@ const EventCalendar: React.FC<EventCalendarProps> = ({
 
   const getEventColor = (type: string) => {
     switch (type) {
-      case 'Speedrun': return 'bg-n64-red/20 text-n64-red border-n64-red/30'
-      case 'Time Trial': return 'bg-n64-blue/20 text-n64-blue border-n64-blue/30'
-      case 'Challenge': return 'bg-n64-purple/20 text-n64-purple border-n64-purple/30'
-      case 'Collection': return 'bg-n64-green/20 text-n64-green border-n64-green/30'
-      case 'Anniversary': return 'bg-n64-yellow/20 text-n64-yellow border-n64-yellow/30'
+      case 'Speedrun': return 'bg-red-600/20 text-red-600 border-red-600/30'
+      case 'Time Trial': return 'bg-blue-600/20 text-blue-600 border-blue-600/30'
+      case 'Challenge': return 'bg-blue-600/20 text-blue-600 border-blue-600/30'
+      case 'Collection': return 'bg-green-600/20 text-green-600 border-green-600/30'
+      case 'Anniversary': return 'bg-yellow-600/20 text-yellow-600 border-yellow-600/30'
       default: return 'bg-gray-500/20 text-gray-400 border-gray-500/30'
     }
   }
@@ -119,47 +119,47 @@ const EventCalendar: React.FC<EventCalendarProps> = ({
   return (
     <div className="space-y-6">
       {/* Calendar Header */}
-      <RetroCard3D
+      <SimpleCard
         variant="primary"
-        className="p-6 animate-slide-in-up"
+        className="p-6 "
       >
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center space-x-3">
-            <div className="p-3 bg-n64-blue/20 rounded-lg border border-n64-blue/30">
-              <Calendar className="w-6 h-6 text-n64-blue" />
+            <div className="p-3 bg-blue-600/20 rounded-lg border border-blue-600/30">
+              <Calendar className="w-6 h-6 text-blue-600" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-white font-tech neon-text">
+              <h1 className="text-2xl font-bold text-white ">
                 Event-Kalender
               </h1>
-              <p className="text-white/70 font-game">
+              <p className="text-white/70 ">
                 {monthNames[currentDate.getMonth()]} {currentDate.getFullYear()}
               </p>
             </div>
           </div>
           
           <div className="flex items-center space-x-2">
-            <RetroButton3D
+            <SimpleButton
               variant="secondary"
               onClick={() => navigateMonth('prev')}
               className="p-2"
             >
               <ChevronLeft className="w-5 h-5" />
-            </RetroButton3D>
-            <RetroButton3D
+            </SimpleButton>
+            <SimpleButton
               variant="secondary"
               onClick={() => setCurrentDate(new Date())}
               className="text-sm px-4"
             >
               Heute
-            </RetroButton3D>
-            <RetroButton3D
+            </SimpleButton>
+            <SimpleButton
               variant="secondary"
               onClick={() => navigateMonth('next')}
               className="p-2"
             >
               <ChevronRight className="w-5 h-5" />
-            </RetroButton3D>
+            </SimpleButton>
           </div>
         </div>
 
@@ -168,7 +168,7 @@ const EventCalendar: React.FC<EventCalendarProps> = ({
           {weekDays.map(day => (
             <div
               key={day}
-              className="text-center p-2 text-sm font-tech text-n64-purple font-bold"
+              className="text-center p-2 text-sm "
             >
               {day}
             </div>
@@ -183,16 +183,16 @@ const EventCalendar: React.FC<EventCalendarProps> = ({
                 min-h-[100px] p-2 border border-white/10 cursor-pointer
                 transition-all duration-200 hover:bg-white/5
                 ${day.isCurrentMonth ? 'bg-black/20' : 'bg-black/10'}
-                ${day.isToday ? 'ring-2 ring-n64-yellow' : ''}
-                ${day.hasActiveEvent ? 'bg-n64-purple/10' : ''}
+                ${day.isToday ? 'ring-2 ring-yellow-600' : ''}
+                ${day.hasActiveEvent ? 'bg-blue-600/10' : ''}
               `}
               onClick={() => handleDateClick(day)}
             >
               {/* Date Number */}
               <div className={`
-                text-sm font-tech mb-1
+                text-sm 
                 ${day.isCurrentMonth ? 'text-white' : 'text-white/50'}
-                ${day.isToday ? 'text-n64-yellow font-bold' : ''}
+                ${day.isToday ? 'text-yellow-600 font-bold' : ''}
               `}>
                 {day.date.getDate()}
               </div>
@@ -206,14 +206,14 @@ const EventCalendar: React.FC<EventCalendarProps> = ({
                       text-xs p-1 rounded border cursor-pointer
                       transition-all duration-200 hover:scale-105
                       ${getEventColor(event.type)}
-                      ${isEventActive(event) ? 'animate-pulse' : ''}
+                      ${isEventActive(event) ? 'bg-green-600 text-white' : ''}
                     `}
                     onClick={(e) => handleEventClick(event, e)}
                     title={event.title}
                   >
                     <div className="flex items-center space-x-1">
                       {getEventIcon(event.type)}
-                      <span className="truncate font-game">
+                      <span className="truncate ">
                         {event.title.length > 12 ? event.title.substring(0, 12) + '...' : event.title}
                       </span>
                     </div>
@@ -221,7 +221,7 @@ const EventCalendar: React.FC<EventCalendarProps> = ({
                 ))}
                 
                 {day.events.length > 3 && (
-                  <div className="text-xs text-white/50 font-game text-center">
+                  <div className="text-xs text-white/50 ">
                     +{day.events.length - 3} mehr
                   </div>
                 )}
@@ -229,73 +229,73 @@ const EventCalendar: React.FC<EventCalendarProps> = ({
             </div>
           ))}
         </div>
-      </RetroCard3D>
+      </SimpleCard>
 
       {/* Legend */}
-      <RetroCard3D
+      <SimpleCard
         variant="secondary"
-        className="p-4 animate-slide-in-left"
+        className="p-4 "
       >
-        <h3 className="text-lg font-bold text-white font-tech mb-3">Legende</h3>
+        <h3 className="text-lg font-bold text-white ">Legende</h3>
         <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
           <div className="flex items-center space-x-2">
-            <div className="w-4 h-4 bg-n64-red/20 border border-n64-red/30 rounded flex items-center justify-center">
-              <Zap className="w-2 h-2 text-n64-red" />
+            <div className="w-4 h-4 bg-red-600/20 border border-red-600/30 rounded flex items-center justify-center">
+              <Zap className="w-2 h-2 text-red-600" />
             </div>
-            <span className="text-sm text-white/70 font-game">Speedrun</span>
+            <span className="text-sm text-white/70 ">Speedrun</span>
           </div>
           <div className="flex items-center space-x-2">
-            <div className="w-4 h-4 bg-n64-blue/20 border border-n64-blue/30 rounded flex items-center justify-center">
-              <Clock className="w-2 h-2 text-n64-blue" />
+            <div className="w-4 h-4 bg-blue-600/20 border border-blue-600/30 rounded flex items-center justify-center">
+              <Clock className="w-2 h-2 text-blue-600" />
             </div>
-            <span className="text-sm text-white/70 font-game">Time Trial</span>
+            <span className="text-sm text-white/70 ">Time Trial</span>
           </div>
           <div className="flex items-center space-x-2">
-            <div className="w-4 h-4 bg-n64-purple/20 border border-n64-purple/30 rounded flex items-center justify-center">
-              <Target className="w-2 h-2 text-n64-purple" />
+            <div className="w-4 h-4 bg-blue-600/20 border border-blue-600/30 rounded flex items-center justify-center">
+              <Target className="w-2 h-2 text-blue-600" />
             </div>
-            <span className="text-sm text-white/70 font-game">Challenge</span>
+            <span className="text-sm text-white/70 ">Challenge</span>
           </div>
           <div className="flex items-center space-x-2">
-            <div className="w-4 h-4 bg-n64-green/20 border border-n64-green/30 rounded flex items-center justify-center">
-              <Star className="w-2 h-2 text-n64-green" />
+            <div className="w-4 h-4 bg-green-600/20 border border-green-600/30 rounded flex items-center justify-center">
+              <Star className="w-2 h-2 text-green-600" />
             </div>
-            <span className="text-sm text-white/70 font-game">Collection</span>
+            <span className="text-sm text-white/70 ">Collection</span>
           </div>
           <div className="flex items-center space-x-2">
-            <div className="w-4 h-4 bg-n64-yellow/20 border border-n64-yellow/30 rounded flex items-center justify-center">
-              <Trophy className="w-2 h-2 text-n64-yellow" />
+            <div className="w-4 h-4 bg-yellow-600/20 border border-yellow-600/30 rounded flex items-center justify-center">
+              <Trophy className="w-2 h-2 text-yellow-600" />
             </div>
-            <span className="text-sm text-white/70 font-game">Anniversary</span>
+            <span className="text-sm text-white/70 ">Anniversary</span>
           </div>
         </div>
-      </RetroCard3D>
+      </SimpleCard>
 
       {/* Quick Stats */}
-      <RetroCard3D
+      <SimpleCard
         variant="primary"
-        className="p-4 animate-slide-in-right"
+        className="p-4 "
       >
-        <h3 className="text-lg font-bold text-white font-tech mb-3">Monats-Statistiken</h3>
+        <h3 className="text-lg font-bold text-white ">Monats-Statistiken</h3>
         <div className="grid grid-cols-3 gap-4 text-center">
           <div>
-            <div className="text-2xl font-bold text-n64-green font-tech">
+            <div className="text-2xl font-bold text-green-600 ">
               {events.filter(event => {
                 const eventDate = new Date(event.startDate)
                 return eventDate.getMonth() === currentDate.getMonth() && 
                        eventDate.getFullYear() === currentDate.getFullYear()
               }).length}
             </div>
-            <div className="text-xs text-white/70 font-game">Events diesen Monat</div>
+            <div className="text-xs text-white/70 ">Events diesen Monat</div>
           </div>
           <div>
-            <div className="text-2xl font-bold text-n64-blue font-tech">
+            <div className="text-2xl font-bold text-blue-600 ">
               {events.filter(event => isEventActive(event)).length}
             </div>
-            <div className="text-xs text-white/70 font-game">Aktive Events</div>
+            <div className="text-xs text-white/70 ">Aktive Events</div>
           </div>
           <div>
-            <div className="text-2xl font-bold text-n64-purple font-tech">
+            <div className="text-2xl font-bold text-blue-600 ">
               {events.filter(event => {
                 const eventDate = new Date(event.startDate)
                 return eventDate > new Date() && 
@@ -303,10 +303,10 @@ const EventCalendar: React.FC<EventCalendarProps> = ({
                        eventDate.getFullYear() === currentDate.getFullYear()
               }).length}
             </div>
-            <div className="text-xs text-white/70 font-game">Kommende Events</div>
+            <div className="text-xs text-white/70 ">Kommende Events</div>
           </div>
         </div>
-      </RetroCard3D>
+      </SimpleCard>
     </div>
   )
 }

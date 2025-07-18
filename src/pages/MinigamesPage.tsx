@@ -15,8 +15,8 @@ const MinigamesPage: React.FC = () => {
       difficulty: 'easy' as const,
       maxScore: 100,
       isAvailable: true,
-      color: 'bg-n64-purple/20',
-      textColor: 'text-n64-purple'
+      color: 'bg-blue-600/20',
+      textColor: 'text-blue-600'
     },
     {
       id: 'sound-memory',
@@ -26,8 +26,8 @@ const MinigamesPage: React.FC = () => {
       difficulty: 'medium' as const,
       maxScore: 150,
       isAvailable: true,
-      color: 'bg-n64-blue/20',
-      textColor: 'text-n64-blue'
+      color: 'bg-blue-600/20',
+      textColor: 'text-blue-600'
     },
     {
       id: 'cartridge-match',
@@ -37,8 +37,8 @@ const MinigamesPage: React.FC = () => {
       difficulty: 'hard' as const,
       maxScore: 200,
       isAvailable: false,
-      color: 'bg-n64-red/20',
-      textColor: 'text-n64-red'
+      color: 'bg-red-600/20',
+      textColor: 'text-red-600'
     },
     {
       id: 'character-puzzle',
@@ -48,8 +48,8 @@ const MinigamesPage: React.FC = () => {
       difficulty: 'medium' as const,
       maxScore: 120,
       isAvailable: false,
-      color: 'bg-n64-green/20',
-      textColor: 'text-n64-green'
+      color: 'bg-green-600/20',
+      textColor: 'text-green-600'
     }
   ]
 
@@ -111,7 +111,7 @@ const MinigamesPage: React.FC = () => {
     <div className="container mx-auto px-4 py-6">
       {/* Header */}
       <div className="text-center mb-8">
-        <h1 className="text-4xl font-bold text-shadow mb-2">
+        <h1 className="text-4xl font-bold ">
           🎮 Minigames
         </h1>
         <p className="text-white/70">
@@ -157,7 +157,7 @@ const MinigamesPage: React.FC = () => {
 
       {/* Coming Soon Section */}
       <div className="mt-8">
-        <h2 className="text-2xl font-bold text-shadow mb-4">Bald verfügbar</h2>
+        <h2 className="text-2xl font-bold ">Bald verfügbar</h2>
         <div className="card">
           <p className="text-white/70 mb-4">
             Weitere Minigames sind in Entwicklung:

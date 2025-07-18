@@ -13,7 +13,6 @@ import MinigamesPage from './pages/MinigamesPage'
 import EventsPage from './pages/EventsPage'
 import SpeedrunMediaPage from './pages/SpeedrunMediaPage'
 import Layout from './components/Layout'
-import RetroSoundEffects from './components/RetroSoundEffects'
 
 function App() {
   return (
@@ -21,11 +20,10 @@ function App() {
       <QuizProvider>
         <EventProvider>
           <MediaProvider>
-            <RetroSoundEffects enabled={true} />
             <Layout>
               <Routes>
-                <Route path="/" element={<HomePage />} />
-                <Route path="/retro" element={<HomeScreenRetro />} />
+                <Route path="/" element={<HomeScreenRetro />} />
+                <Route path="/classic" element={<HomePage />} />
                 <Route path="/quiz" element={<QuizPage />} />
                 <Route path="/quiz/result" element={<QuizResultPage />} />
                 <Route path="/leaderboard" element={<LeaderboardPage />} />

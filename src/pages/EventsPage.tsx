@@ -13,8 +13,8 @@ import {
   Star,
   Trophy
 } from 'lucide-react'
-import RetroCard3D from '../components/RetroCard3D'
-import RetroButton3D from '../components/RetroButton3D'
+import SimpleCard from '../components/SimpleCard'
+import SimpleButton from '../components/SimpleButton'
 import EventCard from '../components/Event/EventCard'
 import EventCalendar from '../components/Event/EventCalendar'
 import EventDetail from '../components/Event/EventDetail'
@@ -99,18 +99,18 @@ const EventsPage: React.FC = () => {
     <div className="container mx-auto px-4 py-6 space-y-6">
       {/* Header */}
       <div className="text-center mb-8">
-        <h1 className="text-4xl font-bold text-shadow-lg mb-2 neon-text text-n64-purple font-tech">
+        <h1 className="text-4xl font-bold ">
           🎮 Event-Zentrale
         </h1>
-        <p className="text-white/70 font-game text-lg">
+        <p className="text-white/70 ">
           Alle N64-Events auf einen Blick
         </p>
       </div>
 
       {/* Controls */}
-      <RetroCard3D
+      <SimpleCard
         variant="primary"
-        className="p-6 animate-slide-in-up"
+        className="p-6 "
       >
         <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
           {/* Search */}
@@ -121,17 +121,17 @@ const EventsPage: React.FC = () => {
               placeholder="Events durchsuchen..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 bg-black/30 border border-white/20 rounded-lg text-white font-game placeholder-white/50 focus:outline-none focus:border-n64-purple focus:ring-1 focus:ring-n64-purple"
+              className="w-full pl-10 pr-4 py-2 bg-black/30 border border-white/20 rounded-lg text-white "
             />
           </div>
 
           {/* Filters */}
           <div className="flex items-center space-x-2">
-            <Filter className="w-5 h-5 text-n64-blue" />
+            <Filter className="w-5 h-5 text-blue-600" />
             <select
               value={filter}
               onChange={(e) => setFilter(e.target.value as FilterType)}
-              className="bg-black/30 border border-white/20 rounded-lg px-3 py-2 text-white font-game focus:outline-none focus:border-n64-blue"
+              className="bg-black/30 border border-white/20 rounded-lg px-3 py-2 text-white "
             >
               <option value="all">Alle Events</option>
               <option value="active">Aktive Events</option>
@@ -142,7 +142,7 @@ const EventsPage: React.FC = () => {
             <select
               value={eventTypeFilter}
               onChange={(e) => setEventTypeFilter(e.target.value as EventType)}
-              className="bg-black/30 border border-white/20 rounded-lg px-3 py-2 text-white font-game focus:outline-none focus:border-n64-blue"
+              className="bg-black/30 border border-white/20 rounded-lg px-3 py-2 text-white "
             >
               <option value="all">Alle Typen</option>
               <option value="Speedrun">Speedrun</option>
@@ -155,78 +155,78 @@ const EventsPage: React.FC = () => {
 
           {/* View Mode */}
           <div className="flex items-center space-x-1 bg-black/30 rounded-lg p-1">
-            <RetroButton3D
+            <SimpleButton
               variant={viewMode === 'grid' ? 'primary' : 'secondary'}
               onClick={() => setViewMode('grid')}
               className="p-2 text-sm"
             >
               <Grid className="w-4 h-4" />
-            </RetroButton3D>
-            <RetroButton3D
+            </SimpleButton>
+            <SimpleButton
               variant={viewMode === 'list' ? 'primary' : 'secondary'}
               onClick={() => setViewMode('list')}
               className="p-2 text-sm"
             >
               <List className="w-4 h-4" />
-            </RetroButton3D>
-            <RetroButton3D
+            </SimpleButton>
+            <SimpleButton
               variant={viewMode === 'calendar' ? 'primary' : 'secondary'}
               onClick={() => setViewMode('calendar')}
               className="p-2 text-sm"
             >
               <Calendar className="w-4 h-4" />
-            </RetroButton3D>
+            </SimpleButton>
           </div>
         </div>
-      </RetroCard3D>
+      </SimpleCard>
 
       {/* Stats */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <RetroCard3D
+        <SimpleCard
           variant="primary"
-          className="p-4 text-center animate-bounce-in"
+          className="p-4 text-center "
         >
-          <div className="text-2xl font-bold text-n64-green font-tech mb-1">
+          <div className="text-2xl font-bold text-green-600 ">
             {events.length}
           </div>
-          <div className="text-sm text-white/70 font-game">Gesamt Events</div>
-        </RetroCard3D>
+          <div className="text-sm text-white/70 ">Gesamt Events</div>
+        </SimpleCard>
         
-        <RetroCard3D
+        <SimpleCard
           variant="secondary"
-          className="p-4 text-center animate-bounce-in"
+          className="p-4 text-center "
         >
-          <div className="text-2xl font-bold text-n64-red font-tech mb-1">
+          <div className="text-2xl font-bold text-red-600 ">
             {activeEvents.length}
           </div>
-          <div className="text-sm text-white/70 font-game">Aktive Events</div>
-        </RetroCard3D>
+          <div className="text-sm text-white/70 ">Aktive Events</div>
+        </SimpleCard>
         
-        <RetroCard3D
+        <SimpleCard
           variant="primary"
-          className="p-4 text-center animate-bounce-in"
+          className="p-4 text-center "
         >
-          <div className="text-2xl font-bold text-n64-blue font-tech mb-1">
+          <div className="text-2xl font-bold text-blue-600 ">
             {upcomingEvents.length}
           </div>
-          <div className="text-sm text-white/70 font-game">Kommende Events</div>
-        </RetroCard3D>
+          <div className="text-sm text-white/70 ">Kommende Events</div>
+        </SimpleCard>
         
-        <RetroCard3D
+        <SimpleCard
           variant="secondary"
-          className="p-4 text-center animate-bounce-in"
+          className="p-4 text-center "
         >
-          <div className="text-2xl font-bold text-n64-yellow font-tech mb-1">
+          <div className="text-2xl font-bold text-yellow-600 ">
             {completedEvents.length}
           </div>
-          <div className="text-sm text-white/70 font-game">Beendete Events</div>
-        </RetroCard3D>
+          <div className="text-sm text-white/70 ">Beendete Events</div>
+        </SimpleCard>
       </div>
 
       {/* Event Type Filter Buttons */}
       <div className="flex flex-wrap gap-2 justify-center">
         {(['all', 'Speedrun', 'Time Trial', 'Challenge', 'Collection', 'Anniversary'] as EventType[]).map((type) => (
-          <RetroButton3D
+          <SimpleButton
             key={type}
             variant={eventTypeFilter === type ? 'primary' : 'secondary'}
             onClick={() => setEventTypeFilter(type)}
@@ -236,7 +236,7 @@ const EventsPage: React.FC = () => {
               {getEventTypeIcon(type)}
               <span>{type === 'all' ? 'Alle' : type}</span>
             </div>
-          </RetroButton3D>
+          </SimpleButton>
         ))}
       </div>
 
@@ -248,20 +248,20 @@ const EventsPage: React.FC = () => {
       ) : (
         <div className="space-y-4">
           {filteredEvents.length === 0 ? (
-            <RetroCard3D
+            <SimpleCard
               variant="secondary"
-              className="p-8 text-center animate-fade-in"
+              className="p-8 text-center "
             >
-              <div className="text-n64-purple mb-4">
+              <div className="text-blue-600 mb-4">
                 <Calendar className="w-16 h-16 mx-auto" />
               </div>
-              <h3 className="text-xl font-bold text-white font-tech mb-2">
+              <h3 className="text-xl font-bold text-white ">
                 Keine Events gefunden
               </h3>
-              <p className="text-white/70 font-game">
+              <p className="text-white/70 ">
                 {searchTerm ? 'Versuche einen anderen Suchbegriff' : 'Schau später wieder vorbei!'}
               </p>
-            </RetroCard3D>
+            </SimpleCard>
           ) : (
             <div className={`
               ${viewMode === 'grid' 
@@ -285,7 +285,7 @@ const EventsPage: React.FC = () => {
       {/* Results Info */}
       {filteredEvents.length > 0 && (
         <div className="text-center">
-          <p className="text-white/70 font-game">
+          <p className="text-white/70 ">
             {filteredEvents.length} von {events.length} Events angezeigt
           </p>
         </div>
