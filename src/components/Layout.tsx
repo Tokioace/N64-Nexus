@@ -26,7 +26,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
   return (
     <div className="min-h-screen bg-slate-900">
-      <main className="pb-20 md:pb-24">
+      <main className="pb-20 md:pb-24 relative z-10">
         {children}
       </main>
     </div>

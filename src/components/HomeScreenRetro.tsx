@@ -15,7 +15,8 @@ import {
   Clock,
   Star,
   Users,
-  Camera
+  Camera,
+  Package
 } from 'lucide-react'
 
 const HomeScreenRetro: React.FC = () => {
@@ -144,7 +145,7 @@ const HomeScreenRetro: React.FC = () => {
         </div>
 
         {/* Untere Reihe - Alle Features kompakt */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-7 gap-3">
           {/* Quiz Tile */}
           <Link to="/quiz" className="simple-tile simple-tile-small hover:scale-105 transition-transform">
             <div className="simple-tile-icon">
@@ -197,6 +198,17 @@ const HomeScreenRetro: React.FC = () => {
             <div className="simple-tile-label">
               <div className="font-medium text-slate-100 text-sm">Events</div>
               <div className="text-xs text-slate-400">Competitions</div>
+            </div>
+          </Link>
+
+          {/* Collector Mode Tile */}
+          <Link to="/collector" className="simple-tile simple-tile-small hover:scale-105 transition-transform">
+            <div className="simple-tile-icon">
+              <Package className="w-7 h-7 text-orange-400 mx-auto" />
+            </div>
+            <div className="simple-tile-label">
+              <div className="font-medium text-slate-100 text-sm">Sammlung</div>
+              <div className="text-xs text-slate-400">N64 Games</div>
             </div>
           </Link>
 

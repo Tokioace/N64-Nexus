@@ -91,7 +91,7 @@ const EventCard: React.FC<EventCardProps> = ({
     return (
       <SimpleCard
         variant="primary"
-        className="p-4 cursor-pointer"
+        className="p-4 cursor-pointer hover-scale-small"
         onClick={handleViewDetails}
       >
         <div className="flex items-center justify-between">
@@ -100,19 +100,19 @@ const EventCard: React.FC<EventCardProps> = ({
               {getEventIcon(event.type)}
             </div>
             <div className="flex-1 min-w-0">
-              <h3 className="text-white font-medium">
+              <h3 className="text-contrast font-semibold">
                 {event.title}
               </h3>
-              <p className="text-xs text-white/80">
+              <p className="text-xs text-contrast-secondary">
                 {event.game}
               </p>
             </div>
           </div>
           <div className="text-right flex-shrink-0 ml-3">
-            <div className="text-xs text-white">
+            <div className="text-xs text-contrast font-bold">
               {isEventActive(event) ? 'LIVE' : 'BALD'}
             </div>
-            <div className="text-xs text-white/80">
+            <div className="text-xs text-contrast-secondary">
               {formatTimeRemaining()}
             </div>
           </div>
@@ -229,7 +229,7 @@ const EventCard: React.FC<EventCardProps> = ({
   return (
     <SimpleCard
       variant="primary"
-      className="p-5"
+      className="p-5 hover-scale-small"
     >
       {/* Header */}
       <div className="flex items-start justify-between mb-4">
@@ -238,10 +238,10 @@ const EventCard: React.FC<EventCardProps> = ({
             {getEventIcon(event.type)}
           </div>
           <div className="flex-1 min-w-0">
-            <h3 className="">
+            <h3 className="text-contrast font-semibold">
               {event.title}
             </h3>
-            <p className="text-blue-600">
+            <p className="text-blue-400 font-medium">
               {event.game}
             </p>
           </div>
@@ -253,7 +253,7 @@ const EventCard: React.FC<EventCardProps> = ({
 
       {/* Description */}
       <div className="mb-4">
-        <p className="text-white/80 text-sm">
+        <p className="text-contrast-secondary text-sm">
           {event.description}
         </p>
       </div>
@@ -263,13 +263,13 @@ const EventCard: React.FC<EventCardProps> = ({
         <div className="flex items-center space-x-4">
           <div className="flex items-center space-x-2">
             <Users className="w-4 h-4 text-green-600" />
-            <span className="text-sm text-white/90">
+            <span className="text-sm text-contrast">
               {event.participants || 0}
             </span>
           </div>
-                      <div className="text-sm text-gray-600">
-              {event.difficulty?.toUpperCase() || 'NORMAL'}
-            </div>
+          <div className="text-sm text-contrast-secondary font-medium">
+            {event.difficulty?.toUpperCase() || 'NORMAL'}
+          </div>
         </div>
         <div className="flex items-center space-x-2">
           <Clock className="w-4 h-4 text-yellow-600" />
@@ -283,7 +283,7 @@ const EventCard: React.FC<EventCardProps> = ({
       <div className="mb-4">
         <div className="flex items-center space-x-2 mb-2">
           <Trophy className="w-4 h-4 text-yellow-600" />
-          <span className="text-sm text-white/90">Belohnungen:</span>
+          <span className="text-sm text-contrast">Belohnungen:</span>
         </div>
         <div className="flex flex-wrap gap-2">
           {event.rewards.slice(0, 3).map((reward, index) => (
@@ -292,7 +292,7 @@ const EventCard: React.FC<EventCardProps> = ({
             </span>
           ))}
           {event.rewards.length > 3 && (
-            <span className="text-xs text-white/60">
+            <span className="text-xs text-contrast-secondary">
               +{event.rewards.length - 3} weitere
             </span>
           )}
