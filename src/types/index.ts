@@ -97,6 +97,23 @@ export interface QuizContextType {
   getScore: () => { current: number; max: number; percentage: number }
 }
 
+export interface CollectionItem {
+  gameId: string
+  hasBox: boolean
+  hasManual: boolean
+  hasModule: boolean
+  addedAt: Date
+  notes?: string
+}
+
+export interface CollectionStats {
+  totalGames: number
+  totalValue: number
+  completionPercentage: number
+  level: number
+  levelName: string
+}
+
 export interface UserContextType {
   user: User | null
   login: (username: string) => void

@@ -12,6 +12,7 @@ import ProfilePage from './pages/ProfilePage'
 import MinigamesPage from './pages/MinigamesPage'
 import EventsPage from './pages/EventsPage'
 import SpeedrunMediaPage from './pages/SpeedrunMediaPage'
+import CollectorMode from './pages/CollectorMode'
 import Layout from './components/Layout'
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
                 <Route path="/minigames" element={<MinigamesPage />} />
                 <Route path="/events" element={<EventsPage />} />
                 <Route path="/speedrun-media" element={<SpeedrunMediaPage />} />
+                <Route path="/collector" element={<CollectorMode />} />
               </Routes>
             </Layout>
           </MediaProvider>
