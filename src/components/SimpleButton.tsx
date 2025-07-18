@@ -23,17 +23,17 @@ const SimpleButton: React.FC<SimpleButtonProps> = ({
   const getVariantStyles = () => {
     switch (variant) {
       case 'primary':
-        return 'bg-blue-600 hover:bg-blue-700 text-white'
+        return 'bg-blue-600 hover:bg-blue-500 text-white shadow-lg hover:shadow-xl'
       case 'secondary':
-        return 'bg-gray-600 hover:bg-gray-700 text-white'
+        return 'bg-slate-700 hover:bg-slate-600 text-slate-100 shadow-lg hover:shadow-xl'
       case 'success':
-        return 'bg-green-600 hover:bg-green-700 text-white'
+        return 'bg-emerald-600 hover:bg-emerald-500 text-white shadow-lg hover:shadow-xl'
       case 'danger':
-        return 'bg-red-600 hover:bg-red-700 text-white'
+        return 'bg-red-600 hover:bg-red-500 text-white shadow-lg hover:shadow-xl'
       case 'warning':
-        return 'bg-yellow-600 hover:bg-yellow-700 text-white'
+        return 'bg-amber-600 hover:bg-amber-500 text-white shadow-lg hover:shadow-xl'
       default:
-        return 'bg-blue-600 hover:bg-blue-700 text-white'
+        return 'bg-blue-600 hover:bg-blue-500 text-white shadow-lg hover:shadow-xl'
     }
   }
 

@@ -20,17 +20,17 @@ const SimpleCard: React.FC<SimpleCardProps> = ({
   const getVariantStyles = () => {
     switch (variant) {
       case 'primary':
-        return 'border-blue-200 bg-blue-50'
+        return 'border-blue-600 bg-blue-900/30 text-blue-100'
       case 'secondary':
-        return 'border-gray-200 bg-gray-50'
+        return 'border-slate-600 bg-slate-800 text-slate-100'
       case 'success':
-        return 'border-green-200 bg-green-50'
+        return 'border-emerald-600 bg-emerald-900/30 text-emerald-100'
       case 'danger':
-        return 'border-red-200 bg-red-50'
+        return 'border-red-600 bg-red-900/30 text-red-100'
       case 'warning':
-        return 'border-yellow-200 bg-yellow-50'
+        return 'border-amber-600 bg-amber-900/30 text-amber-100'
       default:
-        return 'border-gray-200 bg-white'
+        return 'border-slate-700 bg-slate-800 text-slate-100'
     }
   }
 
