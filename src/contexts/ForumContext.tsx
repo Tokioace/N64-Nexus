@@ -165,6 +165,36 @@ const mockPosts: ForumPost[] = [
     createdAt: new Date('2024-01-11T16:20:00'),
     isEdited: false,
     isDeleted: false
+  },
+  {
+    id: '3',
+    threadId: '1',
+    authorId: '3',
+    authorName: 'Mario64Fan',
+    content: 'Welche Charaktere eignen sich am besten für diese Strategie? Ich spiele meist mit Yoshi.',
+    createdAt: new Date('2024-01-12T09:15:00'),
+    isEdited: false,
+    isDeleted: false
+  },
+  {
+    id: '4',
+    threadId: '2',
+    authorId: '2',
+    authorName: 'Delia',
+    content: 'Hier ist mein Tutorial für den Rainbow Road Shortcut. Timing ist alles!',
+    createdAt: new Date('2024-01-12T09:15:00'),
+    isEdited: false,
+    isDeleted: false
+  },
+  {
+    id: '5',
+    threadId: '2',
+    authorId: '4',
+    authorName: 'Collector99',
+    content: 'Super Tutorial! Ich schaffe den Sprung aber nur in 50% der Fälle. Habt ihr Tipps?',
+    createdAt: new Date('2024-01-13T14:30:00'),
+    isEdited: false,
+    isDeleted: false
   }
 ]
 
@@ -189,6 +219,7 @@ export const ForumProvider: React.FC<{ children: ReactNode }> = ({ children }) =
 
   const getCategories = () => {
     setLoading(true)
+    setError(null)
     // Simulate API call
     setTimeout(() => {
       setCategories(mockCategories)
@@ -198,6 +229,7 @@ export const ForumProvider: React.FC<{ children: ReactNode }> = ({ children }) =
 
   const getThreadsByCategory = (categoryId: string) => {
     setLoading(true)
+    setError(null)
     // Filter threads by category
     const filteredThreads = mockThreads.filter(thread => thread.categoryId === categoryId)
     setTimeout(() => {
@@ -208,6 +240,7 @@ export const ForumProvider: React.FC<{ children: ReactNode }> = ({ children }) =
 
   const getPostsByThread = (threadId: string) => {
     setLoading(true)
+    setError(null)
     // Filter posts by thread
     const filteredPosts = mockPosts.filter(post => post.threadId === threadId)
     setTimeout(() => {
@@ -218,6 +251,22 @@ export const ForumProvider: React.FC<{ children: ReactNode }> = ({ children }) =
 
   const createThread = async (categoryId: string, title: string, content: string, imageUrl?: string): Promise<boolean> => {
     if (!user) return false
+    
+    // Validate input
+    if (!title.trim() || !content.trim() || !categoryId.trim()) {
+      setError('Alle Felder sind erforderlich')
+      return false
+    }
+    
+    if (title.length > 100) {
+      setError('Titel ist zu lang (max. 100 Zeichen)')
+      return false
+    }
+    
+    if (content.length > 2000) {
+      setError('Inhalt ist zu lang (max. 2000 Zeichen)')
+      return false
+    }
     
     setLoading(true)
     try {
@@ -248,12 +297,10 @@ export const ForumProvider: React.FC<{ children: ReactNode }> = ({ children }) =
       }
 
       // Simulate API call
-      setTimeout(() => {
-        setThreads(prev => [newThread, ...prev])
-        setPosts(prev => [...prev, newPost])
-        setLoading(false)
-      }, 500)
-
+      await new Promise(resolve => setTimeout(resolve, 500))
+      setThreads(prev => [newThread, ...prev])
+      setPosts(prev => [...prev, newPost])
+      setLoading(false)
       return true
     } catch (err) {
       setError('Fehler beim Erstellen des Threads')
@@ -264,6 +311,17 @@ export const ForumProvider: React.FC<{ children: ReactNode }> = ({ children }) =
 
   const createPost = async (threadId: string, content: string, imageUrl?: string): Promise<boolean> => {
     if (!user) return false
+    
+    // Validate input
+    if (!content.trim() || !threadId.trim()) {
+      setError('Inhalt ist erforderlich')
+      return false
+    }
+    
+    if (content.length > 2000) {
+      setError('Beitrag ist zu lang (max. 2000 Zeichen)')
+      return false
+    }
     
     setLoading(true)
     try {
@@ -280,27 +338,25 @@ export const ForumProvider: React.FC<{ children: ReactNode }> = ({ children }) =
       }
 
       // Simulate API call
-      setTimeout(() => {
-        setPosts(prev => [...prev, newPost])
-        // Update thread post count and last updated
-        setThreads(prev => prev.map(thread => 
-          thread.id === threadId 
-            ? { 
-                ...thread, 
-                postCount: thread.postCount + 1,
-                lastUpdated: new Date(),
-                lastPost: {
-                  id: newPost.id,
-                  authorId: user.id,
-                  authorName: user.username,
-                  createdAt: new Date()
-                }
+      await new Promise(resolve => setTimeout(resolve, 500))
+      setPosts(prev => [...prev, newPost])
+      // Update thread post count and last updated
+      setThreads(prev => prev.map(thread => 
+        thread.id === threadId 
+          ? { 
+              ...thread, 
+              postCount: thread.postCount + 1,
+              lastUpdated: new Date(),
+              lastPost: {
+                id: newPost.id,
+                authorId: user.id,
+                authorName: user.username,
+                createdAt: new Date()
               }
-            : thread
-        ))
-        setLoading(false)
-      }, 500)
-
+            }
+          : thread
+      ))
+      setLoading(false)
       return true
     } catch (err) {
       setError('Fehler beim Erstellen des Beitrags')

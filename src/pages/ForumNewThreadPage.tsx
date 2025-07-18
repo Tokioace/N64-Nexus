@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useParams, Link, useNavigate } from 'react-router-dom'
 import { useForum } from '../contexts/ForumContext'
 import { useUser } from '../contexts/UserContext'
+import { validateThreadTitle, validatePostContent, validateImageFile } from '../utils/forumValidation'
 import { 
   ArrowLeft, 
   Send, 
@@ -32,9 +33,9 @@ const ForumNewThreadPage: React.FC = () => {
   const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0]
     if (file) {
-      // Check file size (max 5MB)
-      if (file.size > 5 * 1024 * 1024) {
-        setError('Bild ist zu groß. Maximale Dateigröße: 5MB')
+      const validation = validateImageFile(file)
+      if (!validation.isValid) {
+        setError(validation.error!)
         return
       }
 
@@ -43,13 +44,30 @@ const ForumNewThreadPage: React.FC = () => {
         setImage(e.target?.result as string)
         setError(null)
       }
+      reader.onerror = () => {
+        setError('Fehler beim Lesen der Bilddatei')
+      }
       reader.readAsDataURL(file)
     }
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (!title.trim() || !content.trim() || !selectedCategory || !user) return
+    if (!selectedCategory || !user) return
+
+    // Validate title
+    const titleValidation = validateThreadTitle(title)
+    if (!titleValidation.isValid) {
+      setError(titleValidation.error!)
+      return
+    }
+
+    // Validate content
+    const contentValidation = validatePostContent(content)
+    if (!contentValidation.isValid) {
+      setError(contentValidation.error!)
+      return
+    }
 
     setIsSubmitting(true)
     setError(null)

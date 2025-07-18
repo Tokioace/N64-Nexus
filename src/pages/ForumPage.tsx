@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { useForum } from '../contexts/ForumContext'
 import { useUser } from '../contexts/UserContext'
 import { 
@@ -193,4 +193,4 @@ const ForumPage: React.FC = () => {
   )
 }
 
-export default ForumPage
+export default memo(ForumPage)

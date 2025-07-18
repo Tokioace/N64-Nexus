@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useMemo } from 'react'
 import { useParams, Link, useNavigate } from 'react-router-dom'
 import { useForum } from '../contexts/ForumContext'
 import { useUser } from '../contexts/UserContext'
+import { ForumThread } from '../types'
 import { 
   ArrowLeft, 
   Plus, 
@@ -51,24 +52,26 @@ const ForumCategoryPage: React.FC = () => {
     return formatDate(date)
   }
 
-  const filteredAndSortedThreads = threads
-    .filter(thread => 
-      thread.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      thread.authorName.toLowerCase().includes(searchTerm.toLowerCase())
-    )
-    .sort((a, b) => {
-      switch (sortBy) {
-        case 'popular':
-          return b.views - a.views
-        case 'oldest':
-          return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
-        case 'recent':
-        default:
-          return new Date(b.lastUpdated).getTime() - new Date(a.lastUpdated).getTime()
-      }
-    })
+  const filteredAndSortedThreads = useMemo(() => {
+    return threads
+      .filter(thread => 
+        thread.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        thread.authorName.toLowerCase().includes(searchTerm.toLowerCase())
+      )
+      .sort((a, b) => {
+        switch (sortBy) {
+          case 'popular':
+            return b.views - a.views
+          case 'oldest':
+            return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
+          case 'recent':
+          default:
+            return new Date(b.lastUpdated).getTime() - new Date(a.lastUpdated).getTime()
+        }
+      })
+  }, [threads, searchTerm, sortBy])
 
-  const handleThreadClick = (thread: any) => {
+  const handleThreadClick = (thread: ForumThread) => {
     selectThread(thread)
     navigate(`/forum/thread/${thread.id}`)
   }

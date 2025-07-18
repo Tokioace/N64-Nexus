@@ -18,6 +18,7 @@ import ForumPage from './pages/ForumPage'
 import ForumCategoryPage from './pages/ForumCategoryPage'
 import ForumThreadPage from './pages/ForumThreadPage'
 import ForumNewThreadPage from './pages/ForumNewThreadPage'
+import ErrorBoundary from './components/ErrorBoundary'
 import Layout from './components/Layout'
 
 function App() {
@@ -39,10 +40,10 @@ function App() {
                   <Route path="/events" element={<EventsPage />} />
                   <Route path="/speedrun-media" element={<SpeedrunMediaPage />} />
                   <Route path="/collector" element={<CollectorMode />} />
-                  <Route path="/forum" element={<ForumPage />} />
-                  <Route path="/forum/category/:categoryId" element={<ForumCategoryPage />} />
-                  <Route path="/forum/category/:categoryId/new-thread" element={<ForumNewThreadPage />} />
-                  <Route path="/forum/thread/:threadId" element={<ForumThreadPage />} />
+                  <Route path="/forum" element={<ErrorBoundary><ForumPage /></ErrorBoundary>} />
+                  <Route path="/forum/category/:categoryId" element={<ErrorBoundary><ForumCategoryPage /></ErrorBoundary>} />
+                  <Route path="/forum/category/:categoryId/new-thread" element={<ErrorBoundary><ForumNewThreadPage /></ErrorBoundary>} />
+                  <Route path="/forum/thread/:threadId" element={<ErrorBoundary><ForumThreadPage /></ErrorBoundary>} />
                 </Routes>
               </Layout>
             </ForumProvider>

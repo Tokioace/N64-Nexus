@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useParams, Link, useNavigate } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import { useForum } from '../contexts/ForumContext'
 import { useUser } from '../contexts/UserContext'
 import { 
@@ -28,6 +28,10 @@ const ForumThreadPage: React.FC = () => {
       const thread = threads.find(t => t.id === threadId)
       if (thread) {
         selectThread(thread)
+      } else if (threads.length === 0) {
+        // If no threads are loaded, we might need to load them
+        // This happens when navigating directly to a thread URL
+        console.warn('Thread not found, might need to load threads first')
       }
     }
   }, [threadId, threads, selectThread])
@@ -55,9 +59,24 @@ const ForumThreadPage: React.FC = () => {
   const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0]
     if (file) {
+      // Check file size (max 5MB)
+      if (file.size > 5 * 1024 * 1024) {
+        console.error('Bild ist zu groß. Maximale Dateigröße: 5MB')
+        return
+      }
+
+      // Check file type
+      if (!file.type.startsWith('image/')) {
+        console.error('Nur Bilddateien sind erlaubt')
+        return
+      }
+
       const reader = new FileReader()
       reader.onload = (e) => {
         setNewPostImage(e.target?.result as string)
+      }
+      reader.onerror = () => {
+        console.error('Fehler beim Lesen der Bilddatei')
       }
       reader.readAsDataURL(file)
     }
@@ -219,8 +238,11 @@ const ForumThreadPage: React.FC = () => {
                   <div className="mt-4">
                     <img 
                       src={post.imageUrl} 
-                      alt="Post attachment" 
+                      alt="Beitragsbild" 
                       className="max-w-md rounded-lg border border-slate-600"
+                      onError={(e) => {
+                        e.currentTarget.style.display = 'none'
+                      }}
                     />
                   </div>
                 )}
