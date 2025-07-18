@@ -259,3 +259,61 @@ export interface MediaContextType {
   verifyMedia: (mediaId: string, isVerified: boolean) => Promise<void>
   isCapturingAllowed: (eventId?: string) => boolean
 }
+
+// Forum System Types
+export interface ForumCategory {
+  id: string
+  name: string
+  description: string
+  threadCount: number
+  lastPost?: {
+    id: string
+    authorId: string
+    authorName: string
+    createdAt: Date
+    threadTitle: string
+  }
+  icon: string
+  color: string
+}
+
+export interface ForumThread {
+  id: string
+  title: string
+  categoryId: string
+  authorId: string
+  authorName: string
+  createdAt: Date
+  lastUpdated: Date
+  postCount: number
+  views: number
+  isPinned: boolean
+  isLocked: boolean
+  lastPost?: {
+    id: string
+    authorId: string
+    authorName: string
+    createdAt: Date
+  }
+}
+
+export interface ForumPost {
+  id: string
+  threadId: string
+  authorId: string
+  authorName: string
+  content: string
+  imageUrl?: string
+  createdAt: Date
+  isEdited: boolean
+  editedAt?: Date
+  isDeleted: boolean
+}
+
+export interface ForumStats {
+  totalThreads: number
+  totalPosts: number
+  totalMembers: number
+  newestMember: string
+  mostActiveCategory: string
+}
