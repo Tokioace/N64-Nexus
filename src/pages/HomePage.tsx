@@ -19,10 +19,10 @@ const HomePage: React.FC = () => {
     <div className="container mx-auto px-4 py-6">
       {/* Header */}
       <div className="text-center mb-8">
-        <h1 className="text-4xl font-bold text-gray-900 mb-2">
+        <h1 className="text-4xl font-bold text-slate-100 mb-2">
           🎮 Willkommen, {user.username}!
         </h1>
-        <p className="text-gray-600 text-lg">
+        <p className="text-slate-300 text-lg">
           Level {user.level} • {user.points} Punkte
         </p>
       </div>
@@ -30,23 +30,23 @@ const HomePage: React.FC = () => {
       {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
         <SimpleCard className="text-center">
-          <div className="text-2xl font-bold text-blue-600">{user.points}</div>
-          <div className="text-sm text-gray-600">Punkte</div>
+          <div className="text-2xl font-bold text-blue-400">{user.points}</div>
+          <div className="text-sm text-slate-400">Punkte</div>
         </SimpleCard>
         
         <SimpleCard className="text-center">
-          <div className="text-2xl font-bold text-green-600">{user.level}</div>
-          <div className="text-sm text-gray-600">Level</div>
+          <div className="text-2xl font-bold text-emerald-400">{user.level}</div>
+          <div className="text-sm text-slate-400">Level</div>
         </SimpleCard>
         
         <SimpleCard className="text-center">
-          <div className="text-2xl font-bold text-purple-600">{user.correctAnswers}</div>
-          <div className="text-sm text-gray-600">Richtig</div>
+          <div className="text-2xl font-bold text-purple-400">{user.correctAnswers}</div>
+          <div className="text-sm text-slate-400">Richtig</div>
         </SimpleCard>
         
         <SimpleCard className="text-center">
-          <div className="text-2xl font-bold text-orange-600">{accuracy}%</div>
-          <div className="text-sm text-gray-600">Genauigkeit</div>
+          <div className="text-2xl font-bold text-amber-400">{accuracy}%</div>
+          <div className="text-sm text-slate-400">Genauigkeit</div>
         </SimpleCard>
       </div>
 
@@ -55,10 +55,10 @@ const HomePage: React.FC = () => {
         {/* Quiz Card */}
         <SimpleCard className="p-6">
           <div className="flex items-center mb-4">
-            <Brain className="w-8 h-8 text-blue-600 mr-3" />
-            <h2 className="text-xl font-bold text-gray-900">Quiz starten</h2>
+            <Brain className="w-8 h-8 text-blue-400 mr-3" />
+            <h2 className="text-xl font-bold text-slate-100">Quiz starten</h2>
           </div>
-          <p className="text-gray-600 mb-4">
+          <p className="text-slate-300 mb-4">
             Teste dein Wissen über Nintendo 64 Spiele und sammle Punkte!
           </p>
           <div className="space-y-3">
@@ -83,16 +83,16 @@ const HomePage: React.FC = () => {
         {/* Achievements Card */}
         <SimpleCard className="p-6">
           <div className="flex items-center mb-4">
-            <Trophy className="w-8 h-8 text-yellow-600 mr-3" />
-            <h2 className="text-xl font-bold text-gray-900">Erfolge</h2>
+            <Trophy className="w-8 h-8 text-yellow-400 mr-3" />
+            <h2 className="text-xl font-bold text-slate-100">Erfolge</h2>
           </div>
           <div className="space-y-3">
             {user.achievements.slice(0, 3).map((achievement, index) => (
-              <div key={index} className="flex items-center p-3 bg-gray-50 rounded-lg">
-                <Star className="w-5 h-5 text-yellow-500 mr-3" />
+              <div key={index} className="flex items-center p-3 bg-slate-700 rounded-lg">
+                <Star className="w-5 h-5 text-yellow-400 mr-3" />
                 <div>
-                  <div className="font-medium text-gray-900">{achievement.name}</div>
-                  <div className="text-sm text-gray-600">{achievement.description}</div>
+                  <div className="font-medium text-slate-100">{achievement.name}</div>
+                  <div className="text-sm text-slate-300">{achievement.description}</div>
                 </div>
               </div>
             ))}
@@ -108,30 +108,30 @@ const HomePage: React.FC = () => {
       {/* Quick Actions */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         <Link to="/leaderboard">
-          <SimpleCard className="p-4 text-center hover:bg-gray-50 transition-colors">
-            <Trophy className="w-8 h-8 text-green-600 mx-auto mb-2" />
-            <div className="font-medium text-gray-900">Bestenliste</div>
+          <SimpleCard className="p-4 text-center hover:bg-slate-700 transition-colors">
+            <Trophy className="w-8 h-8 text-emerald-400 mx-auto mb-2" />
+            <div className="font-medium text-slate-100">Bestenliste</div>
           </SimpleCard>
         </Link>
         
         <Link to="/events">
-          <SimpleCard className="p-4 text-center hover:bg-gray-50 transition-colors">
-            <Calendar className="w-8 h-8 text-red-600 mx-auto mb-2" />
-            <div className="font-medium text-gray-900">Events</div>
+          <SimpleCard className="p-4 text-center hover:bg-slate-700 transition-colors">
+            <Calendar className="w-8 h-8 text-red-400 mx-auto mb-2" />
+            <div className="font-medium text-slate-100">Events</div>
           </SimpleCard>
         </Link>
         
         <Link to="/minigames">
-          <SimpleCard className="p-4 text-center hover:bg-gray-50 transition-colors">
-            <Gamepad2 className="w-8 h-8 text-blue-600 mx-auto mb-2" />
-            <div className="font-medium text-gray-900">Minispiele</div>
+          <SimpleCard className="p-4 text-center hover:bg-slate-700 transition-colors">
+            <Gamepad2 className="w-8 h-8 text-blue-400 mx-auto mb-2" />
+            <div className="font-medium text-slate-100">Minispiele</div>
           </SimpleCard>
         </Link>
         
         <Link to="/profile">
-          <SimpleCard className="p-4 text-center hover:bg-gray-50 transition-colors">
-            <Clock className="w-8 h-8 text-purple-600 mx-auto mb-2" />
-            <div className="font-medium text-gray-900">Profil</div>
+          <SimpleCard className="p-4 text-center hover:bg-slate-700 transition-colors">
+            <Clock className="w-8 h-8 text-purple-400 mx-auto mb-2" />
+            <div className="font-medium text-slate-100">Profil</div>
           </SimpleCard>
         </Link>
       </div>

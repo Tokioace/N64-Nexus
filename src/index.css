@@ -10,69 +10,147 @@
   }
   
   body {
-    @apply bg-gray-50 text-gray-900;
+    @apply bg-slate-900 text-slate-100;
   }
 }
 
 @layer components {
   .btn-primary {
-    @apply bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg 
-           transition-colors duration-200 border-0;
+    @apply bg-blue-600 hover:bg-blue-500 text-white font-medium py-2 px-4 rounded-lg 
+           transition-all duration-200 border-0 shadow-lg hover:shadow-xl hover:scale-105;
   }
   
   .btn-secondary {
-    @apply bg-gray-600 hover:bg-gray-700 text-white font-medium py-2 px-4 rounded-lg 
-           transition-colors duration-200 border-0;
+    @apply bg-slate-700 hover:bg-slate-600 text-slate-100 font-medium py-2 px-4 rounded-lg 
+           transition-all duration-200 border-0 shadow-lg hover:shadow-xl hover:scale-105;
   }
   
   .btn-success {
-    @apply bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded-lg 
-           transition-colors duration-200 border-0;
+    @apply bg-emerald-600 hover:bg-emerald-500 text-white font-medium py-2 px-4 rounded-lg 
+           transition-all duration-200 border-0 shadow-lg hover:shadow-xl hover:scale-105;
   }
   
   .btn-danger {
-    @apply bg-red-600 hover:bg-red-700 text-white font-medium py-2 px-4 rounded-lg 
-           transition-colors duration-200 border-0;
+    @apply bg-red-600 hover:bg-red-500 text-white font-medium py-2 px-4 rounded-lg 
+           transition-all duration-200 border-0 shadow-lg hover:shadow-xl hover:scale-105;
   }
   
   .card {
-    @apply bg-white border border-gray-200 rounded-lg p-6 shadow-sm;
+    @apply bg-slate-800 border border-slate-700 rounded-lg p-6 shadow-lg;
   }
   
   .quiz-option {
-    @apply bg-white hover:bg-gray-50 border border-gray-200 rounded-lg p-4 cursor-pointer 
-           transition-colors duration-200;
+    @apply bg-slate-800 hover:bg-slate-700 border border-slate-600 rounded-lg p-4 cursor-pointer 
+           transition-all duration-200 text-slate-100 hover:scale-105;
   }
   
   .quiz-option.correct {
-    @apply bg-green-50 border-green-200;
+    @apply bg-emerald-900 border-emerald-600 text-emerald-100;
   }
   
   .quiz-option.incorrect {
-    @apply bg-red-50 border-red-200;
+    @apply bg-red-900 border-red-600 text-red-100;
+  }
+
+  /* Retro N64 Tile Styles */
+  .simple-tile {
+    @apply bg-slate-800 border border-slate-700 rounded-lg p-4 shadow-lg 
+           transition-all duration-200 hover:shadow-xl hover:scale-105;
+    background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+    border: 1px solid #475569;
+  }
+
+  .simple-tile:hover {
+    border-color: #3b82f6;
+    box-shadow: 0 10px 25px rgba(59, 130, 246, 0.2);
+  }
+
+  .simple-tile-header {
+    @apply mb-3 pb-2 border-b border-slate-600;
+  }
+
+  .simple-tile-content {
+    @apply text-slate-100;
+  }
+
+  .simple-tile-small {
+    @apply p-3 text-center min-h-[100px] flex flex-col justify-center;
+  }
+
+  .simple-tile-icon {
+    @apply mb-2;
+  }
+
+  .simple-tile-label {
+    @apply space-y-1;
+  }
+
+  /* Fix overlapping issues */
+  .grid > * {
+    @apply min-w-0; /* Prevent grid items from overflowing */
+  }
+
+  /* Improved contrast for better readability */
+  .text-contrast {
+    @apply text-slate-100 font-medium;
+  }
+
+  .text-contrast-secondary {
+    @apply text-slate-300;
+  }
+
+  /* Standardized hover effects - max 200ms, smooth scaling */
+  .hover-scale {
+    @apply transition-transform duration-200 hover:scale-105;
+  }
+
+  .hover-scale-small {
+    @apply transition-transform duration-200 hover:scale-105;
+  }
+
+  /* Fixed footer positioning */
+  .footer-fixed {
+    @apply fixed bottom-0 left-0 right-0 bg-slate-900 border-t border-slate-700 p-4 z-50;
+  }
+
+  /* Mobile-friendly spacing */
+  @media (max-width: 768px) {
+    .simple-tile {
+      @apply p-3;
+    }
+    
+    .simple-tile-small {
+      @apply p-2 min-h-[80px];
+    }
+    
+    .grid {
+      @apply gap-2;
+    }
   }
   
   .quiz-option.selected {
-    @apply bg-blue-50 border-blue-200;
+    @apply bg-blue-900 border-blue-500 text-blue-100;
   }
 }
 
-/* Simple tile styles */
+/* Kompakte Tile-Styles für No-Scroll Layout */
 .simple-tile {
-  @apply bg-white border border-gray-200 rounded-lg p-4 cursor-pointer 
-         transition-colors duration-200 hover:bg-gray-50;
+  @apply bg-slate-800 border border-slate-700 rounded-lg p-3 cursor-pointer 
+         transition-all duration-200 hover:bg-slate-700 hover:border-slate-600 
+         text-slate-100 shadow-lg hover:shadow-xl;
 }
 
 .simple-tile-large {
-  @apply min-h-[200px] p-6;
+  @apply min-h-[180px] p-4;
 }
 
 .simple-tile-small {
-  @apply min-h-[80px] p-3 flex flex-col items-center justify-center text-center;
+  @apply min-h-[100px] p-3 flex flex-col items-center justify-center text-center
+         aspect-square;
 }
 
 .simple-tile-header {
-  @apply mb-4 pb-3 border-b border-gray-200;
+  @apply mb-3 pb-2 border-b border-slate-600;
 }
 
 .simple-tile-content {
@@ -80,9 +158,34 @@
 }
 
 .simple-tile-icon {
-  @apply mb-3;
+  @apply mb-2;
 }
 
 .simple-tile-label {
-  @apply mt-2 font-medium;
+  @apply mt-2 font-medium text-slate-200;
+}
+
+/* Responsive Anpassungen für kompaktes Layout */
+@media (max-width: 768px) {
+  .simple-tile-small {
+    @apply min-h-[80px] p-2;
+  }
+  
+  .simple-tile-large {
+    @apply min-h-[160px] p-3;
+  }
+  
+  .simple-tile-header {
+    @apply mb-2 pb-2;
+  }
+}
+
+@media (max-width: 640px) {
+  .simple-tile-small {
+    @apply min-h-[70px] p-2;
+  }
+  
+  .simple-tile-large {
+    @apply min-h-[140px] p-3;
+  }
 }

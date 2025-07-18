@@ -15,7 +15,8 @@ import {
   Clock,
   Star,
   Users,
-  Camera
+  Camera,
+  Package
 } from 'lucide-react'
 
 const HomeScreenRetro: React.FC = () => {
@@ -27,13 +28,13 @@ const HomeScreenRetro: React.FC = () => {
   if (!user) return null
 
   return (
-    <div className="min-h-screen bg-gray-50 p-4">
-      {/* Header */}
-      <div className="text-center mb-8">
-        <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-3">
+    <div className="min-h-screen bg-slate-900 p-4 overflow-hidden">
+      {/* Kompakter Header */}
+      <div className="text-center mb-6">
+        <h1 className="text-3xl md:text-4xl font-bold text-slate-100 mb-2">
           🎮 BATTLE64
         </h1>
-        <div className="flex items-center justify-center space-x-4 text-gray-600 text-sm">
+        <div className="flex items-center justify-center space-x-4 text-slate-300 text-sm">
           <span>Welcome back, {user.username}!</span>
           <span>•</span>
           <span>Level {user.level}</span>
@@ -45,105 +46,97 @@ const HomeScreenRetro: React.FC = () => {
         </div>
       </div>
 
-      {/* Main Grid Layout */}
+      {/* Hauptlayout - Kompakt ohne Scrollen */}
       <div className="max-w-7xl mx-auto">
-        {/* Top Row - Large Feature Tiles */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-          {/* News Feed Tile */}
-          <div className="simple-tile simple-tile-large">
+        {/* Obere Reihe - Events links, News rechts */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-6">
+          {/* Events Tile - Links */}
+          <div className="simple-tile" style={{ minHeight: '180px' }}>
             <div className="simple-tile-header">
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-3">
-                  <Calendar className="w-6 h-6 text-blue-600" />
-                  <span className="font-medium text-blue-600 text-lg">NEWS FEED</span>
+                  <Zap className="w-5 h-5 text-red-400" />
+                  <span className="font-medium text-red-400">LIVE EVENT</span>
                 </div>
-                <div className="text-blue-600">
-                  <Star className="w-5 h-5" />
-                </div>
+                <Link to="/events" className="text-red-400 hover:text-red-300 transition-colors">
+                  <Calendar className="w-4 h-4" />
+                </Link>
               </div>
             </div>
             
             <div className="simple-tile-content">
-              <div className="text-sm text-gray-600 mb-4">
-                {new Date().toLocaleDateString('de-DE', { 
-                  weekday: 'long', 
-                  year: 'numeric', 
-                  month: 'long', 
-                  day: 'numeric' 
-                })}
+              <div className="text-xl font-bold text-slate-100 mb-2">
+                {currentEvent?.title || 'Tata Tuga Volcano'}
+              </div>
+              <div className="text-sm text-slate-400 mb-3">
+                {currentEvent?.type || 'Time Trial'} • 2d 14h 23m
               </div>
               
-              <div className="space-y-4">
-                {/* Event Winner Section */}
-                <div className="bg-gray-100 rounded-lg p-4 border border-gray-200">
-                  <div className="flex items-center space-x-2 mb-2">
-                    <Trophy className="w-5 h-5 text-yellow-600" />
-                    <span className="font-medium text-gray-900">Latest Winner</span>
-                  </div>
-                  <div className="text-gray-700">
-                    <div className="font-medium">{user.username}</div>
-                    <div className="text-sm text-gray-500">Tata Tuga Volcano Time Trial - 1:02.55</div>
-                  </div>
+              <div className="space-y-2">
+                <div className="flex items-center justify-between text-sm">
+                  <span className="text-slate-400">Participants</span>
+                  <span className="font-medium text-slate-100">{currentEvent?.participants || 47}</span>
                 </div>
-
-                {/* Today in History */}
-                <div className="bg-gray-100 rounded-lg p-4 border border-gray-200">
-                  <div className="flex items-center space-x-2 mb-2">
-                    <Gamepad2 className="w-5 h-5 text-green-600" />
-                    <span className="font-medium text-gray-900">Today in N64 History</span>
+                
+                <div className="space-y-1">
+                  <div className="flex items-center justify-between text-sm">
+                    <span className="text-slate-300">1. Oli</span>
+                    <span className="font-medium text-slate-100">:55</span>
                   </div>
-                  <div className="text-gray-700">
-                    <div className="font-medium">Super Mario 64</div>
-                    <div className="text-sm text-gray-500">Launched alongside the N64, introducing 3D analog movement to Mario.</div>
+                  <div className="flex items-center justify-between text-sm">
+                    <span className="text-slate-300">2. Delia</span>
+                    <span className="font-medium text-slate-100">1:06.97</span>
                   </div>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Live Event Tile */}
-          <div className="simple-tile simple-tile-large">
+          {/* News Feed Tile - Rechts */}
+          <div className="simple-tile" style={{ minHeight: '180px' }}>
             <div className="simple-tile-header">
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-3">
-                  <Zap className="w-6 h-6 text-red-600" />
-                  <span className="font-medium text-red-600 text-lg">LIVE EVENT</span>
+                  <Calendar className="w-5 h-5 text-blue-400" />
+                  <span className="font-medium text-blue-400">NEWS FEED</span>
                 </div>
-                <div className="text-red-600">
-                  <Timer className="w-5 h-5" />
+                <div className="text-blue-400">
+                  <Star className="w-4 h-4" />
                 </div>
               </div>
             </div>
             
             <div className="simple-tile-content">
-              <div className="text-2xl font-bold text-gray-900 mb-2">
-                {currentEvent?.title || 'Tata Tuga Volcano'}
-              </div>
-              <div className="text-sm text-gray-600 mb-4">
-                {currentEvent?.type || 'Time Trial'} • 2d 14h 23m remaining
+              <div className="text-sm text-slate-400 mb-3">
+                {new Date().toLocaleDateString('de-DE', { 
+                  weekday: 'short', 
+                  month: 'short', 
+                  day: 'numeric' 
+                })}
               </div>
               
               <div className="space-y-3">
-                <div className="flex items-center justify-between text-sm">
-                  <span className="text-gray-600">Participants</span>
-                  <span className="font-medium text-gray-900">{currentEvent?.participants || 47}</span>
+                {/* Latest Winner */}
+                <div className="bg-slate-700 rounded-lg p-3 border border-slate-600">
+                  <div className="flex items-center space-x-2 mb-1">
+                    <Trophy className="w-4 h-4 text-yellow-400" />
+                    <span className="font-medium text-slate-100 text-sm">Latest Winner</span>
+                  </div>
+                  <div className="text-slate-200">
+                    <div className="font-medium text-sm">{user.username}</div>
+                    <div className="text-xs text-slate-400">Tata Tuga Volcano - 1:02.55</div>
+                  </div>
                 </div>
-                
-                <div className="space-y-2">
-                  <div className="text-sm font-medium text-gray-900">Top Players</div>
-                  <div className="space-y-1">
-                    <div className="flex items-center justify-between text-sm">
-                      <span className="text-gray-700">1. Oli</span>
-                      <span className="font-medium text-gray-900">:55</span>
-                    </div>
-                    <div className="flex items-center justify-between text-sm">
-                      <span className="text-gray-700">2. Delia</span>
-                      <span className="font-medium text-gray-900">1:06.97</span>
-                    </div>
-                    <div className="flex items-center justify-between text-sm">
-                      <span className="text-gray-700">3. Erik</span>
-                      <span className="font-medium text-gray-900">1:10.22</span>
-                    </div>
+
+                {/* N64 History */}
+                <div className="bg-slate-700 rounded-lg p-3 border border-slate-600">
+                  <div className="flex items-center space-x-2 mb-1">
+                    <Gamepad2 className="w-4 h-4 text-emerald-400" />
+                    <span className="font-medium text-slate-100 text-sm">N64 History</span>
+                  </div>
+                  <div className="text-slate-200">
+                    <div className="font-medium text-sm">Super Mario 64</div>
+                    <div className="text-xs text-slate-400">3D analog movement pioneer</div>
                   </div>
                 </div>
               </div>
@@ -151,71 +144,82 @@ const HomeScreenRetro: React.FC = () => {
           </div>
         </div>
 
-        {/* Bottom Row - Navigation Tiles */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+        {/* Untere Reihe - Alle Features kompakt */}
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-7 gap-3">
           {/* Quiz Tile */}
-          <Link to="/quiz" className="simple-tile simple-tile-small">
+          <Link to="/quiz" className="simple-tile simple-tile-small hover:scale-105 transition-transform">
             <div className="simple-tile-icon">
-              <Brain className="w-8 h-8 text-purple-600 mx-auto" />
+              <Brain className="w-7 h-7 text-purple-400 mx-auto" />
             </div>
             <div className="simple-tile-label">
-              <div className="font-medium text-gray-900">Quiz</div>
-              <div className="text-xs text-gray-500">Test Knowledge</div>
+              <div className="font-medium text-slate-100 text-sm">Quiz</div>
+              <div className="text-xs text-slate-400">Test Knowledge</div>
             </div>
           </Link>
 
           {/* Minigames Tile */}
-          <Link to="/minigames" className="simple-tile simple-tile-small">
+          <Link to="/minigames" className="simple-tile simple-tile-small hover:scale-105 transition-transform">
             <div className="simple-tile-icon">
-              <Gamepad2 className="w-8 h-8 text-blue-600 mx-auto" />
+              <Gamepad2 className="w-7 h-7 text-blue-400 mx-auto" />
             </div>
             <div className="simple-tile-label">
-              <div className="font-medium text-gray-900">Minigames</div>
-              <div className="text-xs text-gray-500">Play Games</div>
+              <div className="font-medium text-slate-100 text-sm">Minigames</div>
+              <div className="text-xs text-slate-400">Play Games</div>
             </div>
           </Link>
 
           {/* Speedrun Media Tile */}
-          <Link to="/speedrun-media" className="simple-tile simple-tile-small">
+          <Link to="/speedrun-media" className="simple-tile simple-tile-small hover:scale-105 transition-transform">
             <div className="simple-tile-icon">
-              <Camera className="w-8 h-8 text-yellow-600 mx-auto" />
+              <Camera className="w-7 h-7 text-yellow-400 mx-auto" />
             </div>
             <div className="simple-tile-label">
-              <div className="font-medium text-gray-900">Media</div>
-              <div className="text-xs text-gray-500">Speedrun Videos</div>
+              <div className="font-medium text-slate-100 text-sm">Media</div>
+              <div className="text-xs text-slate-400">Speedrun Videos</div>
             </div>
           </Link>
 
           {/* Leaderboard Tile */}
-          <Link to="/leaderboard" className="simple-tile simple-tile-small">
+          <Link to="/leaderboard" className="simple-tile simple-tile-small hover:scale-105 transition-transform">
             <div className="simple-tile-icon">
-              <Trophy className="w-8 h-8 text-green-600 mx-auto" />
+              <Trophy className="w-7 h-7 text-emerald-400 mx-auto" />
             </div>
             <div className="simple-tile-label">
-              <div className="font-medium text-gray-900">Leaderboard</div>
-              <div className="text-xs text-gray-500">Rankings</div>
+              <div className="font-medium text-slate-100 text-sm">Leaderboard</div>
+              <div className="text-xs text-slate-400">Rankings</div>
             </div>
           </Link>
 
           {/* Events Tile */}
-          <Link to="/events" className="simple-tile simple-tile-small">
+          <Link to="/events" className="simple-tile simple-tile-small hover:scale-105 transition-transform">
             <div className="simple-tile-icon">
-              <Calendar className="w-8 h-8 text-red-600 mx-auto" />
+              <Calendar className="w-7 h-7 text-red-400 mx-auto" />
             </div>
             <div className="simple-tile-label">
-              <div className="font-medium text-gray-900">Events</div>
-              <div className="text-xs text-gray-500">Competitions</div>
+              <div className="font-medium text-slate-100 text-sm">Events</div>
+              <div className="text-xs text-slate-400">Competitions</div>
+            </div>
+          </Link>
+
+          {/* Collector Mode Tile */}
+          <Link to="/collector" className="simple-tile simple-tile-small hover:scale-105 transition-transform">
+            <div className="simple-tile-icon">
+              <Package className="w-7 h-7 text-orange-400 mx-auto" />
+            </div>
+            <div className="simple-tile-label">
+              <div className="font-medium text-slate-100 text-sm">Sammlung</div>
+              <div className="text-xs text-slate-400">N64 Games</div>
             </div>
           </Link>
 
           {/* Profile Tile */}
-          <Link to="/profile" className="simple-tile simple-tile-small">
+          <Link to="/profile" className="simple-tile simple-tile-small hover:scale-105 transition-transform">
             <div className="simple-tile-icon">
-              <User className="w-8 h-8 text-indigo-600 mx-auto" />
+              <User className="w-7 h-7 text-indigo-400 mx-auto" />
             </div>
             <div className="simple-tile-label">
-              <div className="font-medium text-gray-900">Profile</div>
-              <div className="text-xs text-gray-500">Your Stats</div>
+              <div className="font-medium text-slate-100 text-sm">Profile</div>
+              <div className="text-xs text-slate-400">Your Stats</div>
             </div>
           </Link>
         </div>
