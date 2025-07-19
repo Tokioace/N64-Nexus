@@ -8,6 +8,50 @@ export interface User {
   totalAnswers: number
   achievements: Achievement[]
   quizProgress: QuizProgress
+  avatar?: AvatarData
+}
+
+// N64-Style Avatar System Types
+export interface AvatarData {
+  id: string
+  headShape: 'round' | 'square' | 'oval' | 'diamond'
+  headColor: string
+  eyeType: 'normal' | 'wide' | 'sleepy' | 'angry' | 'happy' | 'closed'
+  eyeColor: string
+  noseType: 'small' | 'medium' | 'large' | 'flat' | 'pointed'
+  mouthType: 'smile' | 'neutral' | 'frown' | 'open' | 'smirk' | 'surprised'
+  hairType: 'none' | 'short' | 'medium' | 'long' | 'spiky' | 'curly' | 'cap'
+  hairColor: string
+  accessory?: 'none' | 'glasses' | 'hat' | 'headband' | 'earrings' | 'mustache' | 'beard'
+  accessoryColor: string
+  bodyType: 'thin' | 'normal' | 'wide' | 'muscular'
+  bodyColor: string
+  shirtType: 'plain' | 'striped' | 'spotted' | 'logo' | 'hoodie' | 'jacket'
+  shirtColor: string
+  shirtPattern?: string
+  createdAt: Date
+  updatedAt: Date
+}
+
+export interface AvatarPreset {
+  id: string
+  name: string
+  description: string
+  avatar: Omit<AvatarData, 'id' | 'createdAt' | 'updatedAt'>
+  category: 'retro' | 'cool' | 'fun' | 'classic'
+  unlockRequirement?: {
+    type: 'level' | 'points' | 'achievement'
+    value: number | string
+  }
+}
+
+export interface AvatarContextType {
+  currentAvatar: AvatarData | null
+  presets: AvatarPreset[]
+  saveAvatar: (avatarData: Omit<AvatarData, 'id' | 'createdAt' | 'updatedAt'>) => void
+  loadPreset: (presetId: string) => void
+  generateRandomAvatar: () => AvatarData
+  isPresetUnlocked: (preset: AvatarPreset) => boolean
 }
 
 export interface QuizQuestion {
@@ -121,6 +165,7 @@ export interface UserContextType {
   updatePoints: (points: number) => void
   updateQuizProgress: (questionId: string, isCorrect: boolean) => void
   unlockAchievement: (achievementId: string) => void
+  saveUser: (userData: User) => void
 }
 
 // Event System Types
