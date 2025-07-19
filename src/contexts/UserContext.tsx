@@ -151,6 +151,10 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
     return icons[id] || '🏅'
   }
 
+  const updateUser = (userData: User) => {
+    saveUser(userData)
+  }
+
   const value: UserContextType = {
     user,
     login,
@@ -159,6 +163,7 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
     updateQuizProgress,
     unlockAchievement,
     saveUser,
+    updateUser,
   }
 
   return (
