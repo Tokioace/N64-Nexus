@@ -1,13 +1,17 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { useUser } from '../contexts/UserContext'
 import { useAvatar } from '../contexts/AvatarContext'
+import { useFace } from '../contexts/FaceContext'
 import AvatarRenderer from '../components/AvatarRenderer'
+import FaceRenderer from '../components/FaceRenderer'
 import AvatarCreator from '../components/AvatarCreator'
-import { LogOut, Settings, Trophy, Target, Clock, Star, Edit, Gamepad2 } from 'lucide-react'
+import { LogOut, Settings, Trophy, Target, Clock, Star, Edit, Gamepad2, User, Sparkles } from 'lucide-react'
 
 const ProfilePage: React.FC = () => {
   const { user, logout } = useUser()
   const { saveAvatar } = useAvatar()
+  const { currentFace } = useFace()
   const [showAvatarCreator, setShowAvatarCreator] = useState(false)
 
   if (!user) return null
@@ -29,26 +33,68 @@ const ProfilePage: React.FC = () => {
     <div className="container mx-auto px-4 py-6">
       {/* Header */}
       <div className="text-center mb-8">
-        <div className="relative mx-auto mb-4">
-          {user.avatar ? (
-            <AvatarRenderer 
-              avatar={user.avatar} 
-              size="xl" 
-              animate={true}
-              className="mx-auto"
-            />
-          ) : (
-            <div className="w-24 h-24 bg-blue-600/20 rounded-full flex items-center justify-center mx-auto text-4xl">
-              👤
+        <div className="flex justify-center space-x-8 mb-6">
+          {/* Face Creator (New System) */}
+          <div className="relative">
+            <div className="text-center mb-2">
+              <div className="flex items-center justify-center space-x-2 text-pink-400 mb-2">
+                <Sparkles className="w-4 h-4" />
+                <span className="text-sm font-medium">Face Creator</span>
+                <span className="bg-pink-500 text-white text-xs px-2 py-1 rounded-full">NEW</span>
+              </div>
             </div>
-          )}
-          <button
-            onClick={() => setShowAvatarCreator(true)}
-            className="absolute -bottom-2 -right-2 w-10 h-10 bg-blue-600 hover:bg-blue-500 rounded-full flex items-center justify-center transition-all duration-200 shadow-lg hover:shadow-xl"
-          >
-            <Edit className="w-4 h-4 text-white" />
-          </button>
+            {currentFace ? (
+              <FaceRenderer 
+                face={currentFace} 
+                size="xl" 
+                animate={true}
+                className="mx-auto"
+              />
+            ) : (
+              <div className="w-48 h-56 bg-gradient-to-br from-pink-500/20 to-purple-500/20 rounded-2xl flex items-center justify-center mx-auto border border-pink-400/30">
+                <div className="text-center text-pink-300">
+                  <User className="w-12 h-12 mx-auto mb-2" />
+                  <div className="text-sm">Create Your Face</div>
+                </div>
+              </div>
+            )}
+            <Link
+              to="/face-creator"
+              className="absolute -bottom-2 -right-2 w-12 h-12 bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-400 hover:to-purple-400 rounded-full flex items-center justify-center transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-110"
+            >
+              <Edit className="w-5 h-5 text-white" />
+            </Link>
+          </div>
+
+          {/* Classic Avatar (Legacy System) */}
+          <div className="relative">
+            <div className="text-center mb-2">
+              <div className="flex items-center justify-center space-x-2 text-blue-400 mb-2">
+                <Gamepad2 className="w-4 h-4" />
+                <span className="text-sm font-medium">Classic Avatar</span>
+              </div>
+            </div>
+            {user.avatar ? (
+              <AvatarRenderer 
+                avatar={user.avatar} 
+                size="xl" 
+                animate={true}
+                className="mx-auto"
+              />
+            ) : (
+              <div className="w-48 h-48 bg-blue-600/20 rounded-full flex items-center justify-center mx-auto text-4xl">
+                👤
+              </div>
+            )}
+            <button
+              onClick={() => setShowAvatarCreator(true)}
+              className="absolute -bottom-2 -right-2 w-10 h-10 bg-blue-600 hover:bg-blue-500 rounded-full flex items-center justify-center transition-all duration-200 shadow-lg hover:shadow-xl"
+            >
+              <Edit className="w-4 h-4 text-white" />
+            </button>
+          </div>
         </div>
+
         <h1 className="text-3xl font-bold text-white flex items-center justify-center">
           <Gamepad2 className="mr-2 text-blue-400" />
           {user.username}
