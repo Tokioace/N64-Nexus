@@ -122,6 +122,144 @@ const MinigamesPage: React.FC = () => {
     return () => clearInterval(interval)
   }, [isGameActive, timeLeft])
 
+  // Game Image Component
+  const GameImage: React.FC<{ game: string; className?: string }> = ({ game, className = "" }) => {
+    const gameImages = {
+      'Super Mario 64': {
+        bg: 'bg-gradient-to-br from-red-500 to-blue-500',
+        icon: '🍄',
+        char: 'M',
+        color: 'text-white'
+      },
+      'The Legend of Zelda: Ocarina of Time': {
+        bg: 'bg-gradient-to-br from-green-600 to-yellow-500',
+        icon: '🗡️',
+        char: 'Z',
+        color: 'text-white'
+      },
+      'Banjo-Kazooie': {
+        bg: 'bg-gradient-to-br from-orange-500 to-brown-600',
+        icon: '🐻',
+        char: 'B',
+        color: 'text-white'
+      },
+      'GoldenEye 007': {
+        bg: 'bg-gradient-to-br from-gray-800 to-yellow-600',
+        icon: '🔫',
+        char: '007',
+        color: 'text-yellow-400'
+      },
+      'Mario Kart 64': {
+        bg: 'bg-gradient-to-br from-blue-500 to-red-500',
+        icon: '🏎️',
+        char: 'MK',
+        color: 'text-white'
+      },
+      'Donkey Kong 64': {
+        bg: 'bg-gradient-to-br from-brown-600 to-yellow-500',
+        icon: '🦍',
+        char: 'DK',
+        color: 'text-yellow-400'
+      },
+      'Wave Race 64': {
+        bg: 'bg-gradient-to-br from-blue-400 to-cyan-400',
+        icon: '🌊',
+        char: 'WR',
+        color: 'text-white'
+      },
+      'Turok': {
+        bg: 'bg-gradient-to-br from-green-700 to-brown-700',
+        icon: '🦕',
+        char: 'T',
+        color: 'text-green-400'
+      }
+    }
+
+    const gameData = gameImages[game] || {
+      bg: 'bg-gradient-to-br from-gray-600 to-gray-800',
+      icon: '🎮',
+      char: '?',
+      color: 'text-white'
+    }
+
+    return (
+      <div className={`${gameData.bg} ${className} rounded-lg flex flex-col items-center justify-center p-4 shadow-lg`}>
+        <div className="text-4xl mb-2">{gameData.icon}</div>
+        <div className={`font-bold text-lg ${gameData.color}`}>{gameData.char}</div>
+      </div>
+    )
+  }
+
+  // Cartridge Image Component
+  const CartridgeImage: React.FC<{ color: string; label: string; className?: string }> = ({ color, label, className = "" }) => {
+    const cartridgeColors = {
+      'red': 'bg-gradient-to-b from-red-400 to-red-600',
+      'gold': 'bg-gradient-to-b from-yellow-400 to-yellow-600',
+      'black': 'bg-gradient-to-b from-gray-700 to-gray-900',
+      'orange': 'bg-gradient-to-b from-orange-400 to-orange-600',
+      'blue': 'bg-gradient-to-b from-blue-400 to-blue-600',
+      'green': 'bg-gradient-to-b from-green-400 to-green-600',
+      'purple': 'bg-gradient-to-b from-purple-400 to-purple-600'
+    }
+
+    return (
+      <div className={`${className} relative`}>
+        <div className={`${cartridgeColors[color] || cartridgeColors['black']} w-24 h-32 rounded-t-lg rounded-b-sm mx-auto shadow-xl`}>
+          <div className="absolute top-2 left-2 right-2 h-6 bg-black/20 rounded flex items-center justify-center">
+            <div className="text-white text-xs font-bold">{label}</div>
+          </div>
+          <div className="absolute bottom-2 left-2 right-2 h-4 bg-black/30 rounded"></div>
+        </div>
+        <div className="w-20 h-2 bg-gray-600 mx-auto rounded-b"></div>
+      </div>
+    )
+  }
+
+  // Character Avatar Component
+  const CharacterAvatar: React.FC<{ character: string; className?: string }> = ({ character, className = "" }) => {
+    const characters = {
+      'Mario': { bg: 'bg-gradient-to-br from-red-500 to-blue-500', emoji: '🔴', text: 'M' },
+      'Luigi': { bg: 'bg-gradient-to-br from-green-500 to-blue-500', emoji: '🟢', text: 'L' },
+      'Yoshi': { bg: 'bg-gradient-to-br from-green-400 to-yellow-400', emoji: '🟡', text: 'Y' },
+      'Kirby': { bg: 'bg-gradient-to-br from-pink-400 to-purple-400', emoji: '🩷', text: 'K' },
+      'Link': { bg: 'bg-gradient-to-br from-green-600 to-brown-600', emoji: '🧝‍♂️', text: 'L' },
+      'Samus': { bg: 'bg-gradient-to-br from-orange-500 to-red-600', emoji: '🤖', text: 'S' },
+      'Bowser': { bg: 'bg-gradient-to-br from-orange-600 to-red-700', emoji: '👑', text: 'B' },
+      'Ganondorf': { bg: 'bg-gradient-to-br from-purple-700 to-black', emoji: '🐉', text: 'G' }
+    }
+
+    const char = characters[character] || characters['Mario']
+
+    return (
+      <div className={`${char.bg} ${className} rounded-full flex items-center justify-center shadow-lg`}>
+        <div className="text-white font-bold text-lg">{char.text}</div>
+      </div>
+    )
+  }
+
+  // Boss Image Component
+  const BossImage: React.FC<{ boss: string; className?: string }> = ({ boss, className = "" }) => {
+    const bosses = {
+      'Bowser': { bg: 'bg-gradient-to-br from-red-600 to-orange-600', emoji: '👑', effects: 'shadow-red-500/50' },
+      'Ganondorf': { bg: 'bg-gradient-to-br from-purple-700 to-black', emoji: '🐉', effects: 'shadow-purple-500/50' },
+      'King K. Rool': { bg: 'bg-gradient-to-br from-green-700 to-yellow-600', emoji: '🦍', effects: 'shadow-green-500/50' },
+      'Ridley': { bg: 'bg-gradient-to-br from-purple-600 to-gray-800', emoji: '🤖', effects: 'shadow-purple-500/50' },
+      'Majora': { bg: 'bg-gradient-to-br from-orange-600 to-red-700', emoji: '👹', effects: 'shadow-orange-500/50' }
+    }
+
+    const bossData = bosses[boss] || bosses['Bowser']
+
+    return (
+      <div className={`${bossData.bg} ${className} rounded-lg flex items-center justify-center shadow-xl ${bossData.effects} relative overflow-hidden`}>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+        <div className="text-6xl relative z-10">{bossData.emoji}</div>
+        <div className="absolute bottom-2 left-2 right-2 text-center">
+          <div className="text-white font-bold text-sm bg-black/50 rounded px-2 py-1">{boss}</div>
+        </div>
+      </div>
+    )
+  }
+
   // Game Components
   const renderEmojiQuiz = () => {
     const [currentQuestion, setCurrentQuestion] = useState(0)
@@ -130,14 +268,54 @@ const MinigamesPage: React.FC = () => {
     const [correctAnswers, setCorrectAnswers] = useState(0)
 
     const questions = [
-      { emojis: '🍄👨‍🦰🏰', answer: 'Super Mario 64', options: ['Super Mario 64', 'Banjo-Kazooie', 'Donkey Kong 64', 'Conker\'s Bad Fur Day'] },
-      { emojis: '🗡️🛡️🏰', answer: 'The Legend of Zelda: Ocarina of Time', options: ['The Legend of Zelda: Ocarina of Time', 'GoldenEye 007', 'Perfect Dark', 'Turok'] },
-      { emojis: '🐻🐦🍯', answer: 'Banjo-Kazooie', options: ['Banjo-Kazooie', 'Donkey Kong 64', 'Conker\'s Bad Fur Day', 'Super Mario 64'] },
-      { emojis: '🔫👨‍💼🏢', answer: 'GoldenEye 007', options: ['GoldenEye 007', 'Perfect Dark', 'Turok', 'Doom 64'] },
-      { emojis: '🏎️🍄🏁', answer: 'Mario Kart 64', options: ['Mario Kart 64', 'Diddy Kong Racing', 'F-Zero X', 'Wave Race 64'] },
-      { emojis: '🦍🍌🥊', answer: 'Donkey Kong 64', options: ['Donkey Kong 64', 'Banjo-Kazooie', 'Super Mario 64', 'Conker\'s Bad Fur Day'] },
-      { emojis: '🌊🏄‍♂️💨', answer: 'Wave Race 64', options: ['Wave Race 64', 'Mario Kart 64', 'F-Zero X', 'Diddy Kong Racing'] },
-      { emojis: '🦕🔫🌴', answer: 'Turok', options: ['Turok', 'Perfect Dark', 'GoldenEye 007', 'Doom 64'] }
+      { 
+        emojis: '🍄👨‍🦰🏰', 
+        answer: 'Super Mario 64', 
+        options: ['Super Mario 64', 'Banjo-Kazooie', 'Donkey Kong 64', 'Conker\'s Bad Fur Day'],
+        image: 'Super Mario 64'
+      },
+      { 
+        emojis: '🗡️🛡️🏰', 
+        answer: 'The Legend of Zelda: Ocarina of Time', 
+        options: ['The Legend of Zelda: Ocarina of Time', 'GoldenEye 007', 'Perfect Dark', 'Turok'],
+        image: 'The Legend of Zelda: Ocarina of Time'
+      },
+      { 
+        emojis: '🐻🐦🍯', 
+        answer: 'Banjo-Kazooie', 
+        options: ['Banjo-Kazooie', 'Donkey Kong 64', 'Conker\'s Bad Fur Day', 'Super Mario 64'],
+        image: 'Banjo-Kazooie'
+      },
+      { 
+        emojis: '🔫👨‍💼🏢', 
+        answer: 'GoldenEye 007', 
+        options: ['GoldenEye 007', 'Perfect Dark', 'Turok', 'Doom 64'],
+        image: 'GoldenEye 007'
+      },
+      { 
+        emojis: '🏎️🍄🏁', 
+        answer: 'Mario Kart 64', 
+        options: ['Mario Kart 64', 'Diddy Kong Racing', 'F-Zero X', 'Wave Race 64'],
+        image: 'Mario Kart 64'
+      },
+      { 
+        emojis: '🦍🍌🥊', 
+        answer: 'Donkey Kong 64', 
+        options: ['Donkey Kong 64', 'Banjo-Kazooie', 'Super Mario 64', 'Conker\'s Bad Fur Day'],
+        image: 'Donkey Kong 64'
+      },
+      { 
+        emojis: '🌊🏄‍♂️💨', 
+        answer: 'Wave Race 64', 
+        options: ['Wave Race 64', 'Mario Kart 64', 'F-Zero X', 'Diddy Kong Racing'],
+        image: 'Wave Race 64'
+      },
+      { 
+        emojis: '🦕🔫🌴', 
+        answer: 'Turok', 
+        options: ['Turok', 'Perfect Dark', 'GoldenEye 007', 'Doom 64'],
+        image: 'Turok'
+      }
     ]
 
     const handleAnswer = (option: string) => {
@@ -170,7 +348,11 @@ const MinigamesPage: React.FC = () => {
         
         <div className="card border-l-4 border-blue-400">
           <div className="text-center mb-6">
-            <div className="text-6xl mb-4 animate-pulse">{questions[currentQuestion].emojis}</div>
+            <div className="flex justify-center items-center space-x-6 mb-6">
+              <div className="text-6xl animate-pulse">{questions[currentQuestion].emojis}</div>
+              <div className="text-4xl text-white/50">→</div>
+              <GameImage game={questions[currentQuestion].image} className="w-24 h-24" />
+            </div>
             <p className="text-white/70">Welches N64-Spiel wird hier dargestellt?</p>
           </div>
           
@@ -216,14 +398,14 @@ const MinigamesPage: React.FC = () => {
     const [moves, setMoves] = useState(0)
 
     const soundPairs = [
-      { id: 1, sound: '🎵', game: 'Mario 64' },
-      { id: 2, sound: '🎶', game: 'Zelda OoT' },
-      { id: 3, sound: '🔊', game: 'GoldenEye' },
-      { id: 4, sound: '🎼', game: 'Banjo-Kazooie' },
-      { id: 1, sound: '🎵', game: 'Mario 64' },
-      { id: 2, sound: '🎶', game: 'Zelda OoT' },
-      { id: 3, sound: '🔊', game: 'GoldenEye' },
-      { id: 4, sound: '🎼', game: 'Banjo-Kazooie' }
+      { id: 1, sound: '🎵', game: 'Mario 64', image: 'Super Mario 64' },
+      { id: 2, sound: '🎶', game: 'Zelda OoT', image: 'The Legend of Zelda: Ocarina of Time' },
+      { id: 3, sound: '🔊', game: 'GoldenEye', image: 'GoldenEye 007' },
+      { id: 4, sound: '🎼', game: 'Banjo-Kazooie', image: 'Banjo-Kazooie' },
+      { id: 1, sound: '🎵', game: 'Mario 64', image: 'Super Mario 64' },
+      { id: 2, sound: '🎶', game: 'Zelda OoT', image: 'The Legend of Zelda: Ocarina of Time' },
+      { id: 3, sound: '🔊', game: 'GoldenEye', image: 'GoldenEye 007' },
+      { id: 4, sound: '🎼', game: 'Banjo-Kazooie', image: 'Banjo-Kazooie' }
     ].sort(() => Math.random() - 0.5)
 
     const handleCardClick = (index: number) => {
@@ -261,19 +443,18 @@ const MinigamesPage: React.FC = () => {
               <button
                 key={index}
                 onClick={() => handleCardClick(index)}
-                className={`aspect-square flex flex-col items-center justify-center text-2xl rounded-lg transition-all duration-300 ${
+                className={`aspect-square rounded-lg transition-all duration-300 overflow-hidden ${
                   flippedCards.includes(index) || matchedCards.includes(index)
-                    ? 'bg-purple-600/30 border-2 border-purple-400'
-                    : 'bg-slate-700 hover:bg-slate-600 border-2 border-slate-600'
+                    ? 'transform-none'
+                    : 'hover:scale-105'
                 } ${matchedCards.includes(index) ? 'animate-pulse' : ''}`}
               >
                 {flippedCards.includes(index) || matchedCards.includes(index) ? (
-                  <>
-                    <div className="text-3xl">{card.sound}</div>
-                    <div className="text-xs mt-1">{card.game}</div>
-                  </>
+                  <GameImage game={card.image} className="w-full h-full" />
                 ) : (
-                  <div className="text-3xl">🎮</div>
+                  <div className="w-full h-full bg-slate-700 border-2 border-slate-600 rounded-lg flex items-center justify-center">
+                    <div className="text-3xl">🎮</div>
+                  </div>
                 )}
               </button>
             ))}
@@ -298,27 +479,32 @@ const MinigamesPage: React.FC = () => {
 
     const cartridges = [
       {
-        cover: '🎮 Rotes Cartridge mit Stern',
+        cartridge: { color: 'red', label: 'N64' },
+        description: 'Rotes Cartridge mit Stern-Symbol',
         correctGame: 'Super Mario 64',
         options: ['Super Mario 64', 'Mario Kart 64', 'Paper Mario', 'Mario Party']
       },
       {
-        cover: '🗡️ Goldenes Cartridge mit Triforce',
+        cartridge: { color: 'gold', label: 'ZELDA' },
+        description: 'Goldenes Cartridge mit Triforce',
         correctGame: 'The Legend of Zelda: Ocarina of Time',
         options: ['Zelda: Ocarina of Time', 'Zelda: Majora\'s Mask', 'Adventure of Link', 'Link\'s Awakening']
       },
       {
-        cover: '🔫 Schwarzes Cartridge mit 007',
+        cartridge: { color: 'black', label: '007' },
+        description: 'Schwarzes Cartridge mit 007-Logo',
         correctGame: 'GoldenEye 007',
         options: ['GoldenEye 007', 'Perfect Dark', 'Mission Impossible', 'The World Is Not Enough']
       },
       {
-        cover: '🐻 Oranges Cartridge mit Bär und Vogel',
+        cartridge: { color: 'orange', label: 'B-K' },
+        description: 'Oranges Cartridge mit Bär und Vogel',
         correctGame: 'Banjo-Kazooie',
         options: ['Banjo-Kazooie', 'Banjo-Tooie', 'Conker\'s Bad Fur Day', 'Diddy Kong Racing']
       },
       {
-        cover: '🏎️ Blaues Cartridge mit Kart',
+        cartridge: { color: 'blue', label: 'MK64' },
+        description: 'Blaues Cartridge mit Kart-Symbol',
         correctGame: 'Mario Kart 64',
         options: ['Mario Kart 64', 'Diddy Kong Racing', 'F-Zero X', 'Wave Race 64']
       }
@@ -355,8 +541,12 @@ const MinigamesPage: React.FC = () => {
         <div className="card border-l-4 border-red-400">
           <div className="text-center mb-6">
             <div className="bg-slate-700 rounded-lg p-6 mb-4">
-              <div className="text-4xl mb-2">📀</div>
-              <div className="text-lg font-medium">{cartridges[currentRound].cover}</div>
+              <CartridgeImage 
+                color={cartridges[currentRound].cartridge.color} 
+                label={cartridges[currentRound].cartridge.label}
+                className="mb-4"
+              />
+              <div className="text-lg font-medium">{cartridges[currentRound].description}</div>
             </div>
             <p className="text-white/70">Welches Spiel gehört zu diesem Cartridge?</p>
           </div>
@@ -406,17 +596,20 @@ const MinigamesPage: React.FC = () => {
       {
         character: 'Mario',
         pieces: ['🧢', '👨‍🦰', '👔', '👖'],
-        description: 'Setze Mario zusammen!'
+        description: 'Setze Mario zusammen!',
+        avatar: 'Mario'
       },
       {
         character: 'Link',
         pieces: ['🧝‍♂️', '🗡️', '🛡️', '👢'],
-        description: 'Baue Link aus Hyrule!'
+        description: 'Baue Link aus Hyrule!',
+        avatar: 'Link'
       },
       {
         character: 'Samus',
         pieces: ['🤖', '🔫', '⚡', '🚀'],
-        description: 'Erstelle Samus Aran!'
+        description: 'Erstelle Samus Aran!',
+        avatar: 'Samus'
       }
     ]
 
@@ -454,8 +647,13 @@ const MinigamesPage: React.FC = () => {
         
         <div className="card border-l-4 border-green-400">
           <div className="text-center mb-6">
-            <h4 className="text-xl font-bold mb-2">{puzzles[currentPuzzle].character}</h4>
-            <p className="text-white/70">{puzzles[currentPuzzle].description}</p>
+            <div className="flex justify-center items-center space-x-4 mb-4">
+              <CharacterAvatar character={puzzles[currentPuzzle].avatar} className="w-16 h-16" />
+              <div>
+                <h4 className="text-xl font-bold mb-2">{puzzles[currentPuzzle].character}</h4>
+                <p className="text-white/70">{puzzles[currentPuzzle].description}</p>
+              </div>
+            </div>
           </div>
           
           {/* Puzzle Slots */}
@@ -496,11 +694,36 @@ const MinigamesPage: React.FC = () => {
     const [correctAnswers, setCorrectAnswers] = useState(0)
 
     const questions = [
-      { q: 'Wie viele Sterne gibt es in Super Mario 64?', a: '120', options: ['120', '100', '150', '64'] },
-      { q: 'Welches Jahr wurde der N64 veröffentlicht?', a: '1996', options: ['1995', '1996', '1997', '1998'] },
-      { q: 'Wie heißt Marios Bruder?', a: 'Luigi', options: ['Luigi', 'Wario', 'Yoshi', 'Toad'] },
-      { q: 'Welche Farbe hat Links Tunika?', a: 'Grün', options: ['Grün', 'Blau', 'Rot', 'Gelb'] },
-      { q: 'Wie viele Controller-Ports hat der N64?', a: '4', options: ['2', '4', '6', '8'] }
+      { 
+        q: 'Wie viele Sterne gibt es in Super Mario 64?', 
+        a: '120', 
+        options: ['120', '100', '150', '64'],
+        image: 'Super Mario 64'
+      },
+      { 
+        q: 'Welches Jahr wurde der N64 veröffentlicht?', 
+        a: '1996', 
+        options: ['1995', '1996', '1997', '1998'],
+        image: null
+      },
+      { 
+        q: 'Wie heißt Marios Bruder?', 
+        a: 'Luigi', 
+        options: ['Luigi', 'Wario', 'Yoshi', 'Toad'],
+        image: null
+      },
+      { 
+        q: 'Welche Farbe hat Links Tunika?', 
+        a: 'Grün', 
+        options: ['Grün', 'Blau', 'Rot', 'Gelb'],
+        image: 'The Legend of Zelda: Ocarina of Time'
+      },
+      { 
+        q: 'Wie viele Controller-Ports hat der N64?', 
+        a: '4', 
+        options: ['2', '4', '6', '8'],
+        image: null
+      }
     ]
 
     useEffect(() => {
@@ -573,6 +796,11 @@ const MinigamesPage: React.FC = () => {
         
         <div className="card border-l-4 border-yellow-400">
           <div className="text-center mb-6">
+            {questions[currentQuestion].image && (
+              <div className="flex justify-center mb-4">
+                <GameImage game={questions[currentQuestion].image} className="w-20 h-20" />
+              </div>
+            )}
             <h4 className="text-xl font-bold mb-4">{questions[currentQuestion].q}</h4>
           </div>
           
@@ -634,14 +862,15 @@ const MinigamesPage: React.FC = () => {
                   <button
                     key={char}
                     onClick={() => setSelectedCharacter(char)}
-                    className={`w-full p-3 rounded-lg transition-all duration-200 ${
+                    className={`w-full p-3 rounded-lg transition-all duration-200 flex items-center space-x-3 ${
                       selectedCharacter === char 
                         ? 'bg-pink-600/30 border-2 border-pink-400' 
                         : 'bg-slate-700 hover:bg-slate-600 border-2 border-slate-600'
                     } ${matches[char] ? 'opacity-50' : ''}`}
                     disabled={!!matches[char]}
                   >
-                    {char} {matches[char] ? `→ ${matches[char]}` : ''}
+                    <CharacterAvatar character={char} className="w-8 h-8" />
+                    <span>{char} {matches[char] ? `→ ${matches[char]}` : ''}</span>
                   </button>
                 ))}
               </div>
@@ -778,7 +1007,7 @@ const MinigamesPage: React.FC = () => {
                 key={button}
                 onClick={() => handleButtonPress(button)}
                 disabled={showingSequence}
-                className={`aspect-square text-3xl rounded-lg transition-all duration-200 hover:scale-105 ${
+                className={`aspect-square text-3xl rounded-lg transition-all duration-200 hover:scale-105 controller-btn ${
                   showingSequence 
                     ? 'bg-slate-700 opacity-50' 
                     : 'bg-slate-600 hover:bg-cyan-600/20 border-2 border-slate-500 hover:border-cyan-400'
@@ -801,34 +1030,39 @@ const MinigamesPage: React.FC = () => {
 
     const bosses = [
       {
-        description: '👑 Großer Koopa mit Spikes am Rücken',
+        description: 'Großer Koopa mit Spikes am Rücken',
         answer: 'Bowser',
         game: 'Super Mario 64',
-        options: ['Bowser', 'King K. Rool', 'Ganondorf', 'Ridley']
+        options: ['Bowser', 'King K. Rool', 'Ganondorf', 'Ridley'],
+        boss: 'Bowser'
       },
       {
-        description: '🐉 Dunkler Magier aus Hyrule',
+        description: 'Dunkler Magier aus Hyrule',
         answer: 'Ganondorf',
         game: 'Zelda: Ocarina of Time',
-        options: ['Ganondorf', 'Bowser', 'Sephiroth', 'Dracula']
+        options: ['Ganondorf', 'Bowser', 'Sephiroth', 'Dracula'],
+        boss: 'Ganondorf'
       },
       {
-        description: '🦍 Riesiger Krokodil-König',
+        description: 'Riesiger Krokodil-König',
         answer: 'King K. Rool',
         game: 'Donkey Kong 64',
-        options: ['King K. Rool', 'Bowser', 'Ganondorf', 'Ridley']
+        options: ['King K. Rool', 'Bowser', 'Ganondorf', 'Ridley'],
+        boss: 'King K. Rool'
       },
       {
-        description: '🤖 Mechanischer Space Pirate',
+        description: 'Mechanischer Space Pirate',
         answer: 'Ridley',
         game: 'Super Metroid',
-        options: ['Ridley', 'Samus', 'Mother Brain', 'Kraid']
+        options: ['Ridley', 'Samus', 'Mother Brain', 'Kraid'],
+        boss: 'Ridley'
       },
       {
-        description: '👹 Maskierter Schurke aus Termina',
+        description: 'Maskierter Schurke aus Termina',
         answer: 'Majora',
         game: 'Zelda: Majora\'s Mask',
-        options: ['Majora', 'Ganondorf', 'Skull Kid', 'Moon']
+        options: ['Majora', 'Ganondorf', 'Skull Kid', 'Moon'],
+        boss: 'Majora'
       }
     ]
 
@@ -863,7 +1097,7 @@ const MinigamesPage: React.FC = () => {
         <div className="card border-l-4 border-orange-400">
           <div className="text-center mb-6">
             <div className="bg-slate-700 rounded-lg p-6 mb-4">
-              <div className="text-4xl mb-3">👹</div>
+              <BossImage boss={bosses[currentBoss].boss} className="w-32 h-32 mx-auto mb-4" />
               <div className="text-lg font-medium mb-2">{bosses[currentBoss].description}</div>
               <div className="text-sm text-white/70">aus {bosses[currentBoss].game}</div>
             </div>
