@@ -149,3 +149,38 @@
   outline: 2px solid #3b82f6;
   outline-offset: 2px;
 }
+
+/* Quick Stats Section */
+.sidebar-stats {
+  margin-top: 2rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sidebar-stats h3 {
+  color: #ffd700;
+  font-size: 0.9rem;
+  margin-bottom: 0.8rem;
+  text-align: center;
+}
+
+.stat-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  padding: 0.3rem 0;
+}
+
+.stat-label {
+  font-size: 0.8rem;
+  color: #ccc;
+}
+
+.stat-value {
+  font-size: 0.8rem;
+  color: #4ade80;
+  font-weight: bold;
+}
