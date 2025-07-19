@@ -1,14 +1,13 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useUser } from '../contexts/UserContext'
-import { Gamepad2, Music, Image, Puzzle, Clock, Palette, Target, Zap } from 'lucide-react'
 
 const MinigamesPage: React.FC = () => {
-  const { user } = useUser()
   const [selectedGame, setSelectedGame] = useState<string | null>(null)
   const [gameState, setGameState] = useState<any>({})
   const [score, setScore] = useState(0)
   const [timeLeft, setTimeLeft] = useState(0)
   const [isGameActive, setIsGameActive] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
 
   const minigames = [
     {
@@ -124,7 +123,7 @@ const MinigamesPage: React.FC = () => {
 
   // Game Image Component
   const GameImage: React.FC<{ game: string; className?: string }> = ({ game, className = "" }) => {
-    const gameImages = {
+    const gameImages: { [key: string]: { bg: string; icon: string; char: string; color: string } } = {
       'Super Mario 64': {
         bg: 'bg-gradient-to-br from-red-500 to-blue-500',
         icon: '🍄',
@@ -192,7 +191,7 @@ const MinigamesPage: React.FC = () => {
 
   // Cartridge Image Component
   const CartridgeImage: React.FC<{ color: string; label: string; className?: string }> = ({ color, label, className = "" }) => {
-    const cartridgeColors = {
+    const cartridgeColors: { [key: string]: string } = {
       'red': 'bg-gradient-to-b from-red-400 to-red-600',
       'gold': 'bg-gradient-to-b from-yellow-400 to-yellow-600',
       'black': 'bg-gradient-to-b from-gray-700 to-gray-900',
@@ -217,7 +216,7 @@ const MinigamesPage: React.FC = () => {
 
   // Character Avatar Component
   const CharacterAvatar: React.FC<{ character: string; className?: string }> = ({ character, className = "" }) => {
-    const characters = {
+    const characters: { [key: string]: { bg: string; emoji: string; text: string } } = {
       'Mario': { bg: 'bg-gradient-to-br from-red-500 to-blue-500', emoji: '🔴', text: 'M' },
       'Luigi': { bg: 'bg-gradient-to-br from-green-500 to-blue-500', emoji: '🟢', text: 'L' },
       'Yoshi': { bg: 'bg-gradient-to-br from-green-400 to-yellow-400', emoji: '🟡', text: 'Y' },
@@ -239,7 +238,7 @@ const MinigamesPage: React.FC = () => {
 
   // Boss Image Component
   const BossImage: React.FC<{ boss: string; className?: string }> = ({ boss, className = "" }) => {
-    const bosses = {
+    const bosses: { [key: string]: { bg: string; emoji: string; effects: string } } = {
       'Bowser': { bg: 'bg-gradient-to-br from-red-600 to-orange-600', emoji: '👑', effects: 'shadow-red-500/50' },
       'Ganondorf': { bg: 'bg-gradient-to-br from-purple-700 to-black', emoji: '🐉', effects: 'shadow-purple-500/50' },
       'King K. Rool': { bg: 'bg-gradient-to-br from-green-700 to-yellow-600', emoji: '🦍', effects: 'shadow-green-500/50' },
@@ -827,7 +826,7 @@ const MinigamesPage: React.FC = () => {
 
     const characters = ['Mario', 'Luigi', 'Yoshi', 'Kirby']
     const colors = ['🔴 Rot', '🟢 Grün', '🟡 Gelb', '🩷 Rosa']
-    const correctMatches = { 'Mario': '🔴 Rot', 'Luigi': '🟢 Grün', 'Yoshi': '🟡 Gelb', 'Kirby': '🩷 Rosa' }
+    const correctMatches: { [key: string]: string } = { 'Mario': '🔴 Rot', 'Luigi': '🟢 Grün', 'Yoshi': '🟡 Gelb', 'Kirby': '🩷 Rosa' }
 
     const handleMatch = () => {
       if (selectedCharacter && selectedColor) {
@@ -1140,9 +1139,21 @@ const MinigamesPage: React.FC = () => {
     )
   }
 
+  if (isLoading) {
+    return (
+      <div className="container mx-auto px-4 py-6 min-h-screen bg-slate-900 flex items-center justify-center">
+        <div className="text-center">
+          <div className="text-6xl mb-4 animate-bounce">🎮</div>
+          <h2 className="text-2xl font-bold text-white mb-2">Spiel wird geladen...</h2>
+          <p className="text-white/70">Bitte warten Sie einen Moment.</p>
+        </div>
+      </div>
+    )
+  }
+
   if (selectedGame) {
     return (
-      <div className="container mx-auto px-4 py-6">
+      <div className="container mx-auto px-4 py-6 min-h-screen bg-slate-900">
         <button
           onClick={() => {
             setSelectedGame(null)
@@ -1155,20 +1166,68 @@ const MinigamesPage: React.FC = () => {
           <span>Zurück zu Minigames</span>
         </button>
         
-        {selectedGame === 'emoji-quiz' && renderEmojiQuiz()}
-        {selectedGame === 'sound-memory' && renderSoundMemory()}
-        {selectedGame === 'cartridge-match' && renderCartridgeMatch()}
-        {selectedGame === 'character-puzzle' && renderCharacterPuzzle()}
-        {selectedGame === 'speed-challenge' && renderSpeedChallenge()}
-        {selectedGame === 'color-match' && renderColorMatch()}
-        {selectedGame === 'controller-challenge' && renderControllerChallenge()}
-        {selectedGame === 'boss-rush' && renderBossRush()}
+        <div className="text-center mb-8">
+          <h2 className="text-3xl font-bold text-white mb-4">
+            {minigames.find(game => game.id === selectedGame)?.name || 'Minigame'}
+          </h2>
+          <p className="text-white/70">
+            {minigames.find(game => game.id === selectedGame)?.description || 'Spiel wird geladen...'}
+          </p>
+        </div>
+
+        <div className="card">
+          {(() => {
+            try {
+              switch(selectedGame) {
+                case 'emoji-quiz':
+                  return renderEmojiQuiz()
+                case 'sound-memory':
+                  return renderSoundMemory()
+                case 'cartridge-match':
+                  return renderCartridgeMatch()
+                case 'character-puzzle':
+                  return renderCharacterPuzzle()
+                case 'speed-challenge':
+                  return renderSpeedChallenge()
+                case 'color-match':
+                  return renderColorMatch()
+                case 'controller-challenge':
+                  return renderControllerChallenge()
+                case 'boss-rush':
+                  return renderBossRush()
+                default:
+                  return (
+                    <div className="text-center py-12">
+                      <div className="text-6xl mb-4">🎮</div>
+                      <h3 className="text-xl font-bold text-white mb-2">Spiel nicht gefunden</h3>
+                      <p className="text-white/70">Dieses Minigame ist noch nicht verfügbar.</p>
+                    </div>
+                  )
+              }
+            } catch (error) {
+              console.error('Error rendering minigame:', error)
+              return (
+                <div className="text-center py-12">
+                  <div className="text-6xl mb-4">⚠️</div>
+                  <h3 className="text-xl font-bold text-red-400 mb-2">Fehler beim Laden</h3>
+                  <p className="text-white/70">Es gab einen Fehler beim Laden des Spiels.</p>
+                  <button 
+                    onClick={() => setSelectedGame(null)}
+                    className="mt-4 btn-primary"
+                  >
+                    Zurück zur Übersicht
+                  </button>
+                </div>
+              )
+            }
+          })()}
+        </div>
       </div>
     )
   }
 
   return (
-    <div className="container mx-auto px-4 py-6">
+    <div className="container mx-auto px-4 py-6 min-h-screen bg-slate-900">
       {/* Header */}
       <div className="text-center mb-8">
         <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent mb-4">
@@ -1185,7 +1244,14 @@ const MinigamesPage: React.FC = () => {
           <div
             key={game.id}
             className={`card ${game.color} border-l-4 ${game.borderColor} cursor-pointer hover:bg-white/10 transition-all duration-300 hover:scale-105 hover:shadow-2xl group`}
-            onClick={() => setSelectedGame(game.id)}
+            onClick={() => {
+              console.log('Minigame clicked:', game.id, game.name)
+              setIsLoading(true)
+              setTimeout(() => {
+                setSelectedGame(game.id)
+                setIsLoading(false)
+              }, 100) // Small delay to show loading
+            }}
           >
             <div className="flex items-center space-x-4">
               <div className="text-4xl group-hover:animate-bounce">{game.icon}</div>
