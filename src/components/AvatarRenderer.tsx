@@ -407,7 +407,6 @@ const AvatarRenderer: React.FC<AvatarRendererProps> = ({
       `}
       style={{
         filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.3))',
-        imageRendering: 'pixelated', // Gives that retro N64 look
       }}
     >
       {renderHead()}
