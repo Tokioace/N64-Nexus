@@ -98,193 +98,285 @@
     @apply transition-transform duration-200 hover:scale-105;
   }
 
-  .hover-scale-small {
-    @apply transition-transform duration-200 hover:scale-105;
+  /* Enhanced N64 Minigames Styles */
+  .n64-gradient {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
   }
 
-  /* Fixed footer positioning */
-  .footer-fixed {
-    @apply fixed bottom-0 left-0 right-0 bg-slate-900 border-t border-slate-700 p-4 z-50;
+  .n64-card {
+    @apply bg-slate-800 border border-slate-700 rounded-lg shadow-xl;
+    background: linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(51, 65, 85, 0.95) 100%);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(148, 163, 184, 0.2);
   }
 
-  /* Mobile-friendly spacing */
-  @media (max-width: 768px) {
-    .simple-tile {
-      @apply p-3;
-    }
-    
-    .simple-tile-small {
-      @apply p-2 min-h-[80px];
-    }
-    
-    .grid {
-      @apply gap-2;
-    }
+  .n64-card:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
   }
-  
+
+  /* Game-specific color themes */
+  .game-blue {
+    @apply border-l-4 border-blue-400;
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(30, 41, 59, 0.95) 100%);
+  }
+
+  .game-purple {
+    @apply border-l-4 border-purple-400;
+    background: linear-gradient(135deg, rgba(147, 51, 234, 0.1) 0%, rgba(30, 41, 59, 0.95) 100%);
+  }
+
+  .game-red {
+    @apply border-l-4 border-red-400;
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(30, 41, 59, 0.95) 100%);
+  }
+
+  .game-green {
+    @apply border-l-4 border-green-400;
+    background: linear-gradient(135deg, rgba(34, 197, 94, 0.1) 0%, rgba(30, 41, 59, 0.95) 100%);
+  }
+
+  .game-yellow {
+    @apply border-l-4 border-yellow-400;
+    background: linear-gradient(135deg, rgba(234, 179, 8, 0.1) 0%, rgba(30, 41, 59, 0.95) 100%);
+  }
+
+  .game-pink {
+    @apply border-l-4 border-pink-400;
+    background: linear-gradient(135deg, rgba(236, 72, 153, 0.1) 0%, rgba(30, 41, 59, 0.95) 100%);
+  }
+
+  .game-cyan {
+    @apply border-l-4 border-cyan-400;
+    background: linear-gradient(135deg, rgba(6, 182, 212, 0.1) 0%, rgba(30, 41, 59, 0.95) 100%);
+  }
+
+  .game-orange {
+    @apply border-l-4 border-orange-400;
+    background: linear-gradient(135deg, rgba(251, 146, 60, 0.1) 0%, rgba(30, 41, 59, 0.95) 100%);
+  }
+
+  /* Enhanced quiz option styles */
   .quiz-option.selected {
-    @apply bg-blue-900 border-blue-500 text-blue-100;
+    @apply bg-blue-900 border-blue-500 text-blue-100 scale-105;
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+  }
+
+  /* Memory card animations */
+  .memory-card {
+    @apply transition-all duration-300 transform-gpu;
+    perspective: 1000px;
+  }
+
+  .memory-card.flipped {
+    transform: rotateY(180deg);
+  }
+
+  .memory-card.matched {
+    @apply animate-pulse;
+    background: linear-gradient(135deg, rgba(34, 197, 94, 0.2) 0%, rgba(16, 185, 129, 0.2) 100%);
+  }
+
+  /* Speed challenge timer */
+  .speed-timer {
+    @apply text-2xl font-bold;
+    animation: pulse 1s infinite;
+  }
+
+  .speed-timer.critical {
+    @apply text-red-400;
+    animation: pulse 0.5s infinite;
+  }
+
+  /* Controller button effects */
+  .controller-btn {
+    @apply transition-all duration-150;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  }
+
+  .controller-btn:active {
+    transform: translateY(2px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  .controller-btn:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+  }
+
+  /* Puzzle piece animations */
+  .puzzle-piece {
+    @apply transition-all duration-200;
+    cursor: grab;
+  }
+
+  .puzzle-piece:active {
+    cursor: grabbing;
+    transform: scale(1.1) rotate(5deg);
+  }
+
+  .puzzle-slot {
+    @apply transition-all duration-300;
+  }
+
+  .puzzle-slot.can-drop {
+    @apply bg-green-600/20 border-green-400;
+    animation: pulse 1s infinite;
+  }
+
+  /* Boss battle effects */
+  .boss-card {
+    @apply relative overflow-hidden;
+  }
+
+  .boss-card::before {
+    content: '';
+    @apply absolute inset-0 opacity-0 transition-opacity duration-300;
+    background: linear-gradient(45deg, rgba(239, 68, 68, 0.1) 0%, rgba(251, 146, 60, 0.1) 100%);
+  }
+
+  .boss-card:hover::before {
+    @apply opacity-100;
+  }
+
+  /* Retro scanlines effect */
+  .retro-scanlines {
+    position: relative;
+  }
+
+  .retro-scanlines::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      transparent 50%, 
+      rgba(0, 255, 0, 0.03) 50%
+    );
+    background-size: 100% 4px;
+    pointer-events: none;
+    opacity: 0.5;
+  }
+
+  /* N64 logo animation */
+  .n64-logo {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+
+  /* Particle effects for celebrations */
+  .celebration {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .celebration::before {
+    content: '🎉';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 4rem;
+    opacity: 0;
+    animation: celebrate 2s ease-out;
+  }
+
+  @keyframes celebrate {
+    0% { 
+      opacity: 0; 
+      transform: translate(-50%, -50%) scale(0) rotate(0deg); 
+    }
+    50% { 
+      opacity: 1; 
+      transform: translate(-50%, -50%) scale(1.2) rotate(180deg); 
+    }
+    100% { 
+      opacity: 0; 
+      transform: translate(-50%, -50%) scale(0) rotate(360deg); 
+    }
+  }
+
+  /* Glowing text effect */
+  .glow-text {
+    text-shadow: 0 0 10px currentColor, 0 0 20px currentColor, 0 0 30px currentColor;
+  }
+
+  /* Enhanced button styles for minigames */
+  .minigame-btn {
+    @apply relative overflow-hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .minigame-btn::before {
+    content: '';
+    @apply absolute inset-0 opacity-0;
+    background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
+    transform: translateX(-100%);
+    transition: transform 0.6s;
+  }
+
+  .minigame-btn:hover::before {
+    @apply opacity-100;
+    transform: translateX(100%);
+  }
+
+  /* Score counter animation */
+  .score-counter {
+    @apply transition-all duration-500;
+  }
+
+  .score-counter.updated {
+    @apply scale-110 text-yellow-400;
+    animation: scoreUpdate 0.6s ease-out;
+  }
+
+  @keyframes scoreUpdate {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+  }
+
+  /* Game completion effects */
+  .game-complete {
+    animation: gameComplete 1s ease-out;
+  }
+
+  @keyframes gameComplete {
+    0% { transform: scale(1) rotate(0deg); opacity: 1; }
+    25% { transform: scale(1.1) rotate(5deg); }
+    50% { transform: scale(1.2) rotate(-5deg); }
+    75% { transform: scale(1.1) rotate(3deg); }
+    100% { transform: scale(1) rotate(0deg); opacity: 1; }
+  }
+
+  /* Loading spinner for game transitions */
+  .loading-spinner {
+    @apply w-8 h-8 border-4 border-slate-600 border-t-blue-400 rounded-full;
+    animation: spin 1s linear infinite;
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
   }
 }
 
-/* Kompakte Tile-Styles für No-Scroll Layout */
-.simple-tile {
-  @apply bg-slate-800 border border-slate-700 rounded-lg p-3 
-         text-slate-100 shadow-lg;
-}
-
-.simple-tile-large {
-  @apply min-h-[180px] p-4;
-}
-
-.simple-tile-small {
-  @apply min-h-[100px] p-3 flex flex-col items-center justify-center text-center
-         aspect-square;
-}
-
-.simple-tile-header {
-  @apply mb-3 pb-2 border-b border-slate-600;
-}
-
-.simple-tile-content {
-  @apply flex-1;
-}
-
-.simple-tile-icon {
-  @apply mb-2;
-}
-
-.simple-tile-label {
-  @apply mt-2 font-medium text-slate-200;
-}
-
-/* Responsive Anpassungen für kompaktes Layout */
+/* Responsive design improvements */
 @media (max-width: 768px) {
-  .simple-tile-small {
-    @apply min-h-[80px] p-2;
+  .card {
+    @apply p-4;
   }
   
-  .simple-tile-large {
-    @apply min-h-[160px] p-3;
+  .quiz-option {
+    @apply p-3 text-sm;
   }
   
-  .simple-tile-header {
-    @apply mb-2 pb-2;
+  .minigame-btn {
+    @apply text-sm p-3;
   }
-}
-
-@media (max-width: 640px) {
-  .simple-tile-small {
-    @apply min-h-[70px] p-2;
-  }
-  
-  .simple-tile-large {
-    @apply min-h-[140px] p-3;
-  }
-}
-
-/* Forum-specific styles */
-.forum-post {
-  @apply bg-slate-800 border border-slate-700 rounded-lg p-4 mb-4;
-}
-
-.forum-post-header {
-  @apply flex items-center justify-between mb-3 pb-2 border-b border-slate-600;
-}
-
-.forum-post-content {
-  @apply text-slate-100 leading-relaxed;
-}
-
-.forum-post-content p {
-  @apply mb-3 last:mb-0;
-}
-
-.forum-post-meta {
-  @apply text-sm text-slate-400 flex items-center space-x-2;
-}
-
-.forum-thread-title {
-  @apply text-xl font-bold text-slate-100 hover:text-blue-400 transition-colors cursor-pointer;
-}
-
-.forum-category-icon {
-  @apply w-6 h-6 flex-shrink-0;
-}
-
-.forum-stats-tile {
-  @apply bg-slate-800 border border-slate-700 rounded-lg p-4 text-center;
-}
-
-.forum-stats-number {
-  @apply text-2xl font-bold text-blue-400;
-}
-
-.forum-stats-label {
-  @apply text-sm text-slate-400 mt-1;
-}
-
-/* Forum user badges */
-.forum-user-badge {
-  @apply inline-flex items-center px-2 py-1 rounded-full text-xs font-medium;
-}
-
-.forum-user-badge.newbie {
-  @apply bg-gray-700 text-gray-200;
-}
-
-.forum-user-badge.collector {
-  @apply bg-green-700 text-green-200;
-}
-
-.forum-user-badge.veteran {
-  @apply bg-blue-700 text-blue-200;
-}
-
-.forum-user-badge.expert {
-  @apply bg-purple-700 text-purple-200;
-}
-
-.forum-user-badge.master {
-  @apply bg-yellow-700 text-yellow-200;
-}
-
-/* Face Creator Slider Styles */
-.slider {
-  -webkit-appearance: none;
-  appearance: none;
-  background: #4a5568;
-  outline: none;
-  border-radius: 5px;
-}
-
-.slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: linear-gradient(45deg, #ec4899, #8b5cf6);
-  cursor: pointer;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-.slider::-moz-range-thumb {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: linear-gradient(45deg, #ec4899, #8b5cf6);
-  cursor: pointer;
-  border: none;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-.slider:hover::-webkit-slider-thumb {
-  transform: scale(1.1);
-  transition: transform 0.2s ease;
-}
-
-.slider:hover::-moz-range-thumb {
-  transform: scale(1.1);
-  transition: transform 0.2s ease;
 }
