@@ -8,56 +8,10 @@ export interface User {
   totalAnswers: number
   achievements: Achievement[]
   quizProgress: QuizProgress
-  avatar?: AvatarData
-  face?: FaceData  // New face system
+  profileImage?: string // N64 Camera Creator profile image
 }
 
-// N64-Style Avatar System Types
-export interface AvatarData {
-  id: string
-  headShape: 'round' | 'square' | 'oval' | 'diamond'
-  headColor: string
-  eyeType: 'normal' | 'wide' | 'sleepy' | 'angry' | 'happy' | 'closed'
-  eyeColor: string
-  noseType: 'small' | 'medium' | 'large' | 'flat' | 'pointed'
-  mouthType: 'smile' | 'neutral' | 'frown' | 'open' | 'smirk' | 'surprised'
-  hairType: 'none' | 'short' | 'medium' | 'long' | 'spiky' | 'curly' | 'cap' | 'afro' | 'mohawk' | 'braids' | 'cornrows'
-  hairColor: string
-  accessory?: 'none' | 'glasses' | 'hat' | 'headband' | 'earrings' | 'mustache' | 'beard' | 'bandana' | 'cap_backwards' | 'sunglasses' | 'chains'
-  accessoryColor: string
-  bodyType: 'thin' | 'normal' | 'wide' | 'muscular'
-  bodyColor: string
-  shirtType: 'plain' | 'striped' | 'spotted' | 'logo' | 'hoodie' | 'jacket' | 'jersey' | 'tank_top' | 'tracksuit' | 'urban_tee'
-  shirtColor: string
-  shirtPattern?: string
-  // FIFA Street PS2 Style Features
-  streetStyle?: 'classic' | 'urban' | 'freestyle' | 'retro' | 'gangsta'
-  attitude?: 'chill' | 'aggressive' | 'cocky' | 'focused' | 'playful'
-  skillLevel?: 'beginner' | 'amateur' | 'pro' | 'legend'
-  createdAt: Date
-  updatedAt: Date
-}
 
-export interface AvatarPreset {
-  id: string
-  name: string
-  description: string
-  avatar: Omit<AvatarData, 'id' | 'createdAt' | 'updatedAt'>
-  category: 'retro' | 'cool' | 'fun' | 'classic'
-  unlockRequirement?: {
-    type: 'level' | 'points' | 'achievement'
-    value: number | string
-  }
-}
-
-export interface AvatarContextType {
-  currentAvatar: AvatarData | null
-  presets: AvatarPreset[]
-  saveAvatar: (avatarData: Omit<AvatarData, 'id' | 'createdAt' | 'updatedAt'>) => void
-  loadPreset: (presetId: string) => void
-  generateRandomAvatar: () => AvatarData
-  isPresetUnlocked: (preset: AvatarPreset) => boolean
-}
 
 export interface QuizQuestion {
   id: string
@@ -171,6 +125,7 @@ export interface UserContextType {
   updateQuizProgress: (questionId: string, isCorrect: boolean) => void
   unlockAchievement: (achievementId: string) => void
   saveUser: (userData: User) => void
+  updateUser: (userData: User) => void
 }
 
 // Event System Types
@@ -368,92 +323,3 @@ export interface ForumStats {
   mostActiveCategory: string
 }
 
-// New Face-Focused Avatar System Types
-export interface FaceData {
-  id: string
-  // Face Shape & Structure
-  faceShape: 'round' | 'oval' | 'square' | 'heart' | 'diamond' | 'long'
-  faceWidth: number // 0.8 - 1.2
-  faceHeight: number // 0.8 - 1.2
-  skinTone: string
-  
-  // Eyes
-  eyeShape: 'round' | 'almond' | 'hooded' | 'upturned' | 'downturned' | 'monolid'
-  eyeSize: number // 0.7 - 1.3
-  eyeDistance: number // 0.8 - 1.2
-  eyeColor: string
-  eyebrowShape: 'straight' | 'arched' | 'rounded' | 'angled' | 'thick' | 'thin'
-  eyebrowThickness: number // 0.5 - 1.5
-  eyebrowColor: string
-  eyelashes: boolean
-  
-  // Nose
-  noseShape: 'straight' | 'roman' | 'button' | 'hawk' | 'snub' | 'crooked'
-  noseSize: number // 0.7 - 1.3
-  noseWidth: number // 0.8 - 1.2
-  
-  // Mouth & Lips
-  lipShape: 'full' | 'thin' | 'bow' | 'wide' | 'small' | 'heart'
-  lipSize: number // 0.7 - 1.3
-  lipColor: string
-  mouthExpression: 'neutral' | 'smile' | 'frown' | 'smirk' | 'open' | 'surprised'
-  
-  // Cheeks & Jawline
-  cheekbones: 'low' | 'medium' | 'high' | 'prominent'
-  jawShape: 'soft' | 'defined' | 'square' | 'pointed' | 'round'
-  chinShape: 'small' | 'medium' | 'large' | 'cleft' | 'double'
-  
-  // Hair
-  hairStyle: 'none' | 'short' | 'medium' | 'long' | 'curly' | 'wavy' | 'straight' | 'afro' | 'braids' | 'ponytail' | 'bun' | 'pixie' | 'bob' | 'shag' | 'mohawk'
-  hairColor: string
-  hairLength: number // 0.5 - 2.0
-  hairVolume: number // 0.5 - 1.5
-  
-  // Facial Hair
-  facialHair: 'none' | 'mustache' | 'beard' | 'goatee' | 'stubble' | 'full_beard' | 'soul_patch'
-  facialHairColor: string
-  facialHairLength: number // 0.5 - 1.5
-  
-  // Accessories
-  glasses: 'none' | 'round' | 'square' | 'aviator' | 'cat_eye' | 'reading' | 'sunglasses'
-  glassesColor: string
-  earrings: 'none' | 'studs' | 'hoops' | 'dangly' | 'gauges'
-  earringColor: string
-  
-  // Makeup (optional)
-  lipstick: boolean
-  lipstickColor: string
-  eyeshadow: boolean
-  eyeshadowColor: string
-  blush: boolean
-  blushColor: string
-  
-  // Age & Character
-  ageGroup: 'child' | 'teen' | 'young_adult' | 'adult' | 'middle_aged' | 'elderly'
-  gender: 'masculine' | 'feminine' | 'neutral'
-  
-  // Metadata
-  createdAt: Date
-  updatedAt: Date
-}
-
-export interface FacePreset {
-  id: string
-  name: string
-  description: string
-  category: 'realistic' | 'cartoon' | 'anime' | 'stylized' | 'retro'
-  face: Omit<FaceData, 'id' | 'createdAt' | 'updatedAt'>
-  unlockRequirement?: {
-    type: 'level' | 'points' | 'achievement'
-    value: number | string
-  }
-}
-
-export interface FaceContextType {
-  currentFace: FaceData | null
-  presets: FacePreset[]
-  saveFace: (faceData: Omit<FaceData, 'id' | 'createdAt' | 'updatedAt'>) => void
-  loadPreset: (presetId: string) => void
-  generateRandomFace: () => FaceData
-  isPresetUnlocked: (preset: FacePreset) => boolean
-}

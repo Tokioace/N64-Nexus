@@ -2,21 +2,16 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { useUser } from '../contexts/UserContext'
 import { useEvents } from '../contexts/EventContext'
-import AvatarRenderer from './AvatarRenderer'
+
 import { 
   Brain, 
   Calendar, 
   Zap, 
   Trophy, 
   Gamepad2, 
-  User,
-  Target,
-  Award,
-  Timer,
+  Camera,
   Clock,
   Star,
-  Users,
-  Camera,
   Package,
   MessageSquare
 } from 'lucide-react'
@@ -125,15 +120,20 @@ const HomeScreenRetro: React.FC = () => {
                     <span className="font-medium text-slate-100 text-sm">Latest Winner</span>
                   </div>
                   <div className="flex items-center space-x-3 text-slate-200">
-                    {user.avatar ? (
-                      <AvatarRenderer 
-                        avatar={user.avatar} 
-                        size="sm" 
-                        animate={false}
-                      />
+                    {user.profileImage ? (
+                      <div className="w-8 h-8 rounded-lg overflow-hidden border border-purple-400/50">
+                        <img
+                          src={user.profileImage}
+                          alt="N64 Character"
+                          className="w-full h-full object-cover"
+                          style={{
+                            imageRendering: 'pixelated'
+                          }}
+                        />
+                      </div>
                     ) : (
-                      <div className="w-8 h-8 bg-blue-600/20 rounded-full flex items-center justify-center text-sm">
-                        👤
+                      <div className="w-8 h-8 bg-purple-600/20 rounded-lg flex items-center justify-center text-sm">
+                        🎮
                       </div>
                     )}
                     <div>
@@ -161,13 +161,13 @@ const HomeScreenRetro: React.FC = () => {
 
         {/* Untere Reihe - Alle Features kompakt */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-8 gap-3">
-          {/* NEW: Face Creator Tile - Featured */}
-          <Link to="/face-creator" className="simple-tile simple-tile-small hover:scale-105 transition-transform bg-gradient-to-br from-pink-500/20 to-purple-500/20 border-pink-400/30">
+          {/* NEW: N64 Camera Creator Tile - Featured */}
+          <Link to="/n64-camera" className="simple-tile simple-tile-small hover:scale-105 transition-transform bg-gradient-to-br from-pink-500/20 to-purple-500/20 border-pink-400/30">
             <div className="simple-tile-icon">
-              <User className="w-7 h-7 text-pink-400 mx-auto" />
+              <Camera className="w-7 h-7 text-pink-400 mx-auto" />
             </div>
             <div className="simple-tile-label">
-              <div className="font-medium text-pink-100 text-sm">Face Creator</div>
+              <div className="font-medium text-pink-100 text-sm">N64 Camera</div>
               <div className="text-xs text-pink-300">NEW!</div>
             </div>
           </Link>
@@ -252,7 +252,7 @@ const HomeScreenRetro: React.FC = () => {
           {/* Profile Tile */}
           <Link to="/profile" className="simple-tile simple-tile-small hover:scale-105 transition-transform">
             <div className="simple-tile-icon">
-              <User className="w-7 h-7 text-indigo-400 mx-auto" />
+              <Gamepad2 className="w-7 h-7 text-indigo-400 mx-auto" />
             </div>
             <div className="simple-tile-label">
               <div className="font-medium text-slate-100 text-sm">Profile</div>
@@ -261,6 +261,8 @@ const HomeScreenRetro: React.FC = () => {
           </Link>
         </div>
       </div>
+
+
     </div>
   )
 }

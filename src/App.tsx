@@ -1,8 +1,7 @@
 import { Routes, Route } from 'react-router-dom'
 import { QuizProvider } from './contexts/QuizContext'
 import { UserProvider } from './contexts/UserContext'
-import { AvatarProvider } from './contexts/AvatarContext'
-import { FaceProvider } from './contexts/FaceContext'
+
 import { EventProvider } from './contexts/EventContext'
 import { MediaProvider } from './contexts/MediaContext'
 import { ForumProvider } from './contexts/ForumContext'
@@ -20,19 +19,17 @@ import ForumPage from './pages/ForumPage'
 import ForumCategoryPage from './pages/ForumCategoryPage'
 import ForumThreadPage from './pages/ForumThreadPage'
 import ForumNewThreadPage from './pages/ForumNewThreadPage'
-import FaceCreatorPage from './pages/FaceCreatorPage'
+import N64CameraCreatorPage from './pages/N64CameraCreatorPage'
 import ErrorBoundary from './components/ErrorBoundary'
 import Layout from './components/Layout'
 
 function App() {
   return (
     <UserProvider>
-      <AvatarProvider>
-        <FaceProvider>
-          <QuizProvider>
-            <EventProvider>
-              <MediaProvider>
-                <ForumProvider>
+      <QuizProvider>
+        <EventProvider>
+          <MediaProvider>
+            <ForumProvider>
               <Layout>
                 <Routes>
                   <Route path="/" element={<HomeScreenRetro />} />
@@ -49,15 +46,13 @@ function App() {
                   <Route path="/forum/category/:categoryId" element={<ErrorBoundary><ForumCategoryPage /></ErrorBoundary>} />
                   <Route path="/forum/category/:categoryId/new-thread" element={<ErrorBoundary><ForumNewThreadPage /></ErrorBoundary>} />
                   <Route path="/forum/thread/:threadId" element={<ErrorBoundary><ForumThreadPage /></ErrorBoundary>} />
-                  <Route path="/face-creator" element={<FaceCreatorPage />} />
+                  <Route path="/n64-camera" element={<N64CameraCreatorPage />} />
                 </Routes>
-                </Layout>
-                </ForumProvider>
-              </MediaProvider>
-            </EventProvider>
-          </QuizProvider>
-        </FaceProvider>
-      </AvatarProvider>
+              </Layout>
+            </ForumProvider>
+          </MediaProvider>
+        </EventProvider>
+      </QuizProvider>
     </UserProvider>
   )
 }

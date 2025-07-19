@@ -1,18 +1,10 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import { useUser } from '../contexts/UserContext'
-import { useAvatar } from '../contexts/AvatarContext'
-import { useFace } from '../contexts/FaceContext'
-import AvatarRenderer from '../components/AvatarRenderer'
-import FaceRenderer from '../components/FaceRenderer'
-import AvatarCreator from '../components/AvatarCreator'
-import { LogOut, Settings, Trophy, Target, Clock, Star, Edit, Gamepad2, User, Sparkles } from 'lucide-react'
+import { LogOut, Settings, Trophy, Target, Clock, Star, Gamepad2, Camera, Sparkles } from 'lucide-react'
 
 const ProfilePage: React.FC = () => {
   const { user, logout } = useUser()
-  const { saveAvatar } = useAvatar()
-  const { currentFace } = useFace()
-  const [showAvatarCreator, setShowAvatarCreator] = useState(false)
 
   if (!user) return null
 
@@ -33,65 +25,42 @@ const ProfilePage: React.FC = () => {
     <div className="container mx-auto px-4 py-6">
       {/* Header */}
       <div className="text-center mb-8">
-        <div className="flex justify-center space-x-8 mb-6">
-          {/* Face Creator (New System) */}
+        <div className="flex justify-center mb-6">
+          {/* N64 Camera Creator Profile Picture */}
           <div className="relative">
             <div className="text-center mb-2">
-              <div className="flex items-center justify-center space-x-2 text-pink-400 mb-2">
+              <div className="flex items-center justify-center space-x-2 text-purple-400 mb-2">
                 <Sparkles className="w-4 h-4" />
-                <span className="text-sm font-medium">Face Creator</span>
-                <span className="bg-pink-500 text-white text-xs px-2 py-1 rounded-full">NEW</span>
+                <span className="text-sm font-medium">N64 Character</span>
+                <span className="bg-purple-500 text-white text-xs px-2 py-1 rounded-full">KI</span>
               </div>
             </div>
-            {currentFace ? (
-              <FaceRenderer 
-                face={currentFace} 
-                size="xl" 
-                animate={true}
-                className="mx-auto"
-              />
+            {user.profileImage ? (
+              <div className="w-48 h-48 rounded-2xl overflow-hidden mx-auto border-4 border-purple-400/50 shadow-2xl">
+                <img
+                  src={user.profileImage}
+                  alt="N64 Character"
+                  className="w-full h-full object-cover"
+                  style={{
+                    imageRendering: 'pixelated'
+                  }}
+                />
+              </div>
             ) : (
-              <div className="w-48 h-56 bg-gradient-to-br from-pink-500/20 to-purple-500/20 rounded-2xl flex items-center justify-center mx-auto border border-pink-400/30">
-                <div className="text-center text-pink-300">
-                  <User className="w-12 h-12 mx-auto mb-2" />
-                  <div className="text-sm">Create Your Face</div>
+              <div className="w-48 h-48 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-2xl flex items-center justify-center mx-auto border border-purple-400/30">
+                <div className="text-center text-purple-300">
+                  <Camera className="w-12 h-12 mx-auto mb-2" />
+                  <div className="text-sm">Erstelle deinen</div>
+                  <div className="text-sm">N64 Charakter</div>
                 </div>
               </div>
             )}
             <Link
-              to="/face-creator"
-              className="absolute -bottom-2 -right-2 w-12 h-12 bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-400 hover:to-purple-400 rounded-full flex items-center justify-center transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-110"
+              to="/n64-camera"
+              className="absolute -bottom-2 -right-2 w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-400 hover:to-pink-400 rounded-full flex items-center justify-center transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-110"
             >
-              <Edit className="w-5 h-5 text-white" />
+              <Camera className="w-5 h-5 text-white" />
             </Link>
-          </div>
-
-          {/* Classic Avatar (Legacy System) */}
-          <div className="relative">
-            <div className="text-center mb-2">
-              <div className="flex items-center justify-center space-x-2 text-blue-400 mb-2">
-                <Gamepad2 className="w-4 h-4" />
-                <span className="text-sm font-medium">Classic Avatar</span>
-              </div>
-            </div>
-            {user.avatar ? (
-              <AvatarRenderer 
-                avatar={user.avatar} 
-                size="xl" 
-                animate={true}
-                className="mx-auto"
-              />
-            ) : (
-              <div className="w-48 h-48 bg-blue-600/20 rounded-full flex items-center justify-center mx-auto text-4xl">
-                👤
-              </div>
-            )}
-            <button
-              onClick={() => setShowAvatarCreator(true)}
-              className="absolute -bottom-2 -right-2 w-10 h-10 bg-blue-600 hover:bg-blue-500 rounded-full flex items-center justify-center transition-all duration-200 shadow-lg hover:shadow-xl"
-            >
-              <Edit className="w-4 h-4 text-white" />
-            </button>
           </div>
         </div>
 
@@ -252,19 +221,7 @@ const ProfilePage: React.FC = () => {
         </button>
       </div>
 
-      {/* Avatar Creator Modal */}
-      {showAvatarCreator && (
-        <div className="fixed inset-0 z-50">
-          <AvatarCreator
-            initialAvatar={user.avatar}
-            onSave={(avatarData) => {
-              saveAvatar(avatarData)
-              setShowAvatarCreator(false)
-            }}
-            onCancel={() => setShowAvatarCreator(false)}
-          />
-        </div>
-      )}
+
     </div>
   )
 }
