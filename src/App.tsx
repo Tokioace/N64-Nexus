@@ -7,6 +7,8 @@ import { MediaProvider } from './contexts/MediaContext'
 import { ForumProvider } from './contexts/ForumContext'
 import HomePage from './pages/HomePage'
 import HomeScreenRetro from './components/HomeScreenRetro'
+import N64SpeedrunHub from './pages/N64SpeedrunHub'
+import N64TracksPage from './pages/N64TracksPage'
 import QuizPage from './pages/QuizPage'
 import QuizResultPage from './pages/QuizResultPage'
 import LeaderboardPage from './pages/LeaderboardPage'
@@ -32,8 +34,10 @@ function App() {
             <ForumProvider>
               <Layout>
                 <Routes>
-                  <Route path="/" element={<HomeScreenRetro />} />
-                  <Route path="/classic" element={<HomePage />} />
+                  <Route path="/" element={<N64SpeedrunHub />} />
+                  <Route path="/classic" element={<HomeScreenRetro />} />
+                  <Route path="/home" element={<HomePage />} />
+                  <Route path="/tracks" element={<N64TracksPage />} />
                   <Route path="/quiz" element={<QuizPage />} />
                   <Route path="/quiz/result" element={<QuizResultPage />} />
                   <Route path="/leaderboard" element={<LeaderboardPage />} />
