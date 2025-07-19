@@ -1,9 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useUser } from '../contexts/UserContext'
-import { LogOut, Settings, Trophy, Target, Clock, Star } from 'lucide-react'
+import { useAvatar } from '../contexts/AvatarContext'
+import AvatarRenderer from '../components/AvatarRenderer'
+import AvatarCreator from '../components/AvatarCreator'
+import { LogOut, Settings, Trophy, Target, Clock, Star, Edit, Gamepad2 } from 'lucide-react'
 
 const ProfilePage: React.FC = () => {
   const { user, logout } = useUser()
+  const { saveAvatar } = useAvatar()
+  const [showAvatarCreator, setShowAvatarCreator] = useState(false)
 
   if (!user) return null
 
@@ -24,10 +29,28 @@ const ProfilePage: React.FC = () => {
     <div className="container mx-auto px-4 py-6">
       {/* Header */}
       <div className="text-center mb-8">
-        <div className="w-24 h-24 bg-blue-600/20 rounded-full flex items-center justify-center mx-auto mb-4 text-4xl">
-          👤
+        <div className="relative mx-auto mb-4">
+          {user.avatar ? (
+            <AvatarRenderer 
+              avatar={user.avatar} 
+              size="xl" 
+              animate={true}
+              className="mx-auto"
+            />
+          ) : (
+            <div className="w-24 h-24 bg-blue-600/20 rounded-full flex items-center justify-center mx-auto text-4xl">
+              👤
+            </div>
+          )}
+          <button
+            onClick={() => setShowAvatarCreator(true)}
+            className="absolute -bottom-2 -right-2 w-10 h-10 bg-blue-600 hover:bg-blue-500 rounded-full flex items-center justify-center transition-all duration-200 shadow-lg hover:shadow-xl"
+          >
+            <Edit className="w-4 h-4 text-white" />
+          </button>
         </div>
-        <h1 className="text-3xl font-bold ">
+        <h1 className="text-3xl font-bold text-white flex items-center justify-center">
+          <Gamepad2 className="mr-2 text-blue-400" />
           {user.username}
         </h1>
         <p className="text-white/70">
@@ -182,6 +205,20 @@ const ProfilePage: React.FC = () => {
           <div className="text-white/50">→</div>
         </button>
       </div>
+
+      {/* Avatar Creator Modal */}
+      {showAvatarCreator && (
+        <div className="fixed inset-0 z-50">
+          <AvatarCreator
+            initialAvatar={user.avatar}
+            onSave={(avatarData) => {
+              saveAvatar(avatarData)
+              setShowAvatarCreator(false)
+            }}
+            onCancel={() => setShowAvatarCreator(false)}
+          />
+        </div>
+      )}
     </div>
   )
 }

@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router-dom'
 import { QuizProvider } from './contexts/QuizContext'
 import { UserProvider } from './contexts/UserContext'
+import { AvatarProvider } from './contexts/AvatarContext'
 import { EventProvider } from './contexts/EventContext'
 import { MediaProvider } from './contexts/MediaContext'
 import { ForumProvider } from './contexts/ForumContext'
@@ -24,10 +25,11 @@ import Layout from './components/Layout'
 function App() {
   return (
     <UserProvider>
-      <QuizProvider>
-        <EventProvider>
-          <MediaProvider>
-            <ForumProvider>
+      <AvatarProvider>
+        <QuizProvider>
+          <EventProvider>
+            <MediaProvider>
+              <ForumProvider>
               <Layout>
                 <Routes>
                   <Route path="/" element={<HomeScreenRetro />} />
@@ -45,11 +47,12 @@ function App() {
                   <Route path="/forum/category/:categoryId/new-thread" element={<ErrorBoundary><ForumNewThreadPage /></ErrorBoundary>} />
                   <Route path="/forum/thread/:threadId" element={<ErrorBoundary><ForumThreadPage /></ErrorBoundary>} />
                 </Routes>
-              </Layout>
-            </ForumProvider>
-          </MediaProvider>
-        </EventProvider>
-      </QuizProvider>
+                </Layout>
+              </ForumProvider>
+            </MediaProvider>
+          </EventProvider>
+        </QuizProvider>
+      </AvatarProvider>
     </UserProvider>
   )
 }

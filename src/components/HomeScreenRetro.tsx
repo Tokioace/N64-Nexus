@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { useUser } from '../contexts/UserContext'
 import { useEvents } from '../contexts/EventContext'
+import AvatarRenderer from './AvatarRenderer'
 import { 
   Brain, 
   Calendar, 
@@ -123,9 +124,22 @@ const HomeScreenRetro: React.FC = () => {
                     <Trophy className="w-4 h-4 text-yellow-400" />
                     <span className="font-medium text-slate-100 text-sm">Latest Winner</span>
                   </div>
-                  <div className="text-slate-200">
-                    <div className="font-medium text-sm">{user.username}</div>
-                    <div className="text-xs text-slate-400">Tata Tuga Volcano - 1:02.55</div>
+                  <div className="flex items-center space-x-3 text-slate-200">
+                    {user.avatar ? (
+                      <AvatarRenderer 
+                        avatar={user.avatar} 
+                        size="sm" 
+                        animate={false}
+                      />
+                    ) : (
+                      <div className="w-8 h-8 bg-blue-600/20 rounded-full flex items-center justify-center text-sm">
+                        👤
+                      </div>
+                    )}
+                    <div>
+                      <div className="font-medium text-sm">{user.username}</div>
+                      <div className="text-xs text-slate-400">Tata Tuga Volcano - 1:02.55</div>
+                    </div>
                   </div>
                 </div>
 
