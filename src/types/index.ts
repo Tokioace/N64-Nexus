@@ -9,6 +9,13 @@ export interface User {
   achievements: Achievement[]
   quizProgress: QuizProgress
   profileImage?: string // N64 Camera Creator profile image
+  // Speedrun-specific data
+  totalRuns?: number
+  personalBests?: number
+  fastestTime?: number
+  challengeRecords?: { [challengeId: string]: number }
+  speedrunLevel?: number
+  speedrunPoints?: number
 }
 
 
@@ -126,6 +133,7 @@ export interface UserContextType {
   unlockAchievement: (achievementId: string) => void
   saveUser: (userData: User) => void
   updateUser: (userData: User) => void
+  updateSpeedrunStats: (challengeId: string, time: number, isNewRecord?: boolean) => void
 }
 
 // Event System Types

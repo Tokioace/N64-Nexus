@@ -155,6 +155,24 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
     saveUser(userData)
   }
 
+  const updateSpeedrunStats = (challengeId: string, time: number, isNewRecord = false) => {
+    if (!user) return
+
+    const updatedUser = {
+      ...user,
+      totalRuns: (user.totalRuns || 0) + 1,
+      personalBests: (user.personalBests || 0) + (isNewRecord ? 1 : 0),
+      challengeRecords: {
+        ...user.challengeRecords,
+        [challengeId]: time
+      },
+      speedrunPoints: (user.speedrunPoints || 0) + (isNewRecord ? 50 : 10),
+      speedrunLevel: Math.floor(((user.speedrunPoints || 0) + (isNewRecord ? 50 : 10)) / 200) + 1
+    }
+
+    saveUser(updatedUser)
+  }
+
   const value: UserContextType = {
     user,
     login,
@@ -164,6 +182,7 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
     unlockAchievement,
     saveUser,
     updateUser,
+    updateSpeedrunStats,
   }
 
   return (

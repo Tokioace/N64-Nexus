@@ -1,473 +1,451 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
+import { useUser } from '../contexts/UserContext'
+import { 
+  Timer, 
+  Zap, 
+  Target, 
+  Trophy, 
+  Play, 
+  Pause, 
+  RotateCcw, 
+  Crown,
+  Star,
+  Flame,
+  Rocket,
+  CheckCircle,
+  XCircle,
+  ArrowRight,
+  Clock
+} from 'lucide-react'
 
-const MinigamesPage: React.FC = () => {
-  const [selectedGame, setSelectedGame] = useState<string | null>(null)
-  const [score, setScore] = useState(0)
-  const [isLoading, setIsLoading] = useState(false)
+const SpeedrunChallengesPage: React.FC = () => {
+  const { user } = useUser()
+  const [selectedChallenge, setSelectedChallenge] = useState<string | null>(null)
+  const [isPlaying, setIsPlaying] = useState(false)
+  const [timeElapsed, setTimeElapsed] = useState(0)
+  const [currentScore, setCurrentScore] = useState(0)
+  const [bestTimes, setBestTimes] = useState<{[key: string]: number}>({})
+  const timerRef = useRef<NodeJS.Timeout | null>(null)
   
-  // Emoji Quiz State
-  const [currentQuestion, setCurrentQuestion] = useState(0)
-  const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null)
-  const [showResult, setShowResult] = useState(false)
-  const [correctAnswers, setCorrectAnswers] = useState(0)
+  // Speed Typing Challenge State
+  const [typingText, setTypingText] = useState('')
+  const [typingInput, setTypingInput] = useState('')
+  const [typingStarted, setTypingStarted] = useState(false)
+  
+  // Reaction Time Challenge State
+  const [reactionPhase, setReactionPhase] = useState<'waiting' | 'ready' | 'go' | 'result'>('waiting')
+  const [reactionStartTime, setReactionStartTime] = useState(0)
+  const [reactionTime, setReactionTime] = useState(0)
+  
+  // Memory Challenge State
+  const [memorySequence, setMemorySequence] = useState<number[]>([])
+  const [memoryInput, setMemoryInput] = useState<number[]>([])
+  const [memoryLevel, setMemoryLevel] = useState(1)
+  const [showingSequence, setShowingSequence] = useState(false)
 
-  const minigames = [
+  const speedrunChallenges = [
     {
-      id: 'emoji-quiz',
-      name: 'N64 Emoji-Quiz',
-      description: 'Errate das Spiel anhand von Emojis',
-      icon: '🎮',
-      difficulty: 'easy' as const,
-      maxScore: 100,
-      isAvailable: true,
-      color: 'bg-blue-600/20',
-      textColor: 'text-blue-400',
-      borderColor: 'border-blue-400'
+      id: 'speed-typing',
+      name: 'Speed Typing',
+      description: 'Type N64 game titles as fast as possible!',
+      icon: '⌨️',
+      difficulty: 'easy',
+      color: 'from-blue-500 to-blue-700',
+      record: bestTimes['speed-typing'] ? `${(bestTimes['speed-typing'] / 1000).toFixed(2)}s` : 'No record'
     },
     {
-      id: 'memory-game',
-      name: 'N64 Memory',
-      description: 'Finde passende Spiele-Paare',
-      icon: '🧠',
-      difficulty: 'medium' as const,
-      maxScore: 150,
-      isAvailable: true,
-      color: 'bg-purple-600/20',
-      textColor: 'text-purple-400',
-      borderColor: 'border-purple-400'
-    },
-    {
-      id: 'quick-quiz',
-      name: 'Quick Quiz',
-      description: 'Schnelle N64-Fragen',
+      id: 'reaction-time',
+      name: 'Lightning Reflexes',
+      description: 'Test your speedrunner reflexes!',
       icon: '⚡',
-      difficulty: 'easy' as const,
-      maxScore: 80,
-      isAvailable: true,
-      color: 'bg-yellow-600/20',
-      textColor: 'text-yellow-400',
-      borderColor: 'border-yellow-400'
+      difficulty: 'medium',
+      color: 'from-yellow-500 to-orange-700',
+      record: bestTimes['reaction-time'] ? `${bestTimes['reaction-time']}ms` : 'No record'
     },
     {
-      id: 'character-match',
-      name: 'Character Match',
-      description: 'Ordne Charaktere ihren Spielen zu',
-      icon: '👾',
-      difficulty: 'medium' as const,
-      maxScore: 120,
-      isAvailable: true,
-      color: 'bg-green-600/20',
-      textColor: 'text-green-400',
-      borderColor: 'border-green-400'
+      id: 'memory-sequence',
+      name: 'Button Sequence',
+      description: 'Remember controller button sequences!',
+      icon: '🎮',
+      difficulty: 'hard',
+      color: 'from-purple-500 to-pink-700',
+      record: bestTimes['memory-sequence'] ? `Level ${bestTimes['memory-sequence']}` : 'No record'
+    },
+    {
+      id: 'pattern-match',
+      name: 'Pattern Rush',
+      description: 'Match N64 patterns at lightning speed!',
+      icon: '🧩',
+      difficulty: 'medium',
+      color: 'from-green-500 to-emerald-700',
+      record: bestTimes['pattern-match'] ? `${(bestTimes['pattern-match'] / 1000).toFixed(2)}s` : 'No record'
     }
   ]
 
-  // Reset function for all game states
-  const resetAllGameStates = () => {
-    setCurrentQuestion(0)
-    setSelectedAnswer(null)
-    setShowResult(false)
-    setCorrectAnswers(0)
-    setScore(0)
+  const n64GameTitles = [
+    'Super Mario 64',
+    'The Legend of Zelda Ocarina of Time',
+    'GoldenEye 007',
+    'Mario Kart 64',
+    'Super Smash Bros',
+    'Banjo-Kazooie',
+    'Paper Mario',
+    'Mario Party',
+    'Star Fox 64',
+    'Donkey Kong 64'
+  ]
+
+  useEffect(() => {
+    if (isPlaying && selectedChallenge) {
+      timerRef.current = setInterval(() => {
+        setTimeElapsed(prev => prev + 10)
+      }, 10)
+    } else {
+      if (timerRef.current) {
+        clearInterval(timerRef.current)
+      }
+    }
+
+    return () => {
+      if (timerRef.current) {
+        clearInterval(timerRef.current)
+      }
+    }
+  }, [isPlaying, selectedChallenge])
+
+  const startChallenge = (challengeId: string) => {
+    setSelectedChallenge(challengeId)
+    setIsPlaying(true)
+    setTimeElapsed(0)
+    setCurrentScore(0)
+    
+    switch (challengeId) {
+      case 'speed-typing':
+        const randomTitle = n64GameTitles[Math.floor(Math.random() * n64GameTitles.length)]
+        setTypingText(randomTitle)
+        setTypingInput('')
+        setTypingStarted(true)
+        break
+      case 'reaction-time':
+        setReactionPhase('waiting')
+        setTimeout(() => {
+          setReactionPhase('ready')
+          setTimeout(() => {
+            setReactionPhase('go')
+            setReactionStartTime(Date.now())
+          }, Math.random() * 3000 + 1000) // Random delay 1-4 seconds
+        }, 1000)
+        break
+      case 'memory-sequence':
+        setMemoryLevel(1)
+        generateMemorySequence(1)
+        break
+    }
   }
 
-  // Game Image Component
-  const GameImage: React.FC<{ game: string; className?: string }> = ({ game, className = "" }) => {
-    const gameImages: { [key: string]: { bg: string; icon: string; char: string; color: string } } = {
-      'Super Mario 64': {
-        bg: 'bg-gradient-to-br from-red-500 to-blue-500',
-        icon: '🍄',
-        char: 'M',
-        color: 'text-white'
-      },
-      'The Legend of Zelda: Ocarina of Time': {
-        bg: 'bg-gradient-to-br from-green-600 to-yellow-500',
-        icon: '🗡️',
-        char: 'Z',
-        color: 'text-white'
-      },
-      'Banjo-Kazooie': {
-        bg: 'bg-gradient-to-br from-orange-500 to-brown-600',
-        icon: '🐻',
-        char: 'B',
-        color: 'text-white'
-      },
-      'GoldenEye 007': {
-        bg: 'bg-gradient-to-br from-gray-800 to-yellow-600',
-        icon: '🔫',
-        char: '007',
-        color: 'text-yellow-400'
-      }
+  const generateMemorySequence = (level: number) => {
+    const sequence = []
+    for (let i = 0; i < level + 2; i++) {
+      sequence.push(Math.floor(Math.random() * 4))
     }
-
-    const gameData = gameImages[game] || {
-      bg: 'bg-gradient-to-br from-gray-600 to-gray-800',
-      icon: '🎮',
-      char: '?',
-      color: 'text-white'
-    }
-
-    return (
-      <div className={`${gameData.bg} ${className} rounded-lg flex flex-col items-center justify-center p-4 shadow-lg`}>
-        <div className="text-4xl mb-2">{gameData.icon}</div>
-        <div className={`font-bold text-lg ${gameData.color}`}>{gameData.char}</div>
-      </div>
-    )
+    setMemorySequence(sequence)
+    setMemoryInput([])
+    setShowingSequence(true)
+    
+    setTimeout(() => {
+      setShowingSequence(false)
+    }, (level + 2) * 800)
   }
 
-  const renderEmojiQuiz = () => {
-    const questions = [
-      { 
-        emojis: '🍄👨‍🦰🏰', 
-        answer: 'Super Mario 64', 
-        options: ['Super Mario 64', 'Banjo-Kazooie', 'Donkey Kong 64', 'Mario Kart 64'],
-        image: 'Super Mario 64'
-      },
-      { 
-        emojis: '🗡️🛡️🏰', 
-        answer: 'The Legend of Zelda: Ocarina of Time', 
-        options: ['The Legend of Zelda: Ocarina of Time', 'GoldenEye 007', 'Perfect Dark', 'Turok'],
-        image: 'The Legend of Zelda: Ocarina of Time'
-      },
-      { 
-        emojis: '🐻🐦🍯', 
-        answer: 'Banjo-Kazooie', 
-        options: ['Banjo-Kazooie', 'Donkey Kong 64', 'Super Mario 64', 'Mario Kart 64'],
-        image: 'Banjo-Kazooie'
-      },
-      { 
-        emojis: '🔫👨‍💼🏢', 
-        answer: 'GoldenEye 007', 
-        options: ['GoldenEye 007', 'Perfect Dark', 'Turok', 'Doom 64'],
-        image: 'GoldenEye 007'
+  const handleReactionClick = () => {
+    if (reactionPhase === 'go') {
+      const time = Date.now() - reactionStartTime
+      setReactionTime(time)
+      setReactionPhase('result')
+      setIsPlaying(false)
+      
+      if (!bestTimes['reaction-time'] || time < bestTimes['reaction-time']) {
+        setBestTimes(prev => ({ ...prev, 'reaction-time': time }))
       }
-    ]
-
-    const handleAnswer = (option: string) => {
-      setSelectedAnswer(option)
-      setShowResult(true)
-      if (option === questions[currentQuestion].answer) {
-        setCorrectAnswers(prev => prev + 1)
-        setScore(prev => prev + 25)
-      }
-      setTimeout(() => {
-        if (currentQuestion < questions.length - 1) {
-          setCurrentQuestion(prev => prev + 1)
-          setSelectedAnswer(null)
-          setShowResult(false)
-        } else {
-          alert(`Quiz beendet! ${correctAnswers + (option === questions[currentQuestion].answer ? 1 : 0)}/${questions.length} richtig!`)
-          resetAllGameStates()
-        }
-      }, 2000)
     }
+  }
 
+  const handleTypingInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value
+    setTypingInput(value)
+    
+    if (value === typingText) {
+      setIsPlaying(false)
+      const time = timeElapsed
+      if (!bestTimes['speed-typing'] || time < bestTimes['speed-typing']) {
+        setBestTimes(prev => ({ ...prev, 'speed-typing': time }))
+        // Celebrate new record!
+        console.log('🎉 NEW RECORD! 🎉')
+      }
+    }
+  }
+
+  const resetChallenge = () => {
+    setSelectedChallenge(null)
+    setIsPlaying(false)
+    setTimeElapsed(0)
+    setCurrentScore(0)
+    setTypingStarted(false)
+    setReactionPhase('waiting')
+    setMemoryLevel(1)
+  }
+
+  const formatTime = (ms: number) => {
+    return (ms / 1000).toFixed(2) + 's'
+  }
+
+  if (selectedChallenge) {
     return (
-      <div className="space-y-6">
-        <div className="text-center">
-          <h3 className="text-2xl font-bold text-blue-400 mb-2">🎮 N64 Emoji-Quiz</h3>
-          <div className="flex justify-center space-x-4 text-sm">
-            <span className="bg-blue-600/20 px-3 py-1 rounded-full">Frage {currentQuestion + 1}/{questions.length}</span>
-            <span className="bg-green-600/20 px-3 py-1 rounded-full">Score: {score}</span>
-          </div>
-        </div>
-        
-        <div className="card border-l-4 border-blue-400">
-          <div className="text-center mb-6">
-            <div className="flex justify-center items-center space-x-6 mb-6">
-              <div className="text-6xl animate-pulse">{questions[currentQuestion].emojis}</div>
-              <div className="text-4xl text-white/50">→</div>
-              <GameImage game={questions[currentQuestion].image} className="w-24 h-24" />
-            </div>
-            <p className="text-white/70">Welches N64-Spiel wird hier dargestellt?</p>
-          </div>
-          
-          <div className="grid grid-cols-2 gap-3">
-            {questions[currentQuestion].options.map((option) => (
-              <button
-                key={option}
-                onClick={() => handleAnswer(option)}
-                disabled={showResult}
-                className={`quiz-option text-center p-4 transition-all duration-300 ${
-                  showResult
-                    ? option === questions[currentQuestion].answer
-                      ? 'correct animate-pulse'
-                      : option === selectedAnswer
-                      ? 'incorrect'
-                      : 'opacity-50'
-                    : 'hover:scale-105 hover:bg-blue-600/10'
-                }`}
-              >
-                {option}
-              </button>
-            ))}
-          </div>
-
-          {showResult && (
-            <div className="mt-4 text-center">
-              <div className="text-lg font-bold">
-                {selectedAnswer === questions[currentQuestion].answer ? '🎉 Richtig!' : '😔 Falsch!'}
+      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 p-4">
+        <div className="max-w-4xl mx-auto">
+          {/* Challenge Header */}
+          <div className="text-center mb-8">
+            <button
+              onClick={resetChallenge}
+              className="mb-4 flex items-center space-x-2 mx-auto bg-slate-700 hover:bg-slate-600 px-4 py-2 rounded-lg transition-colors"
+            >
+              <ArrowRight className="w-4 h-4 rotate-180" />
+              <span>Back to Challenges</span>
+            </button>
+            
+            <h1 className="text-4xl font-bold text-white mb-2">
+              {speedrunChallenges.find(c => c.id === selectedChallenge)?.name}
+            </h1>
+            <div className="flex items-center justify-center space-x-6 text-lg">
+              <div className="flex items-center space-x-2">
+                <Timer className="w-5 h-5 text-green-400" />
+                <span className="font-mono text-green-400">{formatTime(timeElapsed)}</span>
               </div>
-              <div className="text-sm text-white/70">
-                Antwort: {questions[currentQuestion].answer}
+              <div className="flex items-center space-x-2">
+                <Trophy className="w-5 h-5 text-yellow-400" />
+                <span className="text-yellow-400">
+                  Best: {speedrunChallenges.find(c => c.id === selectedChallenge)?.record}
+                </span>
               </div>
             </div>
-          )}
-        </div>
-      </div>
-    )
-  }
-
-  const renderMemoryGame = () => {
-    return (
-      <div className="space-y-6">
-        <div className="text-center">
-          <h3 className="text-2xl font-bold text-purple-400 mb-2">🧠 N64 Memory</h3>
-          <div className="flex justify-center space-x-4 text-sm">
-            <span className="bg-purple-600/20 px-3 py-1 rounded-full">Score: {score}</span>
           </div>
-        </div>
-        
-        <div className="card border-l-4 border-purple-400">
-          <div className="text-center py-12">
-            <div className="text-6xl mb-4">🧠</div>
-            <h3 className="text-xl font-bold text-white mb-2">Memory Spiel</h3>
-            <p className="text-white/70 mb-4">Finde die passenden N64-Spiele-Paare!</p>
-            <button 
-              onClick={() => setScore(prev => prev + 10)}
-              className="btn-primary bg-purple-600 hover:bg-purple-500"
-            >
-              Spiel starten
-            </button>
-          </div>
-        </div>
-      </div>
-    )
-  }
 
-  const renderQuickQuiz = () => {
-    return (
-      <div className="space-y-6">
-        <div className="text-center">
-          <h3 className="text-2xl font-bold text-yellow-400 mb-2">⚡ Quick Quiz</h3>
-          <div className="flex justify-center space-x-4 text-sm">
-            <span className="bg-yellow-600/20 px-3 py-1 rounded-full">Score: {score}</span>
-          </div>
-        </div>
-        
-        <div className="card border-l-4 border-yellow-400">
-          <div className="text-center py-12">
-            <div className="text-6xl mb-4">⚡</div>
-            <h3 className="text-xl font-bold text-white mb-2">Quick Quiz</h3>
-            <p className="text-white/70 mb-4">Beantworte schnelle N64-Fragen!</p>
-            <button 
-              onClick={() => setScore(prev => prev + 5)}
-              className="btn-primary bg-yellow-600 hover:bg-yellow-500"
-            >
-              Quiz starten
-            </button>
-          </div>
-        </div>
-      </div>
-    )
-  }
-
-  const renderCharacterMatch = () => {
-    return (
-      <div className="space-y-6">
-        <div className="text-center">
-          <h3 className="text-2xl font-bold text-green-400 mb-2">👾 Character Match</h3>
-          <div className="flex justify-center space-x-4 text-sm">
-            <span className="bg-green-600/20 px-3 py-1 rounded-full">Score: {score}</span>
-          </div>
-        </div>
-        
-        <div className="card border-l-4 border-green-400">
-          <div className="text-center py-12">
-            <div className="text-6xl mb-4">👾</div>
-            <h3 className="text-xl font-bold text-white mb-2">Character Match</h3>
-            <p className="text-white/70 mb-4">Ordne Charaktere ihren Spielen zu!</p>
-            <button 
-              onClick={() => setScore(prev => prev + 15)}
-              className="btn-primary bg-green-600 hover:bg-green-500"
-            >
-              Spiel starten
-            </button>
-          </div>
-        </div>
-      </div>
-    )
-  }
-
-  if (isLoading) {
-    return (
-      <div className="container mx-auto px-4 py-6 min-h-screen bg-slate-900 flex items-center justify-center">
-        <div className="text-center">
-          <div className="text-6xl mb-4 animate-bounce">🎮</div>
-          <h2 className="text-2xl font-bold text-white mb-2">Spiel wird geladen...</h2>
-          <p className="text-white/70">Bitte warten Sie einen Moment.</p>
-        </div>
-      </div>
-    )
-  }
-
-  if (selectedGame) {
-    return (
-      <div className="container mx-auto px-4 py-6 min-h-screen bg-slate-900">
-        <button
-          onClick={() => {
-            setSelectedGame(null)
-            resetAllGameStates()
-          }}
-          className="mb-6 text-white/70 hover:text-white transition-colors flex items-center space-x-2"
-        >
-          <span>←</span>
-          <span>Zurück zu Minigames</span>
-        </button>
-        
-        <div className="text-center mb-8">
-          <h2 className="text-3xl font-bold text-white mb-4">
-            {minigames.find(game => game.id === selectedGame)?.name || 'Minigame'}
-          </h2>
-          <p className="text-white/70">
-            {minigames.find(game => game.id === selectedGame)?.description || 'Spiel wird geladen...'}
-          </p>
-        </div>
-
-        <div className="card">
-          {(() => {
-            try {
-              switch(selectedGame) {
-                case 'emoji-quiz':
-                  return renderEmojiQuiz()
-                case 'memory-game':
-                  return renderMemoryGame()
-                case 'quick-quiz':
-                  return renderQuickQuiz()
-                case 'character-match':
-                  return renderCharacterMatch()
-                default:
-                  return (
-                    <div className="text-center py-12">
-                      <div className="text-6xl mb-4">🎮</div>
-                      <h3 className="text-xl font-bold text-white mb-2">Spiel nicht gefunden</h3>
-                      <p className="text-white/70">Dieses Minigame ist noch nicht verfügbar.</p>
-                    </div>
-                  )
-              }
-            } catch (error) {
-              console.error('Error rendering minigame:', error)
-              return (
-                <div className="text-center py-12">
-                  <div className="text-6xl mb-4">⚠️</div>
-                  <h3 className="text-xl font-bold text-red-400 mb-2">Fehler beim Laden</h3>
-                  <p className="text-white/70">Es gab einen Fehler beim Laden des Spiels.</p>
-                  <button 
-                    onClick={() => setSelectedGame(null)}
-                    className="mt-4 btn-primary"
-                  >
-                    Zurück zur Übersicht
-                  </button>
+          {/* Challenge Content */}
+          <div className="bg-slate-800 rounded-xl p-8 border border-slate-700">
+            {selectedChallenge === 'speed-typing' && (
+              <div className="text-center">
+                <h2 className="text-2xl font-bold text-white mb-6">Type this N64 game title:</h2>
+                <div className="bg-slate-700 rounded-lg p-6 mb-6">
+                  <div className="text-3xl font-bold text-blue-400 mb-4">{typingText}</div>
+                  <input
+                    type="text"
+                    value={typingInput}
+                    onChange={handleTypingInput}
+                    className="w-full bg-slate-600 text-white text-xl p-4 rounded-lg border-2 border-slate-500 focus:border-blue-400 outline-none"
+                    placeholder="Start typing..."
+                    autoFocus
+                  />
                 </div>
-              )
-            }
-          })()}
+                <div className="text-lg text-slate-300">
+                  Progress: {typingInput.length}/{typingText.length} characters
+                </div>
+                {typingInput === typingText && (
+                  <div className="mt-6 text-green-400 text-xl font-bold flex items-center justify-center space-x-2 animate-bounce">
+                    <CheckCircle className="w-6 h-6" />
+                    <span>Perfect! Time: {formatTime(timeElapsed)}</span>
+                    {!bestTimes['speed-typing'] || timeElapsed < bestTimes['speed-typing'] ? (
+                      <span className="text-yellow-400 ml-2">🎉 NEW RECORD! 🎉</span>
+                    ) : (
+                      <span className="text-blue-400 ml-2">Great job! 👍</span>
+                    )}
+                  </div>
+                )}
+              </div>
+            )}
+
+            {selectedChallenge === 'reaction-time' && (
+              <div className="text-center">
+                <div className="mb-8">
+                  {reactionPhase === 'waiting' && (
+                    <div className="text-2xl text-slate-300">Get ready...</div>
+                  )}
+                  {reactionPhase === 'ready' && (
+                    <div className="text-2xl text-yellow-400">Wait for it...</div>
+                  )}
+                  {reactionPhase === 'go' && (
+                    <div className="text-4xl font-bold text-green-400 animate-pulse">GO!</div>
+                  )}
+                  {reactionPhase === 'result' && (
+                    <div className="text-3xl font-bold text-white">
+                      Your time: {reactionTime}ms
+                      {reactionTime < 200 && <div className="text-green-400 mt-2 animate-pulse">Lightning fast! ⚡ You're a speedrun legend!</div>}
+                      {reactionTime >= 200 && reactionTime < 300 && <div className="text-yellow-400 mt-2">Great reflexes! 👍 Almost legendary!</div>}
+                      {reactionTime >= 300 && reactionTime < 400 && <div className="text-orange-400 mt-2">Keep practicing! 🎯 You're getting there!</div>}
+                      {reactionTime >= 400 && <div className="text-red-400 mt-2">Time to train those reflexes! 💪 Never give up!</div>}
+                    </div>
+                  )}
+                </div>
+                
+                {reactionPhase === 'go' && (
+                  <button
+                    onClick={handleReactionClick}
+                    className="w-64 h-64 bg-red-600 hover:bg-red-500 rounded-full text-white text-2xl font-bold transform hover:scale-105 transition-all"
+                  >
+                    CLICK!
+                  </button>
+                )}
+                
+                {reactionPhase === 'result' && (
+                  <button
+                    onClick={() => startChallenge('reaction-time')}
+                    className="bg-blue-600 hover:bg-blue-500 px-6 py-3 rounded-lg text-white font-bold"
+                  >
+                    Try Again
+                  </button>
+                )}
+              </div>
+            )}
+
+            {selectedChallenge === 'memory-sequence' && (
+              <div className="text-center">
+                <h2 className="text-2xl font-bold text-white mb-6">Level {memoryLevel}</h2>
+                <div className="text-lg text-slate-300 mb-6">
+                  {showingSequence ? 'Watch the sequence...' : 'Repeat the sequence!'}
+                </div>
+                
+                <div className="grid grid-cols-2 gap-4 max-w-md mx-auto">
+                  {['A', 'B', 'X', 'Y'].map((button, index) => (
+                    <button
+                      key={button}
+                      className={`w-24 h-24 rounded-lg text-2xl font-bold transition-all ${
+                        showingSequence && memorySequence[memoryInput.length] === index
+                          ? 'bg-yellow-500 text-black scale-110'
+                          : 'bg-slate-600 text-white hover:bg-slate-500'
+                      }`}
+                      onClick={() => {
+                        if (!showingSequence) {
+                          const newInput = [...memoryInput, index]
+                          setMemoryInput(newInput)
+                          
+                          if (newInput.length === memorySequence.length) {
+                            const correct = newInput.every((val, i) => val === memorySequence[i])
+                            if (correct) {
+                              setMemoryLevel(prev => prev + 1)
+                              setTimeout(() => generateMemorySequence(memoryLevel + 1), 1000)
+                            } else {
+                              setIsPlaying(false)
+                              setBestTimes(prev => ({ ...prev, 'memory-sequence': memoryLevel }))
+                            }
+                          }
+                        }
+                      }}
+                    >
+                      {button}
+                    </button>
+                  ))}
+                </div>
+                
+                <div className="mt-6 text-slate-300">
+                  Sequence: {memoryInput.length}/{memorySequence.length}
+                </div>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     )
   }
 
   return (
-    <div className="container mx-auto px-4 py-6 min-h-screen bg-slate-900">
-      {/* Header */}
-      <div className="text-center mb-8">
-        <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent mb-4">
-          🎮 N64 Minigames Arcade
-        </h1>
-        <p className="text-white/70 text-lg">
-          Erlebe klassische N64-Spiele in interaktiven Minigames!
-        </p>
-      </div>
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 p-4">
+      <div className="max-w-6xl mx-auto">
+        {/* Header */}
+        <div className="text-center mb-8">
+          <h1 className="text-4xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-red-500 to-pink-500 mb-2">
+            ⚡ SPEED CHALLENGES ⚡
+          </h1>
+          <p className="text-xl text-slate-300">Test your speedrunner skills with these mini-challenges!</p>
+        </div>
 
-      {/* Minigames Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-        {minigames.map((game) => (
-          <div
-            key={game.id}
-            className={`card ${game.color} border-l-4 ${game.borderColor} cursor-pointer hover:bg-white/10 transition-all duration-300 hover:scale-105 hover:shadow-2xl group`}
-            onClick={() => {
-              console.log('Minigame clicked:', game.id, game.name)
-              setIsLoading(true)
-              resetAllGameStates()
-              setTimeout(() => {
-                setSelectedGame(game.id)
-                setIsLoading(false)
-              }, 500) // Slightly longer delay to show loading
-            }}
-          >
-            <div className="flex items-center space-x-4">
-              <div className="text-4xl group-hover:animate-bounce">{game.icon}</div>
-              <div className="flex-1">
-                <h3 className={`font-bold text-lg ${game.textColor} mb-1`}>{game.name}</h3>
-                <p className="text-white/70 text-sm mb-3">{game.description}</p>
-                <div className="flex items-center space-x-3">
-                  <span className={`text-xs px-2 py-1 rounded-full ${game.color} ${game.textColor} border ${game.borderColor}`}>
-                    {game.difficulty}
-                  </span>
-                  <span className="text-xs text-white/50">
-                    Max: {game.maxScore} Punkte
-                  </span>
-                </div>
+        {/* Personal Stats */}
+        <div className="bg-slate-800 rounded-xl p-6 mb-8 border border-slate-700">
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-2xl font-bold text-white">Your Records</h2>
+            <Crown className="w-6 h-6 text-yellow-400" />
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {speedrunChallenges.map(challenge => (
+              <div key={challenge.id} className="bg-slate-700 rounded-lg p-4 text-center">
+                <div className="text-2xl mb-2">{challenge.icon}</div>
+                <div className="text-sm text-slate-400 mb-1">{challenge.name}</div>
+                <div className="font-bold text-white">{challenge.record}</div>
               </div>
-              <div className={`text-2xl ${game.textColor} group-hover:translate-x-1 transition-transform`}>
-                →
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      {/* Features Section */}
-      <div className="card border-l-4 border-purple-400 mb-8">
-        <h2 className="text-2xl font-bold text-purple-400 mb-4">🌟 Features</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div className="text-center">
-            <div className="text-3xl mb-2">🏆</div>
-            <h3 className="font-bold mb-1">Punkte System</h3>
-            <p className="text-white/70 text-sm">Sammle Punkte in jedem Minigame</p>
-          </div>
-          <div className="text-center">
-            <div className="text-3xl mb-2">⚡</div>
-            <h3 className="font-bold mb-1">Verschiedene Modi</h3>
-            <p className="text-white/70 text-sm">Von entspannt bis ultra-schnell</p>
-          </div>
-          <div className="text-center">
-            <div className="text-3xl mb-2">🎨</div>
-            <h3 className="font-bold mb-1">N64 Nostalgie</h3>
-            <p className="text-white/70 text-small">Authentisches Retro-Gaming-Feeling</p>
+            ))}
           </div>
         </div>
-      </div>
 
-      {/* Statistics */}
-      <div className="card">
-        <h2 className="text-2xl font-bold mb-4">📊 Deine Statistiken</h2>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <div className="text-center">
-            <div className="text-2xl font-bold text-blue-400">{minigames.length}</div>
-            <div className="text-white/70 text-sm">Verfügbare Spiele</div>
-          </div>
-          <div className="text-center">
-            <div className="text-2xl font-bold text-green-400">{score}</div>
-            <div className="text-white/70 text-sm">Aktuelle Session</div>
-          </div>
-          <div className="text-center">
-            <div className="text-2xl font-bold text-purple-400">1340</div>
-            <div className="text-white/70 text-sm">Höchstpunktzahl</div>
-          </div>
-          <div className="text-center">
-            <div className="text-2xl font-bold text-orange-400">42</div>
-            <div className="text-white/70 text-sm">Gespielte Runden</div>
+        {/* Challenge Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {speedrunChallenges.map(challenge => (
+            <div
+              key={challenge.id}
+              className="group cursor-pointer transform hover:scale-105 transition-all duration-200"
+              onClick={() => startChallenge(challenge.id)}
+            >
+              <div className={`bg-gradient-to-br ${challenge.color} rounded-xl p-6 border border-slate-600 shadow-2xl`}>
+                <div className="flex items-center justify-between mb-4">
+                  <div className="text-4xl">{challenge.icon}</div>
+                  <div className="flex items-center space-x-2">
+                    <Play className="w-5 h-5 text-white group-hover:animate-pulse" />
+                    <span className="text-white font-bold">START</span>
+                  </div>
+                </div>
+                
+                <h3 className="text-2xl font-bold text-white mb-2">{challenge.name}</h3>
+                <p className="text-white/80 mb-4">{challenge.description}</p>
+                
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center space-x-2">
+                    <Target className="w-4 h-4 text-white/60" />
+                    <span className="text-white/60 capitalize">{challenge.difficulty}</span>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <Trophy className="w-4 h-4 text-yellow-400" />
+                    <span className="text-yellow-400 text-sm">{challenge.record}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Fun Stats */}
+        <div className="mt-8 bg-slate-800 rounded-xl p-6 border border-slate-700">
+          <h2 className="text-2xl font-bold text-white mb-4 flex items-center space-x-2">
+            <Flame className="w-6 h-6 text-red-400" />
+            <span>Challenge Stats</span>
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="text-center">
+              <div className="text-3xl font-bold text-green-400">{Object.keys(bestTimes).length}</div>
+              <div className="text-slate-400">Challenges Completed</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl font-bold text-blue-400">
+                {Object.values(bestTimes).length > 0 ? '🔥' : '⭐'}
+              </div>
+              <div className="text-slate-400">
+                {Object.values(bestTimes).length > 0 ? 'On Fire!' : 'Ready to Start!'}
+              </div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl font-bold text-purple-400">
+                {Object.values(bestTimes).length >= 4 ? '👑' : '🎯'}
+              </div>
+              <div className="text-slate-400">
+                {Object.values(bestTimes).length >= 4 ? 'Master!' : 'Keep Going!'}
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -475,4 +453,4 @@ const MinigamesPage: React.FC = () => {
   )
 }
 
-export default MinigamesPage
+export default SpeedrunChallengesPage
