@@ -46,10 +46,13 @@ const AvatarCreator: React.FC<AvatarCreatorProps> = ({
     bodyColor: '#FFDBAC',
     shirtType: 'plain',
     shirtColor: '#FF6B6B',
-    shirtPattern: undefined
+    shirtPattern: undefined,
+    streetStyle: 'classic',
+    attitude: 'chill',
+    skillLevel: 'beginner'
   })
 
-  const [activeTab, setActiveTab] = useState<'presets' | 'head' | 'face' | 'hair' | 'accessories' | 'body'>('presets')
+  const [activeTab, setActiveTab] = useState<'presets' | 'head' | 'face' | 'hair' | 'accessories' | 'body' | 'street'>('presets')
   const [history, setHistory] = useState<typeof currentAvatar[]>([])
   const [historyIndex, setHistoryIndex] = useState(-1)
 
@@ -58,6 +61,10 @@ const AvatarCreator: React.FC<AvatarCreatorProps> = ({
   const hairColors = ['#000000', '#8B4513', '#D2691E', '#FFD700', '#FF6347', '#32CD32', '#4169E1', '#9400D3']
   const eyeColors = ['#4A90E2', '#228B22', '#8B4513', '#FF6347', '#9400D3', '#FF1493', '#00CED1', '#000000']
   const shirtColors = ['#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', '#FFEAA7', '#DDA0DD', '#F39C12', '#E74C3C']
+  
+  // FIFA Street PS2 Style Colors
+  const streetColors = ['#FF0000', '#00FF00', '#0000FF', '#FFFF00', '#FF00FF', '#00FFFF', '#FFA500', '#800080']
+  const urbanColors = ['#1a1a1a', '#333333', '#4a4a4a', '#666666', '#808080', '#999999', '#b3b3b3', '#cccccc']
 
   useEffect(() => {
     if (initialAvatar) {
@@ -76,7 +83,10 @@ const AvatarCreator: React.FC<AvatarCreatorProps> = ({
         bodyColor: initialAvatar.bodyColor,
         shirtType: initialAvatar.shirtType,
         shirtColor: initialAvatar.shirtColor,
-        shirtPattern: initialAvatar.shirtPattern
+        shirtPattern: initialAvatar.shirtPattern,
+        streetStyle: initialAvatar.streetStyle || 'classic',
+        attitude: initialAvatar.attitude || 'chill',
+        skillLevel: initialAvatar.skillLevel || 'beginner'
       }
       setCurrentAvatar(avatarData)
       setHistory([avatarData])
@@ -120,15 +130,18 @@ const AvatarCreator: React.FC<AvatarCreatorProps> = ({
       eyeColor: eyeColors[Math.floor(Math.random() * eyeColors.length)],
       noseType: ['small', 'medium', 'large', 'flat', 'pointed'][Math.floor(Math.random() * 5)] as any,
       mouthType: ['smile', 'neutral', 'frown', 'open', 'smirk', 'surprised'][Math.floor(Math.random() * 6)] as any,
-      hairType: ['none', 'short', 'medium', 'long', 'spiky', 'curly', 'cap'][Math.floor(Math.random() * 7)] as any,
+      hairType: ['none', 'short', 'medium', 'long', 'spiky', 'curly', 'cap', 'afro', 'mohawk', 'braids', 'cornrows'][Math.floor(Math.random() * 11)] as any,
       hairColor: hairColors[Math.floor(Math.random() * hairColors.length)],
-      accessory: ['none', 'glasses', 'hat', 'headband', 'mustache', 'beard'][Math.floor(Math.random() * 6)] as any,
+      accessory: ['none', 'glasses', 'hat', 'headband', 'mustache', 'beard', 'bandana', 'cap_backwards', 'sunglasses', 'chains'][Math.floor(Math.random() * 10)] as any,
       accessoryColor: '#333333',
       bodyType: ['thin', 'normal', 'wide', 'muscular'][Math.floor(Math.random() * 4)] as any,
       bodyColor: skinTones[Math.floor(Math.random() * skinTones.length)],
-      shirtType: ['plain', 'striped', 'spotted', 'logo', 'hoodie', 'jacket'][Math.floor(Math.random() * 6)] as any,
+      shirtType: ['plain', 'striped', 'spotted', 'logo', 'hoodie', 'jacket', 'jersey', 'tank_top', 'tracksuit', 'urban_tee'][Math.floor(Math.random() * 10)] as any,
       shirtColor: shirtColors[Math.floor(Math.random() * shirtColors.length)],
-      shirtPattern: undefined
+      shirtPattern: undefined,
+      streetStyle: ['classic', 'urban', 'freestyle', 'retro', 'gangsta'][Math.floor(Math.random() * 5)] as any,
+      attitude: ['chill', 'aggressive', 'cocky', 'focused', 'playful'][Math.floor(Math.random() * 5)] as any,
+      skillLevel: ['beginner', 'amateur', 'pro', 'legend'][Math.floor(Math.random() * 4)] as any
     }
     updateAvatar(randomAvatar)
   }
@@ -188,7 +201,8 @@ const AvatarCreator: React.FC<AvatarCreatorProps> = ({
     face: Eye,
     hair: Crown,
     accessories: Sparkles,
-    body: Shirt
+    body: Shirt,
+    street: Gamepad2
   }
 
   const loadPreset = (preset: AvatarPreset) => {
@@ -470,7 +484,7 @@ const AvatarCreator: React.FC<AvatarCreatorProps> = ({
                   <div>
                     <h3 className="text-white font-semibold mb-3">Hair Style</h3>
                     {renderOptionButtons(
-                      ['none', 'short', 'medium', 'long', 'spiky', 'curly', 'cap'],
+                      ['none', 'short', 'medium', 'long', 'spiky', 'curly', 'cap', 'afro', 'mohawk', 'braids', 'cornrows'],
                       currentAvatar.hairType,
                       (value) => updateAvatar({ hairType: value as any })
                     )}
@@ -494,7 +508,7 @@ const AvatarCreator: React.FC<AvatarCreatorProps> = ({
                   <div>
                     <h3 className="text-white font-semibold mb-3">Accessory</h3>
                     {renderOptionButtons(
-                      ['none', 'glasses', 'hat', 'headband', 'earrings', 'mustache', 'beard'],
+                      ['none', 'glasses', 'hat', 'headband', 'earrings', 'mustache', 'beard', 'bandana', 'cap_backwards', 'sunglasses', 'chains'],
                       currentAvatar.accessory || 'none',
                       (value) => updateAvatar({ accessory: value as any })
                     )}
@@ -527,7 +541,7 @@ const AvatarCreator: React.FC<AvatarCreatorProps> = ({
                   <div>
                     <h3 className="text-white font-semibold mb-3">Shirt Style</h3>
                     {renderOptionButtons(
-                      ['plain', 'striped', 'spotted', 'logo', 'hoodie', 'jacket'],
+                      ['plain', 'striped', 'spotted', 'logo', 'hoodie', 'jacket', 'jersey', 'tank_top', 'tracksuit', 'urban_tee'],
                       currentAvatar.shirtType,
                       (value) => updateAvatar({ shirtType: value as any })
                     )}
@@ -539,6 +553,70 @@ const AvatarCreator: React.FC<AvatarCreatorProps> = ({
                       shirtColors,
                       currentAvatar.shirtColor,
                       (color) => updateAvatar({ shirtColor: color })
+                    )}
+                  </div>
+                </>
+              )}
+
+              {activeTab === 'street' && (
+                <>
+                  <div>
+                    <h3 className="text-white font-semibold mb-3 flex items-center">
+                      <Gamepad2 className="w-4 h-4 mr-2" />
+                      Street Style (FIFA Street PS2)
+                    </h3>
+                    {renderOptionButtons(
+                      ['classic', 'urban', 'freestyle', 'retro', 'gangsta'],
+                      currentAvatar.streetStyle || 'classic',
+                      (value) => updateAvatar({ streetStyle: value as any })
+                    )}
+                  </div>
+
+                  <div>
+                    <h3 className="text-white font-semibold mb-3 flex items-center">
+                      <Smile className="w-4 h-4 mr-2" />
+                      Player Attitude
+                    </h3>
+                    {renderOptionButtons(
+                      ['chill', 'aggressive', 'cocky', 'focused', 'playful'],
+                      currentAvatar.attitude || 'chill',
+                      (value) => updateAvatar({ attitude: value as any })
+                    )}
+                  </div>
+
+                  <div>
+                    <h3 className="text-white font-semibold mb-3 flex items-center">
+                      <Star className="w-4 h-4 mr-2" />
+                      Skill Level
+                    </h3>
+                    {renderOptionButtons(
+                      ['beginner', 'amateur', 'pro', 'legend'],
+                      currentAvatar.skillLevel || 'beginner',
+                      (value) => updateAvatar({ skillLevel: value as any })
+                    )}
+                  </div>
+
+                  <div>
+                    <h3 className="text-white font-semibold mb-3 flex items-center">
+                      <Palette className="w-4 h-4 mr-2" />
+                      Street Colors
+                    </h3>
+                    {renderColorPicker(
+                      streetColors,
+                      currentAvatar.shirtColor,
+                      (color) => updateAvatar({ shirtColor: color })
+                    )}
+                  </div>
+
+                  <div>
+                    <h3 className="text-white font-semibold mb-3 flex items-center">
+                      <Palette className="w-4 h-4 mr-2" />
+                      Urban Colors
+                    </h3>
+                    {renderColorPicker(
+                      urbanColors,
+                      currentAvatar.accessoryColor,
+                      (color) => updateAvatar({ accessoryColor: color })
                     )}
                   </div>
                 </>
