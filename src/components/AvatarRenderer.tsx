@@ -15,7 +15,7 @@ const AvatarRenderer: React.FC<AvatarRendererProps> = ({
   animate = false 
 }) => {
   const sizeClasses = {
-    sm: 'w-12 h-12',
+    sm: 'w-6 h-6',
     md: 'w-24 h-24',
     lg: 'w-32 h-32',
     xl: 'w-48 h-48'
@@ -151,12 +151,20 @@ const AvatarRenderer: React.FC<AvatarRendererProps> = ({
       long: 'w-28 h-12 rounded-t-full',
       spiky: 'w-20 h-8 rounded-t-full',
       curly: 'w-22 h-7 rounded-full',
-      cap: 'w-24 h-6 rounded-t-lg'
+      cap: 'w-24 h-6 rounded-t-lg',
+      afro: 'w-32 h-16 rounded-full',
+      mohawk: 'w-8 h-12 rounded-t-full transform rotate-0',
+      braids: 'w-24 h-10 rounded-t-full',
+      cornrows: 'w-22 h-8 rounded-t-full'
     }
 
+    if (avatar.hairType === 'none') return null
+    
+    const hairClass = hairStyles[avatar.hairType] || hairStyles['short']
+    
     return (
       <div 
-        className={`${hairStyles[avatar.hairType]} transform -translate-y-1`}
+        className={`${hairClass} transform -translate-y-1`}
         style={{ 
           backgroundColor: avatar.hairColor,
           background: `linear-gradient(145deg, ${avatar.hairColor}, ${adjustBrightness(avatar.hairColor, -20)})`,
@@ -167,6 +175,8 @@ const AvatarRenderer: React.FC<AvatarRendererProps> = ({
   }
 
   const renderAccessory = () => {
+    if (!avatar.accessory || avatar.accessory === 'none') return null
+    
     switch (avatar.accessory) {
       case 'glasses':
         return (
@@ -214,6 +224,50 @@ const AvatarRenderer: React.FC<AvatarRendererProps> = ({
                 boxShadow: `inset -1px -1px 2px ${adjustBrightness(avatar.hairColor, -40)}`
               }}
             />
+          </div>
+        )
+      case 'bandana':
+        return (
+          <div 
+            className="absolute -top-2 left-1/2 transform -translate-x-1/2 w-22 h-4 rounded-t-lg"
+            style={{ 
+              backgroundColor: avatar.accessoryColor,
+              boxShadow: `inset -2px -2px 4px ${adjustBrightness(avatar.accessoryColor, -30)}`
+            }}
+          />
+        )
+      case 'cap_backwards':
+        return (
+          <div 
+            className="absolute -top-3 left-1/2 transform -translate-x-1/2 w-20 h-6 rounded-lg"
+            style={{ 
+              backgroundColor: avatar.accessoryColor,
+              boxShadow: `inset -2px -2px 4px ${adjustBrightness(avatar.accessoryColor, -30)}`
+            }}
+          />
+        )
+      case 'sunglasses':
+        return (
+          <div className="absolute top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+            <div className="flex space-x-1 items-center">
+              <div className="w-4 h-3 rounded-lg border-2 border-black bg-black/80" />
+              <div className="w-1 h-0.5 bg-black" />
+              <div className="w-4 h-3 rounded-lg border-2 border-black bg-black/80" />
+            </div>
+          </div>
+        )
+      case 'chains':
+        return (
+          <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-8">
+            <div className="flex space-x-1">
+              {[...Array(3)].map((_, i) => (
+                <div 
+                  key={i}
+                  className="w-1 h-6 rounded-full"
+                  style={{ backgroundColor: avatar.accessoryColor }}
+                />
+              ))}
+            </div>
           </div>
         )
       default:
@@ -290,6 +344,40 @@ const AvatarRenderer: React.FC<AvatarRendererProps> = ({
         return (
           <div className="w-full h-full flex items-center justify-center">
             <div className="text-xs font-bold text-black/60">N64</div>
+          </div>
+        )
+      case 'jersey':
+        return (
+          <div className="w-full h-full flex items-center justify-center">
+            <div className="text-lg font-bold text-white/90">23</div>
+          </div>
+        )
+      case 'tank_top':
+        return (
+          <div className="w-full h-full relative">
+            <div 
+              className="absolute top-0 left-2 right-2 h-2 rounded-t-lg"
+              style={{ backgroundColor: adjustBrightness(avatar.shirtColor, -30) }}
+            />
+          </div>
+        )
+      case 'tracksuit':
+        return (
+          <div className="w-full h-full relative">
+            <div 
+              className="absolute left-0 top-0 bottom-0 w-2 rounded-l-lg"
+              style={{ backgroundColor: adjustBrightness(avatar.shirtColor, -40) }}
+            />
+            <div 
+              className="absolute right-0 top-0 bottom-0 w-2 rounded-r-lg"
+              style={{ backgroundColor: adjustBrightness(avatar.shirtColor, -40) }}
+            />
+          </div>
+        )
+      case 'urban_tee':
+        return (
+          <div className="w-full h-full flex items-center justify-center">
+            <div className="text-xs font-bold text-black/60">STREET</div>
           </div>
         )
       default:

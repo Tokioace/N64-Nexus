@@ -20,15 +20,19 @@ export interface AvatarData {
   eyeColor: string
   noseType: 'small' | 'medium' | 'large' | 'flat' | 'pointed'
   mouthType: 'smile' | 'neutral' | 'frown' | 'open' | 'smirk' | 'surprised'
-  hairType: 'none' | 'short' | 'medium' | 'long' | 'spiky' | 'curly' | 'cap'
+  hairType: 'none' | 'short' | 'medium' | 'long' | 'spiky' | 'curly' | 'cap' | 'afro' | 'mohawk' | 'braids' | 'cornrows'
   hairColor: string
-  accessory?: 'none' | 'glasses' | 'hat' | 'headband' | 'earrings' | 'mustache' | 'beard'
+  accessory?: 'none' | 'glasses' | 'hat' | 'headband' | 'earrings' | 'mustache' | 'beard' | 'bandana' | 'cap_backwards' | 'sunglasses' | 'chains'
   accessoryColor: string
   bodyType: 'thin' | 'normal' | 'wide' | 'muscular'
   bodyColor: string
-  shirtType: 'plain' | 'striped' | 'spotted' | 'logo' | 'hoodie' | 'jacket'
+  shirtType: 'plain' | 'striped' | 'spotted' | 'logo' | 'hoodie' | 'jacket' | 'jersey' | 'tank_top' | 'tracksuit' | 'urban_tee'
   shirtColor: string
   shirtPattern?: string
+  // FIFA Street PS2 Style Features
+  streetStyle?: 'classic' | 'urban' | 'freestyle' | 'retro' | 'gangsta'
+  attitude?: 'chill' | 'aggressive' | 'cocky' | 'focused' | 'playful'
+  skillLevel?: 'beginner' | 'amateur' | 'pro' | 'legend'
   createdAt: Date
   updatedAt: Date
 }
