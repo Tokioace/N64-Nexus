@@ -1,38 +1,32 @@
-# 🎮 Battle64 Quiz & Minigames
+# 🏁 Battle64 Speedrun Arena
 
-Ein unterhaltsames Quizsystem und Minigames rund um N64-Wissen, Konsolen, Charaktere und Spieleklassiker. Spieler verdienen Punkte für richtige Antworten und können sich mit anderen messen.
+Eine aufregende Speedrun-App rund um N64-Klassiker! Teste deine Geschwindigkeit, verbessere deine Zeiten und fordere andere Speedrunner heraus. Spaß steht im Vordergrund!
 
-## ✨ Features
+## ⚡ Hauptfeatures - Speedrunning im Fokus!
 
-### 🧠 Quiz-System
-- **Multiple Choice Fragen** - Klassische Quiz-Fragen zu N64-Spielen
-- **Wahr/Falsch Fragen** - Schnelle Wissensabfrage
-- **Bildbasierte Fragen** - Screenshots zuordnen (Platzhalter)
-- **Reihenfolgenfragen** - Chronologische Anordnung von Spielen/Events
+### 🏃‍♂️ Speedrun-Challenges
+- **Speed Typing** - Tippe N64-Spieletitel so schnell wie möglich!
+- **Lightning Reflexes** - Teste deine Speedrunner-Reflexe
+- **Button Sequence** - Merke dir Controller-Button-Sequenzen
+- **Pattern Rush** - Erkenne N64-Muster in Lichtgeschwindigkeit
 
-### 🎯 Quiz-Modi
-- **Klassisches Quiz** - 10 zufällige Fragen
-- **Tägliche Challenge** - 5 Fragen, jeden Tag neu
-- **Speed Quiz** - 10 Sekunden pro Frage
-- **Wöchentlicher Wettkampf** - 20 Fragen für Community-Ranking
+### 🏆 Speedrun-Features
+- **Live-Timer** - Präzise Zeitmessung bis zur Millisekunde
+- **Personal Bests** - Verfolge deine Rekordzeiten
+- **Leaderboards** - Vergleiche dich mit anderen Speedrunnern
+- **Achievement-System** - Sammle Speedrun-Errungenschaften
 
-### 🏆 Belohnungssystem
-- **Punkte-System** - Punkte für richtige Antworten
-- **Level-System** - Aufstieg durch Punkte sammeln
-- **Errungenschaften** - Medaillen für besondere Leistungen
-- **Rangliste** - Vergleich mit anderen Spielern
+### 🎮 Speedrun-Medien
+- **Video-Aufzeichnung** - Zeichne deine besten Runs auf
+- **Screenshot-Galerie** - Teile deine Erfolgsmomente
+- **Community-Features** - Tausche dich mit anderen Speedrunnern aus
+- **Verifikation** - Bestätige deine Rekordzeiten
 
-### 🎮 Minigames
-- **N64 Emoji-Quiz** - Spiele anhand von Emojis erraten
-- **Sound Memory** - Soundeffekte zuordnen (Coming Soon)
-- **Match the Cartridge** - Fake-Covers echten Spielen zuordnen (Coming Soon)
-- **Character Puzzle** - N64-Charaktere-Puzzles (Coming Soon)
-
-### 📱 Mobile-First Design
-- Responsive Design für alle Geräte
-- Touch-optimierte Bedienung
-- Flüssige Animationen und Übergänge
-- Moderne UI mit N64-Theme
+### 🎯 Spaß-Features
+- **Motivational Messages** - Täglich neue Speedrun-Motivation
+- **Live-Events** - Teilnahme an Community-Speedrun-Events
+- **Quick-Start** - Sofortiger Zugang zu deinen Lieblings-N64-Spielen
+- **Retro-Design** - Authentisches N64-Feeling mit modernen Features
 
 ## 🚀 Installation & Start
 
@@ -44,7 +38,7 @@ Ein unterhaltsames Quizsystem und Minigames rund um N64-Wissen, Konsolen, Charak
 ```bash
 # Repository klonen
 git clone <repository-url>
-cd battle64-quiz
+cd battle64-speedrun-arena
 
 # Dependencies installieren
 npm install
@@ -74,50 +68,62 @@ npm run build
 ```
 src/
 ├── components/          # Wiederverwendbare Komponenten
-│   └── Layout.tsx      # Haupt-Layout mit Navigation
+│   ├── HomeScreenRetro.tsx    # Speedrun-fokussierte Startseite
+│   ├── SpeedrunLeaderboard.tsx # Speedrun-Ranglisten
+│   └── Layout.tsx             # Haupt-Layout
 ├── contexts/           # React Context für State Management
-│   ├── QuizContext.tsx # Quiz-Session Management
-│   └── UserContext.tsx # User-State und Progress
-├── data/              # Statische Daten
-│   └── questions.ts   # Quiz-Fragen Datenbank
+│   ├── UserContext.tsx        # User-State mit Speedrun-Daten
+│   ├── MediaContext.tsx       # Speedrun-Medien Management
+│   └── EventContext.tsx       # Speedrun-Events
 ├── pages/             # Seiten-Komponenten
-│   ├── HomePage.tsx   # Startseite
-│   ├── QuizPage.tsx   # Quiz-Interface
-│   ├── QuizResultPage.tsx # Ergebnis-Anzeige
-│   ├── LeaderboardPage.tsx # Rangliste
-│   ├── ProfilePage.tsx # Benutzer-Profil
-│   └── MinigamesPage.tsx # Minigames
+│   ├── HomeScreenRetro.tsx    # Speedrun Arena Startseite
+│   ├── MinigamesPage.tsx      # Speed-Challenges
+│   ├── SpeedrunMediaPage.tsx  # Speedrun-Medien & Aufzeichnungen
+│   ├── LeaderboardPage.tsx    # Ranglisten
+│   └── ProfilePage.tsx        # Speedrunner-Profil
 ├── types/             # TypeScript Typdefinitionen
-│   └── index.ts       # Alle Typen
+│   └── index.ts       # Alle Typen inkl. Speedrun-Daten
 ├── App.tsx            # Haupt-App-Komponente
-├── main.tsx           # App-Einstiegspunkt
-└── index.css          # Globale Styles
+└── main.tsx           # App-Einstiegspunkt
 ```
 
-## 🎯 Quiz-Kategorien
+## 🏁 Speedrun-Modi
 
-- **Allgemein** - Grundlegendes N64-Wissen
-- **Charaktere** - N64-Spielcharaktere
-- **Spiele** - N64-Spiele und deren Details
-- **Hardware** - Konsolen, Controller, Zubehör
-- **Musik** - Soundtracks und Komponisten
-- **Geschichte** - Historische Fakten
-- **Trivia** - Interessante Details
+### Speed Challenges
+- **Speed Typing** - Schnellstes Tippen von N64-Spieletiteln
+- **Reaction Time** - Reflextest für Speedrunner
+- **Memory Sequence** - Controller-Button-Sequenzen merken
+- **Pattern Match** - Schnelle Mustererkennung
 
-## 🏅 Errungenschaften
+### Live-Events
+- **Time Trials** - Gemeinschaftliche Zeitfahrten
+- **Daily Challenges** - Täglich neue Speedrun-Herausforderungen
+- **Weekly Competitions** - Wöchentliche Wettkämpfe
+- **Community Events** - Spezielle Community-Veranstaltungen
 
-- **Erster Quiz** - Absolviere deinen ersten Quiz
-- **Perfekte Runde** - Erreiche eine perfekte Punktzahl
-- **Geschwindigkeitsdämon** - Beantworte 10 Fragen in unter 30 Sekunden
-- **Wissensmeister** - Beantworte 100 Fragen korrekt
-- **Tägliche Serie** - Spiele 7 Tage in Folge
+## 🏅 Speedrun-Errungenschaften
 
-## 🔐 Legalität
+- **Speed Demon** - 10 Sub-2-Minuten-Runs abschließen
+- **Lightning Fast** - Reaktionszeit unter 200ms erreichen
+- **Perfect Sequence** - Fehlerlose Button-Sequenz Level 10+
+- **Typing Master** - 5 Speed-Typing-Challenges unter 10 Sekunden
+- **Streak Master** - 7 Tage in Folge Challenges abschließen
 
-- Keine echten ROM-Dateien oder Soundtracks
-- Alle Fragen basieren auf öffentlich zugänglichem Wissen
-- Bildfragen sind Screenshot-inspiriert oder AI-generiert
-- Respektiert geistige Eigentumsrechte
+## 🎯 N64-Spiele im Fokus
+
+- **Mario Kart 64** - Rainbow Road Rush und mehr
+- **Super Mario 64** - Klassische Speedrun-Strecken
+- **GoldenEye 007** - Agenten-Missionen auf Zeit
+- **Zelda: Ocarina of Time** - Epische Abenteuer-Speedruns
+- **Super Smash Bros** - Schnelle Kämpfe
+- **Mario Party** - Party-Game-Challenges
+
+## 📊 Speedrun-Statistiken
+
+- **Personal Records** - Alle deine besten Zeiten
+- **Challenge Progress** - Fortschritt in verschiedenen Challenges
+- **Community Ranking** - Deine Position in der Community
+- **Achievement Tracking** - Verfolge deine Errungenschaften
 
 ## 🛠️ Entwicklung
 
@@ -134,46 +140,55 @@ npm run type-check   # TypeScript-Typen prüfen
 - **TypeScript** für Typsicherheit
 - **ESLint** für Code-Qualität
 - **Prettier** für konsistente Formatierung
-- **Tailwind CSS** für Styling
+- **Tailwind CSS** für modernes Styling
 
-## 🎮 Spielmodi im Detail
+## 🎮 Speedrun-Features im Detail
 
-### Klassisches Quiz
-- 10 zufällige Fragen aus allen Kategorien
+### Speedrun Arena (Hauptseite)
+- Motivierende Speedrun-Nachrichten
+- Live-Event-Anzeige mit aktuellen Leadern
+- Quick-Start-Buttons für sofortiges Speedrunning
+- Persönliche Statistiken und Fortschritt
+- Schnelle Spielauswahl
+
+### Speed Challenges
+- Präzise Zeitmessung
+- Persönliche Rekordverfolgung
 - Verschiedene Schwierigkeitsgrade
-- Punkte basierend auf Schwierigkeit
-- Kein Zeitlimit
+- Sofortige Rückmeldung
+- Motivierende Belohnungen
 
-### Tägliche Challenge
-- 5 Fragen, jeden Tag neu
-- Konsistente Fragen für alle Spieler
-- Spezielle Belohnungen
-- Community-Vergleich
+### Speedrun Media
+- Video-Aufzeichnung deiner Runs
+- Screenshot-Galerie
+- Community-Sharing
+- Verifikationssystem
+- Admin-Panel für Medien-Management
 
-### Speed Quiz
-- 10 Sekunden pro Frage
-- Bonus-Punkte für Schnelligkeit
-- Adrenalin-Faktor
-- Perfekt für schnelle Runden
+## 🔮 Zukünftige Speedrun-Features
 
-## 📊 Statistiken & Fortschritt
+- **Live-Streaming** - Direkte Übertragung deiner Runs
+- **Multiplayer-Races** - Echtzeit-Rennen gegen andere
+- **Custom Challenges** - Erstelle eigene Speed-Challenges
+- **Tournament Mode** - Organisierte Speedrun-Turniere
+- **Mobile App** - Speedrunning unterwegs
+- **VR-Integration** - Immersive Speedrun-Erlebnisse
 
-- **Persönliche Statistiken** - Genauigkeit, Quizzes gespielt, etc.
-- **Kategorie-Fortschritt** - Detaillierte Auswertung pro Kategorie
-- **Level-System** - Aufstieg durch Punkte sammeln
-- **Errungenschaften** - Sammle alle Medaillen
+## 🏆 Warum Speedrunning Spaß macht
 
-## 🔮 Zukünftige Features
-
-- **Multiplayer-Modi** - Live-Quiz mit anderen Spielern
-- **Erweiterte Minigames** - Mehr interaktive Spiele
-- **Community-Features** - Quiz erstellen und teilen
-- **Offline-Modus** - Spielen ohne Internet
-- **Push-Benachrichtigungen** - Tägliche Erinnerungen
+- **Ständige Verbesserung** - Jeder Run kann ein neuer Rekord werden
+- **Community** - Teile deine Leidenschaft mit anderen
+- **Nostalgie** - Erlebe N64-Klassiker neu
+- **Herausforderung** - Teste deine Grenzen
+- **Belohnungen** - Sammle Achievements und Rekorde
 
 ## 🤝 Beitragen
 
-Beiträge sind willkommen! Bitte erstelle einen Pull Request oder öffne ein Issue für Verbesserungsvorschläge.
+Speedrunner-Community-Beiträge sind willkommen! Erstelle einen Pull Request oder öffne ein Issue für:
+- Neue Speed-Challenges
+- Verbesserungen der Timer-Genauigkeit
+- Community-Features
+- Bug-Fixes und Optimierungen
 
 ## 📄 Lizenz
 
@@ -181,4 +196,4 @@ MIT License - siehe LICENSE-Datei für Details.
 
 ---
 
-**Viel Spaß beim Spielen! 🎮✨**
+**Ready to break some records? Let's speedrun! 🏁⚡🎮**

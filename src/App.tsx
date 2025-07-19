@@ -11,7 +11,7 @@ import QuizPage from './pages/QuizPage'
 import QuizResultPage from './pages/QuizResultPage'
 import LeaderboardPage from './pages/LeaderboardPage'
 import ProfilePage from './pages/ProfilePage'
-import MinigamesPage from './pages/MinigamesPage'
+import SpeedrunChallengesPage from './pages/MinigamesPage'
 import EventsPage from './pages/EventsPage'
 import SpeedrunMediaPage from './pages/SpeedrunMediaPage'
 import CollectorMode from './pages/CollectorMode'
@@ -38,7 +38,7 @@ function App() {
                   <Route path="/quiz/result" element={<QuizResultPage />} />
                   <Route path="/leaderboard" element={<LeaderboardPage />} />
                   <Route path="/profile" element={<ProfilePage />} />
-                  <Route path="/minigames" element={<MinigamesPage />} />
+                  <Route path="/minigames" element={<SpeedrunChallengesPage />} />
                   <Route path="/events" element={<EventsPage />} />
                   <Route path="/speedrun-media" element={<SpeedrunMediaPage />} />
                   <Route path="/collector" element={<CollectorMode />} />
