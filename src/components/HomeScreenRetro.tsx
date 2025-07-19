@@ -160,7 +160,18 @@ const HomeScreenRetro: React.FC = () => {
         </div>
 
         {/* Untere Reihe - Alle Features kompakt */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-7 gap-3">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-8 gap-3">
+          {/* NEW: Face Creator Tile - Featured */}
+          <Link to="/face-creator" className="simple-tile simple-tile-small hover:scale-105 transition-transform bg-gradient-to-br from-pink-500/20 to-purple-500/20 border-pink-400/30">
+            <div className="simple-tile-icon">
+              <User className="w-7 h-7 text-pink-400 mx-auto" />
+            </div>
+            <div className="simple-tile-label">
+              <div className="font-medium text-pink-100 text-sm">Face Creator</div>
+              <div className="text-xs text-pink-300">NEW!</div>
+            </div>
+          </Link>
+
           {/* Quiz Tile */}
           <Link to="/quiz" className="simple-tile simple-tile-small hover:scale-105 transition-transform">
             <div className="simple-tile-icon">
