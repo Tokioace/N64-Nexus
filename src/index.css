@@ -1,0 +1,231 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  color: #f1f5f9;
+  min-height: 100vh;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* Battle64 Core Styles */
+.container {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+/* Button Styles */
+.btn-primary {
+  @apply inline-flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 
+         text-white font-medium rounded-lg transition-colors duration-200 
+         focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2;
+}
+
+.btn-secondary {
+  @apply inline-flex items-center px-4 py-2 bg-slate-600 hover:bg-slate-700 
+         text-slate-100 font-medium rounded-lg transition-colors duration-200 
+         focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2;
+}
+
+  /* Retro N64 Tile Styles */
+  .simple-tile {
+    @apply bg-slate-800 border border-slate-700 rounded-lg p-4 shadow-lg;
+    background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+    border: 1px solid #475569;
+  }
+
+  .simple-tile-header {
+    @apply mb-3 pb-2 border-b border-slate-600;
+  }
+
+  .simple-tile-content {
+    @apply text-slate-100;
+  }
+
+  .simple-tile-large {
+    @apply min-h-[200px] p-6;
+  }
+
+  .simple-tile-medium {
+    @apply min-h-[150px] p-4;
+  }
+
+  .simple-tile-small {
+    @apply min-h-[100px] p-3 text-center;
+  }
+
+  .simple-tile-icon {
+    @apply mb-2;
+  }
+
+  .simple-tile-label {
+    @apply text-sm;
+  }
+
+/* Navigation Styles */
+.sidebar {
+  @apply fixed left-0 top-0 h-full w-64 bg-slate-900 border-r border-slate-700 
+         transform -translate-x-full transition-transform duration-300 ease-in-out 
+         lg:translate-x-0 z-40;
+}
+
+.sidebar.open {
+  @apply translate-x-0;
+}
+
+.sidebar ul {
+  @apply list-none p-0 m-0;
+}
+
+.sidebar li {
+  @apply block;
+}
+
+.sidebar li a {
+  @apply block px-6 py-3 text-slate-300 hover:bg-slate-800 hover:text-blue-400 
+         transition-colors duration-200 border-l-4 border-transparent;
+}
+
+.sidebar li.active a {
+  @apply bg-slate-800 text-blue-400 border-l-blue-400;
+}
+
+/* Main Content */
+.main-content {
+  @apply min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900;
+}
+
+.main-content.sidebar-open {
+  @apply lg:ml-64;
+}
+
+/* Page Header */
+.page-header {
+  @apply bg-slate-800 border-b border-slate-700 px-6 py-4;
+}
+
+.page-title {
+  @apply text-2xl font-bold text-slate-100;
+}
+
+/* Cards */
+.card {
+  @apply bg-slate-800 border border-slate-700 rounded-lg shadow-lg overflow-hidden;
+}
+
+.card-header {
+  @apply px-6 py-4 border-b border-slate-700 bg-slate-700;
+}
+
+.card-body {
+  @apply p-6;
+}
+
+/* Kompakte Tile-Styles für No-Scroll Layout */
+.simple-tile {
+  @apply bg-slate-800 border border-slate-700 rounded-lg p-3 
+         text-slate-100 shadow-lg;
+}
+
+.simple-tile-large {
+  @apply min-h-[160px] p-4;
+}
+
+.simple-tile-medium {
+  @apply min-h-[120px] p-3;
+}
+
+.simple-tile-small {
+  @apply min-h-[80px] p-2 text-center flex flex-col items-center justify-center;
+}
+
+.simple-tile-icon {
+  @apply mb-2 flex items-center justify-center;
+}
+
+.simple-tile-label {
+  @apply text-center;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .simple-tile-large {
+    @apply min-h-[140px] p-3;
+  }
+}
+
+/* Forum-specific styles */
+.forum-post {
+  @apply bg-slate-800 border border-slate-700 rounded-lg p-4 mb-4;
+}
+
+.forum-post-header {
+  @apply flex items-center justify-between mb-3 pb-2 border-b border-slate-600;
+}
+
+.forum-post-content {
+  @apply text-slate-100 leading-relaxed;
+}
+
+.forum-post-content p {
+  @apply mb-3 last:mb-0;
+}
+
+.forum-post-meta {
+  @apply text-sm text-slate-400 flex items-center space-x-2;
+}
+
+.forum-thread-title {
+  @apply text-xl font-bold text-slate-100 hover:text-blue-400 transition-colors cursor-pointer;
+}
+
+.forum-category-icon {
+  @apply w-6 h-6 flex-shrink-0;
+}
+
+.forum-stats-tile {
+  @apply bg-slate-800 border border-slate-700 rounded-lg p-4 text-center;
+}
+
+.forum-stats-number {
+  @apply text-2xl font-bold text-blue-400;
+}
+
+.forum-stats-label {
+  @apply text-sm text-slate-400 mt-1;
+}
+
+/* Forum user badges */
+.forum-user-badge {
+  @apply inline-flex items-center px-2 py-1 rounded-full text-xs font-medium;
+}
+
+.forum-user-badge.newbie {
+  @apply bg-gray-700 text-gray-200;
+}
+
+.forum-user-badge.collector {
+  @apply bg-green-700 text-green-200;
+}
+
+.forum-user-badge.veteran {
+  @apply bg-blue-700 text-blue-200;
+}
+
+.forum-user-badge.expert {
+  @apply bg-purple-700 text-purple-200;
+}
+
+.forum-user-badge.master {
+  @apply bg-yellow-700 text-yellow-200;
+}
