@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { motion } from 'framer-motion';
 import { 
   Gamepad2, 
   Trophy, 
@@ -30,43 +29,31 @@ export default function Navigation() {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <motion.div
-            className="flex items-center space-x-2"
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <div className="w-8 h-8 bg-gradient-to-r from-cyan-400 to-blue-500 rounded glow-effect"></div>
+          <div className="flex items-center space-x-2">
+            <div className="w-8 h-8 bg-gradient-to-r from-cyan-400 to-blue-500 rounded"></div>
             <span className="text-xl font-bold neon-text">BATTLE64</span>
-          </motion.div>
+          </div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-6">
             {navItems.map((item, index) => (
-              <motion.a
+              <a
                 key={item.name}
                 href={item.href}
                 className="flex items-center space-x-2 text-gray-300 hover:text-cyan-300 transition-colors duration-200 group"
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                whileHover={{ scale: 1.05 }}
               >
-                <span className="group-hover:scale-110 transition-transform">{item.icon}</span>
+                <span className="group-hover:scale-110 transition-transform">
+                  {item.icon}
+                </span>
                 <span>{item.name}</span>
-              </motion.a>
+              </a>
             ))}
           </div>
 
-          {/* CTA Button */}
-          <motion.button
-            className="hidden md:block neon-button"
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: 0.6 }}
-          >
+          {/* Register Button */}
+          <button className="hidden md:block neon-button">
             Registrieren
-          </motion.button>
+          </button>
 
           {/* Mobile Menu Button */}
           <button
@@ -77,40 +64,28 @@ export default function Navigation() {
           </button>
         </div>
 
-        {/* Mobile Menu */}
+        {/* Mobile Navigation */}
         {isMenuOpen && (
-          <motion.div
-            className="md:hidden py-4 border-t border-cyan-500/20"
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
-          >
-            <div className="flex flex-col space-y-4">
-              {navItems.map((item, index) => (
-                <motion.a
+          <div className="md:hidden py-4 border-t border-cyan-500/20">
+            <div className="space-y-2">
+              {navItems.map((item) => (
+                <a
                   key={item.name}
                   href={item.href}
-                  className="flex items-center space-x-3 text-gray-300 hover:text-cyan-300 transition-colors duration-200 py-2"
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.3, delay: index * 0.1 }}
+                  className="flex items-center space-x-3 px-4 py-2 text-gray-300 hover:text-cyan-300 hover:bg-cyan-500/10 rounded transition-colors"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  <span>{item.icon}</span>
+                  {item.icon}
                   <span>{item.name}</span>
-                </motion.a>
+                </a>
               ))}
-              <motion.button
-                className="neon-button w-full mt-4"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3, delay: 0.6 }}
-              >
-                Registrieren
-              </motion.button>
+              <div className="px-4 pt-4">
+                <button className="w-full neon-button">
+                  Registrieren
+                </button>
+              </div>
             </div>
-          </motion.div>
+          </div>
         )}
       </div>
     </nav>

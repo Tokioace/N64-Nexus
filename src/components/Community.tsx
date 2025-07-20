@@ -1,18 +1,14 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { useState } from 'react';
 import { 
   Users, 
   MessageCircle, 
-  UserPlus, 
-  Search, 
-  Send,
-  Trophy,
-  Star,
-  MapPin,
-  Gamepad2,
-  Heart
+  Trophy, 
+  Star, 
+  MapPin, 
+  Heart,
+  Send
 } from 'lucide-react';
 
 interface User {
@@ -144,17 +140,14 @@ export default function Community() {
     <div className="min-h-screen pt-20 px-4">
       <div className="container mx-auto">
         {/* Header */}
-        <motion.div
+        <div
           className="text-center mb-12"
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
         >
           <h1 className="text-5xl font-bold mb-4 neon-text">Community</h1>
           <p className="text-xl text-cyan-300 mb-8">
             Verbinde dich mit anderen N64-Fans und tausche dich aus!
           </p>
-        </motion.div>
+        </div>
 
         {/* Stats */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
@@ -207,7 +200,6 @@ export default function Community() {
             <div className="lg:col-span-2">
               <div className="flex items-center space-x-4 mb-6">
                 <div className="flex-1 relative">
-                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
                   <input
                     type="text"
                     placeholder="Benutzer suchen..."
@@ -220,12 +212,9 @@ export default function Community() {
 
               <div className="space-y-4">
                 {filteredUsers.map((user, index) => (
-                  <motion.div
+                  <div
                     key={user.id}
                     className="retro-card"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
                   >
                     <div className="flex items-center justify-between">
                       <div className="flex items-center space-x-4">
@@ -263,12 +252,12 @@ export default function Community() {
                             onClick={() => addFriend(user.id)}
                             className="bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-300 p-2 rounded transition-colors"
                           >
-                            <UserPlus className="w-4 h-4" />
+                            {/* UserPlus icon removed */}
                           </button>
                         )}
                       </div>
                     </div>
-                  </motion.div>
+                  </div>
                 ))}
               </div>
             </div>
@@ -289,12 +278,9 @@ export default function Community() {
                 {/* Messages */}
                 <div className="flex-1 overflow-y-auto space-y-4 mb-4">
                   {chatMessages.map((message, index) => (
-                    <motion.div
+                    <div
                       key={message.id}
                       className={`flex ${message.isOwn ? 'justify-end' : 'justify-start'}`}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.3, delay: index * 0.1 }}
                     >
                       <div className={`flex items-start space-x-2 max-w-xs ${message.isOwn ? 'flex-row-reverse space-x-reverse' : ''}`}>
                         <div className="w-8 h-8 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full flex items-center justify-center text-sm">
@@ -306,7 +292,7 @@ export default function Community() {
                           <div className="text-xs text-gray-500 mt-1">{message.timestamp}</div>
                         </div>
                       </div>
-                    </motion.div>
+                    </div>
                   ))}
                 </div>
 
@@ -363,7 +349,7 @@ export default function Community() {
                   </div>
                 </div>
                 <div className="flex items-center space-x-3">
-                  <Gamepad2 className="w-5 h-5 text-green-400" />
+                  {/* Gamepad2 icon removed */}
                   <div className="text-sm">
                     <span className="text-cyan-300">N64Pro</span> fügte Zelda zur Sammlung hinzu
                   </div>

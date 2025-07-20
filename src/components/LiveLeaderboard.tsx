@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { Trophy, Medal, Award, Crown, Timer, Users } from 'lucide-react';
 
 interface LeaderboardEntry {
@@ -16,7 +15,6 @@ interface LeaderboardEntry {
 }
 
 interface LiveLeaderboardProps {
-  eventId: number;
   eventTitle: string;
   entries: LeaderboardEntry[];
   refreshInterval?: number;
@@ -30,18 +28,18 @@ export default function LiveLeaderboard({
   const [entries, setEntries] = useState<LeaderboardEntry[]>(initialEntries);
   const [lastUpdate, setLastUpdate] = useState(new Date());
 
-  // Simuliere Live-Updates (in echter Anwendung würde hier API-Polling stattfinden)
+  // Simulate Live-Updates (in real app this would be API polling)
   useEffect(() => {
     const interval = setInterval(() => {
-      // Simuliere neue Einträge oder Zeitverbesserungen
+      // Simulate new entries or time improvements
       setEntries(prevEntries => {
         const updatedEntries = [...prevEntries];
         
-        // Zufällige Chance auf neue Einträge oder Updates
+        // Random chance for new entries or updates
         if (Math.random() > 0.7) {
           const randomIndex = Math.floor(Math.random() * updatedEntries.length);
           if (updatedEntries[randomIndex]) {
-            // Simuliere Zeitverbesserung
+            // Simulate time improvement
             const currentTime = updatedEntries[randomIndex].time;
             const [minutes, seconds] = currentTime.split(':').map(Number);
             const totalSeconds = minutes * 60 + seconds;
@@ -57,7 +55,7 @@ export default function LiveLeaderboard({
           }
         }
         
-        // Sortiere nach Zeit und aktualisiere Ränge
+        // Sort by time and update ranks
         const sorted = updatedEntries
           .sort((a, b) => {
             const timeA = a.time.split(':').reduce((acc, time) => (60 * acc) + +time, 0);
@@ -89,16 +87,11 @@ export default function LiveLeaderboard({
 
   const getRankStyle = (rank: number) => {
     switch (rank) {
-      case 1: return 'bg-gradient-to-r from-yellow-500/20 to-yellow-600/20 border-yellow-400/50 shadow-yellow-400/20';
-      case 2: return 'bg-gradient-to-r from-gray-400/20 to-gray-500/20 border-gray-400/50 shadow-gray-400/20';
-      case 3: return 'bg-gradient-to-r from-orange-500/20 to-orange-600/20 border-orange-400/50 shadow-orange-400/20';
+      case 1: return 'bg-gradient-to-r from-yellow-500/20 to-yellow-600/20 border-yellow-400/50';
+      case 2: return 'bg-gradient-to-r from-gray-400/20 to-gray-500/20 border-gray-400/50';
+      case 3: return 'bg-gradient-to-r from-orange-500/20 to-orange-600/20 border-orange-400/50';
       default: return 'bg-black/30 border-cyan-500/20 hover:border-cyan-400/40';
     }
-  };
-
-  const getPositionChange = (entry: LeaderboardEntry) => {
-    // Simuliere Positionsänderungen für Animation
-    return entry.isNew ? 'up' : null;
   };
 
   return (
@@ -124,13 +117,9 @@ export default function LiveLeaderboard({
       {/* Top 3 Podium */}
       <div className="grid grid-cols-3 gap-4 mb-8">
         {entries.slice(0, 3).map((entry, index) => (
-          <motion.div
+          <div
             key={entry.id}
-            className={`text-center p-4 rounded-lg border-2 shadow-lg ${getRankStyle(entry.rank)}`}
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: index * 0.1 }}
-            whileHover={{ scale: 1.05 }}
+            className={`text-center p-4 rounded-lg border-2 ${getRankStyle(entry.rank)} hover:scale-105 transition-transform`}
           >
             <div className="flex justify-center mb-3">
               {getRankIcon(entry.rank)}
@@ -140,16 +129,11 @@ export default function LiveLeaderboard({
             <div className="text-lg font-mono text-green-300 mb-1">{entry.time}</div>
             <div className="text-xs text-gray-400">{entry.region}</div>
             {entry.isNew && (
-              <motion.div
-                className="text-xs text-yellow-400 mt-1"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.3 }}
-              >
+              <div className="text-xs text-yellow-400 mt-1">
                 ✨ Neue Bestzeit!
-              </motion.div>
+              </div>
             )}
-          </motion.div>
+          </div>
         ))}
       </div>
 
@@ -160,90 +144,55 @@ export default function LiveLeaderboard({
           Vollständige Rangliste
         </h3>
         
-        <AnimatePresence>
-          {entries.map((entry, index) => {
-            const positionChange = getPositionChange(entry);
-            
-            return (
-              <motion.div
-                key={entry.id}
-                layout
-                className={`flex items-center justify-between p-4 rounded-lg border transition-all ${getRankStyle(entry.rank)}`}
-                initial={{ opacity: 0, x: -50 }}
-                animate={{ 
-                  opacity: 1, 
-                  x: 0,
-                  scale: entry.isNew ? [1, 1.05, 1] : 1
-                }}
-                exit={{ opacity: 0, x: 50 }}
-                transition={{ 
-                  duration: 0.3, 
-                  delay: index * 0.05,
-                  scale: { duration: 0.6 }
-                }}
-                whileHover={{ scale: 1.02 }}
-              >
-                <div className="flex items-center space-x-4">
-                  {/* Rank */}
-                  <div className="flex items-center space-x-2">
-                    {entry.rank <= 3 ? (
-                      getRankIcon(entry.rank)
-                    ) : (
-                      <div className="w-8 h-8 bg-gradient-to-r from-cyan-400/20 to-blue-500/20 rounded-full flex items-center justify-center text-sm font-bold text-cyan-300">
-                        {entry.rank}
-                      </div>
-                    )}
-                    {positionChange === 'up' && (
-                      <motion.div
-                        className="text-green-400"
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5 }}
-                      >
-                        ↗️
-                      </motion.div>
-                    )}
-                  </div>
-
-                  {/* Player Info */}
-                  <div className="flex items-center space-x-3">
-                    <span className="text-2xl">{entry.avatar}</span>
-                    <div>
-                      <div className="font-bold text-cyan-300">{entry.username}</div>
-                      <div className="text-sm text-gray-400">{entry.region}</div>
+        <div>
+          {entries.map((entry, index) => (
+            <div
+              key={entry.id}
+              className={`flex items-center justify-between p-4 rounded-lg border transition-all hover:scale-105 ${getRankStyle(entry.rank)} ${entry.isNew ? 'ring-2 ring-yellow-400/50' : ''}`}
+            >
+              <div className="flex items-center space-x-4">
+                {/* Rank */}
+                <div className="flex items-center space-x-2">
+                  {entry.rank <= 3 ? (
+                    getRankIcon(entry.rank)
+                  ) : (
+                    <div className="w-8 h-8 bg-gradient-to-r from-cyan-400/20 to-blue-500/20 rounded-full flex items-center justify-center text-sm font-bold text-cyan-300">
+                      {entry.rank}
                     </div>
-                  </div>
-                </div>
-
-                {/* Time and Status */}
-                <div className="text-right">
-                  <div className="text-xl font-mono text-green-300">{entry.time}</div>
-                  <div className="text-sm text-gray-400 flex items-center justify-end space-x-2">
-                    <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                    <span>Live</span>
-                  </div>
+                  )}
                   {entry.isNew && (
-                    <motion.div
-                      className="text-xs text-yellow-400 mt-1"
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      onAnimationComplete={() => {
-                        // Entferne den "isNew" Flag nach Animation
-                        setTimeout(() => {
-                          setEntries(prev => prev.map(e => 
-                            e.id === entry.id ? { ...e, isNew: false } : e
-                          ));
-                        }, 2000);
-                      }}
-                    >
-                      🆕 Verbessert!
-                    </motion.div>
+                    <div className="text-green-400">
+                      ↗️
+                    </div>
                   )}
                 </div>
-              </motion.div>
-            );
-          })}
-        </AnimatePresence>
+
+                {/* Player Info */}
+                <div className="flex items-center space-x-3">
+                  <span className="text-2xl">{entry.avatar}</span>
+                  <div>
+                    <div className="font-bold text-cyan-300">{entry.username}</div>
+                    <div className="text-sm text-gray-400">{entry.region}</div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Time and Status */}
+              <div className="text-right">
+                <div className="text-xl font-mono text-green-300">{entry.time}</div>
+                <div className="text-sm text-gray-400 flex items-center justify-end space-x-2">
+                  <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                  <span>Live</span>
+                </div>
+                {entry.isNew && (
+                  <div className="text-xs text-yellow-400 mt-1">
+                    🆕 Verbessert!
+                  </div>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
 
       {/* Last Update */}

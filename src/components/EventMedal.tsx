@@ -1,6 +1,5 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import { Trophy, Medal, Award, Star, Crown, Target } from 'lucide-react';
 
 export type MedalType = 'gold' | 'silver' | 'bronze' | 'participation';
@@ -19,14 +18,12 @@ interface EventMedalProps {
   medal: EventMedal;
   size?: 'small' | 'medium' | 'large';
   showTooltip?: boolean;
-  animated?: boolean;
 }
 
 export default function EventMedal({ 
   medal, 
   size = 'medium', 
-  showTooltip = true, 
-  animated = true 
+  showTooltip = true
 }: EventMedalProps) {
   const getMedalIcon = (type: MedalType, sizeClass: string) => {
     switch (type) {
@@ -48,36 +45,26 @@ export default function EventMedal({
       case 'gold':
         return {
           gradient: 'from-yellow-400 via-yellow-500 to-yellow-600',
-          shadow: 'shadow-yellow-400/50',
-          glow: 'shadow-lg shadow-yellow-400/30',
           border: 'border-yellow-400/70'
         };
       case 'silver':
         return {
           gradient: 'from-gray-300 via-gray-400 to-gray-500',
-          shadow: 'shadow-gray-400/50',
-          glow: 'shadow-lg shadow-gray-400/30',
           border: 'border-gray-400/70'
         };
       case 'bronze':
         return {
           gradient: 'from-orange-400 via-orange-500 to-orange-600',
-          shadow: 'shadow-orange-400/50',
-          glow: 'shadow-lg shadow-orange-400/30',
           border: 'border-orange-400/70'
         };
       case 'participation':
         return {
           gradient: 'from-purple-400 via-purple-500 to-purple-600',
-          shadow: 'shadow-purple-400/50',
-          glow: 'shadow-lg shadow-purple-400/30',
           border: 'border-purple-400/70'
         };
       default:
         return {
           gradient: 'from-cyan-400 via-cyan-500 to-cyan-600',
-          shadow: 'shadow-cyan-400/50',
-          glow: 'shadow-lg shadow-cyan-400/30',
           border: 'border-cyan-400/70'
         };
     }
@@ -88,20 +75,17 @@ export default function EventMedal({
       case 'small':
         return {
           container: 'w-12 h-12',
-          icon: 'w-6 h-6',
-          text: 'text-xs'
+          icon: 'w-6 h-6'
         };
       case 'large':
         return {
           container: 'w-20 h-20',
-          icon: 'w-10 h-10',
-          text: 'text-lg'
+          icon: 'w-10 h-10'
         };
       default: // medium
         return {
           container: 'w-16 h-16',
-          icon: 'w-8 h-8',
-          text: 'text-sm'
+          icon: 'w-8 h-8'
         };
     }
   };
@@ -125,59 +109,21 @@ export default function EventMedal({
   const sizeClasses = getSizeClasses(size);
 
   const medalComponent = (
-    <motion.div
+    <div
       className={`
         relative ${sizeClasses.container} rounded-full 
         bg-gradient-to-br ${style.gradient} 
         border-2 ${style.border}
-        ${style.glow}
         flex items-center justify-center
         cursor-pointer
         group
+        hover:scale-110 transition-transform
       `}
-      initial={animated ? { opacity: 0, scale: 0.5, rotate: -180 } : {}}
-      animate={animated ? { opacity: 1, scale: 1, rotate: 0 } : {}}
-      transition={animated ? { 
-        duration: 0.8, 
-        type: "spring", 
-        stiffness: 200,
-        damping: 15 
-      } : {}}
-      whileHover={{ 
-        scale: 1.1, 
-        rotate: 5,
-        transition: { duration: 0.2 }
-      }}
-      whileTap={{ scale: 0.95 }}
     >
       {/* Medal Icon */}
       <div className="relative z-10">
         {getMedalIcon(medal.type, sizeClasses.icon)}
       </div>
-
-      {/* Shine Effect */}
-      <motion.div
-        className="absolute inset-0 rounded-full bg-gradient-to-br from-white/30 via-transparent to-transparent opacity-0 group-hover:opacity-100"
-        initial={{ rotate: -45 }}
-        animate={{ rotate: 315 }}
-        transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-      />
-
-      {/* Pulse Ring for Gold Medal */}
-      {medal.type === 'gold' && animated && (
-        <motion.div
-          className="absolute inset-0 rounded-full border-2 border-yellow-400/50"
-          animate={{ 
-            scale: [1, 1.2, 1],
-            opacity: [0.5, 0, 0.5]
-          }}
-          transition={{ 
-            duration: 2, 
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        />
-      )}
 
       {/* Rank Badge */}
       {medal.rank && medal.rank <= 3 && size !== 'small' && (
@@ -185,7 +131,7 @@ export default function EventMedal({
           {medal.rank}
         </div>
       )}
-    </motion.div>
+    </div>
   );
 
   // Wrap with tooltip if enabled
@@ -195,13 +141,7 @@ export default function EventMedal({
         {medalComponent}
         
         {/* Tooltip */}
-        <motion.div
-          className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-black/90 border border-gray-600 rounded-lg text-sm text-white opacity-0 group-hover:opacity-100 pointer-events-none z-50 min-w-max"
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 0, y: 10 }}
-          whileHover={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.2 }}
-        >
+        <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-black/90 border border-gray-600 rounded-lg text-sm text-white opacity-0 group-hover:opacity-100 pointer-events-none z-50 min-w-max transition-opacity">
           <div className="text-center">
             <div className="font-bold text-cyan-300 mb-1">
               {getMedalTitle(medal.type, medal.rank)}
@@ -222,7 +162,7 @@ export default function EventMedal({
           
           {/* Tooltip Arrow */}
           <div className="absolute top-full left-1/2 transform -translate-x-1/2 border-4 border-transparent border-t-black/90"></div>
-        </motion.div>
+        </div>
       </div>
     );
   }
@@ -247,6 +187,46 @@ export function MedalCollection({
   const displayedMedals = showAll ? medals : medals.slice(0, maxDisplay);
   const remainingCount = medals.length - maxDisplay;
 
+  const getMedalIcon = (type: MedalType, sizeClass: string) => {
+    switch (type) {
+      case 'gold':
+        return <Crown className={`${sizeClass} text-yellow-400`} />;
+      case 'silver':
+        return <Medal className={`${sizeClass} text-gray-300`} />;
+      case 'bronze':
+        return <Award className={`${sizeClass} text-orange-400`} />;
+      case 'participation':
+        return <Star className={`${sizeClass} text-purple-400`} />;
+      default:
+        return <Trophy className={`${sizeClass} text-cyan-400`} />;
+    }
+  };
+
+  const getMedalStyle = (type: MedalType) => {
+    switch (type) {
+      case 'gold':
+        return {
+          gradient: 'from-yellow-400 via-yellow-500 to-yellow-600'
+        };
+      case 'silver':
+        return {
+          gradient: 'from-gray-300 via-gray-400 to-gray-500'
+        };
+      case 'bronze':
+        return {
+          gradient: 'from-orange-400 via-orange-500 to-orange-600'
+        };
+      case 'participation':
+        return {
+          gradient: 'from-purple-400 via-purple-500 to-purple-600'
+        };
+      default:
+        return {
+          gradient: 'from-cyan-400 via-cyan-500 to-cyan-600'
+        };
+    }
+  };
+
   return (
     <div className="retro-card">
       <h3 className="text-lg font-bold text-cyan-300 mb-4 flex items-center">
@@ -265,14 +245,12 @@ export function MedalCollection({
         <div className="space-y-4">
           <div className="flex flex-wrap gap-3">
             {displayedMedals.map((medal, index) => (
-              <motion.div
+              <div
                 key={medal.id}
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.3, delay: index * 0.1 }}
+                className="hover:scale-105 transition-transform"
               >
                 <EventMedal medal={medal} size="medium" />
-              </motion.div>
+              </div>
             ))}
             
             {!showAll && remainingCount > 0 && (

@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { motion } from 'framer-motion';
 import { 
   Trophy, 
   Clock, 
@@ -141,7 +140,7 @@ export default function Events() {
     }
   ];
 
-  // Beispiel Medaillen für Demo
+  // Example medals for demo
   const userMedals = [
     {
       id: "medal1",
@@ -195,7 +194,6 @@ export default function Events() {
 
   const createTeam = () => {
     if (newTeamName.trim() && activeEvent) {
-      // In einer echten App würde hier ein API-Call stattfinden
       console.log(`Team "${newTeamName}" für Event ${activeEvent.id} erstellt`);
       setNewTeamName('');
       setShowTeamCreation(false);
@@ -203,7 +201,6 @@ export default function Events() {
   };
 
   const joinTeam = (teamId: number) => {
-    // In einer echten App würde hier ein API-Call stattfinden
     console.log(`Team ${teamId} beigetreten`);
   };
 
@@ -211,27 +208,17 @@ export default function Events() {
     <div className="min-h-screen pt-20 px-4">
       <div className="container mx-auto">
         {/* Header */}
-        <motion.div
-          className="text-center mb-12"
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
+        <div className="text-center mb-12">
           <h1 className="text-5xl font-bold mb-4 neon-text">Events & Turniere</h1>
           <p className="text-xl text-cyan-300 mb-8">
             Nimm an Zeitrennen teil und messe dich mit der Community!
           </p>
-        </motion.div>
+        </div>
 
         {/* Medal Collection */}
-        <motion.div
-          className="mb-12"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-        >
+        <div className="mb-12">
           <MedalCollection medals={userMedals} maxDisplay={6} />
-        </motion.div>
+        </div>
 
         {/* Filters */}
         <div className="flex flex-col sm:flex-row justify-center gap-4 mb-8">
@@ -278,13 +265,9 @@ export default function Events() {
         {/* Events Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
           {filteredEvents.map((event, index) => (
-            <motion.div
+            <div
               key={event.id}
-              className="retro-card cursor-pointer"
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              whileHover={{ scale: 1.02 }}
+              className="retro-card cursor-pointer hover:scale-105 transition-transform"
               onClick={() => setActiveEvent(event)}
             >
               {/* Event Header */}
@@ -414,34 +397,24 @@ export default function Events() {
                   </button>
                 )}
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
 
         {/* Live Leaderboard */}
         {activeEvent && activeEvent.status === 'live' && (
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
+          <div>
             <LiveLeaderboard
-              eventId={activeEvent.id}
               eventTitle={activeEvent.title}
               entries={activeEvent.leaderboard}
               refreshInterval={30000}
             />
-          </motion.div>
+          </div>
         )}
 
         {/* Team Details Modal */}
         {activeEvent && activeEvent.type === 'team' && activeEvent.teams && (
-          <motion.div
-            className="retro-card mt-8"
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
+          <div className="retro-card mt-8">
             <h2 className="text-2xl font-bold mb-6 neon-text text-center flex items-center justify-center">
               <Shield className="w-6 h-6 mr-2" />
               Team Overview - {activeEvent.title}
@@ -502,23 +475,13 @@ export default function Events() {
                 Neues Team erstellen
               </button>
             </div>
-          </motion.div>
+          </div>
         )}
 
         {/* Team Creation Modal */}
         {showTeamCreation && (
-          <motion.div
-            className="fixed inset-0 bg-black/80 flex items-center justify-center z-50"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-          >
-            <motion.div
-              className="retro-card max-w-md w-full mx-4"
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.9 }}
-            >
+          <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50">
+            <div className="retro-card max-w-md w-full mx-4">
               <h3 className="text-xl font-bold text-cyan-300 mb-4">Neues Team erstellen</h3>
               <div className="space-y-4">
                 <div>
@@ -551,8 +514,8 @@ export default function Events() {
                   </button>
                 </div>
               </div>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         )}
       </div>
     </div>

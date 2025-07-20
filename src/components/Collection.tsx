@@ -1,8 +1,12 @@
 'use client';
 
 import { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Plus, Search, Filter, Trophy, Star } from 'lucide-react';
+import { 
+  Gamepad2, 
+  Search, 
+  Star, 
+  Trophy
+} from 'lucide-react';
 
 interface Game {
   id: number;
@@ -57,11 +61,8 @@ export default function Collection() {
     <div className="min-h-screen pt-20 px-4">
       <div className="container mx-auto">
         {/* Header */}
-        <motion.div
+        <div
           className="text-center mb-12"
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
         >
           <h1 className="text-5xl font-bold mb-4 neon-text">Deine Sammlung</h1>
           <p className="text-xl text-cyan-300 mb-8">
@@ -83,7 +84,7 @@ export default function Collection() {
               <div className="text-gray-300">Durchschnitt</div>
             </div>
           </div>
-        </motion.div>
+        </div>
 
         {/* Search and Filter */}
         <div className="flex flex-col md:flex-row gap-4 mb-8">
@@ -107,7 +108,7 @@ export default function Collection() {
             <option value="NTSC">NTSC</option>
           </select>
           <button className="neon-button flex items-center justify-center">
-            <Plus className="w-5 h-5 mr-2" />
+            <Gamepad2 className="w-5 h-5 mr-2" />
             Spiel hinzufügen
           </button>
         </div>
@@ -115,13 +116,9 @@ export default function Collection() {
         {/* Games Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {filteredGames.map((game, index) => (
-            <motion.div
+            <div
               key={game.id}
               className="retro-card group cursor-pointer"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              whileHover={{ scale: 1.05 }}
             >
               {/* Cartridge */}
               <div className={`w-full h-32 bg-gradient-to-b ${game.cartridgeColor} rounded-lg mb-4 relative overflow-hidden group-hover:scale-105 transition-transform`}>
@@ -168,26 +165,23 @@ export default function Collection() {
                   <Trophy className="w-4 h-4" />
                 </button>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
 
         {/* Empty State */}
         {filteredGames.length === 0 && (
-          <motion.div
+          <div
             className="text-center py-12"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5 }}
           >
             <div className="w-24 h-32 bg-gradient-to-b from-gray-400 to-gray-600 rounded-lg mx-auto mb-4"></div>
             <h3 className="text-xl font-bold mb-2 text-gray-300">Keine Spiele gefunden</h3>
             <p className="text-gray-500 mb-6">Füge dein erstes N64-Spiel zur Sammlung hinzu!</p>
             <button className="neon-button">
-              <Plus className="w-5 h-5 mr-2" />
+              <Gamepad2 className="w-5 h-5 mr-2" />
               Erstes Spiel hinzufügen
             </button>
-          </motion.div>
+          </div>
         )}
       </div>
     </div>
