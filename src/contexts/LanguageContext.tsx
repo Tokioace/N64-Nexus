@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, ReactNode } from 'react'
 
-export type Language = 'de' | 'en' | 'fr' | 'it' | 'es' | 'el' | 'tr' | 'zh' | 'ja'
+export type Language = 'de' | 'en' | 'fr' | 'it' | 'es' | 'el' | 'tr' | 'zh' | 'ja' | 'ru' | 'pt'
 
 interface LanguageContextType {
   currentLanguage: Language
@@ -124,7 +124,9 @@ const translations = {
     'language.greek': 'Griechisch',
     'language.turkish': 'Türkisch',
     'language.chinese': 'Chinesisch',
-    'language.japanese': 'Japanisch'
+    'language.japanese': 'Japanisch',
+    'language.russian': 'Russisch',
+    'language.portuguese': 'Portugiesisch'
   },
   
   en: {
@@ -227,7 +229,9 @@ const translations = {
     'language.greek': 'Greek',
     'language.turkish': 'Turkish',
     'language.chinese': 'Chinese',
-    'language.japanese': 'Japanese'
+    'language.japanese': 'Japanese',
+    'language.russian': 'Russian',
+    'language.portuguese': 'Portuguese'
   },
   
   fr: {
@@ -330,7 +334,9 @@ const translations = {
     'language.greek': 'Grec',
     'language.turkish': 'Turc',
     'language.chinese': 'Chinois',
-    'language.japanese': 'Japonais'
+    'language.japanese': 'Japonais',
+    'language.russian': 'Russe',
+    'language.portuguese': 'Portugais'
   },
 
   it: {
@@ -433,7 +439,9 @@ const translations = {
     'language.greek': 'Greco',
     'language.turkish': 'Turco',
     'language.chinese': 'Cinese',
-    'language.japanese': 'Giapponese'
+    'language.japanese': 'Giapponese',
+    'language.russian': 'Russo',
+    'language.portuguese': 'Portoghese'
   },
 
   es: {
@@ -536,7 +544,9 @@ const translations = {
     'language.greek': 'Griego',
     'language.turkish': 'Turco',
     'language.chinese': 'Chino',
-    'language.japanese': 'Japonés'
+    'language.japanese': 'Japonés',
+    'language.russian': 'Ruso',
+    'language.portuguese': 'Portugués'
   },
 
   el: {
@@ -639,7 +649,9 @@ const translations = {
     'language.greek': 'Ελληνικά',
     'language.turkish': 'Τουρκικά',
     'language.chinese': 'Κινεζικά',
-    'language.japanese': 'Ιαπωνικά'
+    'language.japanese': 'Ιαπωνικά',
+    'language.russian': 'Ρωσικά',
+    'language.portuguese': 'Πορτογαλικά'
   },
 
   tr: {
@@ -742,7 +754,9 @@ const translations = {
     'language.greek': 'Yunanca',
     'language.turkish': 'Türkçe',
     'language.chinese': 'Çince',
-    'language.japanese': 'Japonca'
+    'language.japanese': 'Japonca',
+    'language.russian': 'Rusça',
+    'language.portuguese': 'Portekizce'
   },
 
   zh: {
@@ -845,7 +859,9 @@ const translations = {
     'language.greek': '希腊语',
     'language.turkish': '土耳其语',
     'language.chinese': '中文',
-    'language.japanese': '日语'
+    'language.japanese': '日语',
+    'language.russian': '俄语',
+    'language.portuguese': '葡萄牙语'
   },
 
   ja: {
@@ -948,7 +964,223 @@ const translations = {
     'language.greek': 'ギリシャ語',
     'language.turkish': 'トルコ語',
     'language.chinese': '中国語',
-    'language.japanese': '日本語'
+    'language.japanese': '日本語',
+    'language.russian': 'ロシア語',
+    'language.portuguese': 'ポルトガル語'
+  },
+
+  ru: {
+    // Navigation
+    'nav.home': 'Главная',
+    'nav.quiz': 'Викторина',
+    'nav.leaderboard': 'Рейтинг',
+    'nav.profile': 'Профиль',
+    'nav.minigames': 'Мини-игры',
+    'nav.events': 'События',
+    'nav.speedrun': 'Спидран Медиа',
+    'nav.collector': 'Режим коллекционера',
+    'nav.forum': 'Форум',
+    'nav.classic': 'Классика',
+    'nav.marketplace': 'Торговая площадка',
+    'nav.friends': 'Друзья',
+    'nav.fanart': 'Фан-арт',
+    'nav.news': 'Новости',
+    'nav.media': 'Медиа',
+    
+    // Home Screen
+    'home.subtitle': 'N64 сообщество для миллениалов',
+    'home.welcome': 'Добро пожаловать',
+    'home.quiz.subtitle': 'Знания N64',
+    'home.events.subtitle': 'Турниры',
+    'home.media.subtitle': 'Спидраны',
+    'home.collector.subtitle': 'Коллекция',
+    'home.forum.subtitle': 'Сообщество',
+    'home.marketplace.subtitle': 'Торговля',
+    'home.friends.subtitle': 'Социальная сеть',
+    'home.fanart.subtitle': 'Творчество',
+    'home.news.subtitle': 'Обновления',
+    'home.classic.subtitle': 'Ретро опыт',
+    
+    // Profile
+    'profile.level': 'Уровень',
+    'profile.points': 'Очки',
+    'profile.achievements': 'Достижения',
+    'profile.badges': 'Значки',
+    'profile.stats': 'Статистика',
+    'profile.games': 'Игры',
+    'profile.completed': 'Завершено',
+    'profile.favorites': 'Избранное',
+    'profile.edit': 'Редактировать профиль',
+    'profile.settings': 'Настройки',
+    
+    // Quiz
+    'quiz.title': 'N64 Викторина',
+    'quiz.question': 'Вопрос',
+    'quiz.score': 'Счет',
+    'quiz.timeLeft': 'Осталось времени',
+    'quiz.correct': 'Правильно!',
+    'quiz.wrong': 'Неправильно!',
+    'quiz.finished': 'Викторина завершена',
+    'quiz.restart': 'Начать заново',
+    'quiz.difficulty': 'Сложность',
+    'quiz.category': 'Категория',
+    
+    // Leaderboard
+    'leaderboard.title': 'Рейтинг',
+    'leaderboard.rank': 'Место',
+    'leaderboard.player': 'Игрок',
+    'leaderboard.score': 'Счет',
+    'leaderboard.level': 'Уровень',
+    'leaderboard.weekly': 'За неделю',
+    'leaderboard.monthly': 'За месяц',
+    'leaderboard.allTime': 'За все время',
+    
+    // Minigames
+    'minigames.title': 'Мини-игры',
+    'minigames.play': 'Играть',
+    'minigames.highScore': 'Лучший результат',
+    'minigames.difficulty': 'Сложность',
+    'minigames.category': 'Категория',
+    
+    // Events
+    'events.title': 'События',
+    'events.upcoming': 'Предстоящие события',
+    'events.active': 'Активные события',
+    'events.completed': 'Завершенные события',
+    'events.participate': 'Участвовать',
+    'events.details': 'Подробности',
+    'events.noActive': 'Нет активных событий',
+    'events.viewAll': 'Показать все события',
+    
+    // Forum
+    'forum.title': 'Форум сообщества',
+    'forum.categories': 'Категории',
+    'forum.threads': 'Темы',
+    'forum.posts': 'Сообщения',
+    'forum.newThread': 'Новая тема',
+    'forum.reply': 'Ответить',
+    'forum.author': 'Автор',
+    'forum.lastPost': 'Последнее сообщение',
+    
+    // Language selector
+    'language.german': 'Немецкий',
+    'language.english': 'Английский',
+    'language.french': 'Французский',
+    'language.italian': 'Итальянский',
+    'language.spanish': 'Испанский',
+    'language.greek': 'Греческий',
+    'language.turkish': 'Турецкий',
+    'language.chinese': 'Китайский',
+    'language.japanese': 'Японский',
+    'language.russian': 'Русский',
+    'language.portuguese': 'Португальский'
+  },
+
+  pt: {
+    // Navigation
+    'nav.home': 'Início',
+    'nav.quiz': 'Quiz',
+    'nav.leaderboard': 'Classificação',
+    'nav.profile': 'Perfil',
+    'nav.minigames': 'Mini-jogos',
+    'nav.events': 'Eventos',
+    'nav.speedrun': 'Speedrun Mídia',
+    'nav.collector': 'Modo Colecionador',
+    'nav.forum': 'Fórum',
+    'nav.classic': 'Clássico',
+    'nav.marketplace': 'Mercado',
+    'nav.friends': 'Amigos',
+    'nav.fanart': 'Fan Art',
+    'nav.news': 'Notícias',
+    'nav.media': 'Mídia',
+    
+    // Home Screen
+    'home.subtitle': 'A comunidade N64 para millennials',
+    'home.welcome': 'Bem-vindo de volta',
+    'home.quiz.subtitle': 'Conhecimento N64',
+    'home.events.subtitle': 'Torneios',
+    'home.media.subtitle': 'Speedruns',
+    'home.collector.subtitle': 'Coleção',
+    'home.forum.subtitle': 'Comunidade',
+    'home.marketplace.subtitle': 'Comércio',
+    'home.friends.subtitle': 'Rede social',
+    'home.fanart.subtitle': 'Criatividade',
+    'home.news.subtitle': 'Atualizações',
+    'home.classic.subtitle': 'Experiência retrô',
+    
+    // Profile
+    'profile.level': 'Nível',
+    'profile.points': 'Pontos',
+    'profile.achievements': 'Conquistas',
+    'profile.badges': 'Distintivos',
+    'profile.stats': 'Estatísticas',
+    'profile.games': 'Jogos',
+    'profile.completed': 'Concluído',
+    'profile.favorites': 'Favoritos',
+    'profile.edit': 'Editar perfil',
+    'profile.settings': 'Configurações',
+    
+    // Quiz
+    'quiz.title': 'Quiz N64',
+    'quiz.question': 'Pergunta',
+    'quiz.score': 'Pontuação',
+    'quiz.timeLeft': 'Tempo restante',
+    'quiz.correct': 'Correto!',
+    'quiz.wrong': 'Errado!',
+    'quiz.finished': 'Quiz terminado',
+    'quiz.restart': 'Recomeçar',
+    'quiz.difficulty': 'Dificuldade',
+    'quiz.category': 'Categoria',
+    
+    // Leaderboard
+    'leaderboard.title': 'Classificação',
+    'leaderboard.rank': 'Posição',
+    'leaderboard.player': 'Jogador',
+    'leaderboard.score': 'Pontuação',
+    'leaderboard.level': 'Nível',
+    'leaderboard.weekly': 'Semanal',
+    'leaderboard.monthly': 'Mensal',
+    'leaderboard.allTime': 'Todos os tempos',
+    
+    // Minigames
+    'minigames.title': 'Mini-jogos',
+    'minigames.play': 'Jogar',
+    'minigames.highScore': 'Melhor pontuação',
+    'minigames.difficulty': 'Dificuldade',
+    'minigames.category': 'Categoria',
+    
+    // Events
+    'events.title': 'Eventos',
+    'events.upcoming': 'Eventos próximos',
+    'events.active': 'Eventos ativos',
+    'events.completed': 'Eventos concluídos',
+    'events.participate': 'Participar',
+    'events.details': 'Detalhes',
+    'events.noActive': 'Nenhum evento ativo',
+    'events.viewAll': 'Ver todos os eventos',
+    
+    // Forum
+    'forum.title': 'Fórum da comunidade',
+    'forum.categories': 'Categorias',
+    'forum.threads': 'Tópicos',
+    'forum.posts': 'Postagens',
+    'forum.newThread': 'Novo tópico',
+    'forum.reply': 'Responder',
+    'forum.author': 'Autor',
+    'forum.lastPost': 'Última postagem',
+    
+    // Language selector
+    'language.german': 'Alemão',
+    'language.english': 'Inglês',
+    'language.french': 'Francês',
+    'language.italian': 'Italiano',
+    'language.spanish': 'Espanhol',
+    'language.greek': 'Grego',
+    'language.turkish': 'Turco',
+    'language.chinese': 'Chinês',
+    'language.japanese': 'Japonês',
+    'language.russian': 'Russo',
+    'language.portuguese': 'Português'
   }
 }
 
@@ -963,14 +1195,15 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
 
   // Translation function
   const t = (key: string): string => {
-    const translation = translations[currentLanguage][key as keyof typeof translations['de']]
+    const currentTranslations = translations[currentLanguage] as any
+    const translation = currentTranslations?.[key]
     return translation || key
   }
 
   // Initialize language from localStorage on mount
   React.useEffect(() => {
     const savedLanguage = localStorage.getItem('n64-nexus-language') as Language
-    if (savedLanguage && ['de', 'en', 'fr', 'it', 'es', 'el', 'tr', 'zh', 'ja'].includes(savedLanguage)) {
+    if (savedLanguage && ['de', 'en', 'fr', 'it', 'es', 'el', 'tr', 'zh', 'ja', 'ru', 'pt'].includes(savedLanguage)) {
       setCurrentLanguage(savedLanguage)
     }
   }, [])

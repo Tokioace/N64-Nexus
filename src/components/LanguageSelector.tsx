@@ -14,7 +14,9 @@ const LanguageSelector: React.FC = () => {
     { code: 'el' as Language, name: t('language.greek'), flag: '🇬🇷' },
     { code: 'tr' as Language, name: t('language.turkish'), flag: '🇹🇷' },
     { code: 'zh' as Language, name: t('language.chinese'), flag: '🇨🇳' },
-    { code: 'ja' as Language, name: t('language.japanese'), flag: '🇯🇵' }
+    { code: 'ja' as Language, name: t('language.japanese'), flag: '🇯🇵' },
+    { code: 'ru' as Language, name: t('language.russian'), flag: '🇷🇺' },
+    { code: 'pt' as Language, name: t('language.portuguese'), flag: '🇵🇹' }
   ]
 
   const currentFlag = languages.find(lang => lang.code === currentLanguage)?.flag || '🇩🇪'
@@ -45,7 +47,7 @@ const LanguageSelector: React.FC = () => {
           />
           
           {/* Dropdown */}
-          <div className="absolute right-0 top-12 z-20 bg-slate-800 border border-slate-600 rounded-lg shadow-xl py-2 min-w-[160px]">
+          <div className="absolute right-0 top-12 z-20 bg-slate-800 border border-slate-600 rounded-lg shadow-xl py-2 min-w-[160px] max-h-[280px] overflow-y-auto scrollbar-thin scrollbar-thumb-slate-600 scrollbar-track-slate-800">
             {languages.map((language) => (
               <button
                 key={language.code}
