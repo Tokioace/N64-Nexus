@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
 import { useUser } from '../contexts/UserContext'
+import { useLanguage } from '../contexts/LanguageContext'
 import { useNavigate } from 'react-router-dom'
 import { UserRegistrationData } from '../types'
 import { User, Mail, Lock, Gamepad2, Globe, Eye, EyeOff } from 'lucide-react'
 
 const AuthPage: React.FC = () => {
   const { login, register, isAuthenticated } = useUser()
+  const { t } = useLanguage()
   const navigate = useNavigate()
   const [isLogin, setIsLogin] = useState(true)
   const [showPassword, setShowPassword] = useState(false)
@@ -104,7 +106,7 @@ const AuthPage: React.FC = () => {
             </div>
             <h1 className="text-3xl font-bold text-slate-100 mb-2">Battle64</h1>
             <p className="text-slate-400">
-              {isLogin ? 'Willkommen zurück!' : 'Erstelle deinen Account'}
+              {isLogin ? t('auth.welcomeBack') : t('auth.createAccount')}
             </p>
           </div>
 
@@ -194,7 +196,7 @@ const AuthPage: React.FC = () => {
                 disabled={loading}
                 className="w-full py-3 bg-blue-600 hover:bg-blue-700 disabled:bg-slate-600 disabled:cursor-not-allowed text-white font-medium rounded-lg transition-colors"
               >
-                {loading ? 'Anmelden...' : 'Anmelden'}
+                {loading ? t('auth.loggingIn') : t('auth.login')}
               </button>
             </form>
           ) : (
@@ -325,7 +327,7 @@ const AuthPage: React.FC = () => {
                 disabled={loading}
                 className="w-full py-3 bg-blue-600 hover:bg-blue-700 disabled:bg-slate-600 disabled:cursor-not-allowed text-white font-medium rounded-lg transition-colors"
               >
-                {loading ? 'Registrieren...' : 'Account erstellen'}
+                {loading ? t('auth.registering') : t('auth.createAccountButton')}
               </button>
             </form>
           )}

@@ -277,7 +277,7 @@ const MinigamesPage: React.FC = () => {
     return (
       <div className="text-center">
         <div className="mb-4">
-          <p className="text-slate-300">Züge: {moves} | Score: {gameState.score}</p>
+          <p className="text-slate-300">{t('minigames.moves')}: {moves} | {t('minigames.score')}: {gameState.score}</p>
         </div>
         <div className="grid grid-cols-4 gap-3 max-w-md mx-auto">
           {cards.map((card) => (
@@ -337,7 +337,7 @@ const MinigamesPage: React.FC = () => {
     return (
       <div className="text-center">
         <div className="mb-6">
-          <p className="text-slate-300 mb-2">Versuche: {attempts} | Score: {gameState.score}</p>
+          <p className="text-slate-300 mb-2">{t('minigames.attempts')}: {attempts} | {t('minigames.score')}: {gameState.score}</p>
           {reactionTime > 0 && (
             <p className="text-yellow-400 text-xl font-bold">{reactionTime}ms</p>
           )}
@@ -413,8 +413,8 @@ const MinigamesPage: React.FC = () => {
     return (
       <div className="max-w-2xl mx-auto">
         <div className="mb-6 text-center">
-          <p className="text-slate-300">Frage {currentQuestion + 1}/{triviaQuestions.length}</p>
-          <p className="text-slate-300">Richtige Antworten: {correctAnswers} | Score: {gameState.score}</p>
+                      <p className="text-slate-300">{t('minigames.question')} {currentQuestion + 1}/{triviaQuestions.length}</p>
+            <p className="text-slate-300">{t('minigames.correctAnswers')}: {correctAnswers} | {t('minigames.score')}: {gameState.score}</p>
         </div>
 
         <div className="bg-slate-800 rounded-lg p-6 mb-6">
@@ -485,8 +485,8 @@ const MinigamesPage: React.FC = () => {
     return (
       <div className="max-w-2xl mx-auto text-center">
         <div className="mb-6">
-          <p className="text-slate-300">Cheat Code {currentCheat + 1}/{cheatCodes.length}</p>
-          <p className="text-slate-300">Abgeschlossen: {completedCheats} | Score: {gameState.score}</p>
+                      <p className="text-slate-300">{t('minigames.cheatCode')} {currentCheat + 1}/{cheatCodes.length}</p>
+            <p className="text-slate-300">{t('minigames.completed')}: {completedCheats} | {t('minigames.score')}: {gameState.score}</p>
         </div>
 
         <div className="bg-slate-800 rounded-lg p-6 mb-6">
@@ -498,7 +498,7 @@ const MinigamesPage: React.FC = () => {
             type="text"
             value={userInput}
             onChange={(e) => handleInputChange(e.target.value)}
-            placeholder="Tippe den Cheat Code hier..."
+                          placeholder={t('minigames.typeCheatCode')}
             className="w-full p-3 bg-slate-700 text-white text-center text-xl font-mono rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             autoFocus
           />
@@ -551,8 +551,8 @@ const MinigamesPage: React.FC = () => {
     return (
       <div className="max-w-2xl mx-auto text-center">
         <div className="mb-6">
-          <p className="text-slate-300">Sound {currentSound + 1}/{sounds.length}</p>
-          <p className="text-slate-300">Score: {gameState.score}</p>
+                      <p className="text-slate-300">{t('minigames.sound')} {currentSound + 1}/{sounds.length}</p>
+            <p className="text-slate-300">{t('minigames.score')}: {gameState.score}</p>
         </div>
 
         <div className="bg-slate-800 rounded-lg p-8 mb-6">
@@ -560,7 +560,7 @@ const MinigamesPage: React.FC = () => {
           <div className="text-2xl font-bold text-slate-100 mb-6">
             {currentSoundData.description}
           </div>
-          <p className="text-slate-400 mb-6">Welches Spiel macht diesen Sound?</p>
+                      <p className="text-slate-400 mb-6">{t('minigames.whichGame')}</p>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             {options.map((option, index) => (
@@ -625,12 +625,12 @@ const MinigamesPage: React.FC = () => {
         <div className="mb-6">
           <div className="flex justify-between items-center bg-slate-800 rounded-lg p-4">
             <div className="text-center">
-              <div className="text-blue-400 font-bold">Du</div>
+              <div className="text-blue-400 font-bold">{t('minigames.you')}</div>
               <div className="text-2xl font-bold text-slate-100">{playerScore}</div>
             </div>
             <Sword className="w-8 h-8 text-red-400" />
             <div className="text-center">
-              <div className="text-red-400 font-bold">Gegner</div>
+              <div className="text-red-400 font-bold">{t('minigames.opponent')}</div>
               <div className="text-2xl font-bold text-slate-100">{opponentScore}</div>
             </div>
           </div>
@@ -639,20 +639,20 @@ const MinigamesPage: React.FC = () => {
         {phase === 'waiting' && (
           <div className="text-center">
             <Users className="w-16 h-16 text-cyan-400 mx-auto mb-4" />
-            <h3 className="text-xl font-bold text-slate-100 mb-4">Bereit für das Duell?</h3>
+            <h3 className="text-xl font-bold text-slate-100 mb-4">{t('minigames.readyForDuel')}</h3>
             <button
               onClick={startDuel}
               className="px-8 py-3 bg-cyan-600 hover:bg-cyan-700 text-white font-bold rounded-lg"
-            >
-              Duell starten!
-            </button>
+                          >
+                {t('minigames.startDuel')}
+              </button>
           </div>
         )}
 
         {phase === 'question' && (
           <div className="bg-slate-800 rounded-lg p-6">
             <h3 className="text-lg font-bold text-slate-100 mb-4">
-              Frage {currentQuestion + 1}: {question.question}
+              {t('minigames.question')} {currentQuestion + 1}: {question.question}
             </h3>
             <div className="space-y-3">
               {question.options.map((option, index) => (
@@ -670,13 +670,13 @@ const MinigamesPage: React.FC = () => {
 
         {phase === 'result' && (
           <div className="bg-slate-800 rounded-lg p-6 text-center">
-            <h3 className="text-lg font-bold text-slate-100 mb-4">Ergebnis</h3>
+            <h3 className="text-lg font-bold text-slate-100 mb-4">{t('minigames.result')}</h3>
             <div className="space-y-2">
               <div className={`p-2 rounded ${playerAnswer === question.correct ? 'bg-green-600' : 'bg-red-600'}`}>
-                Du: {question.options[playerAnswer!]} {playerAnswer === question.correct ? '✓' : '✗'}
+                                  {t('minigames.you')}: {question.options[playerAnswer!]} {playerAnswer === question.correct ? '✓' : '✗'}
               </div>
               <div className="p-2 rounded bg-slate-700">
-                Gegner antwortet...
+                                  {t('minigames.opponent')} antwortet...
               </div>
             </div>
           </div>
@@ -741,7 +741,7 @@ const MinigamesPage: React.FC = () => {
       case 'multiplayer-duel':
         return <MultiplayerDuelGame />
       default:
-        return <div className="text-center text-slate-400">Spiel wird geladen...</div>
+        return <div className="text-center text-slate-400">{t('minigames.gameLoading')}</div>
     }
   }
 
@@ -757,7 +757,7 @@ const MinigamesPage: React.FC = () => {
               className="flex items-center space-x-2 px-4 py-2 bg-slate-700 hover:bg-slate-600 text-slate-200 rounded-lg"
             >
               <RotateCcw className="w-4 h-4" />
-              <span>Zurück zum Menü</span>
+              <span>{t('minigames.backToMenu')}</span>
             </button>
             
             <div className="text-center">
@@ -784,8 +784,8 @@ const MinigamesPage: React.FC = () => {
             {gameState.isPlaying ? renderGame() : (
               <div className="text-center">
                 <Trophy className="w-16 h-16 text-yellow-400 mx-auto mb-4" />
-                <h2 className="text-2xl font-bold text-slate-100 mb-2">Spiel beendet!</h2>
-                <p className="text-xl text-green-400 mb-4">Dein Score: {gameState.score}</p>
+                            <h2 className="text-2xl font-bold text-slate-100 mb-2">{t('minigames.gameEnded')}</h2>
+            <p className="text-xl text-green-400 mb-4">{t('minigames.yourScore')}: {gameState.score}</p>
                 <div className="space-x-4">
                   <button
                     onClick={() => handlePlayGame(gameState.currentGame!)}
@@ -796,9 +796,9 @@ const MinigamesPage: React.FC = () => {
                   <button
                     onClick={handleBackToMenu}
                     className="px-6 py-2 bg-slate-600 hover:bg-slate-700 text-white rounded-lg"
-                  >
-                    Zurück zum Menü
-                  </button>
+                                      >
+                      {t('minigames.backToMenu')}
+                    </button>
                 </div>
               </div>
             )}
@@ -817,7 +817,7 @@ const MinigamesPage: React.FC = () => {
           Battle64 {t('minigames.title')}
         </h1>
         <p className="text-slate-400 text-lg">
-          Kleine Spiele für zwischendurch - N64-Style!
+          {t('minigames.subtitle')}
         </p>
       </div>
 
@@ -906,7 +906,7 @@ const MinigamesPage: React.FC = () => {
               
               {game.highScore && (
                 <div className="flex items-center justify-between text-sm mb-4">
-                  <span className="text-slate-400">Bester Score:</span>
+                                      <span className="text-slate-400">{t('minigames.bestScore')}:</span>
                   <span className="text-yellow-400 font-medium">{game.highScore.toLocaleString()}</span>
                 </div>
               )}
@@ -975,7 +975,7 @@ const MinigamesPage: React.FC = () => {
         <Star className="w-12 h-12 text-yellow-400 mx-auto mb-4" />
         <h3 className="text-xl font-bold text-slate-100 mb-2">Weitere Spiele in Entwicklung</h3>
         <p className="text-slate-400 mb-4">
-          Wir arbeiten an noch mehr N64-inspirierten Minispielen! Hast du Ideen?
+          {t('minigames.moreGamesComingSoon')}
         </p>
         <div className="flex justify-center space-x-4">
           <button className="px-6 py-2 bg-blue-600/20 hover:bg-blue-600/30 border border-blue-500/30 
@@ -992,7 +992,7 @@ const MinigamesPage: React.FC = () => {
       {/* Footer */}
       <div className="text-center mt-8">
         <p className="text-slate-400 text-sm">
-          Alle Minispiele sind kostenlos und ohne Anmeldung spielbar!
+          {t('minigames.allGamesFree')}
         </p>
       </div>
     </div>
