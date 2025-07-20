@@ -4,6 +4,7 @@ import { UserProvider } from './contexts/UserContext'
 import { EventProvider } from './contexts/EventContext'
 import { MediaProvider } from './contexts/MediaContext'
 import { ForumProvider } from './contexts/ForumContext'
+import { LanguageProvider } from './contexts/LanguageContext'
 import HomePage from './pages/HomePage'
 import HomeScreenRetro from './components/HomeScreenRetro'
 import QuizPage from './pages/QuizPage'
@@ -23,34 +24,36 @@ import Layout from './components/Layout'
 
 function App() {
   return (
-    <UserProvider>
-      <QuizProvider>
-        <EventProvider>
-          <MediaProvider>
-            <ForumProvider>
-              <Layout>
-                <Routes>
-                  <Route path="/" element={<HomeScreenRetro />} />
-                  <Route path="/classic" element={<HomePage />} />
-                  <Route path="/quiz" element={<QuizPage />} />
-                  <Route path="/quiz/result" element={<QuizResultPage />} />
-                  <Route path="/leaderboard" element={<LeaderboardPage />} />
-                  <Route path="/profile" element={<ProfilePage />} />
-                  <Route path="/minigames" element={<MinigamesPage />} />
-                  <Route path="/events" element={<EventsPage />} />
-                  <Route path="/speedrun-media" element={<SpeedrunMediaPage />} />
-                  <Route path="/collector" element={<CollectorMode />} />
-                  <Route path="/forum" element={<ErrorBoundary><ForumPage /></ErrorBoundary>} />
-                  <Route path="/forum/category/:categoryId" element={<ErrorBoundary><ForumCategoryPage /></ErrorBoundary>} />
-                  <Route path="/forum/category/:categoryId/new-thread" element={<ErrorBoundary><ForumNewThreadPage /></ErrorBoundary>} />
-                  <Route path="/forum/thread/:threadId" element={<ErrorBoundary><ForumThreadPage /></ErrorBoundary>} />
-                </Routes>
-              </Layout>
-            </ForumProvider>
-          </MediaProvider>
-        </EventProvider>
-      </QuizProvider>
-    </UserProvider>
+    <LanguageProvider>
+      <UserProvider>
+        <QuizProvider>
+          <EventProvider>
+            <MediaProvider>
+              <ForumProvider>
+                <Layout>
+                  <Routes>
+                    <Route path="/" element={<HomeScreenRetro />} />
+                    <Route path="/classic" element={<HomePage />} />
+                    <Route path="/quiz" element={<QuizPage />} />
+                    <Route path="/quiz/result" element={<QuizResultPage />} />
+                    <Route path="/leaderboard" element={<LeaderboardPage />} />
+                    <Route path="/profile" element={<ProfilePage />} />
+                    <Route path="/minigames" element={<MinigamesPage />} />
+                    <Route path="/events" element={<EventsPage />} />
+                    <Route path="/speedrun-media" element={<SpeedrunMediaPage />} />
+                    <Route path="/collector" element={<CollectorMode />} />
+                    <Route path="/forum" element={<ErrorBoundary><ForumPage /></ErrorBoundary>} />
+                    <Route path="/forum/category/:categoryId" element={<ErrorBoundary><ForumCategoryPage /></ErrorBoundary>} />
+                    <Route path="/forum/category/:categoryId/new-thread" element={<ErrorBoundary><ForumNewThreadPage /></ErrorBoundary>} />
+                    <Route path="/forum/thread/:threadId" element={<ErrorBoundary><ForumThreadPage /></ErrorBoundary>} />
+                  </Routes>
+                </Layout>
+              </ForumProvider>
+            </MediaProvider>
+          </EventProvider>
+        </QuizProvider>
+      </UserProvider>
+    </LanguageProvider>
   )
 }
 

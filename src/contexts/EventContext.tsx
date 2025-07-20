@@ -1,164 +1,290 @@
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react'
-import { GameEvent, EventParticipation, EventReward, EventContextType } from '../types'
-import eventsData from '../data/events.json'
+import React, { createContext, useContext, useState, ReactNode } from 'react'
+import { GameEvent, EventParticipation, EventContextType, RaceSubmissionData } from '../types'
 
 const EventContext = createContext<EventContextType | undefined>(undefined)
 
-export const useEvents = () => {
-  const context = useContext(EventContext)
-  if (!context) {
-    throw new Error('useEvents must be used within an EventProvider')
+const mockEvents: GameEvent[] = [
+  {
+    id: '1',
+    title: 'Mario Kart 64 Speedrun Challenge',
+    description: 'Wer schafft die schnellste Zeit auf der Mushroom Cup?',
+    game: 'Mario Kart 64',
+    category: 'Speedrun',
+    startDate: new Date('2024-02-01'),
+    endDate: new Date('2024-02-15'),
+    isActive: false,
+    participants: 42,
+    maxParticipants: 100,
+    rules: ['PAL-Version', 'Keine Glitches', 'Video-Beweis erforderlich'],
+    prizes: ['1. Platz: Goldene Cartridge', '2. Platz: Silberne Cartridge', '3. Platz: Bronze Cartridge'],
+    region: 'PAL'
+  },
+  {
+    id: '2',
+    title: 'Mario Kart 64 - Luigi\'s Raceway Live Event',
+    description: 'Eine Woche lang Luigi\'s Raceway Zeitrennen! Zeigt eure beste Zeit auf der klassischen Strecke und kämpft um die Krone!',
+    game: 'Mario Kart 64',
+    category: 'Time Trial',
+    startDate: new Date('2025-07-20'),
+    endDate: new Date('2025-07-27'),
+    isActive: true,
+    participants: 0,
+    maxParticipants: 150,
+    rules: [
+      'Luigi\'s Raceway - 3 Runden',
+      'PAL oder NTSC Version erlaubt',
+      'Keine Glitches oder Shortcuts',
+      'Screenshot oder Video als Beweis erforderlich',
+      'Beste Zeit pro Spieler zählt',
+      'Startzeit: Sonntag 20.07.2025',
+      'Endzeit: Sonntag 27.07.2025 23:59 UTC'
+    ],
+    prizes: [
+      '🥇 1. Platz: Goldener Luigi Trophy + 200 XP + Luigi\'s Raceway Master Badge',
+      '🥈 2. Platz: Silberner Luigi Trophy + 150 XP + Speed Demon Badge', 
+      '🥉 3. Platz: Bronzener Luigi Trophy + 100 XP + Time Trial Expert Badge',
+      '🏆 Top 10: Luigi\'s Raceway Veteran Badge + 50 XP',
+      '🎮 Alle Teilnehmer: Luigi\'s Raceway Participant Badge + 25 XP'
+    ],
+    region: 'BOTH'
   }
-  return context
-}
+]
 
-interface EventProviderProps {
-  children: ReactNode
-}
+const mockParticipations: EventParticipation[] = [
+  {
+    id: 'p1',
+    eventId: '2',
+    userId: 'user1',
+    username: 'SpeedDemon64',
+    time: '1:32.456',
+    submissionDate: new Date('2025-07-21T10:30:00'),
+    documentationType: 'video',
+    mediaUrl: 'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4',
+    verified: true
+  },
+  {
+    id: 'p2',
+    eventId: '2',
+    userId: 'user2', 
+    username: 'KartMaster',
+    time: '1:34.123',
+    submissionDate: new Date('2025-07-21T14:15:00'),
+    documentationType: 'photo',
+    mediaUrl: 'https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?w=800&h=600&fit=crop&crop=center',
+    verified: true
+  },
+  {
+    id: 'p3',
+    eventId: '2',
+    userId: 'user3',
+    username: 'RetroRacer',
+    time: '1:29.789',
+    submissionDate: new Date('2025-07-22T09:45:00'),
+    documentationType: 'livestream',
+    livestreamUrl: 'https://twitch.tv/retroracer',
+    notes: 'Controller: Original N64 Controller, Setup: CRT TV',
+    verified: false
+  },
+  {
+    id: 'p4',
+    eventId: '2',
+    userId: 'user4',
+    username: 'Luigi_Fan_2025',
+    time: '1:35.678',
+    submissionDate: new Date('2025-07-22T16:20:00'),
+    documentationType: 'video',
+    mediaUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+    notes: 'First time trying time trials!',
+    verified: true
+  }
+]
 
-export const EventProvider: React.FC<EventProviderProps> = ({ children }) => {
-  const [events, setEvents] = useState<GameEvent[]>([])
-  const [participations, setParticipations] = useState<EventParticipation[]>([])
+export const EventProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+  const [events, setEvents] = useState<GameEvent[]>(mockEvents)
+  const [activeEvents, setActiveEvents] = useState<GameEvent[]>(mockEvents.filter(e => e.isActive))
+  const [userParticipations, setUserParticipations] = useState<EventParticipation[]>(mockParticipations)
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState<string | null>(null)
 
-  useEffect(() => {
-    // Load events from JSON
-    const loadedEvents = eventsData.map(event => ({
-      ...event,
-      isActive: isEventActive(event as GameEvent),
-      isCompleted: new Date(event.endDate) < new Date(),
-      participants: Math.floor(Math.random() * (event.maxParticipants || 100)) // Mock participants
-    })) as GameEvent[]
-    setEvents(loadedEvents)
+  const getEvents = () => {
+    setLoading(true)
+    setTimeout(() => {
+      setLoading(false)
+    }, 500)
+  }
 
-    // Load participations from localStorage
-    const savedParticipations = localStorage.getItem('eventParticipations')
-    if (savedParticipations) {
-      setParticipations(JSON.parse(savedParticipations))
+  const joinEvent = async (eventId: string): Promise<boolean> => {
+    setLoading(true)
+    try {
+      await new Promise(resolve => setTimeout(resolve, 500))
+      
+      // Update the event participant count
+      setEvents(prevEvents => 
+        prevEvents.map(event => 
+          event.id === eventId 
+            ? { ...event, participants: event.participants + 1 }
+            : event
+        )
+      )
+      
+      // Update active events as well
+      setActiveEvents(prevActiveEvents => 
+        prevActiveEvents.map(event => 
+          event.id === eventId 
+            ? { ...event, participants: event.participants + 1 }
+            : event
+        )
+      )
+      
+      // Add to user participations
+      const newParticipation: EventParticipation = {
+        id: Date.now().toString(),
+        eventId,
+        userId: '1', // Mock user ID
+        username: 'RetroGamer64',
+        submissionDate: new Date(),
+        verified: false
+      }
+      
+      setUserParticipations(prev => [...prev, newParticipation])
+      setLoading(false)
+      return true
+    } catch (err) {
+      setError('Fehler beim Beitreten zum Event')
+      setLoading(false)
+      return false
     }
-  }, [])
-
-  const isEventActive = (event: GameEvent): boolean => {
-    const now = new Date()
-    const start = new Date(event.startDate)
-    const end = new Date(event.endDate)
-    return now >= start && now <= end
   }
 
-  const getTimeRemaining = (event: GameEvent) => {
-    const now = new Date()
-    const targetDate = isEventActive(event) ? new Date(event.endDate) : new Date(event.startDate)
-    const diff = targetDate.getTime() - now.getTime()
-
-    if (diff <= 0) {
-      return { days: 0, hours: 0, minutes: 0, seconds: 0 }
+  const leaveEvent = async (eventId: string): Promise<boolean> => {
+    setLoading(true)
+    try {
+      await new Promise(resolve => setTimeout(resolve, 500))
+      
+      // Update the event participant count
+      setEvents(prevEvents => 
+        prevEvents.map(event => 
+          event.id === eventId 
+            ? { ...event, participants: Math.max(0, event.participants - 1) }
+            : event
+        )
+      )
+      
+      // Update active events as well
+      setActiveEvents(prevActiveEvents => 
+        prevActiveEvents.map(event => 
+          event.id === eventId 
+            ? { ...event, participants: Math.max(0, event.participants - 1) }
+            : event
+        )
+      )
+      
+      // Remove from user participations
+      setUserParticipations(prev => prev.filter(p => p.eventId !== eventId))
+      
+      setLoading(false)
+      return true
+    } catch (err) {
+      setError('Fehler beim Verlassen des Events')
+      setLoading(false)
+      return false
     }
-
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24))
-    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
-    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))
-    const seconds = Math.floor((diff % (1000 * 60)) / 1000)
-
-    return { days, hours, minutes, seconds }
   }
 
-  const activeEvents = events.filter(event => isEventActive(event))
-  const upcomingEvents = events.filter(event => new Date(event.startDate) > new Date())
-  const completedEvents = events.filter(event => new Date(event.endDate) < new Date())
-
-  const getEventById = (id: string): GameEvent | null => {
-    return events.find(event => event.id === id) || null
-  }
-
-  const joinEvent = (eventId: string) => {
-    const event = getEventById(eventId)
-    if (!event || !isEventActive(event)) return
-
-    const existingParticipation = participations.find(p => p.eventId === eventId)
-    if (existingParticipation) return
-
-    const newParticipation: EventParticipation = {
-      eventId,
-      userId: 'current-user', // This would come from UserContext
-      joinedAt: new Date(),
-      progress: 0,
-      rewards: [],
-      isCompleted: false
+  const submitScore = async (eventId: string, score: number, time?: string, mediaUrl?: string): Promise<boolean> => {
+    setLoading(true)
+    try {
+      await new Promise(resolve => setTimeout(resolve, 500))
+      setLoading(false)
+      return true
+    } catch (err) {
+      setError('Fehler beim Übermitteln der Punktzahl')
+      setLoading(false)
+      return false
     }
-
-    const updatedParticipations = [...participations, newParticipation]
-    setParticipations(updatedParticipations)
-    localStorage.setItem('eventParticipations', JSON.stringify(updatedParticipations))
   }
 
-  const completeEvent = (eventId: string) => {
-    const event = getEventById(eventId)
-    if (!event) return
-
-    const updatedParticipations = participations.map(p => 
-      p.eventId === eventId 
-        ? { ...p, isCompleted: true, completedAt: new Date(), progress: 100, rewards: event.rewards }
-        : p
-    )
-
-    setParticipations(updatedParticipations)
-    localStorage.setItem('eventParticipations', JSON.stringify(updatedParticipations))
+  const submitRaceTime = async (data: RaceSubmissionData): Promise<boolean> => {
+    console.log('EventContext: submitRaceTime called with:', data)
+    setLoading(true)
+    try {
+      await new Promise(resolve => setTimeout(resolve, 1000)) // Simulate upload time
+      
+      // Create or update participation entry
+      const existingParticipationIndex = userParticipations.findIndex(p => 
+        p.eventId === data.eventId && p.userId === '1' // Mock user ID
+      )
+      
+      console.log('Existing participation index:', existingParticipationIndex)
+      
+      const newParticipation: EventParticipation = {
+        id: existingParticipationIndex >= 0 ? userParticipations[existingParticipationIndex].id : Date.now().toString(),
+        eventId: data.eventId,
+        userId: '1', // Mock user ID
+        username: 'RetroGamer64', // Mock username
+        time: data.time,
+        submissionDate: new Date(),
+        documentationType: data.documentationType,
+        mediaUrl: data.mediaFile ? URL.createObjectURL(data.mediaFile) : undefined,
+        livestreamUrl: data.livestreamUrl,
+        notes: data.notes,
+        verified: false // Will be verified by admins
+      }
+      
+      console.log('New participation:', newParticipation)
+      
+      if (existingParticipationIndex >= 0) {
+        // Update existing participation
+        setUserParticipations(prev => 
+          prev.map((p, index) => index === existingParticipationIndex ? newParticipation : p)
+        )
+        console.log('Updated existing participation')
+      } else {
+        // Add new participation
+        setUserParticipations(prev => [...prev, newParticipation])
+        console.log('Added new participation')
+      }
+      
+      setLoading(false)
+      console.log('submitRaceTime: Success')
+      return true
+    } catch (err) {
+      console.error('submitRaceTime error:', err)
+      setError('Fehler beim Übermitteln der Rundenzeit')
+      setLoading(false)
+      return false
+    }
   }
 
-  const getEventProgress = (eventId: string): number => {
-    const participation = participations.find(p => p.eventId === eventId)
-    return participation?.progress || 0
+  const getLeaderboard = (eventId: string): EventParticipation[] => {
+    return userParticipations.filter(p => p.eventId === eventId && p.time)
   }
 
-  const getEventRewards = (eventId: string): EventReward[] => {
-    const event = getEventById(eventId)
-    if (!event) return []
-
-    return event.rewards.map((reward, index) => ({
-      id: `${eventId}-reward-${index}`,
-      name: reward,
-      type: reward.includes('XP') ? 'XP' : reward.includes('Badge') ? 'Badge' : 'Token',
-      value: reward.includes('XP') ? parseInt(reward.replace('XP', '')) : reward,
-      icon: getRewardIcon(reward),
-      description: `Belohnung für die Teilnahme an ${event.title}`,
-      rarity: getRarity(reward)
-    }))
-  }
-
-  const getRewardIcon = (reward: string): string => {
-    if (reward.includes('XP')) return '⭐'
-    if (reward.includes('Badge')) return '🏆'
-    if (reward.includes('Token')) return '🪙'
-    if (reward.includes('Golden')) return '🥇'
-    if (reward.includes('Crown')) return '👑'
-    if (reward.includes('Shield')) return '🛡️'
-    return '🎁'
-  }
-
-  const getRarity = (reward: string): 'common' | 'rare' | 'epic' | 'legendary' => {
-    if (reward.includes('Golden') || reward.includes('Master')) return 'legendary'
-    if (reward.includes('Badge') || reward.includes('Crown')) return 'epic'
-    if (reward.includes('Token') || reward.includes('Shield')) return 'rare'
-    return 'common'
-  }
-
-  const contextValue: EventContextType = {
+  const value: EventContextType = {
     events,
     activeEvents,
-    upcomingEvents,
-    completedEvents,
-    participations,
-    getEventById,
+    userParticipations,
+    loading,
+    error,
+    getEvents,
     joinEvent,
-    completeEvent,
-    getEventProgress,
-    getEventRewards,
-    isEventActive,
-    getTimeRemaining
+    leaveEvent,
+    submitScore,
+    submitRaceTime,
+    getLeaderboard
   }
 
   return (
-    <EventContext.Provider value={contextValue}>
+    <EventContext.Provider value={value}>
       {children}
     </EventContext.Provider>
   )
+}
+
+export const useEvent = () => {
+  const context = useContext(EventContext)
+  if (context === undefined) {
+    throw new Error('useEvent must be used within an EventProvider')
+  }
+  return context
 }

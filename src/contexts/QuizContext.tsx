@@ -1,128 +1,98 @@
-import React, { createContext, useContext, useState, useCallback } from 'react'
-import { QuizSession, QuizQuestion, QuizCategory, Answer, QuizContextType } from '../types'
-import { getRandomQuestions, getDailyQuestions, getQuestionsByCategory } from '../data/questions'
+import React, { createContext, useContext, useState, ReactNode } from 'react'
+import { QuizQuestion, QuizResult, QuizContextType } from '../types'
 
 const QuizContext = createContext<QuizContextType | undefined>(undefined)
 
-export const useQuiz = () => {
-  const context = useContext(QuizContext)
-  if (!context) {
-    throw new Error('useQuiz must be used within a QuizProvider')
+const mockQuestions: QuizQuestion[] = [
+  {
+    id: '1',
+    question: 'Welches N64-Spiel wurde als erstes veröffentlicht?',
+    options: ['Super Mario 64', 'Pilotwings 64', 'Wave Race 64', 'Saikyō Habu Shōgi'],
+    correctAnswer: 0,
+    difficulty: 'easy',
+    category: 'Geschichte',
+    explanation: 'Super Mario 64 war ein Launch-Titel für das Nintendo 64 in Japan im Jahr 1996.'
+  },
+  {
+    id: '2',
+    question: 'Wie viele Sterne gibt es insgesamt in Super Mario 64?',
+    options: ['100', '120', '150', '180'],
+    correctAnswer: 1,
+    difficulty: 'medium',
+    category: 'Mario',
+    explanation: 'Super Mario 64 hat insgesamt 120 Sterne zu sammeln.'
   }
-  return context
-}
+]
 
-export const QuizProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [currentSession, setCurrentSession] = useState<QuizSession | null>(null)
+export const QuizProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+  const [currentQuestion, setCurrentQuestion] = useState<QuizQuestion | null>(null)
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
+  const [totalQuestions] = useState(10)
+  const [score, setScore] = useState(0)
+  const [timeStarted, setTimeStarted] = useState<Date | null>(null)
+  const [isQuizActive, setIsQuizActive] = useState(false)
+  const [quizResult, setQuizResult] = useState<QuizResult | null>(null)
 
-  const startQuiz = useCallback((mode: QuizSession['mode'], category?: QuizCategory) => {
-    let questions: QuizQuestion[]
-    
-    switch (mode) {
-      case 'daily':
-        questions = getDailyQuestions()
-        break
-      case 'single':
-        questions = category ? getQuestionsByCategory(category) : getRandomQuestions(10)
-        break
-      case 'speed':
-        questions = getRandomQuestions(10)
-        break
-      case 'weekly':
-        questions = getRandomQuestions(20)
-        break
-      default:
-        questions = getRandomQuestions(10)
+  const startQuiz = (difficulty?: string, category?: string) => {
+    setCurrentQuestion(mockQuestions[0])
+    setCurrentQuestionIndex(0)
+    setScore(0)
+    setTimeStarted(new Date())
+    setIsQuizActive(true)
+    setQuizResult(null)
+  }
+
+  const answerQuestion = (answerIndex: number) => {
+    if (currentQuestion && answerIndex === currentQuestion.correctAnswer) {
+      setScore(prev => prev + 1)
     }
+  }
 
-    const session: QuizSession = {
-      id: Date.now().toString(),
-      mode,
-      questions,
-      currentQuestionIndex: 0,
-      answers: [],
-      startTime: new Date(),
-      score: 0,
-      maxScore: questions.reduce((sum, q) => sum + q.points, 0),
+  const nextQuestion = () => {
+    const nextIndex = currentQuestionIndex + 1
+    if (nextIndex < mockQuestions.length) {
+      setCurrentQuestionIndex(nextIndex)
+      setCurrentQuestion(mockQuestions[nextIndex])
+    } else {
+      finishQuiz()
     }
+  }
 
-    setCurrentSession(session)
-  }, [])
-
-  const answerQuestion = useCallback((answer: string | string[]) => {
-    if (!currentSession) return
-
-    const currentQuestion = currentSession.questions[currentSession.currentQuestionIndex]
-    const isCorrect = Array.isArray(currentQuestion.correctAnswer)
-      ? JSON.stringify(currentQuestion.correctAnswer.sort()) === JSON.stringify(Array.isArray(answer) ? answer.sort() : [answer])
-      : currentQuestion.correctAnswer === answer
-
-    const points = isCorrect ? currentQuestion.points : 0
-
-    const newAnswer: Answer = {
-      questionId: currentQuestion.id,
-      userAnswer: answer,
-      isCorrect,
-      timeSpent: 0, // TODO: Implement timer
-      points,
+  const finishQuiz = () => {
+    const timeSpent = timeStarted ? Date.now() - timeStarted.getTime() : 0
+    const result: QuizResult = {
+      score: Math.round((score / totalQuestions) * 100),
+      totalQuestions,
+      correctAnswers: score,
+      timeSpent: Math.round(timeSpent / 1000),
+      xpEarned: score * 10
     }
+    setQuizResult(result)
+    setIsQuizActive(false)
+  }
 
-    const updatedSession: QuizSession = {
-      ...currentSession,
-      answers: [...currentSession.answers, newAnswer],
-      score: currentSession.score + points,
-      currentQuestionIndex: currentSession.currentQuestionIndex + 1,
-    }
-
-    setCurrentSession(updatedSession)
-  }, [currentSession])
-
-  const endQuiz = useCallback(() => {
-    if (!currentSession) return
-
-    const updatedSession: QuizSession = {
-      ...currentSession,
-      endTime: new Date(),
-    }
-
-    setCurrentSession(updatedSession)
-  }, [currentSession])
-
-  const getQuestion = useCallback((): QuizQuestion | null => {
-    if (!currentSession || currentSession.currentQuestionIndex >= currentSession.questions.length) {
-      return null
-    }
-    return currentSession.questions[currentSession.currentQuestionIndex]
-  }, [currentSession])
-
-  const getProgress = useCallback(() => {
-    if (!currentSession) return { current: 0, total: 0, percentage: 0 }
-    
-    const current = currentSession.currentQuestionIndex
-    const total = currentSession.questions.length
-    const percentage = total > 0 ? (current / total) * 100 : 0
-    
-    return { current, total, percentage }
-  }, [currentSession])
-
-  const getScore = useCallback(() => {
-    if (!currentSession) return { current: 0, max: 0, percentage: 0 }
-    
-    const current = currentSession.score
-    const max = currentSession.maxScore
-    const percentage = max > 0 ? (current / max) * 100 : 0
-    
-    return { current, max, percentage }
-  }, [currentSession])
+  const resetQuiz = () => {
+    setCurrentQuestion(null)
+    setCurrentQuestionIndex(0)
+    setScore(0)
+    setTimeStarted(null)
+    setIsQuizActive(false)
+    setQuizResult(null)
+  }
 
   const value: QuizContextType = {
-    currentSession,
+    currentQuestion,
+    currentQuestionIndex,
+    totalQuestions,
+    score,
+    timeStarted,
+    isQuizActive,
+    quizResult,
     startQuiz,
     answerQuestion,
-    endQuiz,
-    getQuestion,
-    getProgress,
-    getScore,
+    nextQuestion,
+    finishQuiz,
+    resetQuiz
   }
 
   return (
@@ -130,4 +100,12 @@ export const QuizProvider: React.FC<{ children: React.ReactNode }> = ({ children
       {children}
     </QuizContext.Provider>
   )
+}
+
+export const useQuiz = () => {
+  const context = useContext(QuizContext)
+  if (context === undefined) {
+    throw new Error('useQuiz must be used within a QuizProvider')
+  }
+  return context
 }

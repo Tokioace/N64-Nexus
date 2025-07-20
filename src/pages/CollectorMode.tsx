@@ -1,650 +1,507 @@
-import React, { useState, useEffect, useMemo } from 'react'
-import { Search, Plus, Grid, List, Package, BookOpen, HardDrive, Trophy, Star, Filter, X } from 'lucide-react'
-import { CollectionItem, CollectionStats } from '../types'
-import { N64Game, n64Games, getTotalN64Games, searchGames, getRarityColor, getRarityBgColor } from '../data/n64Games'
-import SimpleCard from '../components/SimpleCard'
-import SimpleButton from '../components/SimpleButton'
+import React, { useState, useEffect, useMemo } from 'react';
+import { Search, Package, Trophy, TrendingUp, Star, Grid, List, Plus, X, Check } from 'lucide-react';
+import { 
+  n64Games, 
+  N64Game, 
+  CollectedGame, 
+  getRarityColor, 
+  getRarityLabel, 
+  getGameValue,
+  searchGames,
+  filterByRarity,
+  filterByGenre,
+  getUniqueGenres,
+  getCollectorLevel
+} from '../data/n64Games';
 
-const CollectorMode: React.FC = () => {
-  const [collection, setCollection] = useState<CollectionItem[]>([])
-  const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid')
-  const [searchTerm, setSearchTerm] = useState('')
-  const [selectedRarity, setSelectedRarity] = useState<string>('all')
-  const [selectedGenre, setSelectedGenre] = useState<string>('all')
-  const [showAddGame, setShowAddGame] = useState(false)
-  const [selectedGame, setSelectedGame] = useState<N64Game | null>(null)
-  const [newGameForm, setNewGameForm] = useState({
-    hasBox: false,
-    hasManual: false,
-    hasModule: true,
-    notes: ''
-  })
+interface GameModalProps {
+  game: N64Game | null;
+  isOpen: boolean;
+  onClose: () => void;
+  onAddToCollection: (gameId: string, collectedGame: Omit<CollectedGame, 'gameId' | 'addedDate'>) => void;
+  isCollected: boolean;
+}
 
-  // Load collection from localStorage on mount
-  useEffect(() => {
-    const savedCollection = localStorage.getItem('n64-collection')
-    if (savedCollection) {
-      try {
-        const parsed = JSON.parse(savedCollection)
-        // Convert date strings back to Date objects
-        const collectionWithDates = parsed.map((item: any) => ({
-          ...item,
-          addedAt: new Date(item.addedAt)
-        }))
-        setCollection(collectionWithDates)
-      } catch (error) {
-        console.error('Error loading collection:', error)
-      }
-    }
-  }, [])
+const GameModal: React.FC<GameModalProps> = ({ game, isOpen, onClose, onAddToCollection, isCollected }) => {
+  const [condition, setCondition] = useState<'mint' | 'used'>('used');
+  const [hasBox, setHasBox] = useState(false);
+  const [hasManual, setHasManual] = useState(false);
+  const [hasModule, setHasModule] = useState(true);
+  const [notes, setNotes] = useState('');
 
-  // Save collection to localStorage whenever it changes
-  useEffect(() => {
-    localStorage.setItem('n64-collection', JSON.stringify(collection))
-  }, [collection])
+  if (!isOpen || !game) return null;
 
-  // Calculate collection statistics
-  const stats: CollectionStats = useMemo(() => {
-    const totalGames = collection.length
-    const totalValue = collection.reduce((sum, item) => {
-      const game = n64Games.find(g => g.id === item.gameId)
-      if (!game) return sum
-      
-      let value = 0
-      if (item.hasModule) value += game.estimatedValue.module
-      if (item.hasBox && item.hasManual) value = game.estimatedValue.complete
-      else if (item.hasBox) value = game.estimatedValue.withBox
-      
-      return sum + value
-    }, 0)
-    
-    const completionPercentage = Math.round((totalGames / getTotalN64Games()) * 100)
-    
-    // Calculate collector level
-    let level = 1
-    let levelName = 'Rookie Sammler'
-    
-    if (totalGames >= 200) {
-      level = 10
-      levelName = 'N64 Legende'
-    } else if (totalGames >= 150) {
-      level = 9
-      levelName = 'Master Sammler'
-    } else if (totalGames >= 100) {
-      level = 8
-      levelName = 'Elite Sammler'
-    } else if (totalGames >= 75) {
-      level = 7
-      levelName = 'Zelda Meister'
-    } else if (totalGames >= 50) {
-      level = 6
-      levelName = 'Mario Experte'
-    } else if (totalGames >= 30) {
-      level = 5
-      levelName = 'Retro Kenner'
-    } else if (totalGames >= 20) {
-      level = 4
-      levelName = 'Sammler'
-    } else if (totalGames >= 10) {
-      level = 3
-      levelName = 'Enthusiast'
-    } else if (totalGames >= 5) {
-      level = 2
-      levelName = 'Anfänger'
-    }
-    
-    return {
-      totalGames,
-      totalValue,
-      completionPercentage,
-      level,
-      levelName
-    }
-  }, [collection])
+  const handleSubmit = () => {
+    onAddToCollection(game.id, {
+      condition,
+      hasBox,
+      hasManual,
+      hasModule,
+      notes: notes.trim() || undefined
+    });
+    onClose();
+  };
 
-  // Filter games based on search and filters
-  const filteredGames = useMemo(() => {
-    let games = n64Games
-    
-    if (searchTerm) {
-      games = searchGames(searchTerm)
-    }
-    
-    if (selectedRarity !== 'all') {
-      games = games.filter(game => game.rarity === selectedRarity)
-    }
-    
-    if (selectedGenre !== 'all') {
-      games = games.filter(game => game.genre === selectedGenre)
-    }
-    
-    return games
-  }, [searchTerm, selectedRarity, selectedGenre])
-
-  // Get unique genres for filter
-  const genres = useMemo(() => {
-    const uniqueGenres = [...new Set(n64Games.map(game => game.genre))]
-    return uniqueGenres.sort()
-  }, [])
-
-  const addToCollection = (game: N64Game) => {
-    const existingItem = collection.find(item => item.gameId === game.id)
-    if (existingItem) {
-      return // Game already in collection
-    }
-    
-    const newItem: CollectionItem = {
+  const getCurrentValue = () => {
+    const mockCollectedGame: CollectedGame = {
       gameId: game.id,
-      hasBox: newGameForm.hasBox,
-      hasManual: newGameForm.hasManual,
-      hasModule: newGameForm.hasModule,
-      addedAt: new Date(),
-      notes: newGameForm.notes.trim() || undefined
-    }
-    
-    setCollection(prev => [...prev, newItem])
-    setShowAddGame(false)
-    setSelectedGame(null)
-    setNewGameForm({
-      hasBox: false,
-      hasManual: false,
-      hasModule: true,
-      notes: ''
-    })
-  }
-
-  const removeFromCollection = (gameId: string) => {
-    setCollection(prev => prev.filter(item => item.gameId !== gameId))
-  }
-
-  const updateCollectionItem = (gameId: string, updates: Partial<CollectionItem>) => {
-    setCollection(prev => prev.map(item => 
-      item.gameId === gameId ? { ...item, ...updates } : item
-    ))
-  }
-
-  const getCollectionItem = (gameId: string) => {
-    return collection.find(item => item.gameId === gameId)
-  }
-
-  const getGameValue = (game: N64Game, item: CollectionItem) => {
-    if (item.hasBox && item.hasManual) return game.estimatedValue.complete
-    if (item.hasBox) return game.estimatedValue.withBox
-    return game.estimatedValue.module
-  }
-
-  const GameCard: React.FC<{ game: N64Game; isInCollection?: boolean }> = ({ game, isInCollection = false }) => {
-    const collectionItem = getCollectionItem(game.id)
-    const gameValue = collectionItem ? getGameValue(game, collectionItem) : game.estimatedValue.module
-    
-    return (
-      <SimpleCard
-        variant="secondary"
-        className={`relative overflow-hidden transition-all duration-200 hover:shadow-lg ${
-          isInCollection ? 'ring-2 ring-green-500/50' : ''
-        }`}
-      >
-        {/* Game Box Art Placeholder */}
-        <div className="aspect-square bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg mb-4 flex items-center justify-center relative overflow-hidden">
-          <div className="absolute inset-0 bg-black/20"></div>
-          <div className="text-white text-center z-10 p-2">
-            <div className="text-xs font-bold mb-1">N64</div>
-            <div className="text-sm font-medium leading-tight">{game.title}</div>
-          </div>
-          {isInCollection && (
-            <div className="absolute top-2 right-2 bg-green-500 text-white rounded-full p-1">
-              <Package className="w-3 h-3" />
-            </div>
-          )}
-        </div>
-
-        {/* Game Info */}
-        <div className="space-y-3">
-          <div>
-            <h3 className="font-semibold text-white text-sm leading-tight mb-1">
-              {game.title}
-            </h3>
-            <div className="flex items-center justify-between text-xs">
-              <span className="text-slate-400">{game.genre}</span>
-              <span className="text-slate-400">{game.releaseYear}</span>
-            </div>
-          </div>
-
-          {/* Rarity */}
-          <div className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${getRarityBgColor(game.rarity)}`}>
-            <Star className={`w-3 h-3 mr-1 ${getRarityColor(game.rarity)}`} />
-            <span className={getRarityColor(game.rarity)}>
-              {game.rarity.charAt(0).toUpperCase() + game.rarity.slice(1).replace('-', ' ')}
-            </span>
-          </div>
-
-          {/* Collection Status */}
-          {isInCollection && collectionItem && (
-            <div className="flex items-center space-x-2 text-xs">
-              <div className={`flex items-center ${collectionItem.hasBox ? 'text-green-400' : 'text-slate-500'}`}>
-                <Package className="w-3 h-3 mr-1" />
-                <span>📦</span>
-              </div>
-              <div className={`flex items-center ${collectionItem.hasManual ? 'text-green-400' : 'text-slate-500'}`}>
-                <BookOpen className="w-3 h-3 mr-1" />
-                <span>📘</span>
-              </div>
-              <div className={`flex items-center ${collectionItem.hasModule ? 'text-green-400' : 'text-slate-500'}`}>
-                <HardDrive className="w-3 h-3 mr-1" />
-                <span>🟩</span>
-              </div>
-            </div>
-          )}
-
-          {/* Value */}
-          <div className="text-center">
-            <div className="text-lg font-bold text-yellow-400">
-              {gameValue}€
-            </div>
-            <div className="text-xs text-slate-400">
-              {isInCollection ? 'Sammlungswert' : 'Geschätzt'}
-            </div>
-          </div>
-
-          {/* Actions */}
-          <div className="flex space-x-2">
-            {isInCollection ? (
-              <SimpleButton
-                variant="danger"
-                size="sm"
-                onClick={() => removeFromCollection(game.id)}
-                className="flex-1 text-xs"
-              >
-                Entfernen
-              </SimpleButton>
-            ) : (
-              <SimpleButton
-                variant="primary"
-                size="sm"
-                onClick={() => {
-                  setSelectedGame(game)
-                  setShowAddGame(true)
-                }}
-                className="flex-1 text-xs"
-              >
-                Hinzufügen
-              </SimpleButton>
-            )}
-          </div>
-        </div>
-      </SimpleCard>
-    )
-  }
-
-  const ListGameCard: React.FC<{ game: N64Game; isInCollection?: boolean }> = ({ game, isInCollection = false }) => {
-    const collectionItem = getCollectionItem(game.id)
-    const gameValue = collectionItem ? getGameValue(game, collectionItem) : game.estimatedValue.module
-    
-    return (
-      <SimpleCard
-        variant="secondary"
-        className={`transition-all duration-200 hover:shadow-lg ${
-          isInCollection ? 'ring-2 ring-green-500/50' : ''
-        }`}
-      >
-        <div className="flex items-center space-x-4">
-          {/* Mini Box Art */}
-          <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center flex-shrink-0">
-            <div className="text-white text-center">
-              <div className="text-xs font-bold">N64</div>
-            </div>
-            {isInCollection && (
-              <div className="absolute -top-1 -right-1 bg-green-500 text-white rounded-full p-1">
-                <Package className="w-2 h-2" />
-              </div>
-            )}
-          </div>
-
-          {/* Game Info */}
-          <div className="flex-1 min-w-0">
-            <h3 className="font-semibold text-white text-sm truncate">
-              {game.title}
-            </h3>
-            <div className="flex items-center space-x-2 text-xs text-slate-400">
-              <span>{game.genre}</span>
-              <span>•</span>
-              <span>{game.releaseYear}</span>
-              <span>•</span>
-              <span className={getRarityColor(game.rarity)}>
-                {game.rarity.charAt(0).toUpperCase() + game.rarity.slice(1).replace('-', ' ')}
-              </span>
-            </div>
-          </div>
-
-          {/* Collection Status */}
-          {isInCollection && collectionItem && (
-            <div className="flex items-center space-x-2 text-xs">
-              <span className={collectionItem.hasBox ? 'text-green-400' : 'text-slate-500'}>📦</span>
-              <span className={collectionItem.hasManual ? 'text-green-400' : 'text-slate-500'}>📘</span>
-              <span className={collectionItem.hasModule ? 'text-green-400' : 'text-slate-500'}>🟩</span>
-            </div>
-          )}
-
-          {/* Value */}
-          <div className="text-right">
-            <div className="text-lg font-bold text-yellow-400">
-              {gameValue}€
-            </div>
-          </div>
-
-          {/* Actions */}
-          <div className="flex-shrink-0">
-            {isInCollection ? (
-              <SimpleButton
-                variant="danger"
-                size="sm"
-                onClick={() => removeFromCollection(game.id)}
-                className="text-xs"
-              >
-                Entfernen
-              </SimpleButton>
-            ) : (
-              <SimpleButton
-                variant="primary"
-                size="sm"
-                onClick={() => {
-                  setSelectedGame(game)
-                  setShowAddGame(true)
-                }}
-                className="text-xs"
-              >
-                Hinzufügen
-              </SimpleButton>
-            )}
-          </div>
-        </div>
-      </SimpleCard>
-    )
-  }
+      condition,
+      hasBox,
+      hasManual,
+      hasModule,
+      addedDate: new Date().toISOString()
+    };
+    return getGameValue(game, mockCollectedGame);
+  };
 
   return (
-    <div className="min-h-screen bg-slate-900 p-4">
-      <div className="max-w-7xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-white mb-2">
-            🎮 Meine N64-Sammlung
-          </h1>
-          <p className="text-slate-300 text-lg">
-            Tracke deine N64-Spiele, vervollständige deine Sammlung und erhalte Sammler-Levels.
-          </p>
+    <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
+      <div className="bg-slate-800 rounded-lg max-w-md w-full p-6">
+        <div className="flex justify-between items-center mb-4">
+          <h3 className="text-xl font-bold text-slate-100">{game.title}</h3>
+          <button onClick={onClose} className="text-slate-400 hover:text-slate-200">
+            <X size={24} />
+          </button>
         </div>
 
-        {/* Statistics Bar */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-          <SimpleCard variant="primary" className="text-center">
-            <div className="text-2xl font-bold text-white mb-1">
-              {stats.totalGames}
-            </div>
-            <div className="text-sm text-slate-300">Spiele gesammelt</div>
-          </SimpleCard>
-          
-          <SimpleCard variant="success" className="text-center">
-            <div className="text-2xl font-bold text-white mb-1">
-              {stats.completionPercentage}%
-            </div>
-            <div className="text-sm text-slate-300">Komplett</div>
-          </SimpleCard>
-          
-          <SimpleCard variant="warning" className="text-center">
-            <div className="text-2xl font-bold text-white mb-1">
-              {stats.totalValue}€
-            </div>
-            <div className="text-sm text-slate-300">Sammlungswert</div>
-          </SimpleCard>
-          
-          <SimpleCard variant="secondary" className="text-center">
-            <div className="flex items-center justify-center mb-1">
-              <Trophy className="w-6 h-6 text-yellow-400 mr-2" />
-              <span className="text-2xl font-bold text-white">
-                {stats.level}
-              </span>
-            </div>
-            <div className="text-sm text-slate-300">{stats.levelName}</div>
-          </SimpleCard>
-        </div>
+        <div className="space-y-4">
+          <div>
+            <span className={`inline-block px-2 py-1 rounded text-sm font-medium ${getRarityColor(game.rarity)}`}>
+              {getRarityLabel(game.rarity)}
+            </span>
+            <p className="text-slate-400 text-sm mt-1">{game.genre} • {game.releaseYear}</p>
+          </div>
 
-        {/* Controls */}
-        <div className="flex flex-col md:flex-row gap-4 mb-8">
-          {/* Search */}
-          <div className="flex-1 relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 w-5 h-5" />
-            <input
-              type="text"
-              placeholder="Spiel suchen..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+          <div>
+            <label className="block text-slate-300 text-sm font-medium mb-2">Zustand</label>
+            <div className="flex space-x-4">
+              <label className="flex items-center">
+                <input
+                  type="radio"
+                  name="condition"
+                  value="mint"
+                  checked={condition === 'mint'}
+                  onChange={(e) => setCondition(e.target.value as 'mint')}
+                  className="mr-2"
+                />
+                <span className="text-slate-300">Mint</span>
+              </label>
+              <label className="flex items-center">
+                <input
+                  type="radio"
+                  name="condition"
+                  value="used"
+                  checked={condition === 'used'}
+                  onChange={(e) => setCondition(e.target.value as 'used')}
+                  className="mr-2"
+                />
+                <span className="text-slate-300">Gebraucht</span>
+              </label>
+            </div>
+          </div>
+
+          <div>
+            <label className="block text-slate-300 text-sm font-medium mb-2">Enthaltene Teile</label>
+            <div className="space-y-2">
+              <label className="flex items-center">
+                <input
+                  type="checkbox"
+                  checked={hasModule}
+                  onChange={(e) => setHasModule(e.target.checked)}
+                  className="mr-2"
+                />
+                <span className="text-slate-300">Modul</span>
+              </label>
+              <label className="flex items-center">
+                <input
+                  type="checkbox"
+                  checked={hasBox}
+                  onChange={(e) => setHasBox(e.target.checked)}
+                  className="mr-2"
+                />
+                <span className="text-slate-300">Verpackung</span>
+              </label>
+              <label className="flex items-center">
+                <input
+                  type="checkbox"
+                  checked={hasManual}
+                  onChange={(e) => setHasManual(e.target.checked)}
+                  className="mr-2"
+                />
+                <span className="text-slate-300">Anleitung</span>
+              </label>
+            </div>
+          </div>
+
+          <div>
+            <label className="block text-slate-300 text-sm font-medium mb-2">Notizen (optional)</label>
+            <textarea
+              value={notes}
+              onChange={(e) => setNotes(e.target.value)}
+              className="w-full p-2 bg-slate-700 border border-slate-600 rounded text-slate-100"
+              rows={3}
+              placeholder="Zusätzliche Informationen..."
             />
           </div>
 
-          {/* Filters */}
-          <div className="flex space-x-2">
-            <select
-              value={selectedRarity}
-              onChange={(e) => setSelectedRarity(e.target.value)}
-              className="px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-            >
-              <option value="all">Alle Seltenheiten</option>
-              <option value="common">Häufig</option>
-              <option value="uncommon">Ungewöhnlich</option>
-              <option value="rare">Selten</option>
-              <option value="very-rare">Sehr selten</option>
-              <option value="ultra-rare">Ultra selten</option>
-            </select>
-
-            <select
-              value={selectedGenre}
-              onChange={(e) => setSelectedGenre(e.target.value)}
-              className="px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-            >
-              <option value="all">Alle Genres</option>
-              {genres.map(genre => (
-                <option key={genre} value={genre}>{genre}</option>
-              ))}
-            </select>
+          <div className="bg-slate-700 p-3 rounded">
+            <div className="flex justify-between items-center">
+              <span className="text-slate-300">Geschätzter Wert:</span>
+              <span className="text-green-400 font-bold">€{getCurrentValue()}</span>
+            </div>
           </div>
 
-          {/* View Mode Toggle */}
-          <div className="flex bg-slate-800 border border-slate-700 rounded-lg p-1">
+          <div className="flex space-x-3 pt-4">
             <button
-              onClick={() => setViewMode('grid')}
-              className={`p-2 rounded-md transition-colors ${
-                viewMode === 'grid' 
-                  ? 'bg-blue-600 text-white' 
-                  : 'text-slate-400 hover:text-white'
-              }`}
+              onClick={onClose}
+              className="flex-1 px-4 py-2 bg-slate-600 text-slate-300 rounded hover:bg-slate-500 transition-colors"
             >
-              <Grid className="w-5 h-5" />
+              Abbrechen
             </button>
             <button
-              onClick={() => setViewMode('list')}
-              className={`p-2 rounded-md transition-colors ${
-                viewMode === 'list' 
-                  ? 'bg-blue-600 text-white' 
-                  : 'text-slate-400 hover:text-white'
-              }`}
+              onClick={handleSubmit}
+              disabled={!hasModule}
+              className="flex-1 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              <List className="w-5 h-5" />
+              {isCollected ? 'Aktualisieren' : 'Zur Sammlung hinzufügen'}
             </button>
           </div>
-        </div>
-
-        {/* Collection Section */}
-        {collection.length > 0 && (
-          <div className="mb-8">
-            <h2 className="text-2xl font-bold text-white mb-4">
-              Meine Sammlung ({collection.length} Spiele)
-            </h2>
-            
-            {viewMode === 'grid' ? (
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-                {collection.map(item => {
-                  const game = n64Games.find(g => g.id === item.gameId)
-                  if (!game) return null
-                  return (
-                    <GameCard key={item.gameId} game={game} isInCollection={true} />
-                  )
-                })}
-              </div>
-            ) : (
-              <div className="space-y-3">
-                {collection.map(item => {
-                  const game = n64Games.find(g => g.id === item.gameId)
-                  if (!game) return null
-                  return (
-                    <ListGameCard key={item.gameId} game={game} isInCollection={true} />
-                  )
-                })}
-              </div>
-            )}
-          </div>
-        )}
-
-        {/* All Games Section */}
-        <div>
-          <h2 className="text-2xl font-bold text-white mb-4">
-            Alle N64-Spiele ({filteredGames.length} von {getTotalN64Games()})
-          </h2>
-          
-          {viewMode === 'grid' ? (
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-              {filteredGames.map(game => (
-                <GameCard 
-                  key={game.id} 
-                  game={game} 
-                  isInCollection={collection.some(item => item.gameId === game.id)}
-                />
-              ))}
-            </div>
-          ) : (
-            <div className="space-y-3">
-              {filteredGames.map(game => (
-                <ListGameCard 
-                  key={game.id} 
-                  game={game} 
-                  isInCollection={collection.some(item => item.gameId === game.id)}
-                />
-              ))}
-            </div>
-          )}
-        </div>
-
-        {/* Add Game Modal */}
-        {showAddGame && selectedGame && (
-          <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
-            <div className="bg-slate-800 rounded-lg p-6 max-w-md w-full">
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="text-xl font-bold text-white">
-                  Spiel hinzufügen
-                </h3>
-                <button
-                  onClick={() => {
-                    setShowAddGame(false)
-                    setSelectedGame(null)
-                  }}
-                  className="text-slate-400 hover:text-white"
-                >
-                  <X className="w-6 h-6" />
-                </button>
-              </div>
-              
-              <div className="mb-4">
-                <h4 className="font-semibold text-white mb-2">
-                  {selectedGame.title}
-                </h4>
-                <p className="text-slate-400 text-sm">
-                  {selectedGame.genre} • {selectedGame.releaseYear}
-                </p>
-              </div>
-
-              <div className="space-y-4">
-                <div>
-                  <label className="block text-sm font-medium text-slate-300 mb-2">
-                    Zustand:
-                  </label>
-                  <div className="space-y-2">
-                    <label className="flex items-center">
-                      <input
-                        type="checkbox"
-                        checked={newGameForm.hasBox}
-                        onChange={(e) => setNewGameForm(prev => ({ ...prev, hasBox: e.target.checked }))}
-                        className="mr-2"
-                      />
-                      <span className="text-white">📦 OVP (Originalverpackung)</span>
-                    </label>
-                    <label className="flex items-center">
-                      <input
-                        type="checkbox"
-                        checked={newGameForm.hasManual}
-                        onChange={(e) => setNewGameForm(prev => ({ ...prev, hasManual: e.target.checked }))}
-                        className="mr-2"
-                      />
-                      <span className="text-white">📘 Anleitung</span>
-                    </label>
-                    <label className="flex items-center">
-                      <input
-                        type="checkbox"
-                        checked={newGameForm.hasModule}
-                        onChange={(e) => setNewGameForm(prev => ({ ...prev, hasModule: e.target.checked }))}
-                        className="mr-2"
-                      />
-                      <span className="text-white">🟩 Modul</span>
-                    </label>
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-slate-300 mb-2">
-                    Notizen (optional):
-                  </label>
-                  <textarea
-                    value={newGameForm.notes}
-                    onChange={(e) => setNewGameForm(prev => ({ ...prev, notes: e.target.value }))}
-                    placeholder="Zustand, Besonderheiten, etc."
-                    className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    rows={3}
-                  />
-                </div>
-
-                <div className="flex space-x-3">
-                  <SimpleButton
-                    variant="secondary"
-                    onClick={() => {
-                      setShowAddGame(false)
-                      setSelectedGame(null)
-                    }}
-                    className="flex-1"
-                  >
-                    Abbrechen
-                  </SimpleButton>
-                  <SimpleButton
-                    variant="primary"
-                    onClick={() => addToCollection(selectedGame)}
-                    className="flex-1"
-                  >
-                    Hinzufügen
-                  </SimpleButton>
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* DSGVO Notice */}
-        <div className="mt-8 p-4 bg-slate-800 border border-slate-700 rounded-lg">
-          <p className="text-sm text-slate-400 text-center">
-            🔒 Deine Sammlung wird nur auf diesem Gerät gespeichert. Keine Daten werden übertragen.
-          </p>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default CollectorMode
+const CollectorMode: React.FC = () => {
+  const [collection, setCollection] = useState<CollectedGame[]>([]);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [rarityFilter, setRarityFilter] = useState('all');
+  const [genreFilter, setGenreFilter] = useState('all');
+  const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
+  const [selectedGame, setSelectedGame] = useState<N64Game | null>(null);
+  const [showModal, setShowModal] = useState(false);
+
+  // Load collection from localStorage
+  useEffect(() => {
+    const saved = localStorage.getItem('n64-collection');
+    if (saved) {
+      try {
+        setCollection(JSON.parse(saved));
+      } catch (error) {
+        console.error('Error loading collection:', error);
+      }
+    }
+  }, []);
+
+  // Save collection to localStorage
+  useEffect(() => {
+    localStorage.setItem('n64-collection', JSON.stringify(collection));
+  }, [collection]);
+
+  // Filter and search games
+  const filteredGames = useMemo(() => {
+    let filtered = searchGames(n64Games, searchQuery);
+    filtered = filterByRarity(filtered, rarityFilter);
+    filtered = filterByGenre(filtered, genreFilter);
+    return filtered;
+  }, [searchQuery, rarityFilter, genreFilter]);
+
+  // Collection statistics
+  const stats = useMemo(() => {
+    const totalGames = n64Games.length;
+    const collectedCount = collection.length;
+    const completionPercentage = Math.round((collectedCount / totalGames) * 100);
+    
+    const totalValue = collection.reduce((sum, collectedGame) => {
+      const game = n64Games.find(g => g.id === collectedGame.gameId);
+      if (game) {
+        return sum + getGameValue(game, collectedGame);
+      }
+      return sum;
+    }, 0);
+
+    const collectorLevel = getCollectorLevel(collectedCount);
+
+    return {
+      collectedCount,
+      totalGames,
+      completionPercentage,
+      totalValue,
+      collectorLevel
+    };
+  }, [collection]);
+
+  const handleAddToCollection = (gameId: string, gameData: Omit<CollectedGame, 'gameId' | 'addedDate'>) => {
+    const newCollectedGame: CollectedGame = {
+      ...gameData,
+      gameId,
+      addedDate: new Date().toISOString()
+    };
+
+    setCollection(prev => {
+      const existingIndex = prev.findIndex(item => item.gameId === gameId);
+      if (existingIndex >= 0) {
+        // Update existing
+        const updated = [...prev];
+        updated[existingIndex] = newCollectedGame;
+        return updated;
+      } else {
+        // Add new
+        return [...prev, newCollectedGame];
+      }
+    });
+  };
+
+  const handleRemoveFromCollection = (gameId: string) => {
+    setCollection(prev => prev.filter(item => item.gameId !== gameId));
+  };
+
+  const isGameCollected = (gameId: string) => {
+    return collection.some(item => item.gameId === gameId);
+  };
+
+  const openGameModal = (game: N64Game) => {
+    setSelectedGame(game);
+    setShowModal(true);
+  };
+
+  const genres = getUniqueGenres(n64Games);
+
+  return (
+    <div className="container mx-auto px-4 py-6">
+      {/* Header */}
+      <div className="text-center mb-8">
+        <h1 className="text-4xl font-bold text-slate-100 mb-2">N64 Sammler-Modus</h1>
+        <p className="text-slate-400">Verwalte deine Nintendo 64 Spielesammlung</p>
+      </div>
+
+      {/* Statistics */}
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+        <div className="bg-slate-800 p-4 rounded-lg border border-slate-700">
+          <div className="flex items-center space-x-3">
+            <Package className="text-blue-400" size={24} />
+            <div>
+              <p className="text-slate-400 text-sm">Spiele gesammelt</p>
+              <p className="text-2xl font-bold text-slate-100">{stats.collectedCount}</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-slate-800 p-4 rounded-lg border border-slate-700">
+          <div className="flex items-center space-x-3">
+            <TrendingUp className="text-green-400" size={24} />
+            <div>
+              <p className="text-slate-400 text-sm">Vollständigkeit</p>
+              <p className="text-2xl font-bold text-slate-100">{stats.completionPercentage}%</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-slate-800 p-4 rounded-lg border border-slate-700">
+          <div className="flex items-center space-x-3">
+            <Trophy className="text-yellow-400" size={24} />
+            <div>
+              <p className="text-slate-400 text-sm">Sammlungswert</p>
+              <p className="text-2xl font-bold text-slate-100">€{stats.totalValue}</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-slate-800 p-4 rounded-lg border border-slate-700">
+          <div className="flex items-center space-x-3">
+            <Star className="text-purple-400" size={24} />
+            <div>
+              <p className="text-slate-400 text-sm">Sammler Level</p>
+              <p className="text-lg font-bold text-slate-100">{stats.collectorLevel.title}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Search and Filters */}
+      <div className="bg-slate-800 p-4 rounded-lg border border-slate-700 mb-6">
+        <div className="flex flex-col md:flex-row gap-4">
+          <div className="flex-1">
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400" size={20} />
+              <input
+                type="text"
+                placeholder="Spiele durchsuchen..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full pl-10 pr-4 py-2 bg-slate-700 border border-slate-600 rounded text-slate-100 placeholder-slate-400"
+              />
+            </div>
+          </div>
+
+          <select
+            value={rarityFilter}
+            onChange={(e) => setRarityFilter(e.target.value)}
+            className="px-3 py-2 bg-slate-700 border border-slate-600 rounded text-slate-100"
+          >
+            <option value="all">Alle Seltenheiten</option>
+            <option value="common">Häufig</option>
+            <option value="uncommon">Ungewöhnlich</option>
+            <option value="rare">Selten</option>
+            <option value="very-rare">Sehr selten</option>
+            <option value="ultra-rare">Ultra selten</option>
+          </select>
+
+          <select
+            value={genreFilter}
+            onChange={(e) => setGenreFilter(e.target.value)}
+            className="px-3 py-2 bg-slate-700 border border-slate-600 rounded text-slate-100"
+          >
+            <option value="all">Alle Genres</option>
+            {genres.map(genre => (
+              <option key={genre} value={genre}>{genre}</option>
+            ))}
+          </select>
+
+          <div className="flex border border-slate-600 rounded overflow-hidden">
+            <button
+              onClick={() => setViewMode('grid')}
+              className={`p-2 ${viewMode === 'grid' ? 'bg-blue-600 text-white' : 'bg-slate-700 text-slate-400'}`}
+            >
+              <Grid size={20} />
+            </button>
+            <button
+              onClick={() => setViewMode('list')}
+              className={`p-2 ${viewMode === 'list' ? 'bg-blue-600 text-white' : 'bg-slate-700 text-slate-400'}`}
+            >
+              <List size={20} />
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Games Grid/List */}
+      <div className={viewMode === 'grid' 
+        ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4' 
+        : 'space-y-2'
+      }>
+        {filteredGames.map(game => {
+          const collected = isGameCollected(game.id);
+          const collectedGame = collection.find(c => c.gameId === game.id);
+          const currentValue = collectedGame ? getGameValue(game, collectedGame) : 0;
+
+          if (viewMode === 'list') {
+            return (
+              <div key={game.id} className="bg-slate-800 p-4 rounded-lg border border-slate-700 flex items-center justify-between">
+                <div className="flex-1">
+                  <div className="flex items-center space-x-3">
+                    <h3 className="font-semibold text-slate-100">{game.title}</h3>
+                    <span className={`text-xs px-2 py-1 rounded ${getRarityColor(game.rarity)}`}>
+                      {getRarityLabel(game.rarity)}
+                    </span>
+                    {collected && <Check className="text-green-400" size={16} />}
+                  </div>
+                  <p className="text-slate-400 text-sm">{game.genre} • {game.releaseYear}</p>
+                  {collected && collectedGame && (
+                    <p className="text-green-400 text-sm">Wert: €{currentValue}</p>
+                  )}
+                </div>
+                <div className="flex space-x-2">
+                  {collected ? (
+                    <>
+                      <button
+                        onClick={() => openGameModal(game)}
+                        className="px-3 py-1 bg-blue-600 text-white rounded text-sm hover:bg-blue-700 transition-colors"
+                      >
+                        Bearbeiten
+                      </button>
+                      <button
+                        onClick={() => handleRemoveFromCollection(game.id)}
+                        className="px-3 py-1 bg-red-600 text-white rounded text-sm hover:bg-red-700 transition-colors"
+                      >
+                        Entfernen
+                      </button>
+                    </>
+                  ) : (
+                    <button
+                      onClick={() => openGameModal(game)}
+                      className="px-3 py-1 bg-green-600 text-white rounded text-sm hover:bg-green-700 transition-colors flex items-center space-x-1"
+                    >
+                      <Plus size={16} />
+                      <span>Hinzufügen</span>
+                    </button>
+                  )}
+                </div>
+              </div>
+            );
+          }
+
+          return (
+            <div key={game.id} className={`bg-slate-800 p-4 rounded-lg border border-slate-700 hover:border-slate-600 transition-colors ${collected ? 'ring-2 ring-green-500' : ''}`}>
+              <div className="flex items-center justify-between mb-2">
+                <span className={`text-xs px-2 py-1 rounded ${getRarityColor(game.rarity)}`}>
+                  {getRarityLabel(game.rarity)}
+                </span>
+                {collected && <Check className="text-green-400" size={20} />}
+              </div>
+              
+              <h3 className="font-semibold text-slate-100 mb-1">{game.title}</h3>
+              <p className="text-slate-400 text-sm mb-3">{game.genre} • {game.releaseYear}</p>
+              
+              {collected && collectedGame && (
+                <div className="mb-3 p-2 bg-slate-700 rounded">
+                  <p className="text-green-400 text-sm font-medium">In Sammlung</p>
+                  <p className="text-slate-300 text-xs">Wert: €{currentValue}</p>
+                  <div className="flex space-x-2 text-xs text-slate-400 mt-1">
+                    {collectedGame.hasModule && <span>📦 Modul</span>}
+                    {collectedGame.hasBox && <span>📄 Box</span>}
+                    {collectedGame.hasManual && <span>📖 Anleitung</span>}
+                  </div>
+                </div>
+              )}
+
+              <div className="flex space-x-2">
+                {collected ? (
+                  <>
+                    <button
+                      onClick={() => openGameModal(game)}
+                      className="flex-1 px-3 py-2 bg-blue-600 text-white rounded text-sm hover:bg-blue-700 transition-colors"
+                    >
+                      Bearbeiten
+                    </button>
+                    <button
+                      onClick={() => handleRemoveFromCollection(game.id)}
+                      className="px-3 py-2 bg-red-600 text-white rounded text-sm hover:bg-red-700 transition-colors"
+                    >
+                      <X size={16} />
+                    </button>
+                  </>
+                ) : (
+                  <button
+                    onClick={() => openGameModal(game)}
+                    className="w-full px-3 py-2 bg-green-600 text-white rounded text-sm hover:bg-green-700 transition-colors flex items-center justify-center space-x-1"
+                  >
+                    <Plus size={16} />
+                    <span>Hinzufügen</span>
+                  </button>
+                )}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      {filteredGames.length === 0 && (
+        <div className="text-center py-12">
+          <p className="text-slate-400">Keine Spiele gefunden. Versuche andere Suchbegriffe oder Filter.</p>
+        </div>
+      )}
+
+      {/* Game Modal */}
+      <GameModal
+        game={selectedGame}
+        isOpen={showModal}
+        onClose={() => setShowModal(false)}
+        onAddToCollection={handleAddToCollection}
+        isCollected={selectedGame ? isGameCollected(selectedGame.id) : false}
+      />
+    </div>
+  );
+};
+
+export default CollectorMode;

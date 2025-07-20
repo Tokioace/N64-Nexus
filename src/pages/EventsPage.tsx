@@ -1,300 +1,499 @@
 import React, { useState } from 'react'
-import { useEvents } from '../contexts/EventContext'
-import { GameEvent } from '../types'
+import { useEvent } from '../contexts/EventContext'
+import { useUser } from '../contexts/UserContext'
+import RaceSubmissionModal, { RaceSubmissionData } from '../components/RaceSubmissionModal'
+import EventLeaderboard from '../components/EventLeaderboard'
 import { 
+  Trophy, 
   Calendar, 
-  Filter, 
-  Search, 
-  Grid, 
-  List,
-  Clock,
-  Zap,
+  Users, 
+  Clock, 
   Target,
+  Award,
+  Gamepad2,
+  MapPin,
   Star,
-  Trophy
+  Bell,
+  BellOff,
+  Info,
+  Upload,
+  BarChart3,
+  X
 } from 'lucide-react'
-import SimpleCard from '../components/SimpleCard'
-import SimpleButton from '../components/SimpleButton'
-import EventCard from '../components/Event/EventCard'
-import EventCalendar from '../components/Event/EventCalendar'
-import EventDetail from '../components/Event/EventDetail'
-
-type ViewMode = 'grid' | 'list' | 'calendar'
-type FilterType = 'all' | 'active' | 'upcoming' | 'completed'
-type EventType = 'all' | 'Speedrun' | 'Time Trial' | 'Challenge' | 'Collection' | 'Anniversary'
 
 const EventsPage: React.FC = () => {
-  const { events, activeEvents, upcomingEvents, completedEvents } = useEvents()
-  const [viewMode, setViewMode] = useState<ViewMode>('grid')
-  const [filter, setFilter] = useState<FilterType>('all')
-  const [eventTypeFilter, setEventTypeFilter] = useState<EventType>('all')
-  const [searchTerm, setSearchTerm] = useState('')
-  const [selectedEvent, setSelectedEvent] = useState<GameEvent | null>(null)
+  const { events, activeEvents, joinEvent, leaveEvent, loading, userParticipations, submitRaceTime, getLeaderboard } = useEvent()
+  const { user } = useUser()
+  const [selectedTab, setSelectedTab] = useState<'active' | 'upcoming' | 'completed'>('active')
+  const [selectedEvent, setSelectedEvent] = useState<string | null>(null)
+  const [notificationsEnabled, setNotificationsEnabled] = useState(false)
+  const [showSubmissionModal, setShowSubmissionModal] = useState<string | null>(null)
+  const [showLeaderboard, setShowLeaderboard] = useState<string | null>(null)
 
-  const getFilteredEvents = () => {
-    let filteredEvents: GameEvent[] = []
+  const getEventStatus = (event: any) => {
+    const now = new Date()
+    const startDate = new Date(event.startDate)
+    const endDate = new Date(event.endDate)
+
+    if (now >= startDate && now <= endDate) {
+      return 'active'
+    } else if (now < startDate) {
+      return 'upcoming'
+    } else {
+      return 'completed'
+    }
+  }
+
+  const getTimeRemaining = (event: any) => {
+    const now = new Date()
+    const endDate = new Date(event.endDate)
+    const timeLeft = endDate.getTime() - now.getTime()
     
-    switch (filter) {
-      case 'active':
-        filteredEvents = activeEvents
-        break
-      case 'upcoming':
-        filteredEvents = upcomingEvents
-        break
-      case 'completed':
-        filteredEvents = completedEvents
-        break
-      default:
-        filteredEvents = events
-    }
-
-    if (eventTypeFilter !== 'all') {
-      filteredEvents = filteredEvents.filter(event => event.type === eventTypeFilter)
-    }
-
-    if (searchTerm) {
-      filteredEvents = filteredEvents.filter(event =>
-        event.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        event.game.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        event.description.toLowerCase().includes(searchTerm.toLowerCase())
-      )
-    }
-
-    return filteredEvents
+    if (timeLeft <= 0) return 'Beendet'
+    
+    const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24))
+    const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+    const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60))
+    
+    if (days > 0) return `${days}d ${hours}h verbleibend`
+    if (hours > 0) return `${hours}h ${minutes}m verbleibend`
+    return `${minutes}m verbleibend`
   }
 
-  const filteredEvents = getFilteredEvents()
-
-  const handleEventClick = (event: GameEvent) => {
-    setSelectedEvent(event)
+  const isUserParticipating = (eventId: string) => {
+    return userParticipations.some(p => p.eventId === eventId)
   }
 
-  const handleEventDetails = (eventId: string) => {
-    const event = events.find(e => e.id === eventId)
-    if (event) {
-      setSelectedEvent(event)
+  const filteredEvents = events.filter(event => {
+    const status = getEventStatus(event)
+    return status === selectedTab
+  })
+
+  const handleJoinEvent = async (eventId: string) => {
+    if (!user) {
+      alert('Bitte logge dich ein, um an Events teilzunehmen!')
+      return
+    }
+
+    if (isUserParticipating(eventId)) {
+      // If already participating, show submission modal
+      setShowSubmissionModal(eventId)
+      return
+    }
+    
+    const success = await joinEvent(eventId)
+    if (success) {
+      alert('Erfolgreich zum Event angemeldet! Du kannst jetzt deine Zeit einreichen.')
+      // Automatically show submission modal after joining
+      setShowSubmissionModal(eventId)
     }
   }
 
-  const handleBackToList = () => {
-    setSelectedEvent(null)
-  }
-
-  const getEventTypeIcon = (type: EventType) => {
-    switch (type) {
-      case 'Speedrun': return <Zap className="w-4 h-4" />
-      case 'Time Trial': return <Clock className="w-4 h-4" />
-      case 'Challenge': return <Target className="w-4 h-4" />
-      case 'Collection': return <Star className="w-4 h-4" />
-      case 'Anniversary': return <Trophy className="w-4 h-4" />
-      default: return <Calendar className="w-4 h-4" />
+  const handleRaceSubmission = async (data: RaceSubmissionData): Promise<boolean> => {
+    console.log('EventsPage: handleRaceSubmission called with:', data)
+    const success = await submitRaceTime(data)
+    console.log('EventsPage: submitRaceTime returned:', success)
+    
+    if (success) {
+      setShowSubmissionModal(null)
+      // Show leaderboard after successful submission
+      setShowLeaderboard(data.eventId)
+      console.log('EventsPage: Showing success alert')
+      alert('Zeit erfolgreich eingereicht! 🏁')
+    } else {
+      console.log('EventsPage: Submission failed')
     }
+    return success
   }
 
-  if (selectedEvent) {
-    return (
-      <div className="container mx-auto px-4 py-6">
-        <EventDetail
-          event={selectedEvent}
-          onBack={handleBackToList}
-        />
-      </div>
-    )
+  const handleShowDetails = (eventId: string) => {
+    setSelectedEvent(selectedEvent === eventId ? null : eventId)
+  }
+
+  const handleToggleNotifications = async () => {
+    try {
+      if (!notificationsEnabled) {
+        // Request notification permission
+        if ('Notification' in window) {
+          const permission = await Notification.requestPermission()
+          if (permission === 'granted') {
+            setNotificationsEnabled(true)
+            alert('🔔 Benachrichtigungen aktiviert! Du wirst über neue Events informiert.')
+          } else {
+            alert('❌ Benachrichtigungen wurden abgelehnt. Bitte erlaube Benachrichtigungen in deinen Browser-Einstellungen.')
+          }
+        } else {
+          alert('❌ Dein Browser unterstützt keine Push-Benachrichtigungen.')
+        }
+      } else {
+        setNotificationsEnabled(false)
+        alert('🔕 Benachrichtigungen deaktiviert.')
+      }
+    } catch (error) {
+      alert('❌ Fehler beim Aktivieren der Benachrichtigungen.')
+    }
   }
 
   return (
-    <div className="container mx-auto px-4 py-6 space-y-6">
+    <div className="container mx-auto px-4 py-6">
       {/* Header */}
       <div className="text-center mb-8">
-        <h1 className="text-4xl font-bold ">
-          🎮 Event-Zentrale
+        <Trophy className="w-16 h-16 text-yellow-400 mx-auto mb-4" />
+        <h1 className="text-4xl font-bold text-slate-100 mb-2">
+          Battle64 Events
         </h1>
-        <p className="text-white/70 ">
-          Alle N64-Events auf einen Blick
+        <p className="text-slate-400 text-lg">
+          Turniere, Challenges und Community-Events
         </p>
       </div>
 
-      {/* Controls */}
-      <SimpleCard
-        variant="primary"
-        className="p-6 "
-      >
-        <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
-          {/* Search */}
-          <div className="relative flex-1 max-w-md">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-white/50 w-5 h-5" />
-            <input
-              type="text"
-              placeholder="Events durchsuchen..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 bg-white border border-gray-300 rounded-lg text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            />
-          </div>
-
-          {/* Filters */}
-          <div className="flex items-center space-x-2">
-            <Filter className="w-5 h-5 text-blue-600" />
-            <select
-              value={filter}
-              onChange={(e) => setFilter(e.target.value as FilterType)}
-              className="bg-white border border-gray-300 rounded-lg px-3 py-2 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+      {/* Tab Navigation */}
+      <div className="flex justify-center mb-8">
+        <div className="bg-slate-800 rounded-lg p-1 inline-flex">
+          {[
+            { key: 'active', label: 'Aktiv', icon: Trophy, color: 'text-green-400' },
+            { key: 'upcoming', label: 'Kommend', icon: Calendar, color: 'text-blue-400' },
+            { key: 'completed', label: 'Beendet', icon: Award, color: 'text-gray-400' }
+          ].map((tab) => (
+            <button
+              key={tab.key}
+              onClick={() => setSelectedTab(tab.key as any)}
+              className={`flex items-center space-x-2 px-4 py-2 rounded-md transition-all duration-200 ${
+                selectedTab === tab.key
+                  ? 'bg-slate-700 text-slate-100'
+                  : 'text-slate-400 hover:text-slate-200 hover:bg-slate-700/50'
+              }`}
             >
-              <option value="all">Alle Events</option>
-              <option value="active">Aktive Events</option>
-              <option value="upcoming">Kommende Events</option>
-              <option value="completed">Beendete Events</option>
-            </select>
-
-            <select
-              value={eventTypeFilter}
-              onChange={(e) => setEventTypeFilter(e.target.value as EventType)}
-              className="bg-white border border-gray-300 rounded-lg px-3 py-2 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            >
-              <option value="all">Alle Typen</option>
-              <option value="Speedrun">Speedrun</option>
-              <option value="Time Trial">Time Trial</option>
-              <option value="Challenge">Challenge</option>
-              <option value="Collection">Collection</option>
-              <option value="Anniversary">Anniversary</option>
-            </select>
-          </div>
-
-          {/* View Mode */}
-          <div className="flex items-center space-x-1 bg-black/30 rounded-lg p-1">
-            <SimpleButton
-              variant={viewMode === 'grid' ? 'primary' : 'secondary'}
-              onClick={() => setViewMode('grid')}
-              className="p-2 text-sm"
-            >
-              <Grid className="w-4 h-4" />
-            </SimpleButton>
-            <SimpleButton
-              variant={viewMode === 'list' ? 'primary' : 'secondary'}
-              onClick={() => setViewMode('list')}
-              className="p-2 text-sm"
-            >
-              <List className="w-4 h-4" />
-            </SimpleButton>
-            <SimpleButton
-              variant={viewMode === 'calendar' ? 'primary' : 'secondary'}
-              onClick={() => setViewMode('calendar')}
-              className="p-2 text-sm"
-            >
-              <Calendar className="w-4 h-4" />
-            </SimpleButton>
-          </div>
+              <tab.icon className={`w-4 h-4 ${tab.color}`} />
+              <span>{tab.label}</span>
+            </button>
+          ))}
         </div>
-      </SimpleCard>
-
-      {/* Stats */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <SimpleCard
-          variant="primary"
-          className="p-4 text-center "
-        >
-          <div className="text-2xl font-bold text-green-600 ">
-            {events.length}
-          </div>
-          <div className="text-sm text-white/70 ">Gesamt Events</div>
-        </SimpleCard>
-        
-        <SimpleCard
-          variant="secondary"
-          className="p-4 text-center "
-        >
-          <div className="text-2xl font-bold text-red-600 ">
-            {activeEvents.length}
-          </div>
-          <div className="text-sm text-white/70 ">Aktive Events</div>
-        </SimpleCard>
-        
-        <SimpleCard
-          variant="primary"
-          className="p-4 text-center "
-        >
-          <div className="text-2xl font-bold text-blue-600 ">
-            {upcomingEvents.length}
-          </div>
-          <div className="text-sm text-white/70 ">Kommende Events</div>
-        </SimpleCard>
-        
-        <SimpleCard
-          variant="secondary"
-          className="p-4 text-center "
-        >
-          <div className="text-2xl font-bold text-yellow-600 ">
-            {completedEvents.length}
-          </div>
-          <div className="text-sm text-white/70 ">Beendete Events</div>
-        </SimpleCard>
       </div>
 
-      {/* Event Type Filter Buttons */}
-      <div className="flex flex-wrap gap-2 justify-center">
-        {(['all', 'Speedrun', 'Time Trial', 'Challenge', 'Collection', 'Anniversary'] as EventType[]).map((type) => (
-          <SimpleButton
-            key={type}
-            variant={eventTypeFilter === type ? 'primary' : 'secondary'}
-            onClick={() => setEventTypeFilter(type)}
-            className="text-sm"
-          >
-            <div className="flex items-center space-x-1">
-              {getEventTypeIcon(type)}
-              <span>{type === 'all' ? 'Alle' : type}</span>
-            </div>
-          </SimpleButton>
-        ))}
+      {/* Event Stats */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+        <div className="simple-tile text-center">
+          <Trophy className="w-8 h-8 text-green-400 mx-auto mb-2" />
+          <div className="text-2xl font-bold text-slate-100">
+            {events.filter(e => getEventStatus(e) === 'active').length}
+          </div>
+          <div className="text-sm text-slate-400">Aktive Events</div>
+        </div>
+        
+        <div className="simple-tile text-center">
+          <Calendar className="w-8 h-8 text-blue-400 mx-auto mb-2" />
+          <div className="text-2xl font-bold text-slate-100">
+            {events.filter(e => getEventStatus(e) === 'upcoming').length}
+          </div>
+          <div className="text-sm text-slate-400">Kommende Events</div>
+        </div>
+        
+        <div className="simple-tile text-center">
+          <Users className="w-8 h-8 text-purple-400 mx-auto mb-2" />
+          <div className="text-2xl font-bold text-slate-100">
+            {events.reduce((sum, event) => sum + event.participants, 0)}
+          </div>
+          <div className="text-sm text-slate-400">Teilnehmer gesamt</div>
+        </div>
       </div>
 
-      {/* Content */}
-      {viewMode === 'calendar' ? (
-        <EventCalendar
-          onEventClick={handleEventClick}
-        />
-      ) : (
-        <div className="space-y-4">
-          {filteredEvents.length === 0 ? (
-            <SimpleCard
-              variant="secondary"
-              className="p-8 text-center "
-            >
-              <div className="text-blue-600 mb-4">
-                <Calendar className="w-16 h-16 mx-auto" />
+      {/* Events List */}
+      <div className="space-y-6">
+        {filteredEvents.length === 0 ? (
+          <div className="simple-tile text-center py-12">
+            <Trophy className="w-16 h-16 text-slate-500 mx-auto mb-4" />
+            <h3 className="text-xl font-bold text-slate-300 mb-2">
+              Keine {selectedTab === 'active' ? 'aktiven' : selectedTab === 'upcoming' ? 'kommenden' : 'beendeten'} Events
+            </h3>
+            <p className="text-slate-400">
+              {selectedTab === 'active' && 'Momentan sind keine Events aktiv. Schau später wieder vorbei!'}
+              {selectedTab === 'upcoming' && 'Keine Events geplant. Neue Events werden bald angekündigt!'}
+              {selectedTab === 'completed' && 'Noch keine Events beendet.'}
+            </p>
+          </div>
+        ) : (
+          filteredEvents.map((event) => {
+            const status = getEventStatus(event)
+            const timeRemaining = getTimeRemaining(event)
+            const isParticipating = isUserParticipating(event.id)
+            const showDetails = selectedEvent === event.id
+            
+            return (
+              <div key={event.id} className="simple-tile simple-tile-large">
+                <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-4">
+                  <div className="flex-1">
+                    <div className="flex items-center space-x-3 mb-2">
+                      <div className={`px-3 py-1 rounded-full text-xs font-medium ${
+                        status === 'active' 
+                          ? 'bg-green-500/20 text-green-400' 
+                          : status === 'upcoming'
+                          ? 'bg-blue-500/20 text-blue-400'
+                          : 'bg-gray-500/20 text-gray-400'
+                      }`}>
+                        {status === 'active' && '🔴 LIVE'}
+                        {status === 'upcoming' && '📅 KOMMEND'}
+                        {status === 'completed' && '✅ BEENDET'}
+                      </div>
+                      <span className="text-sm text-slate-400">{timeRemaining}</span>
+                      {isParticipating && (
+                        <div className="px-2 py-1 rounded-full text-xs font-medium bg-purple-500/20 text-purple-400">
+                          ✓ Teilnehmend
+                        </div>
+                      )}
+                    </div>
+                    
+                    <h3 className="text-2xl font-bold text-slate-100 mb-2">{event.title}</h3>
+                    <p className="text-slate-400 mb-4">{event.description}</p>
+                    
+                    <div className="flex flex-wrap items-center gap-4 text-sm">
+                      <div className="flex items-center space-x-2">
+                        <Gamepad2 className="w-4 h-4 text-purple-400" />
+                        <span className="text-slate-300">{event.game}</span>
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        <Target className="w-4 h-4 text-orange-400" />
+                        <span className="text-slate-300">{event.category}</span>
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        <Users className="w-4 h-4 text-blue-400" />
+                        <span className="text-slate-300">
+                          {event.participants} / {event.maxParticipants || '∞'} Teilnehmer
+                        </span>
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        <MapPin className="w-4 h-4 text-green-400" />
+                        <span className="text-slate-300">{event.region}</span>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="mt-4 lg:mt-0 lg:ml-6 flex flex-col space-y-2">
+                    {status === 'active' && !isParticipating && (
+                      <button 
+                        onClick={() => handleJoinEvent(event.id)}
+                        disabled={loading}
+                        className="px-6 py-2 bg-green-600 hover:bg-green-700 text-white 
+                                 font-medium rounded-lg transition-colors duration-200
+                                 disabled:opacity-50 disabled:cursor-not-allowed"
+                      >
+                        {loading ? 'Lädt...' : 'Teilnehmen'}
+                      </button>
+                    )}
+                    {status === 'active' && isParticipating && (
+                      <>
+                        <button 
+                          onClick={() => setShowSubmissionModal(event.id)}
+                          disabled={loading}
+                          className="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white 
+                                   font-medium rounded-lg transition-colors duration-200
+                                   disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
+                        >
+                          <Upload className="w-4 h-4" />
+                          <span>Zeit Einreichen</span>
+                        </button>
+                        <button 
+                          onClick={() => setShowLeaderboard(event.id)}
+                          className="px-6 py-2 bg-purple-600 hover:bg-purple-700 text-white 
+                                   font-medium rounded-lg transition-colors duration-200 flex items-center justify-center space-x-2"
+                        >
+                          <BarChart3 className="w-4 h-4" />
+                          <span>Leaderboard</span>
+                        </button>
+                        <button 
+                          onClick={() => leaveEvent(event.id)}
+                          disabled={loading}
+                          className="px-6 py-2 bg-red-600 hover:bg-red-700 text-white 
+                                   font-medium rounded-lg transition-colors duration-200
+                                   disabled:opacity-50 disabled:cursor-not-allowed"
+                        >
+                          {loading ? 'Lädt...' : 'Verlassen'}
+                        </button>
+                      </>
+                    )}
+                    {status === 'upcoming' && !isParticipating && (
+                      <button 
+                        onClick={() => handleJoinEvent(event.id)}
+                        disabled={loading}
+                        className="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white 
+                                 font-medium rounded-lg transition-colors duration-200
+                                 disabled:opacity-50 disabled:cursor-not-allowed"
+                      >
+                        {loading ? 'Lädt...' : 'Vormerken'}
+                      </button>
+                    )}
+                    {/* Show leaderboard button for all active events */}
+                    {status === 'active' && (
+                      <button 
+                        onClick={() => setShowLeaderboard(event.id)}
+                        className="px-6 py-2 bg-slate-700 hover:bg-slate-600 text-slate-200 
+                                 font-medium rounded-lg transition-colors duration-200 flex items-center justify-center space-x-2"
+                      >
+                        <BarChart3 className="w-4 h-4" />
+                        <span>Leaderboard</span>
+                      </button>
+                    )}
+                    <button 
+                      onClick={() => handleShowDetails(event.id)}
+                      className="px-6 py-2 bg-slate-700 hover:bg-slate-600 text-slate-200 
+                               font-medium rounded-lg transition-colors duration-200 flex items-center justify-center space-x-2">
+                      <Info className="w-4 h-4" />
+                      <span>{showDetails ? 'Weniger' : 'Details'}</span>
+                    </button>
+                  </div>
+                </div>
+                
+                {/* Event Details - Always visible or expandable */}
+                <div className={`transition-all duration-300 ${showDetails ? 'block' : 'hidden'}`}>
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6 pt-6 border-t border-slate-600">
+                    <div>
+                      <h4 className="font-medium text-slate-200 mb-3 flex items-center">
+                        <Star className="w-4 h-4 text-yellow-400 mr-2" />
+                        Regeln
+                      </h4>
+                      <ul className="space-y-1">
+                        {event.rules.map((rule, index) => (
+                          <li key={index} className="text-sm text-slate-400 flex items-start">
+                            <span className="text-yellow-400 mr-2">•</span>
+                            {rule}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    
+                    <div>
+                      <h4 className="font-medium text-slate-200 mb-3 flex items-center">
+                        <Award className="w-4 h-4 text-purple-400 mr-2" />
+                        Preise
+                      </h4>
+                      <ul className="space-y-1">
+                        {event.prizes.map((prize, index) => (
+                          <li key={index} className="text-sm text-slate-400 flex items-start">
+                            <span className="text-purple-400 mr-2">•</span>
+                            {prize}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Always visible rules and prizes for better UX */}
+                <div className={`${showDetails ? 'hidden' : 'block'}`}>
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6 pt-6 border-t border-slate-600">
+                    <div>
+                      <h4 className="font-medium text-slate-200 mb-3 flex items-center">
+                        <Star className="w-4 h-4 text-yellow-400 mr-2" />
+                        Regeln
+                      </h4>
+                      <ul className="space-y-1">
+                        {event.rules.map((rule, index) => (
+                          <li key={index} className="text-sm text-slate-400 flex items-start">
+                            <span className="text-yellow-400 mr-2">•</span>
+                            {rule}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    
+                    <div>
+                      <h4 className="font-medium text-slate-200 mb-3 flex items-center">
+                        <Award className="w-4 h-4 text-purple-400 mr-2" />
+                        Preise
+                      </h4>
+                      <ul className="space-y-1">
+                        {event.prizes.map((prize, index) => (
+                          <li key={index} className="text-sm text-slate-400 flex items-start">
+                            <span className="text-purple-400 mr-2">•</span>
+                            {prize}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <h3 className="text-xl font-bold text-white ">
-                Keine Events gefunden
-              </h3>
-              <p className="text-white/70 ">
-                {searchTerm ? 'Versuche einen anderen Suchbegriff' : 'Schau später wieder vorbei!'}
-              </p>
-            </SimpleCard>
+            )
+          })
+        )}
+      </div>
+
+      {/* Footer */}
+      <div className="text-center mt-12">
+        <p className="text-slate-400 text-sm mb-4">
+          Verpasse keine Events! Melde dich für Push-Benachrichtigungen an.
+        </p>
+        <button 
+          onClick={handleToggleNotifications}
+          className={`px-6 py-2 border rounded-lg transition-all duration-200 text-sm flex items-center justify-center space-x-2 mx-auto ${
+            notificationsEnabled
+              ? 'bg-green-600/20 hover:bg-green-600/30 border-green-500/30 text-green-400 hover:text-green-300'
+              : 'bg-blue-600/20 hover:bg-blue-600/30 border-blue-500/30 text-blue-400 hover:text-blue-300'
+          }`}
+        >
+          {notificationsEnabled ? (
+            <>
+              <Bell className="w-4 h-4" />
+              <span>🔔 Benachrichtigungen aktiv</span>
+            </>
           ) : (
-            <div className={`
-              ${viewMode === 'grid' 
-                ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6' 
-                : 'space-y-4'
-              }
-            `}>
-              {filteredEvents.map((event) => (
-                <EventCard
-                  key={event.id}
-                  event={event}
-                  variant={viewMode === 'list' ? 'compact' : 'default'}
-                  onViewDetails={handleEventDetails}
-                />
-              ))}
-            </div>
+            <>
+              <BellOff className="w-4 h-4" />
+              <span>🔔 Benachrichtigungen aktivieren</span>
+            </>
           )}
-        </div>
+        </button>
+      </div>
+
+      {/* Race Submission Modal */}
+      {showSubmissionModal && (
+        <RaceSubmissionModal
+          isOpen={!!showSubmissionModal}
+          onClose={() => setShowSubmissionModal(null)}
+          eventId={showSubmissionModal}
+          eventTitle={events.find(e => e.id === showSubmissionModal)?.title || 'Event'}
+          onSubmit={handleRaceSubmission}
+        />
       )}
 
-      {/* Results Info */}
-      {filteredEvents.length > 0 && (
-        <div className="text-center">
-          <p className="text-white/70 ">
-            {filteredEvents.length} von {events.length} Events angezeigt
-          </p>
+      {/* Event Leaderboard Modal */}
+      {showLeaderboard && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-slate-800 rounded-lg max-w-6xl w-full max-h-[90vh] overflow-y-auto">
+            <div className="flex items-center justify-between p-6 border-b border-slate-600">
+              <h2 className="text-2xl font-bold text-slate-100">Event Leaderboard</h2>
+              <button
+                onClick={() => setShowLeaderboard(null)}
+                className="text-slate-400 hover:text-slate-200 transition-colors"
+              >
+                <X className="w-6 h-6" />
+              </button>
+            </div>
+            <div className="p-6">
+              <EventLeaderboard
+                eventId={showLeaderboard}
+                eventTitle={events.find(e => e.id === showLeaderboard)?.title || 'Event'}
+                entries={getLeaderboard(showLeaderboard).map(participation => ({
+                  id: participation.id,
+                  userId: participation.userId,
+                  username: participation.username,
+                  time: participation.time || '0:00.000',
+                  position: 1, // Will be calculated in the component
+                  submissionDate: participation.submissionDate,
+                  documentationType: participation.documentationType || 'photo',
+                  mediaUrl: participation.mediaUrl,
+                  livestreamUrl: participation.livestreamUrl,
+                  verified: participation.verified,
+                  notes: participation.notes
+                }))}
+                currentUserId={user?.id}
+                onRefresh={() => {
+                  // Refresh leaderboard data
+                  // In a real app, this would fetch fresh data from the server
+                }}
+              />
+            </div>
+          </div>
         </div>
       )}
     </div>

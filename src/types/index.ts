@@ -1,258 +1,146 @@
+// User System Types
 export interface User {
   id: string
   username: string
-  points: number
+  email: string
   level: number
-  totalQuizzes: number
-  correctAnswers: number
-  totalAnswers: number
-  achievements: Achievement[]
-  quizProgress: QuizProgress
-}
-
-export interface QuizQuestion {
-  id: string
-  type: 'multiple-choice' | 'true-false' | 'image' | 'sequence'
-  category: QuizCategory
-  difficulty: 'easy' | 'medium' | 'hard'
-  question: string
-  options?: string[]
-  correctAnswer: string | string[]
-  imageUrl?: string
-  explanation?: string
-  points: number
-  timeLimit?: number
-}
-
-export type QuizCategory = 
-  | 'general'
-  | 'characters'
-  | 'games'
-  | 'hardware'
-  | 'music'
-  | 'history'
-  | 'trivia'
-
-export interface QuizSession {
-  id: string
-  mode: 'single' | 'daily' | 'weekly' | 'speed'
-  questions: QuizQuestion[]
-  currentQuestionIndex: number
-  answers: Answer[]
-  startTime: Date
-  endTime?: Date
-  score: number
-  maxScore: number
-}
-
-export interface Answer {
-  questionId: string
-  userAnswer: string | string[]
-  isCorrect: boolean
-  timeSpent: number
-  points: number
-}
-
-export interface QuizProgress {
-  totalQuestions: number
-  correctAnswers: number
-  categories: Record<QuizCategory, { total: number; correct: number }>
-  achievements: string[]
-}
-
-export interface Achievement {
-  id: string
-  name: string
-  description: string
-  icon: string
-  unlockedAt: Date
-  rarity: 'common' | 'rare' | 'epic' | 'legendary'
-}
-
-export interface LeaderboardEntry {
-  rank: number
-  user: User
-  score: number
-  quizCount: number
-  averageScore: number
-}
-
-export interface Minigame {
-  id: string
-  name: string
-  description: string
-  icon: string
-  difficulty: 'easy' | 'medium' | 'hard'
-  maxScore: number
-  isAvailable: boolean
-}
-
-export interface QuizContextType {
-  currentSession: QuizSession | null
-  startQuiz: (mode: QuizSession['mode'], category?: QuizCategory) => void
-  answerQuestion: (answer: string | string[]) => void
-  endQuiz: () => void
-  getQuestion: () => QuizQuestion | null
-  getProgress: () => { current: number; total: number; percentage: number }
-  getScore: () => { current: number; max: number; percentage: number }
-}
-
-export interface CollectionItem {
-  gameId: string
-  hasBox: boolean
-  hasManual: boolean
-  hasModule: boolean
-  addedAt: Date
-  notes?: string
-}
-
-export interface CollectionStats {
-  totalGames: number
-  totalValue: number
-  completionPercentage: number
-  level: number
-  levelName: string
+  xp: number
+  region: 'PAL' | 'NTSC'
+  joinDate: Date
+  avatar?: string
+  bio?: string
+  location?: string
 }
 
 export interface UserContextType {
   user: User | null
-  login: (username: string) => void
+  login: (email: string, password: string) => Promise<boolean>
   logout: () => void
-  updatePoints: (points: number) => void
-  updateQuizProgress: (questionId: string, isCorrect: boolean) => void
-  unlockAchievement: (achievementId: string) => void
+  updateProfile: (updates: Partial<User>) => Promise<boolean>
+  addXP: (amount: number) => void
+}
+
+// Quiz System Types
+export interface QuizQuestion {
+  id: string
+  question: string
+  options: string[]
+  correctAnswer: number
+  difficulty: 'easy' | 'medium' | 'hard'
+  category: string
+  explanation?: string
+}
+
+export interface QuizResult {
+  score: number
+  totalQuestions: number
+  correctAnswers: number
+  timeSpent: number
+  xpEarned: number
+}
+
+export interface QuizContextType {
+  currentQuestion: QuizQuestion | null
+  currentQuestionIndex: number
+  totalQuestions: number
+  score: number
+  timeStarted: Date | null
+  isQuizActive: boolean
+  quizResult: QuizResult | null
+  
+  startQuiz: (difficulty?: string, category?: string) => void
+  answerQuestion: (answerIndex: number) => void
+  nextQuestion: () => void
+  finishQuiz: () => void
+  resetQuiz: () => void
 }
 
 // Event System Types
 export interface GameEvent {
   id: string
   title: string
-  game: string
-  type: 'Speedrun' | 'Time Trial' | 'Challenge' | 'Collection' | 'Anniversary'
-  startDate: string
-  endDate: string
   description: string
-  rewards: string[]
-  image: string
-  isActive?: boolean
-  isCompleted?: boolean
-  participants?: number
+  game: string
+  category: string
+  startDate: Date
+  endDate: Date
+  isActive: boolean
+  participants: number
   maxParticipants?: number
-  difficulty?: 'easy' | 'medium' | 'hard'
-  category?: string
+  rules: string[]
+  prizes: string[]
+  region: 'PAL' | 'NTSC' | 'BOTH'
 }
 
 export interface EventParticipation {
+  id: string
   eventId: string
   userId: string
-  joinedAt: Date
-  completedAt?: Date
-  progress: number
-  rewards: string[]
-  isCompleted: boolean
+  username: string
+  score?: number
+  time?: string
+  position?: number
+  submissionDate: Date
+  mediaUrl?: string
+  livestreamUrl?: string
+  documentationType?: 'photo' | 'video' | 'livestream'
+  notes?: string
+  verified: boolean
 }
 
-export interface EventReward {
-  id: string
-  name: string
-  type: 'XP' | 'Badge' | 'Token' | 'Cosmetic'
-  value: number | string
-  icon: string
-  description: string
-  rarity: 'common' | 'rare' | 'epic' | 'legendary'
+export interface RaceSubmissionData {
+  eventId: string
+  time: string
+  documentationType: 'photo' | 'video' | 'livestream'
+  mediaFile?: File
+  livestreamUrl?: string
+  notes?: string
 }
 
 export interface EventContextType {
   events: GameEvent[]
   activeEvents: GameEvent[]
-  upcomingEvents: GameEvent[]
-  completedEvents: GameEvent[]
-  participations: EventParticipation[]
-  getEventById: (id: string) => GameEvent | null
-  joinEvent: (eventId: string) => void
-  completeEvent: (eventId: string) => void
-  getEventProgress: (eventId: string) => number
-  getEventRewards: (eventId: string) => EventReward[]
-  isEventActive: (event: GameEvent) => boolean
-  getTimeRemaining: (event: GameEvent) => { days: number; hours: number; minutes: number; seconds: number }
+  userParticipations: EventParticipation[]
+  loading: boolean
+  error: string | null
+  
+  getEvents: () => void
+  joinEvent: (eventId: string) => Promise<boolean>
+  leaveEvent: (eventId: string) => Promise<boolean>
+  submitScore: (eventId: string, score: number, time?: string, mediaUrl?: string) => Promise<boolean>
+  submitRaceTime: (data: RaceSubmissionData) => Promise<boolean>
+  getLeaderboard: (eventId: string) => EventParticipation[]
 }
 
-// Media Capture & Verification Types
+// Media System Types
 export interface MediaMeta {
   id: string
   userId: string
+  username: string
   gameId: string
+  gameName: string
   eventId?: string
-  type: 'photo' | 'video' | 'stream'
+  type: 'speedrun' | 'screenshot' | 'achievement'
+  title: string
+  description?: string
   url: string
-  timestamp: string
-  isEventRun: boolean
-  isPublic: boolean
-  isVerified: boolean
-  comment?: string
-  gameTime?: string
-  metadata: {
-    deviceInfo?: string
-    resolution?: string
-    duration?: number
-    fileSize?: number
-  }
-  votes: {
-    likes: number
-    dislikes: number
-    userVote?: 'like' | 'dislike'
-  }
-  reports: number
-  status: 'pending' | 'approved' | 'rejected'
-  createdAt: Date
-  updatedAt: Date
-}
-
-export interface MediaCaptureSettings {
-  allowPhoto: boolean
-  allowVideo: boolean
-  allowStream: boolean
-  maxVideoDuration: number
-  maxFileSize: number
-  requiredFields: string[]
-  eventTimeWindow?: {
-    start: Date
-    end: Date
-  }
-}
-
-export interface MediaUploadProgress {
-  mediaId: string
-  progress: number
-  status: 'uploading' | 'processing' | 'completed' | 'error'
-  error?: string
-}
-
-export interface Leaderboard {
-  id: string
-  gameId: string
-  eventId?: string
-  type: 'daily' | 'weekly' | 'monthly' | 'event'
-  entries: LeaderboardEntry[]
-  lastUpdated: Date
-}
-
-export interface SpeedrunEntry extends LeaderboardEntry {
-  gameTime: string
-  media?: MediaMeta
-  isVerified: boolean
-  submittedAt: Date
+  thumbnailUrl?: string
+  uploadDate: Date
+  verified: boolean
+  likes: number
+  views: number
+  tags: string[]
 }
 
 export interface MediaContextType {
-  mediaList: MediaMeta[]
-  uploadProgress: MediaUploadProgress[]
-  settings: MediaCaptureSettings
-  captureMedia: (type: 'photo' | 'video', gameId: string, eventId?: string) => Promise<string>
-  uploadMedia: (file: File, metadata: Partial<MediaMeta>) => Promise<string>
-  deleteMedia: (mediaId: string) => Promise<void>
-  voteOnMedia: (mediaId: string, vote: 'like' | 'dislike') => Promise<void>
-  reportMedia: (mediaId: string, reason: string) => Promise<void>
+  media: MediaMeta[]
+  userMedia: MediaMeta[]
+  loading: boolean
+  error: string | null
+  
+  uploadMedia: (file: File, metadata: Partial<MediaMeta>) => Promise<boolean>
+  deleteMedia: (mediaId: string) => Promise<boolean>
+  likeMedia: (mediaId: string) => Promise<boolean>
   getMediaByUser: (userId: string) => MediaMeta[]
   getMediaByEvent: (eventId: string) => MediaMeta[]
   getMediaByGame: (gameId: string) => MediaMeta[]

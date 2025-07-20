@@ -1,27 +1,21 @@
 {
-  "name": "battle64-quiz",
-  "version": "1.0.0",
-  "description": "Quizsystem & Minigames für Battle64 - N64-Wissen und Spieleklassiker",
+  "name": "n64-nexus",
+  "private": true,
+  "version": "0.0.0",
   "type": "module",
-  "main": "index.js",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview",
-    "lint": "eslint . --ext js,jsx,ts,tsx",
-    "type-check": "tsc --noEmit"
+    "build": "tsc && vite build",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview"
   },
   "dependencies": {
-    "clsx": "^2.0.0",
-    "framer-motion": "^10.16.0",
-    "lucide-react": "^0.263.1",
+    "lucide-react": "^0.525.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.8.0",
-    "tailwind-merge": "^1.14.0"
+    "react-router-dom": "^6.8.1"
   },
   "devDependencies": {
-    "@types/node": "^24.0.14",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
@@ -31,19 +25,9 @@
     "eslint": "^8.45.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.3",
-    "postcss": "^8.4.27",
-    "tailwindcss": "^3.3.3",
+    "postcss": "^8.4.24",
+    "tailwindcss": "^3.3.0",
     "typescript": "^5.8.3",
     "vite": "^4.4.5"
-  },
-  "keywords": [
-    "n64",
-    "quiz",
-    "minigames",
-    "battle64",
-    "retro",
-    "gaming"
-  ],
-  "author": "Battle64 Team",
-  "license": "MIT"
+  }
 }

@@ -1,163 +1,64 @@
-import React, { createContext, useContext, useState, useEffect } from 'react'
-import { User, UserContextType, QuizProgress, Achievement } from '../types'
+import React, { createContext, useContext, useState, ReactNode } from 'react'
+import { User, UserContextType } from '../types'
 
 const UserContext = createContext<UserContextType | undefined>(undefined)
 
-export const useUser = () => {
-  const context = useContext(UserContext)
-  if (!context) {
-    throw new Error('useUser must be used within a UserProvider')
-  }
-  return context
+// Mock user for development
+const mockUser: User = {
+  id: '1',
+  username: 'RetroGamer64',
+  email: 'retro@battle64.com',
+  level: 15,
+  xp: 2500,
+  region: 'PAL',
+  joinDate: new Date('2024-03-01'),
+  avatar: '🎮',
+  bio: 'Leidenschaftlicher N64-Sammler und Speedrunner. Spezialisiert auf Mario 64 und Zelda-Spiele.',
+  location: 'Berlin, Deutschland'
 }
 
-export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [user, setUser] = useState<User | null>(null)
+export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+  const [user, setUser] = useState<User | null>(mockUser) // Auto-login for development
 
-  useEffect(() => {
-    // Load user from localStorage on app start
-    const savedUser = localStorage.getItem('battle64-user')
-    if (savedUser) {
-      setUser(JSON.parse(savedUser))
+  const login = async (email: string, password: string): Promise<boolean> => {
+    // Mock login - in real app, this would call an API
+    if (email && password) {
+      setUser(mockUser)
+      return true
     }
-  }, [])
-
-  const saveUser = (userData: User) => {
-    localStorage.setItem('battle64-user', JSON.stringify(userData))
-    setUser(userData)
-  }
-
-  const login = (username: string) => {
-    const newUser: User = {
-      id: Date.now().toString(),
-      username,
-      points: 0,
-      level: 1,
-      totalQuizzes: 0,
-      correctAnswers: 0,
-      totalAnswers: 0,
-      achievements: [],
-      quizProgress: {
-        totalQuestions: 0,
-        correctAnswers: 0,
-        categories: {
-          general: { total: 0, correct: 0 },
-          characters: { total: 0, correct: 0 },
-          games: { total: 0, correct: 0 },
-          hardware: { total: 0, correct: 0 },
-          music: { total: 0, correct: 0 },
-          history: { total: 0, correct: 0 },
-          trivia: { total: 0, correct: 0 },
-        },
-        achievements: [],
-      },
-    }
-    saveUser(newUser)
+    return false
   }
 
   const logout = () => {
-    localStorage.removeItem('battle64-user')
     setUser(null)
   }
 
-  const updatePoints = (points: number) => {
-    if (!user) return
-
-    const newPoints = user.points + points
-    const newLevel = Math.floor(newPoints / 100) + 1
-
-    const updatedUser = {
-      ...user,
-      points: newPoints,
-      level: newLevel,
+  const updateProfile = async (updates: Partial<User>): Promise<boolean> => {
+    if (user) {
+      setUser({ ...user, ...updates })
+      return true
     }
-
-    saveUser(updatedUser)
+    return false
   }
 
-  const updateQuizProgress = (questionId: string, isCorrect: boolean) => {
-    if (!user) return
-
-    const updatedProgress: QuizProgress = {
-      ...user.quizProgress,
-      totalQuestions: user.quizProgress.totalQuestions + 1,
-      correctAnswers: user.quizProgress.correctAnswers + (isCorrect ? 1 : 0),
+  const addXP = (amount: number) => {
+    if (user) {
+      const newXP = user.xp + amount
+      const newLevel = Math.floor(newXP / 1000) + 1
+      setUser({
+        ...user,
+        xp: newXP,
+        level: newLevel
+      })
     }
-
-    const updatedUser = {
-      ...user,
-      totalAnswers: user.totalAnswers + 1,
-      correctAnswers: user.correctAnswers + (isCorrect ? 1 : 0),
-      quizProgress: updatedProgress,
-    }
-
-    saveUser(updatedUser)
-  }
-
-  const unlockAchievement = (achievementId: string) => {
-    if (!user || user.achievements.some(a => a.id === achievementId)) return
-
-    const newAchievement: Achievement = {
-      id: achievementId,
-      name: getAchievementName(achievementId),
-      description: getAchievementDescription(achievementId),
-      icon: getAchievementIcon(achievementId),
-      unlockedAt: new Date(),
-      rarity: 'common',
-    }
-
-    const updatedUser = {
-      ...user,
-      achievements: [...user.achievements, newAchievement],
-      quizProgress: {
-        ...user.quizProgress,
-        achievements: [...user.quizProgress.achievements, achievementId],
-      },
-    }
-
-    saveUser(updatedUser)
-  }
-
-  const getAchievementName = (id: string): string => {
-    const achievements: Record<string, string> = {
-      'first-quiz': 'Erster Quiz',
-      'perfect-score': 'Perfekte Runde',
-      'speed-demon': 'Geschwindigkeitsdämon',
-      'knowledge-master': 'Wissensmeister',
-      'daily-streak': 'Tägliche Serie',
-    }
-    return achievements[id] || 'Unbekannte Errungenschaft'
-  }
-
-  const getAchievementDescription = (id: string): string => {
-    const descriptions: Record<string, string> = {
-      'first-quiz': 'Absolviere deinen ersten Quiz',
-      'perfect-score': 'Erreiche eine perfekte Punktzahl',
-      'speed-demon': 'Beantworte 10 Fragen in unter 30 Sekunden',
-      'knowledge-master': 'Beantworte 100 Fragen korrekt',
-      'daily-streak': 'Spiele 7 Tage in Folge',
-    }
-    return descriptions[id] || 'Unbekannte Beschreibung'
-  }
-
-  const getAchievementIcon = (id: string): string => {
-    const icons: Record<string, string> = {
-      'first-quiz': '🎯',
-      'perfect-score': '🏆',
-      'speed-demon': '⚡',
-      'knowledge-master': '🧠',
-      'daily-streak': '🔥',
-    }
-    return icons[id] || '🏅'
   }
 
   const value: UserContextType = {
     user,
     login,
     logout,
-    updatePoints,
-    updateQuizProgress,
-    unlockAchievement,
+    updateProfile,
+    addXP
   }
 
   return (
@@ -165,4 +66,12 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
       {children}
     </UserContext.Provider>
   )
+}
+
+export const useUser = () => {
+  const context = useContext(UserContext)
+  if (context === undefined) {
+    throw new Error('useUser must be used within a UserProvider')
+  }
+  return context
 }

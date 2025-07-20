@@ -1,184 +1,190 @@
-# 🎮 Battle64 Quiz & Minigames
+# Battle64 - Retro neu entfacht
 
-Ein unterhaltsames Quizsystem und Minigames rund um N64-Wissen, Konsolen, Charaktere und Spieleklassiker. Spieler verdienen Punkte für richtige Antworten und können sich mit anderen messen.
+Eine moderne Web-Plattform für N64-Fans und Millennials, die mit der Nintendo 64-Ära aufgewachsen sind.
 
-## ✨ Features
+## 🎮 Features
 
-### 🧠 Quiz-System
-- **Multiple Choice Fragen** - Klassische Quiz-Fragen zu N64-Spielen
-- **Wahr/Falsch Fragen** - Schnelle Wissensabfrage
-- **Bildbasierte Fragen** - Screenshots zuordnen (Platzhalter)
-- **Reihenfolgenfragen** - Chronologische Anordnung von Spielen/Events
+### 📦 Sammlung
+- Katalogisiere deine physischen N64-Spiele
+- Sammle animierte Cartridge-Belohnungen
+- Bewerte Spiele nach Gameplay, Musik und Nostalgie
+- Verfolge deinen Fortschritt und deine Sammlung
 
-### 🎯 Quiz-Modi
-- **Klassisches Quiz** - 10 zufällige Fragen
-- **Tägliche Challenge** - 5 Fragen, jeden Tag neu
-- **Speed Quiz** - 10 Sekunden pro Frage
-- **Wöchentlicher Wettkampf** - 20 Fragen für Community-Ranking
+### 🏁 Events & Turniere
+- Regelmäßige Speedrun-Events mit Live-Bestenlisten
+- Getrennte Ranglisten für PAL- und NTSC-Versionen
+- Live-Chat während Events
+- Foto-Upload für Zeitnachweise
 
-### 🏆 Belohnungssystem
-- **Punkte-System** - Punkte für richtige Antworten
-- **Level-System** - Aufstieg durch Punkte sammeln
-- **Errungenschaften** - Medaillen für besondere Leistungen
-- **Rangliste** - Vergleich mit anderen Spielern
+### 💬 Community
+- Live-Chat während Eventzeiten
+- Freundesliste und Nutzerprofile
+- Sammlerkarte für regionale Events
+- Community-Aktivitäten und Achievements
 
-### 🎮 Minigames
-- **N64 Emoji-Quiz** - Spiele anhand von Emojis erraten
-- **Sound Memory** - Soundeffekte zuordnen (Coming Soon)
-- **Match the Cartridge** - Fake-Covers echten Spielen zuordnen (Coming Soon)
-- **Character Puzzle** - N64-Charaktere-Puzzles (Coming Soon)
+### 🎯 Quiz & Minigames
+- Cover-Erkennungs-Quiz
+- Sound-Rate-Quiz
+- N64-Trivia
+- Punkte-System und Leaderboards
 
-### 📱 Mobile-First Design
-- Responsive Design für alle Geräte
-- Touch-optimierte Bedienung
-- Flüssige Animationen und Übergänge
-- Moderne UI mit N64-Theme
+## 🎨 Design
 
-## 🚀 Installation & Start
+Das Design orientiert sich an der 90s/Y2K-Ästhetik:
+- Neonfarbene Schaltflächen und Glow-Effekte
+- Dunkler Hintergrund mit Gradienten
+- Retro-Icons und Pixel-Controller
+- Inspiriert von N64-Ära Werbungen
 
-### Voraussetzungen
-- Node.js (Version 16 oder höher)
-- npm oder yarn
+## 🚀 Technologie
 
-### Installation
-```bash
-# Repository klonen
-git clone <repository-url>
-cd battle64-quiz
-
-# Dependencies installieren
-npm install
-
-# Entwicklungsserver starten
-npm run dev
-```
-
-Die Anwendung ist dann unter `http://localhost:3000` verfügbar.
-
-### Build für Produktion
-```bash
-npm run build
-```
-
-## 🎨 Technologie-Stack
-
-- **Frontend**: React 18 + TypeScript
-- **Styling**: Tailwind CSS
-- **Routing**: React Router DOM
-- **Icons**: Lucide React
-- **Build Tool**: Vite
+- **Frontend**: Next.js 14 mit TypeScript
+- **Styling**: Tailwind CSS mit Custom 90s/Y2K Design
 - **Animationen**: Framer Motion
+- **Icons**: Lucide React
+- **UI-Komponenten**: Headless UI
 
-## 📁 Projektstruktur
+## 📦 Installation
+
+1. **Repository klonen**
+   ```bash
+   git clone <repository-url>
+   cd battle64
+   ```
+
+2. **Dependencies installieren**
+   ```bash
+   npm install
+   ```
+
+3. **Entwicklungsserver starten**
+   ```bash
+   npm run dev
+   ```
+
+4. **Browser öffnen**
+   ```
+   http://localhost:3000
+   ```
+
+## 🏗️ Projektstruktur
 
 ```
-src/
-├── components/          # Wiederverwendbare Komponenten
-│   └── Layout.tsx      # Haupt-Layout mit Navigation
-├── contexts/           # React Context für State Management
-│   ├── QuizContext.tsx # Quiz-Session Management
-│   └── UserContext.tsx # User-State und Progress
-├── data/              # Statische Daten
-│   └── questions.ts   # Quiz-Fragen Datenbank
-├── pages/             # Seiten-Komponenten
-│   ├── HomePage.tsx   # Startseite
-│   ├── QuizPage.tsx   # Quiz-Interface
-│   ├── QuizResultPage.tsx # Ergebnis-Anzeige
-│   ├── LeaderboardPage.tsx # Rangliste
-│   ├── ProfilePage.tsx # Benutzer-Profil
-│   └── MinigamesPage.tsx # Minigames
-├── types/             # TypeScript Typdefinitionen
-│   └── index.ts       # Alle Typen
-├── App.tsx            # Haupt-App-Komponente
-├── main.tsx           # App-Einstiegspunkt
-└── index.css          # Globale Styles
+battle64/
+├── src/
+│   ├── app/
+│   │   ├── globals.css          # 90s/Y2K Styling
+│   │   ├── layout.tsx           # Root Layout
+│   │   └── page.tsx             # Landing Page
+│   └── components/
+│       ├── Navigation.tsx       # Hauptnavigation
+│       ├── Collection.tsx       # Sammlungsverwaltung
+│       ├── Events.tsx           # Events & Turniere
+│       ├── Community.tsx        # Community & Chat
+│       └── Quiz.tsx             # Quiz & Minigames
+├── public/                      # Statische Assets
+└── package.json
 ```
 
-## 🎯 Quiz-Kategorien
+## 🎯 Komponenten
 
-- **Allgemein** - Grundlegendes N64-Wissen
-- **Charaktere** - N64-Spielcharaktere
-- **Spiele** - N64-Spiele und deren Details
-- **Hardware** - Konsolen, Controller, Zubehör
-- **Musik** - Soundtracks und Komponisten
-- **Geschichte** - Historische Fakten
-- **Trivia** - Interessante Details
+### Navigation
+- Responsive Navigation mit 90s-Design
+- Mobile Menu mit Animationen
+- Neon-Glow-Effekte
 
-## 🏅 Errungenschaften
+### Collection
+- Spiel-Katalogisierung
+- Animated Cartridge-Rewards
+- PAL/NTSC Filter
+- Fortschritts-Tracking
 
-- **Erster Quiz** - Absolviere deinen ersten Quiz
-- **Perfekte Runde** - Erreiche eine perfekte Punktzahl
-- **Geschwindigkeitsdämon** - Beantworte 10 Fragen in unter 30 Sekunden
-- **Wissensmeister** - Beantworte 100 Fragen korrekt
-- **Tägliche Serie** - Spiele 7 Tage in Folge
+### Events
+- Live-Events mit Leaderboards
+- Region-spezifische Ranglisten
+- Event-Status (Live, Upcoming, Completed)
+- Teilnahme-System
 
-## 🔐 Legalität
+### Community
+- Live-Chat während Events
+- Freundesliste
+- Benutzerprofile mit Achievements
+- Online-Status
 
-- Keine echten ROM-Dateien oder Soundtracks
-- Alle Fragen basieren auf öffentlich zugänglichem Wissen
-- Bildfragen sind Screenshot-inspiriert oder AI-generiert
-- Respektiert geistige Eigentumsrechte
+### Quiz
+- Verschiedene Quiz-Typen (Cover, Sound, Trivia)
+- Punkte-System
+- Fortschritts-Tracking
+- Ergebnis-Anzeige
 
-## 🛠️ Entwicklung
+## 🎨 Design-System
 
-### Verfügbare Scripts
+### Farben
+- **Neon-Blau**: `#00ffff` - Hauptakzentfarbe
+- **Neon-Pink**: `#ff00ff` - Sekundärakzent
+- **Neon-Grün**: `#00ff00` - Erfolg/Online
+- **Neon-Gelb**: `#ffff00` - Warnung/Highlights
+
+### CSS-Klassen
+- `.neon-button` - Glänzende Buttons mit Hover-Effekten
+- `.retro-card` - Karten mit Glow-Effekten
+- `.neon-text` - Text mit Neon-Glow
+- `.glow-effect` - Animierte Glow-Animation
+- `.cartridge-animation` - Bounce-Animation für Cartridges
+
+## 🔧 Entwicklung
+
+### Scripts
 ```bash
-npm run dev          # Entwicklungsserver starten
-npm run build        # Produktions-Build erstellen
-npm run preview      # Produktions-Build lokal testen
-npm run lint         # ESLint ausführen
-npm run type-check   # TypeScript-Typen prüfen
+npm run dev          # Entwicklungsserver
+npm run build        # Production Build
+npm run start        # Production Server
+npm run lint         # ESLint
 ```
 
-### Code-Struktur
-- **TypeScript** für Typsicherheit
-- **ESLint** für Code-Qualität
-- **Prettier** für konsistente Formatierung
-- **Tailwind CSS** für Styling
+### Customization
+- Farben in `globals.css` anpassen
+- Neue Komponenten in `src/components/` erstellen
+- Animationen mit Framer Motion erweitern
 
-## 🎮 Spielmodi im Detail
+## 📱 Responsive Design
 
-### Klassisches Quiz
-- 10 zufällige Fragen aus allen Kategorien
-- Verschiedene Schwierigkeitsgrade
-- Punkte basierend auf Schwierigkeit
-- Kein Zeitlimit
+Die Plattform ist vollständig responsive:
+- Mobile-first Ansatz
+- Tablet-optimierte Layouts
+- Desktop-Erweiterungen
+- Touch-freundliche Interaktionen
 
-### Tägliche Challenge
-- 5 Fragen, jeden Tag neu
-- Konsistente Fragen für alle Spieler
-- Spezielle Belohnungen
-- Community-Vergleich
+## 🎮 Rechtliche Hinweise
 
-### Speed Quiz
-- 10 Sekunden pro Frage
-- Bonus-Punkte für Schnelligkeit
-- Adrenalin-Faktor
-- Perfekt für schnelle Runden
-
-## 📊 Statistiken & Fortschritt
-
-- **Persönliche Statistiken** - Genauigkeit, Quizzes gespielt, etc.
-- **Kategorie-Fortschritt** - Detaillierte Auswertung pro Kategorie
-- **Level-System** - Aufstieg durch Punkte sammeln
-- **Errungenschaften** - Sammle alle Medaillen
-
-## 🔮 Zukünftige Features
-
-- **Multiplayer-Modi** - Live-Quiz mit anderen Spielern
-- **Erweiterte Minigames** - Mehr interaktive Spiele
-- **Community-Features** - Quiz erstellen und teilen
-- **Offline-Modus** - Spielen ohne Internet
-- **Push-Benachrichtigungen** - Tägliche Erinnerungen
+- Keine Original-ROMs oder Markennutzung
+- Nur User-generierter Content
+- Name "Battle64" wurde rechtlich geprüft
+- Konform mit EUIPO und DPMA
 
 ## 🤝 Beitragen
 
-Beiträge sind willkommen! Bitte erstelle einen Pull Request oder öffne ein Issue für Verbesserungsvorschläge.
+1. Fork das Repository
+2. Erstelle einen Feature-Branch
+3. Committe deine Änderungen
+4. Push zum Branch
+5. Erstelle einen Pull Request
 
 ## 📄 Lizenz
 
-MIT License - siehe LICENSE-Datei für Details.
+Dieses Projekt ist unter der MIT-Lizenz lizenziert.
+
+## 🎯 Roadmap
+
+- [ ] Backend-Integration
+- [ ] User-Authentication
+- [ ] Real-time Chat
+- [ ] Event-Creation
+- [ ] Mobile App
+- [ ] Achievement-System
+- [ ] Leaderboards
+- [ ] Social Features
 
 ---
 
-**Viel Spaß beim Spielen! 🎮✨**
+**Battle64** - Die N64-Community für Millennials 🎮✨

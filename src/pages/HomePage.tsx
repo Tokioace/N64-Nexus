@@ -1,138 +1,304 @@
-import React from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import { useUser } from '../contexts/UserContext'
-import { Brain, Clock, Calendar, Zap, Trophy, Star, Gamepad2 } from 'lucide-react'
-import SimpleCard from '../components/SimpleCard'
-import SimpleButton from '../components/SimpleButton'
+import { useEvent } from '../contexts/EventContext'
+import EventFeedWidget from '../components/EventFeedWidget'
+import { GameEvent } from '../types'
+import {
+  Trophy,
+  Target,
+  Gamepad2,
+  Star,
+  Users as UsersIcon,
+  Camera,
+  Package,
+  MessageSquare,
+  Calendar,
+  Clock,
+  ChevronDown,
+  ChevronUp,
+  Award,
+  TrendingUp
+} from 'lucide-react'
+
+interface NewsItem {
+  id: string
+  title: string
+  content: string
+  date: Date
+  type: 'event_winner' | 'n64_history' | 'community_news' | 'event_announcement'
+}
 
 const HomePage: React.FC = () => {
   const { user } = useUser()
-  const navigate = useNavigate()
+  const { events, activeEvents, getLeaderboard } = useEvent()
+  const [currentTime, setCurrentTime] = useState(new Date())
+  const [isNewsExpanded, setIsNewsExpanded] = useState(false)
+  const [isEventExpanded, setIsEventExpanded] = useState(false)
 
-  if (!user) return null
+  // Update current time every minute
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentTime(new Date())
+    }, 60000)
+    return () => clearInterval(timer)
+  }, [])
 
-  const accuracy = user.totalAnswers > 0 
-    ? Math.round((user.correctAnswers / user.totalAnswers) * 100) 
-    : 0
+  // Mock news data - in a real app, this would come from an API
+  const newsItems: NewsItem[] = [
+    {
+      id: '1',
+      title: '🏁 NEUES LIVE EVENT: Luigi\'s Raceway Zeitrennen!',
+      content: 'Eine ganze Woche lang Luigi\'s Raceway! Zeigt eure beste Zeit auf der klassischen Mario Kart 64 Strecke. Event läuft bis 27.07.2025 - Jetzt teilnehmen!',
+      date: new Date(),
+      type: 'event_announcement'
+    },
+    {
+      id: '2',
+      title: 'Event Winner: Mario Kart 64 Challenge',
+      content: 'Spieler "SpeedDemon64" hat das Mario Kart 64 Speedrun Event mit einer Zeit von 1:47:32 gewonnen!',
+      date: new Date(),
+      type: 'event_winner'
+    },
+    {
+      id: '3',
+      title: 'Heute in der N64 Geschichte',
+      content: 'Vor 27 Jahren (1996) wurde das Nintendo 64 in Japan veröffentlicht. Das erste Spiel war Super Mario 64!',
+      date: new Date(),
+      type: 'n64_history'
+    },
+    {
+      id: '4',
+      title: 'Community Update',
+      content: 'Neue Speedrun-Kategorien für GoldenEye 007 wurden hinzugefügt. Jetzt mit Agent, Secret Agent und 00 Agent Modi!',
+      date: new Date(),
+      type: 'community_news'
+    }
+  ]
+
+  const formatTime = (date: Date) => {
+    return date.toLocaleTimeString('de-DE', { 
+      hour: '2-digit', 
+      minute: '2-digit' 
+    })
+  }
+
+  const formatDate = (date: Date) => {
+    return date.toLocaleDateString('de-DE', { 
+      weekday: 'long', 
+      year: 'numeric', 
+      month: 'long', 
+      day: 'numeric' 
+    })
+  }
+
+  const getActiveEvent = () => {
+    return activeEvents.length > 0 ? activeEvents[0] : null
+  }
+
+  const getEventTimeRemaining = (event: GameEvent) => {
+    const now = new Date()
+    const endTime = new Date(event.endDate)
+    const timeLeft = endTime.getTime() - now.getTime()
+    
+    if (timeLeft <= 0) return 'Beendet'
+    
+    const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24))
+    const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+    
+    if (days > 0) return `${days}d ${hours}h verbleibend`
+    return `${hours}h verbleibend`
+  }
+
+  const activeEvent = getActiveEvent()
 
   return (
     <div className="container mx-auto px-4 py-6">
       {/* Header */}
       <div className="text-center mb-8">
         <h1 className="text-4xl font-bold text-slate-100 mb-2">
-          🎮 Willkommen, {user.username}!
+          🎮 Battle64
         </h1>
-        <p className="text-slate-300 text-lg">
-          Level {user.level} • {user.points} Punkte
+        <p className="text-slate-400 text-lg">
+          Die N64-Community für Millennials
         </p>
-      </div>
-
-      {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
-        <SimpleCard className="text-center">
-          <div className="text-2xl font-bold text-blue-400">{user.points}</div>
-          <div className="text-sm text-slate-400">Punkte</div>
-        </SimpleCard>
-        
-        <SimpleCard className="text-center">
-          <div className="text-2xl font-bold text-emerald-400">{user.level}</div>
-          <div className="text-sm text-slate-400">Level</div>
-        </SimpleCard>
-        
-        <SimpleCard className="text-center">
-          <div className="text-2xl font-bold text-purple-400">{user.correctAnswers}</div>
-          <div className="text-sm text-slate-400">Richtig</div>
-        </SimpleCard>
-        
-        <SimpleCard className="text-center">
-          <div className="text-2xl font-bold text-amber-400">{accuracy}%</div>
-          <div className="text-sm text-slate-400">Genauigkeit</div>
-        </SimpleCard>
-      </div>
-
-      {/* Main Content */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-        {/* Quiz Card */}
-        <SimpleCard className="p-6">
-          <div className="flex items-center mb-4">
-            <Brain className="w-8 h-8 text-blue-400 mr-3" />
-            <h2 className="text-xl font-bold text-slate-100">Quiz starten</h2>
-          </div>
-          <p className="text-slate-300 mb-4">
-            Teste dein Wissen über Nintendo 64 Spiele und sammle Punkte!
+        <p className="text-blue-400 mt-2">
+          {formatDate(currentTime)} - {formatTime(currentTime)}
+        </p>
+        {user && (
+          <p className="text-green-400 mt-1">
+            Willkommen zurück, {user.username}! (Level {user.level})
           </p>
-          <div className="space-y-3">
-            <Link to="/quiz?mode=single">
-              <SimpleButton variant="primary" className="w-full">
-                Einzelnes Quiz
-              </SimpleButton>
-            </Link>
-            <Link to="/quiz?mode=daily">
-              <SimpleButton variant="secondary" className="w-full">
-                Tägliches Quiz
-              </SimpleButton>
-            </Link>
-            <Link to="/quiz?mode=speed">
-              <SimpleButton variant="warning" className="w-full">
-                Speed Quiz
-              </SimpleButton>
-            </Link>
-          </div>
-        </SimpleCard>
+        )}
+      </div>
 
-        {/* Achievements Card */}
-        <SimpleCard className="p-6">
-          <div className="flex items-center mb-4">
-            <Trophy className="w-8 h-8 text-yellow-400 mr-3" />
-            <h2 className="text-xl font-bold text-slate-100">Erfolge</h2>
+      {/* Main Content Grid */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+        
+        {/* News Feed Tile */}
+        <div className="n64-tile n64-tile-large bg-gradient-to-br from-yellow-600/20 to-orange-600/20 border-l-4 border-yellow-400">
+          <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center space-x-3">
+              <TrendingUp className="w-6 h-6 text-yellow-400" />
+              <h2 className="text-xl font-bold text-slate-100">News Feed</h2>
+            </div>
+            <button
+              onClick={() => setIsNewsExpanded(!isNewsExpanded)}
+              className="p-2 rounded-lg bg-slate-700/50 hover:bg-slate-600/50 transition-colors"
+            >
+              {isNewsExpanded ? (
+                <ChevronUp className="w-5 h-5 text-slate-300" />
+              ) : (
+                <ChevronDown className="w-5 h-5 text-slate-300" />
+              )}
+            </button>
           </div>
+
           <div className="space-y-3">
-            {user.achievements.slice(0, 3).map((achievement, index) => (
-              <div key={index} className="flex items-center p-3 bg-slate-700 rounded-lg">
-                <Star className="w-5 h-5 text-yellow-400 mr-3" />
-                <div>
-                  <div className="font-medium text-slate-100">{achievement.name}</div>
-                  <div className="text-sm text-slate-300">{achievement.description}</div>
+            {newsItems.slice(0, isNewsExpanded ? newsItems.length : 2).map((item, index) => (
+              <div key={item.id} className="p-3 rounded-lg bg-slate-800/30 border border-slate-600/30">
+                <div className="flex items-center space-x-2 mb-2">
+                  {item.type === 'event_winner' && <Award className="w-4 h-4 text-yellow-400" />}
+                  {item.type === 'n64_history' && <Clock className="w-4 h-4 text-blue-400" />}
+                  {item.type === 'community_news' && <UsersIcon className="w-4 h-4 text-green-400" />}
+                  <span className="text-sm font-medium text-slate-200">{item.title}</span>
                 </div>
+                <p className="text-sm text-slate-400 leading-relaxed">{item.content}</p>
+                <p className="text-xs text-slate-500 mt-2">{formatTime(item.date)}</p>
               </div>
             ))}
           </div>
-          <Link to="/profile" className="block mt-4">
-            <SimpleButton variant="secondary" className="w-full">
-              Alle Erfolge anzeigen
-            </SimpleButton>
-          </Link>
-        </SimpleCard>
+
+          {!isNewsExpanded && newsItems.length > 2 && (
+            <div className="mt-3 text-center">
+              <button
+                onClick={() => setIsNewsExpanded(true)}
+                className="text-sm text-yellow-400 hover:text-yellow-300 transition-colors"
+              >
+                +{newsItems.length - 2} weitere News anzeigen
+              </button>
+            </div>
+          )}
+        </div>
+
+        {/* Event Feed Tile */}
+        {activeEvent ? (
+          <EventFeedWidget
+            eventTitle={activeEvent.title}
+            eventGame={activeEvent.game}
+            participants={activeEvent.participants}
+            timeRemaining={getEventTimeRemaining(activeEvent)}
+            leaderboard={getLeaderboard(activeEvent.id)}
+            isExpanded={isEventExpanded}
+            onToggleExpanded={() => setIsEventExpanded(!isEventExpanded)}
+          />
+        ) : (
+          <div className="n64-tile n64-tile-large bg-gradient-to-br from-red-600/20 to-pink-600/20 border-l-4 border-red-400">
+            <div className="flex items-center space-x-3 mb-4">
+              <Trophy className="w-6 h-6 text-red-400" />
+              <h2 className="text-xl font-bold text-slate-100">Live Events</h2>
+            </div>
+            <div className="text-center py-8">
+              <Calendar className="w-12 h-12 text-slate-500 mx-auto mb-3" />
+              <p className="text-slate-400">Keine aktiven Events</p>
+              <Link 
+                to="/events" 
+                className="inline-block mt-2 px-4 py-2 rounded-lg bg-red-500/20 text-red-400 hover:bg-red-500/30 transition-colors text-sm"
+              >
+                Alle Events anzeigen
+              </Link>
+            </div>
+          </div>
+        )}
       </div>
 
-      {/* Quick Actions */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <Link to="/leaderboard">
-          <SimpleCard className="p-4 text-center hover:bg-slate-700 transition-colors">
-            <Trophy className="w-8 h-8 text-emerald-400 mx-auto mb-2" />
-            <div className="font-medium text-slate-100">Bestenliste</div>
-          </SimpleCard>
-        </Link>
+      {/* Navigation Grid */}
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 max-w-6xl mx-auto">
         
-        <Link to="/events">
-          <SimpleCard className="p-4 text-center hover:bg-slate-700 transition-colors">
-            <Calendar className="w-8 h-8 text-red-400 mx-auto mb-2" />
-            <div className="font-medium text-slate-100">Events</div>
-          </SimpleCard>
+        {/* Quiz Tile */}
+        <Link to="/quiz" className="n64-tile n64-tile-small bg-gradient-to-br from-purple-600/20 to-purple-800/20 border-l-4 border-purple-400">
+          <div className="text-center">
+            <Target className="w-8 h-8 text-purple-400 mx-auto mb-2" />
+            <div className="font-medium text-slate-100 text-sm">Quiz</div>
+            <div className="text-xs text-slate-400">N64 Wissen testen</div>
+          </div>
         </Link>
-        
-        <Link to="/minigames">
-          <SimpleCard className="p-4 text-center hover:bg-slate-700 transition-colors">
-            <Gamepad2 className="w-8 h-8 text-blue-400 mx-auto mb-2" />
-            <div className="font-medium text-slate-100">Minispiele</div>
-          </SimpleCard>
+
+        {/* Events Tile */}
+        <Link to="/events" className="n64-tile n64-tile-small bg-gradient-to-br from-yellow-600/20 to-yellow-800/20 border-l-4 border-yellow-400">
+          <div className="text-center">
+            <Trophy className="w-8 h-8 text-yellow-400 mx-auto mb-2" />
+            <div className="font-medium text-slate-100 text-sm">Events</div>
+            <div className="text-xs text-slate-400">Turniere & Challenges</div>
+          </div>
         </Link>
-        
-        <Link to="/profile">
-          <SimpleCard className="p-4 text-center hover:bg-slate-700 transition-colors">
-            <Clock className="w-8 h-8 text-purple-400 mx-auto mb-2" />
-            <div className="font-medium text-slate-100">Profil</div>
-          </SimpleCard>
+
+        {/* Speedrun Media Tile */}
+        <Link to="/speedrun-media" className="n64-tile n64-tile-small bg-gradient-to-br from-green-600/20 to-green-800/20 border-l-4 border-green-400">
+          <div className="text-center">
+            <Camera className="w-8 h-8 text-green-400 mx-auto mb-2" />
+            <div className="font-medium text-slate-100 text-sm">Media</div>
+            <div className="text-xs text-slate-400">Speedrun Videos</div>
+          </div>
+        </Link>
+
+        {/* Collector Mode Tile */}
+        <Link to="/collector" className="n64-tile n64-tile-small bg-gradient-to-br from-orange-600/20 to-orange-800/20 border-l-4 border-orange-400">
+          <div className="text-center">
+            <Package className="w-8 h-8 text-orange-400 mx-auto mb-2" />
+            <div className="font-medium text-slate-100 text-sm">Sammler</div>
+            <div className="text-xs text-slate-400">Deine Kollektion</div>
+          </div>
+        </Link>
+
+        {/* Forum Tile */}
+        <Link to="/forum" className="n64-tile n64-tile-small bg-gradient-to-br from-cyan-600/20 to-cyan-800/20 border-l-4 border-cyan-400">
+          <div className="text-center">
+            <MessageSquare className="w-8 h-8 text-cyan-400 mx-auto mb-2" />
+            <div className="font-medium text-slate-100 text-sm">Forum</div>
+            <div className="text-xs text-slate-400">Community Talk</div>
+          </div>
+        </Link>
+
+        {/* Profile Tile */}
+        <Link to="/profile" className="n64-tile n64-tile-small bg-gradient-to-br from-blue-600/20 to-blue-800/20 border-l-4 border-blue-400">
+          <div className="text-center">
+            <UsersIcon className="w-8 h-8 text-blue-400 mx-auto mb-2" />
+            <div className="font-medium text-slate-100 text-sm">Profil</div>
+            <div className="text-xs text-slate-400">Mein Account</div>
+          </div>
+        </Link>
+
+        {/* Leaderboard Tile */}
+        <Link to="/leaderboard" className="n64-tile n64-tile-small bg-gradient-to-br from-pink-600/20 to-pink-800/20 border-l-4 border-pink-400">
+          <div className="text-center">
+            <Star className="w-8 h-8 text-pink-400 mx-auto mb-2" />
+            <div className="font-medium text-slate-100 text-sm">Rangliste</div>
+            <div className="text-xs text-slate-400">Top Spieler</div>
+          </div>
+        </Link>
+
+        {/* Minigames Tile */}
+        <Link to="/minigames" className="n64-tile n64-tile-small bg-gradient-to-br from-red-600/20 to-red-800/20 border-l-4 border-red-400">
+          <div className="text-center">
+            <Gamepad2 className="w-8 h-8 text-red-400 mx-auto mb-2" />
+            <div className="font-medium text-slate-100 text-sm">Minispiele</div>
+            <div className="text-xs text-slate-400">Kleine Games</div>
+          </div>
+        </Link>
+
+      </div>
+
+      {/* Footer */}
+      <div className="text-center mt-8">
+        <p className="text-slate-400 text-sm">
+          Battle64 - Wo Nostalgie auf Community trifft
+        </p>
+        <Link 
+          to="/" 
+          className="inline-block mt-2 px-4 py-2 rounded-lg bg-slate-700/50 hover:bg-slate-600/50 transition-colors text-sm text-slate-300"
+        >
+          🎮 Zur Retro-Ansicht
         </Link>
       </div>
     </div>
