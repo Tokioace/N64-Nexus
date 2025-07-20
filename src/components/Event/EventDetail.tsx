@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { useUser } from '../../contexts/UserContext'
 import { useEvents } from '../../contexts/EventContext'
-import { useMedia } from '../../contexts/MediaContext'
+
 import SimpleCard from '../SimpleCard'
 import SimpleButton from '../SimpleButton'
 import MediaCaptureComponent from '../MediaCaptureComponent'
+import TeamManager from './TeamManager'
+import EventReminder from './EventReminder'
 import { 
   ArrowLeft, 
   Calendar, 
@@ -225,6 +227,19 @@ const EventDetail: React.FC<EventDetailProps> = ({ event, onBack, onParticipate 
           <div className="text-center">
             <h1 className="text-3xl font-bold text-gray-900 mb-2">{event.title}</h1>
             <p className="text-gray-600 mb-4">{event.description}</p>
+            
+            {/* Team Management for Team Events */}
+            {event.eventType === 'team' && (
+              <div className="mb-6">
+                <TeamManager eventId={event.id} />
+              </div>
+            )}
+            
+            {/* Event Reminder */}
+            <div className="mb-4">
+              <EventReminder eventId={event.id} />
+            </div>
+            
             <div className="flex items-center justify-center gap-4 text-sm text-gray-500">
               <div className="flex items-center gap-1">
                 <Clock className="w-4 h-4" />

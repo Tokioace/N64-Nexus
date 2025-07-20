@@ -1,9 +1,12 @@
 import React from 'react'
 import { useUser } from '../contexts/UserContext'
-import { LogOut, Settings, Trophy, Target, Clock, Star } from 'lucide-react'
+import { useEvents } from '../contexts/EventContext'
+import { LogOut, Settings, Trophy, Target, Clock, Star, Medal } from 'lucide-react'
+import EventMedal from '../components/EventMedal'
 
 const ProfilePage: React.FC = () => {
   const { user, logout } = useUser()
+  const { participations, getEventById } = useEvents()
 
   if (!user) return null
 
@@ -135,6 +138,47 @@ const ProfilePage: React.FC = () => {
             <Star className="mx-auto mb-2" size={32} />
             <p>Noch keine Errungenschaften freigeschaltet</p>
             <p className="text-sm">Spiele Quizzes um Errungenschaften zu sammeln!</p>
+          </div>
+        )}
+      </div>
+
+      {/* Event Medals */}
+      <div className="card mb-6">
+        <h3 className="text-lg font-bold mb-4 flex items-center">
+          <Medal className="mr-2" size={20} />
+          Event-Medaillen ({participations.filter(p => p.userId === user.id && p.medal).length})
+        </h3>
+        {participations.filter(p => p.userId === user.id && p.medal).length > 0 ? (
+          <div className="grid grid-cols-1 gap-3">
+            {participations
+              .filter(p => p.userId === user.id && p.medal)
+              .sort((a, b) => {
+                // Sort by medal priority: gold > silver > bronze > top10 > participant
+                const medalOrder = { gold: 1, silver: 2, bronze: 3, top10: 4, participant: 5 }
+                return (medalOrder[a.medal!] || 6) - (medalOrder[b.medal!] || 6)
+              })
+              .map((participation) => {
+                const event = getEventById(participation.eventId)
+                if (!event) return null
+                
+                return (
+                  <EventMedal
+                    key={`${participation.eventId}-${participation.userId}`}
+                    medal={participation.medal!}
+                    eventTitle={event.title}
+                    position={participation.position}
+                    size="medium"
+                  />
+                )
+              })
+              .filter(Boolean)
+            }
+          </div>
+        ) : (
+          <div className="text-center py-8 text-white/50">
+            <Medal className="mx-auto mb-2" size={32} />
+            <p>Noch keine Event-Medaillen erhalten</p>
+            <p className="text-sm">Nimm an Events teil und sammle Medaillen!</p>
           </div>
         )}
       </div>

@@ -20,8 +20,8 @@ import EventCalendar from '../components/Event/EventCalendar'
 import EventDetail from '../components/Event/EventDetail'
 
 type ViewMode = 'grid' | 'list' | 'calendar'
-type FilterType = 'all' | 'active' | 'upcoming' | 'completed'
-type EventType = 'all' | 'Speedrun' | 'Time Trial' | 'Challenge' | 'Collection' | 'Anniversary'
+type FilterType = 'all' | 'active' | 'upcoming' | 'completed' | 'team'
+type EventType = 'all' | 'Speedrun' | 'Time Trial' | 'Challenge' | 'Collection' | 'Anniversary' | 'Team'
 
 const EventsPage: React.FC = () => {
   const { events, activeEvents, upcomingEvents, completedEvents } = useEvents()
@@ -43,6 +43,9 @@ const EventsPage: React.FC = () => {
         break
       case 'completed':
         filteredEvents = completedEvents
+        break
+      case 'team':
+        filteredEvents = events.filter(event => event.eventType === 'team')
         break
       default:
         filteredEvents = events
@@ -144,6 +147,7 @@ const EventsPage: React.FC = () => {
               <option value="active">Aktive Events</option>
               <option value="upcoming">Kommende Events</option>
               <option value="completed">Beendete Events</option>
+              <option value="team">Team-Events</option>
             </select>
 
             <select
@@ -157,6 +161,7 @@ const EventsPage: React.FC = () => {
               <option value="Challenge">Challenge</option>
               <option value="Collection">Collection</option>
               <option value="Anniversary">Anniversary</option>
+              <option value="Team">Team</option>
             </select>
           </div>
 

@@ -2,6 +2,7 @@ import React from 'react'
 import { useUser } from '../contexts/UserContext'
 import SimpleButton from './SimpleButton'
 import SimpleCard from './SimpleCard'
+import EventReminderNotification from './Event/EventReminderNotification'
 import { User as UserIcon } from 'lucide-react'
 
 const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -29,6 +30,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
       <main className="pb-20 md:pb-24 relative z-10">
         {children}
       </main>
+      <EventReminderNotification />
     </div>
   )
 }

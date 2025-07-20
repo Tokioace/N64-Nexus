@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { GameEvent } from '../../types'
 import { useEvents } from '../../contexts/EventContext'
-import { Calendar, Clock, Users, Trophy, Zap, Target, Star } from 'lucide-react'
+import { Calendar, Clock, Users, Trophy, Zap, Target, Star, BarChart3, Camera } from 'lucide-react'
 import SimpleCard from '../SimpleCard'
 import SimpleButton from '../SimpleButton'
+import EventReminder from './EventReminder'
 
 interface EventCardProps {
   event: GameEvent
@@ -279,6 +280,36 @@ const EventCard: React.FC<EventCardProps> = ({
         </div>
       </div>
 
+      {/* Event Statistics */}
+      {event.statistics && (
+        <div className="mb-4">
+          <div className="flex items-center space-x-2 mb-2">
+            <BarChart3 className="w-4 h-4 text-purple-600" />
+            <span className="text-sm text-contrast">Statistiken:</span>
+          </div>
+          <div className="grid grid-cols-2 gap-3 text-xs">
+            <div className="flex items-center space-x-1">
+              <Users className="w-3 h-3 text-blue-600" />
+              <span className="text-contrast-secondary">{event.statistics.totalParticipants} Teilnehmer</span>
+            </div>
+            {event.statistics.averageTime && (
+              <div className="flex items-center space-x-1">
+                <Clock className="w-3 h-3 text-green-600" />
+                <span className="text-contrast-secondary">⌀ {Math.floor(event.statistics.averageTime / 60)}:{(event.statistics.averageTime % 60).toString().padStart(2, '0')} min</span>
+              </div>
+            )}
+            <div className="flex items-center space-x-1">
+              <Camera className="w-3 h-3 text-orange-600" />
+              <span className="text-contrast-secondary">{event.statistics.mediaSubmissions} mit Medien</span>
+            </div>
+            <div className="flex items-center space-x-1">
+              <Trophy className="w-3 h-3 text-yellow-600" />
+              <span className="text-contrast-secondary">{event.statistics.totalSubmissions} Ergebnisse</span>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Rewards Preview */}
       <div className="mb-4">
         <div className="flex items-center space-x-2 mb-2">
@@ -297,6 +328,14 @@ const EventCard: React.FC<EventCardProps> = ({
             </span>
           )}
         </div>
+      </div>
+
+      {/* Reminder */}
+      <div className="mb-3">
+        <EventReminder 
+          eventId={event.id} 
+          compact={true}
+        />
       </div>
 
       {/* Actions */}

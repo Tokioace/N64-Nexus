@@ -110,5 +110,35 @@
     "difficulty": "medium",
     "category": "RPG",
     "maxParticipants": 180
+  },
+  {
+    "id": "team001",
+    "title": "Team Speedrun Challenge",
+    "game": "Mario Kart 64",
+    "type": "Team",
+    "startDate": "2024-12-15T00:00:00Z",
+    "endDate": "2024-12-22T23:59:59Z",
+    "description": "Bildet 4er-Teams und kämpft gemeinsam um die beste Durchschnittszeit auf der Rainbow Road! Das Team-Ergebnis errechnet sich aus den besten 3 Zeiten eurer Gruppe.",
+    "rewards": ["100XP", "Team Champion Badge", "Rainbow Road Team Token", "Special Team Avatar"],
+    "image": "https://via.placeholder.com/400x200/FF6B35/FFFFFF?text=Team+Challenge",
+    "difficulty": "hard",
+    "category": "Team Racing",
+    "maxParticipants": 80,
+    "eventType": "team"
+  },
+  {
+    "id": "team002",
+    "title": "Cooperative Zelda Quest",
+    "game": "The Legend of Zelda: Ocarina of Time",
+    "type": "Team",
+    "startDate": "2025-01-01T00:00:00Z",
+    "endDate": "2025-01-07T23:59:59Z",
+    "description": "Arbeitet als Team zusammen, um verschiedene Dungeons zu meistern! Jedes Teammitglied übernimmt einen anderen Dungeon und die Zeiten werden gemittelt.",
+    "rewards": ["150XP", "Triforce Team Badge", "Hyrule Team Shield", "Master Team Sword"],
+    "image": "https://via.placeholder.com/400x200/4CAF50/FFFFFF?text=Zelda+Team",
+    "difficulty": "hard",
+    "category": "Team Adventure",
+    "maxParticipants": 60,
+    "eventType": "team"
   }
 ]

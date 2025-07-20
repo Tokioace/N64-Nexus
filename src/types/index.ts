@@ -128,7 +128,7 @@ export interface GameEvent {
   id: string
   title: string
   game: string
-  type: 'Speedrun' | 'Time Trial' | 'Challenge' | 'Collection' | 'Anniversary'
+  type: 'Speedrun' | 'Time Trial' | 'Challenge' | 'Collection' | 'Anniversary' | 'Team'
   startDate: string
   endDate: string
   description: string
@@ -140,6 +140,35 @@ export interface GameEvent {
   maxParticipants?: number
   difficulty?: 'easy' | 'medium' | 'hard'
   category?: string
+  eventType?: 'individual' | 'team'
+  statistics?: EventStatistics
+}
+
+export interface EventStatistics {
+  totalParticipants: number
+  averageTime?: number
+  mediaSubmissions: number
+  totalSubmissions: number
+}
+
+export interface EventTeam {
+  id: string
+  name: string
+  memberIds: string[]
+  members: string[]
+  createdBy: string
+  eventId: string
+  createdAt: Date
+}
+
+export interface TeamResult {
+  id: string
+  teamId: string
+  eventId: string
+  averageScore: number
+  bestThreeScores: number[]
+  allScores: { userId: string; score: number }[]
+  completedAt: Date
 }
 
 export interface EventParticipation {
@@ -150,6 +179,11 @@ export interface EventParticipation {
   progress: number
   rewards: string[]
   isCompleted: boolean
+  medal?: 'gold' | 'silver' | 'bronze' | 'top10' | 'participant'
+  score?: number
+  time?: number
+  position?: number
+  teamId?: string
 }
 
 export interface EventReward {
@@ -168,13 +202,25 @@ export interface EventContextType {
   upcomingEvents: GameEvent[]
   completedEvents: GameEvent[]
   participations: EventParticipation[]
+  teams: EventTeam[]
+  teamResults: TeamResult[]
   getEventById: (id: string) => GameEvent | null
   joinEvent: (eventId: string) => void
-  completeEvent: (eventId: string) => void
+  completeEvent: (eventId: string, score?: number, time?: number) => void
   getEventProgress: (eventId: string) => number
   getEventRewards: (eventId: string) => EventReward[]
   isEventActive: (event: GameEvent) => boolean
   getTimeRemaining: (event: GameEvent) => { days: number; hours: number; minutes: number; seconds: number }
+  createTeam: (eventId: string, teamName: string) => void
+  joinTeam: (teamId: string) => void
+  leaveTeam: (teamId: string) => void
+  getTeamsByEvent: (eventId: string) => EventTeam[]
+  getUserTeamForEvent: (eventId: string) => EventTeam | null
+  assignMedals: (eventId: string) => void
+  getEventStatistics: (eventId: string) => EventStatistics
+  setEventReminder: (eventId: string, enabled: boolean) => void
+  getEventReminders: () => string[]
+  checkEventReminders: () => { eventId: string; title: string }[]
 }
 
 // Media Capture & Verification Types
