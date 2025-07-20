@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useUser } from '../contexts/UserContext'
 import { useEvent } from '../contexts/EventContext'
+import EventFeedWidget from '../components/EventFeedWidget'
 import { GameEvent } from '../types'
 import {
   Trophy,
@@ -30,7 +31,7 @@ interface NewsItem {
 
 const HomePage: React.FC = () => {
   const { user } = useUser()
-  const { events, activeEvents } = useEvent()
+  const { events, activeEvents, getLeaderboard } = useEvent()
   const [currentTime, setCurrentTime] = useState(new Date())
   const [isNewsExpanded, setIsNewsExpanded] = useState(false)
   const [isEventExpanded, setIsEventExpanded] = useState(false)
@@ -181,78 +182,22 @@ const HomePage: React.FC = () => {
         </div>
 
         {/* Event Feed Tile */}
-        <div className="n64-tile n64-tile-large bg-gradient-to-br from-red-600/20 to-pink-600/20 border-l-4 border-red-400">
-          <div className="flex items-center justify-between mb-4">
-            <div className="flex items-center space-x-3">
+        {activeEvent ? (
+          <EventFeedWidget
+            eventTitle={activeEvent.title}
+            eventGame={activeEvent.game}
+            participants={activeEvent.participants}
+            timeRemaining={getEventTimeRemaining(activeEvent)}
+            leaderboard={getLeaderboard(activeEvent.id)}
+            isExpanded={isEventExpanded}
+            onToggleExpanded={() => setIsEventExpanded(!isEventExpanded)}
+          />
+        ) : (
+          <div className="n64-tile n64-tile-large bg-gradient-to-br from-red-600/20 to-pink-600/20 border-l-4 border-red-400">
+            <div className="flex items-center space-x-3 mb-4">
               <Trophy className="w-6 h-6 text-red-400" />
               <h2 className="text-xl font-bold text-slate-100">Live Events</h2>
             </div>
-            <button
-              onClick={() => setIsEventExpanded(!isEventExpanded)}
-              className="p-2 rounded-lg bg-slate-700/50 hover:bg-slate-600/50 transition-colors"
-            >
-              {isEventExpanded ? (
-                <ChevronUp className="w-5 h-5 text-slate-300" />
-              ) : (
-                <ChevronDown className="w-5 h-5 text-slate-300" />
-              )}
-            </button>
-          </div>
-
-          {activeEvent ? (
-            <div className="space-y-4">
-              <div className="p-3 rounded-lg bg-slate-800/30 border border-slate-600/30">
-                <div className="flex items-center justify-between mb-2">
-                  <span className="px-2 py-1 rounded-full bg-green-500/20 text-green-400 text-xs font-medium">
-                    🔴 LIVE
-                  </span>
-                  <span className="text-xs text-slate-400">{getEventTimeRemaining(activeEvent)}</span>
-                </div>
-                <h3 className="font-bold text-slate-100 mb-2">{activeEvent.title}</h3>
-                <p className="text-sm text-slate-400 mb-3">{activeEvent.description}</p>
-                
-                <div className="flex items-center justify-between text-sm">
-                  <div className="flex items-center space-x-4">
-                    <div className="flex items-center space-x-1">
-                      <UsersIcon className="w-4 h-4 text-blue-400" />
-                      <span className="text-slate-300">{activeEvent.participants}</span>
-                    </div>
-                    <div className="flex items-center space-x-1">
-                      <Gamepad2 className="w-4 h-4 text-purple-400" />
-                      <span className="text-slate-300">{activeEvent.game}</span>
-                    </div>
-                  </div>
-                  <Link 
-                    to="/events" 
-                    className="px-3 py-1 rounded-lg bg-red-500/20 text-red-400 hover:bg-red-500/30 transition-colors text-xs font-medium"
-                  >
-                    Teilnehmen
-                  </Link>
-                </div>
-              </div>
-
-              {isEventExpanded && (
-                <div className="space-y-2">
-                  <h4 className="text-sm font-medium text-slate-200">Top 3 Leaderboard:</h4>
-                  {[1, 2, 3].map((position) => (
-                    <div key={position} className="flex items-center justify-between p-2 rounded bg-slate-800/20">
-                      <div className="flex items-center space-x-2">
-                        <span className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${
-                          position === 1 ? 'bg-yellow-500/20 text-yellow-400' :
-                          position === 2 ? 'bg-gray-500/20 text-gray-400' :
-                          'bg-orange-500/20 text-orange-400'
-                        }`}>
-                          {position}
-                        </span>
-                        <span className="text-sm text-slate-300">Player{position}</span>
-                      </div>
-                      <span className="text-sm text-slate-400">1:4{7 + position}:32</span>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
-          ) : (
             <div className="text-center py-8">
               <Calendar className="w-12 h-12 text-slate-500 mx-auto mb-3" />
               <p className="text-slate-400">Keine aktiven Events</p>
@@ -263,8 +208,8 @@ const HomePage: React.FC = () => {
                 Alle Events anzeigen
               </Link>
             </div>
-          )}
-        </div>
+          </div>
+        )}
       </div>
 
       {/* Navigation Grid */}

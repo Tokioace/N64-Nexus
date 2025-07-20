@@ -11,7 +11,10 @@ import {
   Verified,
   AlertCircle,
   RefreshCw,
-  Users
+  Users,
+  X,
+  Play,
+  Pause
 } from 'lucide-react'
 
 interface EventLeaderboardEntry {
@@ -37,6 +40,141 @@ interface EventLeaderboardProps {
   isLoading?: boolean
 }
 
+interface MediaViewerProps {
+  entry: EventLeaderboardEntry
+  isOpen: boolean
+  onClose: () => void
+}
+
+const MediaViewer: React.FC<MediaViewerProps> = ({ entry, isOpen, onClose }) => {
+  const [isVideoPlaying, setIsVideoPlaying] = useState(true)
+
+  if (!isOpen) return null
+
+  const handleVideoToggle = () => {
+    const video = document.getElementById('media-video') as HTMLVideoElement
+    if (video) {
+      if (isVideoPlaying) {
+        video.pause()
+      } else {
+        video.play()
+      }
+      setIsVideoPlaying(!isVideoPlaying)
+    }
+  }
+
+  return (
+    <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4">
+      <div className="bg-slate-800 rounded-lg max-w-4xl w-full max-h-[90vh] overflow-hidden">
+        <div className="flex items-center justify-between p-4 border-b border-slate-600">
+          <div>
+            <h3 className="text-xl font-bold text-slate-100">{entry.username}</h3>
+            <p className="text-slate-400">Zeit: {entry.time}</p>
+          </div>
+          <button
+            onClick={onClose}
+            className="text-slate-400 hover:text-slate-200 transition-colors"
+          >
+            <X className="w-6 h-6" />
+          </button>
+        </div>
+        
+        <div className="p-4">
+          {entry.documentationType === 'photo' && entry.mediaUrl && (
+            <div className="text-center">
+              <img 
+                src={entry.mediaUrl} 
+                alt={`Screenshot von ${entry.username}`}
+                className="max-w-full max-h-[60vh] mx-auto rounded-lg"
+                onError={(e) => {
+                  const target = e.target as HTMLImageElement
+                  target.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgZmlsbD0iIzMzNCI+PC9yZWN0Pjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiM5OTkiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5TY3JlZW5zaG90IG5pY2h0IHZlcmbDvGdiYXI8L3RleHQ+PC9zdmc+'
+                }}
+              />
+            </div>
+          )}
+          
+          {entry.documentationType === 'video' && entry.mediaUrl && (
+            <div className="text-center relative">
+              <video 
+                id="media-video"
+                src={entry.mediaUrl}
+                className="max-w-full max-h-[60vh] mx-auto rounded-lg"
+                controls
+                autoPlay
+                loop
+                onError={() => {
+                  console.error('Video konnte nicht geladen werden')
+                }}
+              />
+              <div className="absolute top-4 right-4 bg-black bg-opacity-50 rounded-lg p-2">
+                <button
+                  onClick={handleVideoToggle}
+                  className="text-white hover:text-gray-300 transition-colors"
+                >
+                  {isVideoPlaying ? <Pause className="w-6 h-6" /> : <Play className="w-6 h-6" />}
+                </button>
+              </div>
+            </div>
+          )}
+          
+          {entry.documentationType === 'livestream' && entry.livestreamUrl && (
+            <div className="text-center">
+              <div className="bg-slate-700 rounded-lg p-8">
+                <Radio className="w-16 h-16 text-purple-400 mx-auto mb-4" />
+                <h4 className="text-lg font-medium text-slate-100 mb-2">Livestream</h4>
+                <p className="text-slate-400 mb-4">Dieser Beweis wurde über einen Livestream erbracht</p>
+                <a
+                  href={entry.livestreamUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center space-x-2 px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg transition-colors"
+                >
+                  <ExternalLink className="w-4 h-4" />
+                  <span>Stream ansehen</span>
+                </a>
+              </div>
+            </div>
+          )}
+          
+          {entry.notes && (
+            <div className="mt-4 p-3 bg-slate-700/50 rounded-lg">
+              <h4 className="text-sm font-medium text-slate-200 mb-2">Notizen:</h4>
+              <p className="text-sm text-slate-400">{entry.notes}</p>
+            </div>
+          )}
+          
+          <div className="mt-4 flex items-center justify-between text-sm text-slate-400">
+            <div className="flex items-center space-x-2">
+              {entry.documentationType === 'photo' && <Camera className="w-4 h-4" />}
+              {entry.documentationType === 'video' && <Video className="w-4 h-4" />}
+              {entry.documentationType === 'livestream' && <Radio className="w-4 h-4" />}
+              <span>
+                {entry.documentationType === 'photo' && 'Screenshot'}
+                {entry.documentationType === 'video' && 'Video'}
+                {entry.documentationType === 'livestream' && 'Livestream'}
+              </span>
+            </div>
+            <div className="flex items-center space-x-2">
+              {entry.verified ? (
+                <>
+                  <Verified className="w-4 h-4 text-green-400" />
+                  <span className="text-green-400">Verifiziert</span>
+                </>
+              ) : (
+                <>
+                  <AlertCircle className="w-4 h-4 text-yellow-400" />
+                  <span className="text-yellow-400">Unverifiziert</span>
+                </>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 const EventLeaderboard: React.FC<EventLeaderboardProps> = ({
   eventId,
   eventTitle,
@@ -46,6 +184,7 @@ const EventLeaderboard: React.FC<EventLeaderboardProps> = ({
   isLoading = false
 }) => {
   const [selectedEntry, setSelectedEntry] = useState<string | null>(null)
+  const [mediaViewerEntry, setMediaViewerEntry] = useState<EventLeaderboardEntry | null>(null)
 
   const formatTime = (time: string) => {
     // Convert MM:SS.mmm to a more readable format if needed
@@ -97,6 +236,12 @@ const EventLeaderboard: React.FC<EventLeaderboardProps> = ({
         return 'Video'
       case 'livestream':
         return 'Livestream'
+    }
+  }
+
+  const handleMediaClick = (entry: EventLeaderboardEntry) => {
+    if (entry.mediaUrl || entry.livestreamUrl) {
+      setMediaViewerEntry(entry)
     }
   }
 
@@ -210,7 +355,8 @@ const EventLeaderboard: React.FC<EventLeaderboardProps> = ({
         {sortedEntries.slice(0, 3).map((entry) => (
           <div
             key={entry.id}
-            className={`simple-tile bg-gradient-to-br ${getRankColor(entry.position)} border-l-4`}
+            className={`simple-tile bg-gradient-to-br ${getRankColor(entry.position)} border-l-4 cursor-pointer hover:scale-105 transition-transform`}
+            onClick={() => handleMediaClick(entry)}
           >
             <div className="text-center">
               <div className="mb-3">
@@ -227,6 +373,11 @@ const EventLeaderboard: React.FC<EventLeaderboardProps> = ({
                   <Verified className="w-4 h-4 text-green-400" />
                 )}
               </div>
+              {(entry.mediaUrl || entry.livestreamUrl) && (
+                <div className="mt-2 text-xs text-blue-400">
+                  Klicken zum Anzeigen
+                </div>
+              )}
             </div>
           </div>
         ))}
@@ -258,9 +409,9 @@ const EventLeaderboard: React.FC<EventLeaderboardProps> = ({
                         {entry.verified && (
                           <Verified className="w-4 h-4 text-green-400" />
                         )}
-                                                 {!entry.verified && (
-                           <AlertCircle className="w-4 h-4 text-yellow-400" />
-                         )}
+                        {!entry.verified && (
+                          <AlertCircle className="w-4 h-4 text-yellow-400" />
+                        )}
                       </div>
                       <div className="text-sm text-slate-400">
                         {new Date(entry.submissionDate).toLocaleDateString('de-DE', {
@@ -283,6 +434,17 @@ const EventLeaderboard: React.FC<EventLeaderboardProps> = ({
                     <div className="flex items-center space-x-2 text-sm text-slate-400">
                       {getDocumentationIcon(entry.documentationType)}
                       <span>{getDocumentationLabel(entry.documentationType)}</span>
+                      {(entry.mediaUrl || entry.livestreamUrl) && (
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation()
+                            handleMediaClick(entry)
+                          }}
+                          className="text-blue-400 hover:text-blue-300 underline"
+                        >
+                          Anzeigen
+                        </button>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -299,27 +461,14 @@ const EventLeaderboard: React.FC<EventLeaderboardProps> = ({
                             {getDocumentationLabel(entry.documentationType)}
                           </span>
                         </div>
-                        {entry.mediaUrl && (
-                          <a
-                            href={entry.mediaUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
+                        {(entry.mediaUrl || entry.livestreamUrl) && (
+                          <button
+                            onClick={() => handleMediaClick(entry)}
                             className="inline-flex items-center space-x-1 text-blue-400 hover:text-blue-300 text-sm mt-1"
                           >
                             <ExternalLink className="w-3 h-3" />
                             <span>Media anzeigen</span>
-                          </a>
-                        )}
-                        {entry.livestreamUrl && (
-                          <a
-                            href={entry.livestreamUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center space-x-1 text-blue-400 hover:text-blue-300 text-sm mt-1"
-                          >
-                            <ExternalLink className="w-3 h-3" />
-                            <span>Stream ansehen</span>
-                          </a>
+                          </button>
                         )}
                       </div>
                       {entry.notes && (
@@ -335,6 +484,15 @@ const EventLeaderboard: React.FC<EventLeaderboardProps> = ({
             ))}
           </div>
         </div>
+      )}
+
+      {/* Media Viewer Modal */}
+      {mediaViewerEntry && (
+        <MediaViewer
+          entry={mediaViewerEntry}
+          isOpen={!!mediaViewerEntry}
+          onClose={() => setMediaViewerEntry(null)}
+        />
       )}
     </div>
   )
