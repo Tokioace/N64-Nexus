@@ -82,7 +82,19 @@ export interface EventParticipation {
   position?: number
   submissionDate: Date
   mediaUrl?: string
+  livestreamUrl?: string
+  documentationType?: 'photo' | 'video' | 'livestream'
+  notes?: string
   verified: boolean
+}
+
+export interface RaceSubmissionData {
+  eventId: string
+  time: string
+  documentationType: 'photo' | 'video' | 'livestream'
+  mediaFile?: File
+  livestreamUrl?: string
+  notes?: string
 }
 
 export interface EventContextType {
@@ -96,6 +108,7 @@ export interface EventContextType {
   joinEvent: (eventId: string) => Promise<boolean>
   leaveEvent: (eventId: string) => Promise<boolean>
   submitScore: (eventId: string, score: number, time?: string, mediaUrl?: string) => Promise<boolean>
+  submitRaceTime: (data: RaceSubmissionData) => Promise<boolean>
   getLeaderboard: (eventId: string) => EventParticipation[]
 }
 
