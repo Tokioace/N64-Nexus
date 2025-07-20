@@ -59,7 +59,7 @@ const mockParticipations: EventParticipation[] = [
     time: '1:32.456',
     submissionDate: new Date('2025-07-21T10:30:00'),
     documentationType: 'video',
-    mediaUrl: '#',
+    mediaUrl: 'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4',
     verified: true
   },
   {
@@ -70,7 +70,7 @@ const mockParticipations: EventParticipation[] = [
     time: '1:34.123',
     submissionDate: new Date('2025-07-21T14:15:00'),
     documentationType: 'photo',
-    mediaUrl: '#',
+    mediaUrl: 'https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?w=800&h=600&fit=crop&crop=center',
     verified: true
   },
   {
@@ -93,7 +93,7 @@ const mockParticipations: EventParticipation[] = [
     time: '1:35.678',
     submissionDate: new Date('2025-07-22T16:20:00'),
     documentationType: 'video',
-    mediaUrl: '#',
+    mediaUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
     notes: 'First time trying time trials!',
     verified: true
   }
