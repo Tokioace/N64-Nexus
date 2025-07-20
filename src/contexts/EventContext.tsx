@@ -1,7 +1,12 @@
-import React, { createContext, useContext, useState, ReactNode } from 'react'
+import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react'
 import { GameEvent, EventParticipation, EventContextType, RaceSubmissionData } from '../types'
 
 const EventContext = createContext<EventContextType | undefined>(undefined)
+
+// Storage keys for localStorage persistence
+const STORAGE_KEY_USER_PARTICIPATIONS = 'battle64_user_participations'
+const STORAGE_KEY_ALL_SUBMISSIONS = 'battle64_all_event_submissions'
+const STORAGE_KEY_EVENTS = 'battle64_events'
 
 const mockEvents: GameEvent[] = [
   {
@@ -102,10 +107,77 @@ const mockParticipations: EventParticipation[] = [
 export const EventProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [events, setEvents] = useState<GameEvent[]>(mockEvents)
   const [activeEvents, setActiveEvents] = useState<GameEvent[]>(mockEvents.filter(e => e.isActive))
-  const [userParticipations, setUserParticipations] = useState<EventParticipation[]>(mockParticipations)
-  const [allEventSubmissions, setAllEventSubmissions] = useState<EventParticipation[]>(mockParticipations)
+  const [userParticipations, setUserParticipations] = useState<EventParticipation[]>([])
+  const [allEventSubmissions, setAllEventSubmissions] = useState<EventParticipation[]>([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
+
+  // Load data from localStorage on mount
+  useEffect(() => {
+    const savedEvents = localStorage.getItem(STORAGE_KEY_EVENTS)
+    const savedUserParticipations = localStorage.getItem(STORAGE_KEY_USER_PARTICIPATIONS)
+    const savedAllSubmissions = localStorage.getItem(STORAGE_KEY_ALL_SUBMISSIONS)
+    
+    if (savedEvents) {
+      try {
+        const parsedEvents = JSON.parse(savedEvents).map((e: any) => ({
+          ...e,
+          startDate: new Date(e.startDate),
+          endDate: new Date(e.endDate)
+        }))
+        setEvents(parsedEvents)
+        setActiveEvents(parsedEvents.filter((e: GameEvent) => e.isActive))
+      } catch (error) {
+        console.error('Error loading events from localStorage:', error)
+        setEvents(mockEvents)
+        setActiveEvents(mockEvents.filter(e => e.isActive))
+      }
+    }
+
+    if (savedUserParticipations) {
+      try {
+        const parsedParticipations = JSON.parse(savedUserParticipations).map((p: any) => ({
+          ...p,
+          submissionDate: new Date(p.submissionDate)
+        }))
+        setUserParticipations(parsedParticipations)
+      } catch (error) {
+        console.error('Error loading user participations from localStorage:', error)
+        setUserParticipations([])
+      }
+    }
+
+    if (savedAllSubmissions) {
+      try {
+        const parsedSubmissions = JSON.parse(savedAllSubmissions).map((s: any) => ({
+          ...s,
+          submissionDate: new Date(s.submissionDate)
+        }))
+        setAllEventSubmissions(parsedSubmissions)
+      } catch (error) {
+        console.error('Error loading all submissions from localStorage:', error)
+        setAllEventSubmissions(mockParticipations)
+      }
+    } else {
+      // If no saved submissions, use mock data as initial data
+      setAllEventSubmissions(mockParticipations)
+    }
+  }, [])
+
+  // Save events to localStorage whenever events array changes
+  useEffect(() => {
+    localStorage.setItem(STORAGE_KEY_EVENTS, JSON.stringify(events))
+  }, [events])
+
+  // Save user participations to localStorage whenever they change
+  useEffect(() => {
+    localStorage.setItem(STORAGE_KEY_USER_PARTICIPATIONS, JSON.stringify(userParticipations))
+  }, [userParticipations])
+
+  // Save all submissions to localStorage whenever they change
+  useEffect(() => {
+    localStorage.setItem(STORAGE_KEY_ALL_SUBMISSIONS, JSON.stringify(allEventSubmissions))
+  }, [allEventSubmissions])
 
   const getEvents = () => {
     setLoading(true)
@@ -183,6 +255,9 @@ export const EventProvider: React.FC<{ children: ReactNode }> = ({ children }) =
       // Remove from user participations
       setUserParticipations(prev => prev.filter(p => p.eventId !== eventId))
       
+      // Also remove from all submissions (for the current user)
+      setAllEventSubmissions(prev => prev.filter(p => !(p.eventId === eventId && p.userId === '1')))
+      
       setLoading(false)
       return true
     } catch (err) {
@@ -212,14 +287,22 @@ export const EventProvider: React.FC<{ children: ReactNode }> = ({ children }) =
       await new Promise(resolve => setTimeout(resolve, 1000)) // Simulate upload time
       
       // Create or update participation entry
-      const existingParticipationIndex = userParticipations.findIndex(p => 
+      const existingUserParticipation = userParticipations.find(p => 
         p.eventId === data.eventId && p.userId === '1' // Mock user ID
       )
       
-      console.log('Existing participation index:', existingParticipationIndex)
+      // Also check for existing submission in allEventSubmissions
+      const existingAllSubmission = allEventSubmissions.find(p => 
+        p.eventId === data.eventId && p.userId === '1' // Mock user ID
+      )
+      
+      console.log('Existing user participation:', existingUserParticipation)
+      console.log('Existing all submission:', existingAllSubmission)
+      
+      const participationId = existingUserParticipation?.id || existingAllSubmission?.id || Date.now().toString()
       
       const newParticipation: EventParticipation = {
-        id: existingParticipationIndex >= 0 ? userParticipations[existingParticipationIndex].id : Date.now().toString(),
+        id: participationId,
         eventId: data.eventId,
         userId: '1', // Mock user ID
         username: 'RetroGamer64', // Mock username
@@ -234,22 +317,26 @@ export const EventProvider: React.FC<{ children: ReactNode }> = ({ children }) =
       
       console.log('New participation:', newParticipation)
       
-      if (existingParticipationIndex >= 0) {
-        // Update existing participation
+      // Update or add to user participations
+      if (existingUserParticipation) {
         setUserParticipations(prev => 
-          prev.map((p, index) => index === existingParticipationIndex ? newParticipation : p)
+          prev.map(p => p.id === participationId ? newParticipation : p)
         )
-        // Also update in all submissions
-        setAllEventSubmissions(prev => 
-          prev.map(p => p.id === newParticipation.id ? newParticipation : p)
-        )
-        console.log('Updated existing participation')
+        console.log('Updated existing user participation')
       } else {
-        // Add new participation
         setUserParticipations(prev => [...prev, newParticipation])
-        // Also add to all submissions
+        console.log('Added new user participation')
+      }
+
+      // Update or add to all submissions
+      if (existingAllSubmission) {
+        setAllEventSubmissions(prev => 
+          prev.map(p => p.id === participationId ? newParticipation : p)
+        )
+        console.log('Updated existing all submission')
+      } else {
         setAllEventSubmissions(prev => [...prev, newParticipation])
-        console.log('Added new participation')
+        console.log('Added new all submission')
       }
       
       setLoading(false)
