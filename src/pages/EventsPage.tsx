@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { useEvent } from '../contexts/EventContext'
 import { useUser } from '../contexts/UserContext'
+import RaceSubmissionModal, { RaceSubmissionData } from '../components/RaceSubmissionModal'
+import EventLeaderboard from '../components/EventLeaderboard'
 import { 
   Trophy, 
   Calendar, 
@@ -13,15 +15,20 @@ import {
   Star,
   Bell,
   BellOff,
-  Info
+  Info,
+  Upload,
+  BarChart3,
+  X
 } from 'lucide-react'
 
 const EventsPage: React.FC = () => {
-  const { events, activeEvents, joinEvent, leaveEvent, loading, userParticipations } = useEvent()
+  const { events, activeEvents, joinEvent, leaveEvent, loading, userParticipations, submitRaceTime, getLeaderboard } = useEvent()
   const { user } = useUser()
   const [selectedTab, setSelectedTab] = useState<'active' | 'upcoming' | 'completed'>('active')
   const [selectedEvent, setSelectedEvent] = useState<string | null>(null)
   const [notificationsEnabled, setNotificationsEnabled] = useState(false)
+  const [showSubmissionModal, setShowSubmissionModal] = useState<string | null>(null)
+  const [showLeaderboard, setShowLeaderboard] = useState<string | null>(null)
 
   const getEventStatus = (event: any) => {
     const now = new Date()
@@ -69,14 +76,28 @@ const EventsPage: React.FC = () => {
     }
 
     if (isUserParticipating(eventId)) {
-      alert('Du nimmst bereits an diesem Event teil!')
+      // If already participating, show submission modal
+      setShowSubmissionModal(eventId)
       return
     }
     
     const success = await joinEvent(eventId)
     if (success) {
-      alert('Erfolgreich zum Event angemeldet!')
+      alert('Erfolgreich zum Event angemeldet! Du kannst jetzt deine Zeit einreichen.')
+      // Automatically show submission modal after joining
+      setShowSubmissionModal(eventId)
     }
+  }
+
+  const handleRaceSubmission = async (data: RaceSubmissionData): Promise<boolean> => {
+    const success = await submitRaceTime(data)
+    if (success) {
+      setShowSubmissionModal(null)
+      // Show leaderboard after successful submission
+      setShowLeaderboard(data.eventId)
+      alert('Zeit erfolgreich eingereicht! 🏁')
+    }
+    return success
   }
 
   const handleShowDetails = (eventId: string) => {
@@ -254,15 +275,35 @@ const EventsPage: React.FC = () => {
                       </button>
                     )}
                     {status === 'active' && isParticipating && (
-                      <button 
-                        onClick={() => leaveEvent(event.id)}
-                        disabled={loading}
-                        className="px-6 py-2 bg-red-600 hover:bg-red-700 text-white 
-                                 font-medium rounded-lg transition-colors duration-200
-                                 disabled:opacity-50 disabled:cursor-not-allowed"
-                      >
-                        {loading ? 'Lädt...' : 'Verlassen'}
-                      </button>
+                      <>
+                        <button 
+                          onClick={() => setShowSubmissionModal(event.id)}
+                          disabled={loading}
+                          className="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white 
+                                   font-medium rounded-lg transition-colors duration-200
+                                   disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
+                        >
+                          <Upload className="w-4 h-4" />
+                          <span>Zeit Einreichen</span>
+                        </button>
+                        <button 
+                          onClick={() => setShowLeaderboard(event.id)}
+                          className="px-6 py-2 bg-purple-600 hover:bg-purple-700 text-white 
+                                   font-medium rounded-lg transition-colors duration-200 flex items-center justify-center space-x-2"
+                        >
+                          <BarChart3 className="w-4 h-4" />
+                          <span>Leaderboard</span>
+                        </button>
+                        <button 
+                          onClick={() => leaveEvent(event.id)}
+                          disabled={loading}
+                          className="px-6 py-2 bg-red-600 hover:bg-red-700 text-white 
+                                   font-medium rounded-lg transition-colors duration-200
+                                   disabled:opacity-50 disabled:cursor-not-allowed"
+                        >
+                          {loading ? 'Lädt...' : 'Verlassen'}
+                        </button>
+                      </>
                     )}
                     {status === 'upcoming' && !isParticipating && (
                       <button 
@@ -273,6 +314,17 @@ const EventsPage: React.FC = () => {
                                  disabled:opacity-50 disabled:cursor-not-allowed"
                       >
                         {loading ? 'Lädt...' : 'Vormerken'}
+                      </button>
+                    )}
+                    {/* Show leaderboard button for all active events */}
+                    {status === 'active' && (
+                      <button 
+                        onClick={() => setShowLeaderboard(event.id)}
+                        className="px-6 py-2 bg-slate-700 hover:bg-slate-600 text-slate-200 
+                                 font-medium rounded-lg transition-colors duration-200 flex items-center justify-center space-x-2"
+                      >
+                        <BarChart3 className="w-4 h-4" />
+                        <span>Leaderboard</span>
                       </button>
                     )}
                     <button 
@@ -386,6 +438,58 @@ const EventsPage: React.FC = () => {
           )}
         </button>
       </div>
+
+      {/* Race Submission Modal */}
+      {showSubmissionModal && (
+        <RaceSubmissionModal
+          isOpen={!!showSubmissionModal}
+          onClose={() => setShowSubmissionModal(null)}
+          eventId={showSubmissionModal}
+          eventTitle={events.find(e => e.id === showSubmissionModal)?.title || 'Event'}
+          onSubmit={handleRaceSubmission}
+        />
+      )}
+
+      {/* Event Leaderboard Modal */}
+      {showLeaderboard && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-slate-800 rounded-lg max-w-6xl w-full max-h-[90vh] overflow-y-auto">
+            <div className="flex items-center justify-between p-6 border-b border-slate-600">
+              <h2 className="text-2xl font-bold text-slate-100">Event Leaderboard</h2>
+              <button
+                onClick={() => setShowLeaderboard(null)}
+                className="text-slate-400 hover:text-slate-200 transition-colors"
+              >
+                <X className="w-6 h-6" />
+              </button>
+            </div>
+            <div className="p-6">
+              <EventLeaderboard
+                eventId={showLeaderboard}
+                eventTitle={events.find(e => e.id === showLeaderboard)?.title || 'Event'}
+                entries={getLeaderboard(showLeaderboard).map(participation => ({
+                  id: participation.id,
+                  userId: participation.userId,
+                  username: participation.username,
+                  time: participation.time || '0:00.000',
+                  position: 1, // Will be calculated in the component
+                  submissionDate: participation.submissionDate,
+                  documentationType: participation.documentationType || 'photo',
+                  mediaUrl: participation.mediaUrl,
+                  livestreamUrl: participation.livestreamUrl,
+                  verified: participation.verified,
+                  notes: participation.notes
+                }))}
+                currentUserId={user?.id}
+                onRefresh={() => {
+                  // Refresh leaderboard data
+                  // In a real app, this would fetch fresh data from the server
+                }}
+              />
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

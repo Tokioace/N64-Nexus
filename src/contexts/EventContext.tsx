@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, ReactNode } from 'react'
-import { GameEvent, EventParticipation, EventContextType } from '../types'
+import { GameEvent, EventParticipation, EventContextType, RaceSubmissionData } from '../types'
 
 const EventContext = createContext<EventContextType | undefined>(undefined)
 
@@ -50,10 +50,59 @@ const mockEvents: GameEvent[] = [
   }
 ]
 
+const mockParticipations: EventParticipation[] = [
+  {
+    id: 'p1',
+    eventId: '2',
+    userId: 'user1',
+    username: 'SpeedDemon64',
+    time: '1:32.456',
+    submissionDate: new Date('2025-07-21T10:30:00'),
+    documentationType: 'video',
+    mediaUrl: '#',
+    verified: true
+  },
+  {
+    id: 'p2',
+    eventId: '2',
+    userId: 'user2', 
+    username: 'KartMaster',
+    time: '1:34.123',
+    submissionDate: new Date('2025-07-21T14:15:00'),
+    documentationType: 'photo',
+    mediaUrl: '#',
+    verified: true
+  },
+  {
+    id: 'p3',
+    eventId: '2',
+    userId: 'user3',
+    username: 'RetroRacer',
+    time: '1:29.789',
+    submissionDate: new Date('2025-07-22T09:45:00'),
+    documentationType: 'livestream',
+    livestreamUrl: 'https://twitch.tv/retroracer',
+    notes: 'Controller: Original N64 Controller, Setup: CRT TV',
+    verified: false
+  },
+  {
+    id: 'p4',
+    eventId: '2',
+    userId: 'user4',
+    username: 'Luigi_Fan_2025',
+    time: '1:35.678',
+    submissionDate: new Date('2025-07-22T16:20:00'),
+    documentationType: 'video',
+    mediaUrl: '#',
+    notes: 'First time trying time trials!',
+    verified: true
+  }
+]
+
 export const EventProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [events, setEvents] = useState<GameEvent[]>(mockEvents)
   const [activeEvents, setActiveEvents] = useState<GameEvent[]>(mockEvents.filter(e => e.isActive))
-  const [userParticipations, setUserParticipations] = useState<EventParticipation[]>([])
+  const [userParticipations, setUserParticipations] = useState<EventParticipation[]>(mockParticipations)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
@@ -155,8 +204,51 @@ export const EventProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     }
   }
 
+  const submitRaceTime = async (data: RaceSubmissionData): Promise<boolean> => {
+    setLoading(true)
+    try {
+      await new Promise(resolve => setTimeout(resolve, 1000)) // Simulate upload time
+      
+      // Create or update participation entry
+      const existingParticipationIndex = userParticipations.findIndex(p => 
+        p.eventId === data.eventId && p.userId === '1' // Mock user ID
+      )
+      
+      const newParticipation: EventParticipation = {
+        id: existingParticipationIndex >= 0 ? userParticipations[existingParticipationIndex].id : Date.now().toString(),
+        eventId: data.eventId,
+        userId: '1', // Mock user ID
+        username: 'RetroGamer64', // Mock username
+        time: data.time,
+        submissionDate: new Date(),
+        documentationType: data.documentationType,
+        mediaUrl: data.mediaFile ? URL.createObjectURL(data.mediaFile) : undefined,
+        livestreamUrl: data.livestreamUrl,
+        notes: data.notes,
+        verified: false // Will be verified by admins
+      }
+      
+      if (existingParticipationIndex >= 0) {
+        // Update existing participation
+        setUserParticipations(prev => 
+          prev.map((p, index) => index === existingParticipationIndex ? newParticipation : p)
+        )
+      } else {
+        // Add new participation
+        setUserParticipations(prev => [...prev, newParticipation])
+      }
+      
+      setLoading(false)
+      return true
+    } catch (err) {
+      setError('Fehler beim Übermitteln der Rundenzeit')
+      setLoading(false)
+      return false
+    }
+  }
+
   const getLeaderboard = (eventId: string): EventParticipation[] => {
-    return userParticipations.filter(p => p.eventId === eventId)
+    return userParticipations.filter(p => p.eventId === eventId && p.time)
   }
 
   const value: EventContextType = {
@@ -169,6 +261,7 @@ export const EventProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     joinEvent,
     leaveEvent,
     submitScore,
+    submitRaceTime,
     getLeaderboard
   }
 
