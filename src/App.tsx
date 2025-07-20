@@ -22,6 +22,7 @@ import ForumCategoryPage from './pages/ForumCategoryPage'
 import ForumThreadPage from './pages/ForumThreadPage'
 import ForumNewThreadPage from './pages/ForumNewThreadPage'
 import N64CameraCreatorPage from './pages/N64CameraCreatorPage'
+import EventFeaturesDemo from './pages/EventFeaturesDemo'
 import ErrorBoundary from './components/ErrorBoundary'
 import Layout from './components/Layout'
 
@@ -51,6 +52,7 @@ function App() {
                   <Route path="/forum/category/:categoryId/new-thread" element={<ErrorBoundary><ForumNewThreadPage /></ErrorBoundary>} />
                   <Route path="/forum/thread/:threadId" element={<ErrorBoundary><ForumThreadPage /></ErrorBoundary>} />
                   <Route path="/n64-camera" element={<N64CameraCreatorPage />} />
+                  <Route path="/event-features-demo" element={<EventFeaturesDemo />} />
                 </Routes>
               </Layout>
             </ForumProvider>

@@ -141,7 +141,7 @@ export interface GameEvent {
   id: string
   title: string
   game: string
-  type: 'Speedrun' | 'Time Trial' | 'Challenge' | 'Collection' | 'Anniversary'
+  type: 'Speedrun' | 'Time Trial' | 'Challenge' | 'Collection' | 'Anniversary' | 'team'
   startDate: string
   endDate: string
   description: string
@@ -153,6 +153,11 @@ export interface GameEvent {
   maxParticipants?: number
   difficulty?: 'easy' | 'medium' | 'hard'
   category?: string
+  // Team event specific properties
+  isTeamEvent?: boolean
+  maxTeamSize?: number
+  minTeamSize?: number
+  allowSoloParticipation?: boolean
 }
 
 export interface EventParticipation {
@@ -163,6 +168,73 @@ export interface EventParticipation {
   progress: number
   rewards: string[]
   isCompleted: boolean
+}
+
+// New types for team events
+export interface Team {
+  id: string
+  name: string
+  logoUrl?: string
+  createdBy: string
+  createdAt: Date
+  maxMembers: number
+  description?: string
+}
+
+export interface TeamMember {
+  teamId: string
+  userId: string
+  username: string
+  joinedAt: Date
+  isLeader: boolean
+}
+
+export interface TeamResult {
+  teamId: string
+  eventId: string
+  averageTime: number
+  bestTimes: string[]
+  rank?: number
+  members: TeamMember[]
+}
+
+// New types for medals and achievements
+export interface EventMedal {
+  id: string
+  eventId: string
+  userId: string
+  type: 'gold' | 'silver' | 'bronze'
+  awardedAt: Date
+  eventTitle: string
+  eventDate: string
+  rank?: number
+  condition: string // e.g., "1st Place", "Top 10%", "Participation"
+}
+
+export interface EventAward {
+  id: string
+  eventId: string
+  userId: string
+  type: 'medal' | 'badge' | 'trophy'
+  level: 'gold' | 'silver' | 'bronze'
+  name: string
+  description: string
+  icon: string
+  awardedAt: Date
+}
+
+// Enhanced leaderboard entry with animation support
+export interface LiveLeaderboardEntry extends LeaderboardEntry {
+  gameTime: string
+  isLive: boolean
+  lastUpdate: Date
+  isNewEntry?: boolean
+  previousRank?: number
+  media?: MediaMeta
+  isVerified: boolean
+  submittedAt: Date
+  teamId?: string
+  teamName?: string
 }
 
 export interface EventReward {
@@ -188,6 +260,17 @@ export interface EventContextType {
   getEventRewards: (eventId: string) => EventReward[]
   isEventActive: (event: GameEvent) => boolean
   getTimeRemaining: (event: GameEvent) => { days: number; hours: number; minutes: number; seconds: number }
+  // New team-related methods
+  createTeam: (name: string, description?: string) => Promise<Team>
+  joinTeam: (teamId: string) => Promise<void>
+  leaveTeam: (teamId: string) => Promise<void>
+  getEventTeams: (eventId: string) => Team[]
+  getTeamMembers: (teamId: string) => TeamMember[]
+  // New leaderboard methods
+  getLiveLeaderboard: (eventId: string) => LiveLeaderboardEntry[]
+  // New medal methods
+  getUserMedals: (userId: string) => EventMedal[]
+  awardMedal: (eventId: string, userId: string, type: 'gold' | 'silver' | 'bronze', rank?: number) => void
 }
 
 // Media Capture & Verification Types

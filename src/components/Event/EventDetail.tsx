@@ -5,6 +5,8 @@ import { useMedia } from '../../contexts/MediaContext'
 import SimpleCard from '../SimpleCard'
 import SimpleButton from '../SimpleButton'
 import MediaCaptureComponent from '../MediaCaptureComponent'
+import LiveLeaderboard from './LiveLeaderboard'
+import TeamEventManager from './TeamEventManager'
 import { 
   ArrowLeft, 
   Calendar, 
@@ -365,6 +367,25 @@ const EventDetail: React.FC<EventDetailProps> = ({ event, onBack, onParticipate 
           </div>
         </SimpleCard>
       )}
+
+      {/* Team Management for Team Events */}
+      {event.isTeamEvent && (
+        <TeamEventManager 
+          event={event}
+          onTeamCreated={(team) => console.log('Team created:', team)}
+          onTeamJoined={(team) => console.log('Joined team:', team)}
+        />
+      )}
+
+      {/* Live Leaderboard */}
+      <LiveLeaderboard 
+        eventId={event.id}
+        maxEntries={10}
+        autoRefresh={true}
+        refreshInterval={30000}
+        showAnimations={true}
+        showTeamInfo={event.isTeamEvent}
+      />
 
       {/* Live Participants */}
       {liveParticipants.length > 0 && (
