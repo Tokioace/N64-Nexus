@@ -25,7 +25,7 @@ interface NewsItem {
   title: string
   content: string
   date: Date
-  type: 'event_winner' | 'n64_history' | 'community_news'
+  type: 'event_winner' | 'n64_history' | 'community_news' | 'event_announcement'
 }
 
 const HomePage: React.FC = () => {
@@ -47,20 +47,27 @@ const HomePage: React.FC = () => {
   const newsItems: NewsItem[] = [
     {
       id: '1',
+      title: '🏁 NEUES LIVE EVENT: Luigi\'s Raceway Zeitrennen!',
+      content: 'Eine ganze Woche lang Luigi\'s Raceway! Zeigt eure beste Zeit auf der klassischen Mario Kart 64 Strecke. Event läuft bis 27.07.2025 - Jetzt teilnehmen!',
+      date: new Date(),
+      type: 'event_announcement'
+    },
+    {
+      id: '2',
       title: 'Event Winner: Mario Kart 64 Challenge',
       content: 'Spieler "SpeedDemon64" hat das Mario Kart 64 Speedrun Event mit einer Zeit von 1:47:32 gewonnen!',
       date: new Date(),
       type: 'event_winner'
     },
     {
-      id: '2',
+      id: '3',
       title: 'Heute in der N64 Geschichte',
       content: 'Vor 27 Jahren (1996) wurde das Nintendo 64 in Japan veröffentlicht. Das erste Spiel war Super Mario 64!',
       date: new Date(),
       type: 'n64_history'
     },
     {
-      id: '3',
+      id: '4',
       title: 'Community Update',
       content: 'Neue Speedrun-Kategorien für GoldenEye 007 wurden hinzugefügt. Jetzt mit Agent, Secret Agent und 00 Agent Modi!',
       date: new Date(),
