@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { 
   Gamepad2, 
   Zap, 
@@ -8,7 +8,15 @@ import {
   Star,
   Play,
   Trophy,
-  Users
+  Users,
+  Volume2,
+  RotateCcw,
+  CheckCircle,
+  XCircle,
+  Clock,
+  Award,
+  Sword,
+  Music
 } from 'lucide-react'
 
 interface Minigame {
@@ -24,8 +32,23 @@ interface Minigame {
   players?: number
 }
 
+interface GameState {
+  currentGame: string | null
+  isPlaying: boolean
+  score: number
+  timeLeft: number
+  gameData: any
+}
+
 const MinigamesPage: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('all')
+  const [gameState, setGameState] = useState<GameState>({
+    currentGame: null,
+    isPlaying: false,
+    score: 0,
+    timeLeft: 0,
+    gameData: {}
+  })
 
   const minigames: Minigame[] = [
     {
@@ -81,9 +104,9 @@ const MinigamesPage: React.FC = () => {
       description: 'Erkenne N64-Spiele an ihren Soundeffekten und Musik.',
       difficulty: 'medium',
       category: 'quiz',
-      icon: Star,
+      icon: Music,
       color: 'text-purple-400',
-      available: false,
+      available: true,
       players: 1
     },
     {
@@ -94,8 +117,68 @@ const MinigamesPage: React.FC = () => {
       category: 'multiplayer',
       icon: Users,
       color: 'text-cyan-400',
-      available: false,
+      available: true,
       players: 2
+    },
+    {
+      id: 'pixel-art-puzzle',
+      title: 'N64 Pixel Art Puzzle',
+      description: 'Setze pixelige N64-Charaktere aus Einzelteilen zusammen!',
+      difficulty: 'medium',
+      category: 'puzzle',
+      icon: Star,
+      color: 'text-pink-400',
+      available: true,
+      players: 1
+    },
+    {
+      id: 'speedrun-challenge',
+      title: 'Speedrun Challenge',
+      description: 'Schaffe Mini-Challenges so schnell wie möglich - wie ein echter Speedrunner!',
+      difficulty: 'hard',
+      category: 'skill',
+      icon: Award,
+      color: 'text-orange-400',
+      available: true,
+      players: 1
+    }
+  ]
+
+  // Game Data
+  const n64Games = [
+    'Super Mario 64', 'The Legend of Zelda: Ocarina of Time', 'Super Smash Bros.',
+    'Mario Kart 64', 'GoldenEye 007', 'Super Mario Party', 'Donkey Kong 64',
+    'Paper Mario', 'Mario Tennis', 'Star Fox 64', 'F-Zero X', 'Banjo-Kazooie'
+  ]
+
+  const cheatCodes = [
+    { code: 'RAREWARE', game: 'Donkey Kong 64' },
+    { code: 'NTHGTHDGDCRTDTRK', game: 'GoldenEye 007' },
+    { code: 'CPUHELP', game: 'Super Smash Bros.' },
+    { code: 'JUKEBOX', game: 'Donkey Kong 64' },
+    { code: 'PAINTBALL', game: 'GoldenEye 007' }
+  ]
+
+  const triviaQuestions = [
+    {
+      question: 'Welches war das erste N64-Spiel?',
+      options: ['Super Mario 64', 'Pilotwings 64', 'Wave Race 64', 'Star Wars: Shadows of the Empire'],
+      correct: 0
+    },
+    {
+      question: 'Wie viele Controller-Ports hat die N64?',
+      options: ['2', '3', '4', '6'],
+      correct: 2
+    },
+    {
+      question: 'In welchem Jahr wurde die N64 veröffentlicht?',
+      options: ['1995', '1996', '1997', '1998'],
+      correct: 1
+    },
+    {
+      question: 'Welches Spiel führte das Z-Targeting ein?',
+      options: ['Super Mario 64', 'Ocarina of Time', 'GoldenEye', 'Star Fox 64'],
+      correct: 1
     }
   ]
 
@@ -129,8 +212,598 @@ const MinigamesPage: React.FC = () => {
     }
   }
 
+  // Memory Match Game
+  const MemoryMatchGame = () => {
+    const [cards, setCards] = useState<Array<{id: number, game: string, flipped: boolean, matched: boolean}>>([])
+    const [flippedCards, setFlippedCards] = useState<number[]>([])
+    const [moves, setMoves] = useState(0)
+
+    useEffect(() => {
+      const gameSelection = n64Games.slice(0, 6)
+      const cardPairs = [...gameSelection, ...gameSelection]
+        .map((game, index) => ({
+          id: index,
+          game,
+          flipped: false,
+          matched: false
+        }))
+        .sort(() => Math.random() - 0.5)
+      setCards(cardPairs)
+    }, [])
+
+    const handleCardClick = (id: number) => {
+      if (flippedCards.length === 2 || cards[id].flipped || cards[id].matched) return
+
+      const newCards = [...cards]
+      newCards[id].flipped = true
+      setCards(newCards)
+      
+      const newFlippedCards = [...flippedCards, id]
+      setFlippedCards(newFlippedCards)
+
+      if (newFlippedCards.length === 2) {
+        setMoves(moves + 1)
+        const [first, second] = newFlippedCards
+        if (cards[first].game === cards[second].game) {
+          setTimeout(() => {
+            const matchedCards = [...cards]
+            matchedCards[first].matched = true
+            matchedCards[second].matched = true
+            setCards(matchedCards)
+            setFlippedCards([])
+            
+            const newScore = gameState.score + 100
+            setGameState(prev => ({ ...prev, score: newScore }))
+            
+            if (matchedCards.every(card => card.matched)) {
+              const bonus = Math.max(0, (30 - moves) * 10)
+              setGameState(prev => ({ ...prev, score: newScore + bonus, isPlaying: false }))
+            }
+          }, 1000)
+        } else {
+          setTimeout(() => {
+            const resetCards = [...cards]
+            resetCards[first].flipped = false
+            resetCards[second].flipped = false
+            setCards(resetCards)
+            setFlippedCards([])
+          }, 1000)
+        }
+      }
+    }
+
+    return (
+      <div className="text-center">
+        <div className="mb-4">
+          <p className="text-slate-300">Züge: {moves} | Score: {gameState.score}</p>
+        </div>
+        <div className="grid grid-cols-4 gap-3 max-w-md mx-auto">
+          {cards.map((card) => (
+            <div
+              key={card.id}
+              onClick={() => handleCardClick(card.id)}
+              className={`aspect-square rounded-lg cursor-pointer transition-all duration-300 flex items-center justify-center text-xs font-bold ${
+                card.flipped || card.matched
+                  ? 'bg-blue-600 text-white'
+                  : 'bg-slate-700 hover:bg-slate-600'
+              }`}
+            >
+              {card.flipped || card.matched ? card.game.slice(0, 10) : '?'}
+            </div>
+          ))}
+        </div>
+      </div>
+    )
+  }
+
+  // Reaction Test Game
+  const ReactionTestGame = () => {
+    const [phase, setPhase] = useState<'waiting' | 'ready' | 'go' | 'result'>('waiting')
+    const [startTime, setStartTime] = useState(0)
+    const [reactionTime, setReactionTime] = useState(0)
+    const [attempts, setAttempts] = useState(0)
+
+    const startTest = () => {
+      setPhase('ready')
+      const delay = Math.random() * 3000 + 1000
+      setTimeout(() => {
+        setPhase('go')
+        setStartTime(Date.now())
+      }, delay)
+    }
+
+    const handleClick = () => {
+      if (phase === 'go') {
+        const time = Date.now() - startTime
+        setReactionTime(time)
+        setPhase('result')
+        setAttempts(attempts + 1)
+        
+        const points = Math.max(0, 500 - time)
+        setGameState(prev => ({ ...prev, score: prev.score + points }))
+      } else if (phase === 'ready') {
+        setPhase('waiting')
+        alert('Zu früh! Warte auf das grüne Signal.')
+      }
+    }
+
+    const resetTest = () => {
+      setPhase('waiting')
+      setReactionTime(0)
+    }
+
+    return (
+      <div className="text-center">
+        <div className="mb-6">
+          <p className="text-slate-300 mb-2">Versuche: {attempts} | Score: {gameState.score}</p>
+          {reactionTime > 0 && (
+            <p className="text-yellow-400 text-xl font-bold">{reactionTime}ms</p>
+          )}
+        </div>
+        
+        <div
+          onClick={handleClick}
+          className={`w-64 h-64 rounded-full mx-auto mb-6 cursor-pointer transition-all duration-200 flex items-center justify-center text-2xl font-bold ${
+            phase === 'waiting' ? 'bg-slate-700 text-slate-400' :
+            phase === 'ready' ? 'bg-red-600 text-white animate-pulse' :
+            phase === 'go' ? 'bg-green-600 text-white' :
+            'bg-blue-600 text-white'
+          }`}
+        >
+          {phase === 'waiting' && 'Klicken zum Starten'}
+          {phase === 'ready' && 'Warten...'}
+          {phase === 'go' && 'JETZT KLICKEN!'}
+          {phase === 'result' && `${reactionTime}ms`}
+        </div>
+
+        <div className="space-x-4">
+          {phase === 'waiting' && (
+            <button onClick={startTest} className="px-6 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg">
+              Test starten
+            </button>
+          )}
+          {phase === 'result' && (
+            <>
+              <button onClick={resetTest} className="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg">
+                Nochmal
+              </button>
+              <button onClick={() => setGameState(prev => ({ ...prev, currentGame: null }))} 
+                      className="px-6 py-2 bg-slate-600 hover:bg-slate-700 text-white rounded-lg">
+                Beenden
+              </button>
+            </>
+          )}
+        </div>
+      </div>
+    )
+  }
+
+  // Trivia Rush Game
+  const TriviaRushGame = () => {
+    const [currentQuestion, setCurrentQuestion] = useState(0)
+    const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null)
+    const [showResult, setShowResult] = useState(false)
+    const [correctAnswers, setCorrectAnswers] = useState(0)
+
+    const question = triviaQuestions[currentQuestion]
+
+    const handleAnswer = (answerIndex: number) => {
+      setSelectedAnswer(answerIndex)
+      setShowResult(true)
+      
+      if (answerIndex === question.correct) {
+        setCorrectAnswers(correctAnswers + 1)
+        const points = Math.max(0, 200 - (gameState.timeLeft < 5 ? 50 : 0))
+        setGameState(prev => ({ ...prev, score: prev.score + points }))
+      }
+
+      setTimeout(() => {
+        if (currentQuestion < triviaQuestions.length - 1) {
+          setCurrentQuestion(currentQuestion + 1)
+          setSelectedAnswer(null)
+          setShowResult(false)
+        } else {
+          setGameState(prev => ({ ...prev, isPlaying: false }))
+        }
+      }, 2000)
+    }
+
+    return (
+      <div className="max-w-2xl mx-auto">
+        <div className="mb-6 text-center">
+          <p className="text-slate-300">Frage {currentQuestion + 1}/{triviaQuestions.length}</p>
+          <p className="text-slate-300">Richtige Antworten: {correctAnswers} | Score: {gameState.score}</p>
+        </div>
+
+        <div className="bg-slate-800 rounded-lg p-6 mb-6">
+          <h3 className="text-xl font-bold text-slate-100 mb-4">{question.question}</h3>
+          <div className="space-y-3">
+            {question.options.map((option, index) => (
+              <button
+                key={index}
+                onClick={() => !showResult && handleAnswer(index)}
+                disabled={showResult}
+                className={`w-full p-3 rounded-lg text-left transition-all duration-200 ${
+                  showResult
+                    ? index === question.correct
+                      ? 'bg-green-600 text-white'
+                      : index === selectedAnswer
+                      ? 'bg-red-600 text-white'
+                      : 'bg-slate-700 text-slate-400'
+                    : 'bg-slate-700 hover:bg-slate-600 text-slate-200'
+                }`}
+              >
+                {option}
+                {showResult && index === question.correct && <CheckCircle className="inline w-5 h-5 ml-2" />}
+                {showResult && index === selectedAnswer && index !== question.correct && <XCircle className="inline w-5 h-5 ml-2" />}
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  // Speed Typing Game
+  const SpeedTypingGame = () => {
+    const [currentCheat, setCurrentCheat] = useState(0)
+    const [userInput, setUserInput] = useState('')
+    const [startTime, setStartTime] = useState<number | null>(null)
+    const [completedCheats, setCompletedCheats] = useState(0)
+
+    const cheat = cheatCodes[currentCheat]
+
+    useEffect(() => {
+      if (startTime === null && userInput.length > 0) {
+        setStartTime(Date.now())
+      }
+    }, [userInput, startTime])
+
+    const handleInputChange = (value: string) => {
+      setUserInput(value.toUpperCase())
+      
+      if (value.toUpperCase() === cheat.code) {
+        const timeTaken = startTime ? Date.now() - startTime : 0
+        const wpm = Math.round((cheat.code.length / 5) / (timeTaken / 60000))
+        const points = Math.max(50, 300 - timeTaken / 10)
+        
+        setGameState(prev => ({ ...prev, score: prev.score + Math.round(points) }))
+        setCompletedCheats(completedCheats + 1)
+        
+        if (currentCheat < cheatCodes.length - 1) {
+          setCurrentCheat(currentCheat + 1)
+          setUserInput('')
+          setStartTime(null)
+        } else {
+          setGameState(prev => ({ ...prev, isPlaying: false }))
+        }
+      }
+    }
+
+    return (
+      <div className="max-w-2xl mx-auto text-center">
+        <div className="mb-6">
+          <p className="text-slate-300">Cheat Code {currentCheat + 1}/{cheatCodes.length}</p>
+          <p className="text-slate-300">Abgeschlossen: {completedCheats} | Score: {gameState.score}</p>
+        </div>
+
+        <div className="bg-slate-800 rounded-lg p-6 mb-6">
+          <h3 className="text-lg font-bold text-slate-100 mb-2">{cheat.game}</h3>
+          <div className="text-3xl font-mono font-bold text-yellow-400 mb-4 tracking-wider">
+            {cheat.code}
+          </div>
+          <input
+            type="text"
+            value={userInput}
+            onChange={(e) => handleInputChange(e.target.value)}
+            placeholder="Tippe den Cheat Code hier..."
+            className="w-full p-3 bg-slate-700 text-white text-center text-xl font-mono rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            autoFocus
+          />
+          <div className="mt-4">
+            <div className="text-sm text-slate-400">
+              {userInput.split('').map((char, index) => (
+                <span
+                  key={index}
+                  className={char === cheat.code[index] ? 'text-green-400' : 'text-red-400'}
+                >
+                  {char}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  // Sound Quiz Game (Placeholder with descriptions)
+  const SoundQuizGame = () => {
+    const [currentSound, setCurrentSound] = useState(0)
+    const [score, setScore] = useState(0)
+    
+    const sounds = [
+      { game: 'Super Mario 64', description: '🎵 "Wahoo!" - Mario Jump Sound' },
+      { game: 'Zelda: Ocarina of Time', description: '🎵 "Hey! Listen!" - Navi Sound' },
+      { game: 'GoldenEye 007', description: '🎵 "Pew Pew" - Silencer Shot' },
+      { game: 'Mario Kart 64', description: '🎵 "Here we go!" - Race Start' }
+    ]
+
+    const currentSoundData = sounds[currentSound]
+    const options = [currentSoundData.game, ...n64Games.filter(g => g !== currentSoundData.game).slice(0, 3)]
+      .sort(() => Math.random() - 0.5)
+
+    const handleAnswer = (selectedGame: string) => {
+      if (selectedGame === currentSoundData.game) {
+        setScore(score + 100)
+        setGameState(prev => ({ ...prev, score: prev.score + 100 }))
+      }
+      
+      if (currentSound < sounds.length - 1) {
+        setCurrentSound(currentSound + 1)
+      } else {
+        setGameState(prev => ({ ...prev, isPlaying: false }))
+      }
+    }
+
+    return (
+      <div className="max-w-2xl mx-auto text-center">
+        <div className="mb-6">
+          <p className="text-slate-300">Sound {currentSound + 1}/{sounds.length}</p>
+          <p className="text-slate-300">Score: {gameState.score}</p>
+        </div>
+
+        <div className="bg-slate-800 rounded-lg p-8 mb-6">
+          <Volume2 className="w-16 h-16 text-purple-400 mx-auto mb-4" />
+          <div className="text-2xl font-bold text-slate-100 mb-6">
+            {currentSoundData.description}
+          </div>
+          <p className="text-slate-400 mb-6">Welches Spiel macht diesen Sound?</p>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+            {options.map((option, index) => (
+              <button
+                key={index}
+                onClick={() => handleAnswer(option)}
+                className="p-3 bg-slate-700 hover:bg-slate-600 text-slate-200 rounded-lg transition-all duration-200"
+              >
+                {option}
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  // Multiplayer Duel Game (Simulated)
+  const MultiplayerDuelGame = () => {
+    const [phase, setPhase] = useState<'waiting' | 'question' | 'result'>('waiting')
+    const [currentQuestion, setCurrentQuestion] = useState(0)
+    const [playerScore, setPlayerScore] = useState(0)
+    const [opponentScore, setOpponentScore] = useState(0)
+    const [playerAnswer, setPlayerAnswer] = useState<number | null>(null)
+
+    const question = triviaQuestions[currentQuestion]
+
+    const startDuel = () => {
+      setPhase('question')
+    }
+
+    const handleAnswer = (answerIndex: number) => {
+      setPlayerAnswer(answerIndex)
+      
+      // Simulate opponent answer
+      const opponentAnswer = Math.random() < 0.7 ? question.correct : Math.floor(Math.random() * 4)
+      
+      if (answerIndex === question.correct) {
+        setPlayerScore(playerScore + 100)
+        setGameState(prev => ({ ...prev, score: prev.score + 100 }))
+      }
+      
+      if (opponentAnswer === question.correct) {
+        setOpponentScore(opponentScore + 100)
+      }
+
+      setPhase('result')
+      
+      setTimeout(() => {
+        if (currentQuestion < triviaQuestions.length - 1) {
+          setCurrentQuestion(currentQuestion + 1)
+          setPlayerAnswer(null)
+          setPhase('question')
+        } else {
+          setGameState(prev => ({ ...prev, isPlaying: false }))
+        }
+      }, 3000)
+    }
+
+    return (
+      <div className="max-w-2xl mx-auto">
+        <div className="mb-6">
+          <div className="flex justify-between items-center bg-slate-800 rounded-lg p-4">
+            <div className="text-center">
+              <div className="text-blue-400 font-bold">Du</div>
+              <div className="text-2xl font-bold text-slate-100">{playerScore}</div>
+            </div>
+            <Sword className="w-8 h-8 text-red-400" />
+            <div className="text-center">
+              <div className="text-red-400 font-bold">Gegner</div>
+              <div className="text-2xl font-bold text-slate-100">{opponentScore}</div>
+            </div>
+          </div>
+        </div>
+
+        {phase === 'waiting' && (
+          <div className="text-center">
+            <Users className="w-16 h-16 text-cyan-400 mx-auto mb-4" />
+            <h3 className="text-xl font-bold text-slate-100 mb-4">Bereit für das Duell?</h3>
+            <button
+              onClick={startDuel}
+              className="px-8 py-3 bg-cyan-600 hover:bg-cyan-700 text-white font-bold rounded-lg"
+            >
+              Duell starten!
+            </button>
+          </div>
+        )}
+
+        {phase === 'question' && (
+          <div className="bg-slate-800 rounded-lg p-6">
+            <h3 className="text-lg font-bold text-slate-100 mb-4">
+              Frage {currentQuestion + 1}: {question.question}
+            </h3>
+            <div className="space-y-3">
+              {question.options.map((option, index) => (
+                <button
+                  key={index}
+                  onClick={() => handleAnswer(index)}
+                  className="w-full p-3 bg-slate-700 hover:bg-slate-600 text-slate-200 rounded-lg text-left"
+                >
+                  {option}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {phase === 'result' && (
+          <div className="bg-slate-800 rounded-lg p-6 text-center">
+            <h3 className="text-lg font-bold text-slate-100 mb-4">Ergebnis</h3>
+            <div className="space-y-2">
+              <div className={`p-2 rounded ${playerAnswer === question.correct ? 'bg-green-600' : 'bg-red-600'}`}>
+                Du: {question.options[playerAnswer!]} {playerAnswer === question.correct ? '✓' : '✗'}
+              </div>
+              <div className="p-2 rounded bg-slate-700">
+                Gegner antwortet...
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+    )
+  }
+
   const handlePlayGame = (gameId: string) => {
-    alert(`Spiel "${gameId}" wird geladen... (Demo-Modus)`)
+    setGameState({
+      currentGame: gameId,
+      isPlaying: true,
+      score: 0,
+      timeLeft: 60,
+      gameData: {}
+    })
+  }
+
+  const handleBackToMenu = () => {
+    setGameState({
+      currentGame: null,
+      isPlaying: false,
+      score: 0,
+      timeLeft: 0,
+      gameData: {}
+    })
+  }
+
+  // Timer for games that need it
+  useEffect(() => {
+    let interval: NodeJS.Timeout
+    if (gameState.isPlaying && gameState.timeLeft > 0 && ['trivia-rush', 'speed-typing'].includes(gameState.currentGame!)) {
+      interval = setInterval(() => {
+        setGameState(prev => ({
+          ...prev,
+          timeLeft: prev.timeLeft - 1
+        }))
+      }, 1000)
+    }
+    return () => clearInterval(interval)
+  }, [gameState.isPlaying, gameState.timeLeft, gameState.currentGame])
+
+  // End game when timer runs out
+  useEffect(() => {
+    if (gameState.timeLeft === 0 && gameState.isPlaying) {
+      setGameState(prev => ({ ...prev, isPlaying: false }))
+    }
+  }, [gameState.timeLeft, gameState.isPlaying])
+
+  const renderGame = () => {
+    switch (gameState.currentGame) {
+      case 'memory-match':
+        return <MemoryMatchGame />
+      case 'reaction-test':
+        return <ReactionTestGame />
+      case 'trivia-rush':
+        return <TriviaRushGame />
+      case 'speed-typing':
+        return <SpeedTypingGame />
+      case 'sound-guess':
+        return <SoundQuizGame />
+      case 'multiplayer-duel':
+        return <MultiplayerDuelGame />
+      default:
+        return <div className="text-center text-slate-400">Spiel wird geladen...</div>
+    }
+  }
+
+  if (gameState.currentGame) {
+    const game = minigames.find(g => g.id === gameState.currentGame)
+    return (
+      <div className="container mx-auto px-4 py-6">
+        <div className="max-w-4xl mx-auto">
+          {/* Game Header */}
+          <div className="flex items-center justify-between mb-6">
+            <button
+              onClick={handleBackToMenu}
+              className="flex items-center space-x-2 px-4 py-2 bg-slate-700 hover:bg-slate-600 text-slate-200 rounded-lg"
+            >
+              <RotateCcw className="w-4 h-4" />
+              <span>Zurück zum Menü</span>
+            </button>
+            
+            <div className="text-center">
+              <h1 className="text-2xl font-bold text-slate-100">{game?.title}</h1>
+              {['trivia-rush', 'speed-typing'].includes(gameState.currentGame) && gameState.isPlaying && (
+                <div className="flex items-center justify-center space-x-4 mt-2">
+                  <div className="flex items-center space-x-2">
+                    <Clock className="w-4 h-4 text-yellow-400" />
+                    <span className="text-yellow-400 font-bold">{gameState.timeLeft}s</span>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <Trophy className="w-4 h-4 text-green-400" />
+                    <span className="text-green-400 font-bold">{gameState.score}</span>
+                  </div>
+                </div>
+              )}
+            </div>
+            
+            <div className="w-24"></div>
+          </div>
+
+          {/* Game Content */}
+          <div className="bg-slate-900 rounded-lg p-6">
+            {gameState.isPlaying ? renderGame() : (
+              <div className="text-center">
+                <Trophy className="w-16 h-16 text-yellow-400 mx-auto mb-4" />
+                <h2 className="text-2xl font-bold text-slate-100 mb-2">Spiel beendet!</h2>
+                <p className="text-xl text-green-400 mb-4">Dein Score: {gameState.score}</p>
+                <div className="space-x-4">
+                  <button
+                    onClick={() => handlePlayGame(gameState.currentGame!)}
+                    className="px-6 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg"
+                  >
+                    Nochmal spielen
+                  </button>
+                  <button
+                    onClick={handleBackToMenu}
+                    className="px-6 py-2 bg-slate-600 hover:bg-slate-700 text-white rounded-lg"
+                  >
+                    Zurück zum Menü
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    )
   }
 
   return (
@@ -268,6 +941,33 @@ const MinigamesPage: React.FC = () => {
         })}
       </div>
 
+      {/* Community Features Section */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+        <div className="simple-tile text-center py-8">
+          <Trophy className="w-12 h-12 text-yellow-400 mx-auto mb-4" />
+          <h3 className="text-xl font-bold text-slate-100 mb-2">Globale Bestenliste</h3>
+          <p className="text-slate-400 mb-4">
+            Vergleiche deine Scores mit der ganzen Community!
+          </p>
+          <button className="px-6 py-2 bg-yellow-600/20 hover:bg-yellow-600/30 border border-yellow-500/30 
+                           text-yellow-400 hover:text-yellow-300 rounded-lg transition-all duration-200">
+            🏆 Bestenlisten ansehen
+          </button>
+        </div>
+
+        <div className="simple-tile text-center py-8">
+          <Users className="w-12 h-12 text-cyan-400 mx-auto mb-4" />
+          <h3 className="text-xl font-bold text-slate-100 mb-2">Turniere & Events</h3>
+          <p className="text-slate-400 mb-4">
+            Nimm an wöchentlichen Minispiel-Turnieren teil!
+          </p>
+          <button className="px-6 py-2 bg-cyan-600/20 hover:bg-cyan-600/30 border border-cyan-500/30 
+                           text-cyan-400 hover:text-cyan-300 rounded-lg transition-all duration-200">
+            🎯 Aktuelle Turniere
+          </button>
+        </div>
+      </div>
+
       {/* Coming Soon Section */}
       <div className="simple-tile text-center py-8">
         <Star className="w-12 h-12 text-yellow-400 mx-auto mb-4" />
@@ -275,10 +975,16 @@ const MinigamesPage: React.FC = () => {
         <p className="text-slate-400 mb-4">
           Wir arbeiten an noch mehr N64-inspirierten Minispielen! Hast du Ideen?
         </p>
-        <button className="px-6 py-2 bg-blue-600/20 hover:bg-blue-600/30 border border-blue-500/30 
-                         text-blue-400 hover:text-blue-300 rounded-lg transition-all duration-200">
-          💡 Spiel vorschlagen
-        </button>
+        <div className="flex justify-center space-x-4">
+          <button className="px-6 py-2 bg-blue-600/20 hover:bg-blue-600/30 border border-blue-500/30 
+                           text-blue-400 hover:text-blue-300 rounded-lg transition-all duration-200">
+            💡 Spiel vorschlagen
+          </button>
+          <button className="px-6 py-2 bg-purple-600/20 hover:bg-purple-600/30 border border-purple-500/30 
+                           text-purple-400 hover:text-purple-300 rounded-lg transition-all duration-200">
+            🎮 Beta testen
+          </button>
+        </div>
       </div>
 
       {/* Footer */}
