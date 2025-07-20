@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { 
   Trophy, 
   Clock, 
@@ -49,6 +49,7 @@ interface Event {
   leaderboard: LeaderboardEntry[];
   teams?: Team[];
   maxTeamSize?: number;
+  endTime?: string; // ISO string for countdown
 }
 
 interface LeaderboardEntry {
@@ -68,10 +69,72 @@ export default function Events() {
   const [activeEvent, setActiveEvent] = useState<Event | null>(null);
   const [showTeamCreation, setShowTeamCreation] = useState(false);
   const [newTeamName, setNewTeamName] = useState('');
+  const [currentTime, setCurrentTime] = useState(new Date());
+
+  // Update current time every second for countdown
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentTime(new Date());
+    }, 1000);
+    return () => clearInterval(timer);
+  }, []);
+
+  // Helper function to calculate time remaining
+  const getTimeRemaining = (endTime: string) => {
+    const end = new Date(endTime);
+    const now = currentTime;
+    const diff = end.getTime() - now.getTime();
+    
+    if (diff <= 0) return null;
+    
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+    
+    return { days, hours, minutes, seconds };
+  };
+
+  // Format countdown display
+  const formatCountdown = (timeRemaining: { days: number; hours: number; minutes: number; seconds: number } | null) => {
+    if (!timeRemaining) return 'Event beendet';
+    
+    const { days, hours, minutes, seconds } = timeRemaining;
+    
+    if (days > 0) {
+      return `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    } else if (hours > 0) {
+      return `${hours}h ${minutes}m ${seconds}s`;
+    } else {
+      return `${minutes}m ${seconds}s`;
+    }
+  };
 
   const events: Event[] = [
     {
       id: 1,
+      title: "Mario Kart 64 Grand Prix Championship",
+      game: "Mario Kart 64",
+      region: "PAL",
+      startTime: "Jetzt live!",
+      duration: "3 Stunden",
+      participants: 32,
+      status: "live",
+      type: "individual",
+      endTime: new Date(Date.now() + 2 * 60 * 60 * 1000).toISOString(), // Event ends in 2 hours
+      leaderboard: [
+        { id: 1, username: "KartMaster64", time: "1:52:34", region: "PAL", rank: 1, avatar: "🏎️" },
+        { id: 2, username: "RainbowRacer", time: "1:53:12", region: "PAL", rank: 2, avatar: "🌈" },
+        { id: 3, username: "ShellShooter", time: "1:54:45", region: "PAL", rank: 3, avatar: "🐢" },
+        { id: 4, username: "DriftKing", time: "1:55:23", region: "PAL", rank: 4, avatar: "💨" },
+        { id: 5, username: "BowserSlayer", time: "1:56:78", region: "PAL", rank: 5, avatar: "👑" },
+        { id: 6, username: "YoshiRider", time: "1:57:45", region: "PAL", rank: 6, avatar: "🦕" },
+        { id: 7, username: "PeachSpeedster", time: "1:58:12", region: "PAL", rank: 7, avatar: "👸" },
+        { id: 8, username: "ToadRacer", time: "1:59:34", region: "PAL", rank: 8, avatar: "🍄" },
+      ]
+    },
+    {
+      id: 2,
       title: "Super Mario 64 Speedrun",
       game: "Super Mario 64",
       region: "PAL",
@@ -89,7 +152,42 @@ export default function Events() {
       ]
     },
     {
-      id: 2,
+      id: 3,
+      title: "Mario Kart 64 Team Battle Royale",
+      game: "Mario Kart 64",
+      region: "NTSC",
+      startTime: "Sonntag, 18:00 Uhr",
+      duration: "2 Stunden",
+      participants: 20,
+      status: "upcoming",
+      type: "team",
+      endTime: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(), // Event starts in 24 hours
+      maxTeamSize: 4,
+      leaderboard: [],
+      teams: [
+        {
+          id: 1,
+          name: "Speed Demons",
+          logo: "🏎️",
+          members: [
+            { id: 1, username: "MarioRacer", avatar: "🍄" },
+            { id: 2, username: "LuigiDrifter", avatar: "👻" },
+            { id: 3, username: "ToadSpeed", avatar: "🐢" }
+          ]
+        },
+        {
+          id: 2,
+          name: "Kart Kings",
+          logo: "👑",
+          members: [
+            { id: 4, username: "BowserBoss", avatar: "🔥" },
+            { id: 5, username: "YoshiRider", avatar: "🦕" }
+          ]
+        }
+      ]
+    },
+    {
+      id: 4,
       title: "Team Zelda OoT Challenge",
       game: "The Legend of Zelda: Ocarina of Time",
       region: "NTSC",
@@ -123,7 +221,7 @@ export default function Events() {
       ]
     },
     {
-      id: 3,
+      id: 5,
       title: "GoldenEye 007 Agent",
       game: "GoldenEye 007",
       region: "PAL",
@@ -275,6 +373,12 @@ export default function Events() {
                 <div className="flex-1">
                   <div className="flex items-center space-x-2 mb-2">
                     <h3 className="text-xl font-bold text-cyan-300">{event.title}</h3>
+                    {event.game === 'Mario Kart 64' && (
+                      <div className="flex items-center space-x-1 px-2 py-1 bg-gradient-to-r from-red-500/20 to-blue-500/20 rounded-full text-xs text-red-300 border border-red-500/30 animate-pulse">
+                        <span>🏎️</span>
+                        <span>MARIO KART</span>
+                      </div>
+                    )}
                     {event.type === 'team' && (
                       <div className="flex items-center space-x-1 px-2 py-1 bg-purple-500/20 rounded-full text-xs text-purple-300">
                         <Users className="w-3 h-3" />
@@ -309,6 +413,30 @@ export default function Events() {
                   <span className="text-sm text-gray-300">{event.region}</span>
                 </div>
               </div>
+
+              {/* Countdown Timer */}
+              {event.endTime && (
+                <div className="mb-6 p-4 bg-gradient-to-r from-red-500/20 to-orange-500/20 rounded-lg border border-red-500/30">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center space-x-2">
+                      <Clock className="w-5 h-5 text-red-400 animate-pulse" />
+                      <span className="text-sm font-bold text-red-300">
+                        {event.status === 'live' ? 'Event endet in:' : 'Event startet in:'}
+                      </span>
+                    </div>
+                    <div className="text-right">
+                      <div className="text-lg font-mono font-bold text-red-300 animate-pulse">
+                        {formatCountdown(getTimeRemaining(event.endTime))}
+                      </div>
+                      {getTimeRemaining(event.endTime) && (
+                        <div className="text-xs text-red-400/80">
+                          {event.status === 'live' ? 'bis zum Ende' : 'bis zum Start'}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              )}
 
               {/* Team Info */}
               {event.type === 'team' && event.teams && event.teams.length > 0 && (
@@ -400,6 +528,33 @@ export default function Events() {
             </div>
           ))}
         </div>
+
+        {/* Active Event Countdown */}
+        {activeEvent && activeEvent.endTime && (
+          <div className="retro-card mt-8 mb-8">
+            <div className="text-center">
+              <h2 className="text-2xl font-bold mb-4 text-cyan-300">
+                🏁 {activeEvent.title}
+              </h2>
+              <div className="bg-gradient-to-r from-red-500/30 to-orange-500/30 rounded-lg p-6 border border-red-500/40">
+                <div className="flex items-center justify-center mb-4">
+                  <Clock className="w-8 h-8 text-red-400 animate-pulse mr-3" />
+                  <span className="text-xl font-bold text-red-300">
+                    {activeEvent.status === 'live' ? 'Event endet in:' : 'Event startet in:'}
+                  </span>
+                </div>
+                <div className="text-4xl font-mono font-bold text-red-300 animate-pulse mb-2">
+                  {formatCountdown(getTimeRemaining(activeEvent.endTime))}
+                </div>
+                {getTimeRemaining(activeEvent.endTime) && (
+                  <div className="text-sm text-red-400/80">
+                    {activeEvent.status === 'live' ? 'Bis zum Ende des Events' : 'Bis zum Start des Events'}
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* Live Leaderboard */}
         {activeEvent && activeEvent.status === 'live' && (
