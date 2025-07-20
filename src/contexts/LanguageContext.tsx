@@ -109,6 +109,13 @@ const translations = {
     'common.ok': 'OK',
     'common.retry': 'Wiederholen',
     
+    // Error messages
+    'error.boundary.title': 'Oops! Etwas ist schiefgelaufen',
+    'error.boundary.message': 'Es ist ein unerwarteter Fehler aufgetreten. Bitte versuche es erneut.',
+    'error.boundary.retry': 'Erneut versuchen',
+    'error.boundary.home': 'Zur Startseite',
+    'error.boundary.details': 'Technische Details (nur in Entwicklung)',
+
     // Authentication
     'auth.login': 'Anmelden',
     'auth.logout': 'Abmelden',
@@ -446,6 +453,13 @@ const translations = {
     'common.ok': 'OK',
     'common.retry': 'Retry',
     
+    // Error messages
+    'error.boundary.title': 'Oops! Something went wrong',
+    'error.boundary.message': 'An unexpected error occurred. Please try again.',
+    'error.boundary.retry': 'Try again',
+    'error.boundary.home': 'Go to Home',
+    'error.boundary.details': 'Technical details (development only)',
+
     // Authentication
     'auth.login': 'Login',
     'auth.logout': 'Logout',
@@ -1137,7 +1151,9 @@ const translations = {
     'language.chinese': 'Cinese',
     'language.japanese': 'Giapponese',
     'language.russian': 'Russo',
-    'language.portuguese': 'Portoghese'
+    'language.portuguese': 'Portoghese',
+    'language.hindi': 'Hindi',
+    'language.arabic': 'Arabo'
   },
 
   es: {
@@ -1242,7 +1258,9 @@ const translations = {
     'language.chinese': 'Chino',
     'language.japanese': 'Japonés',
     'language.russian': 'Ruso',
-    'language.portuguese': 'Portugués'
+    'language.portuguese': 'Portugués',
+    'language.hindi': 'Hindi',
+    'language.arabic': 'Árabe'
   },
 
   el: {
@@ -1347,7 +1365,9 @@ const translations = {
     'language.chinese': 'Κινεζικά',
     'language.japanese': 'Ιαπωνικά',
     'language.russian': 'Ρωσικά',
-    'language.portuguese': 'Πορτογαλικά'
+    'language.portuguese': 'Πορτογαλικά',
+    'language.hindi': 'Χίντι',
+    'language.arabic': 'Αραβικά'
   },
 
   tr: {
@@ -1452,7 +1472,9 @@ const translations = {
     'language.chinese': 'Çince',
     'language.japanese': 'Japonca',
     'language.russian': 'Rusça',
-    'language.portuguese': 'Portekizce'
+    'language.portuguese': 'Portekizce',
+    'language.hindi': 'Hintçe',
+    'language.arabic': 'Arapça'
   },
 
   zh: {
@@ -1557,7 +1579,9 @@ const translations = {
     'language.chinese': '中文',
     'language.japanese': '日语',
     'language.russian': '俄语',
-    'language.portuguese': '葡萄牙语'
+    'language.portuguese': '葡萄牙语',
+    'language.hindi': '印地语',
+    'language.arabic': '阿拉伯语'
   },
 
   ja: {
@@ -1662,7 +1686,9 @@ const translations = {
     'language.chinese': '中国語',
     'language.japanese': '日本語',
     'language.russian': 'ロシア語',
-    'language.portuguese': 'ポルトガル語'
+    'language.portuguese': 'ポルトガル語',
+    'language.hindi': 'ヒンディー語',
+    'language.arabic': 'アラビア語'
   },
 
   ru: {
@@ -1769,7 +1795,9 @@ const translations = {
     'language.chinese': 'Китайский',
     'language.japanese': 'Японский',
     'language.russian': 'Русский',
-    'language.portuguese': 'Португальский'
+    'language.portuguese': 'Португальский',
+    'language.hindi': 'Хинди',
+    'language.arabic': 'Арабский'
   },
 
   pt: {

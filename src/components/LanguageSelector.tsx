@@ -16,7 +16,9 @@ const LanguageSelector: React.FC = () => {
     { code: 'zh' as Language, name: t('language.chinese'), flag: '🇨🇳' },
     { code: 'ja' as Language, name: t('language.japanese'), flag: '🇯🇵' },
     { code: 'ru' as Language, name: t('language.russian'), flag: '🇷🇺' },
-    { code: 'pt' as Language, name: t('language.portuguese'), flag: '🇵🇹' }
+    { code: 'pt' as Language, name: t('language.portuguese'), flag: '🇵🇹' },
+    { code: 'hi' as Language, name: t('language.hindi'), flag: '🇮🇳' },
+    { code: 'ar' as Language, name: t('language.arabic'), flag: '🇸🇦' }
   ]
 
   const currentFlag = languages.find(lang => lang.code === currentLanguage)?.flag || '🇩🇪'
