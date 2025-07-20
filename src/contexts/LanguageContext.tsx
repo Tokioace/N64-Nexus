@@ -40,6 +40,23 @@ const translations = {
     'nav.friends': 'Freunde',
     'nav.fanart': 'Fanart',
     'nav.news': 'News',
+    'nav.media': 'Media',
+    
+    // Home Screen
+    'home.subtitle': 'Die N64-Community für Millennials',
+    'home.welcome': 'Willkommen zurück',
+    'home.quiz.subtitle': 'N64 Wissen',
+    'home.events.subtitle': 'Turniere',
+    'home.media.subtitle': 'Speedruns',
+    'home.collector.subtitle': 'Kollektion',
+    'home.forum.subtitle': 'Community',
+    'home.profile.subtitle': 'Mein Account',
+    'home.leaderboard.subtitle': 'Top Spieler',
+    'home.minigames.subtitle': 'Spaß',
+    'home.footer.retro': 'Retro neu entfacht',
+    'home.footer.n64': 'Für die N64-Generation',
+    'home.footer.classic': 'Zur klassischen Ansicht mit News Feed',
+    'home.footer.tagline': 'Battle64 - Wo Nostalgie auf Community trifft',
     
     // Common
     'common.welcome': 'Willkommen',
@@ -85,6 +102,8 @@ const translations = {
     'events.completed': 'Abgeschlossene Events',
     'events.participate': 'Teilnehmen',
     'events.details': 'Details',
+    'events.noActive': 'Keine aktiven Events',
+    'events.viewAll': 'Alle Events anzeigen',
     
     // Forum
     'forum.title': 'Community Forum',
@@ -118,6 +137,23 @@ const translations = {
     'nav.friends': 'Friends',
     'nav.fanart': 'Fan Art',
     'nav.news': 'News',
+    'nav.media': 'Media',
+    
+    // Home Screen
+    'home.subtitle': 'The N64 Community for Millennials',
+    'home.welcome': 'Welcome back',
+    'home.quiz.subtitle': 'N64 Knowledge',
+    'home.events.subtitle': 'Tournaments',
+    'home.media.subtitle': 'Speedruns',
+    'home.collector.subtitle': 'Collection',
+    'home.forum.subtitle': 'Community',
+    'home.profile.subtitle': 'My Account',
+    'home.leaderboard.subtitle': 'Top Players',
+    'home.minigames.subtitle': 'Fun',
+    'home.footer.retro': 'Retro Reimagined',
+    'home.footer.n64': 'For the N64 Generation',
+    'home.footer.classic': 'Go to Classic View with News Feed',
+    'home.footer.tagline': 'Battle64 - Where Nostalgia Meets Community',
     
     // Common
     'common.welcome': 'Welcome',
@@ -163,6 +199,8 @@ const translations = {
     'events.completed': 'Completed Events',
     'events.participate': 'Participate',
     'events.details': 'Details',
+    'events.noActive': 'No active events',
+    'events.viewAll': 'View all events',
     
     // Forum
     'forum.title': 'Community Forum',
@@ -196,6 +234,23 @@ const translations = {
     'nav.friends': 'Amis',
     'nav.fanart': 'Art de Fan',
     'nav.news': 'Actualités',
+    'nav.media': 'Médias',
+    
+    // Home Screen
+    'home.subtitle': 'La Communauté N64 pour les Millennials',
+    'home.welcome': 'Bon retour',
+    'home.quiz.subtitle': 'Connaissances N64',
+    'home.events.subtitle': 'Tournois',
+    'home.media.subtitle': 'Speedruns',
+    'home.collector.subtitle': 'Collection',
+    'home.forum.subtitle': 'Communauté',
+    'home.profile.subtitle': 'Mon Compte',
+    'home.leaderboard.subtitle': 'Meilleurs Joueurs',
+    'home.minigames.subtitle': 'Amusement',
+    'home.footer.retro': 'Rétro Réinventé',
+    'home.footer.n64': 'Pour la Génération N64',
+    'home.footer.classic': 'Aller à la Vue Classique avec Flux d\'Actualités',
+    'home.footer.tagline': 'Battle64 - Où la Nostalgie Rencontre la Communauté',
     
     // Common
     'common.welcome': 'Bienvenue',
@@ -241,6 +296,8 @@ const translations = {
     'events.completed': 'Événements Terminés',
     'events.participate': 'Participer',
     'events.details': 'Détails',
+    'events.noActive': 'Aucun événement actif',
+    'events.viewAll': 'Voir tous les événements',
     
     // Forum
     'forum.title': 'Forum Communautaire',
