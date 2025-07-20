@@ -46,7 +46,7 @@ const ProfilePage: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'overview' | 'achievements' | 'stats' | 'collection' | 'records'>('overview')
   const [isEditing, setIsEditing] = useState(false)
 
-  const isOwnProfile = !userId || (user && userId === user.id)
+  const isOwnProfile = Boolean(!userId || (user && userId === user.id))
 
   // Redirect to login if not authenticated
   useEffect(() => {

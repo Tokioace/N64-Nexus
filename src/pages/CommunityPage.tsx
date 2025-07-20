@@ -233,7 +233,11 @@ const CommunityPage: React.FC = () => {
 
               {/* Bio Preview */}
               {user.bio && (
-                <p className="text-sm text-slate-300 line-clamp-2 mb-4">
+                <p className="text-sm text-slate-300 mb-4 overflow-hidden" style={{ 
+                  display: '-webkit-box', 
+                  WebkitLineClamp: 2, 
+                  WebkitBoxOrient: 'vertical' 
+                }}>
                   {user.bio}
                 </p>
               )}
