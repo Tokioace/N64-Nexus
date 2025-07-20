@@ -110,10 +110,15 @@ export default function Home() {
             <div className="retro-card max-w-2xl mx-auto">
               <div className="flex items-center justify-center mb-6">
                 <Calendar className="w-8 h-8 text-cyan-400 mr-3" />
-                <span className="text-xl font-bold text-cyan-300">Nächster Event</span>
+                <span className="text-xl font-bold text-cyan-300">🔥 Jetzt Live!</span>
               </div>
-              <h3 className="text-2xl font-bold mb-4">Super Mario 64 Speedrun</h3>
-              <p className="text-gray-300 mb-6">Samstag, 20:00 Uhr • Live-Bestenliste • Community-Chat</p>
+              <div className="flex items-center justify-center mb-4">
+                <h3 className="text-2xl font-bold mr-3">🏎️ Mario Kart 64 Grand Prix Championship</h3>
+                <div className="flex items-center space-x-1 px-3 py-1 bg-gradient-to-r from-red-500/20 to-blue-500/20 rounded-full text-xs text-red-300 border border-red-500/30 animate-pulse">
+                  <span>LIVE</span>
+                </div>
+              </div>
+              <p className="text-gray-300 mb-6">Jetzt aktiv • 32 Teilnehmer • Live-Bestenliste • Event endet bald!</p>
               <div className="flex justify-center gap-4">
                 <button className="neon-button">
                   <Target className="w-5 h-5 mr-2" />
