@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useLanguage } from '../contexts/LanguageContext'
 import { 
   X, 
   Camera, 
@@ -37,6 +38,7 @@ const RaceSubmissionModal: React.FC<RaceSubmissionModalProps> = ({
   eventTitle,
   onSubmit
 }) => {
+  const { t } = useLanguage()
   const [documentationType, setDocumentationType] = useState<DocumentationType>('photo')
   const [raceTime, setRaceTime] = useState('')
   const [mediaFile, setMediaFile] = useState<File | null>(null)
@@ -50,7 +52,7 @@ const RaceSubmissionModal: React.FC<RaceSubmissionModalProps> = ({
     if (file) {
       // Validate file size (max 50MB)
       if (file.size > 50 * 1024 * 1024) {
-        setError('Datei ist zu groß. Maximum 50MB erlaubt.')
+        setError(t('events.fileTooBig'))
         return
       }
       
@@ -60,7 +62,7 @@ const RaceSubmissionModal: React.FC<RaceSubmissionModalProps> = ({
         : ['video/mp4', 'video/webm', 'video/avi', 'video/mov']
       
       if (!allowedTypes.includes(file.type)) {
-        setError(`Ungültiger Dateityp. Erlaubt: ${allowedTypes.join(', ')}`)
+        setError(t('events.invalidFileType'))
         return
       }
       
@@ -117,7 +119,7 @@ const RaceSubmissionModal: React.FC<RaceSubmissionModalProps> = ({
         setDocumentationType('photo')
         onClose()
       } else {
-        setError('Fehler beim Übermitteln der Zeit. Bitte versuche es erneut.')
+        setError(t('events.uploadError'))
       }
     } catch (err) {
       console.error('Submission error:', err)
@@ -161,7 +163,7 @@ const RaceSubmissionModal: React.FC<RaceSubmissionModalProps> = ({
           <div>
             <h2 className="text-2xl font-bold text-slate-100 flex items-center">
               <Trophy className="w-6 h-6 text-yellow-400 mr-2" />
-              Zeit Einreichen
+              {t('events.raceSubmission')}
             </h2>
             <p className="text-slate-400 mt-1">{eventTitle}</p>
           </div>
@@ -178,7 +180,7 @@ const RaceSubmissionModal: React.FC<RaceSubmissionModalProps> = ({
           <div>
             <label className="block text-sm font-medium text-slate-200 mb-2">
               <Clock className="w-4 h-4 inline mr-2" />
-              Deine Rundenzeit
+              {t('events.raceTime')}
             </label>
             <input
               type="text"
@@ -190,14 +192,14 @@ const RaceSubmissionModal: React.FC<RaceSubmissionModalProps> = ({
                        focus:ring-1 focus:ring-blue-400"
             />
             <p className="text-xs text-slate-400 mt-1">
-              Format: MM:SS.mmm (z.B. 1:32.456 für 1 Minute, 32 Sekunden und 456 Millisekunden)
+              {t('events.timeFormat')}
             </p>
           </div>
 
           {/* Documentation Type Selection */}
           <div>
             <label className="block text-sm font-medium text-slate-200 mb-3">
-              Wie möchtest du deine Zeit dokumentieren?
+              {t('events.selectDocumentation')}
             </label>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
               {documentationOptions.map((option) => (
@@ -312,7 +314,7 @@ const RaceSubmissionModal: React.FC<RaceSubmissionModalProps> = ({
               className="flex-1 px-6 py-3 bg-slate-700 hover:bg-slate-600 text-slate-200 
                        font-medium rounded-lg transition-colors"
             >
-              Abbrechen
+              {t('common.cancel')}
             </button>
             <button
               type="submit"
@@ -324,10 +326,10 @@ const RaceSubmissionModal: React.FC<RaceSubmissionModalProps> = ({
               {isSubmitting ? (
                 <>
                   <div className="animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent mr-2"></div>
-                  Wird übermittelt...
+                  {t('common.loading')}
                 </>
               ) : (
-                'Zeit Einreichen'
+                t('events.submitTime')
               )}
             </button>
           </div>

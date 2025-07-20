@@ -89,7 +89,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen = false, onClose }) => {
               className="w-full flex items-center gap-3 px-4 py-3 text-slate-300 hover:text-slate-100 hover:bg-slate-700 rounded-lg transition-colors"
             >
               <LogOut className="w-5 h-5" />
-              <span>Abmelden</span>
+              <span>{t('auth.logout')}</span>
             </button>
           ) : (
             <Link

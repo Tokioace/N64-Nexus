@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, useNavigate, Link } from 'react-router-dom'
 import { useUser } from '../contexts/UserContext'
+import { useLanguage } from '../contexts/LanguageContext'
 import { User } from '../types'
 import UserCollectionManager from '../components/UserCollectionManager'
 import PersonalRecordsManager from '../components/PersonalRecordsManager'
@@ -40,6 +41,7 @@ interface GameStats {
 const ProfilePage: React.FC = () => {
   const { userId } = useParams<{ userId: string }>()
   const { user, isAuthenticated, getUserProfile } = useUser()
+  const { t } = useLanguage()
   const navigate = useNavigate()
   const [profileUser, setProfileUser] = useState<User | null>(null)
   const [loading, setLoading] = useState(false)
@@ -90,17 +92,17 @@ const ProfilePage: React.FC = () => {
         <div className="simple-tile text-center py-12">
           <LogIn className="w-16 h-16 text-slate-600 mx-auto mb-4" />
           <h2 className="text-2xl font-bold text-slate-100 mb-4">
-            Anmeldung erforderlich
+            {t('auth.loginRequired')}
           </h2>
           <p className="text-slate-400 mb-6">
-            Du musst angemeldet sein, um Profile zu sehen.
+            {t('auth.loginRequiredMessage')}
           </p>
           <Link
             to="/auth"
             className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors"
           >
             <LogIn className="w-5 h-5" />
-            Jetzt anmelden
+            {t('auth.login')}
           </Link>
         </div>
       </div>
@@ -112,7 +114,7 @@ const ProfilePage: React.FC = () => {
       <div className="container mx-auto px-4 py-6">
         <div className="simple-tile text-center py-12">
           <div className="animate-spin w-8 h-8 border-2 border-blue-600 border-t-transparent rounded-full mx-auto mb-4"></div>
-          <p className="text-slate-400">Profil wird geladen...</p>
+          <p className="text-slate-400">{t('common.loading')}</p>
         </div>
       </div>
     )
@@ -254,7 +256,7 @@ const ProfilePage: React.FC = () => {
             <div className="flex items-center gap-4 text-slate-400 mb-4">
               <div className="flex items-center gap-1">
                 <Trophy className="w-4 h-4" />
-                <span>Level {profileUser.level}</span>
+                <span>{t('profile.level')} {profileUser.level}</span>
               </div>
               <div className="flex items-center gap-1">
                 <Star className="w-4 h-4" />
@@ -262,7 +264,7 @@ const ProfilePage: React.FC = () => {
               </div>
               <div className="flex items-center gap-1">
                 <Calendar className="w-4 h-4" />
-                <span>Seit {profileUser.joinDate.toLocaleDateString('de-DE')}</span>
+                <span>{t('profile.joinDate')} {profileUser.joinDate.toLocaleDateString()}</span>
               </div>
               {profileUser.location && (
                 <div className="flex items-center gap-1">
@@ -284,19 +286,19 @@ const ProfilePage: React.FC = () => {
                 <div className="text-xl font-bold text-blue-400">
                   {profileUser.collections.filter(c => !c.isWishlist).length}
                 </div>
-                <div className="text-slate-400">Sammlung</div>
+                <div className="text-slate-400">{t('profile.collection')}</div>
               </div>
               <div className="text-center">
                 <div className="text-xl font-bold text-green-400">
                   {profileUser.personalRecords.filter(r => r.verified).length}
                 </div>
-                <div className="text-slate-400">Rekorde</div>
+                <div className="text-slate-400">{t('profile.records')}</div>
               </div>
               <div className="text-center">
                 <div className="text-xl font-bold text-purple-400">
                   {achievements.filter(a => a.earned).length}
                 </div>
-                <div className="text-slate-400">Erfolge</div>
+                <div className="text-slate-400">{t('profile.achievements')}</div>
               </div>
             </div>
           </div>
@@ -324,7 +326,7 @@ const ProfilePage: React.FC = () => {
               : 'text-slate-400 hover:text-slate-200'
           }`}
         >
-          Übersicht
+                            {t('profile.overview')}
         </button>
         <button
           onClick={() => setActiveTab('collection')}
@@ -334,7 +336,7 @@ const ProfilePage: React.FC = () => {
               : 'text-slate-400 hover:text-slate-200'
           }`}
         >
-          Sammlung
+          {t('profile.collection')}
         </button>
         <button
           onClick={() => setActiveTab('records')}
@@ -344,7 +346,7 @@ const ProfilePage: React.FC = () => {
               : 'text-slate-400 hover:text-slate-200'
           }`}
         >
-          Rekorde
+          {t('profile.records')}
         </button>
         <button
           onClick={() => setActiveTab('achievements')}
@@ -354,7 +356,7 @@ const ProfilePage: React.FC = () => {
               : 'text-slate-400 hover:text-slate-200'
           }`}
         >
-          Erfolge
+          {t('profile.achievements')}
         </button>
         <button
           onClick={() => setActiveTab('stats')}
@@ -364,7 +366,7 @@ const ProfilePage: React.FC = () => {
               : 'text-slate-400 hover:text-slate-200'
           }`}
         >
-          Statistiken
+          {t('profile.statistics')}
         </button>
       </div>
 
@@ -375,7 +377,7 @@ const ProfilePage: React.FC = () => {
             {/* Recent Achievements */}
             <div className="simple-tile p-6">
               <h3 className="text-xl font-bold text-slate-100 mb-4">
-                Neueste Erfolge
+                {t('profile.achievements')}
               </h3>
               <div className="space-y-3">
                 {achievements.filter(a => a.earned).slice(0, 3).map(achievement => (
@@ -402,7 +404,7 @@ const ProfilePage: React.FC = () => {
             {/* Recent Records */}
             <div className="simple-tile p-6">
               <h3 className="text-xl font-bold text-slate-100 mb-4">
-                Neueste Rekorde
+                {t('profile.records')}
               </h3>
               <div className="space-y-3">
                 {profileUser.personalRecords.slice(0, 3).map(record => (
@@ -418,7 +420,7 @@ const ProfilePage: React.FC = () => {
                         {record.category}
                       </div>
                       <div className="text-sm text-blue-400">
-                        {record.time || `${record.score?.toLocaleString()} Punkte`}
+                        {record.time || `${record.score?.toLocaleString()} ${t('profile.points')}`}
                       </div>
                     </div>
                     {record.verified && (

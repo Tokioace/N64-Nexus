@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useEvent } from '../contexts/EventContext'
 import { useUser } from '../contexts/UserContext'
+import { useLanguage } from '../contexts/LanguageContext'
 import RaceSubmissionModal, { RaceSubmissionData } from '../components/RaceSubmissionModal'
 import EventLeaderboard from '../components/EventLeaderboard'
 import { 
@@ -24,6 +25,7 @@ import {
 const EventsPage: React.FC = () => {
   const { events, activeEvents, joinEvent, leaveEvent, loading, userParticipations, submitRaceTime, getLeaderboard } = useEvent()
   const { user } = useUser()
+  const { t } = useLanguage()
   const [selectedTab, setSelectedTab] = useState<'active' | 'upcoming' | 'completed'>('active')
   const [selectedEvent, setSelectedEvent] = useState<string | null>(null)
   const [notificationsEnabled, setNotificationsEnabled] = useState(false)
@@ -49,15 +51,15 @@ const EventsPage: React.FC = () => {
     const endDate = new Date(event.endDate)
     const timeLeft = endDate.getTime() - now.getTime()
     
-    if (timeLeft <= 0) return 'Beendet'
+    if (timeLeft <= 0) return t('events.ended')
     
     const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24))
     const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
     const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60))
     
-    if (days > 0) return `${days}d ${hours}h verbleibend`
-    if (hours > 0) return `${hours}h ${minutes}m verbleibend`
-    return `${minutes}m verbleibend`
+    if (days > 0) return `${days}d ${hours}h ${t('time.remaining')}`
+    if (hours > 0) return `${hours}h ${minutes}m ${t('time.remaining')}`
+    return `${minutes}m ${t('time.remaining')}`
   }
 
   const isUserParticipating = (eventId: string) => {
@@ -71,7 +73,7 @@ const EventsPage: React.FC = () => {
 
   const handleJoinEvent = async (eventId: string) => {
     if (!user) {
-      alert('Bitte logge dich ein, um an Events teilzunehmen!')
+      alert(t('auth.loginRequiredForEvents'))
       return
     }
 
@@ -85,7 +87,7 @@ const EventsPage: React.FC = () => {
     const currentUser = { id: user.id, username: user.username }
     const success = await joinEvent(eventId, currentUser)
     if (success) {
-      alert('Erfolgreich zum Event angemeldet! Du kannst jetzt deine Zeit einreichen.')
+      alert(t('events.joinSuccess'))
       // Automatically show submission modal after joining
       setShowSubmissionModal(eventId)
     }
@@ -104,7 +106,7 @@ const EventsPage: React.FC = () => {
       // Show leaderboard after successful submission
       setShowLeaderboard(data.eventId)
       console.log('EventsPage: Showing success alert')
-      alert('Zeit erfolgreich eingereicht! 🏁')
+      alert(t('events.submissionSuccess'))
     } else {
       console.log('EventsPage: Submission failed')
     }
