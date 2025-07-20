@@ -12,9 +12,14 @@ import {
   Calendar,
   Target
 } from 'lucide-react';
+import Events from '@/components/Events';
 
 export default function Home() {
-  const [activeFeature, setActiveFeature] = useState(0);
+  const [showEvents, setShowEvents] = useState(false);
+
+  if (showEvents) {
+    return <Events />;
+  }
 
   const features = [
     {
@@ -66,36 +71,29 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-6xl md:text-8xl font-bold mb-6 neon-text">
-              BATTLE64
-            </h1>
+            <h1 className="text-6xl md:text-8xl font-bold mb-6 neon-text">BATTLE64</h1>
             <p className="text-xl md:text-2xl mb-8 text-cyan-300">
               Retro neu entfacht • Die N64-Community für Millennials
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="neon-button">
-                Jetzt Registrieren
-              </button>
-              <button className="retro-card hover:scale-105 transition-transform">
-                Mehr Erfahren
-              </button>
+              <button className="neon-button">Jetzt Registrieren</button>
+              <button className="retro-card hover:scale-105 transition-transform">Mehr Erfahren</button>
             </div>
           </motion.div>
         </div>
       </section>
 
-      {/* Features Grid */}
+      {/* Features Section */}
       <section className="py-20 px-4">
         <div className="container mx-auto">
           <motion.h2 
             className="text-4xl font-bold text-center mb-16 neon-text"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.8 }}
           >
             Features
           </motion.h2>
-          
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {features.map((feature, index) => (
               <motion.div
@@ -105,7 +103,7 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 whileHover={{ scale: 1.05 }}
-                onClick={() => setActiveFeature(index)}
+                onClick={() => feature.title.includes('Events') && setShowEvents(true)}
               >
                 <div className={`w-16 h-16 rounded-lg bg-gradient-to-r ${feature.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
                   {feature.icon}
@@ -144,12 +142,20 @@ export default function Home() {
                   Chat öffnen
                 </button>
               </div>
+              <div className="mt-6 pt-4 border-t border-gray-700">
+                <button 
+                  onClick={() => setShowEvents(true)}
+                  className="text-cyan-300 hover:text-cyan-100 transition-colors text-sm font-medium"
+                >
+                  Alle Events anzeigen →
+                </button>
+              </div>
             </div>
           </motion.div>
         </div>
       </section>
 
-      {/* Collection Preview */}
+      {/* Collection Section */}
       <section className="py-20 px-4">
         <div className="container mx-auto text-center">
           <motion.div
@@ -159,23 +165,21 @@ export default function Home() {
           >
             <h2 className="text-4xl font-bold mb-8 neon-text">Deine Sammlung</h2>
             <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6 max-w-4xl mx-auto">
-              {[...Array(6)].map((_, i) => (
+              {Array.from({ length: 6 }, (_, i) => (
                 <motion.div
                   key={i}
                   className="retro-card p-4 text-center"
                   initial={{ opacity: 0, scale: 0.8 }}
                   whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.5, delay: i * 0.1 }}
-                  whileHover={{ scale: 1.1 }}
+                  transition={{ duration: 0.3, delay: i * 0.1 }}
+                  whileHover={{ scale: 1.05 }}
                 >
                   <div className="w-12 h-16 bg-gradient-to-b from-yellow-400 to-orange-500 rounded mx-auto mb-2 cartridge-animation"></div>
                   <p className="text-sm text-cyan-300">Spiel {i + 1}</p>
                 </motion.div>
               ))}
             </div>
-            <button className="neon-button mt-8">
-              Sammlung erweitern
-            </button>
+            <button className="neon-button mt-8">Sammlung erweitern</button>
           </motion.div>
         </div>
       </section>
@@ -184,9 +188,7 @@ export default function Home() {
       <footer className="py-12 px-4 border-t border-cyan-500/20">
         <div className="container mx-auto text-center">
           <p className="text-cyan-300 mb-4">Battle64 - Retro neu entfacht</p>
-          <p className="text-gray-400 text-sm">
-            Für Millennials, die mit der N64-Ära aufgewachsen sind
-          </p>
+          <p className="text-gray-400 text-sm">Für Millennials, die mit der N64-Ära aufgewachsen sind</p>
         </div>
       </footer>
     </div>
