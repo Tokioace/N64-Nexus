@@ -103,6 +103,7 @@ export const EventProvider: React.FC<{ children: ReactNode }> = ({ children }) =
   const [events, setEvents] = useState<GameEvent[]>(mockEvents)
   const [activeEvents, setActiveEvents] = useState<GameEvent[]>(mockEvents.filter(e => e.isActive))
   const [userParticipations, setUserParticipations] = useState<EventParticipation[]>(mockParticipations)
+  const [allEventSubmissions, setAllEventSubmissions] = useState<EventParticipation[]>(mockParticipations)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
@@ -238,10 +239,16 @@ export const EventProvider: React.FC<{ children: ReactNode }> = ({ children }) =
         setUserParticipations(prev => 
           prev.map((p, index) => index === existingParticipationIndex ? newParticipation : p)
         )
+        // Also update in all submissions
+        setAllEventSubmissions(prev => 
+          prev.map(p => p.id === newParticipation.id ? newParticipation : p)
+        )
         console.log('Updated existing participation')
       } else {
         // Add new participation
         setUserParticipations(prev => [...prev, newParticipation])
+        // Also add to all submissions
+        setAllEventSubmissions(prev => [...prev, newParticipation])
         console.log('Added new participation')
       }
       
@@ -257,13 +264,33 @@ export const EventProvider: React.FC<{ children: ReactNode }> = ({ children }) =
   }
 
   const getLeaderboard = (eventId: string): EventParticipation[] => {
-    return userParticipations.filter(p => p.eventId === eventId && p.time)
+    return allEventSubmissions.filter(p => p.eventId === eventId && p.time)
+      .sort((a, b) => {
+        // Sort by time (assuming time format like "1:32.456")
+        const parseTime = (timeStr: string) => {
+          const parts = timeStr.split(':')
+          if (parts.length === 2) {
+            return parseFloat(parts[0]) * 60 + parseFloat(parts[1])
+          }
+          return parseFloat(timeStr)
+        }
+        return parseTime(a.time!) - parseTime(b.time!)
+      })
+  }
+
+  const getAllSubmissions = (): EventParticipation[] => {
+    return allEventSubmissions
+  }
+
+  const getSubmissionsByUser = (userId: string): EventParticipation[] => {
+    return allEventSubmissions.filter(p => p.userId === userId)
   }
 
   const value: EventContextType = {
     events,
     activeEvents,
     userParticipations,
+    allEventSubmissions,
     loading,
     error,
     getEvents,
@@ -271,7 +298,9 @@ export const EventProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     leaveEvent,
     submitScore,
     submitRaceTime,
-    getLeaderboard
+    getLeaderboard,
+    getAllSubmissions,
+    getSubmissionsByUser
   }
 
   return (

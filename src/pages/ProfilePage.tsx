@@ -1,7 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { useParams, useNavigate, Link } from 'react-router-dom'
 import { useUser } from '../contexts/UserContext'
+import { User } from '../types'
+import UserCollectionManager from '../components/UserCollectionManager'
+import PersonalRecordsManager from '../components/PersonalRecordsManager'
 import { 
-  User, 
+  User as UserIcon, 
   Trophy, 
   Gamepad2, 
   Calendar,
@@ -9,7 +13,12 @@ import {
   Edit,
   Medal,
   Target,
-  Clock
+  Clock,
+  Package,
+  Star,
+  LogIn,
+  Globe,
+  ArrowLeft
 } from 'lucide-react'
 
 interface Achievement {
@@ -29,20 +38,104 @@ interface GameStats {
 }
 
 const ProfilePage: React.FC = () => {
-  const { user } = useUser()
-  const [activeTab, setActiveTab] = useState<'overview' | 'achievements' | 'stats' | 'collection'>('overview')
+  const { userId } = useParams<{ userId: string }>()
+  const { user, isAuthenticated, getUserProfile } = useUser()
+  const navigate = useNavigate()
+  const [profileUser, setProfileUser] = useState<User | null>(null)
+  const [loading, setLoading] = useState(false)
+  const [activeTab, setActiveTab] = useState<'overview' | 'achievements' | 'stats' | 'collection' | 'records'>('overview')
   const [isEditing, setIsEditing] = useState(false)
 
-  if (!user) {
+  const isOwnProfile = Boolean(!userId || (user && userId === user.id))
+
+  // Redirect to login if not authenticated
+  useEffect(() => {
+    if (!isAuthenticated) {
+      navigate('/auth')
+      return
+    }
+  }, [isAuthenticated, navigate])
+
+  // Load profile data
+  useEffect(() => {
+    const loadProfile = async () => {
+      if (!isAuthenticated) return
+      
+      if (isOwnProfile) {
+        setProfileUser(user)
+      } else if (userId) {
+        setLoading(true)
+        try {
+          const fetchedUser = await getUserProfile(userId)
+          if (fetchedUser) {
+            setProfileUser(fetchedUser)
+          } else {
+            navigate('/profile') // Redirect to own profile if user not found
+          }
+        } catch (error) {
+          console.error('Error loading profile:', error)
+          navigate('/profile')
+        } finally {
+          setLoading(false)
+        }
+      }
+    }
+
+    loadProfile()
+  }, [userId, user, isOwnProfile, isAuthenticated, getUserProfile, navigate])
+
+  if (!isAuthenticated) {
     return (
       <div className="container mx-auto px-4 py-6">
-        <div className="simple-tile text-center">
+        <div className="simple-tile text-center py-12">
+          <LogIn className="w-16 h-16 text-slate-600 mx-auto mb-4" />
           <h2 className="text-2xl font-bold text-slate-100 mb-4">
-            Nicht angemeldet
+            Anmeldung erforderlich
           </h2>
-          <p className="text-slate-400">
-            Du musst angemeldet sein, um dein Profil zu sehen.
+          <p className="text-slate-400 mb-6">
+            Du musst angemeldet sein, um Profile zu sehen.
           </p>
+          <Link
+            to="/auth"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors"
+          >
+            <LogIn className="w-5 h-5" />
+            Jetzt anmelden
+          </Link>
+        </div>
+      </div>
+    )
+  }
+
+  if (loading) {
+    return (
+      <div className="container mx-auto px-4 py-6">
+        <div className="simple-tile text-center py-12">
+          <div className="animate-spin w-8 h-8 border-2 border-blue-600 border-t-transparent rounded-full mx-auto mb-4"></div>
+          <p className="text-slate-400">Profil wird geladen...</p>
+        </div>
+      </div>
+    )
+  }
+
+  if (!profileUser) {
+    return (
+      <div className="container mx-auto px-4 py-6">
+        <div className="simple-tile text-center py-12">
+          <UserIcon className="w-16 h-16 text-slate-600 mx-auto mb-4" />
+          <h2 className="text-2xl font-bold text-slate-100 mb-4">
+            Profil nicht gefunden
+          </h2>
+          <p className="text-slate-400 mb-6">
+            Das angeforderte Profil konnte nicht gefunden werden.
+          </p>
+          <Link
+            to="/profile"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors"
+          >
+            <ArrowLeft className="w-5 h-5" />
+            Zu meinem Profil
+          </Link>
         </div>
       </div>
     )
@@ -54,15 +147,15 @@ const ProfilePage: React.FC = () => {
       name: "Speedrun Master",
       description: "10 Speedruns abgeschlossen",
       icon: "🏃‍♂️",
-      earned: true,
+      earned: profileUser.personalRecords.length >= 5,
       earnedDate: "15. Juli 2024"
     },
     {
       id: 2,
       name: "Community Hero",
-      description: "50 Freunde hinzugefügt",
+      description: "Profil öffentlich gemacht",
       icon: "👥",
-      earned: true,
+      earned: profileUser.isPublic,
       earnedDate: "10. Juli 2024"
     },
     {
@@ -70,7 +163,7 @@ const ProfilePage: React.FC = () => {
       name: "Collector",
       description: "20 Spiele zur Sammlung hinzugefügt",
       icon: "📦",
-      earned: true,
+      earned: profileUser.collections.filter(c => !c.isWishlist).length >= 10,
       earnedDate: "5. Juli 2024"
     },
     {
@@ -79,6 +172,14 @@ const ProfilePage: React.FC = () => {
       description: "Ein Event gewonnen",
       icon: "🏆",
       earned: false
+    },
+    {
+      id: 5,
+      name: "Record Holder",
+      description: "5 verifizierte Rekorde",
+      icon: "⭐",
+      earned: profileUser.personalRecords.filter(r => r.verified).length >= 5,
+      earnedDate: profileUser.personalRecords.filter(r => r.verified).length >= 5 ? "Heute" : undefined
     }
   ]
 
@@ -99,204 +200,285 @@ const ProfilePage: React.FC = () => {
       game: "Mario Kart 64",
       bestTime: "2:08:45",
       completions: 12,
-      personalBest: true
+      personalBest: false
     }
   ]
 
-  const tabs = [
-    { key: 'overview', name: 'Übersicht', icon: <User className="w-4 h-4" /> },
-    { key: 'achievements', name: 'Erfolge', icon: <Trophy className="w-4 h-4" /> },
-    { key: 'stats', name: 'Statistiken', icon: <Target className="w-4 h-4" /> },
-    { key: 'collection', name: 'Sammlung', icon: <Gamepad2 className="w-4 h-4" /> }
-  ]
-
-  const xpToNextLevel = Math.ceil(user.level * 1000)
-  const xpProgress = (user.xp / xpToNextLevel) * 100
-
   return (
-    <div className="container mx-auto px-4 py-6">
+    <div className="container mx-auto px-4 py-6 space-y-6">
+      {/* Back Button for Other Profiles */}
+      {!isOwnProfile && (
+        <div className="flex items-center gap-4">
+          <button
+            onClick={() => navigate(-1)}
+            className="flex items-center gap-2 text-slate-400 hover:text-slate-200 transition-colors"
+          >
+            <ArrowLeft className="w-5 h-5" />
+            Zurück
+          </button>
+        </div>
+      )}
+
       {/* Profile Header */}
-      <div className="simple-tile mb-8">
-        <div className="flex flex-col md:flex-row items-start gap-6">
-          <div className="flex flex-col items-center text-center">
-            <div className="w-24 h-24 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full flex items-center justify-center text-4xl mb-4">
-              {user.avatar || '🎮'}
-            </div>
-            <button 
-              onClick={() => setIsEditing(!isEditing)}
-              className="btn-secondary text-sm"
-            >
-              <Edit className="w-4 h-4 mr-1" />
-              {isEditing ? 'Abbrechen' : 'Bearbeiten'}
-            </button>
+      <div className="simple-tile p-6">
+        <div className="flex items-start gap-6">
+          {/* Avatar */}
+          <div className="w-24 h-24 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full flex items-center justify-center text-4xl">
+            {profileUser.avatar || '🎮'}
           </div>
-          
+
+          {/* User Info */}
           <div className="flex-1">
-            <div className="flex items-center justify-between mb-4">
-              <h1 className="text-3xl font-bold text-slate-100">{user.username}</h1>
-              {isEditing && (
-                <button 
-                  onClick={() => {
-                    // Here you would save the profile changes
-                    setIsEditing(false)
-                  }}
-                  className="btn-primary text-sm"
-                >
-                  Speichern
-                </button>
+            <div className="flex items-center gap-3 mb-2">
+              <h1 className="text-3xl font-bold text-slate-100">
+                {profileUser.username}
+              </h1>
+              <div className="flex items-center gap-2 text-sm">
+                <span className={`px-2 py-1 rounded-full text-xs font-medium ${
+                  profileUser.platform === 'N64' 
+                    ? 'text-blue-400 bg-blue-400/20' 
+                    : 'text-green-400 bg-green-400/20'
+                }`}>
+                  {profileUser.platform}
+                </span>
+                <span className={`px-2 py-1 rounded-full text-xs font-medium ${
+                  profileUser.region === 'PAL' 
+                    ? 'text-purple-400 bg-purple-400/20' 
+                    : 'text-orange-400 bg-orange-400/20'
+                }`}>
+                  {profileUser.region}
+                </span>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-4 text-slate-400 mb-4">
+              <div className="flex items-center gap-1">
+                <Trophy className="w-4 h-4" />
+                <span>Level {profileUser.level}</span>
+              </div>
+              <div className="flex items-center gap-1">
+                <Star className="w-4 h-4" />
+                <span>{profileUser.xp.toLocaleString()} XP</span>
+              </div>
+              <div className="flex items-center gap-1">
+                <Calendar className="w-4 h-4" />
+                <span>Seit {profileUser.joinDate.toLocaleDateString('de-DE')}</span>
+              </div>
+              {profileUser.location && (
+                <div className="flex items-center gap-1">
+                  <MapPin className="w-4 h-4" />
+                  <span>{profileUser.location}</span>
+                </div>
               )}
             </div>
-            
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
+
+            {profileUser.bio && (
+              <p className="text-slate-300 mb-4">
+                {profileUser.bio}
+              </p>
+            )}
+
+            {/* Quick Stats */}
+            <div className="flex gap-6 text-sm">
               <div className="text-center">
-                <div className="text-2xl font-bold text-cyan-300">Level {user.level}</div>
-                <div className="text-sm text-slate-400">Stufe</div>
+                <div className="text-xl font-bold text-blue-400">
+                  {profileUser.collections.filter(c => !c.isWishlist).length}
+                </div>
+                <div className="text-slate-400">Sammlung</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-bold text-yellow-300">{user.xp}</div>
-                <div className="text-sm text-slate-400">XP</div>
+                <div className="text-xl font-bold text-green-400">
+                  {profileUser.personalRecords.filter(r => r.verified).length}
+                </div>
+                <div className="text-slate-400">Rekorde</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-bold text-purple-300">23</div>
-                <div className="text-sm text-slate-400">Spiele</div>
-              </div>
-              <div className="text-center">
-                <div className="text-2xl font-bold text-green-300">47</div>
-                <div className="text-sm text-slate-400">Freunde</div>
-              </div>
-            </div>
-            
-            {/* XP Progress */}
-            <div className="mb-4">
-              <div className="flex justify-between text-sm mb-1">
-                <span className="text-slate-300">XP Progress</span>
-                <span className="text-cyan-300">{user.xp} / {xpToNextLevel} XP</span>
-              </div>
-              <div className="w-full bg-slate-700 rounded-full h-2">
-                <div 
-                  className="bg-gradient-to-r from-cyan-400 to-blue-500 h-2 rounded-full transition-all duration-300"
-                  style={{ width: `${xpProgress}%` }}
-                ></div>
-              </div>
-            </div>
-            
-            <p className="text-slate-300 mb-4">
-              {user.bio || 'Leidenschaftlicher N64-Sammler und Speedrunner.'}
-            </p>
-            
-            <div className="flex items-center gap-4 text-sm text-slate-400">
-              <div className="flex items-center">
-                <MapPin className="w-4 h-4 mr-1" />
-                {user.location || 'Unbekannt'}
-              </div>
-              <div className="flex items-center">
-                <Calendar className="w-4 h-4 mr-1" />
-                Dabei seit {user.joinDate.toLocaleDateString('de-DE', { month: 'long', year: 'numeric' })}
-              </div>
-              <div className="px-2 py-1 bg-cyan-500/20 text-cyan-300 rounded text-xs">
-                {user.region}
+                <div className="text-xl font-bold text-purple-400">
+                  {achievements.filter(a => a.earned).length}
+                </div>
+                <div className="text-slate-400">Erfolge</div>
               </div>
             </div>
           </div>
+
+          {/* Edit Button */}
+          {isOwnProfile && (
+            <button
+              onClick={() => setIsEditing(true)}
+              className="flex items-center gap-2 px-4 py-2 text-slate-300 hover:text-slate-100 hover:bg-slate-700 rounded-lg transition-colors"
+            >
+              <Edit className="w-4 h-4" />
+              Bearbeiten
+            </button>
+          )}
         </div>
       </div>
 
-      {/* Tabs */}
-      <div className="flex flex-wrap gap-2 mb-8">
-        {tabs.map((tab) => (
-          <button
-            key={tab.key}
-            onClick={() => setActiveTab(tab.key as any)}
-            className={`flex items-center space-x-2 px-4 py-2 rounded transition-colors ${
-              activeTab === tab.key
-                ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/30'
-                : 'bg-slate-800/50 text-slate-400 hover:text-cyan-300 hover:bg-cyan-500/10'
-            }`}
-          >
-            {tab.icon}
-            <span>{tab.name}</span>
-          </button>
-        ))}
+      {/* Tab Navigation */}
+      <div className="flex space-x-1 bg-slate-800 rounded-lg p-1">
+        <button
+          onClick={() => setActiveTab('overview')}
+          className={`flex-1 py-2 px-4 rounded-md text-sm font-medium transition-all ${
+            activeTab === 'overview'
+              ? 'bg-blue-600 text-white shadow-lg'
+              : 'text-slate-400 hover:text-slate-200'
+          }`}
+        >
+          Übersicht
+        </button>
+        <button
+          onClick={() => setActiveTab('collection')}
+          className={`flex-1 py-2 px-4 rounded-md text-sm font-medium transition-all ${
+            activeTab === 'collection'
+              ? 'bg-blue-600 text-white shadow-lg'
+              : 'text-slate-400 hover:text-slate-200'
+          }`}
+        >
+          Sammlung
+        </button>
+        <button
+          onClick={() => setActiveTab('records')}
+          className={`flex-1 py-2 px-4 rounded-md text-sm font-medium transition-all ${
+            activeTab === 'records'
+              ? 'bg-blue-600 text-white shadow-lg'
+              : 'text-slate-400 hover:text-slate-200'
+          }`}
+        >
+          Rekorde
+        </button>
+        <button
+          onClick={() => setActiveTab('achievements')}
+          className={`flex-1 py-2 px-4 rounded-md text-sm font-medium transition-all ${
+            activeTab === 'achievements'
+              ? 'bg-blue-600 text-white shadow-lg'
+              : 'text-slate-400 hover:text-slate-200'
+          }`}
+        >
+          Erfolge
+        </button>
+        <button
+          onClick={() => setActiveTab('stats')}
+          className={`flex-1 py-2 px-4 rounded-md text-sm font-medium transition-all ${
+            activeTab === 'stats'
+              ? 'bg-blue-600 text-white shadow-lg'
+              : 'text-slate-400 hover:text-slate-200'
+          }`}
+        >
+          Statistiken
+        </button>
       </div>
 
       {/* Tab Content */}
-      <div className="simple-tile">
+      <div>
         {activeTab === 'overview' && (
-          <div>
-            <h2 className="text-2xl font-bold mb-6 text-slate-100">Profil-Übersicht</h2>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <h3 className="text-lg font-bold text-cyan-300 mb-4">Kürzliche Erfolge</h3>
-                <div className="space-y-3">
-                  {achievements.filter(a => a.earned).slice(0, 3).map((achievement) => (
-                    <div key={achievement.id} className="flex items-center space-x-3 p-3 bg-slate-800/50 rounded">
-                      <span className="text-2xl">{achievement.icon}</span>
-                      <div>
-                        <div className="font-medium text-cyan-300">{achievement.name}</div>
-                        <div className="text-sm text-slate-400">{achievement.earnedDate}</div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-              
-              <div>
-                <h3 className="text-lg font-bold text-cyan-300 mb-4">Beste Zeiten</h3>
-                <div className="space-y-3">
-                  {gameStats.slice(0, 3).map((stat, index) => (
-                    <div key={index} className="flex items-center justify-between p-3 bg-slate-800/50 rounded">
-                      <div>
-                        <div className="font-medium text-cyan-300">{stat.game}</div>
-                        <div className="text-sm text-slate-400">{stat.completions} Läufe</div>
-                      </div>
-                      <div className="text-right">
-                        <div className={`font-bold ${stat.personalBest ? 'text-yellow-300' : 'text-white'}`}>
-                          {stat.bestTime}
-                        </div>
-                        {stat.personalBest && (
-                          <div className="text-xs text-yellow-300 flex items-center">
-                            <Medal className="w-3 h-3 mr-1" />
-                            PB
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {activeTab === 'achievements' && (
-          <div>
-            <h2 className="text-2xl font-bold mb-6 text-slate-100">Erfolge</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {achievements.map((achievement) => (
-                <div 
-                  key={achievement.id}
-                  className={`p-4 rounded border-2 transition-all ${
-                    achievement.earned
-                      ? 'bg-cyan-500/10 border-cyan-500/30'
-                      : 'bg-slate-800/30 border-slate-700 opacity-60'
-                  }`}
-                >
-                  <div className="flex items-start space-x-3">
-                    <span className="text-3xl">{achievement.icon}</span>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {/* Recent Achievements */}
+            <div className="simple-tile p-6">
+              <h3 className="text-xl font-bold text-slate-100 mb-4">
+                Neueste Erfolge
+              </h3>
+              <div className="space-y-3">
+                {achievements.filter(a => a.earned).slice(0, 3).map(achievement => (
+                  <div key={achievement.id} className="flex items-center gap-3 p-3 bg-slate-700/50 rounded-lg">
+                    <div className="text-2xl">{achievement.icon}</div>
                     <div className="flex-1">
-                      <h3 className={`font-bold mb-1 ${achievement.earned ? 'text-cyan-300' : 'text-slate-400'}`}>
+                      <div className="font-medium text-slate-100">
                         {achievement.name}
-                      </h3>
-                      <p className="text-sm text-slate-400 mb-2">{achievement.description}</p>
-                      {achievement.earned && achievement.earnedDate && (
-                        <div className="text-xs text-cyan-300 flex items-center">
-                          <Clock className="w-3 h-3 mr-1" />
+                      </div>
+                      <div className="text-sm text-slate-400">
+                        {achievement.description}
+                      </div>
+                      {achievement.earnedDate && (
+                        <div className="text-xs text-slate-500">
                           {achievement.earnedDate}
                         </div>
                       )}
                     </div>
                   </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Recent Records */}
+            <div className="simple-tile p-6">
+              <h3 className="text-xl font-bold text-slate-100 mb-4">
+                Neueste Rekorde
+              </h3>
+              <div className="space-y-3">
+                {profileUser.personalRecords.slice(0, 3).map(record => (
+                  <div key={record.id} className="flex items-center gap-3 p-3 bg-slate-700/50 rounded-lg">
+                    <div className="text-2xl">
+                      {record.time ? '⏱️' : '🎯'}
+                    </div>
+                    <div className="flex-1">
+                      <div className="font-medium text-slate-100">
+                        {record.gameName}
+                      </div>
+                      <div className="text-sm text-slate-400">
+                        {record.category}
+                      </div>
+                      <div className="text-sm text-blue-400">
+                        {record.time || `${record.score?.toLocaleString()} Punkte`}
+                      </div>
+                    </div>
+                    {record.verified && (
+                      <div className="text-green-400">
+                        <Trophy className="w-4 h-4" />
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {activeTab === 'collection' && (
+          <UserCollectionManager isOwnProfile={isOwnProfile} />
+        )}
+
+        {activeTab === 'records' && (
+          <PersonalRecordsManager isOwnProfile={isOwnProfile} />
+        )}
+
+        {activeTab === 'achievements' && (
+          <div className="simple-tile p-6">
+            <h3 className="text-xl font-bold text-slate-100 mb-6">
+              Erfolge
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {achievements.map(achievement => (
+                <div 
+                  key={achievement.id} 
+                  className={`p-4 rounded-lg border-2 transition-all ${
+                    achievement.earned 
+                      ? 'border-green-500/50 bg-green-500/10' 
+                      : 'border-slate-600 bg-slate-700/30'
+                  }`}
+                >
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="text-3xl">{achievement.icon}</div>
+                    <div className="flex-1">
+                      <div className={`font-bold ${
+                        achievement.earned ? 'text-green-400' : 'text-slate-400'
+                      }`}>
+                        {achievement.name}
+                      </div>
+                    </div>
+                  </div>
+                  <p className="text-sm text-slate-400 mb-2">
+                    {achievement.description}
+                  </p>
+                  {achievement.earned && achievement.earnedDate && (
+                    <p className="text-xs text-green-400">
+                      Erreicht: {achievement.earnedDate}
+                    </p>
+                  )}
+                  {!achievement.earned && (
+                    <p className="text-xs text-slate-500">
+                      Noch nicht erreicht
+                    </p>
+                  )}
                 </div>
               ))}
             </div>
@@ -304,52 +486,36 @@ const ProfilePage: React.FC = () => {
         )}
 
         {activeTab === 'stats' && (
-          <div>
-            <h2 className="text-2xl font-bold mb-6 text-slate-100">Spielstatistiken</h2>
+          <div className="simple-tile p-6">
+            <h3 className="text-xl font-bold text-slate-100 mb-6">
+              Spiel-Statistiken
+            </h3>
             <div className="space-y-4">
               {gameStats.map((stat, index) => (
-                <div key={index} className="p-4 bg-slate-800/30 rounded">
-                  <div className="flex items-center justify-between mb-2">
-                    <h3 className="font-bold text-cyan-300">{stat.game}</h3>
+                <div key={index} className="flex items-center justify-between p-4 bg-slate-700/30 rounded-lg">
+                  <div className="flex items-center gap-3">
+                    <Gamepad2 className="w-5 h-5 text-blue-400" />
+                    <div>
+                      <div className="font-medium text-slate-100">
+                        {stat.game}
+                      </div>
+                      <div className="text-sm text-slate-400">
+                        {stat.completions} Durchläufe
+                      </div>
+                    </div>
+                  </div>
+                  <div className="text-right">
+                    <div className={`font-bold ${stat.personalBest ? 'text-yellow-400' : 'text-slate-300'}`}>
+                      {stat.bestTime}
+                    </div>
                     {stat.personalBest && (
-                      <div className="flex items-center text-yellow-300 text-sm">
-                        <Medal className="w-4 h-4 mr-1" />
-                        Personal Best
+                      <div className="text-xs text-yellow-400">
+                        Persönliche Bestzeit
                       </div>
                     )}
                   </div>
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <div className="text-sm text-slate-400">Beste Zeit</div>
-                      <div className="text-lg font-bold text-white">{stat.bestTime}</div>
-                    </div>
-                    <div>
-                      <div className="text-sm text-slate-400">Abgeschlossen</div>
-                      <div className="text-lg font-bold text-white">{stat.completions}x</div>
-                    </div>
-                  </div>
                 </div>
               ))}
-            </div>
-          </div>
-        )}
-
-        {activeTab === 'collection' && (
-          <div>
-            <h2 className="text-2xl font-bold mb-6 text-slate-100">Meine Sammlung</h2>
-            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
-              {Array.from({ length: 23 }, (_, i) => (
-                <div key={i} className="simple-tile p-4 text-center hover:scale-105 transition-transform">
-                  <div className="w-12 h-16 bg-gradient-to-b from-yellow-400 to-orange-500 rounded mx-auto mb-2"></div>
-                  <p className="text-sm text-cyan-300">Spiel {i + 1}</p>
-                </div>
-              ))}
-            </div>
-            <div className="mt-6 text-center">
-              <button className="btn-primary">
-                <Gamepad2 className="w-5 h-5 mr-2" />
-                Spiel hinzufügen
-              </button>
             </div>
           </div>
         )}
