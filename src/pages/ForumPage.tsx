@@ -1,6 +1,7 @@
 import React, { memo } from 'react'
 import { useForum } from '../contexts/ForumContext'
 import { useUser } from '../contexts/UserContext'
+import { useLanguage } from '../contexts/LanguageContext'
 import { 
   MessageSquare, 
   Users, 
@@ -16,6 +17,7 @@ import { Link } from 'react-router-dom'
 const ForumPage: React.FC = () => {
   const { categories, stats, loading, selectCategory } = useForum()
   const { user } = useUser()
+  const { t } = useLanguage()
 
   const getIconComponent = (iconName: string) => {
     switch (iconName) {
@@ -54,7 +56,7 @@ const ForumPage: React.FC = () => {
       <div className="container mx-auto px-4 py-6">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-400 mx-auto"></div>
-          <p className="mt-4 text-slate-400">Forum wird geladen...</p>
+          <p className="mt-4 text-slate-400">{t('forum.loading')}</p>
         </div>
       </div>
     )
@@ -65,10 +67,10 @@ const ForumPage: React.FC = () => {
       {/* Header */}
       <div className="text-center mb-8">
         <h1 className="text-4xl font-bold text-slate-100 mb-2">
-          🎮 Community Nexus
+          🎮 {t('forum.communityNexus')}
         </h1>
         <p className="text-slate-400 text-lg">
-          Diskutiere mit der Battle64-Community über N64-Spiele, Events und mehr
+          {t('forum.discussWithCommunity')}
         </p>
       </div>
 
@@ -80,7 +82,7 @@ const ForumPage: React.FC = () => {
           </div>
           <div className="simple-tile-label">
             <div className="text-xl font-bold text-slate-100">{stats.totalThreads}</div>
-            <div className="text-sm text-slate-400">Threads</div>
+            <div className="text-sm text-slate-400">{t('forum.threads')}</div>
           </div>
         </div>
         
@@ -90,7 +92,7 @@ const ForumPage: React.FC = () => {
           </div>
           <div className="simple-tile-label">
             <div className="text-xl font-bold text-slate-100">{stats.totalPosts}</div>
-            <div className="text-sm text-slate-400">Beiträge</div>
+            <div className="text-sm text-slate-400">{t('forum.posts')}</div>
           </div>
         </div>
         

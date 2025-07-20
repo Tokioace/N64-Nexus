@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react'
+import { useLanguage } from '../contexts/LanguageContext'
 import { 
   Gamepad2, 
   Zap, 
@@ -41,6 +42,7 @@ interface GameState {
 }
 
 const MinigamesPage: React.FC = () => {
+  const { t } = useLanguage()
   const [selectedCategory, setSelectedCategory] = useState<string>('all')
   const [gameState, setGameState] = useState<GameState>({
     currentGame: null,
@@ -183,10 +185,10 @@ const MinigamesPage: React.FC = () => {
   ]
 
   const categories = [
-    { key: 'all', label: 'Alle', count: minigames.length },
-    { key: 'puzzle', label: 'Puzzle', count: minigames.filter(g => g.category === 'puzzle').length },
-    { key: 'skill', label: 'Geschicklichkeit', count: minigames.filter(g => g.category === 'skill').length },
-    { key: 'quiz', label: 'Quiz', count: minigames.filter(g => g.category === 'quiz').length },
+    { key: 'all', label: t('minigames.allCategories'), count: minigames.length },
+    { key: 'puzzle', label: t('minigames.puzzle'), count: minigames.filter(g => g.category === 'puzzle').length },
+    { key: 'skill', label: t('minigames.skill'), count: minigames.filter(g => g.category === 'skill').length },
+    { key: 'quiz', label: t('minigames.quiz'), count: minigames.filter(g => g.category === 'quiz').length },
     { key: 'multiplayer', label: 'Multiplayer', count: minigames.filter(g => g.category === 'multiplayer').length }
   ]
 
@@ -205,9 +207,9 @@ const MinigamesPage: React.FC = () => {
 
   const getDifficultyLabel = (difficulty: string) => {
     switch (difficulty) {
-      case 'easy': return 'Einfach'
-      case 'medium': return 'Mittel'
-      case 'hard': return 'Schwer'
+      case 'easy': return t('minigames.easy')
+      case 'medium': return t('minigames.medium')
+      case 'hard': return t('minigames.hard')
       default: return difficulty
     }
   }
@@ -812,7 +814,7 @@ const MinigamesPage: React.FC = () => {
       <div className="text-center mb-8">
         <Gamepad2 className="w-16 h-16 text-red-400 mx-auto mb-4" />
         <h1 className="text-4xl font-bold text-slate-100 mb-2">
-          Battle64 Minispiele
+          Battle64 {t('minigames.title')}
         </h1>
         <p className="text-slate-400 text-lg">
           Kleine Spiele für zwischendurch - N64-Style!
@@ -826,7 +828,7 @@ const MinigamesPage: React.FC = () => {
           <div className="text-2xl font-bold text-slate-100">
             {minigames.filter(g => g.available).length}
           </div>
-          <div className="text-sm text-slate-400">Verfügbar</div>
+          <div className="text-sm text-slate-400">{t('minigames.available') || 'Verfügbar'}</div>
         </div>
         
         <div className="simple-tile text-center">
@@ -834,7 +836,7 @@ const MinigamesPage: React.FC = () => {
           <div className="text-2xl font-bold text-slate-100">
             {Math.max(...minigames.filter(g => g.highScore).map(g => g.highScore || 0)).toLocaleString()}
           </div>
-          <div className="text-sm text-slate-400">Höchster Score</div>
+          <div className="text-sm text-slate-400">{t('minigames.highScore')}</div>
         </div>
         
         <div className="simple-tile text-center">
@@ -842,7 +844,7 @@ const MinigamesPage: React.FC = () => {
           <div className="text-2xl font-bold text-slate-100">
             {minigames.filter(g => g.difficulty === 'easy').length}
           </div>
-          <div className="text-sm text-slate-400">Einfache Spiele</div>
+          <div className="text-sm text-slate-400">{t('minigames.easy')} {t('minigames.games') || 'Spiele'}</div>
         </div>
         
         <div className="simple-tile text-center">

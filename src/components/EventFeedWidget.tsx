@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { useLanguage } from '../contexts/LanguageContext'
 import { 
   Trophy, 
   Medal, 
@@ -28,9 +29,10 @@ interface EventFeedWidgetProps {
 
 interface WinnerMediaDisplayProps {
   winner: EventParticipation
+  t: (key: string) => string
 }
 
-const WinnerMediaDisplay: React.FC<WinnerMediaDisplayProps> = ({ winner }) => {
+const WinnerMediaDisplay: React.FC<WinnerMediaDisplayProps> = ({ winner, t }) => {
   const [isVideoPlaying, setIsVideoPlaying] = useState(true)
 
   useEffect(() => {
@@ -47,7 +49,7 @@ const WinnerMediaDisplay: React.FC<WinnerMediaDisplayProps> = ({ winner }) => {
     return (
       <div className="bg-slate-800/30 rounded-lg p-4 text-center">
         <Crown className="w-8 h-8 text-yellow-400 mx-auto mb-2" />
-        <p className="text-slate-400 text-sm">Kein Media verfügbar</p>
+                  <p className="text-slate-400 text-sm">{t('home.noMediaAvailable')}</p>
       </div>
     )
   }
@@ -58,7 +60,7 @@ const WinnerMediaDisplay: React.FC<WinnerMediaDisplayProps> = ({ winner }) => {
         <div className="text-center">
           <img 
             src={winner.mediaUrl} 
-            alt={`Gewinner Screenshot von ${winner.username}`}
+                            alt={`${t('home.winner')} Screenshot von ${winner.username}`}
             className="w-full max-h-32 object-cover rounded-lg mb-2"
             onError={(e) => {
               const target = e.target as HTMLImageElement
@@ -67,7 +69,7 @@ const WinnerMediaDisplay: React.FC<WinnerMediaDisplayProps> = ({ winner }) => {
           />
           <div className="flex items-center justify-center space-x-1 text-xs text-slate-400">
             <Camera className="w-3 h-3" />
-            <span>Screenshot</span>
+            <span>{t('home.screenshot')}</span>
           </div>
         </div>
       )}
@@ -94,7 +96,7 @@ const WinnerMediaDisplay: React.FC<WinnerMediaDisplayProps> = ({ winner }) => {
           </div>
           <div className="flex items-center justify-center space-x-1 text-xs text-slate-400">
             <Video className="w-3 h-3" />
-            <span>Video (Dauerschleife)</span>
+            <span>{t('home.video')}</span>
           </div>
         </div>
       )}
@@ -103,11 +105,11 @@ const WinnerMediaDisplay: React.FC<WinnerMediaDisplayProps> = ({ winner }) => {
         <div className="text-center">
           <div className="bg-slate-700 rounded-lg p-4 mb-2">
             <Radio className="w-8 h-8 text-purple-400 mx-auto mb-2" />
-            <p className="text-xs text-slate-400">Livestream Beweis</p>
+            <p className="text-xs text-slate-400">{t('home.livestreamProof')}</p>
           </div>
           <div className="flex items-center justify-center space-x-1 text-xs text-slate-400">
             <Radio className="w-3 h-3" />
-            <span>Livestream</span>
+            <span>{t('home.livestream')}</span>
           </div>
         </div>
       )}
@@ -131,6 +133,8 @@ const EventFeedWidget: React.FC<EventFeedWidgetProps> = ({
   isExpanded,
   onToggleExpanded
 }) => {
+  const { t } = useLanguage()
+  
   const getRankIcon = (position: number) => {
     switch (position) {
       case 1:
@@ -183,7 +187,7 @@ const EventFeedWidget: React.FC<EventFeedWidgetProps> = ({
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center space-x-3">
           <Trophy className="w-6 h-6 text-red-400" />
-          <h2 className="text-xl font-bold text-slate-100">Live Events</h2>
+          <h2 className="text-xl font-bold text-slate-100">{t('home.liveEvents')}</h2>
         </div>
         <button
           onClick={onToggleExpanded}
@@ -227,9 +231,9 @@ const EventFeedWidget: React.FC<EventFeedWidgetProps> = ({
           <div>
             <h4 className="text-sm font-medium text-slate-200 mb-2 flex items-center">
               <Crown className="w-4 h-4 text-yellow-400 mr-1" />
-              Aktueller Führender
+                              {t('home.winner')}
             </h4>
-            <WinnerMediaDisplay winner={winner} />
+                            <WinnerMediaDisplay winner={winner} t={t} />
             <div className="mt-2 text-center">
               <div className="text-sm font-medium text-slate-100">{winner.username}</div>
               <div className="text-lg font-mono font-bold text-yellow-400">{winner.time}</div>
@@ -240,7 +244,7 @@ const EventFeedWidget: React.FC<EventFeedWidgetProps> = ({
         {/* Top 3 Compact Display */}
         {sortedLeaderboard.length > 0 && (
           <div>
-            <h4 className="text-sm font-medium text-slate-200 mb-2">Top 3 Leaderboard:</h4>
+                          <h4 className="text-sm font-medium text-slate-200 mb-2">{t('home.topLeaderboard')}</h4>
             <div className="space-y-2">
               {sortedLeaderboard.map((entry, index) => {
                 const position = index + 1
@@ -250,7 +254,7 @@ const EventFeedWidget: React.FC<EventFeedWidgetProps> = ({
                       {getRankIcon(position)}
                       <span className="text-sm text-slate-300">{entry.username}</span>
                       {entry.verified && (
-                        <div className="w-2 h-2 bg-green-400 rounded-full" title="Verifiziert"></div>
+                        <div className="w-2 h-2 bg-green-400 rounded-full" title={t('home.verified')}></div>
                       )}
                     </div>
                     <div className="flex items-center space-x-2">
@@ -276,8 +280,8 @@ const EventFeedWidget: React.FC<EventFeedWidgetProps> = ({
         {sortedLeaderboard.length === 0 && (
           <div className="text-center py-4">
             <Trophy className="w-8 h-8 text-slate-500 mx-auto mb-2" />
-            <p className="text-slate-400 text-sm">Noch keine Zeiten eingereicht</p>
-            <p className="text-slate-500 text-xs">Sei der Erste!</p>
+            <p className="text-slate-400 text-sm">{t('home.noTimesSubmitted')}</p>
+            <p className="text-slate-500 text-xs">{t('home.beTheFirst')}</p>
           </div>
         )}
       </div>

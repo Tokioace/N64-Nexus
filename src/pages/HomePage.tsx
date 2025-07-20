@@ -177,7 +177,7 @@ const HomePage: React.FC = () => {
                 onClick={() => setIsNewsExpanded(true)}
                 className="text-sm text-yellow-400 hover:text-yellow-300 transition-colors"
               >
-                +{newsItems.length - 2} weitere News anzeigen
+                +{newsItems.length - 2} {t('home.showMoreNews')}
               </button>
             </div>
           )}
