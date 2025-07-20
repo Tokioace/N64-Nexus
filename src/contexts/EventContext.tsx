@@ -8,6 +8,16 @@ const STORAGE_KEY_USER_PARTICIPATIONS = 'battle64_user_participations'
 const STORAGE_KEY_ALL_SUBMISSIONS = 'battle64_all_event_submissions'
 const STORAGE_KEY_EVENTS = 'battle64_events'
 
+// Helper function to convert file to base64 for persistent storage
+const fileToBase64 = (file: File): Promise<string> => {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader()
+    reader.readAsDataURL(file)
+    reader.onload = () => resolve(reader.result as string)
+    reader.onerror = error => reject(error)
+  })
+}
+
 const mockEvents: GameEvent[] = [
   {
     id: '1',
@@ -186,10 +196,14 @@ export const EventProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     }, 500)
   }
 
-  const joinEvent = async (eventId: string): Promise<boolean> => {
+  const joinEvent = async (eventId: string, currentUser?: { id: string; username: string }): Promise<boolean> => {
     setLoading(true)
     try {
       await new Promise(resolve => setTimeout(resolve, 500))
+      
+      // Use current user or fallback to mock data
+      const userId = currentUser?.id || '1'
+      const username = currentUser?.username || 'RetroGamer64'
       
       // Update the event participant count
       setEvents(prevEvents => 
@@ -213,8 +227,8 @@ export const EventProvider: React.FC<{ children: ReactNode }> = ({ children }) =
       const newParticipation: EventParticipation = {
         id: Date.now().toString(),
         eventId,
-        userId: '1', // Mock user ID
-        username: 'RetroGamer64',
+        userId: userId,
+        username: username,
         submissionDate: new Date(),
         verified: false
       }
@@ -229,10 +243,13 @@ export const EventProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     }
   }
 
-  const leaveEvent = async (eventId: string): Promise<boolean> => {
+  const leaveEvent = async (eventId: string, currentUser?: { id: string; username: string }): Promise<boolean> => {
     setLoading(true)
     try {
       await new Promise(resolve => setTimeout(resolve, 500))
+      
+      // Use current user or fallback to mock data
+      const userId = currentUser?.id || '1'
       
       // Update the event participant count
       setEvents(prevEvents => 
@@ -256,7 +273,7 @@ export const EventProvider: React.FC<{ children: ReactNode }> = ({ children }) =
       setUserParticipations(prev => prev.filter(p => p.eventId !== eventId))
       
       // Also remove from all submissions (for the current user)
-      setAllEventSubmissions(prev => prev.filter(p => !(p.eventId === eventId && p.userId === '1')))
+      setAllEventSubmissions(prev => prev.filter(p => !(p.eventId === eventId && p.userId === userId)))
       
       setLoading(false)
       return true
@@ -280,20 +297,24 @@ export const EventProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     }
   }
 
-  const submitRaceTime = async (data: RaceSubmissionData): Promise<boolean> => {
+  const submitRaceTime = async (data: RaceSubmissionData, currentUser?: { id: string; username: string }): Promise<boolean> => {
     console.log('EventContext: submitRaceTime called with:', data)
     setLoading(true)
     try {
       await new Promise(resolve => setTimeout(resolve, 1000)) // Simulate upload time
       
+      // Use current user or fallback to mock data
+      const userId = currentUser?.id || '1'
+      const username = currentUser?.username || 'RetroGamer64'
+      
       // Create or update participation entry
       const existingUserParticipation = userParticipations.find(p => 
-        p.eventId === data.eventId && p.userId === '1' // Mock user ID
+        p.eventId === data.eventId && p.userId === userId
       )
       
       // Also check for existing submission in allEventSubmissions
       const existingAllSubmission = allEventSubmissions.find(p => 
-        p.eventId === data.eventId && p.userId === '1' // Mock user ID
+        p.eventId === data.eventId && p.userId === userId
       )
       
       console.log('Existing user participation:', existingUserParticipation)
@@ -301,15 +322,23 @@ export const EventProvider: React.FC<{ children: ReactNode }> = ({ children }) =
       
       const participationId = existingUserParticipation?.id || existingAllSubmission?.id || Date.now().toString()
       
+      // Handle media file storage
+      let mediaUrl: string | undefined
+      if (data.mediaFile) {
+        // Convert file to base64 for persistent storage
+        const base64 = await fileToBase64(data.mediaFile)
+        mediaUrl = base64
+      }
+      
       const newParticipation: EventParticipation = {
         id: participationId,
         eventId: data.eventId,
-        userId: '1', // Mock user ID
-        username: 'RetroGamer64', // Mock username
+        userId: userId,
+        username: username,
         time: data.time,
         submissionDate: new Date(),
         documentationType: data.documentationType,
-        mediaUrl: data.mediaFile ? URL.createObjectURL(data.mediaFile) : undefined,
+        mediaUrl: mediaUrl,
         livestreamUrl: data.livestreamUrl,
         notes: data.notes,
         verified: false // Will be verified by admins

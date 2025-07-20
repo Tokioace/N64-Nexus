@@ -159,10 +159,10 @@ export interface EventContextType {
   error: string | null
   
   getEvents: () => void
-  joinEvent: (eventId: string) => Promise<boolean>
-  leaveEvent: (eventId: string) => Promise<boolean>
+  joinEvent: (eventId: string, currentUser?: { id: string; username: string }) => Promise<boolean>
+  leaveEvent: (eventId: string, currentUser?: { id: string; username: string }) => Promise<boolean>
   submitScore: (eventId: string, score: number, time?: string, mediaUrl?: string) => Promise<boolean>
-  submitRaceTime: (data: RaceSubmissionData) => Promise<boolean>
+  submitRaceTime: (data: RaceSubmissionData, currentUser?: { id: string; username: string }) => Promise<boolean>
   getLeaderboard: (eventId: string) => EventParticipation[]
   getAllSubmissions: () => EventParticipation[]
   getSubmissionsByUser: (userId: string) => EventParticipation[]
