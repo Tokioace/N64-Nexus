@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, ReactNode } from 'react'
 
-export type Language = 'de' | 'en' | 'fr'
+export type Language = 'de' | 'en' | 'fr' | 'it' | 'es' | 'el' | 'tr' | 'zh' | 'ja'
 
 interface LanguageContextType {
   currentLanguage: Language
@@ -118,7 +118,13 @@ const translations = {
     // Language selector
     'language.german': 'Deutsch',
     'language.english': 'Englisch',
-    'language.french': 'Französisch'
+    'language.french': 'Französisch',
+    'language.italian': 'Italienisch',
+    'language.spanish': 'Spanisch',
+    'language.greek': 'Griechisch',
+    'language.turkish': 'Türkisch',
+    'language.chinese': 'Chinesisch',
+    'language.japanese': 'Japanisch'
   },
   
   en: {
@@ -215,7 +221,13 @@ const translations = {
     // Language selector
     'language.german': 'German',
     'language.english': 'English',
-    'language.french': 'French'
+    'language.french': 'French',
+    'language.italian': 'Italian',
+    'language.spanish': 'Spanish',
+    'language.greek': 'Greek',
+    'language.turkish': 'Turkish',
+    'language.chinese': 'Chinese',
+    'language.japanese': 'Japanese'
   },
   
   fr: {
@@ -312,7 +324,439 @@ const translations = {
     // Language selector
     'language.german': 'Allemand',
     'language.english': 'Anglais',
-    'language.french': 'Français'
+    'language.french': 'Français',
+    'language.italian': 'Italien',
+    'language.spanish': 'Espagnol',
+    'language.greek': 'Grec',
+    'language.turkish': 'Turc',
+    'language.chinese': 'Chinois',
+    'language.japanese': 'Japonais'
+  },
+
+  it: {
+    // Navigation
+    'nav.home': 'Home',
+    'nav.quiz': 'Quiz',
+    'nav.leaderboard': 'Classifica',
+    'nav.profile': 'Profilo',
+    'nav.minigames': 'Minigiochi',
+    'nav.events': 'Eventi',
+    'nav.speedrun': 'Speedrun Media',
+    'nav.collector': 'Modalità Collezionista',
+    'nav.forum': 'Forum',
+    'nav.classic': 'Classico',
+    'nav.marketplace': 'Mercato',
+    'nav.friends': 'Amici',
+    'nav.fanart': 'Fanart',
+    'nav.news': 'Notizie',
+    'nav.media': 'Media',
+    
+    // Home Screen
+    'home.subtitle': 'La Comunità N64 per i Millennials',
+    'home.welcome': 'Bentornato',
+    'home.quiz.subtitle': 'Conoscenza N64',
+    'home.events.subtitle': 'Tornei',
+    'home.media.subtitle': 'Speedrun',
+    'home.collector.subtitle': 'Collezione',
+    'home.forum.subtitle': 'Comunità',
+    'home.profile.subtitle': 'Il Mio Account',
+    'home.leaderboard.subtitle': 'Migliori Giocatori',
+    'home.minigames.subtitle': 'Divertimento',
+    'home.footer.retro': 'Retro Reinventato',
+    
+    // Quiz
+    'quiz.title': 'Quiz N64',
+    'quiz.question': 'Domanda',
+    'quiz.score': 'Punteggio',
+    'quiz.timeLeft': 'Tempo rimasto',
+    'quiz.correct': 'Corretto!',
+    'quiz.incorrect': 'Sbagliato!',
+    'quiz.finished': 'Quiz completato!',
+    'quiz.finalScore': 'Punteggio finale',
+    'quiz.playAgain': 'Gioca di nuovo',
+    
+    // Events
+    'events.title': 'Eventi Attivi',
+    'events.participate': 'Partecipa',
+    'events.details': 'Dettagli',
+    'events.noActive': 'Nessun evento attivo',
+    'events.viewAll': 'Vedi tutti gli eventi',
+    
+    // Forum
+    'forum.title': 'Forum della Comunità',
+    'forum.categories': 'Categorie',
+    'forum.threads': 'Thread',
+    'forum.posts': 'Post',
+    'forum.newThread': 'Nuovo Thread',
+    'forum.reply': 'Rispondi',
+    'forum.author': 'Autore',
+    'forum.lastPost': 'Ultimo Post',
+    
+    // Language selector
+    'language.german': 'Tedesco',
+    'language.english': 'Inglese',
+    'language.french': 'Francese',
+    'language.italian': 'Italiano',
+    'language.spanish': 'Spagnolo',
+    'language.greek': 'Greco',
+    'language.turkish': 'Turco',
+    'language.chinese': 'Cinese',
+    'language.japanese': 'Giapponese'
+  },
+
+  es: {
+    // Navigation
+    'nav.home': 'Inicio',
+    'nav.quiz': 'Quiz',
+    'nav.leaderboard': 'Clasificación',
+    'nav.profile': 'Perfil',
+    'nav.minigames': 'Minijuegos',
+    'nav.events': 'Eventos',
+    'nav.speedrun': 'Speedrun Media',
+    'nav.collector': 'Modo Coleccionista',
+    'nav.forum': 'Foro',
+    'nav.classic': 'Clásico',
+    'nav.marketplace': 'Mercado',
+    'nav.friends': 'Amigos',
+    'nav.fanart': 'Fanart',
+    'nav.news': 'Noticias',
+    'nav.media': 'Media',
+    
+    // Home Screen
+    'home.subtitle': 'La Comunidad N64 para Millennials',
+    'home.welcome': 'Bienvenido de vuelta',
+    'home.quiz.subtitle': 'Conocimiento N64',
+    'home.events.subtitle': 'Torneos',
+    'home.media.subtitle': 'Speedruns',
+    'home.collector.subtitle': 'Colección',
+    'home.forum.subtitle': 'Comunidad',
+    'home.profile.subtitle': 'Mi Cuenta',
+    'home.leaderboard.subtitle': 'Mejores Jugadores',
+    'home.minigames.subtitle': 'Diversión',
+    'home.footer.retro': 'Retro Reinventado',
+    
+    // Quiz
+    'quiz.title': 'Quiz N64',
+    'quiz.question': 'Pregunta',
+    'quiz.score': 'Puntuación',
+    'quiz.timeLeft': 'Tiempo restante',
+    'quiz.correct': '¡Correcto!',
+    'quiz.incorrect': '¡Incorrecto!',
+    'quiz.finished': '¡Quiz completado!',
+    'quiz.finalScore': 'Puntuación final',
+    'quiz.playAgain': 'Jugar de nuevo',
+    
+    // Events
+    'events.title': 'Eventos Activos',
+    'events.participate': 'Participar',
+    'events.details': 'Detalles',
+    'events.noActive': 'No hay eventos activos',
+    'events.viewAll': 'Ver todos los eventos',
+    
+    // Forum
+    'forum.title': 'Foro de la Comunidad',
+    'forum.categories': 'Categorías',
+    'forum.threads': 'Hilos',
+    'forum.posts': 'Publicaciones',
+    'forum.newThread': 'Nuevo Hilo',
+    'forum.reply': 'Responder',
+    'forum.author': 'Autor',
+    'forum.lastPost': 'Última Publicación',
+    
+    // Language selector
+    'language.german': 'Alemán',
+    'language.english': 'Inglés',
+    'language.french': 'Francés',
+    'language.italian': 'Italiano',
+    'language.spanish': 'Español',
+    'language.greek': 'Griego',
+    'language.turkish': 'Turco',
+    'language.chinese': 'Chino',
+    'language.japanese': 'Japonés'
+  },
+
+  el: {
+    // Navigation
+    'nav.home': 'Αρχική',
+    'nav.quiz': 'Κουίζ',
+    'nav.leaderboard': 'Κατάταξη',
+    'nav.profile': 'Προφίλ',
+    'nav.minigames': 'Μίνι Παιχνίδια',
+    'nav.events': 'Εκδηλώσεις',
+    'nav.speedrun': 'Speedrun Media',
+    'nav.collector': 'Λειτουργία Συλλέκτη',
+    'nav.forum': 'Φόρουμ',
+    'nav.classic': 'Κλασικό',
+    'nav.marketplace': 'Αγορά',
+    'nav.friends': 'Φίλοι',
+    'nav.fanart': 'Fanart',
+    'nav.news': 'Νέα',
+    'nav.media': 'Μέσα',
+    
+    // Home Screen
+    'home.subtitle': 'Η Κοινότητα N64 για τους Millennials',
+    'home.welcome': 'Καλώς ήρθες πίσω',
+    'home.quiz.subtitle': 'Γνώση N64',
+    'home.events.subtitle': 'Τουρνουά',
+    'home.media.subtitle': 'Speedruns',
+    'home.collector.subtitle': 'Συλλογή',
+    'home.forum.subtitle': 'Κοινότητα',
+    'home.profile.subtitle': 'Ο Λογαριασμός μου',
+    'home.leaderboard.subtitle': 'Κορυφαίοι Παίκτες',
+    'home.minigames.subtitle': 'Διασκέδαση',
+    'home.footer.retro': 'Ρετρό Ανανεωμένο',
+    
+    // Quiz
+    'quiz.title': 'Κουίζ N64',
+    'quiz.question': 'Ερώτηση',
+    'quiz.score': 'Σκορ',
+    'quiz.timeLeft': 'Χρόνος που απομένει',
+    'quiz.correct': 'Σωστό!',
+    'quiz.incorrect': 'Λάθος!',
+    'quiz.finished': 'Το κουίζ ολοκληρώθηκε!',
+    'quiz.finalScore': 'Τελικό σκορ',
+    'quiz.playAgain': 'Παίξε ξανά',
+    
+    // Events
+    'events.title': 'Ενεργές Εκδηλώσεις',
+    'events.participate': 'Συμμετοχή',
+    'events.details': 'Λεπτομέρειες',
+    'events.noActive': 'Δεν υπάρχουν ενεργές εκδηλώσεις',
+    'events.viewAll': 'Δες όλες τις εκδηλώσεις',
+    
+    // Forum
+    'forum.title': 'Φόρουμ Κοινότητας',
+    'forum.categories': 'Κατηγορίες',
+    'forum.threads': 'Νήματα',
+    'forum.posts': 'Αναρτήσεις',
+    'forum.newThread': 'Νέο Νήμα',
+    'forum.reply': 'Απάντηση',
+    'forum.author': 'Συγγραφέας',
+    'forum.lastPost': 'Τελευταία Ανάρτηση',
+    
+    // Language selector
+    'language.german': 'Γερμανικά',
+    'language.english': 'Αγγλικά',
+    'language.french': 'Γαλλικά',
+    'language.italian': 'Ιταλικά',
+    'language.spanish': 'Ισπανικά',
+    'language.greek': 'Ελληνικά',
+    'language.turkish': 'Τουρκικά',
+    'language.chinese': 'Κινεζικά',
+    'language.japanese': 'Ιαπωνικά'
+  },
+
+  tr: {
+    // Navigation
+    'nav.home': 'Ana Sayfa',
+    'nav.quiz': 'Quiz',
+    'nav.leaderboard': 'Lider Tablosu',
+    'nav.profile': 'Profil',
+    'nav.minigames': 'Mini Oyunlar',
+    'nav.events': 'Etkinlikler',
+    'nav.speedrun': 'Speedrun Media',
+    'nav.collector': 'Koleksiyoncu Modu',
+    'nav.forum': 'Forum',
+    'nav.classic': 'Klasik',
+    'nav.marketplace': 'Pazar',
+    'nav.friends': 'Arkadaşlar',
+    'nav.fanart': 'Fanart',
+    'nav.news': 'Haberler',
+    'nav.media': 'Medya',
+    
+    // Home Screen
+    'home.subtitle': 'Millennials için N64 Topluluğu',
+    'home.welcome': 'Tekrar hoş geldin',
+    'home.quiz.subtitle': 'N64 Bilgisi',
+    'home.events.subtitle': 'Turnuvalar',
+    'home.media.subtitle': 'Speedrunlar',
+    'home.collector.subtitle': 'Koleksiyon',
+    'home.forum.subtitle': 'Topluluk',
+    'home.profile.subtitle': 'Hesabım',
+    'home.leaderboard.subtitle': 'En İyi Oyuncular',
+    'home.minigames.subtitle': 'Eğlence',
+    'home.footer.retro': 'Retro Yeniden Keşfedildi',
+    
+    // Quiz
+    'quiz.title': 'N64 Quiz',
+    'quiz.question': 'Soru',
+    'quiz.score': 'Puan',
+    'quiz.timeLeft': 'Kalan süre',
+    'quiz.correct': 'Doğru!',
+    'quiz.incorrect': 'Yanlış!',
+    'quiz.finished': 'Quiz tamamlandı!',
+    'quiz.finalScore': 'Final puanı',
+    'quiz.playAgain': 'Tekrar oyna',
+    
+    // Events
+    'events.title': 'Aktif Etkinlikler',
+    'events.participate': 'Katıl',
+    'events.details': 'Detaylar',
+    'events.noActive': 'Aktif etkinlik yok',
+    'events.viewAll': 'Tüm etkinlikleri görüntüle',
+    
+    // Forum
+    'forum.title': 'Topluluk Forumu',
+    'forum.categories': 'Kategoriler',
+    'forum.threads': 'Konular',
+    'forum.posts': 'Gönderiler',
+    'forum.newThread': 'Yeni Konu',
+    'forum.reply': 'Yanıtla',
+    'forum.author': 'Yazar',
+    'forum.lastPost': 'Son Gönderi',
+    
+    // Language selector
+    'language.german': 'Almanca',
+    'language.english': 'İngilizce',
+    'language.french': 'Fransızca',
+    'language.italian': 'İtalyanca',
+    'language.spanish': 'İspanyolca',
+    'language.greek': 'Yunanca',
+    'language.turkish': 'Türkçe',
+    'language.chinese': 'Çince',
+    'language.japanese': 'Japonca'
+  },
+
+  zh: {
+    // Navigation
+    'nav.home': '首页',
+    'nav.quiz': '测验',
+    'nav.leaderboard': '排行榜',
+    'nav.profile': '个人资料',
+    'nav.minigames': '小游戏',
+    'nav.events': '活动',
+    'nav.speedrun': '速通媒体',
+    'nav.collector': '收藏家模式',
+    'nav.forum': '论坛',
+    'nav.classic': '经典',
+    'nav.marketplace': '市场',
+    'nav.friends': '朋友',
+    'nav.fanart': '粉丝艺术',
+    'nav.news': '新闻',
+    'nav.media': '媒体',
+    
+    // Home Screen
+    'home.subtitle': '千禧一代的N64社区',
+    'home.welcome': '欢迎回来',
+    'home.quiz.subtitle': 'N64知识',
+    'home.events.subtitle': '锦标赛',
+    'home.media.subtitle': '速通',
+    'home.collector.subtitle': '收藏',
+    'home.forum.subtitle': '社区',
+    'home.profile.subtitle': '我的账户',
+    'home.leaderboard.subtitle': '顶级玩家',
+    'home.minigames.subtitle': '娱乐',
+    'home.footer.retro': '复古重塑',
+    
+    // Quiz
+    'quiz.title': 'N64测验',
+    'quiz.question': '问题',
+    'quiz.score': '分数',
+    'quiz.timeLeft': '剩余时间',
+    'quiz.correct': '正确！',
+    'quiz.incorrect': '错误！',
+    'quiz.finished': '测验完成！',
+    'quiz.finalScore': '最终分数',
+    'quiz.playAgain': '再次游戏',
+    
+    // Events
+    'events.title': '活跃活动',
+    'events.participate': '参与',
+    'events.details': '详情',
+    'events.noActive': '没有活跃的活动',
+    'events.viewAll': '查看所有活动',
+    
+    // Forum
+    'forum.title': '社区论坛',
+    'forum.categories': '分类',
+    'forum.threads': '主题',
+    'forum.posts': '帖子',
+    'forum.newThread': '新主题',
+    'forum.reply': '回复',
+    'forum.author': '作者',
+    'forum.lastPost': '最后发帖',
+    
+    // Language selector
+    'language.german': '德语',
+    'language.english': '英语',
+    'language.french': '法语',
+    'language.italian': '意大利语',
+    'language.spanish': '西班牙语',
+    'language.greek': '希腊语',
+    'language.turkish': '土耳其语',
+    'language.chinese': '中文',
+    'language.japanese': '日语'
+  },
+
+  ja: {
+    // Navigation
+    'nav.home': 'ホーム',
+    'nav.quiz': 'クイズ',
+    'nav.leaderboard': 'リーダーボード',
+    'nav.profile': 'プロフィール',
+    'nav.minigames': 'ミニゲーム',
+    'nav.events': 'イベント',
+    'nav.speedrun': 'スピードランメディア',
+    'nav.collector': 'コレクターモード',
+    'nav.forum': 'フォーラム',
+    'nav.classic': 'クラシック',
+    'nav.marketplace': 'マーケット',
+    'nav.friends': '友達',
+    'nav.fanart': 'ファンアート',
+    'nav.news': 'ニュース',
+    'nav.media': 'メディア',
+    
+    // Home Screen
+    'home.subtitle': 'ミレニアル世代のN64コミュニティ',
+    'home.welcome': 'お帰りなさい',
+    'home.quiz.subtitle': 'N64知識',
+    'home.events.subtitle': 'トーナメント',
+    'home.media.subtitle': 'スピードラン',
+    'home.collector.subtitle': 'コレクション',
+    'home.forum.subtitle': 'コミュニティ',
+    'home.profile.subtitle': 'マイアカウント',
+    'home.leaderboard.subtitle': 'トッププレイヤー',
+    'home.minigames.subtitle': '楽しみ',
+    'home.footer.retro': 'レトロ再発明',
+    
+    // Quiz
+    'quiz.title': 'N64クイズ',
+    'quiz.question': '質問',
+    'quiz.score': 'スコア',
+    'quiz.timeLeft': '残り時間',
+    'quiz.correct': '正解！',
+    'quiz.incorrect': '不正解！',
+    'quiz.finished': 'クイズ完了！',
+    'quiz.finalScore': '最終スコア',
+    'quiz.playAgain': 'もう一度プレイ',
+    
+    // Events
+    'events.title': 'アクティブイベント',
+    'events.participate': '参加',
+    'events.details': '詳細',
+    'events.noActive': 'アクティブなイベントはありません',
+    'events.viewAll': 'すべてのイベントを表示',
+    
+    // Forum
+    'forum.title': 'コミュニティフォーラム',
+    'forum.categories': 'カテゴリ',
+    'forum.threads': 'スレッド',
+    'forum.posts': '投稿',
+    'forum.newThread': '新しいスレッド',
+    'forum.reply': '返信',
+    'forum.author': '作者',
+    'forum.lastPost': '最後の投稿',
+    
+    // Language selector
+    'language.german': 'ドイツ語',
+    'language.english': '英語',
+    'language.french': 'フランス語',
+    'language.italian': 'イタリア語',
+    'language.spanish': 'スペイン語',
+    'language.greek': 'ギリシャ語',
+    'language.turkish': 'トルコ語',
+    'language.chinese': '中国語',
+    'language.japanese': '日本語'
   }
 }
 
@@ -334,7 +778,7 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
   // Initialize language from localStorage on mount
   React.useEffect(() => {
     const savedLanguage = localStorage.getItem('n64-nexus-language') as Language
-    if (savedLanguage && ['de', 'en', 'fr'].includes(savedLanguage)) {
+    if (savedLanguage && ['de', 'en', 'fr', 'it', 'es', 'el', 'tr', 'zh', 'ja'].includes(savedLanguage)) {
       setCurrentLanguage(savedLanguage)
     }
   }, [])
