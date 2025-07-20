@@ -130,6 +130,14 @@ const HomeScreenRetro: React.FC = () => {
         <p className="text-slate-400 text-sm">
           Retro neu entfacht - Für die N64-Generation
         </p>
+        <Link 
+          to="/classic" 
+          className="inline-block mt-3 px-4 py-2 rounded-lg bg-blue-600/20 hover:bg-blue-600/30 
+                     border border-blue-500/30 text-blue-400 hover:text-blue-300 
+                     transition-all duration-200 text-sm font-medium"
+        >
+          📰 Zur klassischen Ansicht mit News Feed
+        </Link>
       </div>
     </div>
   )

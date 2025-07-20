@@ -37,40 +37,116 @@ code {
          focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2;
 }
 
-  /* Retro N64 Tile Styles */
-  .simple-tile {
-    @apply bg-slate-800 border border-slate-700 rounded-lg p-4 shadow-lg;
-    background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
-    border: 1px solid #475569;
-  }
+/* N64-Style Retro Tiles */
+.n64-tile {
+  @apply bg-slate-800/50 border border-slate-600/50 rounded-lg shadow-lg 
+         transition-all duration-300 hover:shadow-xl hover:scale-105 
+         backdrop-blur-sm;
+  background: linear-gradient(135deg, 
+    rgba(30, 41, 59, 0.8) 0%, 
+    rgba(51, 65, 85, 0.6) 50%, 
+    rgba(30, 41, 59, 0.8) 100%);
+  position: relative;
+  overflow: hidden;
+}
 
-  .simple-tile-header {
-    @apply mb-3 pb-2 border-b border-slate-600;
-  }
+.n64-tile::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(255, 255, 255, 0.03) 2px,
+    rgba(255, 255, 255, 0.03) 4px
+  );
+  pointer-events: none;
+}
 
-  .simple-tile-content {
-    @apply text-slate-100;
-  }
+.n64-tile:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
 
-  .simple-tile-large {
-    @apply min-h-[200px] p-6;
-  }
+.n64-tile-large {
+  @apply min-h-[240px] p-6;
+  animation: float 6s ease-in-out infinite;
+}
 
-  .simple-tile-medium {
-    @apply min-h-[150px] p-4;
-  }
+.n64-tile-small {
+  @apply min-h-[120px] p-4 cursor-pointer;
+  animation: float 4s ease-in-out infinite;
+}
 
-  .simple-tile-small {
-    @apply min-h-[100px] p-3 text-center;
-  }
+.n64-tile-small:nth-child(even) {
+  animation-delay: -2s;
+}
 
-  .simple-tile-icon {
-    @apply mb-2;
-  }
+.n64-tile-small:nth-child(3n) {
+  animation-delay: -1s;
+}
 
-  .simple-tile-label {
-    @apply text-sm;
+/* Floating Animation */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
   }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+/* Enhanced hover effects for tiles */
+.n64-tile-small:hover {
+  animation-play-state: paused;
+  transform: translateY(-6px) scale(1.05);
+}
+
+/* Retro glow effects */
+.n64-tile:hover {
+  box-shadow: 
+    0 0 20px rgba(59, 130, 246, 0.3),
+    0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* Legacy simple tile styles for compatibility */
+.simple-tile {
+  @apply bg-slate-800 border border-slate-700 rounded-lg p-4 shadow-lg;
+  background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+  border: 1px solid #475569;
+}
+
+.simple-tile-header {
+  @apply mb-3 pb-2 border-b border-slate-600;
+}
+
+.simple-tile-content {
+  @apply text-slate-100;
+}
+
+.simple-tile-large {
+  @apply min-h-[200px] p-6;
+}
+
+.simple-tile-medium {
+  @apply min-h-[150px] p-4;
+}
+
+.simple-tile-small {
+  @apply min-h-[100px] p-3 text-center;
+}
+
+.simple-tile-icon {
+  @apply mb-2;
+}
+
+.simple-tile-label {
+  @apply text-sm;
+}
 
 /* Navigation Styles */
 .sidebar {
