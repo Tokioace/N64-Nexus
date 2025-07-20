@@ -79,11 +79,7 @@ const RaceSubmissionModal: React.FC<RaceSubmissionModalProps> = ({
       return
     }
     
-    if (documentationType !== 'livestream' && !mediaFile) {
-      setError('Bitte wähle eine Datei aus')
-      return
-    }
-    
+    // For livestream, URL is required
     if (documentationType === 'livestream' && !livestreamUrl.trim()) {
       setError('Bitte gib eine Livestream-URL ein')
       return
@@ -108,7 +104,9 @@ const RaceSubmissionModal: React.FC<RaceSubmissionModalProps> = ({
         notes: notes || undefined
       }
       
+      console.log('Submitting race time:', submissionData)
       const success = await onSubmit(submissionData)
+      console.log('Submission result:', success)
       
       if (success) {
         // Reset form
@@ -122,6 +120,7 @@ const RaceSubmissionModal: React.FC<RaceSubmissionModalProps> = ({
         setError('Fehler beim Übermitteln der Zeit. Bitte versuche es erneut.')
       }
     } catch (err) {
+      console.error('Submission error:', err)
       setError('Unerwarteter Fehler aufgetreten')
     } finally {
       setIsSubmitting(false)
@@ -232,7 +231,7 @@ const RaceSubmissionModal: React.FC<RaceSubmissionModalProps> = ({
             <div>
               <label className="block text-sm font-medium text-slate-200 mb-2">
                 <Upload className="w-4 h-4 inline mr-2" />
-                {documentationType === 'photo' ? 'Screenshot hochladen' : 'Video hochladen'}
+                {documentationType === 'photo' ? 'Screenshot hochladen (optional)' : 'Video hochladen (optional)'}
               </label>
               <div className="relative">
                 <input
@@ -250,6 +249,11 @@ const RaceSubmissionModal: React.FC<RaceSubmissionModalProps> = ({
                   <Check className="w-4 h-4 mr-1" />
                   {mediaFile.name} ({(mediaFile.size / 1024 / 1024).toFixed(2)} MB)
                 </div>
+              )}
+              {!mediaFile && (
+                <p className="text-xs text-slate-400 mt-1">
+                  Du kannst deine Zeit auch ohne Datei einreichen. Ein Screenshot oder Video hilft aber bei der Verifizierung.
+                </p>
               )}
             </div>
           )}

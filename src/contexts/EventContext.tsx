@@ -205,6 +205,7 @@ export const EventProvider: React.FC<{ children: ReactNode }> = ({ children }) =
   }
 
   const submitRaceTime = async (data: RaceSubmissionData): Promise<boolean> => {
+    console.log('EventContext: submitRaceTime called with:', data)
     setLoading(true)
     try {
       await new Promise(resolve => setTimeout(resolve, 1000)) // Simulate upload time
@@ -213,6 +214,8 @@ export const EventProvider: React.FC<{ children: ReactNode }> = ({ children }) =
       const existingParticipationIndex = userParticipations.findIndex(p => 
         p.eventId === data.eventId && p.userId === '1' // Mock user ID
       )
+      
+      console.log('Existing participation index:', existingParticipationIndex)
       
       const newParticipation: EventParticipation = {
         id: existingParticipationIndex >= 0 ? userParticipations[existingParticipationIndex].id : Date.now().toString(),
@@ -228,19 +231,25 @@ export const EventProvider: React.FC<{ children: ReactNode }> = ({ children }) =
         verified: false // Will be verified by admins
       }
       
+      console.log('New participation:', newParticipation)
+      
       if (existingParticipationIndex >= 0) {
         // Update existing participation
         setUserParticipations(prev => 
           prev.map((p, index) => index === existingParticipationIndex ? newParticipation : p)
         )
+        console.log('Updated existing participation')
       } else {
         // Add new participation
         setUserParticipations(prev => [...prev, newParticipation])
+        console.log('Added new participation')
       }
       
       setLoading(false)
+      console.log('submitRaceTime: Success')
       return true
     } catch (err) {
+      console.error('submitRaceTime error:', err)
       setError('Fehler beim Übermitteln der Rundenzeit')
       setLoading(false)
       return false

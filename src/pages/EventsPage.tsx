@@ -90,12 +90,18 @@ const EventsPage: React.FC = () => {
   }
 
   const handleRaceSubmission = async (data: RaceSubmissionData): Promise<boolean> => {
+    console.log('EventsPage: handleRaceSubmission called with:', data)
     const success = await submitRaceTime(data)
+    console.log('EventsPage: submitRaceTime returned:', success)
+    
     if (success) {
       setShowSubmissionModal(null)
       // Show leaderboard after successful submission
       setShowLeaderboard(data.eventId)
+      console.log('EventsPage: Showing success alert')
       alert('Zeit erfolgreich eingereicht! 🏁')
+    } else {
+      console.log('EventsPage: Submission failed')
     }
     return success
   }
