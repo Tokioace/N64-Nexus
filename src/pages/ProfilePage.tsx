@@ -1,12 +1,17 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { useUser } from '../contexts/UserContext'
-import { LogOut, Settings, Trophy, Target, Clock, Star, Gamepad2, Camera, Sparkles } from 'lucide-react'
+import { useEvents } from '../contexts/EventContext'
+import { LogOut, Settings, Trophy, Target, Clock, Star, Gamepad2, Camera, Sparkles, Award } from 'lucide-react'
+import { EventMedalCollection, EventMedalStats } from '../components/Event/EventMedal'
 
 const ProfilePage: React.FC = () => {
   const { user, logout } = useUser()
+  const { getUserMedals } = useEvents()
 
   if (!user) return null
+
+  const userMedals = getUserMedals(user.id)
 
   const accuracy = user.totalAnswers > 0 
     ? Math.round((user.correctAnswers / user.totalAnswers) * 100) 
@@ -142,6 +147,28 @@ const ProfilePage: React.FC = () => {
             )
           })}
         </div>
+      </div>
+
+      {/* Event Medals */}
+      <div className="card mb-6">
+        <h3 className="text-lg font-bold mb-4 flex items-center">
+          <Award className="mr-2" size={20} />
+          Event Medaillen ({userMedals.length})
+        </h3>
+        
+        {userMedals.length > 0 && (
+          <div className="mb-4">
+            <EventMedalStats medals={userMedals} />
+          </div>
+        )}
+        
+        <EventMedalCollection 
+          medals={userMedals} 
+          maxDisplay={8} 
+          size="medium"
+          animated={true}
+          className="justify-center"
+        />
       </div>
 
       {/* Achievements */}

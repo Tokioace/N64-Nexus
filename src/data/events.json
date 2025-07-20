@@ -110,5 +110,41 @@
     "difficulty": "medium",
     "category": "RPG",
     "maxParticipants": 180
+  },
+  {
+    "id": "event009",
+    "title": "Mario Party Team Tournament",
+    "game": "Mario Party",
+    "type": "team",
+    "startDate": "2024-12-10T00:00:00Z",
+    "endDate": "2024-12-17T23:59:59Z",
+    "description": "Bildet Teams von 2-4 Spielern und kämpft gemeinsam um den Sieg! Sammelt Stars und Coins im Team-Modus für die beste Durchschnittszeit.",
+    "rewards": ["120XP", "Team Champion Badge", "Golden Dice", "Party Crown"],
+    "image": "https://via.placeholder.com/400x200/FF6347/FFFFFF?text=Team+Tournament",
+    "difficulty": "medium",
+    "category": "Party",
+    "maxParticipants": 200,
+    "isTeamEvent": true,
+    "maxTeamSize": 4,
+    "minTeamSize": 2,
+    "allowSoloParticipation": false
+  },
+  {
+    "id": "event010",
+    "title": "Super Smash Bros Team Battle",
+    "game": "Super Smash Bros.",
+    "type": "team",
+    "startDate": "2025-01-05T00:00:00Z",
+    "endDate": "2025-01-12T23:59:59Z",
+    "description": "Kämpft als Team in der ultimativen Smash Bros Challenge! Teams von 2-3 Spielern treten gegeneinander an.",
+    "rewards": ["100XP", "Smash Team Badge", "Master Hand Trophy", "Fighter Medal"],
+    "image": "https://via.placeholder.com/400x200/8A2BE2/FFFFFF?text=Smash+Teams",
+    "difficulty": "hard",
+    "category": "Fighting",
+    "maxParticipants": 150,
+    "isTeamEvent": true,
+    "maxTeamSize": 3,
+    "minTeamSize": 2,
+    "allowSoloParticipation": true
   }
 ]
