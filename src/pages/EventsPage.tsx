@@ -81,7 +81,9 @@ const EventsPage: React.FC = () => {
       return
     }
     
-    const success = await joinEvent(eventId)
+    // Pass current user information to joinEvent
+    const currentUser = { id: user.id, username: user.username }
+    const success = await joinEvent(eventId, currentUser)
     if (success) {
       alert('Erfolgreich zum Event angemeldet! Du kannst jetzt deine Zeit einreichen.')
       // Automatically show submission modal after joining
@@ -91,7 +93,10 @@ const EventsPage: React.FC = () => {
 
   const handleRaceSubmission = async (data: RaceSubmissionData): Promise<boolean> => {
     console.log('EventsPage: handleRaceSubmission called with:', data)
-    const success = await submitRaceTime(data)
+    
+    // Pass current user information to submitRaceTime
+    const currentUser = user ? { id: user.id, username: user.username } : undefined
+    const success = await submitRaceTime(data, currentUser)
     console.log('EventsPage: submitRaceTime returned:', success)
     
     if (success) {
@@ -301,7 +306,12 @@ const EventsPage: React.FC = () => {
                           <span>Leaderboard</span>
                         </button>
                         <button 
-                          onClick={() => leaveEvent(event.id)}
+                          onClick={() => {
+                            if (user) {
+                              const currentUser = { id: user.id, username: user.username }
+                              leaveEvent(event.id, currentUser)
+                            }
+                          }}
                           disabled={loading}
                           className="px-6 py-2 bg-red-600 hover:bg-red-700 text-white 
                                    font-medium rounded-lg transition-colors duration-200
