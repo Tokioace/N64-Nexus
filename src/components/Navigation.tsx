@@ -9,7 +9,8 @@ import {
   MapPin, 
   MessageCircle,
   Menu,
-  X
+  X,
+  User
 } from 'lucide-react';
 
 export default function Navigation() {
@@ -22,6 +23,7 @@ export default function Navigation() {
     { name: 'Bewertungen', icon: <Star className="w-5 h-5" />, href: '#ratings' },
     { name: 'Karte', icon: <MapPin className="w-5 h-5" />, href: '#map' },
     { name: 'Chat', icon: <MessageCircle className="w-5 h-5" />, href: '#chat' },
+    { name: 'Profil', icon: <User className="w-5 h-5" />, href: '/profile' },
   ];
 
   return (
