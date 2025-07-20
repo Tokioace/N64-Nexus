@@ -3,21 +3,74 @@ export interface User {
   id: string
   username: string
   email: string
+  password?: string // Only used during registration, not stored in state
   level: number
   xp: number
   region: 'PAL' | 'NTSC'
+  platform: 'N64' | 'PC' // New field for platform preference
   joinDate: Date
   avatar?: string
   bio?: string
   location?: string
+  isPublic: boolean // Whether profile is visible to others
+  collections: UserCollection[]
+  personalRecords: PersonalRecord[]
+}
+
+export interface UserRegistrationData {
+  username: string
+  email: string
+  password: string
+  confirmPassword: string
+  region: 'PAL' | 'NTSC'
+  platform: 'N64' | 'PC'
+}
+
+export interface UserCollection {
+  id: string
+  userId: string
+  gameId: string
+  gameName: string
+  platform: 'N64' | 'PC'
+  region: 'PAL' | 'NTSC'
+  condition: 'mint' | 'very-good' | 'good' | 'fair' | 'poor'
+  completeness: 'complete' | 'cart-only' | 'box-only'
+  acquisitionDate: Date
+  notes?: string
+  imageUrl?: string
+  isWishlist: boolean
+}
+
+export interface PersonalRecord {
+  id: string
+  userId: string
+  gameId: string
+  gameName: string
+  category: string
+  time?: string // For speedruns
+  score?: number // For high scores
+  platform: 'N64' | 'PC'
+  region: 'PAL' | 'NTSC'
+  achievedDate: Date
+  verified: boolean
+  mediaUrl?: string
+  notes?: string
 }
 
 export interface UserContextType {
   user: User | null
+  isAuthenticated: boolean
   login: (email: string, password: string) => Promise<boolean>
+  register: (data: UserRegistrationData) => Promise<boolean>
   logout: () => void
   updateProfile: (updates: Partial<User>) => Promise<boolean>
   addXP: (amount: number) => void
+  addToCollection: (item: Omit<UserCollection, 'id' | 'userId'>) => Promise<boolean>
+  removeFromCollection: (itemId: string) => Promise<boolean>
+  addPersonalRecord: (record: Omit<PersonalRecord, 'id' | 'userId'>) => Promise<boolean>
+  updatePersonalRecord: (recordId: string, updates: Partial<PersonalRecord>) => Promise<boolean>
+  getUserProfile: (userId: string) => Promise<User | null>
+  getAllUsers: () => Promise<User[]>
 }
 
 // Quiz System Types
@@ -101,6 +154,7 @@ export interface EventContextType {
   events: GameEvent[]
   activeEvents: GameEvent[]
   userParticipations: EventParticipation[]
+  allEventSubmissions: EventParticipation[] // All submissions from all users
   loading: boolean
   error: string | null
   
@@ -110,6 +164,43 @@ export interface EventContextType {
   submitScore: (eventId: string, score: number, time?: string, mediaUrl?: string) => Promise<boolean>
   submitRaceTime: (data: RaceSubmissionData) => Promise<boolean>
   getLeaderboard: (eventId: string) => EventParticipation[]
+  getAllSubmissions: () => EventParticipation[]
+  getSubmissionsByUser: (userId: string) => EventParticipation[]
+}
+
+// Global Leaderboard Types
+export interface GlobalLeaderboardEntry {
+  userId: string
+  username: string
+  totalXP: number
+  level: number
+  eventWins: number
+  personalBests: number
+  collectionsCount: number
+  region: 'PAL' | 'NTSC'
+  platform: 'N64' | 'PC'
+  avatar?: string
+}
+
+export interface GameLeaderboard {
+  gameId: string
+  gameName: string
+  platform: 'N64' | 'PC'
+  region: 'PAL' | 'NTSC'
+  category: string
+  entries: GameLeaderboardEntry[]
+}
+
+export interface GameLeaderboardEntry {
+  userId: string
+  username: string
+  time?: string
+  score?: number
+  achievedDate: Date
+  verified: boolean
+  mediaUrl?: string
+  platform: 'N64' | 'PC'
+  region: 'PAL' | 'NTSC'
 }
 
 // Media System Types

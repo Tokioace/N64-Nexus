@@ -7,6 +7,8 @@ import { ForumProvider } from './contexts/ForumContext'
 import { LanguageProvider } from './contexts/LanguageContext'
 import HomePage from './pages/HomePage'
 import HomeScreenRetro from './components/HomeScreenRetro'
+import AuthPage from './pages/AuthPage'
+import CommunityPage from './pages/CommunityPage'
 import QuizPage from './pages/QuizPage'
 import QuizResultPage from './pages/QuizResultPage'
 import LeaderboardPage from './pages/LeaderboardPage'
@@ -33,11 +35,14 @@ function App() {
                 <Layout>
                   <Routes>
                     <Route path="/" element={<HomeScreenRetro />} />
+                    <Route path="/auth" element={<AuthPage />} />
+                    <Route path="/community" element={<CommunityPage />} />
                     <Route path="/classic" element={<HomePage />} />
                     <Route path="/quiz" element={<QuizPage />} />
                     <Route path="/quiz/result" element={<QuizResultPage />} />
                     <Route path="/leaderboard" element={<LeaderboardPage />} />
                     <Route path="/profile" element={<ProfilePage />} />
+                    <Route path="/profile/:userId" element={<ProfilePage />} />
                     <Route path="/minigames" element={<MinigamesPage />} />
                     <Route path="/events" element={<EventsPage />} />
                     <Route path="/speedrun-media" element={<SpeedrunMediaPage />} />
