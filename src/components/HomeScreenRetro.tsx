@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { useUser } from '../contexts/UserContext'
+import { useLanguage } from '../contexts/LanguageContext'
 import {
   Trophy,
   Target,
@@ -14,6 +15,7 @@ import {
 
 const HomeScreenRetro: React.FC = () => {
   const { user } = useUser()
+  const { t } = useLanguage()
 
   return (
     <div className="container mx-auto px-4 py-6">
@@ -23,11 +25,11 @@ const HomeScreenRetro: React.FC = () => {
           🎮 Battle64
         </h1>
         <p className="text-slate-400 text-lg">
-          Die N64-Community für Millennials
+          {t('home.subtitle')}
         </p>
         {user && (
           <p className="text-blue-400 mt-2">
-            Willkommen zurück, {user.username}! (Level {user.level})
+            {t('home.welcome')}, {user.username}! ({t('profile.level')} {user.level})
           </p>
         )}
       </div>
@@ -41,8 +43,8 @@ const HomeScreenRetro: React.FC = () => {
             <Target className="w-7 h-7 text-purple-400 mx-auto" />
           </div>
           <div className="simple-tile-label">
-            <div className="font-medium text-slate-100 text-sm">Quiz</div>
-            <div className="text-xs text-slate-400">N64 Wissen</div>
+            <div className="font-medium text-slate-100 text-sm">{t('nav.quiz')}</div>
+            <div className="text-xs text-slate-400">{t('home.quiz.subtitle')}</div>
           </div>
         </Link>
 
@@ -52,8 +54,8 @@ const HomeScreenRetro: React.FC = () => {
             <Trophy className="w-7 h-7 text-yellow-400 mx-auto" />
           </div>
           <div className="simple-tile-label">
-            <div className="font-medium text-slate-100 text-sm">Events</div>
-            <div className="text-xs text-slate-400">Turniere</div>
+            <div className="font-medium text-slate-100 text-sm">{t('nav.events')}</div>
+            <div className="text-xs text-slate-400">{t('home.events.subtitle')}</div>
           </div>
         </Link>
 
@@ -63,8 +65,8 @@ const HomeScreenRetro: React.FC = () => {
             <Camera className="w-7 h-7 text-green-400 mx-auto" />
           </div>
           <div className="simple-tile-label">
-            <div className="font-medium text-slate-100 text-sm">Media</div>
-            <div className="text-xs text-slate-400">Speedruns</div>
+            <div className="font-medium text-slate-100 text-sm">{t('nav.media')}</div>
+            <div className="text-xs text-slate-400">{t('home.media.subtitle')}</div>
           </div>
         </Link>
 
@@ -74,8 +76,8 @@ const HomeScreenRetro: React.FC = () => {
             <Package className="w-7 h-7 text-orange-400 mx-auto" />
           </div>
           <div className="simple-tile-label">
-            <div className="font-medium text-slate-100 text-sm">Sammler</div>
-            <div className="text-xs text-slate-400">Kollektion</div>
+            <div className="font-medium text-slate-100 text-sm">{t('nav.collector')}</div>
+            <div className="text-xs text-slate-400">{t('home.collector.subtitle')}</div>
           </div>
         </Link>
 
@@ -85,8 +87,8 @@ const HomeScreenRetro: React.FC = () => {
             <MessageSquare className="w-7 h-7 text-cyan-400 mx-auto" />
           </div>
           <div className="simple-tile-label">
-            <div className="font-medium text-slate-100 text-sm">Forum</div>
-            <div className="text-xs text-slate-400">Community</div>
+            <div className="font-medium text-slate-100 text-sm">{t('nav.forum')}</div>
+            <div className="text-xs text-slate-400">{t('home.forum.subtitle')}</div>
           </div>
         </Link>
 
@@ -96,8 +98,8 @@ const HomeScreenRetro: React.FC = () => {
             <UsersIcon className="w-7 h-7 text-blue-400 mx-auto" />
           </div>
           <div className="simple-tile-label">
-            <div className="font-medium text-slate-100 text-sm">Profil</div>
-            <div className="text-xs text-slate-400">Mein Account</div>
+            <div className="font-medium text-slate-100 text-sm">{t('nav.profile')}</div>
+            <div className="text-xs text-slate-400">{t('home.profile.subtitle')}</div>
           </div>
         </Link>
 
@@ -107,8 +109,8 @@ const HomeScreenRetro: React.FC = () => {
             <Star className="w-7 h-7 text-pink-400 mx-auto" />
           </div>
           <div className="simple-tile-label">
-            <div className="font-medium text-slate-100 text-sm">Rangliste</div>
-            <div className="text-xs text-slate-400">Top Spieler</div>
+            <div className="font-medium text-slate-100 text-sm">{t('nav.leaderboard')}</div>
+            <div className="text-xs text-slate-400">{t('home.leaderboard.subtitle')}</div>
           </div>
         </Link>
 
@@ -118,8 +120,8 @@ const HomeScreenRetro: React.FC = () => {
             <Gamepad2 className="w-7 h-7 text-red-400 mx-auto" />
           </div>
           <div className="simple-tile-label">
-            <div className="font-medium text-slate-100 text-sm">Minispiele</div>
-            <div className="text-xs text-slate-400">Spaß</div>
+            <div className="font-medium text-slate-100 text-sm">{t('nav.minigames')}</div>
+            <div className="text-xs text-slate-400">{t('home.minigames.subtitle')}</div>
           </div>
         </Link>
 
@@ -128,7 +130,7 @@ const HomeScreenRetro: React.FC = () => {
       {/* Footer */}
       <div className="text-center mt-8">
         <p className="text-slate-400 text-sm">
-          Retro neu entfacht - Für die N64-Generation
+          {t('home.footer.retro')} - {t('home.footer.n64')}
         </p>
         <Link 
           to="/classic" 
@@ -136,7 +138,7 @@ const HomeScreenRetro: React.FC = () => {
                      border border-blue-500/30 text-blue-400 hover:text-blue-300 
                      transition-all duration-200 text-sm font-medium"
         >
-          📰 Zur klassischen Ansicht mit News Feed
+          📰 {t('home.footer.classic')}
         </Link>
       </div>
     </div>

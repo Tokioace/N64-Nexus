@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useUser } from '../contexts/UserContext'
 import { useEvent } from '../contexts/EventContext'
+import { useLanguage } from '../contexts/LanguageContext'
 import EventFeedWidget from '../components/EventFeedWidget'
 import { GameEvent } from '../types'
 import {
@@ -32,6 +33,7 @@ interface NewsItem {
 const HomePage: React.FC = () => {
   const { user } = useUser()
   const { events, activeEvents, getLeaderboard } = useEvent()
+  const { t } = useLanguage()
   const [currentTime, setCurrentTime] = useState(new Date())
   const [isNewsExpanded, setIsNewsExpanded] = useState(false)
   const [isEventExpanded, setIsEventExpanded] = useState(false)
@@ -120,14 +122,14 @@ const HomePage: React.FC = () => {
           🎮 Battle64
         </h1>
         <p className="text-slate-400 text-lg">
-          Die N64-Community für Millennials
+          {t('home.subtitle')}
         </p>
         <p className="text-blue-400 mt-2">
           {formatDate(currentTime)} - {formatTime(currentTime)}
         </p>
         {user && (
           <p className="text-green-400 mt-1">
-            Willkommen zurück, {user.username}! (Level {user.level})
+            {t('home.welcome')}, {user.username}! ({t('profile.level')} {user.level})
           </p>
         )}
       </div>
@@ -200,12 +202,12 @@ const HomePage: React.FC = () => {
             </div>
             <div className="text-center py-8">
               <Calendar className="w-12 h-12 text-slate-500 mx-auto mb-3" />
-              <p className="text-slate-400">Keine aktiven Events</p>
+              <p className="text-slate-400">{t('events.noActive')}</p>
               <Link 
                 to="/events" 
                 className="inline-block mt-2 px-4 py-2 rounded-lg bg-red-500/20 text-red-400 hover:bg-red-500/30 transition-colors text-sm"
               >
-                Alle Events anzeigen
+                                  {t('events.viewAll')}
               </Link>
             </div>
           </div>
@@ -219,7 +221,7 @@ const HomePage: React.FC = () => {
         <Link to="/quiz" className="n64-tile n64-tile-small bg-gradient-to-br from-purple-600/20 to-purple-800/20 border-l-4 border-purple-400">
           <div className="text-center">
             <Target className="w-8 h-8 text-purple-400 mx-auto mb-2" />
-            <div className="font-medium text-slate-100 text-sm">Quiz</div>
+            <div className="font-medium text-slate-100 text-sm">{t('nav.quiz')}</div>
             <div className="text-xs text-slate-400">N64 Wissen testen</div>
           </div>
         </Link>
@@ -228,7 +230,7 @@ const HomePage: React.FC = () => {
         <Link to="/events" className="n64-tile n64-tile-small bg-gradient-to-br from-yellow-600/20 to-yellow-800/20 border-l-4 border-yellow-400">
           <div className="text-center">
             <Trophy className="w-8 h-8 text-yellow-400 mx-auto mb-2" />
-            <div className="font-medium text-slate-100 text-sm">Events</div>
+            <div className="font-medium text-slate-100 text-sm">{t('nav.events')}</div>
             <div className="text-xs text-slate-400">Turniere & Challenges</div>
           </div>
         </Link>
@@ -246,7 +248,7 @@ const HomePage: React.FC = () => {
         <Link to="/collector" className="n64-tile n64-tile-small bg-gradient-to-br from-orange-600/20 to-orange-800/20 border-l-4 border-orange-400">
           <div className="text-center">
             <Package className="w-8 h-8 text-orange-400 mx-auto mb-2" />
-            <div className="font-medium text-slate-100 text-sm">Sammler</div>
+            <div className="font-medium text-slate-100 text-sm">{t('nav.collector')}</div>
             <div className="text-xs text-slate-400">Deine Kollektion</div>
           </div>
         </Link>
@@ -255,8 +257,8 @@ const HomePage: React.FC = () => {
         <Link to="/forum" className="n64-tile n64-tile-small bg-gradient-to-br from-cyan-600/20 to-cyan-800/20 border-l-4 border-cyan-400">
           <div className="text-center">
             <MessageSquare className="w-8 h-8 text-cyan-400 mx-auto mb-2" />
-            <div className="font-medium text-slate-100 text-sm">Forum</div>
-            <div className="text-xs text-slate-400">Community Talk</div>
+            <div className="font-medium text-slate-100 text-sm">{t('nav.forum')}</div>
+            <div className="text-xs text-slate-400">{t('home.forum.subtitle')}</div>
           </div>
         </Link>
 
@@ -292,7 +294,7 @@ const HomePage: React.FC = () => {
       {/* Footer */}
       <div className="text-center mt-8">
         <p className="text-slate-400 text-sm">
-          Battle64 - Wo Nostalgie auf Community trifft
+          {t('home.footer.tagline')}
         </p>
         <Link 
           to="/" 
