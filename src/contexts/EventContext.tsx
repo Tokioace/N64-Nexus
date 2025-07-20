@@ -51,8 +51,8 @@ const mockEvents: GameEvent[] = [
 ]
 
 export const EventProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [events] = useState<GameEvent[]>(mockEvents)
-  const [activeEvents] = useState<GameEvent[]>(mockEvents.filter(e => e.isActive))
+  const [events, setEvents] = useState<GameEvent[]>(mockEvents)
+  const [activeEvents, setActiveEvents] = useState<GameEvent[]>(mockEvents.filter(e => e.isActive))
   const [userParticipations, setUserParticipations] = useState<EventParticipation[]>([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
@@ -68,6 +68,36 @@ export const EventProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     setLoading(true)
     try {
       await new Promise(resolve => setTimeout(resolve, 500))
+      
+      // Update the event participant count
+      setEvents(prevEvents => 
+        prevEvents.map(event => 
+          event.id === eventId 
+            ? { ...event, participants: event.participants + 1 }
+            : event
+        )
+      )
+      
+      // Update active events as well
+      setActiveEvents(prevActiveEvents => 
+        prevActiveEvents.map(event => 
+          event.id === eventId 
+            ? { ...event, participants: event.participants + 1 }
+            : event
+        )
+      )
+      
+      // Add to user participations
+      const newParticipation: EventParticipation = {
+        id: Date.now().toString(),
+        eventId,
+        userId: '1', // Mock user ID
+        username: 'RetroGamer64',
+        submissionDate: new Date(),
+        verified: false
+      }
+      
+      setUserParticipations(prev => [...prev, newParticipation])
       setLoading(false)
       return true
     } catch (err) {
@@ -81,6 +111,28 @@ export const EventProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     setLoading(true)
     try {
       await new Promise(resolve => setTimeout(resolve, 500))
+      
+      // Update the event participant count
+      setEvents(prevEvents => 
+        prevEvents.map(event => 
+          event.id === eventId 
+            ? { ...event, participants: Math.max(0, event.participants - 1) }
+            : event
+        )
+      )
+      
+      // Update active events as well
+      setActiveEvents(prevActiveEvents => 
+        prevActiveEvents.map(event => 
+          event.id === eventId 
+            ? { ...event, participants: Math.max(0, event.participants - 1) }
+            : event
+        )
+      )
+      
+      // Remove from user participations
+      setUserParticipations(prev => prev.filter(p => p.eventId !== eventId))
+      
       setLoading(false)
       return true
     } catch (err) {
@@ -104,7 +156,7 @@ export const EventProvider: React.FC<{ children: ReactNode }> = ({ children }) =
   }
 
   const getLeaderboard = (eventId: string): EventParticipation[] => {
-    return []
+    return userParticipations.filter(p => p.eventId === eventId)
   }
 
   const value: EventContextType = {

@@ -10,13 +10,18 @@ import {
   Award,
   Gamepad2,
   MapPin,
-  Star
+  Star,
+  Bell,
+  BellOff,
+  Info
 } from 'lucide-react'
 
 const EventsPage: React.FC = () => {
-  const { events, activeEvents, joinEvent, leaveEvent, loading } = useEvent()
+  const { events, activeEvents, joinEvent, leaveEvent, loading, userParticipations } = useEvent()
   const { user } = useUser()
   const [selectedTab, setSelectedTab] = useState<'active' | 'upcoming' | 'completed'>('active')
+  const [selectedEvent, setSelectedEvent] = useState<string | null>(null)
+  const [notificationsEnabled, setNotificationsEnabled] = useState(false)
 
   const getEventStatus = (event: any) => {
     const now = new Date()
@@ -48,6 +53,10 @@ const EventsPage: React.FC = () => {
     return `${minutes}m verbleibend`
   }
 
+  const isUserParticipating = (eventId: string) => {
+    return userParticipations.some(p => p.eventId === eventId)
+  }
+
   const filteredEvents = events.filter(event => {
     const status = getEventStatus(event)
     return status === selectedTab
@@ -58,10 +67,43 @@ const EventsPage: React.FC = () => {
       alert('Bitte logge dich ein, um an Events teilzunehmen!')
       return
     }
+
+    if (isUserParticipating(eventId)) {
+      alert('Du nimmst bereits an diesem Event teil!')
+      return
+    }
     
     const success = await joinEvent(eventId)
     if (success) {
       alert('Erfolgreich zum Event angemeldet!')
+    }
+  }
+
+  const handleShowDetails = (eventId: string) => {
+    setSelectedEvent(selectedEvent === eventId ? null : eventId)
+  }
+
+  const handleToggleNotifications = async () => {
+    try {
+      if (!notificationsEnabled) {
+        // Request notification permission
+        if ('Notification' in window) {
+          const permission = await Notification.requestPermission()
+          if (permission === 'granted') {
+            setNotificationsEnabled(true)
+            alert('🔔 Benachrichtigungen aktiviert! Du wirst über neue Events informiert.')
+          } else {
+            alert('❌ Benachrichtigungen wurden abgelehnt. Bitte erlaube Benachrichtigungen in deinen Browser-Einstellungen.')
+          }
+        } else {
+          alert('❌ Dein Browser unterstützt keine Push-Benachrichtigungen.')
+        }
+      } else {
+        setNotificationsEnabled(false)
+        alert('🔕 Benachrichtigungen deaktiviert.')
+      }
+    } catch (error) {
+      alert('❌ Fehler beim Aktivieren der Benachrichtigungen.')
     }
   }
 
@@ -147,6 +189,8 @@ const EventsPage: React.FC = () => {
           filteredEvents.map((event) => {
             const status = getEventStatus(event)
             const timeRemaining = getTimeRemaining(event)
+            const isParticipating = isUserParticipating(event.id)
+            const showDetails = selectedEvent === event.id
             
             return (
               <div key={event.id} className="simple-tile simple-tile-large">
@@ -165,6 +209,11 @@ const EventsPage: React.FC = () => {
                         {status === 'completed' && '✅ BEENDET'}
                       </div>
                       <span className="text-sm text-slate-400">{timeRemaining}</span>
+                      {isParticipating && (
+                        <div className="px-2 py-1 rounded-full text-xs font-medium bg-purple-500/20 text-purple-400">
+                          ✓ Teilnehmend
+                        </div>
+                      )}
                     </div>
                     
                     <h3 className="text-2xl font-bold text-slate-100 mb-2">{event.title}</h3>
@@ -193,7 +242,7 @@ const EventsPage: React.FC = () => {
                   </div>
                   
                   <div className="mt-4 lg:mt-0 lg:ml-6 flex flex-col space-y-2">
-                    {status === 'active' && (
+                    {status === 'active' && !isParticipating && (
                       <button 
                         onClick={() => handleJoinEvent(event.id)}
                         disabled={loading}
@@ -204,7 +253,18 @@ const EventsPage: React.FC = () => {
                         {loading ? 'Lädt...' : 'Teilnehmen'}
                       </button>
                     )}
-                    {status === 'upcoming' && (
+                    {status === 'active' && isParticipating && (
+                      <button 
+                        onClick={() => leaveEvent(event.id)}
+                        disabled={loading}
+                        className="px-6 py-2 bg-red-600 hover:bg-red-700 text-white 
+                                 font-medium rounded-lg transition-colors duration-200
+                                 disabled:opacity-50 disabled:cursor-not-allowed"
+                      >
+                        {loading ? 'Lädt...' : 'Verlassen'}
+                      </button>
+                    )}
+                    {status === 'upcoming' && !isParticipating && (
                       <button 
                         onClick={() => handleJoinEvent(event.id)}
                         disabled={loading}
@@ -215,43 +275,83 @@ const EventsPage: React.FC = () => {
                         {loading ? 'Lädt...' : 'Vormerken'}
                       </button>
                     )}
-                    <button className="px-6 py-2 bg-slate-700 hover:bg-slate-600 text-slate-200 
-                                     font-medium rounded-lg transition-colors duration-200">
-                      Details
+                    <button 
+                      onClick={() => handleShowDetails(event.id)}
+                      className="px-6 py-2 bg-slate-700 hover:bg-slate-600 text-slate-200 
+                               font-medium rounded-lg transition-colors duration-200 flex items-center justify-center space-x-2">
+                      <Info className="w-4 h-4" />
+                      <span>{showDetails ? 'Weniger' : 'Details'}</span>
                     </button>
                   </div>
                 </div>
                 
-                {/* Event Rules & Prizes */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6 pt-6 border-t border-slate-600">
-                  <div>
-                    <h4 className="font-medium text-slate-200 mb-3 flex items-center">
-                      <Star className="w-4 h-4 text-yellow-400 mr-2" />
-                      Regeln
-                    </h4>
-                    <ul className="space-y-1">
-                      {event.rules.map((rule, index) => (
-                        <li key={index} className="text-sm text-slate-400 flex items-start">
-                          <span className="text-yellow-400 mr-2">•</span>
-                          {rule}
-                        </li>
-                      ))}
-                    </ul>
+                {/* Event Details - Always visible or expandable */}
+                <div className={`transition-all duration-300 ${showDetails ? 'block' : 'hidden'}`}>
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6 pt-6 border-t border-slate-600">
+                    <div>
+                      <h4 className="font-medium text-slate-200 mb-3 flex items-center">
+                        <Star className="w-4 h-4 text-yellow-400 mr-2" />
+                        Regeln
+                      </h4>
+                      <ul className="space-y-1">
+                        {event.rules.map((rule, index) => (
+                          <li key={index} className="text-sm text-slate-400 flex items-start">
+                            <span className="text-yellow-400 mr-2">•</span>
+                            {rule}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    
+                    <div>
+                      <h4 className="font-medium text-slate-200 mb-3 flex items-center">
+                        <Award className="w-4 h-4 text-purple-400 mr-2" />
+                        Preise
+                      </h4>
+                      <ul className="space-y-1">
+                        {event.prizes.map((prize, index) => (
+                          <li key={index} className="text-sm text-slate-400 flex items-start">
+                            <span className="text-purple-400 mr-2">•</span>
+                            {prize}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   </div>
-                  
-                  <div>
-                    <h4 className="font-medium text-slate-200 mb-3 flex items-center">
-                      <Award className="w-4 h-4 text-purple-400 mr-2" />
-                      Preise
-                    </h4>
-                    <ul className="space-y-1">
-                      {event.prizes.map((prize, index) => (
-                        <li key={index} className="text-sm text-slate-400 flex items-start">
-                          <span className="text-purple-400 mr-2">•</span>
-                          {prize}
-                        </li>
-                      ))}
-                    </ul>
+                </div>
+
+                {/* Always visible rules and prizes for better UX */}
+                <div className={`${showDetails ? 'hidden' : 'block'}`}>
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6 pt-6 border-t border-slate-600">
+                    <div>
+                      <h4 className="font-medium text-slate-200 mb-3 flex items-center">
+                        <Star className="w-4 h-4 text-yellow-400 mr-2" />
+                        Regeln
+                      </h4>
+                      <ul className="space-y-1">
+                        {event.rules.map((rule, index) => (
+                          <li key={index} className="text-sm text-slate-400 flex items-start">
+                            <span className="text-yellow-400 mr-2">•</span>
+                            {rule}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    
+                    <div>
+                      <h4 className="font-medium text-slate-200 mb-3 flex items-center">
+                        <Award className="w-4 h-4 text-purple-400 mr-2" />
+                        Preise
+                      </h4>
+                      <ul className="space-y-1">
+                        {event.prizes.map((prize, index) => (
+                          <li key={index} className="text-sm text-slate-400 flex items-start">
+                            <span className="text-purple-400 mr-2">•</span>
+                            {prize}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -265,9 +365,25 @@ const EventsPage: React.FC = () => {
         <p className="text-slate-400 text-sm mb-4">
           Verpasse keine Events! Melde dich für Push-Benachrichtigungen an.
         </p>
-        <button className="px-6 py-2 bg-blue-600/20 hover:bg-blue-600/30 border border-blue-500/30 
-                         text-blue-400 hover:text-blue-300 rounded-lg transition-all duration-200 text-sm">
-          🔔 Benachrichtigungen aktivieren
+        <button 
+          onClick={handleToggleNotifications}
+          className={`px-6 py-2 border rounded-lg transition-all duration-200 text-sm flex items-center justify-center space-x-2 mx-auto ${
+            notificationsEnabled
+              ? 'bg-green-600/20 hover:bg-green-600/30 border-green-500/30 text-green-400 hover:text-green-300'
+              : 'bg-blue-600/20 hover:bg-blue-600/30 border-blue-500/30 text-blue-400 hover:text-blue-300'
+          }`}
+        >
+          {notificationsEnabled ? (
+            <>
+              <Bell className="w-4 h-4" />
+              <span>🔔 Benachrichtigungen aktiv</span>
+            </>
+          ) : (
+            <>
+              <BellOff className="w-4 h-4" />
+              <span>🔔 Benachrichtigungen aktivieren</span>
+            </>
+          )}
         </button>
       </div>
     </div>
