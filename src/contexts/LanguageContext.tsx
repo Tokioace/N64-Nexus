@@ -35,6 +35,11 @@ const translations = {
     'nav.speedrun': 'Speedrun Media',
     'nav.collector': 'Sammler Modus',
     'nav.forum': 'Forum',
+    'nav.classic': 'Klassisch',
+    'nav.marketplace': 'Marktplatz',
+    'nav.friends': 'Freunde',
+    'nav.fanart': 'Fanart',
+    'nav.news': 'News',
     
     // Common
     'common.welcome': 'Willkommen',
@@ -108,6 +113,11 @@ const translations = {
     'nav.speedrun': 'Speedrun Media',
     'nav.collector': 'Collector Mode',
     'nav.forum': 'Forum',
+    'nav.classic': 'Classic',
+    'nav.marketplace': 'Marketplace',
+    'nav.friends': 'Friends',
+    'nav.fanart': 'Fan Art',
+    'nav.news': 'News',
     
     // Common
     'common.welcome': 'Welcome',
@@ -181,6 +191,11 @@ const translations = {
     'nav.speedrun': 'Speedrun Media',
     'nav.collector': 'Mode Collectionneur',
     'nav.forum': 'Forum',
+    'nav.classic': 'Classique',
+    'nav.marketplace': 'Place de Marché',
+    'nav.friends': 'Amis',
+    'nav.fanart': 'Art de Fan',
+    'nav.news': 'Actualités',
     
     // Common
     'common.welcome': 'Bienvenue',
