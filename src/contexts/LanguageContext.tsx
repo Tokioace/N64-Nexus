@@ -516,7 +516,13 @@ const translations = {
     // Collection Management
     'collection.confirmRemove': 'Möchtest du dieses Spiel wirklich aus deiner Sammlung entfernen?',
     'collection.addGame': 'Spiel hinzufügen',
-    'collection.completeness': 'Vollständigkeit'
+    'collection.completeness': 'Vollständigkeit',
+    'collection.packaging': 'Verpackung',
+    'collection.manual': 'Anleitung',
+    'collection.module': 'Modul',
+    'collection.used': 'Gebraucht',
+    'collection.estimatedValue': 'Geschätzter Wert',
+    'collection.cancel': 'Abbrechen'
   },
   
   en: {
@@ -1011,7 +1017,13 @@ const translations = {
     // Collection Management
     'collection.confirmRemove': 'Do you really want to remove this game from your collection?',
     'collection.addGame': 'Add Game',
-    'collection.completeness': 'Completeness'
+    'collection.completeness': 'Completeness',
+    'collection.packaging': 'Packaging',
+    'collection.manual': 'Manual',
+    'collection.module': 'Module',
+    'collection.used': 'Used',
+    'collection.estimatedValue': 'Estimated Value',
+    'collection.cancel': 'Cancel'
   },
   
   fr: {

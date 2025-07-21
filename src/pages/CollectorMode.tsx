@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
+import { useLanguage } from '../contexts/LanguageContext';
 import { Search, Package, Trophy, TrendingUp, Star, Grid, List, Plus, X, Check } from 'lucide-react';
 import { 
   n64Games, 
@@ -23,6 +24,7 @@ interface GameModalProps {
 }
 
 const GameModal: React.FC<GameModalProps> = ({ game, isOpen, onClose, onAddToCollection, isCollected }) => {
+  const { t } = useLanguage();
   const [condition, setCondition] = useState<'mint' | 'used'>('used');
   const [hasBox, setHasBox] = useState(false);
   const [hasManual, setHasManual] = useState(false);
@@ -95,7 +97,7 @@ const GameModal: React.FC<GameModalProps> = ({ game, isOpen, onClose, onAddToCol
                   onChange={(e) => setCondition(e.target.value as 'used')}
                   className="mr-2"
                 />
-                <span className="text-slate-300">Gebraucht</span>
+                <span className="text-slate-300">{t('collection.used')}</span>
               </label>
             </div>
           </div>
@@ -110,7 +112,7 @@ const GameModal: React.FC<GameModalProps> = ({ game, isOpen, onClose, onAddToCol
                   onChange={(e) => setHasModule(e.target.checked)}
                   className="mr-2"
                 />
-                <span className="text-slate-300">Modul</span>
+                <span className="text-slate-300">{t('collection.module')}</span>
               </label>
               <label className="flex items-center">
                 <input
@@ -119,7 +121,7 @@ const GameModal: React.FC<GameModalProps> = ({ game, isOpen, onClose, onAddToCol
                   onChange={(e) => setHasBox(e.target.checked)}
                   className="mr-2"
                 />
-                <span className="text-slate-300">Verpackung</span>
+                <span className="text-slate-300">{t('collection.packaging')}</span>
               </label>
               <label className="flex items-center">
                 <input
@@ -128,7 +130,7 @@ const GameModal: React.FC<GameModalProps> = ({ game, isOpen, onClose, onAddToCol
                   onChange={(e) => setHasManual(e.target.checked)}
                   className="mr-2"
                 />
-                <span className="text-slate-300">Anleitung</span>
+                <span className="text-slate-300">{t('collection.manual')}</span>
               </label>
             </div>
           </div>
@@ -146,7 +148,7 @@ const GameModal: React.FC<GameModalProps> = ({ game, isOpen, onClose, onAddToCol
 
           <div className="bg-slate-700 p-3 rounded">
             <div className="flex justify-between items-center">
-              <span className="text-slate-300">Geschätzter Wert:</span>
+              <span className="text-slate-300">{t('collection.estimatedValue')}:</span>
               <span className="text-green-400 font-bold">€{getCurrentValue()}</span>
             </div>
           </div>
@@ -156,7 +158,7 @@ const GameModal: React.FC<GameModalProps> = ({ game, isOpen, onClose, onAddToCol
               onClick={onClose}
               className="flex-1 px-4 py-2 bg-slate-600 text-slate-300 rounded hover:bg-slate-500 transition-colors"
             >
-              Abbrechen
+              {t('collection.cancel')}
             </button>
             <button
               onClick={handleSubmit}
@@ -173,6 +175,7 @@ const GameModal: React.FC<GameModalProps> = ({ game, isOpen, onClose, onAddToCol
 };
 
 const CollectorMode: React.FC = () => {
+  const { t } = useLanguage();
   const [collection, setCollection] = useState<CollectedGame[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [rarityFilter, setRarityFilter] = useState('all');

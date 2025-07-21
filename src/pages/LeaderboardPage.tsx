@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useEvent } from '../contexts/EventContext'
 import { useUser } from '../contexts/UserContext'
+import { useLanguage } from '../contexts/LanguageContext'
 import EventLeaderboard from '../components/EventLeaderboard'
 import { 
   Trophy, 
@@ -13,6 +14,7 @@ import {
 const LeaderboardPage: React.FC = () => {
   const { events, getLeaderboard } = useEvent()
   const { user } = useUser()
+  const { t } = useLanguage()
   const [selectedEvent, setSelectedEvent] = useState<string | null>(null)
 
   // Get active events with leaderboard data

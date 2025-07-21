@@ -116,7 +116,7 @@ const PersonalRecordsManager: React.FC<PersonalRecordsProps> = ({ isOwnProfile =
             className="flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors"
           >
             <Plus className="w-5 h-5" />
-            Rekord hinzufügen
+            {t('records.add')}
           </button>
         )}
       </div>
@@ -164,7 +164,7 @@ const PersonalRecordsManager: React.FC<PersonalRecordsProps> = ({ isOwnProfile =
           </h3>
           <p className="text-slate-400">
             {isOwnProfile 
-              ? 'Füge deinen ersten persönlichen Rekord hinzu!'
+              ? t('records.addFirst')
               : `${user.username} hat noch keine Rekorde gesetzt.`
             }
           </p>
@@ -291,7 +291,7 @@ const PersonalRecordsManager: React.FC<PersonalRecordsProps> = ({ isOwnProfile =
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
           <div className="simple-tile max-w-md w-full p-6 max-h-[90vh] overflow-y-auto">
             <h3 className="text-xl font-bold text-slate-100 mb-4">
-              Persönlichen Rekord hinzufügen
+              {t('records.addPersonal')}
             </h3>
             
             <form onSubmit={handleAddRecord} className="space-y-4">
@@ -356,7 +356,7 @@ const PersonalRecordsManager: React.FC<PersonalRecordsProps> = ({ isOwnProfile =
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-slate-300 mb-2">
-                    Zeit (für Speedruns)
+                    {t('records.time')}
                   </label>
                   <input
                     type="text"
@@ -369,7 +369,7 @@ const PersonalRecordsManager: React.FC<PersonalRecordsProps> = ({ isOwnProfile =
 
                 <div>
                   <label className="block text-sm font-medium text-slate-300 mb-2">
-                    Punkte (für High Scores)
+                    {t('records.points')}
                   </label>
                   <input
                     type="number"
@@ -413,13 +413,13 @@ const PersonalRecordsManager: React.FC<PersonalRecordsProps> = ({ isOwnProfile =
                   onClick={() => setShowAddModal(false)}
                   className="flex-1 px-4 py-2 text-slate-300 hover:text-slate-100 hover:bg-slate-700 rounded-lg transition-colors"
                 >
-                  Abbrechen
+                  {t('collection.cancel')}
                 </button>
                 <button
                   type="submit"
                   className="flex-1 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors"
                 >
-                  Hinzufügen
+                                      {t('records.addButton')}
                 </button>
               </div>
             </form>

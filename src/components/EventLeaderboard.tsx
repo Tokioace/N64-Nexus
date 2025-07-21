@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useLanguage } from '../contexts/LanguageContext'
 import { 
   Trophy, 
   Medal, 
@@ -183,6 +184,7 @@ const EventLeaderboard: React.FC<EventLeaderboardProps> = ({
   onRefresh,
   isLoading = false
 }) => {
+  const { t } = useLanguage()
   const [selectedEntry, setSelectedEntry] = useState<string | null>(null)
   const [mediaViewerEntry, setMediaViewerEntry] = useState<EventLeaderboardEntry | null>(null)
 

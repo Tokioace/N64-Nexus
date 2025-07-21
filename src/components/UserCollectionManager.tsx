@@ -120,7 +120,7 @@ const UserCollectionManager: React.FC<CollectionManagerProps> = ({ isOwnProfile 
             className="flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors"
           >
             <Plus className="w-5 h-5" />
-            Spiel hinzufügen
+            {t('collection.addGame')}
           </button>
         )}
       </div>
@@ -255,7 +255,7 @@ const UserCollectionManager: React.FC<CollectionManagerProps> = ({ isOwnProfile 
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
           <div className="simple-tile max-w-md w-full p-6">
             <h3 className="text-xl font-bold text-slate-100 mb-4">
-              Spiel hinzufügen
+              {t('collection.addGame')}
             </h3>
             
             <form onSubmit={handleAddItem} className="space-y-4">
@@ -323,7 +323,7 @@ const UserCollectionManager: React.FC<CollectionManagerProps> = ({ isOwnProfile 
 
                 <div>
                   <label className="block text-sm font-medium text-slate-300 mb-2">
-                    Vollständigkeit
+                    {t('collection.completeness')}
                   </label>
                   <select
                     value={newItem.completeness}
@@ -331,7 +331,7 @@ const UserCollectionManager: React.FC<CollectionManagerProps> = ({ isOwnProfile 
                     className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-slate-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
                   >
                     <option value="complete">Komplett</option>
-                    <option value="cart-only">Nur Modul</option>
+                    <option value="cart-only">{t('collection.cartOnly')}</option>
                     <option value="box-only">Nur OVP</option>
                   </select>
                 </div>
@@ -369,7 +369,7 @@ const UserCollectionManager: React.FC<CollectionManagerProps> = ({ isOwnProfile 
                   onClick={() => setShowAddModal(false)}
                   className="flex-1 px-4 py-2 text-slate-300 hover:text-slate-100 hover:bg-slate-700 rounded-lg transition-colors"
                 >
-                  Abbrechen
+                  {t('collection.cancel')}
                 </button>
                 <button
                   type="submit"
