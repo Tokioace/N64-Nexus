@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useLanguage } from '../contexts/LanguageContext'
+import { useLanguage, getLocaleString } from '../contexts/LanguageContext'
 import { 
   Trophy, 
   Medal, 
@@ -48,7 +48,7 @@ interface MediaViewerProps {
 }
 
 const MediaViewer: React.FC<MediaViewerProps> = ({ entry, isOpen, onClose }) => {
-  const { t } = useLanguage()
+  const { t, currentLanguage } = useLanguage()
   const [isVideoPlaying, setIsVideoPlaying] = useState(true)
 
   if (!isOpen) return null
@@ -185,7 +185,7 @@ const EventLeaderboard: React.FC<EventLeaderboardProps> = ({
   onRefresh,
   isLoading = false
 }) => {
-  const { t } = useLanguage()
+  const { t, currentLanguage } = useLanguage()
   const [selectedEntry, setSelectedEntry] = useState<string | null>(null)
   const [mediaViewerEntry, setMediaViewerEntry] = useState<EventLeaderboardEntry | null>(null)
 
@@ -417,7 +417,7 @@ const EventLeaderboard: React.FC<EventLeaderboardProps> = ({
                         )}
                       </div>
                       <div className="text-sm text-slate-400">
-                        {new Date(entry.submissionDate).toLocaleDateString('de-DE', {
+                        {new Date(entry.submissionDate).toLocaleDateString(getLocaleString(currentLanguage), {
                           day: '2-digit',
                           month: '2-digit',
                           year: 'numeric',

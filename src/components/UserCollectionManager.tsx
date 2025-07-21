@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useUser } from '../contexts/UserContext'
-import { useLanguage } from '../contexts/LanguageContext'
+import { useLanguage, getLocaleString } from '../contexts/LanguageContext'
 import { UserCollection } from '../types'
 import { Plus, Edit, Trash2, Package, Star, Calendar, MapPin, Gamepad2 } from 'lucide-react'
 
@@ -10,7 +10,7 @@ interface CollectionManagerProps {
 
 const UserCollectionManager: React.FC<CollectionManagerProps> = ({ isOwnProfile = true }) => {
   const { user, addToCollection, removeFromCollection } = useUser()
-  const { t } = useLanguage()
+  const { t, currentLanguage } = useLanguage()
   const [showAddModal, setShowAddModal] = useState(false)
   const [editingItem, setEditingItem] = useState<UserCollection | null>(null)
   const [filter, setFilter] = useState<'all' | 'collection' | 'wishlist'>('all')
@@ -215,7 +215,7 @@ const UserCollectionManager: React.FC<CollectionManagerProps> = ({ isOwnProfile 
                 <Calendar className="w-4 h-4" />
                 <span>
                   {item.isWishlist ? t('collection.added') : t('collection.acquired')}: {' '}
-                  {item.acquisitionDate.toLocaleDateString('de-DE')}
+                                      {item.acquisitionDate.toLocaleDateString(getLocaleString(currentLanguage))}
                 </span>
               </div>
 
