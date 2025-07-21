@@ -67,7 +67,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen = false, onClose }) => {
               <li className={location.pathname === '/leaderboard' ? 'active' : ''}><Link to="/leaderboard" onClick={handleLinkClick}>📊 {t('nav.leaderboard')}</Link></li>
               <li className={location.pathname === '/minigames' ? 'active' : ''}><Link to="/minigames" onClick={handleLinkClick}>🎯 {t('nav.minigames')}</Link></li>
               <li className={location.pathname === '/marktplatz' ? 'active' : ''}><Link to="/marktplatz" onClick={handleLinkClick}>🛒 {t('nav.marketplace')}</Link></li>
-              <li className={location.pathname === '/community' ? 'active' : ''}><Link to="/community" onClick={handleLinkClick}>👥 Community</Link></li>
+              <li className={location.pathname === '/community' ? 'active' : ''}><Link to="/community" onClick={handleLinkClick}>👥 {t('nav.community')}</Link></li>
               <li className={location.pathname === '/quiz' ? 'active' : ''}><Link to="/quiz" onClick={handleLinkClick}>❓ {t('nav.quiz')}</Link></li>
               <li className={location.pathname.startsWith('/forum') ? 'active' : ''}><Link to="/forum" onClick={handleLinkClick}>💬 {t('nav.forum')}</Link></li>
               <li className={location.pathname === '/fanart' ? 'active' : ''}><Link to="/fanart" onClick={handleLinkClick}>🎨 {t('nav.fanart')}</Link></li>
@@ -98,7 +98,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen = false, onClose }) => {
               className="w-full flex items-center gap-3 px-4 py-3 text-slate-300 hover:text-slate-100 hover:bg-slate-700 rounded-lg transition-colors"
             >
               <LogIn className="w-5 h-5" />
-              <span>Anmelden</span>
+              <span>{t('auth.login')}</span>
             </Link>
           )}
         </div>

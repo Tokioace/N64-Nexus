@@ -18,6 +18,25 @@ export const useLanguage = () => {
   return context
 }
 
+// Helper function to get the correct locale for date formatting
+export const getLocaleString = (language: Language): string => {
+  switch (language) {
+    case 'de': return 'de-DE'
+    case 'fr': return 'fr-FR'
+    case 'it': return 'it-IT'
+    case 'es': return 'es-ES'
+    case 'pt': return 'pt-PT'
+    case 'ru': return 'ru-RU'
+    case 'zh': return 'zh-CN'
+    case 'ja': return 'ja-JP'
+    case 'ar': return 'ar-SA'
+    case 'hi': return 'hi-IN'
+    case 'el': return 'el-GR'
+    case 'tr': return 'tr-TR'
+    default: return 'en-US'
+  }
+}
+
 interface LanguageProviderProps {
   children: ReactNode
 }
@@ -308,6 +327,7 @@ const translations = {
     
     // Community
     'community.title': 'Community',
+    'community.subtitle': 'Entdecke andere Spieler und ihre Sammlungen',
     'community.members': 'Mitglieder',
     'community.onlineNow': 'Jetzt online',
     'community.recentlyJoined': 'Kürzlich beigetreten',
@@ -320,6 +340,7 @@ const translations = {
     'community.achievements': 'Erfolge',
     'community.gamesPlayed': 'Gespielte Spiele',
     'community.totalScore': 'Gesamtpunktzahl',
+    'community.recentRecord': 'Neuester Rekord:',
     
     // Leaderboard
     'leaderboard.title': 'Bestenliste',
@@ -946,6 +967,7 @@ const translations = {
     
     // Community
     'community.title': 'Community',
+    'community.subtitle': 'Discover other players and their collections',
     'community.members': 'Members',
     'community.onlineNow': 'Online Now',
     'community.recentlyJoined': 'Recently Joined',
@@ -958,6 +980,7 @@ const translations = {
     'community.achievements': 'Achievements',
     'community.gamesPlayed': 'Games Played',
     'community.totalScore': 'Total Score',
+    'community.recentRecord': 'Recent Record:',
     
     // Leaderboard
     'leaderboard.title': 'Leaderboard',
@@ -1577,6 +1600,7 @@ const translations = {
     
     // Community
     'community.title': 'Communauté',
+    'community.subtitle': 'Découvrez d\'autres joueurs et leurs collections',
     'community.members': 'Membres',
     'community.onlineNow': 'En ligne maintenant',
     'community.recentlyJoined': 'Récemment rejoint',
@@ -1589,6 +1613,7 @@ const translations = {
     'community.achievements': 'Succès',
     'community.gamesPlayed': 'Jeux joués',
     'community.totalScore': 'Score total',
+    'community.recentRecord': 'Record récent:',
     
     // Leaderboard
     'leaderboard.title': 'Classement',

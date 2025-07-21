@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useUser } from '../contexts/UserContext'
-import { useLanguage } from '../contexts/LanguageContext'
+import { useLanguage, getLocaleString } from '../contexts/LanguageContext'
 import { PersonalRecord } from '../types'
 import { Plus, Trophy, Clock, Target, Gamepad2, Calendar, CheckCircle, AlertCircle, Edit, Trash2 } from 'lucide-react'
 
@@ -10,7 +10,7 @@ interface PersonalRecordsProps {
 
 const PersonalRecordsManager: React.FC<PersonalRecordsProps> = ({ isOwnProfile = true }) => {
   const { user, addPersonalRecord, updatePersonalRecord } = useUser()
-  const { t } = useLanguage()
+  const { t, currentLanguage } = useLanguage()
   const [showAddModal, setShowAddModal] = useState(false)
   const [editingRecord, setEditingRecord] = useState<PersonalRecord | null>(null)
   const [filter, setFilter] = useState<'all' | 'verified' | 'pending'>('all')
@@ -213,7 +213,7 @@ const PersonalRecordsManager: React.FC<PersonalRecordsProps> = ({ isOwnProfile =
                   {/* Achievement Date */}
                   <div className="flex items-center gap-2 text-sm text-slate-400 mb-3">
                     <Calendar className="w-4 h-4" />
-                    <span>Erreicht am {record.achievedDate.toLocaleDateString('de-DE')}</span>
+                    <span>{t('profile.achievedOn')} {record.achievedDate.toLocaleDateString(getLocaleString(currentLanguage))}</span>
                   </div>
 
                   {/* Notes */}

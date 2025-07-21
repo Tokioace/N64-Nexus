@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useUser } from '../contexts/UserContext'
-import { useLanguage } from '../contexts/LanguageContext'
+import { useLanguage, getLocaleString } from '../contexts/LanguageContext'
 import { User } from '../types'
 import { Users, Trophy, Package, Star, Gamepad2, Globe, Search, Filter } from 'lucide-react'
 
 const CommunityPage: React.FC = () => {
   const { getAllUsers } = useUser()
-  const { t } = useLanguage()
+  const { t, currentLanguage } = useLanguage()
   const [users, setUsers] = useState<User[]>([])
   const [loading, setLoading] = useState(true)
   const [searchTerm, setSearchTerm] = useState('')
@@ -75,7 +75,7 @@ const CommunityPage: React.FC = () => {
           <div>
             <h1 className="text-3xl font-bold text-slate-100">Community</h1>
             <p className="text-slate-400">
-              Entdecke andere Spieler und ihre Sammlungen
+              {t('community.subtitle')}
             </p>
           </div>
         </div>
@@ -246,7 +246,7 @@ const CommunityPage: React.FC = () => {
 
               {/* Join Date */}
               <div className="text-xs text-slate-500">
-                Dabei seit {user.joinDate.toLocaleDateString('de-DE', { 
+                {t('profile.joinDate')} {user.joinDate.toLocaleDateString(getLocaleString(currentLanguage), { 
                   month: 'long', 
                   year: 'numeric' 
                 })}
@@ -255,7 +255,7 @@ const CommunityPage: React.FC = () => {
               {/* Recent Activity Preview */}
               {user.personalRecords.length > 0 && (
                 <div className="mt-3 pt-3 border-t border-slate-700">
-                  <div className="text-xs text-slate-400 mb-1">Neuester Rekord:</div>
+                  <div className="text-xs text-slate-400 mb-1">{t('community.recentRecord')}</div>
                   <div className="text-sm text-slate-200">
                     {user.personalRecords[user.personalRecords.length - 1].gameName}
                   </div>

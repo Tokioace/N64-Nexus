@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useUser } from '../contexts/UserContext'
 import { useEvent } from '../contexts/EventContext'
-import { useLanguage } from '../contexts/LanguageContext'
+import { useLanguage, getLocaleString } from '../contexts/LanguageContext'
 import EventFeedWidget from '../components/EventFeedWidget'
 import { GameEvent } from '../types'
 import {
@@ -33,7 +33,7 @@ interface NewsItem {
 const HomePage: React.FC = () => {
   const { user } = useUser()
   const { events, activeEvents, getLeaderboard } = useEvent()
-  const { t } = useLanguage()
+  const { t, currentLanguage } = useLanguage()
   const [currentTime, setCurrentTime] = useState(new Date())
   const [isNewsExpanded, setIsNewsExpanded] = useState(false)
   const [isEventExpanded, setIsEventExpanded] = useState(false)
@@ -86,7 +86,7 @@ const HomePage: React.FC = () => {
   }
 
   const formatDate = (date: Date) => {
-    return date.toLocaleDateString('de-DE', { 
+    return date.toLocaleDateString(getLocaleString(currentLanguage), { 
       weekday: 'long', 
       year: 'numeric', 
       month: 'long', 
