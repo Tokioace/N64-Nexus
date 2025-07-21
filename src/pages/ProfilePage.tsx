@@ -126,10 +126,10 @@ const ProfilePage: React.FC = () => {
         <div className="simple-tile text-center py-12">
           <UserIcon className="w-16 h-16 text-slate-600 mx-auto mb-4" />
           <h2 className="text-2xl font-bold text-slate-100 mb-4">
-            Profil nicht gefunden
+            {t('error.notFound')}
           </h2>
           <p className="text-slate-400 mb-6">
-            Das angeforderte Profil konnte nicht gefunden werden.
+            {t('error.generic')}
           </p>
           <Link
             to="/profile"

@@ -123,7 +123,7 @@ const RaceSubmissionModal: React.FC<RaceSubmissionModalProps> = ({
       }
     } catch (err) {
       console.error('Submission error:', err)
-      setError('Unerwarteter Fehler aufgetreten')
+              setError(t('error.generic'))
     } finally {
       setIsSubmitting(false)
     }
@@ -233,7 +233,7 @@ const RaceSubmissionModal: React.FC<RaceSubmissionModalProps> = ({
             <div>
               <label className="block text-sm font-medium text-slate-200 mb-2">
                 <Upload className="w-4 h-4 inline mr-2" />
-                {documentationType === 'photo' ? 'Screenshot hochladen (optional)' : 'Video hochladen (optional)'}
+                                      {documentationType === 'photo' ? t('events.photo') : t('events.video')}
               </label>
               <div className="relative">
                 <input
