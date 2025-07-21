@@ -73,7 +73,7 @@ const CommunityPage: React.FC = () => {
         <div className="flex items-center gap-3 mb-4">
           <Users className="w-8 h-8 text-blue-400" />
           <div>
-            <h1 className="text-3xl font-bold text-slate-100">Community</h1>
+            <h1 className="text-3xl font-bold text-slate-100">{t('community.title')}</h1>
             <p className="text-slate-400">
               {t('community.subtitle')}
             </p>
@@ -84,19 +84,19 @@ const CommunityPage: React.FC = () => {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           <div className="text-center p-4 bg-slate-700/30 rounded-lg">
             <div className="text-2xl font-bold text-blue-400">{users.length}</div>
-            <div className="text-sm text-slate-400">Mitglieder</div>
+            <div className="text-sm text-slate-400">{t('community.members')}</div>
           </div>
           <div className="text-center p-4 bg-slate-700/30 rounded-lg">
             <div className="text-2xl font-bold text-green-400">
               {users.reduce((sum, user) => sum + user.collections.filter(c => !c.isWishlist).length, 0)}
             </div>
-            <div className="text-sm text-slate-400">Spiele</div>
+            <div className="text-sm text-slate-400">{t('community.games')}</div>
           </div>
           <div className="text-center p-4 bg-slate-700/30 rounded-lg">
             <div className="text-2xl font-bold text-purple-400">
               {users.reduce((sum, user) => sum + user.personalRecords.filter(r => r.verified).length, 0)}
             </div>
-            <div className="text-sm text-slate-400">Rekorde</div>
+            <div className="text-sm text-slate-400">{t('community.records')}</div>
           </div>
           <div className="text-center p-4 bg-slate-700/30 rounded-lg">
             <div className="text-2xl font-bold text-yellow-400">
@@ -215,21 +215,21 @@ const CommunityPage: React.FC = () => {
                     <Trophy className="w-4 h-4" />
                     <span className="font-bold">{user.level}</span>
                   </div>
-                  <div className="text-xs text-slate-400">Level</div>
+                  <div className="text-xs text-slate-400">{t('profile.level')}</div>
                 </div>
                 <div className="text-center">
                   <div className="flex items-center justify-center gap-1 text-green-400 mb-1">
                     <Package className="w-4 h-4" />
                     <span className="font-bold">{user.collections.filter(c => !c.isWishlist).length}</span>
                   </div>
-                  <div className="text-xs text-slate-400">Spiele</div>
+                  <div className="text-xs text-slate-400">{t('community.games')}</div>
                 </div>
                 <div className="text-center">
                   <div className="flex items-center justify-center gap-1 text-purple-400 mb-1">
                     <Star className="w-4 h-4" />
                     <span className="font-bold">{user.personalRecords.filter(r => r.verified).length}</span>
                   </div>
-                  <div className="text-xs text-slate-400">Rekorde</div>
+                  <div className="text-xs text-slate-400">{t('community.records')}</div>
                 </div>
               </div>
 

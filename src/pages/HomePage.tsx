@@ -142,7 +142,7 @@ const HomePage: React.FC = () => {
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center space-x-3">
               <TrendingUp className="w-6 h-6 text-yellow-400" />
-              <h2 className="text-xl font-bold text-slate-100">News Feed</h2>
+              <h2 className="text-xl font-bold text-slate-100">{t('home.newsfeed')}</h2>
             </div>
             <button
               onClick={() => setIsNewsExpanded(!isNewsExpanded)}
@@ -222,7 +222,7 @@ const HomePage: React.FC = () => {
           <div className="text-center">
             <Target className="w-8 h-8 text-purple-400 mx-auto mb-2" />
             <div className="font-medium text-slate-100 text-sm">{t('nav.quiz')}</div>
-            <div className="text-xs text-slate-400">N64 Wissen testen</div>
+            <div className="text-xs text-slate-400">{t('home.quiz.description')}</div>
           </div>
         </Link>
 
@@ -231,7 +231,7 @@ const HomePage: React.FC = () => {
           <div className="text-center">
             <Trophy className="w-8 h-8 text-yellow-400 mx-auto mb-2" />
             <div className="font-medium text-slate-100 text-sm">{t('nav.events')}</div>
-            <div className="text-xs text-slate-400">Turniere & Challenges</div>
+            <div className="text-xs text-slate-400">{t('home.events.description')}</div>
           </div>
         </Link>
 
@@ -239,8 +239,8 @@ const HomePage: React.FC = () => {
         <Link to="/speedrun-media" className="n64-tile n64-tile-small bg-gradient-to-br from-green-600/20 to-green-800/20 border-l-4 border-green-400">
           <div className="text-center">
             <Camera className="w-8 h-8 text-green-400 mx-auto mb-2" />
-            <div className="font-medium text-slate-100 text-sm">Media</div>
-            <div className="text-xs text-slate-400">Speedrun Videos</div>
+            <div className="font-medium text-slate-100 text-sm">{t('nav.media')}</div>
+            <div className="text-xs text-slate-400">{t('home.media.description')}</div>
           </div>
         </Link>
 
@@ -249,7 +249,7 @@ const HomePage: React.FC = () => {
           <div className="text-center">
             <Package className="w-8 h-8 text-orange-400 mx-auto mb-2" />
             <div className="font-medium text-slate-100 text-sm">{t('nav.collector')}</div>
-            <div className="text-xs text-slate-400">Deine Kollektion</div>
+            <div className="text-xs text-slate-400">{t('home.collector.description')}</div>
           </div>
         </Link>
 
@@ -266,8 +266,8 @@ const HomePage: React.FC = () => {
         <Link to="/profile" className="n64-tile n64-tile-small bg-gradient-to-br from-blue-600/20 to-blue-800/20 border-l-4 border-blue-400">
           <div className="text-center">
             <UsersIcon className="w-8 h-8 text-blue-400 mx-auto mb-2" />
-            <div className="font-medium text-slate-100 text-sm">Profil</div>
-            <div className="text-xs text-slate-400">Mein Account</div>
+            <div className="font-medium text-slate-100 text-sm">{t('nav.profile')}</div>
+            <div className="text-xs text-slate-400">{t('home.profile.subtitle')}</div>
           </div>
         </Link>
 
@@ -275,8 +275,8 @@ const HomePage: React.FC = () => {
         <Link to="/leaderboard" className="n64-tile n64-tile-small bg-gradient-to-br from-pink-600/20 to-pink-800/20 border-l-4 border-pink-400">
           <div className="text-center">
             <Star className="w-8 h-8 text-pink-400 mx-auto mb-2" />
-            <div className="font-medium text-slate-100 text-sm">Rangliste</div>
-            <div className="text-xs text-slate-400">Top Spieler</div>
+            <div className="font-medium text-slate-100 text-sm">{t('nav.leaderboard')}</div>
+            <div className="text-xs text-slate-400">{t('home.leaderboard.subtitle')}</div>
           </div>
         </Link>
 
@@ -284,8 +284,8 @@ const HomePage: React.FC = () => {
         <Link to="/minigames" className="n64-tile n64-tile-small bg-gradient-to-br from-red-600/20 to-red-800/20 border-l-4 border-red-400">
           <div className="text-center">
             <Gamepad2 className="w-8 h-8 text-red-400 mx-auto mb-2" />
-            <div className="font-medium text-slate-100 text-sm">Minispiele</div>
-            <div className="text-xs text-slate-400">Kleine Games</div>
+            <div className="font-medium text-slate-100 text-sm">{t('nav.minigames')}</div>
+            <div className="text-xs text-slate-400">{t('home.minigames.description')}</div>
           </div>
         </Link>
 

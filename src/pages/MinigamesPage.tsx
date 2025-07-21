@@ -852,7 +852,7 @@ const MinigamesPage: React.FC = () => {
           <div className="text-2xl font-bold text-slate-100">
             {minigames.filter(g => g.category === 'multiplayer').length}
           </div>
-          <div className="text-sm text-slate-400">Multiplayer</div>
+          <div className="text-sm text-slate-400">{t('minigames.multiplayer')}</div>
         </div>
       </div>
 
@@ -959,13 +959,13 @@ const MinigamesPage: React.FC = () => {
 
         <div className="simple-tile text-center py-8">
           <Users className="w-12 h-12 text-cyan-400 mx-auto mb-4" />
-          <h3 className="text-xl font-bold text-slate-100 mb-2">Turniere & Events</h3>
+          <h3 className="text-xl font-bold text-slate-100 mb-2">{t('minigames.tournamentsTitle')}</h3>
           <p className="text-slate-400 mb-4">
-            Nimm an wöchentlichen Minispiel-Turnieren teil!
+            {t('minigames.tournamentsDesc')}
           </p>
           <button className="px-6 py-2 bg-cyan-600/20 hover:bg-cyan-600/30 border border-cyan-500/30 
                            text-cyan-400 hover:text-cyan-300 rounded-lg transition-all duration-200">
-            🎯 Aktuelle Turniere
+            {t('minigames.currentTournaments')}
           </button>
         </div>
       </div>
@@ -973,7 +973,7 @@ const MinigamesPage: React.FC = () => {
       {/* Coming Soon Section */}
       <div className="simple-tile text-center py-8">
         <Star className="w-12 h-12 text-yellow-400 mx-auto mb-4" />
-        <h3 className="text-xl font-bold text-slate-100 mb-2">Weitere Spiele in Entwicklung</h3>
+        <h3 className="text-xl font-bold text-slate-100 mb-2">{t('minigames.moreGamesTitle')}</h3>
         <p className="text-slate-400 mb-4">
           {t('minigames.moreGamesComingSoon')}
         </p>
