@@ -1260,8 +1260,6 @@ const translations = {
 
     // Collection Management
     'collection.confirmRemove': 'Do you really want to remove this game from your collection?',
-    'collection.addGame': 'Add Game',
-    'collection.completeness': 'Completeness',
     'collection.packaging': 'Packaging',
     'collection.manual': 'Manual',
     'collection.module': 'Module',
@@ -1832,8 +1830,6 @@ const translations = {
 
     // Collection Management
     'collection.confirmRemove': 'Voulez-vous vraiment supprimer ce jeu de votre collection ?',
-    'collection.addGame': 'Ajouter un jeu',
-    'collection.completeness': 'Complétude',
     'collection.packaging': 'Emballage',
     'collection.manual': 'Manuel',
     'collection.module': 'Module',
@@ -2131,8 +2127,6 @@ const translations = {
 
     // Collection Management
     'collection.confirmRemove': 'Vuoi davvero rimuovere questo gioco dalla tua collezione?',
-    'collection.addGame': 'Aggiungi Gioco',
-    'collection.completeness': 'Completezza',
     'collection.packaging': 'Confezione',
     'collection.manual': 'Manuale',
     'collection.module': 'Modulo',
@@ -2429,8 +2423,6 @@ const translations = {
 
     // Collection Management
     'collection.confirmRemove': '¿Realmente quieres eliminar este juego de tu colección?',
-    'collection.addGame': 'Agregar Juego',
-    'collection.completeness': 'Completitud',
     'collection.packaging': 'Empaque',
     'collection.manual': 'Manual',
     'collection.module': 'Módulo',
@@ -2643,8 +2635,6 @@ const translations = {
 
     // Collection Management
     'collection.confirmRemove': 'Θέλετε πραγματικά να αφαιρέσετε αυτό το παιχνίδι από τη συλλογή σας;',
-    'collection.addGame': 'Προσθήκη Παιχνιδιού',
-    'collection.completeness': 'Πληρότητα',
     'collection.packaging': 'Συσκευασία',
     'collection.manual': 'Εγχειρίδιο',
     'collection.module': 'Μονάδα',
@@ -3011,29 +3001,7 @@ const translations = {
     'time.yesterday': 'χθες',
     'time.tomorrow': 'αύριο',
     
-    // Collection Manager - Additional
-    'collection.myCollection': 'Η συλλογή μου',
-    'collection.userCollection': 'Συλλογή του {username}',
-    'collection.noGames': 'Δεν υπάρχουν παιχνίδια',
-    'collection.noWishes': 'Δεν υπάρχουν επιθυμίες',
-    'collection.addFirstGame': 'Προσθέστε το πρώτο σας παιχνίδι!',
-    'collection.noGamesYet': 'Ο {username} δεν έχει ακόμα παιχνίδια {type}.',
-    'collection.inCollection': 'στη συλλογή',
-    'collection.onWishlist': 'στη λίστα επιθυμιών',
-    'collection.all': 'Όλα',
-    'collection.collection': 'Συλλογή',
-    'collection.wishlist': 'Λίστα επιθυμιών',
-    'collection.acquired': 'Αποκτήθηκε',
-    'collection.added': 'Προστέθηκε',
-    'collection.condition': 'Κατάσταση',
-    'collection.mint': 'Άριστη',
-    'collection.veryGood': 'Πολύ καλή',
-    'collection.good': 'Καλή',
-    'collection.fair': 'Αποδεκτή',
-    'collection.poor': 'Κακή',
-    'collection.complete': 'Πλήρης',
-    'collection.cartOnly': 'Μόνο κασέτα',
-    'collection.boxOnly': 'Μόνο κουτί',
+
     
     // Media and Documentation - Additional
     'media.screenshot': 'Screenshot',
@@ -3094,14 +3062,7 @@ const translations = {
      'forum.post.toadContent': 'Γεια σας! Ήθελα να μοιραστώ την τρέχουσα στρατηγική μου για το Toad\'s Turnpike. Το κλειδί είναι η τέλεια στροφή και το timing των boosts...',
      'forum.welcomeMessage': 'Γεια σου {username}! Χαίρομαι που είσαι εδώ. Μοιράσου τη γνώση σου για το N64, συζήτησε για speedruns και κάνε ανταλλαγή με άλλους fans.',
 
-     // Common - Additional terms
-     'common.rarity': 'Σπανιότητα',
-     'common.common': 'Συχνό',
-     'common.uncommon': 'Ασυνήθιστο',
-     'common.rare': 'Σπάνιο',
-     'common.veryRare': 'Πολύ σπάνιο',
-     'common.ultraRare': 'Εξαιρετικά σπάνιο',
-     'common.genres': 'Είδη'
+
   },
 
   tr: {
@@ -3277,8 +3238,6 @@ const translations = {
 
     // Collection Management
     'collection.confirmRemove': 'Bu oyunu koleksiyonunuzdan gerçekten kaldırmak istiyor musunuz?',
-    'collection.addGame': 'Oyun Ekle',
-    'collection.completeness': 'Tamlık',
     'collection.packaging': 'Ambalaj',
     'collection.manual': 'Kılavuz',
     'collection.module': 'Modül',
