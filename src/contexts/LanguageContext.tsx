@@ -499,6 +499,14 @@ const translations = {
     'achievement.profilePublic': 'Profil öffentlich gemacht',
     'achievement.gamesAdded': '20 Spiele zur Sammlung hinzugefügt',
     'achievement.eventChampion': 'Ein Event gewonnen',
+    'achievement.speedrunMaster': 'Speedrun Master',
+    'achievement.speedrunMasterDesc': '10 Speedruns abgeschlossen',
+    'achievement.communityHero': 'Community Hero',
+    'achievement.collector': 'Sammler',
+    'achievement.eventChampionName': 'Event Champion',
+    'achievement.recordHolder': 'Rekordhalter',
+    'achievement.recordHolderDesc': '5 verifizierte Rekorde',
+    'achievement.today': 'Heute',
 
     // Notifications
     'notifications.enabled': '🔔 Benachrichtigungen aktiviert! Du wirst über neue Events informiert.',
@@ -522,7 +530,30 @@ const translations = {
     'collection.module': 'Modul',
     'collection.used': 'Gebraucht',
     'collection.estimatedValue': 'Geschätzter Wert',
-    'collection.cancel': 'Abbrechen'
+    'collection.cancel': 'Abbrechen',
+
+    // Additional placeholders and labels
+    'placeholder.gameName': 'z.B. Super Mario 64',
+    'placeholder.category': 'z.B. 120 Stars, Any%, High Score',
+    'placeholder.time': 'z.B. 1:39:42 oder 99.42',
+    'placeholder.score': 'z.B. 999999',
+    'placeholder.proofUrl': 'https://youtube.com/watch?v=...',
+    'placeholder.notes': 'Optionale Notizen...',
+    'placeholder.recordNotes': 'Optionale Notizen zum Rekord...',
+    'placeholder.password': '••••••••',
+    'label.gameName': 'Spielname',
+    'label.platform': 'Plattform',
+    'label.region': 'Region',
+    'label.category': 'Kategorie',
+    'label.proofUrl': 'Beweis-URL (optional)',
+    'label.notes': 'Notizen',
+    'label.required': '*',
+
+    // Minigame sound descriptions
+    'minigames.sound.mario64': '"Wahoo!" - Mario Jump Sound',
+    'minigames.sound.zelda': '"Hey! Listen!" - Navi Sound',
+    'minigames.sound.goldeneye': '"Pew Pew" - Silencer Shot',
+    'minigames.sound.mariokart': '"Here we go!" - Race Start'
   },
   
   en: {
@@ -1000,6 +1031,14 @@ const translations = {
     'achievement.profilePublic': 'Made profile public',
     'achievement.gamesAdded': 'Added 20 games to collection',
     'achievement.eventChampion': 'Won an event',
+    'achievement.speedrunMaster': 'Speedrun Master',
+    'achievement.speedrunMasterDesc': 'Completed 10 speedruns',
+    'achievement.communityHero': 'Community Hero',
+    'achievement.collector': 'Collector',
+    'achievement.eventChampionName': 'Event Champion',
+    'achievement.recordHolder': 'Record Holder',
+    'achievement.recordHolderDesc': '5 verified records',
+    'achievement.today': 'Today',
 
     // Notifications
     'notifications.enabled': '🔔 Notifications enabled! You will be informed about new events.',
@@ -1023,7 +1062,30 @@ const translations = {
     'collection.module': 'Module',
     'collection.used': 'Used',
     'collection.estimatedValue': 'Estimated Value',
-    'collection.cancel': 'Cancel'
+    'collection.cancel': 'Cancel',
+
+    // Additional placeholders and labels
+    'placeholder.gameName': 'e.g. Super Mario 64',
+    'placeholder.category': 'e.g. 120 Stars, Any%, High Score',
+    'placeholder.time': 'e.g. 1:39:42 or 99.42',
+    'placeholder.score': 'e.g. 999999',
+    'placeholder.proofUrl': 'https://youtube.com/watch?v=...',
+    'placeholder.notes': 'Optional notes...',
+    'placeholder.recordNotes': 'Optional notes about the record...',
+    'placeholder.password': '••••••••',
+    'label.gameName': 'Game Name',
+    'label.platform': 'Platform',
+    'label.region': 'Region',
+    'label.category': 'Category',
+    'label.proofUrl': 'Proof URL (optional)',
+    'label.notes': 'Notes',
+    'label.required': '*',
+
+    // Minigame sound descriptions
+    'minigames.sound.mario64': '"Wahoo!" - Mario Jump Sound',
+    'minigames.sound.zelda': '"Hey! Listen!" - Navi Sound',
+    'minigames.sound.goldeneye': '"Pew Pew" - Silencer Shot',
+    'minigames.sound.mariokart': '"Here we go!" - Race Start'
   },
   
   fr: {
@@ -1428,7 +1490,41 @@ const translations = {
     // Achievement descriptions
     'achievement.profilePublic': 'Profil rendu public',
     'achievement.gamesAdded': '20 jeux ajoutés à la collection',
-    'achievement.eventChampion': 'Gagné un événement'
+    'achievement.eventChampion': 'Gagné un événement',
+
+    // Collection Management
+    'collection.confirmRemove': 'Voulez-vous vraiment supprimer ce jeu de votre collection ?',
+    'collection.addGame': 'Ajouter un jeu',
+    'collection.completeness': 'Complétude',
+    'collection.packaging': 'Emballage',
+    'collection.manual': 'Manuel',
+    'collection.module': 'Module',
+    'collection.used': 'Utilisé',
+    'collection.estimatedValue': 'Valeur estimée',
+    'collection.cancel': 'Annuler',
+
+    // Additional placeholders and labels
+    'placeholder.gameName': 'ex. Super Mario 64',
+    'placeholder.category': 'ex. 120 Étoiles, Any%, High Score',
+    'placeholder.time': 'ex. 1:39:42 ou 99.42',
+    'placeholder.score': 'ex. 999999',
+    'placeholder.proofUrl': 'https://youtube.com/watch?v=...',
+    'placeholder.notes': 'Notes optionnelles...',
+    'placeholder.recordNotes': 'Notes optionnelles sur le record...',
+    'placeholder.password': '••••••••',
+    'label.gameName': 'Nom du jeu',
+    'label.platform': 'Plateforme',
+    'label.region': 'Région',
+    'label.category': 'Catégorie',
+    'label.proofUrl': 'URL de preuve (optionnel)',
+    'label.notes': 'Notes',
+    'label.required': '*',
+
+    // Minigame sound descriptions
+    'minigames.sound.mario64': '"Wahoo!" - Son de saut de Mario',
+    'minigames.sound.zelda': '"Hey! Listen!" - Son de Navi',
+    'minigames.sound.goldeneye': '"Pew Pew" - Tir silencieux',
+    'minigames.sound.mariokart': '"Here we go!" - Début de course'
   },
 
   it: {
@@ -1589,7 +1685,40 @@ const translations = {
     'news.eventWinner': 'Vincitore dell\'evento: Sfida Mario Kart 64',
     'news.eventWinnerContent': 'Il giocatore "SpeedDemon64" ha vinto l\'evento Speedrun Mario Kart 64 con un tempo di 1:47:32!',
     'news.n64History': 'Oggi nella storia N64',
-    'news.n64HistoryContent': '27 anni fa (1996) il Nintendo 64 è stato rilasciato in Giappone. Il primo gioco era Super Mario 64!'
+    'news.n64HistoryContent': '27 anni fa (1996) il Nintendo 64 è stato rilasciato in Giappone. Il primo gioco era Super Mario 64!',
+
+    // Collection Management
+    'collection.confirmRemove': 'Vuoi davvero rimuovere questo gioco dalla tua collezione?',
+    'collection.addGame': 'Aggiungi Gioco',
+    'collection.completeness': 'Completezza',
+    'collection.packaging': 'Confezione',
+    'collection.manual': 'Manuale',
+    'collection.module': 'Modulo',
+    'collection.used': 'Usato',
+    'collection.estimatedValue': 'Valore Stimato',
+    'collection.cancel': 'Annulla',
+
+    // Additional placeholders and labels
+    'placeholder.gameName': 'es. Super Mario 64',
+    'placeholder.category': 'es. 120 Stelle, Any%, High Score',
+    'placeholder.time': 'es. 1:39:42 o 99.42',
+    'placeholder.score': 'es. 999999',
+    'placeholder.proofUrl': 'https://youtube.com/watch?v=...',
+    'placeholder.notes': 'Note opzionali...',
+    'placeholder.recordNotes': 'Note opzionali sul record...',
+    'label.gameName': 'Nome del Gioco',
+    'label.platform': 'Piattaforma',
+    'label.region': 'Regione',
+    'label.category': 'Categoria',
+    'label.proofUrl': 'URL Prova (opzionale)',
+    'label.notes': 'Note',
+    'label.required': '*',
+
+    // Minigame sound descriptions
+    'minigames.sound.mario64': '"Wahoo!" - Suono salto di Mario',
+    'minigames.sound.zelda': '"Hey! Listen!" - Suono di Navi',
+    'minigames.sound.goldeneye': '"Pew Pew" - Sparo silenziato',
+    'minigames.sound.mariokart': '"Here we go!" - Inizio gara'
   },
 
   es: {
@@ -1750,7 +1879,40 @@ const translations = {
     'news.eventWinner': 'Ganador del evento: Desafío Mario Kart 64',
     'news.eventWinnerContent': '¡El jugador "SpeedDemon64" ganó el evento Speedrun Mario Kart 64 con un tiempo de 1:47:32!',
     'news.n64History': 'Hoy en la historia N64',
-    'news.n64HistoryContent': 'Hace 27 años (1996) se lanzó Nintendo 64 en Japón. ¡El primer juego fue Super Mario 64!'
+    'news.n64HistoryContent': 'Hace 27 años (1996) se lanzó Nintendo 64 en Japón. ¡El primer juego fue Super Mario 64!',
+
+    // Collection Management
+    'collection.confirmRemove': '¿Realmente quieres eliminar este juego de tu colección?',
+    'collection.addGame': 'Agregar Juego',
+    'collection.completeness': 'Completitud',
+    'collection.packaging': 'Empaque',
+    'collection.manual': 'Manual',
+    'collection.module': 'Módulo',
+    'collection.used': 'Usado',
+    'collection.estimatedValue': 'Valor Estimado',
+    'collection.cancel': 'Cancelar',
+
+    // Additional placeholders and labels
+    'placeholder.gameName': 'ej. Super Mario 64',
+    'placeholder.category': 'ej. 120 Estrellas, Any%, High Score',
+    'placeholder.time': 'ej. 1:39:42 o 99.42',
+    'placeholder.score': 'ej. 999999',
+    'placeholder.proofUrl': 'https://youtube.com/watch?v=...',
+    'placeholder.notes': 'Notas opcionales...',
+    'placeholder.recordNotes': 'Notas opcionales sobre el récord...',
+    'label.gameName': 'Nombre del Juego',
+    'label.platform': 'Plataforma',
+    'label.region': 'Región',
+    'label.category': 'Categoría',
+    'label.proofUrl': 'URL de Prueba (opcional)',
+    'label.notes': 'Notas',
+    'label.required': '*',
+
+    // Minigame sound descriptions
+    'minigames.sound.mario64': '"Wahoo!" - Sonido de salto de Mario',
+    'minigames.sound.zelda': '"Hey! Listen!" - Sonido de Navi',
+    'minigames.sound.goldeneye': '"Pew Pew" - Disparo silenciado',
+    'minigames.sound.mariokart': '"Here we go!" - Inicio de carrera'
   },
 
   el: {
@@ -1857,7 +2019,40 @@ const translations = {
     'language.russian': 'Ρωσικά',
     'language.portuguese': 'Πορτογαλικά',
     'language.hindi': 'Χίντι',
-    'language.arabic': 'Αραβικά'
+    'language.arabic': 'Αραβικά',
+
+    // Collection Management
+    'collection.confirmRemove': 'Θέλετε πραγματικά να αφαιρέσετε αυτό το παιχνίδι από τη συλλογή σας;',
+    'collection.addGame': 'Προσθήκη Παιχνιδιού',
+    'collection.completeness': 'Πληρότητα',
+    'collection.packaging': 'Συσκευασία',
+    'collection.manual': 'Εγχειρίδιο',
+    'collection.module': 'Μονάδα',
+    'collection.used': 'Μεταχειρισμένο',
+    'collection.estimatedValue': 'Εκτιμώμενη Αξία',
+    'collection.cancel': 'Ακύρωση',
+
+    // Additional placeholders and labels
+    'placeholder.gameName': 'π.χ. Super Mario 64',
+    'placeholder.category': 'π.χ. 120 Αστέρια, Any%, High Score',
+    'placeholder.time': 'π.χ. 1:39:42 ή 99.42',
+    'placeholder.score': 'π.χ. 999999',
+    'placeholder.proofUrl': 'https://youtube.com/watch?v=...',
+    'placeholder.notes': 'Προαιρετικές σημειώσεις...',
+    'placeholder.recordNotes': 'Προαιρετικές σημειώσεις για το ρεκόρ...',
+    'label.gameName': 'Όνομα Παιχνιδιού',
+    'label.platform': 'Πλατφόρμα',
+    'label.region': 'Περιοχή',
+    'label.category': 'Κατηγορία',
+    'label.proofUrl': 'URL Απόδειξης (προαιρετικό)',
+    'label.notes': 'Σημειώσεις',
+    'label.required': '*',
+
+    // Minigame sound descriptions
+    'minigames.sound.mario64': '"Wahoo!" - Ήχος άλματος Mario',
+    'minigames.sound.zelda': '"Hey! Listen!" - Ήχος Navi',
+    'minigames.sound.goldeneye': '"Pew Pew" - Σιγασμένος πυροβολισμός',
+    'minigames.sound.mariokart': '"Here we go!" - Έναρξη αγώνα'
   },
 
   tr: {
@@ -1964,7 +2159,40 @@ const translations = {
     'language.russian': 'Rusça',
     'language.portuguese': 'Portekizce',
     'language.hindi': 'Hintçe',
-    'language.arabic': 'Arapça'
+    'language.arabic': 'Arapça',
+
+    // Collection Management
+    'collection.confirmRemove': 'Bu oyunu koleksiyonunuzdan gerçekten kaldırmak istiyor musunuz?',
+    'collection.addGame': 'Oyun Ekle',
+    'collection.completeness': 'Tamlık',
+    'collection.packaging': 'Ambalaj',
+    'collection.manual': 'Kılavuz',
+    'collection.module': 'Modül',
+    'collection.used': 'Kullanılmış',
+    'collection.estimatedValue': 'Tahmini Değer',
+    'collection.cancel': 'İptal',
+
+    // Additional placeholders and labels
+    'placeholder.gameName': 'örn. Super Mario 64',
+    'placeholder.category': 'örn. 120 Yıldız, Any%, High Score',
+    'placeholder.time': 'örn. 1:39:42 veya 99.42',
+    'placeholder.score': 'örn. 999999',
+    'placeholder.proofUrl': 'https://youtube.com/watch?v=...',
+    'placeholder.notes': 'İsteğe bağlı notlar...',
+    'placeholder.recordNotes': 'Rekor hakkında isteğe bağlı notlar...',
+    'label.gameName': 'Oyun Adı',
+    'label.platform': 'Platform',
+    'label.region': 'Bölge',
+    'label.category': 'Kategori',
+    'label.proofUrl': 'Kanıt URL\'si (isteğe bağlı)',
+    'label.notes': 'Notlar',
+    'label.required': '*',
+
+    // Minigame sound descriptions
+    'minigames.sound.mario64': '"Wahoo!" - Mario Zıplama Sesi',
+    'minigames.sound.zelda': '"Hey! Listen!" - Navi Sesi',
+    'minigames.sound.goldeneye': '"Pew Pew" - Susturucu Ateş',
+    'minigames.sound.mariokart': '"Here we go!" - Yarış Başlangıcı'
   },
 
   zh: {
@@ -2071,7 +2299,40 @@ const translations = {
     'language.russian': '俄语',
     'language.portuguese': '葡萄牙语',
     'language.hindi': '印地语',
-    'language.arabic': '阿拉伯语'
+    'language.arabic': '阿拉伯语',
+
+    // Collection Management
+    'collection.confirmRemove': '您真的想要从收藏中移除这个游戏吗？',
+    'collection.addGame': '添加游戏',
+    'collection.completeness': '完整性',
+    'collection.packaging': '包装',
+    'collection.manual': '说明书',
+    'collection.module': '模块',
+    'collection.used': '已使用',
+    'collection.estimatedValue': '估计价值',
+    'collection.cancel': '取消',
+
+    // Additional placeholders and labels
+    'placeholder.gameName': '例如 Super Mario 64',
+    'placeholder.category': '例如 120 星，Any%，高分',
+    'placeholder.time': '例如 1:39:42 或 99.42',
+    'placeholder.score': '例如 999999',
+    'placeholder.proofUrl': 'https://youtube.com/watch?v=...',
+    'placeholder.notes': '可选备注...',
+    'placeholder.recordNotes': '关于记录的可选备注...',
+    'label.gameName': '游戏名称',
+    'label.platform': '平台',
+    'label.region': '地区',
+    'label.category': '类别',
+    'label.proofUrl': '证明URL（可选）',
+    'label.notes': '备注',
+    'label.required': '*',
+
+    // Minigame sound descriptions
+    'minigames.sound.mario64': '"Wahoo!" - 马里奥跳跃声',
+    'minigames.sound.zelda': '"Hey! Listen!" - 娜薇声音',
+    'minigames.sound.goldeneye': '"Pew Pew" - 消音器射击',
+    'minigames.sound.mariokart': '"Here we go!" - 比赛开始'
   },
 
   ja: {
@@ -2178,7 +2439,40 @@ const translations = {
     'language.russian': 'ロシア語',
     'language.portuguese': 'ポルトガル語',
     'language.hindi': 'ヒンディー語',
-    'language.arabic': 'アラビア語'
+    'language.arabic': 'アラビア語',
+
+    // Collection Management
+    'collection.confirmRemove': 'このゲームをコレクションから本当に削除しますか？',
+    'collection.addGame': 'ゲーム追加',
+    'collection.completeness': '完全性',
+    'collection.packaging': 'パッケージ',
+    'collection.manual': 'マニュアル',
+    'collection.module': 'モジュール',
+    'collection.used': '中古',
+    'collection.estimatedValue': '推定価値',
+    'collection.cancel': 'キャンセル',
+
+    // Additional placeholders and labels
+    'placeholder.gameName': '例：Super Mario 64',
+    'placeholder.category': '例：120スター、Any%、ハイスコア',
+    'placeholder.time': '例：1:39:42 または 99.42',
+    'placeholder.score': '例：999999',
+    'placeholder.proofUrl': 'https://youtube.com/watch?v=...',
+    'placeholder.notes': 'オプションのメモ...',
+    'placeholder.recordNotes': 'レコードに関するオプションのメモ...',
+    'label.gameName': 'ゲーム名',
+    'label.platform': 'プラットフォーム',
+    'label.region': '地域',
+    'label.category': 'カテゴリ',
+    'label.proofUrl': '証明URL（オプション）',
+    'label.notes': 'メモ',
+    'label.required': '*',
+
+    // Minigame sound descriptions
+    'minigames.sound.mario64': '"Wahoo!" - マリオジャンプ音',
+    'minigames.sound.zelda': '"Hey! Listen!" - ナビの声',
+    'minigames.sound.goldeneye': '"Pew Pew" - サイレンサー射撃',
+    'minigames.sound.mariokart': '"Here we go!" - レース開始'
   },
 
   ru: {
@@ -2287,7 +2581,40 @@ const translations = {
     'language.russian': 'Русский',
     'language.portuguese': 'Португальский',
     'language.hindi': 'Хинди',
-    'language.arabic': 'Арабский'
+    'language.arabic': 'Арабский',
+
+    // Collection Management
+    'collection.confirmRemove': 'Вы действительно хотите удалить эту игру из своей коллекции?',
+    'collection.addGame': 'Добавить игру',
+    'collection.completeness': 'Полнота',
+    'collection.packaging': 'Упаковка',
+    'collection.manual': 'Руководство',
+    'collection.module': 'Модуль',
+    'collection.used': 'Б/у',
+    'collection.estimatedValue': 'Расчетная стоимость',
+    'collection.cancel': 'Отмена',
+
+    // Additional placeholders and labels
+    'placeholder.gameName': 'например, Super Mario 64',
+    'placeholder.category': 'например, 120 звезд, Any%, High Score',
+    'placeholder.time': 'например, 1:39:42 или 99.42',
+    'placeholder.score': 'например, 999999',
+    'placeholder.proofUrl': 'https://youtube.com/watch?v=...',
+    'placeholder.notes': 'Дополнительные заметки...',
+    'placeholder.recordNotes': 'Дополнительные заметки о рекорде...',
+    'label.gameName': 'Название игры',
+    'label.platform': 'Платформа',
+    'label.region': 'Регион',
+    'label.category': 'Категория',
+    'label.proofUrl': 'URL доказательства (необязательно)',
+    'label.notes': 'Заметки',
+    'label.required': '*',
+
+    // Minigame sound descriptions
+    'minigames.sound.mario64': '"Wahoo!" - Звук прыжка Марио',
+    'minigames.sound.zelda': '"Hey! Listen!" - Голос Нави',
+    'minigames.sound.goldeneye': '"Pew Pew" - Выстрел с глушителем',
+    'minigames.sound.mariokart': '"Here we go!" - Старт гонки'
   },
 
   pt: {
@@ -2396,7 +2723,40 @@ const translations = {
     'language.russian': 'Russo',
     'language.portuguese': 'Português',
     'language.hindi': 'हिन्दी',
-    'language.arabic': 'العربية'
+    'language.arabic': 'العربية',
+
+    // Collection Management
+    'collection.confirmRemove': 'Você realmente quer remover este jogo da sua coleção?',
+    'collection.addGame': 'Adicionar Jogo',
+    'collection.completeness': 'Completude',
+    'collection.packaging': 'Embalagem',
+    'collection.manual': 'Manual',
+    'collection.module': 'Módulo',
+    'collection.used': 'Usado',
+    'collection.estimatedValue': 'Valor Estimado',
+    'collection.cancel': 'Cancelar',
+
+    // Additional placeholders and labels
+    'placeholder.gameName': 'ex. Super Mario 64',
+    'placeholder.category': 'ex. 120 Estrelas, Any%, High Score',
+    'placeholder.time': 'ex. 1:39:42 ou 99.42',
+    'placeholder.score': 'ex. 999999',
+    'placeholder.proofUrl': 'https://youtube.com/watch?v=...',
+    'placeholder.notes': 'Notas opcionais...',
+    'placeholder.recordNotes': 'Notas opcionais sobre o recorde...',
+    'label.gameName': 'Nome do Jogo',
+    'label.platform': 'Plataforma',
+    'label.region': 'Região',
+    'label.category': 'Categoria',
+    'label.proofUrl': 'URL de Prova (opcional)',
+    'label.notes': 'Notas',
+    'label.required': '*',
+
+    // Minigame sound descriptions
+    'minigames.sound.mario64': '"Wahoo!" - Som de pulo do Mario',
+    'minigames.sound.zelda': '"Hey! Listen!" - Som da Navi',
+    'minigames.sound.goldeneye': '"Pew Pew" - Tiro com silenciador',
+    'minigames.sound.mariokart': '"Here we go!" - Início da corrida'
   },
 
   hi: {
@@ -2617,7 +2977,40 @@ const translations = {
     'language.russian': 'रूसी',
     'language.portuguese': 'पुर्तगाली',
     'language.hindi': 'हिन्दी',
-    'language.arabic': 'अरबी'
+    'language.arabic': 'अरबी',
+
+    // Collection Management
+    'collection.confirmRemove': 'क्या आप वास्तव में इस गेम को अपने संग्रह से हटाना चाहते हैं?',
+    'collection.addGame': 'गेम जोड़ें',
+    'collection.completeness': 'पूर्णता',
+    'collection.packaging': 'पैकेजिंग',
+    'collection.manual': 'मैनुअल',
+    'collection.module': 'मॉड्यूल',
+    'collection.used': 'प्रयुक्त',
+    'collection.estimatedValue': 'अनुमानित मूल्य',
+    'collection.cancel': 'रद्द करें',
+
+    // Additional placeholders and labels
+    'placeholder.gameName': 'उदा. Super Mario 64',
+    'placeholder.category': 'उदा. 120 स्टार, Any%, High Score',
+    'placeholder.time': 'उदा. 1:39:42 या 99.42',
+    'placeholder.score': 'उदा. 999999',
+    'placeholder.proofUrl': 'https://youtube.com/watch?v=...',
+    'placeholder.notes': 'वैकल्पिक नोट्स...',
+    'placeholder.recordNotes': 'रिकॉर्ड के बारे में वैकल्पिक नोट्स...',
+    'label.gameName': 'गेम का नाम',
+    'label.platform': 'प्लेटफॉर्म',
+    'label.region': 'क्षेत्र',
+    'label.category': 'श्रेणी',
+    'label.proofUrl': 'प्रूफ URL (वैकल्पिक)',
+    'label.notes': 'नोट्स',
+    'label.required': '*',
+
+    // Minigame sound descriptions
+    'minigames.sound.mario64': '"Wahoo!" - मारियो जंप साउंड',
+    'minigames.sound.zelda': '"Hey! Listen!" - नावी की आवाज',
+    'minigames.sound.goldeneye': '"Pew Pew" - साइलेंसर शॉट',
+    'minigames.sound.mariokart': '"Here we go!" - रेस शुरुआत'
   },
 
   ar: {
@@ -2811,7 +3204,40 @@ const translations = {
     'language.russian': 'الروسية',
     'language.portuguese': 'البرتغالية',
     'language.hindi': 'الهندية',
-    'language.arabic': 'العربية'
+    'language.arabic': 'العربية',
+
+    // Collection Management
+    'collection.confirmRemove': 'هل تريد حقاً إزالة هذه اللعبة من مجموعتك؟',
+    'collection.addGame': 'إضافة لعبة',
+    'collection.completeness': 'الاكتمال',
+    'collection.packaging': 'التغليف',
+    'collection.manual': 'الدليل',
+    'collection.module': 'الوحدة',
+    'collection.used': 'مستعمل',
+    'collection.estimatedValue': 'القيمة المقدرة',
+    'collection.cancel': 'إلغاء',
+
+    // Additional placeholders and labels
+    'placeholder.gameName': 'مثال Super Mario 64',
+    'placeholder.category': 'مثال 120 نجمة، Any%، High Score',
+    'placeholder.time': 'مثال 1:39:42 أو 99.42',
+    'placeholder.score': 'مثال 999999',
+    'placeholder.proofUrl': 'https://youtube.com/watch?v=...',
+    'placeholder.notes': 'ملاحظات اختيارية...',
+    'placeholder.recordNotes': 'ملاحظات اختيارية حول الرقم القياسي...',
+    'label.gameName': 'اسم اللعبة',
+    'label.platform': 'المنصة',
+    'label.region': 'المنطقة',
+    'label.category': 'الفئة',
+    'label.proofUrl': 'رابط الإثبات (اختياري)',
+    'label.notes': 'ملاحظات',
+    'label.required': '*',
+
+    // Minigame sound descriptions
+    'minigames.sound.mario64': '"Wahoo!" - صوت قفزة ماريو',
+    'minigames.sound.zelda': '"Hey! Listen!" - صوت نافي',
+    'minigames.sound.goldeneye': '"Pew Pew" - طلقة كاتم الصوت',
+    'minigames.sound.mariokart': '"Here we go!" - بداية السباق'
   }
 }
 

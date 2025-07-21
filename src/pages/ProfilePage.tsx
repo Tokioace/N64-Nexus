@@ -146,42 +146,42 @@ const ProfilePage: React.FC = () => {
   const achievements: Achievement[] = [
     {
       id: 1,
-      name: "Speedrun Master",
-      description: "10 Speedruns abgeschlossen",
+      name: t('achievement.speedrunMaster'),
+      description: t('achievement.speedrunMasterDesc'),
       icon: "🏃‍♂️",
       earned: profileUser.personalRecords.length >= 5,
       earnedDate: "15. Juli 2024"
     },
     {
       id: 2,
-      name: "Community Hero",
-              description: t('achievement.profilePublic'),
+      name: t('achievement.communityHero'),
+      description: t('achievement.profilePublic'),
       icon: "👥",
       earned: profileUser.isPublic,
       earnedDate: "10. Juli 2024"
     },
     {
       id: 3,
-      name: "Collector",
-              description: t('achievement.gamesAdded'),
+      name: t('achievement.collector'),
+      description: t('achievement.gamesAdded'),
       icon: "📦",
       earned: profileUser.collections.filter(c => !c.isWishlist).length >= 10,
       earnedDate: "5. Juli 2024"
     },
     {
       id: 4,
-      name: "Event Champion",
-              description: t('achievement.eventChampion'),
+              name: t('achievement.eventChampionName'),
+      description: t('achievement.eventChampion'),
       icon: "🏆",
       earned: false
     },
     {
       id: 5,
-      name: "Record Holder",
-      description: "5 verifizierte Rekorde",
+      name: t('achievement.recordHolder'),
+      description: t('achievement.recordHolderDesc'),
       icon: "⭐",
       earned: profileUser.personalRecords.filter(r => r.verified).length >= 5,
-      earnedDate: profileUser.personalRecords.filter(r => r.verified).length >= 5 ? "Heute" : undefined
+      earnedDate: profileUser.personalRecords.filter(r => r.verified).length >= 5 ? t('achievement.today') : undefined
     }
   ]
 

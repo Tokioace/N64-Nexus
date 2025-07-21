@@ -525,10 +525,10 @@ const MinigamesPage: React.FC = () => {
     const [score, setScore] = useState(0)
     
     const sounds = [
-      { game: 'Super Mario 64', description: '🎵 "Wahoo!" - Mario Jump Sound' },
-      { game: 'Zelda: Ocarina of Time', description: '🎵 "Hey! Listen!" - Navi Sound' },
-      { game: 'GoldenEye 007', description: '🎵 "Pew Pew" - Silencer Shot' },
-      { game: 'Mario Kart 64', description: '🎵 "Here we go!" - Race Start' }
+      { game: 'Super Mario 64', description: `🎵 ${t('minigames.sound.mario64')}` },
+      { game: 'Zelda: Ocarina of Time', description: `🎵 ${t('minigames.sound.zelda')}` },
+      { game: 'GoldenEye 007', description: `🎵 ${t('minigames.sound.goldeneye')}` },
+      { game: 'Mario Kart 64', description: `🎵 ${t('minigames.sound.mariokart')}` }
     ]
 
     const currentSoundData = sounds[currentSound]

@@ -264,7 +264,7 @@ const PersonalRecordsManager: React.FC<PersonalRecordsProps> = ({ isOwnProfile =
                       <button
                         onClick={() => setEditingRecord(record)}
                         className="p-1 text-blue-400 hover:text-blue-300 hover:bg-blue-400/10 rounded transition-colors"
-                        title="Bearbeiten"
+                        title={t('common.edit')}
                       >
                         <Edit className="w-4 h-4" />
                       </button>
@@ -272,7 +272,7 @@ const PersonalRecordsManager: React.FC<PersonalRecordsProps> = ({ isOwnProfile =
                         <button
                           onClick={() => handleVerifyRecord(record.id, true)}
                           className="p-1 text-green-400 hover:text-green-300 hover:bg-green-400/10 rounded transition-colors"
-                          title="Als verifiziert markieren"
+                          title={t('events.verified')}
                         >
                           <CheckCircle className="w-4 h-4" />
                         </button>
@@ -297,7 +297,7 @@ const PersonalRecordsManager: React.FC<PersonalRecordsProps> = ({ isOwnProfile =
             <form onSubmit={handleAddRecord} className="space-y-4">
               <div>
                 <label className="block text-sm font-medium text-slate-300 mb-2">
-                  Spielname *
+                  {t('label.gameName')} {t('label.required')}
                 </label>
                 <input
                   type="text"
@@ -305,13 +305,13 @@ const PersonalRecordsManager: React.FC<PersonalRecordsProps> = ({ isOwnProfile =
                   value={newRecord.gameName}
                   onChange={(e) => setNewRecord({ ...newRecord, gameName: e.target.value })}
                   className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-slate-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  placeholder="z.B. Super Mario 64"
+                  placeholder={t('placeholder.gameName')}
                 />
               </div>
 
               <div>
                 <label className="block text-sm font-medium text-slate-300 mb-2">
-                  Kategorie *
+                  {t('label.category')} {t('label.required')}
                 </label>
                 <input
                   type="text"
@@ -319,14 +319,14 @@ const PersonalRecordsManager: React.FC<PersonalRecordsProps> = ({ isOwnProfile =
                   value={newRecord.category}
                   onChange={(e) => setNewRecord({ ...newRecord, category: e.target.value })}
                   className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-slate-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  placeholder="z.B. 120 Stars, Any%, High Score"
+                  placeholder={t('placeholder.category')}
                 />
               </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-slate-300 mb-2">
-                    Plattform
+                    {t('label.platform')}
                   </label>
                   <select
                     value={newRecord.platform}
@@ -340,7 +340,7 @@ const PersonalRecordsManager: React.FC<PersonalRecordsProps> = ({ isOwnProfile =
 
                 <div>
                   <label className="block text-sm font-medium text-slate-300 mb-2">
-                    Region
+                    {t('label.region')}
                   </label>
                   <select
                     value={newRecord.region}
@@ -363,7 +363,7 @@ const PersonalRecordsManager: React.FC<PersonalRecordsProps> = ({ isOwnProfile =
                     value={newRecord.time}
                     onChange={(e) => setNewRecord({ ...newRecord, time: e.target.value })}
                     className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-slate-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    placeholder="z.B. 1:39:42 oder 99.42"
+                    placeholder={t('placeholder.time')}
                   />
                 </div>
 
@@ -376,34 +376,34 @@ const PersonalRecordsManager: React.FC<PersonalRecordsProps> = ({ isOwnProfile =
                     value={newRecord.score || ''}
                     onChange={(e) => setNewRecord({ ...newRecord, score: e.target.value ? parseInt(e.target.value) : undefined })}
                     className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-slate-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    placeholder="z.B. 999999"
+                    placeholder={t('placeholder.score')}
                   />
                 </div>
               </div>
 
               <div>
                 <label className="block text-sm font-medium text-slate-300 mb-2">
-                  Beweis-URL (optional)
+                  {t('label.proofUrl')}
                 </label>
                 <input
                   type="url"
                   value={newRecord.mediaUrl}
                   onChange={(e) => setNewRecord({ ...newRecord, mediaUrl: e.target.value })}
                   className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-slate-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  placeholder="https://youtube.com/watch?v=..."
+                  placeholder={t('placeholder.proofUrl')}
                 />
               </div>
 
               <div>
                 <label className="block text-sm font-medium text-slate-300 mb-2">
-                  Notizen
+                  {t('label.notes')}
                 </label>
                 <textarea
                   value={newRecord.notes}
                   onChange={(e) => setNewRecord({ ...newRecord, notes: e.target.value })}
                   className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-slate-100 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
                   rows={3}
-                  placeholder="Optionale Notizen zum Rekord..."
+                  placeholder={t('placeholder.recordNotes')}
                 />
               </div>
 

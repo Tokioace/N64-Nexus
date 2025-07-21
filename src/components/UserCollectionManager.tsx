@@ -261,7 +261,7 @@ const UserCollectionManager: React.FC<CollectionManagerProps> = ({ isOwnProfile 
             <form onSubmit={handleAddItem} className="space-y-4">
               <div>
                 <label className="block text-sm font-medium text-slate-300 mb-2">
-                  Spielname *
+                  {t('label.gameName')} {t('label.required')}
                 </label>
                 <input
                   type="text"
@@ -269,14 +269,14 @@ const UserCollectionManager: React.FC<CollectionManagerProps> = ({ isOwnProfile 
                   value={newItem.gameName}
                   onChange={(e) => setNewItem({ ...newItem, gameName: e.target.value })}
                   className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-slate-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  placeholder="z.B. Super Mario 64"
+                  placeholder={t('placeholder.gameName')}
                 />
               </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-slate-300 mb-2">
-                    Plattform
+                    {t('label.platform')}
                   </label>
                   <select
                     value={newItem.platform}
@@ -339,14 +339,14 @@ const UserCollectionManager: React.FC<CollectionManagerProps> = ({ isOwnProfile 
 
               <div>
                 <label className="block text-sm font-medium text-slate-300 mb-2">
-                  Notizen
+                  {t('label.notes')}
                 </label>
                 <textarea
                   value={newItem.notes}
                   onChange={(e) => setNewItem({ ...newItem, notes: e.target.value })}
                   className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-slate-100 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
                   rows={3}
-                  placeholder="Optionale Notizen..."
+                  placeholder={t('placeholder.notes')}
                 />
               </div>
 
