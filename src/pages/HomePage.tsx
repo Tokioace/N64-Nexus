@@ -103,7 +103,7 @@ const HomePage: React.FC = () => {
     const endTime = new Date(event.endDate)
     const timeLeft = endTime.getTime() - now.getTime()
     
-    if (timeLeft <= 0) return 'Beendet'
+    if (timeLeft <= 0) return t('home.ended')
     
     const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24))
     const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
@@ -198,7 +198,7 @@ const HomePage: React.FC = () => {
           <div className="n64-tile n64-tile-large bg-gradient-to-br from-red-600/20 to-pink-600/20 border-l-4 border-red-400">
             <div className="flex items-center space-x-3 mb-4">
               <Trophy className="w-6 h-6 text-red-400" />
-              <h2 className="text-xl font-bold text-slate-100">Live Events</h2>
+              <h2 className="text-xl font-bold text-slate-100">{t('home.liveEvents')}</h2>
             </div>
             <div className="text-center py-8">
               <Calendar className="w-12 h-12 text-slate-500 mx-auto mb-3" />

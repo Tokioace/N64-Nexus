@@ -48,10 +48,10 @@ const LeaderboardPage: React.FC = () => {
       <div className="text-center mb-8">
         <Trophy className="w-16 h-16 text-yellow-400 mx-auto mb-4" />
         <h1 className="text-4xl font-bold text-slate-100 mb-2">
-          Battle64 Bestenliste
+          {t('leaderboard.pageTitle')}
         </h1>
         <p className="text-slate-400 text-lg">
-          Die besten Zeiten und Rekorde unserer Community
+          {t('leaderboard.pageSubtitle')}
         </p>
       </div>
 
@@ -60,7 +60,7 @@ const LeaderboardPage: React.FC = () => {
         <div className="simple-tile mb-8">
           <h2 className="text-xl font-bold text-slate-100 mb-4 flex items-center">
             <Calendar className="w-5 h-5 mr-2" />
-            Event auswählen
+            {t('leaderboard.selectEvent')}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {activeEventsWithLeaderboard.map((event) => (
@@ -94,7 +94,7 @@ const LeaderboardPage: React.FC = () => {
                     ? 'bg-green-500/20 text-green-400' 
                     : 'bg-gray-500/20 text-gray-400'
                 }`}>
-                  {getEventStatus(event) === 'active' ? '🔴 LIVE' : '✅ BEENDET'}
+                  {getEventStatus(event) === 'active' ? `🔴 ${t('events.status.live')}` : `✅ ${t('events.status.completed')}`}
                 </div>
               </button>
             ))}
