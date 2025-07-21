@@ -234,14 +234,14 @@ const UserCollectionManager: React.FC<CollectionManagerProps> = ({ isOwnProfile 
                     className="flex items-center gap-1 px-3 py-1 text-sm text-blue-400 hover:text-blue-300 hover:bg-blue-400/10 rounded transition-colors"
                   >
                     <Edit className="w-4 h-4" />
-                    Bearbeiten
+{t('collection.editGame')}
                   </button>
                   <button
                     onClick={() => handleRemoveItem(item.id)}
                     className="flex items-center gap-1 px-3 py-1 text-sm text-red-400 hover:text-red-300 hover:bg-red-400/10 rounded transition-colors"
                   >
                     <Trash2 className="w-4 h-4" />
-                    Entfernen
+{t('collection.removeGame')}
                   </button>
                 </div>
               )}
@@ -359,7 +359,7 @@ const UserCollectionManager: React.FC<CollectionManagerProps> = ({ isOwnProfile 
                   className="w-4 h-4 text-blue-600 bg-slate-700 border-slate-600 rounded focus:ring-blue-500"
                 />
                 <label htmlFor="isWishlist" className="ml-2 text-sm text-slate-300">
-                  Zur Wunschliste hinzufügen
+{t('collection.addToWishlist')}
                 </label>
               </div>
 
@@ -375,7 +375,7 @@ const UserCollectionManager: React.FC<CollectionManagerProps> = ({ isOwnProfile 
                   type="submit"
                   className="flex-1 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors"
                 >
-                  Hinzufügen
+{t('collection.addGame')}
                 </button>
               </div>
             </form>

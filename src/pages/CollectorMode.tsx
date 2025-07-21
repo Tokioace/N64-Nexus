@@ -103,7 +103,7 @@ const GameModal: React.FC<GameModalProps> = ({ game, isOpen, onClose, onAddToCol
           </div>
 
           <div>
-            <label className="block text-slate-300 text-sm font-medium mb-2">Enthaltene Teile</label>
+            <label className="block text-slate-300 text-sm font-medium mb-2">{t('collection.includedParts')}</label>
             <div className="space-y-2">
               <label className="flex items-center">
                 <input
@@ -136,7 +136,7 @@ const GameModal: React.FC<GameModalProps> = ({ game, isOpen, onClose, onAddToCol
           </div>
 
           <div>
-            <label className="block text-slate-300 text-sm font-medium mb-2">Notizen (optional)</label>
+            <label className="block text-slate-300 text-sm font-medium mb-2">{t('collection.notesOptional')}</label>
             <textarea
               value={notes}
               onChange={(e) => setNotes(e.target.value)}
@@ -165,7 +165,7 @@ const GameModal: React.FC<GameModalProps> = ({ game, isOpen, onClose, onAddToCol
               disabled={!hasModule}
               className="flex-1 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              {isCollected ? 'Aktualisieren' : 'Zur Sammlung hinzufügen'}
+  {isCollected ? t('collection.updateGame') : t('collection.addToCollection')}
             </button>
           </div>
         </div>
@@ -274,8 +274,8 @@ const CollectorMode: React.FC = () => {
     <div className="container mx-auto px-4 py-6">
       {/* Header */}
       <div className="text-center mb-8">
-        <h1 className="text-4xl font-bold text-slate-100 mb-2">N64 Sammler-Modus</h1>
-        <p className="text-slate-400">Verwalte deine Nintendo 64 Spielesammlung</p>
+        <h1 className="text-4xl font-bold text-slate-100 mb-2">{t('collection.collectorMode')}</h1>
+        <p className="text-slate-400">{t('collection.manageCollection')}</p>
       </div>
 
       {/* Statistics */}
@@ -284,7 +284,7 @@ const CollectorMode: React.FC = () => {
           <div className="flex items-center space-x-3">
             <Package className="text-blue-400" size={24} />
             <div>
-              <p className="text-slate-400 text-sm">Spiele gesammelt</p>
+              <p className="text-slate-400 text-sm">{t('collection.gamesCollected')}</p>
               <p className="text-2xl font-bold text-slate-100">{stats.collectedCount}</p>
             </div>
           </div>
@@ -294,7 +294,7 @@ const CollectorMode: React.FC = () => {
           <div className="flex items-center space-x-3">
             <TrendingUp className="text-green-400" size={24} />
             <div>
-              <p className="text-slate-400 text-sm">Vollständigkeit</p>
+              <p className="text-slate-400 text-sm">{t('collection.completeness')}</p>
               <p className="text-2xl font-bold text-slate-100">{stats.completionPercentage}%</p>
             </div>
           </div>
@@ -304,7 +304,7 @@ const CollectorMode: React.FC = () => {
           <div className="flex items-center space-x-3">
             <Trophy className="text-yellow-400" size={24} />
             <div>
-              <p className="text-slate-400 text-sm">Sammlungswert</p>
+              <p className="text-slate-400 text-sm">{t('collection.collectionValue')}</p>
               <p className="text-2xl font-bold text-slate-100">€{stats.totalValue}</p>
             </div>
           </div>
@@ -314,7 +314,7 @@ const CollectorMode: React.FC = () => {
           <div className="flex items-center space-x-3">
             <Star className="text-purple-400" size={24} />
             <div>
-              <p className="text-slate-400 text-sm">Sammler Level</p>
+              <p className="text-slate-400 text-sm">{t('collection.collectorLevel')}</p>
               <p className="text-lg font-bold text-slate-100">{stats.collectorLevel.title}</p>
             </div>
           </div>
@@ -342,7 +342,7 @@ const CollectorMode: React.FC = () => {
             onChange={(e) => setRarityFilter(e.target.value)}
             className="px-3 py-2 bg-slate-700 border border-slate-600 rounded text-slate-100"
           >
-            <option value="all">{t('collection.all')} {t('common.rarity')}</option>
+            <option value="all">{t('collection.allRarities')}</option>
             <option value="common">{t('common.common')}</option>
             <option value="uncommon">{t('common.uncommon')}</option>
             <option value="rare">{t('common.rare')}</option>
@@ -355,7 +355,7 @@ const CollectorMode: React.FC = () => {
             onChange={(e) => setGenreFilter(e.target.value)}
             className="px-3 py-2 bg-slate-700 border border-slate-600 rounded text-slate-100"
           >
-            <option value="all">{t('collection.all')} {t('common.genres')}</option>
+            <option value="all">{t('collection.allGenres')}</option>
             {genres.map(genre => (
               <option key={genre} value={genre}>{genre}</option>
             ))}
@@ -401,7 +401,7 @@ const CollectorMode: React.FC = () => {
                   </div>
                   <p className="text-slate-400 text-sm">{game.genre} • {game.releaseYear}</p>
                   {collected && collectedGame && (
-                    <p className="text-green-400 text-sm">Wert: €{currentValue}</p>
+                    <p className="text-green-400 text-sm">{t('collection.value')}: €{currentValue}</p>
                   )}
                 </div>
                 <div className="flex space-x-2">
@@ -411,13 +411,13 @@ const CollectorMode: React.FC = () => {
                         onClick={() => openGameModal(game)}
                         className="px-3 py-1 bg-blue-600 text-white rounded text-sm hover:bg-blue-700 transition-colors"
                       >
-                        Bearbeiten
+{t('collection.editGame')}
                       </button>
                       <button
                         onClick={() => handleRemoveFromCollection(game.id)}
                         className="px-3 py-1 bg-red-600 text-white rounded text-sm hover:bg-red-700 transition-colors"
                       >
-                        Entfernen
+{t('collection.removeGame')}
                       </button>
                     </>
                   ) : (
@@ -426,7 +426,7 @@ const CollectorMode: React.FC = () => {
                       className="px-3 py-1 bg-green-600 text-white rounded text-sm hover:bg-green-700 transition-colors flex items-center space-x-1"
                     >
                       <Plus size={16} />
-                      <span>Hinzufügen</span>
+                      <span>{t('collection.addGame')}</span>
                     </button>
                   )}
                 </div>
@@ -448,8 +448,8 @@ const CollectorMode: React.FC = () => {
               
               {collected && collectedGame && (
                 <div className="mb-3 p-2 bg-slate-700 rounded">
-                  <p className="text-green-400 text-sm font-medium">In Sammlung</p>
-                  <p className="text-slate-300 text-xs">Wert: €{currentValue}</p>
+                  <p className="text-green-400 text-sm font-medium">{t('collection.inCollectionStatus')}</p>
+                  <p className="text-slate-300 text-xs">{t('collection.value')}: €{currentValue}</p>
                   <div className="flex space-x-2 text-xs text-slate-400 mt-1">
                     {collectedGame.hasModule && <span>📦 Modul</span>}
                     {collectedGame.hasBox && <span>📄 Box</span>}
@@ -465,7 +465,7 @@ const CollectorMode: React.FC = () => {
                       onClick={() => openGameModal(game)}
                       className="flex-1 px-3 py-2 bg-blue-600 text-white rounded text-sm hover:bg-blue-700 transition-colors"
                     >
-                      Bearbeiten
+{t('collection.editGame')}
                     </button>
                     <button
                       onClick={() => handleRemoveFromCollection(game.id)}
@@ -480,7 +480,7 @@ const CollectorMode: React.FC = () => {
                     className="w-full px-3 py-2 bg-green-600 text-white rounded text-sm hover:bg-green-700 transition-colors flex items-center justify-center space-x-1"
                   >
                     <Plus size={16} />
-                    <span>Hinzufügen</span>
+                    <span>{t('collection.addGame')}</span>
                   </button>
                 )}
               </div>
@@ -491,7 +491,7 @@ const CollectorMode: React.FC = () => {
 
       {filteredGames.length === 0 && (
         <div className="text-center py-12">
-          <p className="text-slate-400">Keine Spiele gefunden. Versuche andere Suchbegriffe oder Filter.</p>
+          <p className="text-slate-400">{t('collection.noGamesFound')}</p>
         </div>
       )}
 
