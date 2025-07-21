@@ -3310,12 +3310,7 @@ const translations = {
     'media.fullscreen': 'Πλήρης οθόνη',
     'media.exitFullscreen': 'Έξοδος από πλήρη οθόνη',
 
-    // Home Screen - Additional
-    'home.marketplace.subtitle': 'Εμπόριο',
-    'home.friends.subtitle': 'Κοινωνικό δίκτυο',
-    'home.fanart.subtitle': 'Δημιουργικότητα',
-    'home.news.subtitle': 'Ενημερώσεις',
-    'home.classic.subtitle': 'Ρετρό εμπειρία',
+
     'home.newsfeed': 'Ροή ειδήσεων',
     'home.liveEvents': 'Live Events',
     'home.noEventsActive': 'Δεν υπάρχουν ενεργά events',
