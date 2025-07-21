@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react'
 import { ForumCategory, ForumThread, ForumPost, ForumStats } from '../types'
 import { useUser } from './UserContext'
+import { useLanguage } from './LanguageContext'
 
 interface ForumContextType {
   categories: ForumCategory[]
@@ -216,6 +217,7 @@ export const ForumProvider: React.FC<{ children: ReactNode }> = ({ children }) =
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const { user } = useUser()
+  const { t } = useLanguage()
 
   const getCategories = () => {
     setLoading(true)
@@ -254,17 +256,17 @@ export const ForumProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     
     // Validate input
     if (!title.trim() || !content.trim() || !categoryId.trim()) {
-      setError('Alle Felder sind erforderlich')
+      setError(t('validation.allFieldsRequired'))
       return false
     }
     
     if (title.length > 100) {
-      setError('Titel ist zu lang (max. 100 Zeichen)')
+      setError(t('validation.titleTooLong'))
       return false
     }
     
     if (content.length > 2000) {
-      setError('Inhalt ist zu lang (max. 2000 Zeichen)')
+      setError(t('validation.contentTooLong'))
       return false
     }
     
@@ -303,7 +305,7 @@ export const ForumProvider: React.FC<{ children: ReactNode }> = ({ children }) =
       setLoading(false)
       return true
     } catch (err) {
-      setError('Fehler beim Erstellen des Threads')
+              setError(t('error.generic'))
       setLoading(false)
       return false
     }
@@ -319,7 +321,7 @@ export const ForumProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     }
     
     if (content.length > 2000) {
-      setError('Beitrag ist zu lang (max. 2000 Zeichen)')
+      setError(t('validation.postTooLong'))
       return false
     }
     
@@ -359,7 +361,7 @@ export const ForumProvider: React.FC<{ children: ReactNode }> = ({ children }) =
       setLoading(false)
       return true
     } catch (err) {
-      setError('Fehler beim Erstellen des Beitrags')
+              setError(t('error.generic'))
       setLoading(false)
       return false
     }

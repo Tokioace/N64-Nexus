@@ -110,6 +110,12 @@ const translations = {
     'common.retry': 'Wiederholen',
     'common.note': 'Hinweis',
     
+    // Form validation
+    'validation.allFieldsRequired': 'Alle Felder sind erforderlich',
+    'validation.titleTooLong': 'Titel ist zu lang (max. 100 Zeichen)',
+    'validation.contentTooLong': 'Inhalt ist zu lang (max. 2000 Zeichen)',
+    'validation.postTooLong': 'Beitrag ist zu lang (max. 2000 Zeichen)',
+    
     // Error messages
     'error.boundary.title': 'Oops! Etwas ist schiefgelaufen',
     'error.boundary.message': 'Es ist ein unerwarteter Fehler aufgetreten. Bitte versuche es erneut.',
@@ -706,6 +712,12 @@ const translations = {
     'common.retry': 'Retry',
     'common.note': 'Note',
     
+    // Form validation
+    'validation.allFieldsRequired': 'All fields are required',
+    'validation.titleTooLong': 'Title is too long (max. 100 characters)',
+    'validation.contentTooLong': 'Content is too long (max. 2000 characters)',
+    'validation.postTooLong': 'Post is too long (max. 2000 characters)',
+    
     // Error messages
     'error.boundary.title': 'Oops! Something went wrong',
     'error.boundary.message': 'An unexpected error occurred. Please try again.',
@@ -1300,6 +1312,13 @@ const translations = {
     'common.no': 'Non',
     'common.ok': 'OK',
     'common.retry': 'Réessayer',
+    'common.note': 'Note',
+    
+    // Form validation
+    'validation.allFieldsRequired': 'Tous les champs sont requis',
+    'validation.titleTooLong': 'Le titre est trop long (max. 100 caractères)',
+    'validation.contentTooLong': 'Le contenu est trop long (max. 2000 caractères)',
+    'validation.postTooLong': 'Le message est trop long (max. 2000 caractères)',
     
     // Authentication
     'auth.login': 'Connexion',
@@ -1769,6 +1788,13 @@ const translations = {
     'common.filter': 'Filtro',
     'common.sort': 'Ordina',
     'common.close': 'Chiudi',
+    'common.note': 'Nota',
+    
+    // Form validation
+    'validation.allFieldsRequired': 'Tutti i campi sono obbligatori',
+    'validation.titleTooLong': 'Il titolo è troppo lungo (max. 100 caratteri)',
+    'validation.contentTooLong': 'Il contenuto è troppo lungo (max. 2000 caratteri)',
+    'validation.postTooLong': 'Il post è troppo lungo (max. 2000 caratteri)',
     
     // Quiz
     'quiz.title': 'Quiz N64',
@@ -1998,6 +2024,13 @@ const translations = {
     'common.filter': 'Filtro',
     'common.sort': 'Ordenar',
     'common.close': 'Cerrar',
+    'common.note': 'Nota',
+    
+    // Form validation
+    'validation.allFieldsRequired': 'Todos los campos son obligatorios',
+    'validation.titleTooLong': 'El título es demasiado largo (máx. 100 caracteres)',
+    'validation.contentTooLong': 'El contenido es demasiado largo (máx. 2000 caracteres)',
+    'validation.postTooLong': 'El post es demasiado largo (máx. 2000 caracteres)',
     
     // Quiz
     'quiz.title': 'Quiz N64',

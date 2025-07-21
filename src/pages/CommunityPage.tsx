@@ -60,7 +60,7 @@ const CommunityPage: React.FC = () => {
       <div className="container mx-auto px-4 py-6">
         <div className="simple-tile text-center py-12">
           <div className="animate-spin w-8 h-8 border-2 border-blue-600 border-t-transparent rounded-full mx-auto mb-4"></div>
-          <p className="text-slate-400">Community wird geladen...</p>
+          <p className="text-slate-400">{t('common.loading')}</p>
         </div>
       </div>
     )
@@ -270,7 +270,7 @@ const CommunityPage: React.FC = () => {
       {filteredAndSortedUsers.length >= 20 && (
         <div className="text-center">
           <button className="px-6 py-3 bg-slate-700 hover:bg-slate-600 text-slate-200 rounded-lg transition-colors">
-            Mehr laden
+                              {t('common.viewAll')}
           </button>
         </div>
       )}

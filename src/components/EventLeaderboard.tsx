@@ -48,6 +48,7 @@ interface MediaViewerProps {
 }
 
 const MediaViewer: React.FC<MediaViewerProps> = ({ entry, isOpen, onClose }) => {
+  const { t } = useLanguage()
   const [isVideoPlaying, setIsVideoPlaying] = useState(true)
 
   if (!isOpen) return null
@@ -105,7 +106,7 @@ const MediaViewer: React.FC<MediaViewerProps> = ({ entry, isOpen, onClose }) => 
                 autoPlay
                 loop
                 onError={() => {
-                  console.error('Video konnte nicht geladen werden')
+                  console.error(t('media.error'))
                 }}
               />
               <div className="absolute top-4 right-4 bg-black bg-opacity-50 rounded-lg p-2">

@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, ReactNode } from 'react'
 import { MediaMeta, MediaContextType } from '../types'
+import { useLanguage } from './LanguageContext'
 
 const MediaContext = createContext<MediaContextType | undefined>(undefined)
 
@@ -8,6 +9,7 @@ export const MediaProvider: React.FC<{ children: ReactNode }> = ({ children }) =
   const [userMedia, setUserMedia] = useState<MediaMeta[]>([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const { t } = useLanguage()
 
   const uploadMedia = async (file: File, metadata: Partial<MediaMeta>): Promise<boolean> => {
     setLoading(true)
@@ -16,7 +18,7 @@ export const MediaProvider: React.FC<{ children: ReactNode }> = ({ children }) =
       setLoading(false)
       return true
     } catch (err) {
-      setError('Fehler beim Upload')
+              setError(t('error.generic'))
       setLoading(false)
       return false
     }
@@ -29,7 +31,7 @@ export const MediaProvider: React.FC<{ children: ReactNode }> = ({ children }) =
       setLoading(false)
       return true
     } catch (err) {
-      setError('Fehler beim Löschen')
+              setError(t('error.generic'))
       setLoading(false)
       return false
     }

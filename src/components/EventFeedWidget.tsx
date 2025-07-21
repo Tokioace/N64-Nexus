@@ -85,7 +85,7 @@ const WinnerMediaDisplay: React.FC<WinnerMediaDisplayProps> = ({ winner, t }) =>
             muted
             playsInline
             onError={() => {
-              console.error('Video konnte nicht geladen werden')
+              console.error(t('media.error'))
             }}
           />
           <div className="absolute top-1 right-1 bg-black bg-opacity-50 rounded p-1">

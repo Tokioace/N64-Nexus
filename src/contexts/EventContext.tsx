@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react'
 import { GameEvent, EventParticipation, EventContextType, RaceSubmissionData } from '../types'
+import { useLanguage } from './LanguageContext'
 
 const EventContext = createContext<EventContextType | undefined>(undefined)
 
@@ -117,6 +118,7 @@ const mockParticipations: EventParticipation[] = [
 export const EventProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [events, setEvents] = useState<GameEvent[]>(mockEvents)
   const [activeEvents, setActiveEvents] = useState<GameEvent[]>(mockEvents.filter(e => e.isActive))
+  const { t } = useLanguage()
   const [userParticipations, setUserParticipations] = useState<EventParticipation[]>([])
   const [allEventSubmissions, setAllEventSubmissions] = useState<EventParticipation[]>([])
   const [loading, setLoading] = useState(false)
@@ -237,7 +239,7 @@ export const EventProvider: React.FC<{ children: ReactNode }> = ({ children }) =
       setLoading(false)
       return true
     } catch (err) {
-      setError('Fehler beim Beitreten zum Event')
+              setError(t('error.generic'))
       setLoading(false)
       return false
     }
@@ -278,7 +280,7 @@ export const EventProvider: React.FC<{ children: ReactNode }> = ({ children }) =
       setLoading(false)
       return true
     } catch (err) {
-      setError('Fehler beim Verlassen des Events')
+              setError(t('error.generic'))
       setLoading(false)
       return false
     }
@@ -291,7 +293,7 @@ export const EventProvider: React.FC<{ children: ReactNode }> = ({ children }) =
       setLoading(false)
       return true
     } catch (err) {
-      setError('Fehler beim Übermitteln der Punktzahl')
+              setError(t('error.generic'))
       setLoading(false)
       return false
     }
@@ -373,7 +375,7 @@ export const EventProvider: React.FC<{ children: ReactNode }> = ({ children }) =
       return true
     } catch (err) {
       console.error('submitRaceTime error:', err)
-      setError('Fehler beim Übermitteln der Rundenzeit')
+              setError(t('error.generic'))
       setLoading(false)
       return false
     }
