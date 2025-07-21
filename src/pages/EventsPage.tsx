@@ -134,10 +134,10 @@ const EventsPage: React.FC = () => {
         }
       } else {
         setNotificationsEnabled(false)
-        alert('🔕 Benachrichtigungen deaktiviert.')
+        alert(t('notifications.disabled'))
       }
     } catch (error) {
-      alert('❌ Fehler beim Aktivieren der Benachrichtigungen.')
+      alert(t('notifications.error'))
     }
   }
 
@@ -150,7 +150,7 @@ const EventsPage: React.FC = () => {
           Battle64 Events
         </h1>
         <p className="text-slate-400 text-lg">
-          Turniere, Challenges und Community-Events
+          {t('events.subtitle')}
         </p>
       </div>
 
@@ -158,9 +158,9 @@ const EventsPage: React.FC = () => {
       <div className="flex justify-center mb-8">
         <div className="bg-slate-800 rounded-lg p-1 inline-flex">
           {[
-            { key: 'active', label: 'Aktiv', icon: Trophy, color: 'text-green-400' },
-            { key: 'upcoming', label: 'Kommend', icon: Calendar, color: 'text-blue-400' },
-            { key: 'completed', label: 'Beendet', icon: Award, color: 'text-gray-400' }
+            { key: 'active', label: t('events.tabs.active'), icon: Trophy, color: 'text-green-400' },
+            { key: 'upcoming', label: t('events.tabs.upcoming'), icon: Calendar, color: 'text-blue-400' },
+            { key: 'completed', label: t('events.tabs.completed'), icon: Award, color: 'text-gray-400' }
           ].map((tab) => (
             <button
               key={tab.key}
@@ -185,7 +185,7 @@ const EventsPage: React.FC = () => {
           <div className="text-2xl font-bold text-slate-100">
             {events.filter(e => getEventStatus(e) === 'active').length}
           </div>
-          <div className="text-sm text-slate-400">Aktive Events</div>
+          <div className="text-sm text-slate-400">{t('events.stats.activeEvents')}</div>
         </div>
         
         <div className="simple-tile text-center">
@@ -193,7 +193,7 @@ const EventsPage: React.FC = () => {
           <div className="text-2xl font-bold text-slate-100">
             {events.filter(e => getEventStatus(e) === 'upcoming').length}
           </div>
-          <div className="text-sm text-slate-400">Kommende Events</div>
+          <div className="text-sm text-slate-400">{t('events.stats.upcomingEvents')}</div>
         </div>
         
         <div className="simple-tile text-center">
@@ -201,7 +201,7 @@ const EventsPage: React.FC = () => {
           <div className="text-2xl font-bold text-slate-100">
             {events.reduce((sum, event) => sum + event.participants, 0)}
           </div>
-          <div className="text-sm text-slate-400">Teilnehmer gesamt</div>
+          <div className="text-sm text-slate-400">{t('events.stats.totalParticipants')}</div>
         </div>
       </div>
 
@@ -211,12 +211,10 @@ const EventsPage: React.FC = () => {
           <div className="simple-tile text-center py-12">
             <Trophy className="w-16 h-16 text-slate-500 mx-auto mb-4" />
             <h3 className="text-xl font-bold text-slate-300 mb-2">
-              Keine {selectedTab === 'active' ? 'aktiven' : selectedTab === 'upcoming' ? 'kommenden' : 'beendeten'} Events
+              {t(`events.noEvents.${selectedTab}`)}
             </h3>
             <p className="text-slate-400">
-              {selectedTab === 'active' && 'Momentan sind keine Events aktiv. Schau später wieder vorbei!'}
-              {selectedTab === 'upcoming' && 'Keine Events geplant. Neue Events werden bald angekündigt!'}
-              {selectedTab === 'completed' && 'Noch keine Events beendet.'}
+              {t(`events.noEventsDesc.${selectedTab}`)}
             </p>
           </div>
         ) : (
@@ -238,14 +236,14 @@ const EventsPage: React.FC = () => {
                           ? 'bg-blue-500/20 text-blue-400'
                           : 'bg-gray-500/20 text-gray-400'
                       }`}>
-                        {status === 'active' && '🔴 LIVE'}
-                        {status === 'upcoming' && '📅 KOMMEND'}
-                        {status === 'completed' && '✅ BEENDET'}
+                        {status === 'active' && `🔴 ${t('events.status.live')}`}
+                        {status === 'upcoming' && `📅 ${t('events.status.upcoming')}`}
+                        {status === 'completed' && `✅ ${t('events.status.completed')}`}
                       </div>
                       <span className="text-sm text-slate-400">{timeRemaining}</span>
                       {isParticipating && (
                         <div className="px-2 py-1 rounded-full text-xs font-medium bg-purple-500/20 text-purple-400">
-                          ✓ Teilnehmend
+                          ✓ {t('events.participating')}
                         </div>
                       )}
                     </div>
@@ -265,7 +263,7 @@ const EventsPage: React.FC = () => {
                       <div className="flex items-center space-x-2">
                         <Users className="w-4 h-4 text-blue-400" />
                         <span className="text-slate-300">
-                          {event.participants} / {event.maxParticipants || '∞'} Teilnehmer
+                          {event.participants} / {event.maxParticipants || '∞'} {t('events.participants')}
                         </span>
                       </div>
                       <div className="flex items-center space-x-2">
@@ -284,7 +282,7 @@ const EventsPage: React.FC = () => {
                                  font-medium rounded-lg transition-colors duration-200
                                  disabled:opacity-50 disabled:cursor-not-allowed"
                       >
-                        {loading ? 'Lädt...' : 'Teilnehmen'}
+                        {loading ? t('common.loading') : t('events.join')}
                       </button>
                     )}
                     {status === 'active' && isParticipating && (
@@ -297,7 +295,7 @@ const EventsPage: React.FC = () => {
                                    disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
                         >
                           <Upload className="w-4 h-4" />
-                          <span>Zeit Einreichen</span>
+                          <span>{t('events.submitTime')}</span>
                         </button>
                         <button 
                           onClick={() => setShowLeaderboard(event.id)}
@@ -305,7 +303,7 @@ const EventsPage: React.FC = () => {
                                    font-medium rounded-lg transition-colors duration-200 flex items-center justify-center space-x-2"
                         >
                           <BarChart3 className="w-4 h-4" />
-                          <span>Leaderboard</span>
+                          <span>{t('events.leaderboard')}</span>
                         </button>
                         <button 
                           onClick={() => {
@@ -319,7 +317,7 @@ const EventsPage: React.FC = () => {
                                    font-medium rounded-lg transition-colors duration-200
                                    disabled:opacity-50 disabled:cursor-not-allowed"
                         >
-                          {loading ? 'Lädt...' : 'Verlassen'}
+                          {loading ? t('common.loading') : t('events.leave')}
                         </button>
                       </>
                     )}
@@ -331,7 +329,7 @@ const EventsPage: React.FC = () => {
                                  font-medium rounded-lg transition-colors duration-200
                                  disabled:opacity-50 disabled:cursor-not-allowed"
                       >
-                        {loading ? 'Lädt...' : 'Vormerken'}
+                        {loading ? t('common.loading') : t('events.preRegister')}
                       </button>
                     )}
                     {/* Show leaderboard button for all active events */}
@@ -342,7 +340,7 @@ const EventsPage: React.FC = () => {
                                  font-medium rounded-lg transition-colors duration-200 flex items-center justify-center space-x-2"
                       >
                         <BarChart3 className="w-4 h-4" />
-                        <span>Leaderboard</span>
+                        <span>{t('events.leaderboard')}</span>
                       </button>
                     )}
                     <button 
@@ -350,7 +348,7 @@ const EventsPage: React.FC = () => {
                       className="px-6 py-2 bg-slate-700 hover:bg-slate-600 text-slate-200 
                                font-medium rounded-lg transition-colors duration-200 flex items-center justify-center space-x-2">
                       <Info className="w-4 h-4" />
-                      <span>{showDetails ? 'Weniger' : 'Details'}</span>
+                      <span>{showDetails ? t('events.showLess') : t('common.details')}</span>
                     </button>
                   </div>
                 </div>
@@ -361,7 +359,7 @@ const EventsPage: React.FC = () => {
                     <div>
                       <h4 className="font-medium text-slate-200 mb-3 flex items-center">
                         <Star className="w-4 h-4 text-yellow-400 mr-2" />
-                        Regeln
+                        {t('events.rules')}
                       </h4>
                       <ul className="space-y-1">
                         {event.rules.map((rule, index) => (
@@ -376,7 +374,7 @@ const EventsPage: React.FC = () => {
                     <div>
                       <h4 className="font-medium text-slate-200 mb-3 flex items-center">
                         <Award className="w-4 h-4 text-purple-400 mr-2" />
-                        Preise
+                        {t('events.prizes')}
                       </h4>
                       <ul className="space-y-1">
                         {event.prizes.map((prize, index) => (
@@ -396,7 +394,7 @@ const EventsPage: React.FC = () => {
                     <div>
                       <h4 className="font-medium text-slate-200 mb-3 flex items-center">
                         <Star className="w-4 h-4 text-yellow-400 mr-2" />
-                        Regeln
+                        {t('events.rules')}
                       </h4>
                       <ul className="space-y-1">
                         {event.rules.map((rule, index) => (
@@ -411,7 +409,7 @@ const EventsPage: React.FC = () => {
                     <div>
                       <h4 className="font-medium text-slate-200 mb-3 flex items-center">
                         <Award className="w-4 h-4 text-purple-400 mr-2" />
-                        Preise
+                        {t('events.prizes')}
                       </h4>
                       <ul className="space-y-1">
                         {event.prizes.map((prize, index) => (
@@ -433,7 +431,7 @@ const EventsPage: React.FC = () => {
       {/* Footer */}
       <div className="text-center mt-12">
         <p className="text-slate-400 text-sm mb-4">
-          Verpasse keine Events! Melde dich für Push-Benachrichtigungen an.
+          {t('events.notificationPrompt')}
         </p>
         <button 
           onClick={handleToggleNotifications}
@@ -446,12 +444,12 @@ const EventsPage: React.FC = () => {
           {notificationsEnabled ? (
             <>
               <Bell className="w-4 h-4" />
-              <span>🔔 Benachrichtigungen aktiv</span>
+              <span>{t('events.notificationsActive')}</span>
             </>
           ) : (
             <>
               <BellOff className="w-4 h-4" />
-              <span>🔔 Benachrichtigungen aktivieren</span>
+              <span>{t('events.enableNotifications')}</span>
             </>
           )}
         </button>
@@ -473,7 +471,7 @@ const EventsPage: React.FC = () => {
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
           <div className="bg-slate-800 rounded-lg max-w-6xl w-full max-h-[90vh] overflow-y-auto">
             <div className="flex items-center justify-between p-6 border-b border-slate-600">
-              <h2 className="text-2xl font-bold text-slate-100">Event Leaderboard</h2>
+              <h2 className="text-2xl font-bold text-slate-100">{t('events.eventLeaderboard')}</h2>
               <button
                 onClick={() => setShowLeaderboard(null)}
                 className="text-slate-400 hover:text-slate-200 transition-colors"
