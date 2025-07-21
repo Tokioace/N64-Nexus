@@ -26,8 +26,8 @@ interface ForumContextType {
 
 const ForumContext = createContext<ForumContextType | undefined>(undefined)
 
-// Mock data for the forum
-const mockCategories: ForumCategory[] = [
+// Function to create mock categories with translations
+const createMockCategories = (t: (key: string) => string): ForumCategory[] => [
   {
     id: '1',
     name: 'Speedruns',
@@ -208,7 +208,8 @@ const mockStats: ForumStats = {
 }
 
 export const ForumProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [categories, setCategories] = useState<ForumCategory[]>(mockCategories)
+  const { t } = useLanguage()
+  const [categories, setCategories] = useState<ForumCategory[]>(() => createMockCategories(t))
   const [threads, setThreads] = useState<ForumThread[]>(mockThreads)
   const [posts, setPosts] = useState<ForumPost[]>(mockPosts)
   const [stats] = useState<ForumStats>(mockStats)
@@ -217,14 +218,13 @@ export const ForumProvider: React.FC<{ children: ReactNode }> = ({ children }) =
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const { user } = useUser()
-  const { t } = useLanguage()
 
   const getCategories = () => {
     setLoading(true)
     setError(null)
     // Simulate API call
     setTimeout(() => {
-      setCategories(mockCategories)
+      setCategories(createMockCategories(t))
       setLoading(false)
     }, 500)
   }
