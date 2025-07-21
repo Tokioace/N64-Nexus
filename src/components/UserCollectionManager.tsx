@@ -313,11 +313,11 @@ const UserCollectionManager: React.FC<CollectionManagerProps> = ({ isOwnProfile 
                     onChange={(e) => setNewItem({ ...newItem, condition: e.target.value as any })}
                     className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-slate-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
                   >
-                    <option value="mint">Neuwertig</option>
-                    <option value="very-good">Sehr gut</option>
-                    <option value="good">Gut</option>
-                    <option value="fair">Akzeptabel</option>
-                    <option value="poor">Schlecht</option>
+                    <option value="mint">{t('collection.mint')}</option>
+                    <option value="very-good">{t('collection.veryGood')}</option>
+                    <option value="good">{t('collection.good')}</option>
+                    <option value="fair">{t('collection.fair')}</option>
+                    <option value="poor">{t('collection.poor')}</option>
                   </select>
                 </div>
 
@@ -330,9 +330,9 @@ const UserCollectionManager: React.FC<CollectionManagerProps> = ({ isOwnProfile 
                     onChange={(e) => setNewItem({ ...newItem, completeness: e.target.value as any })}
                     className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-slate-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
                   >
-                    <option value="complete">Komplett</option>
+                    <option value="complete">{t('collection.complete')}</option>
                     <option value="cart-only">{t('collection.cartOnly')}</option>
-                    <option value="box-only">Nur OVP</option>
+                    <option value="box-only">{t('collection.boxOnly')}</option>
                   </select>
                 </div>
               </div>

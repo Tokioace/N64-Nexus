@@ -342,12 +342,12 @@ const CollectorMode: React.FC = () => {
             onChange={(e) => setRarityFilter(e.target.value)}
             className="px-3 py-2 bg-slate-700 border border-slate-600 rounded text-slate-100"
           >
-            <option value="all">Alle Seltenheiten</option>
-            <option value="common">Häufig</option>
-            <option value="uncommon">Ungewöhnlich</option>
-            <option value="rare">Selten</option>
-            <option value="very-rare">Sehr selten</option>
-            <option value="ultra-rare">Ultra selten</option>
+            <option value="all">{t('collection.all')} {t('common.rarity', 'Seltenheiten')}</option>
+            <option value="common">{t('common.common', 'Häufig')}</option>
+            <option value="uncommon">{t('common.uncommon', 'Ungewöhnlich')}</option>
+            <option value="rare">{t('common.rare', 'Selten')}</option>
+            <option value="very-rare">{t('common.veryRare', 'Sehr selten')}</option>
+            <option value="ultra-rare">{t('common.ultraRare', 'Ultra selten')}</option>
           </select>
 
           <select
@@ -355,7 +355,7 @@ const CollectorMode: React.FC = () => {
             onChange={(e) => setGenreFilter(e.target.value)}
             className="px-3 py-2 bg-slate-700 border border-slate-600 rounded text-slate-100"
           >
-            <option value="all">Alle Genres</option>
+            <option value="all">{t('collection.all')} {t('common.genres', 'Genres')}</option>
             {genres.map(genre => (
               <option key={genre} value={genre}>{genre}</option>
             ))}

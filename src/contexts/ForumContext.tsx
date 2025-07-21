@@ -45,8 +45,8 @@ const mockCategories: ForumCategory[] = [
   },
   {
     id: '2',
-    name: 'Events',
-    description: 'Alles rund um aktuelle und kommende Events',
+    name: t('events.title'),
+    description: t('events.subtitle'),
     threadCount: 15,
     lastPost: {
       id: '2',
@@ -60,8 +60,8 @@ const mockCategories: ForumCategory[] = [
   },
   {
     id: '3',
-    name: 'Trivia & Quiz',
-    description: 'Teile dein N64-Wissen und lerne neue Fakten',
+    name: t('quiz.title'),
+    description: t('quiz.testYourKnowledge'),
     threadCount: 31,
     lastPost: {
       id: '3',
