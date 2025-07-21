@@ -71,7 +71,7 @@ const MediaViewer: React.FC<MediaViewerProps> = ({ entry, isOpen, onClose }) => 
         <div className="flex items-center justify-between p-4 border-b border-slate-600">
           <div>
             <h3 className="text-xl font-bold text-slate-100">{entry.username}</h3>
-            <p className="text-slate-400">Zeit: {entry.time}</p>
+            <p className="text-slate-400">{t('eventLeaderboard.time')}: {entry.time}</p>
           </div>
           <button
             onClick={onClose}
@@ -86,7 +86,7 @@ const MediaViewer: React.FC<MediaViewerProps> = ({ entry, isOpen, onClose }) => 
             <div className="text-center">
               <img 
                 src={entry.mediaUrl} 
-                alt={`Screenshot von ${entry.username}`}
+                alt={t('eventLeaderboard.screenshotFrom', { username: entry.username })}
                 className="max-w-full max-h-[60vh] mx-auto rounded-lg"
                 onError={(e) => {
                   const target = e.target as HTMLImageElement
@@ -124,8 +124,8 @@ const MediaViewer: React.FC<MediaViewerProps> = ({ entry, isOpen, onClose }) => 
             <div className="text-center">
               <div className="bg-slate-700 rounded-lg p-8">
                 <Radio className="w-16 h-16 text-purple-400 mx-auto mb-4" />
-                <h4 className="text-lg font-medium text-slate-100 mb-2">Livestream</h4>
-                <p className="text-slate-400 mb-4">Dieser Beweis wurde über einen Livestream erbracht</p>
+                <h4 className="text-lg font-medium text-slate-100 mb-2">{t('eventLeaderboard.livestream')}</h4>
+                <p className="text-slate-400 mb-4">{t('eventLeaderboard.livestreamProofText')}</p>
                 <a
                   href={entry.livestreamUrl}
                   target="_blank"
@@ -133,7 +133,7 @@ const MediaViewer: React.FC<MediaViewerProps> = ({ entry, isOpen, onClose }) => 
                   className="inline-flex items-center space-x-2 px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg transition-colors"
                 >
                   <ExternalLink className="w-4 h-4" />
-                  <span>Stream ansehen</span>
+                  <span>{t('eventLeaderboard.watchStream')}</span>
                 </a>
               </div>
             </div>
@@ -141,7 +141,7 @@ const MediaViewer: React.FC<MediaViewerProps> = ({ entry, isOpen, onClose }) => 
           
           {entry.notes && (
             <div className="mt-4 p-3 bg-slate-700/50 rounded-lg">
-              <h4 className="text-sm font-medium text-slate-200 mb-2">Notizen:</h4>
+              <h4 className="text-sm font-medium text-slate-200 mb-2">{t('eventLeaderboard.notes')}:</h4>
               <p className="text-sm text-slate-400">{entry.notes}</p>
             </div>
           )}
@@ -152,21 +152,21 @@ const MediaViewer: React.FC<MediaViewerProps> = ({ entry, isOpen, onClose }) => 
               {entry.documentationType === 'video' && <Video className="w-4 h-4" />}
               {entry.documentationType === 'livestream' && <Radio className="w-4 h-4" />}
               <span>
-                {entry.documentationType === 'photo' && 'Screenshot'}
-                {entry.documentationType === 'video' && 'Video'}
-                {entry.documentationType === 'livestream' && 'Livestream'}
+                {entry.documentationType === 'photo' && t('eventLeaderboard.screenshot')}
+                {entry.documentationType === 'video' && t('eventLeaderboard.video')}
+                {entry.documentationType === 'livestream' && t('eventLeaderboard.livestream')}
               </span>
             </div>
             <div className="flex items-center space-x-2">
               {entry.verified ? (
                 <>
                   <Verified className="w-4 h-4 text-green-400" />
-                  <span className="text-green-400">Verifiziert</span>
+                  <span className="text-green-400">{t('eventLeaderboard.verified')}</span>
                 </>
               ) : (
                 <>
                   <AlertCircle className="w-4 h-4 text-yellow-400" />
-                  <span className="text-yellow-400">Unverifiziert</span>
+                  <span className="text-yellow-400">{t('eventLeaderboard.unverified')}</span>
                 </>
               )}
             </div>
@@ -234,11 +234,11 @@ const EventLeaderboard: React.FC<EventLeaderboardProps> = ({
   const getDocumentationLabel = (type: 'photo' | 'video' | 'livestream') => {
     switch (type) {
       case 'photo':
-        return 'Screenshot'
+        return t('eventLeaderboard.screenshot')
       case 'video':
-        return 'Video'
+        return t('eventLeaderboard.video')
       case 'livestream':
-        return 'Livestream'
+        return t('eventLeaderboard.livestream')
     }
   }
 
@@ -275,10 +275,10 @@ const EventLeaderboard: React.FC<EventLeaderboardProps> = ({
     return (
       <div className="simple-tile text-center py-8">
         <Trophy className="w-12 h-12 text-slate-500 mx-auto mb-4" />
-                  <h3 className="text-lg font-medium text-slate-300 mb-2">{t('eventLeaderboard.noTimes')}</h3>
-                  <p className="text-slate-400 text-sm">
-            {t('home.beTheFirst')}
-          </p>
+        <h3 className="text-lg font-medium text-slate-300 mb-2">{t('eventLeaderboard.noTimes')}</h3>
+        <p className="text-slate-400 text-sm">
+          {t('home.beTheFirst')}
+        </p>
       </div>
     )
   }
@@ -291,7 +291,7 @@ const EventLeaderboard: React.FC<EventLeaderboardProps> = ({
           <div>
             <h2 className="text-2xl font-bold text-slate-100 flex items-center">
               <Trophy className="w-6 h-6 text-yellow-400 mr-2" />
-              Event Leaderboard
+              {t('eventLeaderboard.title')}
             </h2>
             <p className="text-slate-400 mt-1">{eventTitle}</p>
           </div>
@@ -310,11 +310,11 @@ const EventLeaderboard: React.FC<EventLeaderboardProps> = ({
         <div className="flex items-center space-x-4 text-sm text-slate-400">
           <div className="flex items-center space-x-1">
             <Users className="w-4 h-4" />
-            <span>{entries.length} Teilnehmer</span>
+            <span>{entries.length} {t('eventLeaderboard.participants')}</span>
           </div>
           <div className="flex items-center space-x-1">
             <Verified className="w-4 h-4" />
-            <span>{entries.filter(e => e.verified).length} verifiziert</span>
+            <span>{entries.filter(e => e.verified).length} {t('eventLeaderboard.verified')}</span>
           </div>
         </div>
       </div>
@@ -324,7 +324,7 @@ const EventLeaderboard: React.FC<EventLeaderboardProps> = ({
         <div className="simple-tile bg-gradient-to-r from-blue-600/20 to-purple-600/20 border-l-4 border-blue-400">
           <div className="flex items-center justify-between">
             <div>
-              <h3 className="text-lg font-medium text-slate-100 mb-1">Deine Position</h3>
+              <h3 className="text-lg font-medium text-slate-100 mb-1">{t('eventLeaderboard.yourPosition')}</h3>
               <div className="flex items-center space-x-4">
                 <div className="flex items-center space-x-2">
                   {getRankIcon(currentUserEntry.position)}
@@ -378,7 +378,7 @@ const EventLeaderboard: React.FC<EventLeaderboardProps> = ({
               </div>
               {(entry.mediaUrl || entry.livestreamUrl) && (
                 <div className="mt-2 text-xs text-blue-400">
-                  Klicken zum Anzeigen
+                  {t('eventLeaderboard.clickToView')}
                 </div>
               )}
             </div>
@@ -389,7 +389,7 @@ const EventLeaderboard: React.FC<EventLeaderboardProps> = ({
       {/* Full Leaderboard */}
       {sortedEntries.length > 3 && (
         <div className="simple-tile">
-          <h3 className="text-lg font-medium text-slate-100 mb-4">Vollständiges Leaderboard</h3>
+          <h3 className="text-lg font-medium text-slate-100 mb-4">{t('eventLeaderboard.fullLeaderboard')}</h3>
           <div className="space-y-2">
             {sortedEntries.map((entry) => (
               <div
@@ -445,7 +445,7 @@ const EventLeaderboard: React.FC<EventLeaderboardProps> = ({
                           }}
                           className="text-blue-400 hover:text-blue-300 underline"
                         >
-                          Anzeigen
+                          {t('eventLeaderboard.view')}
                         </button>
                       )}
                     </div>
@@ -457,7 +457,7 @@ const EventLeaderboard: React.FC<EventLeaderboardProps> = ({
                   <div className="mt-4 pt-4 border-t border-slate-600">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div>
-                        <h4 className="text-sm font-medium text-slate-200 mb-2">Dokumentation</h4>
+                        <h4 className="text-sm font-medium text-slate-200 mb-2">{t('eventLeaderboard.documentation')}</h4>
                         <div className="flex items-center space-x-2 text-sm">
                           {getDocumentationIcon(entry.documentationType)}
                           <span className="text-slate-300">
@@ -470,13 +470,13 @@ const EventLeaderboard: React.FC<EventLeaderboardProps> = ({
                             className="inline-flex items-center space-x-1 text-blue-400 hover:text-blue-300 text-sm mt-1"
                           >
                             <ExternalLink className="w-3 h-3" />
-                            <span>Media anzeigen</span>
+                            <span>{t('eventLeaderboard.viewMedia')}</span>
                           </button>
                         )}
                       </div>
                       {entry.notes && (
                         <div>
-                          <h4 className="text-sm font-medium text-slate-200 mb-2">Notizen</h4>
+                          <h4 className="text-sm font-medium text-slate-200 mb-2">{t('eventLeaderboard.notes')}</h4>
                           <p className="text-sm text-slate-400">{entry.notes}</p>
                         </div>
                       )}

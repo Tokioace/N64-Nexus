@@ -290,7 +290,7 @@ const UserCollectionManager: React.FC<CollectionManagerProps> = ({ isOwnProfile 
 
                 <div>
                   <label className="block text-sm font-medium text-slate-300 mb-2">
-                    Region
+                    {t('label.region')}
                   </label>
                   <select
                     value={newItem.region}
@@ -306,7 +306,7 @@ const UserCollectionManager: React.FC<CollectionManagerProps> = ({ isOwnProfile 
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-slate-300 mb-2">
-                    Zustand
+                    {t('collection.condition')}
                   </label>
                   <select
                     value={newItem.condition}

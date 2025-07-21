@@ -5,7 +5,7 @@ export type Language = 'de' | 'en' | 'fr' | 'it' | 'es' | 'el' | 'tr' | 'zh' | '
 interface LanguageContextType {
   currentLanguage: Language
   setLanguage: (language: Language) => void
-  t: (key: string) => string
+  t: (key: string, params?: Record<string, string>) => string
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined)
@@ -460,6 +460,18 @@ const translations = {
     'collection.allRarities': 'Alle Seltenheiten',
     'collection.allGenres': 'Alle Genres',
 
+    // Collector levels
+    'collector.level.rookie': 'Rookie Sammler',
+    'collector.level.beginner': 'Anfänger',
+    'collector.level.enthusiast': 'Enthusiast',
+    'collector.level.collector': 'Sammler',
+    'collector.level.retroExpert': 'Retro Kenner',
+    'collector.level.marioExpert': 'Mario Experte',
+    'collector.level.zeldaMaster': 'Zelda Meister',
+    'collector.level.eliteCollector': 'Elite Sammler',
+    'collector.level.masterCollector': 'Master Sammler',
+    'collector.level.n64Legend': 'N64 Legende',
+
     // Auth
     'auth.welcomeBack': 'Willkommen zurück!',
     'auth.createAccount': 'Erstelle deinen Account',
@@ -681,7 +693,27 @@ const translations = {
     'minigames.sound.mario64': '"Wahoo!" - Mario Jump Sound',
     'minigames.sound.zelda': '"Hey! Listen!" - Navi Sound',
     'minigames.sound.goldeneye': '"Pew Pew" - Silencer Shot',
-    'minigames.sound.mariokart': '"Here we go!" - Race Start'
+    'minigames.sound.mariokart': '"Here we go!" - Race Start',
+
+    // EventLeaderboard
+    'eventLeaderboard.title': 'Event Leaderboard',
+    'eventLeaderboard.time': 'Zeit',
+    'eventLeaderboard.screenshotFrom': 'Screenshot von {username}',
+    'eventLeaderboard.livestream': 'Livestream',
+    'eventLeaderboard.livestreamProofText': 'Dieser Beweis wurde über einen Livestream erbracht',
+    'eventLeaderboard.watchStream': 'Stream ansehen',
+    'eventLeaderboard.notes': 'Notizen',
+    'eventLeaderboard.screenshot': 'Screenshot',
+    'eventLeaderboard.video': 'Video',
+    'eventLeaderboard.verified': 'Verifiziert',
+    'eventLeaderboard.unverified': 'Unverifiziert',
+    'eventLeaderboard.participants': 'Teilnehmer',
+    'eventLeaderboard.yourPosition': 'Deine Position',
+    'eventLeaderboard.clickToView': 'Klicken zum Anzeigen',
+    'eventLeaderboard.fullLeaderboard': 'Vollständiges Leaderboard',
+    'eventLeaderboard.view': 'Anzeigen',
+    'eventLeaderboard.documentation': 'Dokumentation',
+    'eventLeaderboard.viewMedia': 'Media anzeigen'
   },
   
   en: {
@@ -1101,6 +1133,18 @@ const translations = {
     'collection.allRarities': 'All rarities',
     'collection.allGenres': 'All genres',
 
+    // Collector levels
+    'collector.level.rookie': 'Rookie Collector',
+    'collector.level.beginner': 'Beginner',
+    'collector.level.enthusiast': 'Enthusiast',
+    'collector.level.collector': 'Collector',
+    'collector.level.retroExpert': 'Retro Expert',
+    'collector.level.marioExpert': 'Mario Expert',
+    'collector.level.zeldaMaster': 'Zelda Master',
+    'collector.level.eliteCollector': 'Elite Collector',
+    'collector.level.masterCollector': 'Master Collector',
+    'collector.level.n64Legend': 'N64 Legend',
+
     // Auth
     'auth.welcomeBack': 'Welcome back!',
     'auth.createAccount': 'Create your account',
@@ -1162,6 +1206,26 @@ const translations = {
     'auth.registerNow': 'Register now',
     'auth.alreadyHaveAccount': 'Already have an account?',
     'auth.loginHere': 'Login here',
+
+    // EventLeaderboard
+    'eventLeaderboard.title': 'Event Leaderboard',
+    'eventLeaderboard.time': 'Time',
+    'eventLeaderboard.screenshotFrom': 'Screenshot from {username}',
+    'eventLeaderboard.livestream': 'Livestream',
+    'eventLeaderboard.livestreamProofText': 'This proof was provided via livestream',
+    'eventLeaderboard.watchStream': 'Watch Stream',
+    'eventLeaderboard.notes': 'Notes',
+    'eventLeaderboard.screenshot': 'Screenshot',
+    'eventLeaderboard.video': 'Video',
+    'eventLeaderboard.verified': 'Verified',
+    'eventLeaderboard.unverified': 'Unverified',
+    'eventLeaderboard.participants': 'participants',
+    'eventLeaderboard.yourPosition': 'Your Position',
+    'eventLeaderboard.clickToView': 'Click to view',
+    'eventLeaderboard.fullLeaderboard': 'Full Leaderboard',
+    'eventLeaderboard.view': 'View',
+    'eventLeaderboard.documentation': 'Documentation',
+    'eventLeaderboard.viewMedia': 'View Media',
 
     // Quiz content
     'quiz.question1': 'Which N64 game was released first?',
@@ -1895,7 +1959,27 @@ const translations = {
     'minigames.sound.mario64': '"Wahoo!" - Son de saut de Mario',
     'minigames.sound.zelda': '"Hey! Listen!" - Son de Navi',
     'minigames.sound.goldeneye': '"Pew Pew" - Tir silencieux',
-    'minigames.sound.mariokart': '"Here we go!" - Début de course'
+    'minigames.sound.mariokart': '"Here we go!" - Début de course',
+
+    // EventLeaderboard
+    'eventLeaderboard.title': 'Classement de l\'Événement',
+    'eventLeaderboard.time': 'Temps',
+    'eventLeaderboard.screenshotFrom': 'Capture d\'écran de {username}',
+    'eventLeaderboard.livestream': 'Livestream',
+    'eventLeaderboard.livestreamProofText': 'Cette preuve a été fournie via livestream',
+    'eventLeaderboard.watchStream': 'Regarder le Stream',
+    'eventLeaderboard.notes': 'Notes',
+    'eventLeaderboard.screenshot': 'Capture d\'écran',
+    'eventLeaderboard.video': 'Vidéo',
+    'eventLeaderboard.verified': 'Vérifié',
+    'eventLeaderboard.unverified': 'Non vérifié',
+    'eventLeaderboard.participants': 'participants',
+    'eventLeaderboard.yourPosition': 'Votre Position',
+    'eventLeaderboard.clickToView': 'Cliquer pour voir',
+    'eventLeaderboard.fullLeaderboard': 'Classement Complet',
+    'eventLeaderboard.view': 'Voir',
+    'eventLeaderboard.documentation': 'Documentation',
+    'eventLeaderboard.viewMedia': 'Voir le Média'
   },
 
   it: {
@@ -2192,7 +2276,27 @@ const translations = {
     'minigames.sound.mario64': '"Wahoo!" - Suono salto di Mario',
     'minigames.sound.zelda': '"Hey! Listen!" - Suono di Navi',
     'minigames.sound.goldeneye': '"Pew Pew" - Sparo silenziato',
-    'minigames.sound.mariokart': '"Here we go!" - Inizio gara'
+    'minigames.sound.mariokart': '"Here we go!" - Inizio gara',
+
+    // EventLeaderboard
+    'eventLeaderboard.title': 'Classifica Evento',
+    'eventLeaderboard.time': 'Tempo',
+    'eventLeaderboard.screenshotFrom': 'Screenshot da {username}',
+    'eventLeaderboard.livestream': 'Livestream',
+    'eventLeaderboard.livestreamProofText': 'Questa prova è stata fornita tramite livestream',
+    'eventLeaderboard.watchStream': 'Guarda Stream',
+    'eventLeaderboard.notes': 'Note',
+    'eventLeaderboard.screenshot': 'Screenshot',
+    'eventLeaderboard.video': 'Video',
+    'eventLeaderboard.verified': 'Verificato',
+    'eventLeaderboard.unverified': 'Non verificato',
+    'eventLeaderboard.participants': 'partecipanti',
+    'eventLeaderboard.yourPosition': 'La Tua Posizione',
+    'eventLeaderboard.clickToView': 'Clicca per visualizzare',
+    'eventLeaderboard.fullLeaderboard': 'Classifica Completa',
+    'eventLeaderboard.view': 'Visualizza',
+    'eventLeaderboard.documentation': 'Documentazione',
+    'eventLeaderboard.viewMedia': 'Visualizza Media'
   },
 
   es: {
@@ -2481,6 +2585,26 @@ const translations = {
     'minigames.sound.goldeneye': '"Pew Pew" - Disparo silenciado',
     'minigames.sound.mariokart': '"Here we go!" - Inicio de carrera',
 
+    // EventLeaderboard
+    'eventLeaderboard.title': 'Tabla de Clasificación del Evento',
+    'eventLeaderboard.time': 'Tiempo',
+    'eventLeaderboard.screenshotFrom': 'Captura de pantalla de {username}',
+    'eventLeaderboard.livestream': 'Transmisión en vivo',
+    'eventLeaderboard.livestreamProofText': 'Esta prueba se proporcionó a través de transmisión en vivo',
+    'eventLeaderboard.watchStream': 'Ver Transmisión',
+    'eventLeaderboard.notes': 'Notas',
+    'eventLeaderboard.screenshot': 'Captura de pantalla',
+    'eventLeaderboard.video': 'Video',
+    'eventLeaderboard.verified': 'Verificado',
+    'eventLeaderboard.unverified': 'Sin verificar',
+    'eventLeaderboard.participants': 'participantes',
+    'eventLeaderboard.yourPosition': 'Tu Posición',
+    'eventLeaderboard.clickToView': 'Haz clic para ver',
+    'eventLeaderboard.fullLeaderboard': 'Tabla de Clasificación Completa',
+    'eventLeaderboard.view': 'Ver',
+    'eventLeaderboard.documentation': 'Documentación',
+    'eventLeaderboard.viewMedia': 'Ver Medios',
+
     // Common terms
     'common.rarity': 'Rareza',
     'common.common': 'Común',
@@ -2703,6 +2827,26 @@ const translations = {
     'minigames.sound.zelda': '"Hey! Listen!" - Ήχος Navi',
     'minigames.sound.goldeneye': '"Pew Pew" - Σιγασμένος πυροβολισμός',
     'minigames.sound.mariokart': '"Here we go!" - Έναρξη αγώνα',
+
+    // EventLeaderboard
+    'eventLeaderboard.title': 'Κατάταξη Εκδήλωσης',
+    'eventLeaderboard.time': 'Χρόνος',
+    'eventLeaderboard.screenshotFrom': 'Screenshot από {username}',
+    'eventLeaderboard.livestream': 'Livestream',
+    'eventLeaderboard.livestreamProofText': 'Αυτή η απόδειξη παρασχέθηκε μέσω livestream',
+    'eventLeaderboard.watchStream': 'Δες το Stream',
+    'eventLeaderboard.notes': 'Σημειώσεις',
+    'eventLeaderboard.screenshot': 'Screenshot',
+    'eventLeaderboard.video': 'Βίντεο',
+    'eventLeaderboard.verified': 'Επιβεβαιωμένο',
+    'eventLeaderboard.unverified': 'Μη επιβεβαιωμένο',
+    'eventLeaderboard.participants': 'συμμετέχοντες',
+    'eventLeaderboard.yourPosition': 'Η Θέση σας',
+    'eventLeaderboard.clickToView': 'Κάντε κλικ για προβολή',
+    'eventLeaderboard.fullLeaderboard': 'Πλήρης Κατάταξη',
+    'eventLeaderboard.view': 'Προβολή',
+    'eventLeaderboard.documentation': 'Τεκμηρίωση',
+    'eventLeaderboard.viewMedia': 'Προβολή Μέσων',
 
     // News content
     'news.title': 'Ροή Ειδήσεων',
@@ -4969,13 +5113,22 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
     localStorage.setItem('n64-nexus-language', language)
   }
 
-  // Translation function with fallback to English
-  const t = (key: string): string => {
+  // Translation function with fallback to English and parameter interpolation
+  const t = (key: string, params?: Record<string, string>): string => {
     const currentTranslations = translations[currentLanguage] as any
     const englishTranslations = translations['en'] as any
     
     // Try current language first, then fallback to English, then return key
-    return currentTranslations?.[key] || englishTranslations?.[key] || key
+    let translation = currentTranslations?.[key] || englishTranslations?.[key] || key
+    
+    // Handle parameter interpolation
+    if (params && typeof translation === 'string') {
+      Object.keys(params).forEach(param => {
+        translation = translation.replace(new RegExp(`\\{${param}\\}`, 'g'), params[param])
+      })
+    }
+    
+    return translation
   }
 
   // Initialize language from localStorage on mount
