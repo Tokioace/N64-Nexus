@@ -77,13 +77,13 @@ const RaceSubmissionModal: React.FC<RaceSubmissionModalProps> = ({
     
     // Validation
     if (!raceTime.trim()) {
-      setError('Bitte gib deine Rundenzeit ein')
+      setError(t('events.timeRequired'))
       return
     }
     
     // For livestream, URL is required
     if (documentationType === 'livestream' && !livestreamUrl.trim()) {
-      setError('Bitte gib eine Livestream-URL ein')
+      setError(t('events.livestreamUrlRequired'))
       return
     }
     
@@ -150,7 +150,7 @@ const RaceSubmissionModal: React.FC<RaceSubmissionModalProps> = ({
       type: 'livestream' as DocumentationType,
       icon: Radio,
       title: 'Livestream',
-      description: 'Teile den Link zu deinem Livestream (Twitch, YouTube, etc.)',
+      description: t('events.livestreamSubmissionDesc'),
       acceptedFiles: ''
     }
   ]
@@ -265,7 +265,7 @@ const RaceSubmissionModal: React.FC<RaceSubmissionModalProps> = ({
             <div>
               <label className="block text-sm font-medium text-slate-200 mb-2">
                 <Radio className="w-4 h-4 inline mr-2" />
-                Livestream URL
+                {t('events.livestreamUrlLabel')}
               </label>
               <input
                 type="url"
@@ -277,7 +277,7 @@ const RaceSubmissionModal: React.FC<RaceSubmissionModalProps> = ({
                          focus:ring-1 focus:ring-blue-400"
               />
               <p className="text-xs text-slate-400 mt-1">
-                Unterstützt: Twitch, YouTube Live, Facebook Gaming und andere Streaming-Plattformen
+                {t('events.streamingPlatforms')}
               </p>
             </div>
           )}

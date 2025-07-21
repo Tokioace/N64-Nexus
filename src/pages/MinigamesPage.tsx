@@ -947,13 +947,13 @@ const MinigamesPage: React.FC = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
         <div className="simple-tile text-center py-8">
           <Trophy className="w-12 h-12 text-yellow-400 mx-auto mb-4" />
-          <h3 className="text-xl font-bold text-slate-100 mb-2">Globale Bestenliste</h3>
+          <h3 className="text-xl font-bold text-slate-100 mb-2">{t('minigames.globalLeaderboard')}</h3>
           <p className="text-slate-400 mb-4">
-            Vergleiche deine Scores mit der ganzen Community!
+            {t('minigames.globalLeaderboardDesc')}
           </p>
           <button className="px-6 py-2 bg-yellow-600/20 hover:bg-yellow-600/30 border border-yellow-500/30 
                            text-yellow-400 hover:text-yellow-300 rounded-lg transition-all duration-200">
-            🏆 Bestenlisten ansehen
+            {t('minigames.viewLeaderboards')}
           </button>
         </div>
 

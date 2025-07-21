@@ -236,14 +236,18 @@ const translations = {
     'events.videoDesc': 'Aufzeichnung des Laufs',
     'events.livestream': 'Livestream',
     'events.livestreamDesc': 'Live übertragener Lauf',
+    'events.livestreamSubmissionDesc': 'Teile den Link zu deinem Livestream (Twitch, YouTube, etc.)',
     'events.uploadSuccess': 'Datei erfolgreich hochgeladen',
     'events.uploadError': 'Fehler beim Hochladen der Datei',
     'events.fileTooBig': 'Datei zu groß (max. 100MB)',
     'events.invalidFileType': 'Ungültiger Dateityp',
     'events.requiredField': 'Dieses Feld ist erforderlich',
+    'events.timeRequired': 'Bitte gib deine Rundenzeit ein',
     'events.invalidTimeFormat': 'Ungültiges Zeitformat',
     'events.mediaUrlRequired': 'Media URL ist erforderlich für diesen Nachweistyp',
     'events.livestreamUrlRequired': 'Livestream URL ist erforderlich für Livestream-Nachweis',
+    'events.livestreamUrlLabel': 'Livestream URL',
+    'events.streamingPlatforms': 'Unterstützt: Twitch, YouTube Live, Facebook Gaming und andere Streaming-Plattformen',
     'events.subtitle': 'Turniere, Challenges und Community-Events',
     'events.tabs.active': 'Aktiv',
     'events.tabs.upcoming': 'Kommend',
@@ -344,6 +348,9 @@ const translations = {
     
     // Leaderboard
     'leaderboard.title': 'Bestenliste',
+    'leaderboard.pageTitle': 'Battle64 Bestenliste',
+    'leaderboard.pageSubtitle': 'Die besten Zeiten und Rekorde unserer Community',
+    'leaderboard.selectEvent': 'Event auswählen',
     'leaderboard.rank': 'Rang',
     'leaderboard.player': 'Spieler',
     'leaderboard.score': 'Punkte',
@@ -416,6 +423,9 @@ const translations = {
     'minigames.subtitle': 'Kleine Spiele für zwischendurch - N64-Style!',
     'minigames.moreGamesComingSoon': 'Wir arbeiten an noch mehr N64-inspirierten Minispielen! Hast du Ideen?',
     'minigames.allGamesFree': 'Alle Minispiele sind kostenlos und ohne Anmeldung spielbar!',
+    'minigames.globalLeaderboard': 'Globale Bestenliste',
+    'minigames.globalLeaderboardDesc': 'Vergleiche deine Scores mit der ganzen Community!',
+    'minigames.viewLeaderboards': '🏆 Bestenlisten ansehen',
 
     // Collection Manager
     'collection.myCollection': 'Meine Sammlung',
@@ -909,14 +919,18 @@ const translations = {
     'events.videoDesc': 'Recording of the run',
     'events.livestream': 'Livestream',
     'events.livestreamDesc': 'Live streamed run',
+    'events.livestreamSubmissionDesc': 'Share the link to your livestream (Twitch, YouTube, etc.)',
     'events.uploadSuccess': 'File uploaded successfully',
     'events.uploadError': 'Error uploading file',
     'events.fileTooBig': 'File too large (max 100MB)',
     'events.invalidFileType': 'Invalid file type',
     'events.requiredField': 'This field is required',
+    'events.timeRequired': 'Please enter your lap time',
     'events.invalidTimeFormat': 'Invalid time format',
     'events.mediaUrlRequired': 'Media URL is required for this documentation type',
     'events.livestreamUrlRequired': 'Livestream URL is required for livestream documentation',
+    'events.livestreamUrlLabel': 'Livestream URL',
+    'events.streamingPlatforms': 'Supported: Twitch, YouTube Live, Facebook Gaming and other streaming platforms',
     'events.subtitle': 'Tournaments, Challenges and Community Events',
     'events.tabs.active': 'Active',
     'events.tabs.upcoming': 'Upcoming',
@@ -1017,6 +1031,9 @@ const translations = {
     
     // Leaderboard
     'leaderboard.title': 'Leaderboard',
+    'leaderboard.pageTitle': 'Battle64 Leaderboard',
+    'leaderboard.pageSubtitle': 'The best times and records of our community',
+    'leaderboard.selectEvent': 'Select Event',
     'leaderboard.rank': 'Rank',
     'leaderboard.player': 'Player',
     'leaderboard.score': 'Score',
@@ -1087,6 +1104,9 @@ const translations = {
     'minigames.startDuel': 'Start Duel!',
     'minigames.typeCheatCode': 'Type the cheat code here...',
     'minigames.subtitle': 'Mini games for in-between - N64 style!',
+    'minigames.globalLeaderboard': 'Global Leaderboard',
+    'minigames.globalLeaderboardDesc': 'Compare your scores with the entire community!',
+    'minigames.viewLeaderboards': '🏆 View Leaderboards',
     'minigames.moreGamesComingSoon': 'We are working on even more N64-inspired mini games! Do you have ideas?',
     'minigames.allGamesFree': 'All mini games are free to play and no registration required!',
 
@@ -1683,6 +1703,9 @@ const translations = {
     
     // Leaderboard
     'leaderboard.title': 'Classement',
+    'leaderboard.pageTitle': 'Battle64 Classement',
+    'leaderboard.pageSubtitle': 'Les meilleurs temps et records de notre communauté',
+    'leaderboard.selectEvent': 'Sélectionner un événement',
     'leaderboard.rank': 'Rang',
     'leaderboard.player': 'Joueur',
     'leaderboard.score': 'Score',
@@ -4048,6 +4071,9 @@ const translations = {
     
     // Leaderboard
     'leaderboard.title': 'Рейтинг',
+    'leaderboard.pageTitle': 'Battle64 Рейтинг',
+    'leaderboard.pageSubtitle': 'Лучшие времена и рекорды нашего сообщества',
+    'leaderboard.selectEvent': 'Выберите событие',
     'leaderboard.rank': 'Место',
     'leaderboard.player': 'Игрок',
     'leaderboard.score': 'Счет',
@@ -4286,6 +4312,9 @@ const translations = {
     
     // Leaderboard
     'leaderboard.title': 'Classificação',
+    'leaderboard.pageTitle': 'Battle64 Classificação',
+    'leaderboard.pageSubtitle': 'Os melhores tempos e recordes da nossa comunidade',
+    'leaderboard.selectEvent': 'Selecionar Evento',
     'leaderboard.rank': 'Posição',
     'leaderboard.player': 'Jogador',
     'leaderboard.score': 'Pontuação',

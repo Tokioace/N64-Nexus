@@ -206,7 +206,7 @@ const EventFeedWidget: React.FC<EventFeedWidgetProps> = ({
         <div className="p-3 rounded-lg bg-slate-800/30 border border-slate-600/30">
           <div className="flex items-center justify-between mb-2">
             <span className="px-2 py-1 rounded-full bg-green-500/20 text-green-400 text-xs font-medium">
-              🔴 LIVE
+              🔴 {t('events.status.live')}
             </span>
             <span className="text-xs text-slate-400">{timeRemaining}</span>
           </div>
