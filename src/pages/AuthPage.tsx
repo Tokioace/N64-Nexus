@@ -86,10 +86,10 @@ const AuthPage: React.FC = () => {
       if (success) {
         navigate('/')
       } else {
-        setError('Registrierung fehlgeschlagen. Benutzername oder E-Mail bereits vergeben.')
+        setError(t('auth.registrationFailed'))
       }
     } catch (err) {
-      setError('Ein Fehler ist aufgetreten. Bitte versuche es erneut.')
+      setError(t('auth.errorOccurred'))
     } finally {
       setLoading(false)
     }
@@ -123,7 +123,7 @@ const AuthPage: React.FC = () => {
                   : 'text-slate-400 hover:text-slate-200'
               }`}
             >
-              Anmelden
+              {t('auth.login')}
             </button>
             <button
               onClick={() => {
@@ -136,7 +136,7 @@ const AuthPage: React.FC = () => {
                   : 'text-slate-400 hover:text-slate-200'
               }`}
             >
-              Registrieren
+              {t('auth.register')}
             </button>
           </div>
 
@@ -152,7 +152,7 @@ const AuthPage: React.FC = () => {
             <form onSubmit={handleLogin} className="space-y-4">
               <div>
                 <label className="block text-sm font-medium text-slate-300 mb-2">
-                  E-Mail
+                  {t('auth.email')}
                 </label>
                 <div className="relative">
                   <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-slate-400" />
@@ -169,7 +169,7 @@ const AuthPage: React.FC = () => {
 
               <div>
                 <label className="block text-sm font-medium text-slate-300 mb-2">
-                  Passwort
+                  {t('auth.password')}
                 </label>
                 <div className="relative">
                   <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-slate-400" />
@@ -204,7 +204,7 @@ const AuthPage: React.FC = () => {
             <form onSubmit={handleRegister} className="space-y-4">
               <div>
                 <label className="block text-sm font-medium text-slate-300 mb-2">
-                  Benutzername
+                  {t('auth.username')}
                 </label>
                 <div className="relative">
                   <User className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-slate-400" />
@@ -222,7 +222,7 @@ const AuthPage: React.FC = () => {
 
               <div>
                 <label className="block text-sm font-medium text-slate-300 mb-2">
-                  E-Mail
+                  {t('auth.email')}
                 </label>
                 <div className="relative">
                   <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-slate-400" />
@@ -240,7 +240,7 @@ const AuthPage: React.FC = () => {
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-slate-300 mb-2">
-                    Plattform
+                    {t('auth.platform')}
                   </label>
                   <div className="relative">
                     <Gamepad2 className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-slate-400" />
@@ -257,7 +257,7 @@ const AuthPage: React.FC = () => {
 
                 <div>
                   <label className="block text-sm font-medium text-slate-300 mb-2">
-                    Region
+                    {t('auth.region')}
                   </label>
                   <div className="relative">
                     <Globe className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-slate-400" />
@@ -275,7 +275,7 @@ const AuthPage: React.FC = () => {
 
               <div>
                 <label className="block text-sm font-medium text-slate-300 mb-2">
-                  Passwort
+                  {t('auth.password')}
                 </label>
                 <div className="relative">
                   <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-slate-400" />
@@ -300,7 +300,7 @@ const AuthPage: React.FC = () => {
 
               <div>
                 <label className="block text-sm font-medium text-slate-300 mb-2">
-                  Passwort bestätigen
+                  {t('auth.confirmPassword')}
                 </label>
                 <div className="relative">
                   <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-slate-400" />
@@ -336,22 +336,22 @@ const AuthPage: React.FC = () => {
           <div className="mt-6 text-center text-sm text-slate-400">
             {isLogin ? (
               <p>
-                Noch kein Account?{' '}
+                {t('auth.noAccountYet')}{' '}
                 <button
                   onClick={() => setIsLogin(false)}
                   className="text-blue-400 hover:text-blue-300 font-medium"
                 >
-                  Jetzt registrieren
+                  {t('auth.registerNow')}
                 </button>
               </p>
             ) : (
               <p>
-                Bereits einen Account?{' '}
+                {t('auth.alreadyHaveAccount')}{' '}
                 <button
                   onClick={() => setIsLogin(true)}
                   className="text-blue-400 hover:text-blue-300 font-medium"
                 >
-                  Hier anmelden
+                  {t('auth.loginHere')}
                 </button>
               </p>
             )}
