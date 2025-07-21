@@ -64,7 +64,7 @@ const UserCollectionManager: React.FC<CollectionManagerProps> = ({ isOwnProfile 
   }
 
   const handleRemoveItem = async (itemId: string) => {
-    if (confirm('Möchtest du dieses Spiel wirklich aus deiner Sammlung entfernen?')) {
+    if (confirm(t('collection.confirmRemove'))) {
       await removeFromCollection(itemId)
     }
   }

@@ -48,10 +48,10 @@ const AuthPage: React.FC = () => {
       if (success) {
         navigate('/')
       } else {
-        setError('Ungültige Anmeldedaten. Bitte überprüfe deine E-Mail und dein Passwort.')
+        setError(t('auth.invalidCredentials'))
       }
     } catch (err) {
-      setError('Ein Fehler ist aufgetreten. Bitte versuche es erneut.')
+      setError(t('auth.errorOccurred'))
     } finally {
       setLoading(false)
     }
@@ -64,19 +64,19 @@ const AuthPage: React.FC = () => {
 
     // Validation
     if (registrationData.password !== registrationData.confirmPassword) {
-      setError('Die Passwörter stimmen nicht überein.')
+      setError(t('auth.passwordsDontMatch'))
       setLoading(false)
       return
     }
 
     if (registrationData.password.length < 6) {
-      setError('Das Passwort muss mindestens 6 Zeichen lang sein.')
+      setError(t('auth.passwordTooShort'))
       setLoading(false)
       return
     }
 
     if (registrationData.username.length < 3) {
-      setError('Der Benutzername muss mindestens 3 Zeichen lang sein.')
+      setError(t('auth.usernameTooShort'))
       setLoading(false)
       return
     }
@@ -162,7 +162,7 @@ const AuthPage: React.FC = () => {
                     value={loginData.email}
                     onChange={(e) => setLoginData({ ...loginData, email: e.target.value })}
                     className="w-full pl-10 pr-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-slate-100 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    placeholder="deine@email.com"
+                    placeholder={t('auth.emailPlaceholder')}
                   />
                 </div>
               </div>
@@ -215,7 +215,7 @@ const AuthPage: React.FC = () => {
                     value={registrationData.username}
                     onChange={(e) => setRegistrationData({ ...registrationData, username: e.target.value })}
                     className="w-full pl-10 pr-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-slate-100 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    placeholder="DeinBenutzername"
+                    placeholder={t('auth.usernamePlaceholder')}
                   />
                 </div>
               </div>
@@ -232,7 +232,7 @@ const AuthPage: React.FC = () => {
                     value={registrationData.email}
                     onChange={(e) => setRegistrationData({ ...registrationData, email: e.target.value })}
                     className="w-full pl-10 pr-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-slate-100 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    placeholder="deine@email.com"
+                    placeholder={t('auth.emailPlaceholder')}
                   />
                 </div>
               </div>

@@ -1,30 +1,33 @@
 import React, { createContext, useContext, useState, ReactNode } from 'react'
 import { QuizQuestion, QuizResult, QuizContextType } from '../types'
+import { useLanguage } from './LanguageContext'
 
 const QuizContext = createContext<QuizContextType | undefined>(undefined)
 
-const mockQuestions: QuizQuestion[] = [
+// Quiz questions will be generated dynamically based on language
+const getQuizQuestions = (t: (key: string) => string): QuizQuestion[] => [
   {
     id: '1',
-    question: 'Welches N64-Spiel wurde als erstes veröffentlicht?',
+    question: t('quiz.question1'),
     options: ['Super Mario 64', 'Pilotwings 64', 'Wave Race 64', 'Saikyō Habu Shōgi'],
     correctAnswer: 0,
     difficulty: 'easy',
-    category: 'Geschichte',
-    explanation: 'Super Mario 64 war ein Launch-Titel für das Nintendo 64 in Japan im Jahr 1996.'
+    category: t('quiz.category.history'),
+    explanation: t('quiz.question1.explanation')
   },
   {
     id: '2',
-    question: 'Wie viele Sterne gibt es insgesamt in Super Mario 64?',
+    question: t('quiz.question2'),
     options: ['100', '120', '150', '180'],
     correctAnswer: 1,
     difficulty: 'medium',
-    category: 'Mario',
-    explanation: 'Super Mario 64 hat insgesamt 120 Sterne zu sammeln.'
+    category: t('quiz.category.mario'),
+    explanation: t('quiz.question2.explanation')
   }
 ]
 
 export const QuizProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+  const { t } = useLanguage()
   const [currentQuestion, setCurrentQuestion] = useState<QuizQuestion | null>(null)
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
   const [totalQuestions] = useState(10)
@@ -34,7 +37,8 @@ export const QuizProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const [quizResult, setQuizResult] = useState<QuizResult | null>(null)
 
   const startQuiz = (difficulty?: string, category?: string) => {
-    setCurrentQuestion(mockQuestions[0])
+    const questions = getQuizQuestions(t)
+    setCurrentQuestion(questions[0])
     setCurrentQuestionIndex(0)
     setScore(0)
     setTimeStarted(new Date())
@@ -49,10 +53,11 @@ export const QuizProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   }
 
   const nextQuestion = () => {
+    const questions = getQuizQuestions(t)
     const nextIndex = currentQuestionIndex + 1
-    if (nextIndex < mockQuestions.length) {
+    if (nextIndex < questions.length) {
       setCurrentQuestionIndex(nextIndex)
-      setCurrentQuestion(mockQuestions[nextIndex])
+      setCurrentQuestion(questions[nextIndex])
     } else {
       finishQuiz()
     }

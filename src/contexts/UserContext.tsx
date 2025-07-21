@@ -16,7 +16,7 @@ const mockUsers: User[] = [
     joinDate: new Date('2024-03-01'),
     avatar: '🎮',
     bio: 'Leidenschaftlicher N64-Sammler und Speedrunner. Spezialisiert auf Mario 64 und Zelda-Spiele.',
-    location: 'Berlin, Deutschland',
+    location: 'Berlin, Germany',
     isPublic: true,
     collections: [
       {

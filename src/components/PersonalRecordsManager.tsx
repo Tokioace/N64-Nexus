@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useUser } from '../contexts/UserContext'
+import { useLanguage } from '../contexts/LanguageContext'
 import { PersonalRecord } from '../types'
 import { Plus, Trophy, Clock, Target, Gamepad2, Calendar, CheckCircle, AlertCircle, Edit, Trash2 } from 'lucide-react'
 
@@ -9,6 +10,7 @@ interface PersonalRecordsProps {
 
 const PersonalRecordsManager: React.FC<PersonalRecordsProps> = ({ isOwnProfile = true }) => {
   const { user, addPersonalRecord, updatePersonalRecord } = useUser()
+  const { t } = useLanguage()
   const [showAddModal, setShowAddModal] = useState(false)
   const [editingRecord, setEditingRecord] = useState<PersonalRecord | null>(null)
   const [filter, setFilter] = useState<'all' | 'verified' | 'pending'>('all')

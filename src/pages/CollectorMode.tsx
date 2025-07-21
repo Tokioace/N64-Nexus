@@ -140,7 +140,7 @@ const GameModal: React.FC<GameModalProps> = ({ game, isOpen, onClose, onAddToCol
               onChange={(e) => setNotes(e.target.value)}
               className="w-full p-2 bg-slate-700 border border-slate-600 rounded text-slate-100"
               rows={3}
-              placeholder="Zusätzliche Informationen..."
+                                placeholder={t('placeholder.additionalInfo')}
             />
           </div>
 
@@ -326,7 +326,7 @@ const CollectorMode: React.FC = () => {
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400" size={20} />
               <input
                 type="text"
-                placeholder="Spiele durchsuchen..."
+                placeholder={t('placeholder.searchGames')}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full pl-10 pr-4 py-2 bg-slate-700 border border-slate-600 rounded text-slate-100 placeholder-slate-400"

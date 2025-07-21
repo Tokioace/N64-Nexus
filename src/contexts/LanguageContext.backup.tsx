@@ -498,25 +498,7 @@ const translations = {
     // Achievement descriptions
     'achievement.profilePublic': 'Profil öffentlich gemacht',
     'achievement.gamesAdded': '20 Spiele zur Sammlung hinzugefügt',
-    'achievement.eventChampion': 'Ein Event gewonnen',
-
-    // Notifications
-    'notifications.enabled': '🔔 Benachrichtigungen aktiviert! Du wirst über neue Events informiert.',
-    'notifications.denied': '❌ Benachrichtigungen wurden abgelehnt. Bitte erlaube Benachrichtigungen in deinen Browser-Einstellungen.',
-    'notifications.notSupported': '❌ Dein Browser unterstützt keine Push-Benachrichtigungen.',
-
-    // Personal Records
-    'records.add': 'Rekord hinzufügen',
-    'records.addFirst': 'Füge deinen ersten persönlichen Rekord hinzu!',
-    'records.addPersonal': 'Persönlichen Rekord hinzufügen',
-    'records.time': 'Zeit (für Speedruns)',
-    'records.points': 'Punkte (für High Scores)',
-    'records.addButton': 'Hinzufügen',
-
-    // Collection Management
-    'collection.confirmRemove': 'Möchtest du dieses Spiel wirklich aus deiner Sammlung entfernen?',
-    'collection.addGame': 'Spiel hinzufügen',
-    'collection.completeness': 'Vollständigkeit'
+    'achievement.eventChampion': 'Ein Event gewonnen'
   },
   
   en: {
@@ -993,25 +975,7 @@ const translations = {
     // Achievement descriptions
     'achievement.profilePublic': 'Made profile public',
     'achievement.gamesAdded': 'Added 20 games to collection',
-    'achievement.eventChampion': 'Won an event',
-
-    // Notifications
-    'notifications.enabled': '🔔 Notifications enabled! You will be informed about new events.',
-    'notifications.denied': '❌ Notifications were denied. Please allow notifications in your browser settings.',
-    'notifications.notSupported': '❌ Your browser does not support push notifications.',
-
-    // Personal Records
-    'records.add': 'Add Record',
-    'records.addFirst': 'Add your first personal record!',
-    'records.addPersonal': 'Add Personal Record',
-    'records.time': 'Time (for Speedruns)',
-    'records.points': 'Points (for High Scores)',
-    'records.addButton': 'Add',
-
-    // Collection Management
-    'collection.confirmRemove': 'Do you really want to remove this game from your collection?',
-    'collection.addGame': 'Add Game',
-    'collection.completeness': 'Completeness'
+    'achievement.eventChampion': 'Won an event'
   },
   
   fr: {
@@ -2812,13 +2776,11 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
     localStorage.setItem('n64-nexus-language', language)
   }
 
-  // Translation function with fallback to English
+  // Translation function
   const t = (key: string): string => {
     const currentTranslations = translations[currentLanguage] as any
-    const englishTranslations = translations['en'] as any
-    
-    // Try current language first, then fallback to English, then return key
-    return currentTranslations?.[key] || englishTranslations?.[key] || key
+    const translation = currentTranslations?.[key]
+    return translation || key
   }
 
   // Initialize language from localStorage on mount
