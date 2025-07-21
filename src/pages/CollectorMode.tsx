@@ -75,7 +75,7 @@ const GameModal: React.FC<GameModalProps> = ({ game, isOpen, onClose, onAddToCol
           </div>
 
           <div>
-            <label className="block text-slate-300 text-sm font-medium mb-2">Zustand</label>
+            <label className="block text-slate-300 text-sm font-medium mb-2">{t('collection.condition')}</label>
             <div className="flex space-x-4">
               <label className="flex items-center">
                 <input
@@ -86,7 +86,7 @@ const GameModal: React.FC<GameModalProps> = ({ game, isOpen, onClose, onAddToCol
                   onChange={(e) => setCondition(e.target.value as 'mint')}
                   className="mr-2"
                 />
-                <span className="text-slate-300">Mint</span>
+                <span className="text-slate-300">{t('collection.mint')}</span>
               </label>
               <label className="flex items-center">
                 <input
