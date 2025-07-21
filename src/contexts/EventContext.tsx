@@ -19,11 +19,12 @@ const fileToBase64 = (file: File): Promise<string> => {
   })
 }
 
-const mockEvents: GameEvent[] = [
+// Function to get event data with translations
+const getEventData = (t: (key: string) => string): GameEvent[] => [
   {
     id: '1',
-    title: 'Mario Kart 64 Speedrun Challenge',
-    description: 'Wer schafft die schnellste Zeit auf der Mushroom Cup?',
+    title: t('events.mk64Challenge'),
+    description: t('events.mk64ChallengeDesc'),
     game: 'Mario Kart 64',
     category: 'Speedrun',
     startDate: new Date('2024-02-01'),
@@ -31,14 +32,14 @@ const mockEvents: GameEvent[] = [
     isActive: false,
     participants: 42,
     maxParticipants: 100,
-    rules: ['PAL-Version', 'Keine Glitches', 'Video-Beweis erforderlich'],
-    prizes: ['1. Platz: Goldene Cartridge', '2. Platz: Silberne Cartridge', '3. Platz: Bronze Cartridge'],
+    rules: [t('events.rule.palVersion'), t('events.rule.noGlitches'), t('events.rule.videoRequired')],
+    prizes: [t('events.prize.gold'), t('events.prize.silver'), t('events.prize.bronze')],
     region: 'PAL'
   },
   {
     id: '2',
-    title: 'Mario Kart 64 - Luigi\'s Raceway Live Event',
-    description: 'Eine Woche lang Luigi\'s Raceway Zeitrennen! Zeigt eure beste Zeit auf der klassischen Strecke und kämpft um die Krone!',
+    title: t('events.luigiEvent'),
+    description: t('events.luigiEventDesc'),
     game: 'Mario Kart 64',
     category: 'Time Trial',
     startDate: new Date('2025-07-20'),
@@ -47,20 +48,20 @@ const mockEvents: GameEvent[] = [
     participants: 0,
     maxParticipants: 150,
     rules: [
-      'Luigi\'s Raceway - 3 Runden',
-      'PAL oder NTSC Version erlaubt',
-      'Keine Glitches oder Shortcuts',
-      'Screenshot oder Video als Beweis erforderlich',
-      'Beste Zeit pro Spieler zählt',
-      'Startzeit: Sonntag 20.07.2025',
-      'Endzeit: Sonntag 27.07.2025 23:59 UTC'
+      t('events.rule.luigiRaceway'),
+      t('events.rule.palNtscAllowed'),
+      t('events.rule.noGlitchesShortcuts'),
+      t('events.rule.screenshotVideoRequired'),
+      t('events.rule.bestTimePerPlayer'),
+      t('events.rule.startTime'),
+      t('events.rule.endTime')
     ],
     prizes: [
-      '🥇 1. Platz: Goldener Luigi Trophy + 200 XP + Luigi\'s Raceway Master Badge',
-      '🥈 2. Platz: Silberner Luigi Trophy + 150 XP + Speed Demon Badge', 
-      '🥉 3. Platz: Bronzener Luigi Trophy + 100 XP + Time Trial Expert Badge',
-      '🏆 Top 10: Luigi\'s Raceway Veteran Badge + 50 XP',
-      '🎮 Alle Teilnehmer: Luigi\'s Raceway Participant Badge + 25 XP'
+      t('events.prize.luigiFirst'),
+      t('events.prize.luigiSecond'),
+      t('events.prize.luigiThird'),
+      t('events.prize.luigiTop10'),
+      t('events.prize.luigiParticipant')
     ],
     region: 'BOTH'
   }
@@ -116,9 +117,10 @@ const mockParticipations: EventParticipation[] = [
 ]
 
 export const EventProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+  const { t } = useLanguage()
+  const mockEvents = getEventData(t)
   const [events, setEvents] = useState<GameEvent[]>(mockEvents)
   const [activeEvents, setActiveEvents] = useState<GameEvent[]>(mockEvents.filter(e => e.isActive))
-  const { t } = useLanguage()
   const [userParticipations, setUserParticipations] = useState<EventParticipation[]>([])
   const [allEventSubmissions, setAllEventSubmissions] = useState<EventParticipation[]>([])
   const [loading, setLoading] = useState(false)
@@ -141,8 +143,9 @@ export const EventProvider: React.FC<{ children: ReactNode }> = ({ children }) =
         setActiveEvents(parsedEvents.filter((e: GameEvent) => e.isActive))
       } catch (error) {
         console.error('Error loading events from localStorage:', error)
-        setEvents(mockEvents)
-        setActiveEvents(mockEvents.filter(e => e.isActive))
+        const fallbackEvents = getEventData(t)
+        setEvents(fallbackEvents)
+        setActiveEvents(fallbackEvents.filter(e => e.isActive))
       }
     }
 
@@ -190,6 +193,13 @@ export const EventProvider: React.FC<{ children: ReactNode }> = ({ children }) =
   useEffect(() => {
     localStorage.setItem(STORAGE_KEY_ALL_SUBMISSIONS, JSON.stringify(allEventSubmissions))
   }, [allEventSubmissions])
+
+  // Update events when language changes
+  useEffect(() => {
+    const translatedEvents = getEventData(t)
+    setEvents(translatedEvents)
+    setActiveEvents(translatedEvents.filter(e => e.isActive))
+  }, [t])
 
   const getEvents = () => {
     setLoading(true)
