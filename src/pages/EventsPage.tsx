@@ -125,12 +125,12 @@ const EventsPage: React.FC = () => {
           const permission = await Notification.requestPermission()
           if (permission === 'granted') {
             setNotificationsEnabled(true)
-            alert('🔔 Benachrichtigungen aktiviert! Du wirst über neue Events informiert.')
+            alert(t('notifications.enabled'))
           } else {
-            alert('❌ Benachrichtigungen wurden abgelehnt. Bitte erlaube Benachrichtigungen in deinen Browser-Einstellungen.')
+            alert(t('notifications.denied'))
           }
         } else {
-          alert('❌ Dein Browser unterstützt keine Push-Benachrichtigungen.')
+          alert(t('notifications.notSupported'))
         }
       } else {
         setNotificationsEnabled(false)

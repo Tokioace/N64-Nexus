@@ -290,7 +290,7 @@ const RaceSubmissionModal: React.FC<RaceSubmissionModalProps> = ({
             <textarea
               value={notes}
               onChange={(e) => setNotes(e.target.value)}
-              placeholder="Setup, Controller, besondere Umstände..."
+                              placeholder={t('placeholder.setupController')}
               rows={3}
               className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg 
                        text-slate-100 placeholder-slate-400 focus:outline-none focus:border-blue-400

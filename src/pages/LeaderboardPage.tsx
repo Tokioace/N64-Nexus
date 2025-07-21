@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useEvent } from '../contexts/EventContext'
 import { useUser } from '../contexts/UserContext'
+import { useLanguage } from '../contexts/LanguageContext'
 import EventLeaderboard from '../components/EventLeaderboard'
 import { 
   Trophy, 
@@ -13,6 +14,7 @@ import {
 const LeaderboardPage: React.FC = () => {
   const { events, getLeaderboard } = useEvent()
   const { user } = useUser()
+  const { t } = useLanguage()
   const [selectedEvent, setSelectedEvent] = useState<string | null>(null)
 
   // Get active events with leaderboard data
@@ -124,10 +126,10 @@ const LeaderboardPage: React.FC = () => {
         <div className="simple-tile text-center py-12">
           <Medal className="w-16 h-16 text-slate-500 mx-auto mb-4" />
           <h3 className="text-xl font-bold text-slate-300 mb-2">
-            Noch keine Leaderboard-Daten verfügbar
+            {t('leaderboard.noData')}
           </h3>
           <p className="text-slate-400">
-            Sobald Spieler ihre Zeiten einreichen, werden hier die Bestenlisten angezeigt.
+            {t('leaderboard.noDataDesc')}
           </p>
         </div>
       )}

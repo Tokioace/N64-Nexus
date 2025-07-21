@@ -155,7 +155,7 @@ const ProfilePage: React.FC = () => {
     {
       id: 2,
       name: "Community Hero",
-      description: "Profil öffentlich gemacht",
+              description: t('achievement.profilePublic'),
       icon: "👥",
       earned: profileUser.isPublic,
       earnedDate: "10. Juli 2024"
@@ -163,7 +163,7 @@ const ProfilePage: React.FC = () => {
     {
       id: 3,
       name: "Collector",
-      description: "20 Spiele zur Sammlung hinzugefügt",
+              description: t('achievement.gamesAdded'),
       icon: "📦",
       earned: profileUser.collections.filter(c => !c.isWishlist).length >= 10,
       earnedDate: "5. Juli 2024"
@@ -171,7 +171,7 @@ const ProfilePage: React.FC = () => {
     {
       id: 4,
       name: "Event Champion",
-      description: "Ein Event gewonnen",
+              description: t('achievement.eventChampion'),
       icon: "🏆",
       earned: false
     },

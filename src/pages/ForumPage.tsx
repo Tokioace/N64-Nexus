@@ -102,7 +102,7 @@ const ForumPage: React.FC = () => {
           </div>
           <div className="simple-tile-label">
             <div className="text-xl font-bold text-slate-100">{stats.totalMembers}</div>
-            <div className="text-sm text-slate-400">Mitglieder</div>
+                          <div className="text-sm text-slate-400">{t('community.members')}</div>
           </div>
         </div>
         
@@ -112,7 +112,7 @@ const ForumPage: React.FC = () => {
           </div>
           <div className="simple-tile-label">
             <div className="text-xl font-bold text-slate-100">{stats.mostActiveCategory}</div>
-            <div className="text-sm text-slate-400">Aktivste Kategorie</div>
+                          <div className="text-sm text-slate-400">{t('forum.mostActive')}</div>
           </div>
         </div>
       </div>
@@ -177,16 +177,15 @@ const ForumPage: React.FC = () => {
           <div className="simple-tile-header">
             <div className="flex items-center space-x-3">
               <Users className="w-5 h-5 text-blue-400" />
-              <span className="font-medium text-blue-400">Willkommen im Forum!</span>
+              <span className="font-medium text-blue-400">{t('forum.title')}!</span>
             </div>
           </div>
           <div className="simple-tile-content">
             <p className="text-slate-300 mb-3">
-              Hey {user.username}! Schön, dass du hier bist. Teile dein N64-Wissen, 
-              diskutiere über Speedruns und tausche dich mit anderen Fans aus.
+              {t('forum.welcomeMessage').replace('{username}', user.username)}
             </p>
             <div className="text-sm text-slate-400">
-              <strong>Hinweis:</strong> Alle Beiträge werden öffentlich gespeichert und sind für andere Nutzer sichtbar.
+              <strong>{t('common.note')}:</strong> {t('forum.publicNotice')}
             </div>
           </div>
         </div>

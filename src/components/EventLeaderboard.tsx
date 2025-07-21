@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useLanguage } from '../contexts/LanguageContext'
 import { 
   Trophy, 
   Medal, 
@@ -183,6 +184,7 @@ const EventLeaderboard: React.FC<EventLeaderboardProps> = ({
   onRefresh,
   isLoading = false
 }) => {
+  const { t } = useLanguage()
   const [selectedEntry, setSelectedEntry] = useState<string | null>(null)
   const [mediaViewerEntry, setMediaViewerEntry] = useState<EventLeaderboardEntry | null>(null)
 
@@ -272,10 +274,10 @@ const EventLeaderboard: React.FC<EventLeaderboardProps> = ({
     return (
       <div className="simple-tile text-center py-8">
         <Trophy className="w-12 h-12 text-slate-500 mx-auto mb-4" />
-        <h3 className="text-lg font-medium text-slate-300 mb-2">Noch keine Zeiten eingereicht</h3>
-        <p className="text-slate-400 text-sm">
-          Sei der Erste und reiche deine Zeit ein!
-        </p>
+                  <h3 className="text-lg font-medium text-slate-300 mb-2">{t('eventLeaderboard.noTimes')}</h3>
+                  <p className="text-slate-400 text-sm">
+            {t('home.beTheFirst')}
+          </p>
       </div>
     )
   }
