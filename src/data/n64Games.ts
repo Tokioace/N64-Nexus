@@ -749,18 +749,18 @@ export const getUniqueGenres = (games: N64Game[]): string[] => {
   return Array.from(new Set(genres)).sort();
 };
 
-export const getCollectorLevel = (collectedCount: number): { level: number; title: string; nextLevel?: { count: number; title: string } } => {
+export const getCollectorLevel = (collectedCount: number, t?: (key: string) => string): { level: number; titleKey: string; nextLevel?: { count: number; titleKey: string } } => {
   const levels = [
-    { min: 0, max: 4, level: 1, title: 'Rookie Sammler' },
-    { min: 5, max: 9, level: 2, title: 'Anfänger' },
-    { min: 10, max: 19, level: 3, title: 'Enthusiast' },
-    { min: 20, max: 29, level: 4, title: 'Sammler' },
-    { min: 30, max: 49, level: 5, title: 'Retro Kenner' },
-    { min: 50, max: 74, level: 6, title: 'Mario Experte' },
-    { min: 75, max: 99, level: 7, title: 'Zelda Meister' },
-    { min: 100, max: 149, level: 8, title: 'Elite Sammler' },
-    { min: 150, max: 199, level: 9, title: 'Master Sammler' },
-    { min: 200, max: Infinity, level: 10, title: 'N64 Legende' }
+    { min: 0, max: 4, level: 1, titleKey: 'collector.level.rookie' },
+    { min: 5, max: 9, level: 2, titleKey: 'collector.level.beginner' },
+    { min: 10, max: 19, level: 3, titleKey: 'collector.level.enthusiast' },
+    { min: 20, max: 29, level: 4, titleKey: 'collector.level.collector' },
+    { min: 30, max: 49, level: 5, titleKey: 'collector.level.retroExpert' },
+    { min: 50, max: 74, level: 6, titleKey: 'collector.level.marioExpert' },
+    { min: 75, max: 99, level: 7, titleKey: 'collector.level.zeldaMaster' },
+    { min: 100, max: 149, level: 8, titleKey: 'collector.level.eliteCollector' },
+    { min: 150, max: 199, level: 9, titleKey: 'collector.level.masterCollector' },
+    { min: 200, max: Infinity, level: 10, titleKey: 'collector.level.n64Legend' }
   ];
   
   const currentLevel = levels.find(l => collectedCount >= l.min && collectedCount <= l.max);
@@ -769,7 +769,7 @@ export const getCollectorLevel = (collectedCount: number): { level: number; titl
   
   return {
     level: currentLevel?.level || 1,
-    title: currentLevel?.title || 'Rookie Sammler',
-    nextLevel: nextLevel ? { count: nextLevel.min, title: nextLevel.title } : undefined
+    titleKey: currentLevel?.titleKey || 'collector.level.rookie',
+    nextLevel: nextLevel ? { count: nextLevel.min, titleKey: nextLevel.titleKey } : undefined
   };
 };

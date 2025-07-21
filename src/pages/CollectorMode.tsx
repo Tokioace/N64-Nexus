@@ -223,7 +223,7 @@ const CollectorMode: React.FC = () => {
       return sum;
     }, 0);
 
-    const collectorLevel = getCollectorLevel(collectedCount);
+    const collectorLevel = getCollectorLevel(collectedCount, t);
 
     return {
       collectedCount,
@@ -315,7 +315,7 @@ const CollectorMode: React.FC = () => {
             <Star className="text-purple-400" size={24} />
             <div>
               <p className="text-slate-400 text-sm">{t('collection.collectorLevel')}</p>
-              <p className="text-lg font-bold text-slate-100">{stats.collectorLevel.title}</p>
+                              <p className="text-lg font-bold text-slate-100">{t(stats.collectorLevel.titleKey)}</p>
             </div>
           </div>
         </div>
