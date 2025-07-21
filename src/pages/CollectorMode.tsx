@@ -69,7 +69,7 @@ const GameModal: React.FC<GameModalProps> = ({ game, isOpen, onClose, onAddToCol
         <div className="space-y-4">
           <div>
             <span className={`inline-block px-2 py-1 rounded text-sm font-medium ${getRarityColor(game.rarity)}`}>
-              {getRarityLabel(game.rarity)}
+              {getRarityLabel(game.rarity, t)}
             </span>
             <p className="text-slate-400 text-sm mt-1">{game.genre} • {game.releaseYear}</p>
           </div>
@@ -395,7 +395,7 @@ const CollectorMode: React.FC = () => {
                   <div className="flex items-center space-x-3">
                     <h3 className="font-semibold text-slate-100">{game.title}</h3>
                     <span className={`text-xs px-2 py-1 rounded ${getRarityColor(game.rarity)}`}>
-                      {getRarityLabel(game.rarity)}
+                      {getRarityLabel(game.rarity, t)}
                     </span>
                     {collected && <Check className="text-green-400" size={16} />}
                   </div>
@@ -438,7 +438,7 @@ const CollectorMode: React.FC = () => {
             <div key={game.id} className={`bg-slate-800 p-4 rounded-lg border border-slate-700 hover:border-slate-600 transition-colors ${collected ? 'ring-2 ring-green-500' : ''}`}>
               <div className="flex items-center justify-between mb-2">
                 <span className={`text-xs px-2 py-1 rounded ${getRarityColor(game.rarity)}`}>
-                  {getRarityLabel(game.rarity)}
+                  {getRarityLabel(game.rarity, t)}
                 </span>
                 {collected && <Check className="text-green-400" size={20} />}
               </div>

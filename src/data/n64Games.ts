@@ -686,14 +686,26 @@ export const getRarityColor = (rarity: N64Game['rarity']): string => {
   }
 };
 
-export const getRarityLabel = (rarity: N64Game['rarity']): string => {
+export const getRarityLabel = (rarity: N64Game['rarity'], t?: (key: string) => string): string => {
+  if (!t) {
+    // Fallback to German if no translation function provided (for backward compatibility)
+    switch (rarity) {
+      case 'common': return 'Häufig';
+      case 'uncommon': return 'Ungewöhnlich';
+      case 'rare': return 'Selten';
+      case 'very-rare': return 'Sehr selten';
+      case 'ultra-rare': return 'Ultra selten';
+      default: return 'Unbekannt';
+    }
+  }
+
   switch (rarity) {
-    case 'common': return 'Häufig';
-    case 'uncommon': return 'Ungewöhnlich';
-    case 'rare': return 'Selten';
-    case 'very-rare': return 'Sehr selten';
-    case 'ultra-rare': return 'Ultra selten';
-    default: return 'Unbekannt';
+    case 'common': return t('common.common');
+    case 'uncommon': return t('common.uncommon');
+    case 'rare': return t('common.rare');
+    case 'very-rare': return t('common.veryRare');
+    case 'ultra-rare': return t('common.ultraRare');
+    default: return t('common.unknown') || 'Unknown';
   }
 };
 

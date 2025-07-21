@@ -657,6 +657,7 @@ const translations = {
     'common.rare': 'Selten',
     'common.veryRare': 'Sehr selten',
     'common.ultraRare': 'Ultra selten',
+    'common.unknown': 'Unbekannt',
     'common.genres': 'Genres',
 
     // Additional placeholders and labels
@@ -1297,6 +1298,7 @@ const translations = {
     'common.rare': 'Rare',
     'common.veryRare': 'Very rare',
     'common.ultraRare': 'Ultra rare',
+    'common.unknown': 'Unknown',
     'common.genres': 'Genres',
 
     // Additional placeholders and labels
@@ -1869,6 +1871,7 @@ const translations = {
     'common.rare': 'Rare',
     'common.veryRare': 'Très rare',
     'common.ultraRare': 'Ultra rare',
+    'common.unknown': 'Inconnu',
     'common.genres': 'Genres',
 
     // Additional placeholders and labels
@@ -2166,6 +2169,7 @@ const translations = {
     'common.rare': 'Raro',
     'common.veryRare': 'Molto raro',
     'common.ultraRare': 'Ultra raro',
+    'common.unknown': 'Sconosciuto',
     'common.genres': 'Generi',
 
     // Additional placeholders and labels
@@ -2484,6 +2488,7 @@ const translations = {
     'common.rare': 'Raro',
     'common.veryRare': 'Muy raro',
     'common.ultraRare': 'Ultra raro',
+    'common.unknown': 'Desconocido',
     'common.genres': 'Géneros'
   },
 
@@ -2674,6 +2679,7 @@ const translations = {
     'common.rare': 'Σπάνιο',
     'common.veryRare': 'Πολύ σπάνιο',
     'common.ultraRare': 'Εξαιρετικά σπάνιο',
+    'common.unknown': 'Άγνωστο',
     'common.genres': 'Είδη',
 
     // Additional placeholders and labels
@@ -3277,6 +3283,7 @@ const translations = {
     'common.rare': 'Nadir',
     'common.veryRare': 'Çok nadir',
     'common.ultraRare': 'Ultra nadir',
+    'common.unknown': 'Bilinmeyen',
     'common.genres': 'Türler',
 
     // Additional placeholders and labels
@@ -3591,7 +3598,16 @@ const translations = {
     'auth.noAccountYet': '还没有账户？',
     'auth.registerNow': '立即注册',
     'auth.alreadyHaveAccount': '已有账户？',
-    'auth.loginHere': '在此登录'
+    'auth.loginHere': '在此登录',
+
+    // Common terms
+    'common.rarity': '稀有度',
+    'common.common': '常见',
+    'common.uncommon': '不常见',
+    'common.rare': '稀有',
+    'common.veryRare': '非常稀有',
+    'common.ultraRare': '超稀有',
+    'common.unknown': '未知'
   },
 
   ja: {
@@ -3818,7 +3834,16 @@ const translations = {
     'auth.noAccountYet': 'まだアカウントをお持ちでない？',
     'auth.registerNow': '今すぐ登録',
     'auth.alreadyHaveAccount': 'すでにアカウントをお持ちですか？',
-    'auth.loginHere': 'こちらからログイン'
+    'auth.loginHere': 'こちらからログイン',
+
+    // Common terms
+    'common.rarity': 'レア度',
+    'common.common': 'コモン',
+    'common.uncommon': 'アンコモン',
+    'common.rare': 'レア',
+    'common.veryRare': 'ベリーレア',
+    'common.ultraRare': 'ウルトラレア',
+    'common.unknown': '不明'
   },
 
   ru: {
@@ -4047,7 +4072,16 @@ const translations = {
     'auth.noAccountYet': 'Еще нет аккаунта?',
     'auth.registerNow': 'Зарегистрироваться сейчас',
     'auth.alreadyHaveAccount': 'Уже есть аккаунт?',
-    'auth.loginHere': 'Войти здесь'
+    'auth.loginHere': 'Войти здесь',
+
+    // Common terms
+    'common.rarity': 'Редкость',
+    'common.common': 'Обычный',
+    'common.uncommon': 'Необычный',
+    'common.rare': 'Редкий',
+    'common.veryRare': 'Очень редкий',
+    'common.ultraRare': 'Ультра редкий',
+    'common.unknown': 'Неизвестный'
   },
 
   pt: {
@@ -4276,7 +4310,16 @@ const translations = {
     'auth.noAccountYet': 'Ainda não tem conta?',
     'auth.registerNow': 'Registre-se agora',
     'auth.alreadyHaveAccount': 'Já tem uma conta?',
-    'auth.loginHere': 'Entre aqui'
+    'auth.loginHere': 'Entre aqui',
+
+    // Common terms
+    'common.rarity': 'Raridade',
+    'common.common': 'Comum',
+    'common.uncommon': 'Incomum',
+    'common.rare': 'Raro',
+    'common.veryRare': 'Muito raro',
+    'common.ultraRare': 'Ultra raro',
+    'common.unknown': 'Desconhecido'
   },
 
   hi: {
@@ -4599,7 +4642,16 @@ const translations = {
     'news.speedrunRecord': 'नया विश्व रिकॉर्ड स्थापित!',
     'news.speedrunRecordContent': 'खिलाड़ी "N64Master" ने Super Mario 64 120 Stars में 1:38:42 के साथ नया विश्व रिकॉर्ड स्थापित किया!',
     'news.retroGaming': 'रेट्रो गेमिंग: 3D ग्राफिक्स का विकास',
-    'news.retroGamingContent': 'N64 के क्रांतिकारी 3D ग्राफिक्स और उन्होंने गेमिंग इंडस्ट्री को कैसे बदला, इस पर एक नज़र।'
+    'news.retroGamingContent': 'N64 के क्रांतिकारी 3D ग्राफिक्स और उन्होंने गेमिंग इंडस्ट्री को कैसे बदला, इस पर एक नज़र।',
+
+    // Common terms
+    'common.rarity': 'दुर्लभता',
+    'common.common': 'सामान्य',
+    'common.uncommon': 'असामान्य',
+    'common.rare': 'दुर्लभ',
+    'common.veryRare': 'बहुत दुर्लभ',
+    'common.ultraRare': 'अत्यंत दुर्लभ',
+    'common.unknown': 'अज्ञात'
   },
 
   ar: {
@@ -4895,7 +4947,16 @@ const translations = {
     'news.speedrunRecord': 'تم تسجيل رقم قياسي عالمي جديد!',
     'news.speedrunRecordContent': 'سجل اللاعب "N64Master" رقماً قياسياً عالمياً جديداً في Super Mario 64 120 Stars بوقت 1:38:42!',
     'news.retroGaming': 'الألعاب الكلاسيكية: تطور الرسومات ثلاثية الأبعاد',
-    'news.retroGamingContent': 'نظرة على رسومات N64 الثورية ثلاثية الأبعاد وكيف غيرت صناعة الألعاب.'
+    'news.retroGamingContent': 'نظرة على رسومات N64 الثورية ثلاثية الأبعاد وكيف غيرت صناعة الألعاب.',
+
+    // Common terms
+    'common.rarity': 'الندرة',
+    'common.common': 'شائع',
+    'common.uncommon': 'غير شائع',
+    'common.rare': 'نادر',
+    'common.veryRare': 'نادر جداً',
+    'common.ultraRare': 'فائق الندرة',
+    'common.unknown': 'غير معروف'
   }
 }
 
