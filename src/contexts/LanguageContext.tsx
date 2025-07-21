@@ -109,6 +109,13 @@ const translations = {
     'common.ok': 'OK',
     'common.retry': 'Wiederholen',
     
+    // Error messages
+    'error.boundary.title': 'Oops! Etwas ist schiefgelaufen',
+    'error.boundary.message': 'Es ist ein unerwarteter Fehler aufgetreten. Bitte versuche es erneut.',
+    'error.boundary.retry': 'Erneut versuchen',
+    'error.boundary.home': 'Zur Startseite',
+    'error.boundary.details': 'Technische Details (nur in Entwicklung)',
+
     // Authentication
     'auth.login': 'Anmelden',
     'auth.logout': 'Abmelden',
@@ -330,6 +337,70 @@ const translations = {
     'time.yesterday': 'gestern',
     'time.tomorrow': 'morgen',
     
+    // Minigames
+    'minigames.moves': 'Züge',
+    'minigames.score': 'Score',
+    'minigames.attempts': 'Versuche',
+    'minigames.question': 'Frage',
+    'minigames.correctAnswers': 'Richtige Antworten',
+    'minigames.cheatCode': 'Cheat Code',
+    'minigames.completed': 'Abgeschlossen',
+    'minigames.sound': 'Sound',
+    'minigames.whichGame': 'Welches Spiel macht diesen Sound?',
+    'minigames.you': 'Du',
+    'minigames.opponent': 'Gegner',
+    'minigames.readyForDuel': 'Bereit für das Duell?',
+    'minigames.result': 'Ergebnis',
+    'minigames.gameLoading': 'Spiel wird geladen...',
+    'minigames.gameEnded': 'Spiel beendet!',
+    'minigames.startDuel': 'Duell starten!',
+    'minigames.typeCheatCode': 'Tippe den Cheat Code hier...',
+    'minigames.subtitle': 'Kleine Spiele für zwischendurch - N64-Style!',
+    'minigames.moreGamesComingSoon': 'Wir arbeiten an noch mehr N64-inspirierten Minispielen! Hast du Ideen?',
+    'minigames.allGamesFree': 'Alle Minispiele sind kostenlos und ohne Anmeldung spielbar!',
+
+    // Collection Manager
+    'collection.myCollection': 'Meine Sammlung',
+    'collection.userCollection': '{username}s Sammlung',
+    'collection.noGames': 'Keine Spiele',
+    'collection.noWishes': 'Keine Wünsche',
+    'collection.addFirstGame': 'Füge dein erstes Spiel hinzu!',
+    'collection.noGamesYet': '{username} hat noch keine Spiele {type}.',
+    'collection.inCollection': 'in der Sammlung',
+    'collection.onWishlist': 'auf der Wunschliste',
+    'collection.all': 'Alle',
+    'collection.collection': 'Sammlung',
+    'collection.wishlist': 'Wunschliste',
+    'collection.acquired': 'Erworben',
+    'collection.added': 'Hinzugefügt',
+    'collection.condition': 'Zustand',
+    'collection.mint': 'Neuwertig',
+    'collection.veryGood': 'Sehr gut',
+    'collection.good': 'Gut',
+    'collection.fair': 'Akzeptabel',
+    'collection.poor': 'Schlecht',
+    'collection.complete': 'Komplett',
+    'collection.cartOnly': 'Nur Modul',
+    'collection.boxOnly': 'Nur OVP',
+
+    // Auth
+    'auth.welcomeBack': 'Willkommen zurück!',
+    'auth.createAccount': 'Erstelle deinen Account',
+    'auth.loggingIn': 'Anmelden...',
+    'auth.registering': 'Registrieren...',
+    'auth.createAccountButton': 'Account erstellen',
+    'auth.platform': 'Plattform',
+    'auth.region': 'Region',
+
+    // Community
+    'community.allPlatforms': 'Alle Plattformen',
+    'community.allRegions': 'Alle Regionen',
+    'community.sortByLevel': 'Nach Level',
+    'community.sortByXP': 'Nach XP',
+    'community.sortByCollection': 'Nach Sammlung',
+    'community.sortByRecords': 'Nach Rekorden',
+    'community.sortByJoinDate': 'Nach Beitrittsdatum',
+
     // Language selector
     'language.german': 'Deutsch',
     'language.english': 'Englisch',
@@ -446,6 +517,13 @@ const translations = {
     'common.ok': 'OK',
     'common.retry': 'Retry',
     
+    // Error messages
+    'error.boundary.title': 'Oops! Something went wrong',
+    'error.boundary.message': 'An unexpected error occurred. Please try again.',
+    'error.boundary.retry': 'Try again',
+    'error.boundary.home': 'Go to Home',
+    'error.boundary.details': 'Technical details (development only)',
+
     // Authentication
     'auth.login': 'Login',
     'auth.logout': 'Logout',
@@ -667,6 +745,70 @@ const translations = {
     'time.yesterday': 'yesterday',
     'time.tomorrow': 'tomorrow',
     
+    // Minigames
+    'minigames.moves': 'Moves',
+    'minigames.score': 'Score',
+    'minigames.attempts': 'Attempts',
+    'minigames.question': 'Question',
+    'minigames.correctAnswers': 'Correct Answers',
+    'minigames.cheatCode': 'Cheat Code',
+    'minigames.completed': 'Completed',
+    'minigames.sound': 'Sound',
+    'minigames.whichGame': 'Which game makes this sound?',
+    'minigames.you': 'You',
+    'minigames.opponent': 'Opponent',
+    'minigames.readyForDuel': 'Ready for the duel?',
+    'minigames.result': 'Result',
+    'minigames.gameLoading': 'Game loading...',
+    'minigames.gameEnded': 'Game ended!',
+    'minigames.startDuel': 'Start Duel!',
+    'minigames.typeCheatCode': 'Type the cheat code here...',
+    'minigames.subtitle': 'Mini games for in-between - N64 style!',
+    'minigames.moreGamesComingSoon': 'We are working on even more N64-inspired mini games! Do you have ideas?',
+    'minigames.allGamesFree': 'All mini games are free to play and no registration required!',
+
+    // Collection Manager
+    'collection.myCollection': 'My Collection',
+    'collection.userCollection': '{username}\'s Collection',
+    'collection.noGames': 'No Games',
+    'collection.noWishes': 'No Wishes',
+    'collection.addFirstGame': 'Add your first game!',
+    'collection.noGamesYet': '{username} has no games {type} yet.',
+    'collection.inCollection': 'in collection',
+    'collection.onWishlist': 'on wishlist',
+    'collection.all': 'All',
+    'collection.collection': 'Collection',
+    'collection.wishlist': 'Wishlist',
+    'collection.acquired': 'Acquired',
+    'collection.added': 'Added',
+    'collection.condition': 'Condition',
+    'collection.mint': 'Mint',
+    'collection.veryGood': 'Very Good',
+    'collection.good': 'Good',
+    'collection.fair': 'Fair',
+    'collection.poor': 'Poor',
+    'collection.complete': 'Complete',
+    'collection.cartOnly': 'Cart Only',
+    'collection.boxOnly': 'Box Only',
+
+    // Auth
+    'auth.welcomeBack': 'Welcome back!',
+    'auth.createAccount': 'Create your account',
+    'auth.loggingIn': 'Logging in...',
+    'auth.registering': 'Registering...',
+    'auth.createAccountButton': 'Create Account',
+    'auth.platform': 'Platform',
+    'auth.region': 'Region',
+
+    // Community
+    'community.allPlatforms': 'All Platforms',
+    'community.allRegions': 'All Regions',
+    'community.sortByLevel': 'By Level',
+    'community.sortByXP': 'By XP',
+    'community.sortByCollection': 'By Collection',
+    'community.sortByRecords': 'By Records',
+    'community.sortByJoinDate': 'By Join Date',
+
     // Language selector
     'language.german': 'German',
     'language.english': 'English',
@@ -1137,7 +1279,9 @@ const translations = {
     'language.chinese': 'Cinese',
     'language.japanese': 'Giapponese',
     'language.russian': 'Russo',
-    'language.portuguese': 'Portoghese'
+    'language.portuguese': 'Portoghese',
+    'language.hindi': 'Hindi',
+    'language.arabic': 'Arabo'
   },
 
   es: {
@@ -1242,7 +1386,9 @@ const translations = {
     'language.chinese': 'Chino',
     'language.japanese': 'Japonés',
     'language.russian': 'Ruso',
-    'language.portuguese': 'Portugués'
+    'language.portuguese': 'Portugués',
+    'language.hindi': 'Hindi',
+    'language.arabic': 'Árabe'
   },
 
   el: {
@@ -1347,7 +1493,9 @@ const translations = {
     'language.chinese': 'Κινεζικά',
     'language.japanese': 'Ιαπωνικά',
     'language.russian': 'Ρωσικά',
-    'language.portuguese': 'Πορτογαλικά'
+    'language.portuguese': 'Πορτογαλικά',
+    'language.hindi': 'Χίντι',
+    'language.arabic': 'Αραβικά'
   },
 
   tr: {
@@ -1452,7 +1600,9 @@ const translations = {
     'language.chinese': 'Çince',
     'language.japanese': 'Japonca',
     'language.russian': 'Rusça',
-    'language.portuguese': 'Portekizce'
+    'language.portuguese': 'Portekizce',
+    'language.hindi': 'Hintçe',
+    'language.arabic': 'Arapça'
   },
 
   zh: {
@@ -1557,7 +1707,9 @@ const translations = {
     'language.chinese': '中文',
     'language.japanese': '日语',
     'language.russian': '俄语',
-    'language.portuguese': '葡萄牙语'
+    'language.portuguese': '葡萄牙语',
+    'language.hindi': '印地语',
+    'language.arabic': '阿拉伯语'
   },
 
   ja: {
@@ -1662,7 +1814,9 @@ const translations = {
     'language.chinese': '中国語',
     'language.japanese': '日本語',
     'language.russian': 'ロシア語',
-    'language.portuguese': 'ポルトガル語'
+    'language.portuguese': 'ポルトガル語',
+    'language.hindi': 'ヒンディー語',
+    'language.arabic': 'アラビア語'
   },
 
   ru: {
@@ -1769,7 +1923,9 @@ const translations = {
     'language.chinese': 'Китайский',
     'language.japanese': 'Японский',
     'language.russian': 'Русский',
-    'language.portuguese': 'Португальский'
+    'language.portuguese': 'Португальский',
+    'language.hindi': 'Хинди',
+    'language.arabic': 'Арабский'
   },
 
   pt: {
@@ -2022,6 +2178,70 @@ const translations = {
     'profile.highScore': 'उच्च स्कोर',
     'profile.achievedOn': 'प्राप्त किया',
     
+    // Minigames
+    'minigames.moves': 'चालें',
+    'minigames.score': 'स्कोर',
+    'minigames.attempts': 'प्रयास',
+    'minigames.question': 'प्रश्न',
+    'minigames.correctAnswers': 'सही उत्तर',
+    'minigames.cheatCode': 'चीट कोड',
+    'minigames.completed': 'पूर्ण',
+    'minigames.sound': 'ध्वनि',
+    'minigames.whichGame': 'यह ध्वनि किस गेम की है?',
+    'minigames.you': 'आप',
+    'minigames.opponent': 'प्रतिद्वंद्वी',
+    'minigames.readyForDuel': 'द्वंद्व के लिए तैयार?',
+    'minigames.result': 'परिणाम',
+    'minigames.gameLoading': 'गेम लोड हो रहा है...',
+    'minigames.gameEnded': 'गेम समाप्त!',
+    'minigames.startDuel': 'द्वंद्व शुरू करें!',
+    'minigames.typeCheatCode': 'यहाँ चीट कोड टाइप करें...',
+    'minigames.subtitle': 'बीच में खेलने के लिए छोटे गेम्स - N64 स्टाइल!',
+    'minigames.moreGamesComingSoon': 'हम और भी N64-प्रेरित मिनी गेम्स पर काम कर रहे हैं! क्या आपके पास कोई विचार है?',
+    'minigames.allGamesFree': 'सभी मिनी गेम्स मुफ्त हैं और बिना रजिस्ट्रेशन के खेले जा सकते हैं!',
+
+    // Collection Manager
+    'collection.myCollection': 'मेरा संग्रह',
+    'collection.userCollection': '{username} का संग्रह',
+    'collection.noGames': 'कोई गेम नहीं',
+    'collection.noWishes': 'कोई इच्छाएं नहीं',
+    'collection.addFirstGame': 'अपना पहला गेम जोड़ें!',
+    'collection.noGamesYet': '{username} के पास अभी तक कोई गेम {type} नहीं है।',
+    'collection.inCollection': 'संग्रह में',
+    'collection.onWishlist': 'इच्छा सूची में',
+    'collection.all': 'सभी',
+    'collection.collection': 'संग्रह',
+    'collection.wishlist': 'इच्छा सूची',
+    'collection.acquired': 'प्राप्त',
+    'collection.added': 'जोड़ा गया',
+    'collection.condition': 'स्थिति',
+    'collection.mint': 'नया जैसा',
+    'collection.veryGood': 'बहुत अच्छा',
+    'collection.good': 'अच्छा',
+    'collection.fair': 'ठीक',
+    'collection.poor': 'खराब',
+    'collection.complete': 'पूर्ण',
+    'collection.cartOnly': 'केवल कार्ट्रिज',
+    'collection.boxOnly': 'केवल बॉक्स',
+
+    // Auth
+    'auth.welcomeBack': 'वापस स्वागत है!',
+    'auth.createAccount': 'अपना खाता बनाएं',
+    'auth.loggingIn': 'लॉग इन हो रहे हैं...',
+    'auth.registering': 'रजिस्टर हो रहे हैं...',
+    'auth.createAccountButton': 'खाता बनाएं',
+    'auth.platform': 'प्लेटफॉर्म',
+    'auth.region': 'क्षेत्र',
+
+    // Community
+    'community.allPlatforms': 'सभी प्लेटफॉर्म',
+    'community.allRegions': 'सभी क्षेत्र',
+    'community.sortByLevel': 'स्तर के अनुसार',
+    'community.sortByXP': 'XP के अनुसार',
+    'community.sortByCollection': 'संग्रह के अनुसार',
+    'community.sortByRecords': 'रिकॉर्ड के अनुसार',
+    'community.sortByJoinDate': 'शामिल होने की तारीख के अनुसार',
+
     // Language selector
     'language.german': 'जर्मन',
     'language.english': 'अंग्रेजी',
@@ -2152,6 +2372,70 @@ const translations = {
     'quiz.restart': 'إعادة البدء',
     'quiz.wrong': 'خطأ!',
     
+    // Minigames
+    'minigames.moves': 'الحركات',
+    'minigames.score': 'النتيجة',
+    'minigames.attempts': 'المحاولات',
+    'minigames.question': 'السؤال',
+    'minigames.correctAnswers': 'الإجابات الصحيحة',
+    'minigames.cheatCode': 'رمز الغش',
+    'minigames.completed': 'مكتمل',
+    'minigames.sound': 'الصوت',
+    'minigames.whichGame': 'أي لعبة تصدر هذا الصوت؟',
+    'minigames.you': 'أنت',
+    'minigames.opponent': 'الخصم',
+    'minigames.readyForDuel': 'مستعد للمبارزة؟',
+    'minigames.result': 'النتيجة',
+    'minigames.gameLoading': 'جارٍ تحميل اللعبة...',
+    'minigames.gameEnded': 'انتهت اللعبة!',
+    'minigames.startDuel': 'ابدأ المبارزة!',
+    'minigames.typeCheatCode': 'اكتب رمز الغش هنا...',
+    'minigames.subtitle': 'ألعاب صغيرة للترفيه - بأسلوب N64!',
+    'minigames.moreGamesComingSoon': 'نعمل على المزيد من الألعاب المصغرة المستوحاة من N64! هل لديك أفكار؟',
+    'minigames.allGamesFree': 'جميع الألعاب المصغرة مجانية ولا تتطلب تسجيل!',
+
+    // Collection Manager
+    'collection.myCollection': 'مجموعتي',
+    'collection.userCollection': 'مجموعة {username}',
+    'collection.noGames': 'لا توجد ألعاب',
+    'collection.noWishes': 'لا توجد أمنيات',
+    'collection.addFirstGame': 'أضف لعبتك الأولى!',
+    'collection.noGamesYet': '{username} لا يملك أي ألعاب {type} بعد.',
+    'collection.inCollection': 'في المجموعة',
+    'collection.onWishlist': 'في قائمة الأمنيات',
+    'collection.all': 'الكل',
+    'collection.collection': 'المجموعة',
+    'collection.wishlist': 'قائمة الأمنيات',
+    'collection.acquired': 'تم الحصول عليها',
+    'collection.added': 'تمت الإضافة',
+    'collection.condition': 'الحالة',
+    'collection.mint': 'جديدة',
+    'collection.veryGood': 'جيدة جداً',
+    'collection.good': 'جيدة',
+    'collection.fair': 'مقبولة',
+    'collection.poor': 'سيئة',
+    'collection.complete': 'كاملة',
+    'collection.cartOnly': 'الخرطوشة فقط',
+    'collection.boxOnly': 'الصندوق فقط',
+
+    // Auth
+    'auth.welcomeBack': 'مرحباً بعودتك!',
+    'auth.createAccount': 'إنشاء حسابك',
+    'auth.loggingIn': 'جارٍ تسجيل الدخول...',
+    'auth.registering': 'جارٍ التسجيل...',
+    'auth.createAccountButton': 'إنشاء حساب',
+    'auth.platform': 'المنصة',
+    'auth.region': 'المنطقة',
+
+    // Community
+    'community.allPlatforms': 'جميع المنصات',
+    'community.allRegions': 'جميع المناطق',
+    'community.sortByLevel': 'حسب المستوى',
+    'community.sortByXP': 'حسب XP',
+    'community.sortByCollection': 'حسب المجموعة',
+    'community.sortByRecords': 'حسب الأرقام القياسية',
+    'community.sortByJoinDate': 'حسب تاريخ الانضمام',
+
     // Language selector
     'language.german': 'الألمانية',
     'language.english': 'الإنجليزية',

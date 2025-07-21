@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useUser } from '../contexts/UserContext'
+import { useLanguage } from '../contexts/LanguageContext'
 import { User } from '../types'
 import { Users, Trophy, Package, Star, Gamepad2, Globe, Search, Filter } from 'lucide-react'
 
 const CommunityPage: React.FC = () => {
   const { getAllUsers } = useUser()
+  const { t } = useLanguage()
   const [users, setUsers] = useState<User[]>([])
   const [loading, setLoading] = useState(true)
   const [searchTerm, setSearchTerm] = useState('')
@@ -129,7 +131,7 @@ const CommunityPage: React.FC = () => {
               onChange={(e) => setPlatformFilter(e.target.value as any)}
               className="px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-slate-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
-              <option value="all">Alle Plattformen</option>
+              <option value="all">{t('community.allPlatforms')}</option>
               <option value="N64">N64</option>
               <option value="PC">PC</option>
             </select>
@@ -139,7 +141,7 @@ const CommunityPage: React.FC = () => {
               onChange={(e) => setRegionFilter(e.target.value as any)}
               className="px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-slate-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
-              <option value="all">Alle Regionen</option>
+              <option value="all">{t('community.allRegions')}</option>
               <option value="PAL">PAL</option>
               <option value="NTSC">NTSC</option>
             </select>
@@ -149,11 +151,11 @@ const CommunityPage: React.FC = () => {
               onChange={(e) => setSortBy(e.target.value as any)}
               className="px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-slate-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
-              <option value="level">Nach Level</option>
-              <option value="xp">Nach XP</option>
-              <option value="collections">Nach Sammlung</option>
-              <option value="records">Nach Rekorden</option>
-              <option value="joinDate">Nach Beitrittsdatum</option>
+              <option value="level">{t('community.sortByLevel')}</option>
+              <option value="xp">{t('community.sortByXP')}</option>
+              <option value="collections">{t('community.sortByCollection')}</option>
+              <option value="records">{t('community.sortByRecords')}</option>
+              <option value="joinDate">{t('community.sortByJoinDate')}</option>
             </select>
           </div>
         </div>

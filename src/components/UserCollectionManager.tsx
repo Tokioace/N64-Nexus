@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useUser } from '../contexts/UserContext'
+import { useLanguage } from '../contexts/LanguageContext'
 import { UserCollection } from '../types'
 import { Plus, Edit, Trash2, Package, Star, Calendar, MapPin, Gamepad2 } from 'lucide-react'
 
@@ -9,6 +10,7 @@ interface CollectionManagerProps {
 
 const UserCollectionManager: React.FC<CollectionManagerProps> = ({ isOwnProfile = true }) => {
   const { user, addToCollection, removeFromCollection } = useUser()
+  const { t } = useLanguage()
   const [showAddModal, setShowAddModal] = useState(false)
   const [editingItem, setEditingItem] = useState<UserCollection | null>(null)
   const [filter, setFilter] = useState<'all' | 'collection' | 'wishlist'>('all')
@@ -80,20 +82,20 @@ const UserCollectionManager: React.FC<CollectionManagerProps> = ({ isOwnProfile 
 
   const getConditionText = (condition: string) => {
     switch (condition) {
-      case 'mint': return 'Neuwertig'
-      case 'very-good': return 'Sehr gut'
-      case 'good': return 'Gut'
-      case 'fair': return 'Akzeptabel'
-      case 'poor': return 'Schlecht'
+      case 'mint': return t('collection.mint')
+      case 'very-good': return t('collection.veryGood')
+      case 'good': return t('collection.good')
+      case 'fair': return t('collection.fair')
+      case 'poor': return t('collection.poor')
       default: return condition
     }
   }
 
   const getCompletenessText = (completeness: string) => {
     switch (completeness) {
-      case 'complete': return 'Komplett'
-      case 'cart-only': return 'Nur Modul'
-      case 'box-only': return 'Nur OVP'
+      case 'complete': return t('collection.complete')
+      case 'cart-only': return t('collection.cartOnly')
+      case 'box-only': return t('collection.boxOnly')
       default: return completeness
     }
   }
@@ -104,11 +106,11 @@ const UserCollectionManager: React.FC<CollectionManagerProps> = ({ isOwnProfile 
       <div className="flex items-center justify-between">
         <div>
           <h2 className="text-2xl font-bold text-slate-100">
-            {isOwnProfile ? 'Meine Sammlung' : `${user.username}s Sammlung`}
+            {isOwnProfile ? t('collection.myCollection') : t('collection.userCollection').replace('{username}', user.username)}
           </h2>
           <p className="text-slate-400">
-            {user.collections.filter(c => !c.isWishlist).length} Spiele in der Sammlung, {' '}
-            {user.collections.filter(c => c.isWishlist).length} auf der Wunschliste
+            {user.collections.filter(c => !c.isWishlist).length} {t('collection.inCollection')}, {' '}
+            {user.collections.filter(c => c.isWishlist).length} {t('collection.onWishlist')}
           </p>
         </div>
         
@@ -133,7 +135,7 @@ const UserCollectionManager: React.FC<CollectionManagerProps> = ({ isOwnProfile 
               : 'text-slate-400 hover:text-slate-200'
           }`}
         >
-          Alle ({user.collections.length})
+          {t('collection.all')} ({user.collections.length})
         </button>
         <button
           onClick={() => setFilter('collection')}
@@ -143,7 +145,7 @@ const UserCollectionManager: React.FC<CollectionManagerProps> = ({ isOwnProfile 
               : 'text-slate-400 hover:text-slate-200'
           }`}
         >
-          Sammlung ({user.collections.filter(c => !c.isWishlist).length})
+          {t('collection.collection')} ({user.collections.filter(c => !c.isWishlist).length})
         </button>
         <button
           onClick={() => setFilter('wishlist')}
@@ -153,7 +155,7 @@ const UserCollectionManager: React.FC<CollectionManagerProps> = ({ isOwnProfile 
               : 'text-slate-400 hover:text-slate-200'
           }`}
         >
-          Wunschliste ({user.collections.filter(c => c.isWishlist).length})
+          {t('collection.wishlist')} ({user.collections.filter(c => c.isWishlist).length})
         </button>
       </div>
 
@@ -162,14 +164,16 @@ const UserCollectionManager: React.FC<CollectionManagerProps> = ({ isOwnProfile 
         <div className="simple-tile text-center py-12">
           <Package className="w-16 h-16 text-slate-600 mx-auto mb-4" />
           <h3 className="text-xl font-semibold text-slate-300 mb-2">
-            {filter === 'wishlist' ? 'Keine Wünsche' : 'Keine Spiele'}
+            {filter === 'wishlist' ? t('collection.noWishes') : t('collection.noGames')}
           </h3>
           <p className="text-slate-400">
             {isOwnProfile 
               ? filter === 'wishlist' 
-                ? 'Füge Spiele zu deiner Wunschliste hinzu!'
-                : 'Füge dein erstes Spiel zu deiner Sammlung hinzu!'
-              : `${user.username} hat noch keine Spiele ${filter === 'wishlist' ? 'auf der Wunschliste' : 'in der Sammlung'}.`
+                ? t('collection.addFirstGame')
+                : t('collection.addFirstGame')
+              : t('collection.noGamesYet')
+                  .replace('{username}', user.username)
+                  .replace('{type}', filter === 'wishlist' ? t('collection.onWishlist') : t('collection.inCollection'))
             }
           </p>
         </div>
@@ -210,7 +214,7 @@ const UserCollectionManager: React.FC<CollectionManagerProps> = ({ isOwnProfile 
               <div className="flex items-center gap-2 text-sm text-slate-400 mb-3">
                 <Calendar className="w-4 h-4" />
                 <span>
-                  {item.isWishlist ? 'Hinzugefügt' : 'Erworben'}: {' '}
+                  {item.isWishlist ? t('collection.added') : t('collection.acquired')}: {' '}
                   {item.acquisitionDate.toLocaleDateString('de-DE')}
                 </span>
               </div>
