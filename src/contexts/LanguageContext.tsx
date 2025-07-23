@@ -577,6 +577,7 @@ const translations = {
     'community.sortByCollection': 'Nach Sammlung',
     'community.sortByRecords': 'Nach Rekorden',
     'community.sortByJoinDate': 'Nach Beitrittsdatum',
+    'community.loginToViewProfiles': 'Bitte logge dich ein, um Spielerprofile zu sehen.',
 
     // Language selector
     'language.german': 'Deutsch',
@@ -1340,6 +1341,7 @@ const translations = {
     'community.sortByCollection': 'By Collection',
     'community.sortByRecords': 'By Records',
     'community.sortByJoinDate': 'By Join Date',
+    'community.loginToViewProfiles': 'Please log in to view player profiles.',
 
     // Language selector
     'language.german': 'German',
@@ -2220,7 +2222,17 @@ const translations = {
     'eventLeaderboard.fullLeaderboard': 'Classement Complet',
     'eventLeaderboard.view': 'Voir',
     'eventLeaderboard.documentation': 'Documentation',
-    'eventLeaderboard.viewMedia': 'Voir le Média'
+    'eventLeaderboard.viewMedia': 'Voir le Média',
+    
+    // Community sorting and filtering
+    'community.allPlatforms': 'Toutes les plateformes',
+    'community.allRegions': 'Toutes les régions',
+    'community.sortByLevel': 'Par niveau',
+    'community.sortByXP': 'Par XP',
+    'community.sortByCollection': 'Par collection',
+    'community.sortByRecords': 'Par records',
+    'community.sortByJoinDate': 'Par date d\'adhésion',
+    'community.loginToViewProfiles': 'Veuillez vous connecter pour voir les profils des joueurs.'
   },
 
   it: {
