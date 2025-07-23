@@ -5,10 +5,10 @@ const SpeedrunMediaPage: React.FC = () => {
   const { t } = useLanguage()
 
   return (
-    <div className="container mx-auto px-4 py-6">
+    <div className="container-sm py-responsive">
       <div className="simple-tile text-center">
-        <h1 className="text-3xl font-bold text-slate-100 mb-4">{t('nav.speedrun')}</h1>
-        <p className="text-slate-400">{t('speedrun.description')}</p>
+        <h1 className="text-responsive-2xl font-bold text-slate-100 mb-4">{t('nav.speedrun')}</h1>
+        <p className="text-responsive-base text-slate-400 max-w-md mx-auto">{t('speedrun.description')}</p>
       </div>
     </div>
   )
