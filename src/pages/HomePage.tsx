@@ -104,21 +104,22 @@ const HomePage: React.FC = () => {
   const activeEvent = getActiveEvent()
 
   return (
-    <div className="container-lg py-responsive space-responsive responsive-max-width responsive-overflow-hidden">
-      {/* Welcome Section */}
-      <div className="text-center mb-responsive responsive-max-width">
-        <h1 className="text-responsive-2xl font-bold text-slate-100 mb-4 responsive-word-break">
-          {user ? t('home.welcomeBack', { name: user.username }) : t('home.welcome')}
-        </h1>
-        <p className="text-responsive-base text-slate-400 max-w-2xl mx-auto responsive-word-break px-2">
-          {t('home.subtitle')}
-        </p>
-        <div className="mt-4 text-responsive-sm text-slate-500">
-          <span className="block sm:inline">{formatDate(currentTime)}</span>
-          <span className="hidden sm:inline mx-2">•</span>
-          <span className="block sm:inline">{formatTime(currentTime)}</span>
+    <div className="neon-container circuit-pattern scanlines min-h-screen">
+      <div className="container-lg py-responsive space-responsive responsive-max-width responsive-overflow-hidden">
+        {/* Welcome Section */}
+        <div className="text-center mb-responsive responsive-max-width">
+          <h1 className="text-responsive-2xl font-bold text-slate-100 mb-4 responsive-word-break neon-title">
+            🎮 <span className="neon-text">{user ? t('home.welcomeBack', { name: user.username }) : t('home.welcome')}</span>
+          </h1>
+          <p className="text-responsive-base text-slate-400 max-w-2xl mx-auto responsive-word-break px-2 neon-blue">
+            {t('home.subtitle')}
+          </p>
+          <div className="mt-4 text-responsive-sm text-slate-500 neon-orange">
+            <span className="block sm:inline neon-text">{formatDate(currentTime)}</span>
+            <span className="hidden sm:inline mx-2">•</span>
+            <span className="block sm:inline neon-text">{formatTime(currentTime)}</span>
+          </div>
         </div>
-      </div>
 
       {/* Stats Overview */}
       {user && (
@@ -203,45 +204,45 @@ const HomePage: React.FC = () => {
 
         {/* Live Events Section */}
         {activeEvents.length > 0 ? (
-          <div className="n64-tile n64-tile-large bg-gradient-to-br from-green-600/20 to-emerald-600/20 border-l-4 border-green-400 responsive-max-width">
+          <div className="neon-tile n64-tile-large holographic responsive-max-width">
             <div className="flex items-center gap-2 sm:gap-3 mb-4">
-              <Trophy className="w-5 h-5 sm:w-6 sm:h-6 text-green-400 flex-shrink-0" />
-              <h2 className="text-responsive-lg font-bold text-slate-100 responsive-word-break">{t('home.liveEvents')}</h2>
+              <Trophy className="w-5 h-5 sm:w-6 sm:h-6 text-green-400 flex-shrink-0 neon-icon" />
+              <h2 className="text-responsive-lg font-bold text-slate-100 responsive-word-break neon-text">{t('home.liveEvents')}</h2>
             </div>
             <div className="space-y-3">
               {activeEvents.slice(0, 2).map((event) => (
-                <div key={event.id} className="bg-slate-700/30 rounded-lg p-3">
-                  <h3 className="text-responsive-sm font-semibold text-slate-100 mb-1 responsive-word-break">
+                <div key={event.id} className="neon-tile rounded-lg p-3">
+                  <h3 className="text-responsive-sm font-semibold text-slate-100 mb-1 responsive-word-break neon-text">
                     {event.title}
                   </h3>
                   <div className="flex flex-wrap items-center gap-2 text-responsive-xs text-slate-400">
-                    <Clock className="w-3 h-3 sm:w-4 sm:h-4 flex-shrink-0" />
-                    <span>{new Date(event.endDate).toLocaleDateString()}</span>
+                    <Clock className="w-3 h-3 sm:w-4 sm:h-4 flex-shrink-0 neon-icon" />
+                    <span className="neon-blue">{new Date(event.endDate).toLocaleDateString()}</span>
                   </div>
                 </div>
               ))}
             </div>
             <Link 
               to="/events" 
-              className="inline-block mt-4 px-3 py-2 sm:px-4 sm:py-2 rounded-lg bg-green-500/20 text-green-400 hover:bg-green-500/30 transition-colors text-responsive-sm w-full sm:w-auto text-center"
+              className="neon-button inline-block mt-4 text-responsive-sm w-full sm:w-auto text-center"
             >
-              {t('events.viewAll')}
+              <span className="neon-text">{t('events.viewAll')}</span>
             </Link>
           </div>
         ) : (
-          <div className="n64-tile n64-tile-large bg-gradient-to-br from-red-600/20 to-pink-600/20 border-l-4 border-red-400 responsive-max-width">
+          <div className="neon-tile n64-tile-large holographic responsive-max-width">
             <div className="flex items-center gap-2 sm:gap-3 mb-4">
-              <Trophy className="w-5 h-5 sm:w-6 sm:h-6 text-red-400 flex-shrink-0" />
-              <h2 className="text-responsive-lg font-bold text-slate-100 responsive-word-break">{t('home.liveEvents')}</h2>
+              <Trophy className="w-5 h-5 sm:w-6 sm:h-6 text-red-400 flex-shrink-0 neon-icon" />
+              <h2 className="text-responsive-lg font-bold text-slate-100 responsive-word-break neon-text">{t('home.liveEvents')}</h2>
             </div>
             <div className="text-center py-4 sm:py-8">
-              <Calendar className="w-8 h-8 sm:w-12 sm:h-12 text-slate-500 mx-auto mb-3" />
-              <p className="text-responsive-sm text-slate-400 mb-4 responsive-word-break">{t('events.noActive')}</p>
+              <Calendar className="w-8 h-8 sm:w-12 sm:h-12 text-slate-500 mx-auto mb-3 neon-icon" />
+              <p className="text-responsive-sm text-slate-400 mb-4 responsive-word-break neon-orange">{t('events.noActive')}</p>
               <Link 
                 to="/events" 
-                className="inline-block px-3 py-2 sm:px-4 sm:py-2 rounded-lg bg-red-500/20 text-red-400 hover:bg-red-500/30 transition-colors text-responsive-sm w-full sm:w-auto text-center"
+                className="neon-button inline-block text-responsive-sm w-full sm:w-auto text-center"
               >
-                {t('events.viewAll')}
+                <span className="neon-text">{t('events.viewAll')}</span>
               </Link>
             </div>
           </div>
@@ -252,126 +253,127 @@ const HomePage: React.FC = () => {
       <div className="grid-auto-fit-sm responsive-max-width">
         
         {/* Quiz Tile */}
-        <Link to="/quiz" className="n64-tile n64-tile-small bg-gradient-to-br from-purple-600/20 to-purple-800/20 border-l-4 border-purple-400">
+        <Link to="/quiz" className="neon-tile n64-tile-small holographic">
           <div className="text-center w-full">
-            <Target className="w-6 h-6 sm:w-8 sm:h-8 text-purple-400 mx-auto mb-2" />
-            <div className="font-medium text-slate-100 text-responsive-sm responsive-word-break">{t('nav.quiz')}</div>
+            <Target className="w-6 h-6 sm:w-8 sm:h-8 text-purple-400 mx-auto mb-2 neon-icon" />
+            <div className="font-medium text-slate-100 text-responsive-sm responsive-word-break neon-text">{t('nav.quiz')}</div>
             <div className="text-responsive-xs text-slate-400 mobile-hidden responsive-word-break">{t('home.quiz.description')}</div>
           </div>
         </Link>
 
         {/* Events Tile */}
-        <Link to="/events" className="n64-tile n64-tile-small bg-gradient-to-br from-yellow-600/20 to-yellow-800/20 border-l-4 border-yellow-400">
+        <Link to="/events" className="neon-tile n64-tile-small holographic">
           <div className="text-center w-full">
-            <Trophy className="w-6 h-6 sm:w-8 sm:h-8 text-yellow-400 mx-auto mb-2" />
-            <div className="font-medium text-slate-100 text-responsive-sm responsive-word-break">{t('nav.events')}</div>
+            <Trophy className="w-6 h-6 sm:w-8 sm:h-8 text-yellow-400 mx-auto mb-2 neon-icon" />
+            <div className="font-medium text-slate-100 text-responsive-sm responsive-word-break neon-text">{t('nav.events')}</div>
             <div className="text-responsive-xs text-slate-400 mobile-hidden responsive-word-break">{t('home.events.description')}</div>
           </div>
         </Link>
 
         {/* Speedrun Media Tile */}
-        <Link to="/speedrun-media" className="n64-tile n64-tile-small bg-gradient-to-br from-green-600/20 to-green-800/20 border-l-4 border-green-400">
+        <Link to="/speedrun-media" className="neon-tile n64-tile-small holographic">
           <div className="text-center w-full">
-            <Camera className="w-6 h-6 sm:w-8 sm:h-8 text-green-400 mx-auto mb-2" />
-            <div className="font-medium text-slate-100 text-responsive-sm responsive-word-break">{t('nav.media')}</div>
+            <Camera className="w-6 h-6 sm:w-8 sm:h-8 text-green-400 mx-auto mb-2 neon-icon" />
+            <div className="font-medium text-slate-100 text-responsive-sm responsive-word-break neon-text">{t('nav.media')}</div>
             <div className="text-responsive-xs text-slate-400 mobile-hidden responsive-word-break">{t('home.media.description')}</div>
           </div>
         </Link>
 
         {/* Collector Mode Tile */}
-        <Link to="/collector" className="n64-tile n64-tile-small bg-gradient-to-br from-orange-600/20 to-orange-800/20 border-l-4 border-orange-400">
+        <Link to="/collector" className="neon-tile n64-tile-small holographic">
           <div className="text-center w-full">
-            <Package className="w-6 h-6 sm:w-8 sm:h-8 text-orange-400 mx-auto mb-2" />
-            <div className="font-medium text-slate-100 text-responsive-sm responsive-word-break">{t('nav.collector')}</div>
+            <Package className="w-6 h-6 sm:w-8 sm:h-8 text-orange-400 mx-auto mb-2 neon-icon" />
+            <div className="font-medium text-slate-100 text-responsive-sm responsive-word-break neon-text">{t('nav.collector')}</div>
             <div className="text-responsive-xs text-slate-400 mobile-hidden responsive-word-break">{t('home.collector.description')}</div>
           </div>
         </Link>
 
         {/* Forum Tile */}
-        <Link to="/forum" className="n64-tile n64-tile-small bg-gradient-to-br from-cyan-600/20 to-cyan-800/20 border-l-4 border-cyan-400">
+        <Link to="/forum" className="neon-tile n64-tile-small holographic">
           <div className="text-center w-full">
-            <MessageSquare className="w-6 h-6 sm:w-8 sm:h-8 text-cyan-400 mx-auto mb-2" />
-            <div className="font-medium text-slate-100 text-responsive-sm responsive-word-break">{t('nav.forum')}</div>
+            <MessageSquare className="w-6 h-6 sm:w-8 sm:h-8 text-cyan-400 mx-auto mb-2 neon-icon" />
+            <div className="font-medium text-slate-100 text-responsive-sm responsive-word-break neon-text">{t('nav.forum')}</div>
             <div className="text-responsive-xs text-slate-400 mobile-hidden responsive-word-break">{t('home.forum.subtitle')}</div>
           </div>
         </Link>
 
         {/* Profile Tile */}
-        <Link to="/profile" className="n64-tile n64-tile-small bg-gradient-to-br from-blue-600/20 to-blue-800/20 border-l-4 border-blue-400">
+        <Link to="/profile" className="neon-tile n64-tile-small holographic">
           <div className="text-center w-full">
-            <UsersIcon className="w-6 h-6 sm:w-8 sm:h-8 text-blue-400 mx-auto mb-2" />
-            <div className="font-medium text-slate-100 text-responsive-sm responsive-word-break">{t('nav.profile')}</div>
+            <UsersIcon className="w-6 h-6 sm:w-8 sm:h-8 text-blue-400 mx-auto mb-2 neon-icon" />
+            <div className="font-medium text-slate-100 text-responsive-sm responsive-word-break neon-text">{t('nav.profile')}</div>
             <div className="text-responsive-xs text-slate-400 mobile-hidden responsive-word-break">{t('home.profile.subtitle')}</div>
           </div>
         </Link>
 
         {/* Leaderboard Tile */}
-        <Link to="/leaderboard" className="n64-tile n64-tile-small bg-gradient-to-br from-pink-600/20 to-pink-800/20 border-l-4 border-pink-400">
+        <Link to="/leaderboard" className="neon-tile n64-tile-small holographic">
           <div className="text-center w-full">
-            <Star className="w-6 h-6 sm:w-8 sm:h-8 text-pink-400 mx-auto mb-2" />
-            <div className="font-medium text-slate-100 text-responsive-sm responsive-word-break">{t('nav.leaderboard')}</div>
+            <Star className="w-6 h-6 sm:w-8 sm:h-8 text-pink-400 mx-auto mb-2 neon-icon" />
+            <div className="font-medium text-slate-100 text-responsive-sm responsive-word-break neon-text">{t('nav.leaderboard')}</div>
             <div className="text-responsive-xs text-slate-400 mobile-hidden responsive-word-break">{t('home.leaderboard.subtitle')}</div>
           </div>
         </Link>
 
         {/* Minigames Tile */}
-        <Link to="/minigames" className="n64-tile n64-tile-small bg-gradient-to-br from-red-600/20 to-red-800/20 border-l-4 border-red-400">
+        <Link to="/minigames" className="neon-tile n64-tile-small holographic">
           <div className="text-center w-full">
-            <Gamepad2 className="w-6 h-6 sm:w-8 sm:h-8 text-red-400 mx-auto mb-2" />
-            <div className="font-medium text-slate-100 text-responsive-sm responsive-word-break">{t('nav.minigames')}</div>
+            <Gamepad2 className="w-6 h-6 sm:w-8 sm:h-8 text-red-400 mx-auto mb-2 neon-icon" />
+            <div className="font-medium text-slate-100 text-responsive-sm responsive-word-break neon-text">{t('nav.minigames')}</div>
             <div className="text-responsive-xs text-slate-400 mobile-hidden responsive-word-break">{t('home.minigames.description')}</div>
           </div>
         </Link>
 
         {/* Marketplace Tile */}
-        <Link to="/marktplatz" className="n64-tile n64-tile-small bg-gradient-to-br from-emerald-600/20 to-emerald-800/20 border-l-4 border-emerald-400">
+        <Link to="/marktplatz" className="neon-tile n64-tile-small holographic">
           <div className="text-center w-full">
-            <ShoppingCart className="w-6 h-6 sm:w-8 sm:h-8 text-emerald-400 mx-auto mb-2" />
-            <div className="font-medium text-slate-100 text-responsive-sm responsive-word-break">{t('nav.marketplace')}</div>
+            <ShoppingCart className="w-6 h-6 sm:w-8 sm:h-8 text-emerald-400 mx-auto mb-2 neon-icon" />
+            <div className="font-medium text-slate-100 text-responsive-sm responsive-word-break neon-text">{t('nav.marketplace')}</div>
             <div className="text-responsive-xs text-slate-400 mobile-hidden responsive-word-break">{t('home.marketplace.subtitle')}</div>
           </div>
         </Link>
 
         {/* Community Tile */}
-        <Link to="/community" className="n64-tile n64-tile-small bg-gradient-to-br from-indigo-600/20 to-indigo-800/20 border-l-4 border-indigo-400">
+        <Link to="/community" className="neon-tile n64-tile-small holographic">
           <div className="text-center w-full">
-            <UsersIcon className="w-6 h-6 sm:w-8 sm:h-8 text-indigo-400 mx-auto mb-2" />
-            <div className="font-medium text-slate-100 text-responsive-sm responsive-word-break">{t('nav.community')}</div>
+            <UsersIcon className="w-6 h-6 sm:w-8 sm:h-8 text-indigo-400 mx-auto mb-2 neon-icon" />
+            <div className="font-medium text-slate-100 text-responsive-sm responsive-word-break neon-text">{t('nav.community')}</div>
             <div className="text-responsive-xs text-slate-400 mobile-hidden responsive-word-break">{t('community.subtitle')}</div>
           </div>
         </Link>
 
         {/* Chat Tile */}
-        <Link to="/chat" className="n64-tile n64-tile-small bg-gradient-to-br from-violet-600/20 to-violet-800/20 border-l-4 border-violet-400">
+        <Link to="/chat" className="neon-tile n64-tile-small holographic">
           <div className="text-center w-full">
-            <MessageCircle className="w-6 h-6 sm:w-8 sm:h-8 text-violet-400 mx-auto mb-2" />
-            <div className="font-medium text-slate-100 text-responsive-sm responsive-word-break">{t('nav.chat')}</div>
+            <MessageCircle className="w-6 h-6 sm:w-8 sm:h-8 text-violet-400 mx-auto mb-2 neon-icon" />
+            <div className="font-medium text-slate-100 text-responsive-sm responsive-word-break neon-text">{t('nav.chat')}</div>
             <div className="text-responsive-xs text-slate-400 mobile-hidden responsive-word-break">Live Chat</div>
           </div>
         </Link>
 
         {/* Fanart Tile */}
-        <Link to="/fanart" className="n64-tile n64-tile-small bg-gradient-to-br from-rose-600/20 to-rose-800/20 border-l-4 border-rose-400">
+        <Link to="/fanart" className="neon-tile n64-tile-small holographic">
           <div className="text-center w-full">
-            <Palette className="w-6 h-6 sm:w-8 sm:h-8 text-rose-400 mx-auto mb-2" />
-            <div className="font-medium text-slate-100 text-responsive-sm responsive-word-break">{t('nav.fanart')}</div>
+            <Palette className="w-6 h-6 sm:w-8 sm:h-8 text-rose-400 mx-auto mb-2 neon-icon" />
+            <div className="font-medium text-slate-100 text-responsive-sm responsive-word-break neon-text">{t('nav.fanart')}</div>
             <div className="text-responsive-xs text-slate-400 mobile-hidden responsive-word-break">{t('home.fanart.subtitle')}</div>
           </div>
         </Link>
 
       </div>
 
-      {/* Footer */}
-      <div className="text-center mt-responsive responsive-max-width">
-        <p className="text-responsive-sm text-slate-400 responsive-word-break">
-          {t('home.footer.tagline')}
-        </p>
-        <Link 
-          to="/" 
-          className="inline-block mt-4 px-4 py-2 rounded-lg bg-slate-700/50 hover:bg-slate-600/50 transition-colors text-responsive-sm text-slate-300 w-full sm:w-auto"
-        >
-          🎮 Zur Retro-Ansicht
-        </Link>
+        {/* Footer */}
+        <div className="text-center mt-responsive responsive-max-width">
+          <p className="text-responsive-sm text-slate-400 responsive-word-break neon-blue">
+            {t('home.footer.tagline')}
+          </p>
+          <Link 
+            to="/" 
+            className="neon-button inline-block mt-4 w-full sm:w-auto"
+          >
+            🎮 <span className="neon-text">Zur Retro-Ansicht</span>
+          </Link>
+        </div>
       </div>
     </div>
   )
