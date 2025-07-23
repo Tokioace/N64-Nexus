@@ -40,7 +40,7 @@ const SingleMarketplaceCard: React.FC<SingleMarketplaceCardProps> = ({ marketpla
     setTimeout(() => {
       setCurrentIndex(prev => prev + 1)
       setIsFlipping(false)
-    }, 300)
+    }, 200)
   }
 
   const goToPrevious = () => {
@@ -52,7 +52,7 @@ const SingleMarketplaceCard: React.FC<SingleMarketplaceCardProps> = ({ marketpla
     setTimeout(() => {
       setCurrentIndex(prev => prev - 1)
       setIsFlipping(false)
-    }, 300)
+    }, 200)
   }
 
   const handleTouchStart = (e: React.TouchEvent) => {
@@ -141,37 +141,31 @@ const SingleMarketplaceCard: React.FC<SingleMarketplaceCardProps> = ({ marketpla
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
       >
-        {/* Stack of cards - render current and next card */}
-        <div className="relative" style={{ perspective: '1000px' }}>
-          {/* Next card (underneath) */}
-          {currentIndex < marketplaceItems.length - 1 && (
+        {/* Direct slide transition without 180 degree rotation */}
+        <div className="relative overflow-hidden">
+          {/* Background card for smooth transition */}
+          {isFlipping && (
             <div className="absolute inset-0 z-10">
-              {renderMarketplaceCard(marketplaceItems[currentIndex + 1], currentIndex + 1, false)}
+              {flipDirection === 'left' && currentIndex < marketplaceItems.length - 1 && 
+                renderMarketplaceCard(marketplaceItems[currentIndex + 1], currentIndex + 1, false)
+              }
+              {flipDirection === 'right' && currentIndex > 0 && 
+                renderMarketplaceCard(marketplaceItems[currentIndex - 1], currentIndex - 1, false)
+              }
             </div>
           )}
           
-          {/* Previous card (for right swipe) */}
-          {currentIndex > 0 && flipDirection === 'right' && isFlipping && (
-            <div className="absolute inset-0 z-10">
-              {renderMarketplaceCard(marketplaceItems[currentIndex - 1], currentIndex - 1, false)}
-            </div>
-          )}
-          
-          {/* Current card (on top) */}
+          {/* Current card with slide animation */}
           <div 
-            className={`relative z-20 transition-transform duration-300 ease-in-out ${
+            className={`relative z-20 transition-transform duration-200 ease-out ${
               isFlipping 
                 ? flipDirection === 'left' 
-                  ? 'book-page-flip-left' 
-                  : 'book-page-flip-right'
-                : ''
+                  ? 'transform -translate-x-full opacity-0' 
+                  : 'transform translate-x-full opacity-0'
+                : 'transform translate-x-0 opacity-100'
             }`}
-            style={{ 
-              transformOrigin: flipDirection === 'left' ? 'left center' : 'right center',
-              transformStyle: 'preserve-3d'
-            }}
           >
-            {renderMarketplaceCard(marketplaceItems[currentIndex], currentIndex, isFlipping)}
+            {renderMarketplaceCard(marketplaceItems[currentIndex], currentIndex, false)}
           </div>
         </div>
         
