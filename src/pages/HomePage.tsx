@@ -5,6 +5,7 @@ import { useEvent } from '../contexts/EventContext'
 import { useLanguage } from '../contexts/LanguageContext'
 import EventFeedWidget from '../components/EventFeedWidget'
 import SwipeableCard from '../components/SwipeableCard'
+import NewsCard from '../components/NewsCard'
 import { GameEvent } from '../types'
 import {
   Trophy,
@@ -425,19 +426,26 @@ const HomePage: React.FC = () => {
         )}
       </div>
 
-      {/* SWIPEABLE CARDS SECTION */}
+      {/* NEWS CARDS SECTION */}
       <div className="space-y-6">
-        {/* Top Row: News and Forum Posts */}
-        <div className="swipeable-grid-2col">
-          <SwipeableCard
-            title="📰 N64 & App News"
-            icon={<TrendingUp className="w-5 h-5 text-blue-400" />}
-            items={newsItems}
-            renderItem={renderNewsItem}
-            gradientColors="from-blue-600/10 to-purple-600/10"
-            borderColor="border-blue-400"
-          />
-          
+        {/* News Cards - Individual cards for each news item */}
+        <div className="space-y-4">
+          <h2 className="text-responsive-xl font-bold text-slate-100 text-center mb-6">
+            📰 N64 & App News
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 justify-items-center">
+            {newsItems.slice(0, 8).map((newsItem, index) => (
+              <NewsCard 
+                key={newsItem.id} 
+                newsItem={newsItem} 
+                index={index}
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* Forum Posts - Keep as SwipeableCard */}
+        <div className="flex justify-center">
           <SwipeableCard
             title="💬 Forum Posts"
             icon={<MessageSquare className="w-5 h-5 text-cyan-400" />}
@@ -448,7 +456,7 @@ const HomePage: React.FC = () => {
           />
         </div>
 
-        {/* Middle Row: FanArts and Media */}
+        {/* Other Content - FanArts and Media */}
         <div className="swipeable-grid-2col">
           <SwipeableCard
             title="🎨 FanArts"
@@ -469,7 +477,7 @@ const HomePage: React.FC = () => {
           />
         </div>
 
-        {/* Bottom Row: Records and Marketplace */}
+        {/* Records and Marketplace */}
         <div className="swipeable-grid-2col">
           <SwipeableCard
             title="🏆 Rekorde"
