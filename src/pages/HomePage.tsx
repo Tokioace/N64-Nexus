@@ -4,25 +4,22 @@ import { useUser } from '../contexts/UserContext'
 import { useEvent } from '../contexts/EventContext'
 import { useLanguage } from '../contexts/LanguageContext'
 import EventFeedWidget from '../components/EventFeedWidget'
+import SwipeableCard from '../components/SwipeableCard'
 import { GameEvent } from '../types'
 import {
   Trophy,
-  Target,
-  Gamepad2,
-  Star,
-  Users as UsersIcon,
-  Camera,
-  Package,
-  MessageSquare,
-  Calendar,
-  Clock,
-  ChevronDown,
-  ChevronUp,
-  Award,
   TrendingUp,
+  MessageSquare,
+  Palette,
+  Camera,
+  Award,
   ShoppingCart,
-  MessageCircle,
-  Palette
+  Clock,
+  User,
+  Eye,
+  Heart,
+  Star,
+  Gamepad2
 } from 'lucide-react'
 
 interface NewsItem {
@@ -33,12 +30,61 @@ interface NewsItem {
   type: 'event_winner' | 'n64_history' | 'community_news' | 'event_announcement'
 }
 
+interface ForumThread {
+  id: string
+  title: string
+  author: string
+  replies: number
+  lastActivity: Date
+  category: string
+}
+
+interface FanArtItem {
+  id: string
+  title: string
+  artist: string
+  imageUrl: string
+  likes: number
+  views: number
+  game: string
+}
+
+interface MediaItem {
+  id: string
+  title: string
+  uploader: string
+  type: 'video' | 'screenshot' | 'stream'
+  thumbnailUrl: string
+  uploadDate: Date
+  views: number
+}
+
+interface RecordItem {
+  id: string
+  game: string
+  track: string
+  time: string
+  username: string
+  date: Date
+  verified: boolean
+}
+
+interface MarketplaceItem {
+  id: string
+  title: string
+  price: number
+  currency: string
+  seller: string
+  condition: string
+  imageUrl: string
+  createdAt: Date
+}
+
 const HomePage: React.FC = () => {
   const { user } = useUser()
   const { events, activeEvents, getLeaderboard } = useEvent()
   const { t, currentLanguage } = useLanguage()
   const [currentTime, setCurrentTime] = useState(new Date())
-  const [isNewsExpanded, setIsNewsExpanded] = useState(false)
   const [isEventExpanded, setIsEventExpanded] = useState(false)
 
   // Update current time every minute
@@ -49,43 +95,143 @@ const HomePage: React.FC = () => {
     return () => clearInterval(timer)
   }, [])
 
-  // Enhanced news data with more N64 and app news
+  // Mock data for demonstration - in real app this would come from API/context
   const newsItems: NewsItem[] = [
     {
       id: '1',
       title: '🏆 Mario Kart 64 Speedrun Weltrekord gebrochen!',
-      content: 'SpeedDemon64 hat einen neuen Weltrekord in Wario Stadium mit einer Zeit von 1:42.33 aufgestellt! Das Video läuft in Dauerschleife auf unserer Event-Seite.',
-      date: new Date(Date.now() - 3600000), // 1 hour ago
+      content: 'SpeedDemon64 hat einen neuen Weltrekord in Wario Stadium mit einer Zeit von 1:42.33 aufgestellt!',
+      date: new Date(Date.now() - 3600000),
       type: 'event_winner'
     },
     {
       id: '2',
-      title: '🎮 N64 Controller Update: Neue Analog-Stick Kalibrierung',
-      content: 'Die Battle64 App unterstützt jetzt präzisere Controller-Eingaben für bessere Speedrun-Aufzeichnungen. Update jetzt verfügbar!',
-      date: new Date(Date.now() - 7200000), // 2 hours ago
+      title: '🎮 N64 Controller Update verfügbar',
+      content: 'Die Battle64 App unterstützt jetzt präzisere Controller-Eingaben für bessere Speedrun-Aufzeichnungen.',
+      date: new Date(Date.now() - 7200000),
       type: 'community_news'
     },
     {
       id: '3',
-      title: '📺 Live Event: GoldenEye 007 Tournament JETZT',
-      content: 'Das GoldenEye 007 Facility Tournament läuft gerade! Sieh dir die besten Spieler live an und verfolge ihre Strategien.',
-      date: new Date(Date.now() - 1800000), // 30 minutes ago
+      title: '📺 Live Event: GoldenEye 007 Tournament',
+      content: 'Das GoldenEye 007 Facility Tournament läuft gerade! Sieh dir die besten Spieler live an.',
+      date: new Date(Date.now() - 1800000),
       type: 'event_announcement'
     },
     {
       id: '4',
-      title: '🎯 N64 Sammler-Feature: Neue Rarität-Bewertungen',
-      content: 'Wir haben unser Bewertungssystem für seltene N64-Spiele erweitert. Jetzt mit Preisvergleich und Zustandsbewertung!',
-      date: new Date(Date.now() - 86400000), // 1 day ago
+      title: '🎯 N64 Sammler-Feature erweitert',
+      content: 'Wir haben unser Bewertungssystem für seltene N64-Spiele erweitert. Jetzt mit Preisvergleich!',
+      date: new Date(Date.now() - 86400000),
       type: 'n64_history'
     },
     {
       id: '5',
-      title: '🏁 Super Mario 64 120-Star Challenge Ergebnisse',
-      content: 'Die Gewinner des 120-Star Challenge stehen fest! ProGamer_MK hat mit 1:37:42 gewonnen. Gratulation an alle Teilnehmer!',
-      date: new Date(Date.now() - 172800000), // 2 days ago
+      title: '🏁 Super Mario 64 120-Star Challenge',
+      content: 'Die Gewinner des 120-Star Challenge stehen fest! ProGamer_MK hat mit 1:37:42 gewonnen.',
+      date: new Date(Date.now() - 172800000),
       type: 'event_winner'
+    },
+    {
+      id: '6',
+      title: '🚀 Battle64 App Update 2.1',
+      content: 'Neue Features: Verbesserte Leaderboards, erweiterte Statistiken und optimierte Performance.',
+      date: new Date(Date.now() - 259200000),
+      type: 'community_news'
+    },
+    {
+      id: '7',
+      title: '🎪 Retro Gaming Convention angekündigt',
+      content: 'Die größte N64 Convention des Jahres findet im November statt. Tickets ab sofort verfügbar!',
+      date: new Date(Date.now() - 345600000),
+      type: 'event_announcement'
+    },
+    {
+      id: '8',
+      title: '🔥 Neue Speedrun Kategorie: Any%',
+      content: 'Wir haben eine neue Any% Kategorie für Banjo-Kazooie hinzugefügt. Jetzt mitmachen!',
+      date: new Date(Date.now() - 432000000),
+      type: 'n64_history'
+    },
+    {
+      id: '9',
+      title: '🏆 Monthly Challenge Gewinner',
+      content: 'Herzlichen Glückwunsch an N64Master für den Sieg im Oktober Monthly Challenge!',
+      date: new Date(Date.now() - 518400000),
+      type: 'event_winner'
+    },
+    {
+      id: '10',
+      title: '📊 Community Statistiken veröffentlicht',
+      content: 'Über 50.000 registrierte Speedrunner und mehr als 1 Million aufgezeichnete Runs!',
+      date: new Date(Date.now() - 604800000),
+      type: 'community_news'
     }
+  ]
+
+  const forumThreads: ForumThread[] = [
+    { id: '1', title: 'Bester N64 Controller für Speedruns?', author: 'SpeedRunner123', replies: 23, lastActivity: new Date(Date.now() - 1800000), category: 'Hardware' },
+    { id: '2', title: 'Mario Kart 64: Neue Shortcuts entdeckt!', author: 'MKExplorer', replies: 45, lastActivity: new Date(Date.now() - 3600000), category: 'Glitches' },
+    { id: '3', title: 'OoT Randomizer Tournament Anmeldung', author: 'ZeldaFan64', replies: 67, lastActivity: new Date(Date.now() - 7200000), category: 'Events' },
+    { id: '4', title: 'Perfekte Dark Strategie Guide', author: 'PerfectAgent', replies: 12, lastActivity: new Date(Date.now() - 10800000), category: 'Guides' },
+    { id: '5', title: 'N64 Emulator vs Original Hardware', author: 'RetroGamer', replies: 89, lastActivity: new Date(Date.now() - 14400000), category: 'Diskussion' },
+    { id: '6', title: 'Super Mario 64 BLJ Tutorial', author: 'BLJMaster', replies: 34, lastActivity: new Date(Date.now() - 18000000), category: 'Tutorials' },
+    { id: '7', title: 'Banjo-Kazooie 100% Route optimiert', author: 'BearBirdRunner', replies: 56, lastActivity: new Date(Date.now() - 21600000), category: 'Routen' },
+    { id: '8', title: 'Goldeneye 007 Facility unter 1:00?', author: 'SecretAgent', replies: 78, lastActivity: new Date(Date.now() - 25200000), category: 'Challenges' },
+    { id: '9', title: 'N64 Sammlung: Seltene Spiele bewerten', author: 'Collector64', replies: 23, lastActivity: new Date(Date.now() - 28800000), category: 'Sammeln' },
+    { id: '10', title: 'Paper Mario Speedrun Tipps', author: 'PaperSpeedster', replies: 41, lastActivity: new Date(Date.now() - 32400000), category: 'Tipps' }
+  ]
+
+  const fanArtItems: FanArtItem[] = [
+    { id: '1', title: 'Mario in Peach\'s Castle', artist: 'PixelArtist64', imageUrl: '/api/placeholder/200/150', likes: 234, views: 1250, game: 'Super Mario 64' },
+    { id: '2', title: 'Link vs Ganondorf Epic Battle', artist: 'ZeldaDrawer', imageUrl: '/api/placeholder/200/150', likes: 189, views: 980, game: 'Ocarina of Time' },
+    { id: '3', title: 'Banjo & Kazooie Adventure', artist: 'RetroSketch', imageUrl: '/api/placeholder/200/150', likes: 156, views: 750, game: 'Banjo-Kazooie' },
+    { id: '4', title: 'Rainbow Road Nostalgia', artist: 'KartArtist', imageUrl: '/api/placeholder/200/150', likes: 298, views: 1400, game: 'Mario Kart 64' },
+    { id: '5', title: 'GoldenEye 007 Facility Map', artist: 'SpyArtist', imageUrl: '/api/placeholder/200/150', likes: 167, views: 890, game: 'GoldenEye 007' },
+    { id: '6', title: 'Diddy Kong Racing Team', artist: 'RareArtFan', imageUrl: '/api/placeholder/200/150', likes: 134, views: 620, game: 'Diddy Kong Racing' },
+    { id: '7', title: 'Star Fox 64 Arwing Squadron', artist: 'SpaceArtist', imageUrl: '/api/placeholder/200/150', likes: 201, views: 1100, game: 'Star Fox 64' },
+    { id: '8', title: 'Smash Bros N64 All Stars', artist: 'FighterArt', imageUrl: '/api/placeholder/200/150', likes: 345, views: 1800, game: 'Super Smash Bros' },
+    { id: '9', title: 'Yoshi\'s Story Cute Style', artist: 'YoshiLover', imageUrl: '/api/placeholder/200/150', likes: 123, views: 560, game: 'Yoshi\'s Story' },
+    { id: '10', title: 'F-Zero X Speed Demon', artist: 'RacingArt64', imageUrl: '/api/placeholder/200/150', likes: 178, views: 820, game: 'F-Zero X' }
+  ]
+
+  const mediaItems: MediaItem[] = [
+    { id: '1', title: 'Mario 64 16 Star WR Run', uploader: 'SpeedDemon64', type: 'video', thumbnailUrl: '/api/placeholder/200/150', uploadDate: new Date(Date.now() - 3600000), views: 5430 },
+    { id: '2', title: 'OoT Any% New PB!', uploader: 'ZeldaRunner', type: 'video', thumbnailUrl: '/api/placeholder/200/150', uploadDate: new Date(Date.now() - 7200000), views: 3210 },
+    { id: '3', title: 'Perfect Dark Agent Speedrun', uploader: 'SecretRunner', type: 'video', thumbnailUrl: '/api/placeholder/200/150', uploadDate: new Date(Date.now() - 10800000), views: 2890 },
+    { id: '4', title: 'Mario Kart 64 Epic Comeback', uploader: 'KartMaster', type: 'screenshot', thumbnailUrl: '/api/placeholder/200/150', uploadDate: new Date(Date.now() - 14400000), views: 1560 },
+    { id: '5', title: 'Live: GoldenEye Tournament', uploader: 'EventStream', type: 'stream', thumbnailUrl: '/api/placeholder/200/150', uploadDate: new Date(Date.now() - 18000000), views: 8920 },
+    { id: '6', title: 'Banjo-Kazooie 100% Completion', uploader: 'BearRunner', type: 'video', thumbnailUrl: '/api/placeholder/200/150', uploadDate: new Date(Date.now() - 21600000), views: 4560 },
+    { id: '7', title: 'Smash Bros Combo Video', uploader: 'ComboKing', type: 'video', thumbnailUrl: '/api/placeholder/200/150', uploadDate: new Date(Date.now() - 25200000), views: 6780 },
+    { id: '8', title: 'Star Fox 64 Expert Mode', uploader: 'StarPilot', type: 'video', thumbnailUrl: '/api/placeholder/200/150', uploadDate: new Date(Date.now() - 28800000), views: 2340 },
+    { id: '9', title: 'Paper Mario Glitchless Run', uploader: 'PaperSpeedster', type: 'video', thumbnailUrl: '/api/placeholder/200/150', uploadDate: new Date(Date.now() - 32400000), views: 3450 },
+    { id: '10', title: 'Diddy Kong Racing Screenshot', uploader: 'RacingFan', type: 'screenshot', thumbnailUrl: '/api/placeholder/200/150', uploadDate: new Date(Date.now() - 36000000), views: 1230 }
+  ]
+
+  const recordItems: RecordItem[] = [
+    { id: '1', game: 'Super Mario 64', track: '16 Star', time: '15:42.33', username: 'SpeedDemon64', date: new Date(Date.now() - 3600000), verified: true },
+    { id: '2', game: 'Mario Kart 64', track: 'Rainbow Road', time: '6:14.82', username: 'RainbowMaster', date: new Date(Date.now() - 7200000), verified: true },
+    { id: '3', game: 'GoldenEye 007', track: 'Facility Agent', time: '0:58.91', username: 'SecretAgent007', date: new Date(Date.now() - 10800000), verified: true },
+    { id: '4', game: 'Ocarina of Time', track: 'Any%', time: '16:58.12', username: 'ZeldaSpeedster', date: new Date(Date.now() - 14400000), verified: true },
+    { id: '5', game: 'Perfect Dark', track: 'DataDyne Central', time: '1:23.45', username: 'PerfectRunner', date: new Date(Date.now() - 18000000), verified: true },
+    { id: '6', game: 'Banjo-Kazooie', track: '100%', time: '2:03:45.67', username: 'BearBirdPro', date: new Date(Date.now() - 21600000), verified: true },
+    { id: '7', game: 'Star Fox 64', track: 'Expert Mode', time: '23:12.89', username: 'StarWingAce', date: new Date(Date.now() - 25200000), verified: true },
+    { id: '8', game: 'Super Smash Bros', track: '1P Mode Very Hard', time: '7:45.23', username: 'SmashChampion', date: new Date(Date.now() - 28800000), verified: true },
+    { id: '9', game: 'F-Zero X', track: 'Death Race', time: '1:34.56', username: 'SpeedRacer64', date: new Date(Date.now() - 32400000), verified: true },
+    { id: '10', game: 'Paper Mario', track: 'Any%', time: '3:12:34.78', username: 'PaperSpeedRun', date: new Date(Date.now() - 36000000), verified: true }
+  ]
+
+  const marketplaceItems: MarketplaceItem[] = [
+    { id: '1', title: 'Super Mario 64 - Mint Condition', price: 89.99, currency: 'EUR', seller: 'RetroCollector', condition: 'Mint', imageUrl: '/api/placeholder/200/150', createdAt: new Date(Date.now() - 3600000) },
+    { id: '2', title: 'N64 Controller - Original Nintendo', price: 34.50, currency: 'EUR', seller: 'ControllerKing', condition: 'Very Good', imageUrl: '/api/placeholder/200/150', createdAt: new Date(Date.now() - 7200000) },
+    { id: '3', title: 'GoldenEye 007 - Complete in Box', price: 125.00, currency: 'EUR', seller: 'GameVault', condition: 'Good', imageUrl: '/api/placeholder/200/150', createdAt: new Date(Date.now() - 10800000) },
+    { id: '4', title: 'Ocarina of Time - Gold Cartridge', price: 199.99, currency: 'EUR', seller: 'ZeldaFanatic', condition: 'Mint', imageUrl: '/api/placeholder/200/150', createdAt: new Date(Date.now() - 14400000) },
+    { id: '5', title: 'N64 Console - Jungle Green', price: 149.99, currency: 'EUR', seller: 'ConsoleDealer', condition: 'Very Good', imageUrl: '/api/placeholder/200/150', createdAt: new Date(Date.now() - 18000000) },
+    { id: '6', title: 'Mario Kart 64 - Player\'s Choice', price: 45.00, currency: 'EUR', seller: 'KartCollector', condition: 'Good', imageUrl: '/api/placeholder/200/150', createdAt: new Date(Date.now() - 21600000) },
+    { id: '7', title: 'Perfect Dark - Big Box Edition', price: 89.50, currency: 'EUR', seller: 'RareGameHunter', condition: 'Very Good', imageUrl: '/api/placeholder/200/150', createdAt: new Date(Date.now() - 25200000) },
+    { id: '8', title: 'Banjo-Kazooie - Manual included', price: 67.99, currency: 'EUR', seller: 'ManualMaster', condition: 'Good', imageUrl: '/api/placeholder/200/150', createdAt: new Date(Date.now() - 28800000) },
+    { id: '9', title: 'Star Fox 64 - Rumble Pak Bundle', price: 78.00, currency: 'EUR', seller: 'BundleBargains', condition: 'Very Good', imageUrl: '/api/placeholder/200/150', createdAt: new Date(Date.now() - 32400000) },
+    { id: '10', title: 'Super Smash Bros - Tournament Ed.', price: 156.99, currency: 'EUR', seller: 'TournamentGames', condition: 'Mint', imageUrl: '/api/placeholder/200/150', createdAt: new Date(Date.now() - 36000000) }
   ]
 
   const formatTime = (date: Date) => {
@@ -124,6 +270,112 @@ const HomePage: React.FC = () => {
 
   const activeEvent = getActiveEvent()
 
+  // Render functions for each card type
+  const renderNewsItem = (item: NewsItem, index: number) => (
+    <div className="h-full flex flex-col">
+      <div className="flex-1">
+        <h4 className="text-sm font-semibold text-slate-100 mb-2 line-clamp-2">{item.title}</h4>
+        <p className="text-xs text-slate-300 mb-3 line-clamp-3">{item.content}</p>
+      </div>
+      <div className="flex items-center justify-between text-xs text-slate-400">
+        <span>{formatTime(item.date)}</span>
+        <span className="capitalize">{item.type.replace('_', ' ')}</span>
+      </div>
+    </div>
+  )
+
+  const renderForumThread = (thread: ForumThread, index: number) => (
+    <div className="h-full flex flex-col">
+      <div className="flex-1">
+        <h4 className="text-sm font-semibold text-slate-100 mb-2 line-clamp-2">{thread.title}</h4>
+        <div className="text-xs text-slate-300 mb-2">
+          <span className="text-blue-400">{thread.author}</span> • {thread.category}
+        </div>
+      </div>
+      <div className="flex items-center justify-between text-xs text-slate-400">
+        <span>{thread.replies} Antworten</span>
+        <span>{formatTime(thread.lastActivity)}</span>
+      </div>
+    </div>
+  )
+
+  const renderFanArtItem = (item: FanArtItem, index: number) => (
+    <div className="h-full flex flex-col">
+      <div className="flex-1 mb-2">
+        <div className="w-full h-16 bg-slate-700 rounded mb-2 flex items-center justify-center">
+          <Palette className="w-6 h-6 text-slate-400" />
+        </div>
+        <h4 className="text-sm font-semibold text-slate-100 mb-1 line-clamp-1">{item.title}</h4>
+        <p className="text-xs text-blue-400 mb-1">{item.artist}</p>
+        <p className="text-xs text-slate-400">{item.game}</p>
+      </div>
+      <div className="flex items-center justify-between text-xs text-slate-400">
+        <div className="flex items-center gap-2">
+          <span className="flex items-center gap-1">
+            <Heart className="w-3 h-3" /> {item.likes}
+          </span>
+          <span className="flex items-center gap-1">
+            <Eye className="w-3 h-3" /> {item.views}
+          </span>
+        </div>
+      </div>
+    </div>
+  )
+
+  const renderMediaItem = (item: MediaItem, index: number) => (
+    <div className="h-full flex flex-col">
+      <div className="flex-1 mb-2">
+        <div className="w-full h-16 bg-slate-700 rounded mb-2 flex items-center justify-center">
+          <Camera className="w-6 h-6 text-slate-400" />
+        </div>
+        <h4 className="text-sm font-semibold text-slate-100 mb-1 line-clamp-1">{item.title}</h4>
+        <p className="text-xs text-green-400 mb-1">{item.uploader}</p>
+        <p className="text-xs text-slate-400 capitalize">{item.type}</p>
+      </div>
+      <div className="flex items-center justify-between text-xs text-slate-400">
+        <span className="flex items-center gap-1">
+          <Eye className="w-3 h-3" /> {item.views}
+        </span>
+        <span>{formatTime(item.uploadDate)}</span>
+      </div>
+    </div>
+  )
+
+  const renderRecordItem = (record: RecordItem, index: number) => (
+    <div className="h-full flex flex-col">
+      <div className="flex-1">
+        <div className="flex items-center gap-1 mb-2">
+          <Trophy className="w-4 h-4 text-yellow-400" />
+          <h4 className="text-sm font-semibold text-slate-100 line-clamp-1">{record.time}</h4>
+        </div>
+        <p className="text-xs text-slate-300 mb-1 line-clamp-1">{record.game}</p>
+        <p className="text-xs text-slate-400 mb-2 line-clamp-1">{record.track}</p>
+        <p className="text-xs text-blue-400">{record.username}</p>
+      </div>
+      <div className="flex items-center justify-between text-xs text-slate-400">
+        <span>{formatTime(record.date)}</span>
+        {record.verified && <span className="text-green-400">✓ Verifiziert</span>}
+      </div>
+    </div>
+  )
+
+  const renderMarketplaceItem = (item: MarketplaceItem, index: number) => (
+    <div className="h-full flex flex-col">
+      <div className="flex-1 mb-2">
+        <div className="w-full h-16 bg-slate-700 rounded mb-2 flex items-center justify-center">
+          <ShoppingCart className="w-6 h-6 text-slate-400" />
+        </div>
+        <h4 className="text-sm font-semibold text-slate-100 mb-1 line-clamp-1">{item.title}</h4>
+        <p className="text-xs text-green-400 mb-1">{item.price} {item.currency}</p>
+        <p className="text-xs text-slate-400 mb-1">{item.condition}</p>
+        <p className="text-xs text-blue-400">{item.seller}</p>
+      </div>
+      <div className="text-xs text-slate-400">
+        <span>{formatTime(item.createdAt)}</span>
+      </div>
+    </div>
+  )
+
   return (
     <div className="container-lg py-responsive space-responsive responsive-max-width responsive-overflow-hidden">
       {/* Welcome Section */}
@@ -160,7 +412,7 @@ const HomePage: React.FC = () => {
               <h2 className="text-responsive-lg font-bold text-slate-100 responsive-word-break">🔴 {t('home.liveEvents')}</h2>
             </div>
             <div className="text-center py-4 sm:py-8">
-              <Calendar className="w-8 h-8 sm:w-12 sm:h-12 text-slate-500 mx-auto mb-3" />
+              <Gamepad2 className="w-8 h-8 sm:w-12 sm:h-12 text-slate-500 mx-auto mb-3" />
               <p className="text-responsive-sm text-slate-400 mb-4 responsive-word-break">Kein Live-Event aktiv - Nächstes Event startet bald!</p>
               <Link 
                 to="/events" 
@@ -173,215 +425,70 @@ const HomePage: React.FC = () => {
         )}
       </div>
 
-      {/* ENHANCED NEWS SECTION - N64 & APP NEWS */}
-      <div className="mb-responsive responsive-max-width">
-        <div className="simple-tile responsive-max-width bg-gradient-to-br from-blue-600/10 to-purple-600/10 border-l-4 border-blue-400">
-          <div className="simple-tile-header">
-            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-0">
-              <h2 className="text-responsive-xl font-bold text-slate-100 flex items-center gap-2">
-                <TrendingUp className="w-6 h-6 sm:w-7 sm:h-7 text-blue-400 flex-shrink-0" />
-                <span className="responsive-word-break">📰 N64 & App News</span>
-              </h2>
-              <button
-                onClick={() => setIsNewsExpanded(!isNewsExpanded)}
-                className="btn-secondary btn-sm w-full sm:w-auto flex items-center justify-center gap-2"
-              >
-                {isNewsExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
-                <span>{isNewsExpanded ? 'Weniger anzeigen' : 'Alle News anzeigen'}</span>
-              </button>
-            </div>
-          </div>
+      {/* SWIPEABLE CARDS SECTION */}
+      <div className="space-y-6">
+        {/* Top Row: News and Forum Posts */}
+        <div className="swipeable-grid-2col">
+          <SwipeableCard
+            title="📰 N64 & App News"
+            icon={<TrendingUp className="w-5 h-5 text-blue-400" />}
+            items={newsItems}
+            renderItem={renderNewsItem}
+            gradientColors="from-blue-600/10 to-purple-600/10"
+            borderColor="border-blue-400"
+          />
           
-          <div className="space-y-4">
-            {newsItems.slice(0, isNewsExpanded ? newsItems.length : 3).map((item) => {
-              const getTypeColor = (type: string) => {
-                switch(type) {
-                  case 'event_winner': return 'border-yellow-400 bg-yellow-400/10'
-                  case 'event_announcement': return 'border-red-400 bg-red-400/10'
-                  case 'n64_history': return 'border-purple-400 bg-purple-400/10'
-                  case 'community_news': return 'border-green-400 bg-green-400/10'
-                  default: return 'border-blue-400 bg-blue-400/10'
-                }
-              }
-              
-              return (
-                <div key={item.id} className={`border-l-4 pl-3 sm:pl-4 py-3 rounded-r-lg ${getTypeColor(item.type)}`}>
-                  <div className="flex justify-between items-start mb-2">
-                    <h3 className="text-responsive-base font-semibold text-slate-100 mb-1 responsive-word-break">
-                      {item.title}
-                    </h3>
-                    <span className="text-responsive-xs text-slate-500 ml-2 flex-shrink-0">
-                      {item.date.toLocaleTimeString(currentLanguage === 'de' ? 'de-DE' : 'en-US', {
-                        hour: '2-digit',
-                        minute: '2-digit'
-                      })}
-                    </span>
-                  </div>
-                  <p className="text-responsive-sm text-slate-300 mb-2 responsive-word-break">
-                    {item.content}
-                  </p>
-                  <div className="text-responsive-xs text-slate-500">
-                    {item.date.toLocaleDateString(currentLanguage === 'de' ? 'de-DE' : 'en-US')}
-                  </div>
-                </div>
-              )
-            })}
-          </div>
+          <SwipeableCard
+            title="💬 Forum Posts"
+            icon={<MessageSquare className="w-5 h-5 text-cyan-400" />}
+            items={forumThreads}
+            renderItem={renderForumThread}
+            gradientColors="from-cyan-600/10 to-blue-600/10"
+            borderColor="border-cyan-400"
+          />
         </div>
-      </div>
 
-      {/* Stats Overview */}
-      {user && (
-        <div className="grid-auto-fit mb-responsive responsive-max-width">
-          <div className="simple-tile text-center">
-            <div className="simple-tile-icon">
-              <Trophy className="w-6 h-6 sm:w-8 sm:h-8 text-yellow-400" />
-            </div>
-            <div className="text-responsive-lg font-bold text-slate-100">{user.level}</div>
-            <div className="text-responsive-xs text-slate-400">{t('profile.level')}</div>
-          </div>
+        {/* Middle Row: FanArts and Media */}
+        <div className="swipeable-grid-2col">
+          <SwipeableCard
+            title="🎨 FanArts"
+            icon={<Palette className="w-5 h-5 text-rose-400" />}
+            items={fanArtItems}
+            renderItem={renderFanArtItem}
+            gradientColors="from-rose-600/10 to-pink-600/10"
+            borderColor="border-rose-400"
+          />
           
-          <div className="simple-tile text-center">
-            <div className="simple-tile-icon">
-              <Star className="w-6 h-6 sm:w-8 sm:h-8 text-blue-400" />
-            </div>
-            <div className="text-responsive-lg font-bold text-slate-100">{user.xp}</div>
-            <div className="text-responsive-xs text-slate-400">XP</div>
-          </div>
-          
-          <div className="simple-tile text-center">
-            <div className="simple-tile-icon">
-              <Package className="w-6 h-6 sm:w-8 sm:h-8 text-green-400" />
-            </div>
-            <div className="text-responsive-lg font-bold text-slate-100">
-              {user.collections.filter(c => !c.isWishlist).length}
-            </div>
-            <div className="text-responsive-xs text-slate-400">{t('collector.items')}</div>
-          </div>
-          
-          <div className="simple-tile text-center">
-            <div className="simple-tile-icon">
-              <Award className="w-6 h-6 sm:w-8 sm:h-8 text-purple-400" />
-            </div>
-            <div className="text-responsive-lg font-bold text-slate-100">
-              {user.personalRecords.filter(r => r.verified).length}
-            </div>
-            <div className="text-responsive-xs text-slate-400">{t('profile.records')}</div>
-          </div>
+          <SwipeableCard
+            title="📹 Medien"
+            icon={<Camera className="w-5 h-5 text-green-400" />}
+            items={mediaItems}
+            renderItem={renderMediaItem}
+            gradientColors="from-green-600/10 to-emerald-600/10"
+            borderColor="border-green-400"
+          />
         </div>
-      )}
 
-      {/* Navigation Grid */}
-      <div className="grid-auto-fit-sm responsive-max-width">
-        
-        {/* Quiz Tile */}
-        <Link to="/quiz" className="n64-tile n64-tile-small bg-gradient-to-br from-purple-600/20 to-purple-800/20 border-l-4 border-purple-400">
-          <div className="text-center w-full">
-            <Target className="w-6 h-6 sm:w-8 sm:h-8 text-purple-400 mx-auto mb-2" />
-            <div className="font-medium text-slate-100 text-responsive-sm responsive-word-break">{t('nav.quiz')}</div>
-            <div className="text-responsive-xs text-slate-400 mobile-hidden responsive-word-break">{t('home.quiz.description')}</div>
-          </div>
-        </Link>
-
-        {/* Events Tile */}
-        <Link to="/events" className="n64-tile n64-tile-small bg-gradient-to-br from-yellow-600/20 to-yellow-800/20 border-l-4 border-yellow-400">
-          <div className="text-center w-full">
-            <Trophy className="w-6 h-6 sm:w-8 sm:h-8 text-yellow-400 mx-auto mb-2" />
-            <div className="font-medium text-slate-100 text-responsive-sm responsive-word-break">{t('nav.events')}</div>
-            <div className="text-responsive-xs text-slate-400 mobile-hidden responsive-word-break">{t('home.events.description')}</div>
-          </div>
-        </Link>
-
-        {/* Speedrun Media Tile */}
-        <Link to="/speedrun-media" className="n64-tile n64-tile-small bg-gradient-to-br from-green-600/20 to-green-800/20 border-l-4 border-green-400">
-          <div className="text-center w-full">
-            <Camera className="w-6 h-6 sm:w-8 sm:h-8 text-green-400 mx-auto mb-2" />
-            <div className="font-medium text-slate-100 text-responsive-sm responsive-word-break">{t('nav.media')}</div>
-            <div className="text-responsive-xs text-slate-400 mobile-hidden responsive-word-break">{t('home.media.description')}</div>
-          </div>
-        </Link>
-
-        {/* Collector Mode Tile */}
-        <Link to="/collector" className="n64-tile n64-tile-small bg-gradient-to-br from-orange-600/20 to-orange-800/20 border-l-4 border-orange-400">
-          <div className="text-center w-full">
-            <Package className="w-6 h-6 sm:w-8 sm:h-8 text-orange-400 mx-auto mb-2" />
-            <div className="font-medium text-slate-100 text-responsive-sm responsive-word-break">{t('nav.collector')}</div>
-            <div className="text-responsive-xs text-slate-400 mobile-hidden responsive-word-break">{t('home.collector.description')}</div>
-          </div>
-        </Link>
-
-        {/* Forum Tile */}
-        <Link to="/forum" className="n64-tile n64-tile-small bg-gradient-to-br from-cyan-600/20 to-cyan-800/20 border-l-4 border-cyan-400">
-          <div className="text-center w-full">
-            <MessageSquare className="w-6 h-6 sm:w-8 sm:h-8 text-cyan-400 mx-auto mb-2" />
-            <div className="font-medium text-slate-100 text-responsive-sm responsive-word-break">{t('nav.forum')}</div>
-            <div className="text-responsive-xs text-slate-400 mobile-hidden responsive-word-break">{t('home.forum.subtitle')}</div>
-          </div>
-        </Link>
-
-        {/* Profile Tile */}
-        <Link to="/profile" className="n64-tile n64-tile-small bg-gradient-to-br from-blue-600/20 to-blue-800/20 border-l-4 border-blue-400">
-          <div className="text-center w-full">
-            <UsersIcon className="w-6 h-6 sm:w-8 sm:h-8 text-blue-400 mx-auto mb-2" />
-            <div className="font-medium text-slate-100 text-responsive-sm responsive-word-break">{t('nav.profile')}</div>
-            <div className="text-responsive-xs text-slate-400 mobile-hidden responsive-word-break">{t('home.profile.subtitle')}</div>
-          </div>
-        </Link>
-
-        {/* Leaderboard Tile */}
-        <Link to="/leaderboard" className="n64-tile n64-tile-small bg-gradient-to-br from-pink-600/20 to-pink-800/20 border-l-4 border-pink-400">
-          <div className="text-center w-full">
-            <Star className="w-6 h-6 sm:w-8 sm:h-8 text-pink-400 mx-auto mb-2" />
-            <div className="font-medium text-slate-100 text-responsive-sm responsive-word-break">{t('nav.leaderboard')}</div>
-            <div className="text-responsive-xs text-slate-400 mobile-hidden responsive-word-break">{t('home.leaderboard.subtitle')}</div>
-          </div>
-        </Link>
-
-        {/* Minigames Tile */}
-        <Link to="/minigames" className="n64-tile n64-tile-small bg-gradient-to-br from-red-600/20 to-red-800/20 border-l-4 border-red-400">
-          <div className="text-center w-full">
-            <Gamepad2 className="w-6 h-6 sm:w-8 sm:h-8 text-red-400 mx-auto mb-2" />
-            <div className="font-medium text-slate-100 text-responsive-sm responsive-word-break">{t('nav.minigames')}</div>
-            <div className="text-responsive-xs text-slate-400 mobile-hidden responsive-word-break">{t('home.minigames.description')}</div>
-          </div>
-        </Link>
-
-        {/* Marketplace Tile */}
-        <Link to="/marktplatz" className="n64-tile n64-tile-small bg-gradient-to-br from-emerald-600/20 to-emerald-800/20 border-l-4 border-emerald-400">
-          <div className="text-center w-full">
-            <ShoppingCart className="w-6 h-6 sm:w-8 sm:h-8 text-emerald-400 mx-auto mb-2" />
-            <div className="font-medium text-slate-100 text-responsive-sm responsive-word-break">{t('nav.marketplace')}</div>
-            <div className="text-responsive-xs text-slate-400 mobile-hidden responsive-word-break">{t('home.marketplace.subtitle')}</div>
-          </div>
-        </Link>
-
-        {/* Community Tile */}
-        <Link to="/community" className="n64-tile n64-tile-small bg-gradient-to-br from-indigo-600/20 to-indigo-800/20 border-l-4 border-indigo-400">
-          <div className="text-center w-full">
-            <UsersIcon className="w-6 h-6 sm:w-8 sm:h-8 text-indigo-400 mx-auto mb-2" />
-            <div className="font-medium text-slate-100 text-responsive-sm responsive-word-break">{t('nav.community')}</div>
-            <div className="text-responsive-xs text-slate-400 mobile-hidden responsive-word-break">{t('community.subtitle')}</div>
-          </div>
-        </Link>
-
-        {/* Chat Tile */}
-        <Link to="/chat" className="n64-tile n64-tile-small bg-gradient-to-br from-violet-600/20 to-violet-800/20 border-l-4 border-violet-400">
-          <div className="text-center w-full">
-            <MessageCircle className="w-6 h-6 sm:w-8 sm:h-8 text-violet-400 mx-auto mb-2" />
-            <div className="font-medium text-slate-100 text-responsive-sm responsive-word-break">{t('nav.chat')}</div>
-            <div className="text-responsive-xs text-slate-400 mobile-hidden responsive-word-break">Live Chat</div>
-          </div>
-        </Link>
-
-        {/* Fanart Tile */}
-        <Link to="/fanart" className="n64-tile n64-tile-small bg-gradient-to-br from-rose-600/20 to-rose-800/20 border-l-4 border-rose-400">
-          <div className="text-center w-full">
-            <Palette className="w-6 h-6 sm:w-8 sm:h-8 text-rose-400 mx-auto mb-2" />
-            <div className="font-medium text-slate-100 text-responsive-sm responsive-word-break">{t('nav.fanart')}</div>
-            <div className="text-responsive-xs text-slate-400 mobile-hidden responsive-word-break">{t('home.fanart.subtitle')}</div>
-          </div>
-        </Link>
-
+        {/* Bottom Row: Records and Marketplace */}
+        <div className="swipeable-grid-2col">
+          <SwipeableCard
+            title="🏆 Rekorde"
+            icon={<Award className="w-5 h-5 text-yellow-400" />}
+            items={recordItems}
+            renderItem={renderRecordItem}
+            gradientColors="from-yellow-600/10 to-orange-600/10"
+            borderColor="border-yellow-400"
+          />
+          
+          <SwipeableCard
+            title="🛒 Marktplatz"
+            icon={<ShoppingCart className="w-5 h-5 text-emerald-400" />}
+            items={marketplaceItems}
+            renderItem={renderMarketplaceItem}
+            gradientColors="from-emerald-600/10 to-green-600/10"
+            borderColor="border-emerald-400"
+          />
+        </div>
       </div>
 
       {/* Footer */}
