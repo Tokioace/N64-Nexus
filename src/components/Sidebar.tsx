@@ -66,7 +66,8 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen = false, onClose }) => {
               <li className={location.pathname === '/collector' ? 'active' : ''}><Link to="/collector" onClick={handleLinkClick}>📦 {t('nav.collector')}</Link></li>
               <li className={location.pathname === '/leaderboard' ? 'active' : ''}><Link to="/leaderboard" onClick={handleLinkClick}>📊 {t('nav.leaderboard')}</Link></li>
               <li className={location.pathname === '/minigames' ? 'active' : ''}><Link to="/minigames" onClick={handleLinkClick}>🎯 {t('nav.minigames')}</Link></li>
-              <li className={location.pathname === '/marktplatz' ? 'active' : ''}><Link to="/marktplatz" onClick={handleLinkClick}>🛒 {t('nav.marketplace')}</Link></li>
+              <li className={location.pathname === '/marketplace' ? 'active' : ''}><Link to="/marketplace" onClick={handleLinkClick}>🛒 {t('nav.marketplace')}</Link></li>
+              <li className={location.pathname === '/chat' ? 'active' : ''}><Link to="/chat" onClick={handleLinkClick}>💬 {t('chat.title')}</Link></li>
               <li className={location.pathname === '/community' ? 'active' : ''}><Link to="/community" onClick={handleLinkClick}>👥 {t('nav.community')}</Link></li>
               <li className={location.pathname === '/quiz' ? 'active' : ''}><Link to="/quiz" onClick={handleLinkClick}>❓ {t('nav.quiz')}</Link></li>
               <li className={location.pathname.startsWith('/forum') ? 'active' : ''}><Link to="/forum" onClick={handleLinkClick}>💬 {t('nav.forum')}</Link></li>

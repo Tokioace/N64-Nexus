@@ -296,3 +296,154 @@ export interface ForumStats {
   newestMember: string
   mostActiveCategory: string
 }
+
+// Marketplace System Types
+export interface MarketplaceListing {
+  id: string
+  sellerId: string
+  sellerName: string
+  gameId: string
+  gameName: string
+  platform: 'N64'
+  region: 'PAL' | 'NTSC'
+  condition: 'mint' | 'very-good' | 'good' | 'fair' | 'poor'
+  completeness: 'complete' | 'cart-only' | 'box-only'
+  price: number
+  currency: 'EUR' | 'USD' | 'GBP' | 'JPY' | 'CNY' | 'RUB' | 'INR' | 'SAR'
+  description: string
+  images: string[]
+  createdAt: Date
+  updatedAt: Date
+  status: 'active' | 'sold' | 'reserved' | 'removed'
+  location: string
+  shippingOptions: ShippingOption[]
+  tags: string[]
+  views: number
+  watchedBy: string[] // User IDs who are watching this listing
+}
+
+export interface ShippingOption {
+  id: string
+  name: string
+  price: number
+  estimatedDays: number
+}
+
+export interface MarketplaceFilter {
+  gameId?: string
+  condition?: string[]
+  completeness?: string[]
+  priceRange?: { min: number; max: number }
+  region?: string[]
+  location?: string
+  sellerRating?: number
+}
+
+export interface MarketplaceSort {
+  field: 'price' | 'createdAt' | 'views' | 'sellerRating'
+  direction: 'asc' | 'desc'
+}
+
+// Chat System Types
+export interface ChatMessage {
+  id: string
+  conversationId: string
+  senderId: string
+  senderName: string
+  content: string
+  type: 'text' | 'image' | 'offer' | 'system'
+  createdAt: Date
+  isRead: boolean
+  isEdited: boolean
+  editedAt?: Date
+  attachments?: ChatAttachment[]
+  offerData?: OfferData
+}
+
+export interface ChatAttachment {
+  id: string
+  type: 'image' | 'document'
+  url: string
+  name: string
+  size: number
+}
+
+export interface OfferData {
+  listingId: string
+  amount: number
+  currency: string
+  message?: string
+  status: 'pending' | 'accepted' | 'rejected' | 'countered'
+  expiresAt: Date
+}
+
+export interface ChatConversation {
+  id: string
+  participants: ChatParticipant[]
+  listingId?: string // Optional - for marketplace-related chats
+  lastMessage?: ChatMessage
+  lastActivity: Date
+  unreadCount: { [userId: string]: number }
+  isActive: boolean
+  createdAt: Date
+}
+
+export interface ChatParticipant {
+  userId: string
+  username: string
+  avatar?: string
+  joinedAt: Date
+  isActive: boolean
+  lastSeen: Date
+}
+
+export interface MarketplaceContextType {
+  listings: MarketplaceListing[]
+  myListings: MarketplaceListing[]
+  watchedListings: MarketplaceListing[]
+  filters: MarketplaceFilter
+  sort: MarketplaceSort
+  isLoading: boolean
+  error: string | null
+  
+  // Listing management
+  createListing: (listing: Omit<MarketplaceListing, 'id' | 'sellerId' | 'sellerName' | 'createdAt' | 'updatedAt' | 'views' | 'watchedBy'>) => Promise<boolean>
+  updateListing: (listingId: string, updates: Partial<MarketplaceListing>) => Promise<boolean>
+  deleteListing: (listingId: string) => Promise<boolean>
+  getListing: (listingId: string) => Promise<MarketplaceListing | null>
+  getListings: (filters?: MarketplaceFilter, sort?: MarketplaceSort) => Promise<MarketplaceListing[]>
+  
+  // Watching/favorites
+  watchListing: (listingId: string) => Promise<boolean>
+  unwatchListing: (listingId: string) => Promise<boolean>
+  
+  // Filters and sorting
+  setFilters: (filters: MarketplaceFilter) => void
+  setSort: (sort: MarketplaceSort) => void
+  clearFilters: () => void
+}
+
+export interface ChatContextType {
+  conversations: ChatConversation[]
+  activeConversation: ChatConversation | null
+  messages: { [conversationId: string]: ChatMessage[] }
+  isLoading: boolean
+  error: string | null
+  
+  // Conversation management
+  createConversation: (participantIds: string[], listingId?: string) => Promise<string | null>
+  getConversations: () => Promise<ChatConversation[]>
+  getConversation: (conversationId: string) => Promise<ChatConversation | null>
+  setActiveConversation: (conversationId: string | null) => void
+  
+  // Message management
+  sendMessage: (conversationId: string, content: string, type?: 'text' | 'image' | 'offer') => Promise<boolean>
+  getMessages: (conversationId: string) => Promise<ChatMessage[]>
+  markMessagesAsRead: (conversationId: string) => Promise<boolean>
+  editMessage: (messageId: string, content: string) => Promise<boolean>
+  
+  // Offers
+  sendOffer: (conversationId: string, offerData: Omit<OfferData, 'status' | 'expiresAt'>) => Promise<boolean>
+  respondToOffer: (messageId: string, response: 'accepted' | 'rejected') => Promise<boolean>
+  counterOffer: (messageId: string, newAmount: number, message?: string) => Promise<boolean>
+}
