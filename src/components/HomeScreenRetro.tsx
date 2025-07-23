@@ -14,23 +14,12 @@ import {
   ShoppingCart,
   MessageCircle,
   Palette,
-  Newspaper,
-  LogIn,
-  LogOut
+  Newspaper
 } from 'lucide-react'
 
 const HomeScreenRetro: React.FC = () => {
-  const { user, isAuthenticated, login, logout } = useUser()
+  const { user, isAuthenticated } = useUser()
   const { t } = useLanguage()
-
-  const handleQuickLogin = async () => {
-    if (isAuthenticated) {
-      logout()
-    } else {
-      // Quick login with the first mock user for testing
-      await login('retro@battle64.com', 'password')
-    }
-  }
 
   return (
     <div className="container mx-auto px-4 py-6">
@@ -47,26 +36,6 @@ const HomeScreenRetro: React.FC = () => {
             {t('home.welcome')}, {user.username}! ({t('profile.level')} {user.level})
           </p>
         )}
-        
-        {/* Quick Login/Logout Button for Testing */}
-        <div className="mt-4">
-          <button
-            onClick={handleQuickLogin}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-blue-600/20 hover:bg-blue-600/30 border border-blue-500/30 text-blue-400 hover:text-blue-300 transition-all duration-200 text-sm font-medium"
-          >
-            {isAuthenticated ? (
-              <>
-                <LogOut className="w-4 h-4" />
-                Logout ({user?.username})
-              </>
-            ) : (
-              <>
-                <LogIn className="w-4 h-4" />
-                Quick Login (Test User)
-              </>
-            )}
-          </button>
-        </div>
       </div>
 
       {/* Main Grid */}
