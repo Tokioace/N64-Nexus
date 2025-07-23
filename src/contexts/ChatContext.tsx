@@ -521,23 +521,26 @@ export const ChatProvider: React.FC<ChatProviderProps> = ({ children }) => {
 
     try {
       // Find the original offer
-      let originalOffer: ChatMessage | null = null
-      let conversationId = ''
+      let foundConversationId = ''
+      let originalListingId = ''
+      let originalCurrency = ''
 
-      Object.keys(messages).forEach(convId => {
+      for (const convId of Object.keys(messages)) {
         const msg = messages[convId].find(m => m.id === messageId)
         if (msg && msg.type === 'offer' && msg.offerData) {
-          originalOffer = msg
-          conversationId = convId
+          foundConversationId = convId
+          originalListingId = msg.offerData.listingId
+          originalCurrency = msg.offerData.currency
+          break
         }
-      })
+      }
 
-      if (!originalOffer || originalOffer.type !== 'offer' || !originalOffer.offerData) return false
+      if (!foundConversationId || !originalListingId) return false
 
       // Mark original offer as countered
       setMessages(prev => {
         const updated = { ...prev }
-        updated[conversationId] = updated[conversationId].map(msg => {
+        updated[foundConversationId] = updated[foundConversationId].map(msg => {
           if (msg.id === messageId && msg.type === 'offer' && msg.offerData) {
             return {
               ...msg,
@@ -554,13 +557,13 @@ export const ChatProvider: React.FC<ChatProviderProps> = ({ children }) => {
 
       // Send counter offer
       const counterOfferData: Omit<OfferData, 'status' | 'expiresAt'> = {
-        listingId: originalOffer.offerData.listingId,
+        listingId: originalListingId,
         amount: newAmount,
-        currency: originalOffer.offerData.currency,
+        currency: originalCurrency,
         message
       }
 
-      return await sendOffer(conversationId, counterOfferData)
+      return await sendOffer(foundConversationId, counterOfferData)
     } catch (err) {
       setError('Failed to send counter offer')
       return false
