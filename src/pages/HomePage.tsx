@@ -19,7 +19,10 @@ import {
   ChevronDown,
   ChevronUp,
   Award,
-  TrendingUp
+  TrendingUp,
+  ShoppingCart,
+  MessageCircle,
+  Palette
 } from 'lucide-react'
 
 interface NewsItem {
@@ -286,6 +289,42 @@ const HomePage: React.FC = () => {
             <Gamepad2 className="w-8 h-8 text-red-400 mx-auto mb-2" />
             <div className="font-medium text-slate-100 text-sm">{t('nav.minigames')}</div>
             <div className="text-xs text-slate-400">{t('home.minigames.description')}</div>
+          </div>
+        </Link>
+
+        {/* Marketplace Tile */}
+        <Link to="/marktplatz" className="n64-tile n64-tile-small bg-gradient-to-br from-emerald-600/20 to-emerald-800/20 border-l-4 border-emerald-400">
+          <div className="text-center">
+            <ShoppingCart className="w-8 h-8 text-emerald-400 mx-auto mb-2" />
+            <div className="font-medium text-slate-100 text-sm">{t('nav.marketplace')}</div>
+            <div className="text-xs text-slate-400">{t('home.marketplace.subtitle')}</div>
+          </div>
+        </Link>
+
+        {/* Community Tile */}
+        <Link to="/community" className="n64-tile n64-tile-small bg-gradient-to-br from-indigo-600/20 to-indigo-800/20 border-l-4 border-indigo-400">
+          <div className="text-center">
+            <UsersIcon className="w-8 h-8 text-indigo-400 mx-auto mb-2" />
+            <div className="font-medium text-slate-100 text-sm">{t('nav.community')}</div>
+            <div className="text-xs text-slate-400">{t('community.subtitle')}</div>
+          </div>
+        </Link>
+
+        {/* Chat Tile */}
+        <Link to="/chat" className="n64-tile n64-tile-small bg-gradient-to-br from-violet-600/20 to-violet-800/20 border-l-4 border-violet-400">
+          <div className="text-center">
+            <MessageCircle className="w-8 h-8 text-violet-400 mx-auto mb-2" />
+            <div className="font-medium text-slate-100 text-sm">{t('nav.chat')}</div>
+            <div className="text-xs text-slate-400">Live Chat</div>
+          </div>
+        </Link>
+
+        {/* Fanart Tile */}
+        <Link to="/fanart" className="n64-tile n64-tile-small bg-gradient-to-br from-rose-600/20 to-rose-800/20 border-l-4 border-rose-400">
+          <div className="text-center">
+            <Palette className="w-8 h-8 text-rose-400 mx-auto mb-2" />
+            <div className="font-medium text-slate-100 text-sm">{t('nav.fanart')}</div>
+            <div className="text-xs text-slate-400">{t('home.fanart.subtitle')}</div>
           </div>
         </Link>
 

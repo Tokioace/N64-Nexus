@@ -24,6 +24,7 @@ import ForumCategoryPage from './pages/ForumCategoryPage'
 import ForumThreadPage from './pages/ForumThreadPage'
 import ForumNewThreadPage from './pages/ForumNewThreadPage'
 import NewsFeedPage from './pages/NewsFeedPage'
+import FanArtPage from './pages/FanArtPage'
 import ErrorBoundary from './components/ErrorBoundary'
 import Layout from './components/Layout'
 
@@ -57,6 +58,7 @@ function App() {
                     <Route path="/forum/category/:categoryId/new-thread" element={<ErrorBoundary><ForumNewThreadPage /></ErrorBoundary>} />
                     <Route path="/forum/thread/:threadId" element={<ErrorBoundary><ForumThreadPage /></ErrorBoundary>} />
                     <Route path="/newsfeed" element={<NewsFeedPage />} />
+                    <Route path="/fanart" element={<FanArtPage />} />
                   </Routes>
                 </Layout>
               </ForumProvider>
