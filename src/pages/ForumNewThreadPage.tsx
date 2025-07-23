@@ -3,6 +3,7 @@ import { useParams, useNavigate, Link } from 'react-router-dom'
 import { useForum } from '../contexts/ForumContext'
 import { useUser } from '../contexts/UserContext'
 import { useLanguage } from '../contexts/LanguageContext'
+import ImageUpload from '../components/ImageUpload'
 import { 
   ArrowLeft,
   Send,
@@ -26,6 +27,8 @@ const ForumNewThreadPage: React.FC = () => {
 
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
+  const [imageUrl, setImageUrl] = useState<string>('')
+  const [imageFile, setImageFile] = useState<File | null>(null)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [formError, setFormError] = useState('')
 
@@ -64,7 +67,7 @@ const ForumNewThreadPage: React.FC = () => {
     setFormError('')
 
     try {
-      const success = await createThread(categoryId, title.trim(), content.trim())
+      const success = await createThread(categoryId, title.trim(), content.trim(), imageUrl || undefined)
       
       if (success) {
         // Navigate back to category page
@@ -77,6 +80,16 @@ const ForumNewThreadPage: React.FC = () => {
     } finally {
       setIsSubmitting(false)
     }
+  }
+
+  const handleImageSelect = (url: string, file: File) => {
+    setImageUrl(url)
+    setImageFile(file)
+  }
+
+  const handleImageRemove = () => {
+    setImageUrl('')
+    setImageFile(null)
   }
 
   const getIconComponent = (iconName: string) => {
@@ -229,6 +242,24 @@ const ForumNewThreadPage: React.FC = () => {
             <div className="text-sm text-slate-400 mt-1">
               {content.length}/2000 Zeichen
             </div>
+          </div>
+
+          {/* Image Upload */}
+          <div className="mb-6">
+            <label className="block text-sm font-medium text-slate-200 mb-2">
+              Bild anhängen (optional)
+            </label>
+            <ImageUpload
+              onImageSelect={handleImageSelect}
+              onImageRemove={handleImageRemove}
+              currentImage={imageUrl}
+              disabled={isSubmitting}
+              isAuthenticated={isAuthenticated}
+              className="mb-2"
+            />
+            <p className="text-xs text-slate-500">
+              Du kannst ein Bild zu deinem Thread hinzufügen, um ihn visuell zu unterstützen.
+            </p>
           </div>
 
           {/* Guidelines */}
