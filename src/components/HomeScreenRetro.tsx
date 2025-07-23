@@ -10,7 +10,11 @@ import {
   Users as UsersIcon,
   Camera,
   Package,
-  MessageSquare
+  MessageSquare,
+  ShoppingCart,
+  MessageCircle,
+  Palette,
+  Newspaper
 } from 'lucide-react'
 
 const HomeScreenRetro: React.FC = () => {
@@ -122,6 +126,61 @@ const HomeScreenRetro: React.FC = () => {
           <div className="simple-tile-label">
             <div className="font-medium text-slate-100 text-sm">{t('nav.minigames')}</div>
             <div className="text-xs text-slate-400">{t('home.minigames.subtitle')}</div>
+          </div>
+        </Link>
+
+        {/* Marketplace Tile */}
+        <Link to="/marktplatz" className="simple-tile simple-tile-small">
+          <div className="simple-tile-icon">
+            <ShoppingCart className="w-7 h-7 text-emerald-400 mx-auto" />
+          </div>
+          <div className="simple-tile-label">
+            <div className="font-medium text-slate-100 text-sm">{t('nav.marketplace')}</div>
+            <div className="text-xs text-slate-400">{t('home.marketplace.subtitle')}</div>
+          </div>
+        </Link>
+
+        {/* Community Tile */}
+        <Link to="/community" className="simple-tile simple-tile-small">
+          <div className="simple-tile-icon">
+            <UsersIcon className="w-7 h-7 text-indigo-400 mx-auto" />
+          </div>
+          <div className="simple-tile-label">
+            <div className="font-medium text-slate-100 text-sm">{t('nav.community')}</div>
+            <div className="text-xs text-slate-400">{t('community.subtitle')}</div>
+          </div>
+        </Link>
+
+        {/* Chat Tile */}
+        <Link to="/chat" className="simple-tile simple-tile-small">
+          <div className="simple-tile-icon">
+            <MessageCircle className="w-7 h-7 text-violet-400 mx-auto" />
+          </div>
+          <div className="simple-tile-label">
+            <div className="font-medium text-slate-100 text-sm">{t('nav.chat')}</div>
+            <div className="text-xs text-slate-400">Live Chat</div>
+          </div>
+        </Link>
+
+        {/* Fanart Tile */}
+        <Link to="/fanart" className="simple-tile simple-tile-small">
+          <div className="simple-tile-icon">
+            <Palette className="w-7 h-7 text-rose-400 mx-auto" />
+          </div>
+          <div className="simple-tile-label">
+            <div className="font-medium text-slate-100 text-sm">{t('nav.fanart')}</div>
+            <div className="text-xs text-slate-400">{t('home.fanart.subtitle')}</div>
+          </div>
+        </Link>
+
+        {/* Newsfeed Tile */}
+        <Link to="/newsfeed" className="simple-tile simple-tile-small">
+          <div className="simple-tile-icon">
+            <Newspaper className="w-7 h-7 text-amber-400 mx-auto" />
+          </div>
+          <div className="simple-tile-label">
+            <div className="font-medium text-slate-100 text-sm">{t('nav.news')}</div>
+            <div className="text-xs text-slate-400">{t('home.newsfeed')}</div>
           </div>
         </Link>
 
