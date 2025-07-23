@@ -17,6 +17,7 @@ import MinigamesPage from './pages/MinigamesPage'
 import EventsPage from './pages/EventsPage'
 import SpeedrunMediaPage from './pages/SpeedrunMediaPage'
 import CollectorMode from './pages/CollectorMode'
+import ChatPage from './pages/ChatPage'
 import ForumPage from './pages/ForumPage'
 import ForumCategoryPage from './pages/ForumCategoryPage'
 import ForumThreadPage from './pages/ForumThreadPage'
@@ -49,6 +50,7 @@ function App() {
                     <Route path="/speedrun-media" element={<SpeedrunMediaPage />} />
                     <Route path="/collector" element={<CollectorMode />} />
                     <Route path="/marktplatz" element={<CollectorMode />} />
+                    <Route path="/chat" element={<ChatPage />} />
                     <Route path="/forum" element={<ErrorBoundary><ForumPage /></ErrorBoundary>} />
                     <Route path="/forum/category/:categoryId" element={<ErrorBoundary><ForumCategoryPage /></ErrorBoundary>} />
                     <Route path="/forum/category/:categoryId/new-thread" element={<ErrorBoundary><ForumNewThreadPage /></ErrorBoundary>} />
