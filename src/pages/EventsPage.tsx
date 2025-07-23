@@ -142,21 +142,21 @@ const EventsPage: React.FC = () => {
   }
 
   return (
-    <div className="container mx-auto px-4 py-6">
+    <div className="container-lg py-responsive space-responsive">
       {/* Header */}
-      <div className="text-center mb-8">
-        <Trophy className="w-16 h-16 text-yellow-400 mx-auto mb-4" />
-        <h1 className="text-4xl font-bold text-slate-100 mb-2">
+      <div className="text-center mb-responsive">
+        <Trophy className="w-12 h-12 sm:w-16 sm:h-16 text-yellow-400 mx-auto mb-4" />
+        <h1 className="text-responsive-2xl font-bold text-slate-100 mb-2">
           Battle64 Events
         </h1>
-        <p className="text-slate-400 text-lg">
+        <p className="text-responsive-base text-slate-400 max-w-2xl mx-auto">
           {t('events.subtitle')}
         </p>
       </div>
 
       {/* Tab Navigation */}
-      <div className="flex justify-center mb-8">
-        <div className="bg-slate-800 rounded-lg p-1 inline-flex">
+      <div className="flex justify-center mb-responsive">
+        <div className="bg-slate-800 rounded-lg p-1 inline-flex w-full sm:w-auto overflow-x-auto">
           {[
             { key: 'active', label: t('events.tabs.active'), icon: Trophy, color: 'text-green-400' },
             { key: 'upcoming', label: t('events.tabs.upcoming'), icon: Calendar, color: 'text-blue-400' },
@@ -165,7 +165,7 @@ const EventsPage: React.FC = () => {
             <button
               key={tab.key}
               onClick={() => setSelectedTab(tab.key as any)}
-              className={`flex items-center space-x-2 px-4 py-2 rounded-md transition-all duration-200 ${
+              className={`flex items-center gap-2 px-3 sm:px-4 py-2 rounded-md transition-all duration-200 text-responsive-sm whitespace-nowrap ${
                 selectedTab === tab.key
                   ? 'bg-slate-700 text-slate-100'
                   : 'text-slate-400 hover:text-slate-200 hover:bg-slate-700/50'
@@ -179,29 +179,29 @@ const EventsPage: React.FC = () => {
       </div>
 
       {/* Event Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+      <div className="grid grid-responsive grid-1-3 gap-responsive mb-responsive">
         <div className="simple-tile text-center">
-          <Trophy className="w-8 h-8 text-green-400 mx-auto mb-2" />
-          <div className="text-2xl font-bold text-slate-100">
+          <Trophy className="w-6 h-6 sm:w-8 sm:h-8 text-green-400 mx-auto mb-2" />
+          <div className="text-responsive-lg font-bold text-slate-100">
             {events.filter(e => getEventStatus(e) === 'active').length}
           </div>
-          <div className="text-sm text-slate-400">{t('events.stats.activeEvents')}</div>
+          <div className="text-responsive-xs text-slate-400">{t('events.stats.activeEvents')}</div>
         </div>
         
         <div className="simple-tile text-center">
-          <Calendar className="w-8 h-8 text-blue-400 mx-auto mb-2" />
-          <div className="text-2xl font-bold text-slate-100">
+          <Calendar className="w-6 h-6 sm:w-8 sm:h-8 text-blue-400 mx-auto mb-2" />
+          <div className="text-responsive-lg font-bold text-slate-100">
             {events.filter(e => getEventStatus(e) === 'upcoming').length}
           </div>
-          <div className="text-sm text-slate-400">{t('events.stats.upcomingEvents')}</div>
+          <div className="text-responsive-xs text-slate-400">{t('events.stats.upcomingEvents')}</div>
         </div>
         
         <div className="simple-tile text-center">
-          <Users className="w-8 h-8 text-purple-400 mx-auto mb-2" />
-          <div className="text-2xl font-bold text-slate-100">
+          <Users className="w-6 h-6 sm:w-8 sm:h-8 text-purple-400 mx-auto mb-2" />
+          <div className="text-responsive-lg font-bold text-slate-100">
             {events.reduce((sum, event) => sum + event.participants, 0)}
           </div>
-          <div className="text-sm text-slate-400">{t('events.stats.totalParticipants')}</div>
+          <div className="text-responsive-xs text-slate-400">{t('events.stats.totalParticipants')}</div>
         </div>
       </div>
 

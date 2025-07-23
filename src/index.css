@@ -24,17 +24,45 @@ code {
   @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
 }
 
+/* Responsive Container Variants */
+.container-sm {
+  @apply max-w-2xl mx-auto px-4 sm:px-6;
+}
+
+.container-md {
+  @apply max-w-4xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+.container-lg {
+  @apply max-w-6xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+.container-xl {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
 /* Button Styles */
 .btn-primary {
   @apply inline-flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 
          text-white font-medium rounded-lg transition-colors duration-200 
-         focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2;
+         focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2
+         text-sm sm:text-base;
 }
 
 .btn-secondary {
   @apply inline-flex items-center px-4 py-2 bg-slate-600 hover:bg-slate-700 
          text-slate-100 font-medium rounded-lg transition-colors duration-200 
-         focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2;
+         focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2
+         text-sm sm:text-base;
+}
+
+/* Responsive Button Sizes */
+.btn-sm {
+  @apply px-3 py-1.5 text-sm;
+}
+
+.btn-lg {
+  @apply px-6 py-3 text-lg;
 }
 
 /* N64-Style Retro Tiles */
@@ -73,12 +101,12 @@ code {
 }
 
 .n64-tile-large {
-  @apply min-h-[240px] p-6;
+  @apply min-h-[180px] sm:min-h-[220px] lg:min-h-[240px] p-4 sm:p-6;
   animation: float 6s ease-in-out infinite;
 }
 
 .n64-tile-small {
-  @apply min-h-[120px] p-4 cursor-pointer;
+  @apply min-h-[100px] sm:min-h-[120px] p-3 sm:p-4 cursor-pointer;
   animation: float 4s ease-in-out infinite;
 }
 
@@ -115,7 +143,7 @@ code {
 
 /* Legacy simple tile styles for compatibility */
 .simple-tile {
-  @apply bg-slate-800 border border-slate-700 rounded-lg p-4 shadow-lg;
+  @apply bg-slate-800 border border-slate-700 rounded-lg p-3 sm:p-4 lg:p-6 shadow-lg;
   background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
   border: 1px solid #475569;
 }
@@ -129,28 +157,28 @@ code {
 }
 
 .simple-tile-large {
-  @apply min-h-[200px] p-6;
+  @apply min-h-[160px] sm:min-h-[180px] lg:min-h-[200px] p-4 sm:p-6;
 }
 
 .simple-tile-medium {
-  @apply min-h-[150px] p-4;
+  @apply min-h-[120px] sm:min-h-[140px] lg:min-h-[150px] p-3 sm:p-4;
 }
 
 .simple-tile-small {
-  @apply min-h-[100px] p-3 text-center;
+  @apply min-h-[80px] sm:min-h-[90px] lg:min-h-[100px] p-2 sm:p-3 text-center flex flex-col items-center justify-center;
 }
 
 .simple-tile-icon {
-  @apply mb-2;
+  @apply mb-2 flex items-center justify-center;
 }
 
 .simple-tile-label {
-  @apply text-sm;
+  @apply text-center text-sm sm:text-base;
 }
 
 /* Navigation Styles */
 .sidebar {
-  @apply fixed left-0 top-0 h-full w-64 bg-slate-900 border-r border-slate-700 
+  @apply fixed left-0 top-0 h-full w-64 sm:w-72 lg:w-64 bg-slate-900 border-r border-slate-700 
          transform -translate-x-full transition-transform duration-300 ease-in-out 
          lg:translate-x-0 z-40;
   -webkit-overflow-scrolling: touch;
@@ -172,8 +200,8 @@ code {
 }
 
 .sidebar li a {
-  @apply block px-6 py-3 text-slate-300 hover:bg-slate-800 hover:text-blue-400 
-         transition-colors duration-200 border-l-4 border-transparent;
+  @apply block px-4 sm:px-6 py-3 text-slate-300 hover:bg-slate-800 hover:text-blue-400 
+         transition-colors duration-200 border-l-4 border-transparent text-sm sm:text-base;
 }
 
 .sidebar li.active a {
@@ -202,7 +230,8 @@ code {
 
 /* Main Content */
 .main-content {
-  @apply min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900;
+  @apply min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 
+         px-0 sm:px-2 lg:px-4;
 }
 
 .main-content.sidebar-open {
@@ -211,11 +240,11 @@ code {
 
 /* Page Header */
 .page-header {
-  @apply bg-slate-800 border-b border-slate-700 px-6 py-4;
+  @apply bg-slate-800 border-b border-slate-700 px-4 sm:px-6 py-3 sm:py-4;
 }
 
 .page-title {
-  @apply text-2xl font-bold text-slate-100;
+  @apply text-xl sm:text-2xl lg:text-3xl font-bold text-slate-100;
 }
 
 /* Cards */
@@ -224,57 +253,138 @@ code {
 }
 
 .card-header {
-  @apply px-6 py-4 border-b border-slate-700 bg-slate-700;
+  @apply px-4 sm:px-6 py-3 sm:py-4 border-b border-slate-700 bg-slate-700;
 }
 
 .card-body {
-  @apply p-6;
+  @apply p-4 sm:p-6;
 }
 
-/* Kompakte Tile-Styles für No-Scroll Layout */
-.simple-tile {
-  @apply bg-slate-800 border border-slate-700 rounded-lg p-3 
-         text-slate-100 shadow-lg;
+/* Responsive Grid Layouts */
+.grid-responsive {
+  @apply grid gap-4 sm:gap-6;
 }
 
-.simple-tile-large {
-  @apply min-h-[160px] p-4;
+.grid-1-2-3 {
+  @apply grid-cols-1 sm:grid-cols-2 lg:grid-cols-3;
 }
 
-.simple-tile-medium {
-  @apply min-h-[120px] p-3;
+.grid-1-2-4 {
+  @apply grid-cols-1 sm:grid-cols-2 lg:grid-cols-4;
 }
 
-.simple-tile-small {
-  @apply min-h-[80px] p-2 text-center flex flex-col items-center justify-center;
+.grid-1-3 {
+  @apply grid-cols-1 lg:grid-cols-3;
 }
 
-.simple-tile-icon {
-  @apply mb-2 flex items-center justify-center;
+.grid-2-4 {
+  @apply grid-cols-2 lg:grid-cols-4;
 }
 
-.simple-tile-label {
-  @apply text-center;
+/* Responsive Text Sizes */
+.text-responsive-xs {
+  @apply text-xs sm:text-sm;
 }
 
-/* Responsive Adjustments */
-@media (max-width: 768px) {
-  .simple-tile-large {
-    @apply min-h-[140px] p-3;
-  }
+.text-responsive-sm {
+  @apply text-sm sm:text-base;
+}
+
+.text-responsive-base {
+  @apply text-base sm:text-lg;
+}
+
+.text-responsive-lg {
+  @apply text-lg sm:text-xl lg:text-2xl;
+}
+
+.text-responsive-xl {
+  @apply text-xl sm:text-2xl lg:text-3xl;
+}
+
+.text-responsive-2xl {
+  @apply text-2xl sm:text-3xl lg:text-4xl;
+}
+
+/* Responsive Spacing */
+.space-responsive {
+  @apply space-y-4 sm:space-y-6 lg:space-y-8;
+}
+
+.gap-responsive {
+  @apply gap-3 sm:gap-4 lg:gap-6;
+}
+
+.p-responsive {
+  @apply p-3 sm:p-4 lg:p-6;
+}
+
+.px-responsive {
+  @apply px-3 sm:px-4 lg:px-6;
+}
+
+.py-responsive {
+  @apply py-3 sm:py-4 lg:py-6;
+}
+
+.m-responsive {
+  @apply m-3 sm:m-4 lg:m-6;
+}
+
+.mb-responsive {
+  @apply mb-3 sm:mb-4 lg:mb-6;
+}
+
+/* Mobile-First Responsive Utilities */
+.mobile-stack {
+  @apply flex flex-col sm:flex-row;
+}
+
+.mobile-center {
+  @apply text-center sm:text-left;
+}
+
+.mobile-full {
+  @apply w-full sm:w-auto;
+}
+
+.mobile-hidden {
+  @apply hidden sm:block;
+}
+
+.mobile-only {
+  @apply block sm:hidden;
+}
+
+/* Tablet Specific */
+.tablet-hidden {
+  @apply hidden md:block;
+}
+
+.tablet-only {
+  @apply hidden sm:block lg:hidden;
+}
+
+/* Desktop Specific */
+.desktop-hidden {
+  @apply hidden lg:block;
+}
+
+.desktop-only {
+  @apply hidden lg:block;
 }
 
 /* Forum-specific styles */
 .forum-post {
-  @apply bg-slate-800 border border-slate-700 rounded-lg p-4 mb-4;
+  @apply bg-slate-800 border border-slate-700 rounded-lg p-3 sm:p-4 mb-4;
 }
 
 .forum-post-header {
-  @apply flex items-center justify-between mb-3 pb-2 border-b border-slate-600;
+  @apply flex flex-col sm:flex-row sm:items-center justify-between mb-3 pb-2 border-b border-slate-600 gap-2 sm:gap-0;
 }
 
 .forum-post-content {
-  @apply text-slate-100 leading-relaxed;
+  @apply text-slate-100 leading-relaxed text-sm sm:text-base;
 }
 
 .forum-post-content p {
@@ -282,27 +392,27 @@ code {
 }
 
 .forum-post-meta {
-  @apply text-sm text-slate-400 flex items-center space-x-2;
+  @apply text-xs sm:text-sm text-slate-400 flex flex-wrap items-center gap-2;
 }
 
 .forum-thread-title {
-  @apply text-xl font-bold text-slate-100 hover:text-blue-400 transition-colors cursor-pointer;
+  @apply text-lg sm:text-xl font-bold text-slate-100 hover:text-blue-400 transition-colors cursor-pointer;
 }
 
 .forum-category-icon {
-  @apply w-6 h-6 flex-shrink-0;
+  @apply w-5 h-5 sm:w-6 sm:h-6 flex-shrink-0;
 }
 
 .forum-stats-tile {
-  @apply bg-slate-800 border border-slate-700 rounded-lg p-4 text-center;
+  @apply bg-slate-800 border border-slate-700 rounded-lg p-3 sm:p-4 text-center;
 }
 
 .forum-stats-number {
-  @apply text-2xl font-bold text-blue-400;
+  @apply text-xl sm:text-2xl font-bold text-blue-400;
 }
 
 .forum-stats-label {
-  @apply text-sm text-slate-400 mt-1;
+  @apply text-xs sm:text-sm text-slate-400 mt-1;
 }
 
 /* Forum user badges */
@@ -328,4 +438,139 @@ code {
 
 .forum-user-badge.master {
   @apply bg-yellow-700 text-yellow-200;
+}
+
+/* Mobile Optimizations */
+@media (max-width: 640px) {
+  .container {
+    @apply px-3;
+  }
+  
+  .simple-tile {
+    @apply p-3;
+  }
+  
+  .btn-primary, .btn-secondary {
+    @apply px-3 py-2 text-sm;
+  }
+  
+  .page-title {
+    @apply text-lg;
+  }
+  
+  /* Stack elements vertically on mobile */
+  .mobile-stack > * {
+    @apply w-full mb-2 last:mb-0;
+  }
+  
+  /* Reduce padding on mobile */
+  .card-header, .card-body {
+    @apply px-3 py-3;
+  }
+  
+  /* Smaller text on mobile for better fit */
+  .forum-thread-title {
+    @apply text-base;
+  }
+  
+  .forum-stats-number {
+    @apply text-lg;
+  }
+}
+
+/* Tablet Optimizations */
+@media (min-width: 641px) and (max-width: 1024px) {
+  .container {
+    @apply px-4;
+  }
+  
+  .simple-tile {
+    @apply p-4;
+  }
+  
+  .grid-1-2-3 {
+    @apply grid-cols-2;
+  }
+  
+  .grid-1-2-4 {
+    @apply grid-cols-3;
+  }
+}
+
+/* Large Screen Optimizations */
+@media (min-width: 1025px) {
+  .container {
+    @apply px-6;
+  }
+  
+  .simple-tile {
+    @apply p-6;
+  }
+  
+  /* Full grid layouts on large screens */
+  .grid-1-2-3 {
+    @apply grid-cols-3;
+  }
+  
+  .grid-1-2-4 {
+    @apply grid-cols-4;
+  }
+}
+
+/* Touch and Accessibility Improvements */
+@media (hover: none) and (pointer: coarse) {
+  /* Touch device optimizations */
+  .btn-primary, .btn-secondary {
+    @apply py-3 px-4 min-h-[44px]; /* Minimum touch target size */
+  }
+  
+  .sidebar li a {
+    @apply py-4; /* Larger touch targets for navigation */
+  }
+  
+  .n64-tile:hover, .simple-tile:hover {
+    transform: none; /* Disable hover effects on touch devices */
+  }
+}
+
+/* High DPI Display Optimizations */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .n64-tile::before {
+    background-size: 2px 2px;
+  }
+}
+
+/* Dark mode improvements (already dark, but ensuring consistency) */
+@media (prefers-color-scheme: dark) {
+  body {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .n64-tile, .n64-tile-small, .n64-tile-large {
+    animation: none;
+  }
+  
+  .transition-all, .transition-colors, .transition-transform {
+    transition: none;
+  }
+}
+
+/* Print styles */
+@media print {
+  .sidebar, .mobile-menu-button {
+    display: none !important;
+  }
+  
+  .main-content {
+    margin-left: 0 !important;
+    padding: 0 !important;
+  }
+  
+  .container {
+    max-width: none !important;
+    padding: 0 !important;
+  }
 }

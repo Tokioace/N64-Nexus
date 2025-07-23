@@ -57,79 +57,79 @@ const CommunityPage: React.FC = () => {
 
   if (loading) {
     return (
-      <div className="container mx-auto px-4 py-6">
-        <div className="simple-tile text-center py-12">
-          <div className="animate-spin w-8 h-8 border-2 border-blue-600 border-t-transparent rounded-full mx-auto mb-4"></div>
-          <p className="text-slate-400">{t('common.loading')}</p>
+      <div className="container-lg py-responsive">
+        <div className="simple-tile text-center py-8 sm:py-12">
+          <div className="animate-spin w-6 h-6 sm:w-8 sm:h-8 border-2 border-blue-600 border-t-transparent rounded-full mx-auto mb-4"></div>
+          <p className="text-responsive-sm text-slate-400">{t('common.loading')}</p>
         </div>
       </div>
     )
   }
 
   return (
-    <div className="container mx-auto px-4 py-6 space-y-6">
+    <div className="container-lg py-responsive space-responsive">
       {/* Header */}
-      <div className="simple-tile p-6">
-        <div className="flex items-center gap-3 mb-4">
-          <Users className="w-8 h-8 text-blue-400" />
+      <div className="simple-tile">
+        <div className="flex items-center gap-3 mb-responsive">
+          <Users className="w-6 h-6 sm:w-8 sm:h-8 text-blue-400" />
           <div>
-            <h1 className="text-3xl font-bold text-slate-100">{t('community.title')}</h1>
-            <p className="text-slate-400">
+            <h1 className="text-responsive-2xl font-bold text-slate-100">{t('community.title')}</h1>
+            <p className="text-responsive-base text-slate-400">
               {t('community.subtitle')}
             </p>
           </div>
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <div className="text-center p-4 bg-slate-700/30 rounded-lg">
-            <div className="text-2xl font-bold text-blue-400">{users.length}</div>
-            <div className="text-sm text-slate-400">{t('community.members')}</div>
+        <div className="grid grid-responsive grid-2-4 gap-responsive">
+          <div className="text-center p-3 sm:p-4 bg-slate-700/30 rounded-lg">
+            <div className="text-responsive-lg font-bold text-blue-400">{users.length}</div>
+            <div className="text-responsive-xs text-slate-400">{t('community.members')}</div>
           </div>
-          <div className="text-center p-4 bg-slate-700/30 rounded-lg">
-            <div className="text-2xl font-bold text-green-400">
+          <div className="text-center p-3 sm:p-4 bg-slate-700/30 rounded-lg">
+            <div className="text-responsive-lg font-bold text-green-400">
               {users.reduce((sum, user) => sum + user.collections.filter(c => !c.isWishlist).length, 0)}
             </div>
-            <div className="text-sm text-slate-400">{t('community.games')}</div>
+            <div className="text-responsive-xs text-slate-400">{t('community.games')}</div>
           </div>
-          <div className="text-center p-4 bg-slate-700/30 rounded-lg">
-            <div className="text-2xl font-bold text-purple-400">
+          <div className="text-center p-3 sm:p-4 bg-slate-700/30 rounded-lg">
+            <div className="text-responsive-lg font-bold text-purple-400">
               {users.reduce((sum, user) => sum + user.personalRecords.filter(r => r.verified).length, 0)}
             </div>
-            <div className="text-sm text-slate-400">{t('community.records')}</div>
+            <div className="text-responsive-xs text-slate-400">{t('community.records')}</div>
           </div>
-          <div className="text-center p-4 bg-slate-700/30 rounded-lg">
-            <div className="text-2xl font-bold text-yellow-400">
+          <div className="text-center p-3 sm:p-4 bg-slate-700/30 rounded-lg">
+            <div className="text-responsive-lg font-bold text-yellow-400">
               {Math.round(users.reduce((sum, user) => sum + user.level, 0) / users.length)}
             </div>
-            <div className="text-sm text-slate-400">Ø Level</div>
+            <div className="text-responsive-xs text-slate-400">Ø Level</div>
           </div>
         </div>
       </div>
 
       {/* Filters and Search */}
-      <div className="simple-tile p-6">
-        <div className="flex flex-col md:flex-row gap-4">
+      <div className="simple-tile">
+        <div className="flex flex-col lg:flex-row gap-4">
           {/* Search */}
           <div className="flex-1">
             <div className="relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-slate-400" />
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 sm:w-5 sm:h-5 text-slate-400" />
               <input
                 type="text"
                 placeholder={t('placeholder.searchPlayers')}
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-slate-100 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full pl-9 sm:pl-10 pr-3 sm:pr-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-slate-100 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 text-responsive-sm"
               />
             </div>
           </div>
 
           {/* Filters */}
-          <div className="flex gap-4">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
             <select
               value={platformFilter}
               onChange={(e) => setPlatformFilter(e.target.value as any)}
-              className="px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-slate-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-slate-100 focus:outline-none focus:ring-2 focus:ring-blue-500 text-responsive-sm"
             >
               <option value="all">{t('community.allPlatforms')}</option>
               <option value="N64">N64</option>
@@ -139,7 +139,7 @@ const CommunityPage: React.FC = () => {
             <select
               value={regionFilter}
               onChange={(e) => setRegionFilter(e.target.value as any)}
-              className="px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-slate-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-slate-100 focus:outline-none focus:ring-2 focus:ring-blue-500 text-responsive-sm"
             >
               <option value="all">{t('community.allRegions')}</option>
               <option value="PAL">PAL</option>
@@ -149,7 +149,7 @@ const CommunityPage: React.FC = () => {
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value as any)}
-              className="px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-slate-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-slate-100 focus:outline-none focus:ring-2 focus:ring-blue-500 text-responsive-sm"
             >
               <option value="level">{t('community.sortByLevel')}</option>
               <option value="xp">{t('community.sortByXP')}</option>
@@ -163,33 +163,33 @@ const CommunityPage: React.FC = () => {
 
       {/* Users Grid */}
       {filteredAndSortedUsers.length === 0 ? (
-        <div className="simple-tile text-center py-12">
-          <Users className="w-16 h-16 text-slate-600 mx-auto mb-4" />
-          <h3 className="text-xl font-semibold text-slate-300 mb-2">
+        <div className="simple-tile text-center py-8 sm:py-12">
+          <Users className="w-12 h-12 sm:w-16 sm:h-16 text-slate-600 mx-auto mb-4" />
+          <h3 className="text-responsive-lg font-semibold text-slate-300 mb-2">
             Keine Spieler gefunden
           </h3>
-          <p className="text-slate-400">
+          <p className="text-responsive-sm text-slate-400">
             Versuche andere Suchbegriffe oder Filter.
           </p>
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-responsive grid-1-2-3 gap-responsive">
           {filteredAndSortedUsers.map((user) => (
             <Link
               key={user.id}
               to={`/profile/${user.id}`}
-              className="simple-tile p-6 hover:border-blue-500/50 transition-all hover:scale-[1.02]"
+              className="simple-tile hover:border-blue-500/50 transition-all hover:scale-[1.02]"
             >
               {/* User Header */}
-              <div className="flex items-center gap-4 mb-4">
-                <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full flex items-center justify-center text-2xl">
+              <div className="flex items-center gap-3 sm:gap-4 mb-4">
+                <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full flex items-center justify-center text-lg sm:text-2xl">
                   {user.avatar || '🎮'}
                 </div>
-                <div className="flex-1">
-                  <h3 className="text-lg font-bold text-slate-100 mb-1">
+                <div className="flex-1 min-w-0">
+                  <h3 className="text-responsive-base font-bold text-slate-100 mb-1 truncate">
                     {user.username}
                   </h3>
-                  <div className="flex items-center gap-2 text-sm">
+                  <div className="flex items-center gap-2 text-responsive-xs flex-wrap">
                     <span className={`px-2 py-1 rounded-full text-xs font-medium ${
                       user.platform === 'N64' 
                         ? 'text-blue-400 bg-blue-400/20' 
@@ -209,43 +209,39 @@ const CommunityPage: React.FC = () => {
               </div>
 
               {/* User Stats */}
-              <div className="grid grid-cols-3 gap-4 mb-4">
+              <div className="grid grid-cols-3 gap-2 sm:gap-4 mb-4">
                 <div className="text-center">
                   <div className="flex items-center justify-center gap-1 text-blue-400 mb-1">
-                    <Trophy className="w-4 h-4" />
-                    <span className="font-bold">{user.level}</span>
+                    <Trophy className="w-3 h-3 sm:w-4 sm:h-4" />
+                    <span className="font-bold text-responsive-sm">{user.level}</span>
                   </div>
-                  <div className="text-xs text-slate-400">{t('profile.level')}</div>
+                  <div className="text-responsive-xs text-slate-400">{t('profile.level')}</div>
                 </div>
                 <div className="text-center">
                   <div className="flex items-center justify-center gap-1 text-green-400 mb-1">
-                    <Package className="w-4 h-4" />
-                    <span className="font-bold">{user.collections.filter(c => !c.isWishlist).length}</span>
+                    <Package className="w-3 h-3 sm:w-4 sm:h-4" />
+                    <span className="font-bold text-responsive-sm">{user.collections.filter(c => !c.isWishlist).length}</span>
                   </div>
-                  <div className="text-xs text-slate-400">{t('community.games')}</div>
+                  <div className="text-responsive-xs text-slate-400">{t('community.games')}</div>
                 </div>
                 <div className="text-center">
                   <div className="flex items-center justify-center gap-1 text-purple-400 mb-1">
-                    <Star className="w-4 h-4" />
-                    <span className="font-bold">{user.personalRecords.filter(r => r.verified).length}</span>
+                    <Star className="w-3 h-3 sm:w-4 sm:h-4" />
+                    <span className="font-bold text-responsive-sm">{user.personalRecords.filter(r => r.verified).length}</span>
                   </div>
-                  <div className="text-xs text-slate-400">{t('community.records')}</div>
+                  <div className="text-responsive-xs text-slate-400">{t('community.records')}</div>
                 </div>
               </div>
 
               {/* Bio Preview */}
               {user.bio && (
-                <p className="text-sm text-slate-300 mb-4 overflow-hidden" style={{ 
-                  display: '-webkit-box', 
-                  WebkitLineClamp: 2, 
-                  WebkitBoxOrient: 'vertical' 
-                }}>
+                <p className="text-responsive-sm text-slate-300 mb-4 overflow-hidden line-clamp-2">
                   {user.bio}
                 </p>
               )}
 
               {/* Join Date */}
-              <div className="text-xs text-slate-500">
+              <div className="text-responsive-xs text-slate-500">
                 {t('profile.joinDate')} {user.joinDate.toLocaleDateString(getLocaleString(currentLanguage), { 
                   month: 'long', 
                   year: 'numeric' 
@@ -255,8 +251,8 @@ const CommunityPage: React.FC = () => {
               {/* Recent Activity Preview */}
               {user.personalRecords.length > 0 && (
                 <div className="mt-3 pt-3 border-t border-slate-700">
-                  <div className="text-xs text-slate-400 mb-1">{t('community.recentRecord')}</div>
-                  <div className="text-sm text-slate-200">
+                  <div className="text-responsive-xs text-slate-400 mb-1">{t('community.recentRecord')}</div>
+                  <div className="text-responsive-sm text-slate-200 truncate">
                     {user.personalRecords[user.personalRecords.length - 1].gameName}
                   </div>
                 </div>
@@ -269,8 +265,8 @@ const CommunityPage: React.FC = () => {
       {/* Load More Button (for future pagination) */}
       {filteredAndSortedUsers.length >= 20 && (
         <div className="text-center">
-          <button className="px-6 py-3 bg-slate-700 hover:bg-slate-600 text-slate-200 rounded-lg transition-colors">
-                              {t('common.viewAll')}
+          <button className="btn-secondary mobile-full sm:w-auto">
+            {t('common.viewAll')}
           </button>
         </div>
       )}
