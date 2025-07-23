@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { TrendingUp } from 'lucide-react'
 
 interface NewsItem {
@@ -15,36 +15,11 @@ interface NewsCardProps {
 }
 
 const NewsCard: React.FC<NewsCardProps> = ({ newsItem, index }) => {
-  const [showMessage, setShowMessage] = useState(false)
-  const [messageText, setMessageText] = useState('')
-
   const formatTime = (date: Date) => {
     return date.toLocaleTimeString('de-DE', {
       hour: '2-digit',
       minute: '2-digit'
     })
-  }
-
-  const handleCardClick = () => {
-    const messages = [
-      '📰 News gelesen!',
-      '✨ Interessant!',
-      '🎮 N64 News!',
-      '📱 Artikel geöffnet!',
-      '🎯 News entdeckt!',
-      '⭐ Mehr erfahren!',
-      '🔥 Hot News!',
-      '💫 News geladen!'
-    ]
-    
-    const randomMessage = messages[Math.floor(Math.random() * messages.length)]
-    setMessageText(randomMessage)
-    setShowMessage(true)
-    
-    // Hide message after 2 seconds
-    setTimeout(() => {
-      setShowMessage(false)
-    }, 2000)
   }
 
   const getTypeColor = (type: string) => {
@@ -78,10 +53,7 @@ const NewsCard: React.FC<NewsCardProps> = ({ newsItem, index }) => {
   }
 
   return (
-    <div 
-      className="swipeable-card bg-gradient-to-br from-blue-600/10 to-purple-600/10 border-l-4 border-blue-400 relative cursor-pointer hover:shadow-xl transition-all duration-300 hover:scale-105"
-      onClick={handleCardClick}
-    >
+    <div className="swipeable-card bg-gradient-to-br from-blue-600/10 to-purple-600/10 border-l-4 border-blue-400 relative">
       <div className="swipeable-card-header">
         <div className="flex items-center gap-2">
           <TrendingUp className="w-5 h-5 text-blue-400" />
@@ -97,30 +69,21 @@ const NewsCard: React.FC<NewsCardProps> = ({ newsItem, index }) => {
       </div>
       
       <div className="swipeable-card-content">
-        <div className="swipeable-item p-3 h-full flex flex-col">
+        <div className="p-3 h-full flex flex-col">
           <div className="flex-1">
-            <h4 className="text-sm font-semibold text-slate-100 mb-2 line-clamp-2">
+            <h4 className="text-sm sm:text-base font-semibold text-slate-100 mb-2 leading-tight">
               {newsItem.title}
             </h4>
-            <p className="text-xs text-slate-300 mb-3 line-clamp-4">
+            <p className="text-xs sm:text-sm text-slate-300 mb-3 leading-relaxed">
               {newsItem.content}
             </p>
           </div>
-          <div className="flex items-center justify-between text-xs text-slate-400">
+          <div className="flex items-center justify-between text-xs text-slate-400 mt-auto">
             <span>{formatTime(newsItem.date)}</span>
-            <span className="text-blue-400">Klicken für mehr</span>
+            <span className="text-blue-400">News Details</span>
           </div>
         </div>
       </div>
-
-      {/* Click Message Overlay */}
-      {showMessage && (
-        <div className="absolute inset-0 bg-black/70 flex items-center justify-center z-10 transition-opacity duration-300">
-          <div className="bg-slate-800/90 border border-slate-600 rounded-lg px-4 py-3 text-center backdrop-blur-sm">
-            <p className="text-slate-100 text-sm font-medium">{messageText}</p>
-          </div>
-        </div>
-      )}
     </div>
   )
 }

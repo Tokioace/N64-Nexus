@@ -21,8 +21,6 @@ const SwipeableCard: React.FC<SwipeableCardProps> = ({
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isTransitioning, setIsTransitioning] = useState(false)
-  const [showMessage, setShowMessage] = useState(false)
-  const [messageText, setMessageText] = useState('')
   const touchStartX = useRef<number>(0)
   const touchEndX = useRef<number>(0)
   const containerRef = useRef<HTMLDivElement>(null)
@@ -30,47 +28,10 @@ const SwipeableCard: React.FC<SwipeableCardProps> = ({
   const maxItems = Math.min(items.length, 10) // Limit to 10 items as requested
   const displayItems = items.slice(0, maxItems)
 
-  const showSwipeMessage = (direction: 'next' | 'prev') => {
-    const messages = {
-      next: [
-        '✨ Nächste Karte wird geladen...',
-        '🎮 Hier kommt die nächste!',
-        '🚀 Weiter geht\'s!',
-        '📱 Swipe erfolgreich!',
-        '🎯 Neue Inhalte entdecken!',
-        '⭐ Mehr davon!',
-        '🔥 Keep swiping!',
-        '💫 Nächster Inhalt!'
-      ],
-      prev: [
-        '⬅️ Zurück zur vorherigen Karte',
-        '🔄 Rückwärts navigiert!',
-        '📍 Vorherige Karte geladen',
-        '↩️ Zurück geswipet!',
-        '🎮 Rückwärts!',
-        '⏪ Previous content!',
-        '🔙 Zurück!',
-        '📱 Rückwärts-Swipe!'
-      ]
-    }
-    
-    const messageArray = messages[direction]
-    const randomMessage = messageArray[Math.floor(Math.random() * messageArray.length)]
-    
-    setMessageText(randomMessage)
-    setShowMessage(true)
-    
-    // Hide message after 2 seconds
-    setTimeout(() => {
-      setShowMessage(false)
-    }, 2000)
-  }
-
   const nextItem = () => {
     if (isTransitioning || displayItems.length <= 1) return
     setIsTransitioning(true)
     setCurrentIndex((prev) => (prev + 1) % displayItems.length)
-    showSwipeMessage('next')
     setTimeout(() => setIsTransitioning(false), 300)
   }
 
@@ -78,7 +39,6 @@ const SwipeableCard: React.FC<SwipeableCardProps> = ({
     if (isTransitioning || displayItems.length <= 1) return
     setIsTransitioning(true)
     setCurrentIndex((prev) => (prev - 1 + displayItems.length) % displayItems.length)
-    showSwipeMessage('prev')
     setTimeout(() => setIsTransitioning(false), 300)
   }
 
@@ -106,19 +66,6 @@ const SwipeableCard: React.FC<SwipeableCardProps> = ({
     touchStartX.current = 0
     touchEndX.current = 0
   }
-
-  // Remove auto-advance functionality - commented out
-  // useEffect(() => {
-  //   if (displayItems.length <= 1) return
-  //   
-  //   const interval = setInterval(() => {
-  //     if (!isTransitioning) {
-  //       nextItem()
-  //     }
-  //   }, 10000)
-  //
-  //   return () => clearInterval(interval)
-  // }, [currentIndex, isTransitioning, displayItems.length])
 
   if (displayItems.length === 0) {
     return (
@@ -174,25 +121,23 @@ const SwipeableCard: React.FC<SwipeableCardProps> = ({
       
       <div className="swipeable-card-content">
         <div 
-          className={`swipeable-item-container ${isTransitioning ? 'transitioning' : ''}`}
-          style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+          className="flex h-full transition-transform duration-300 ease-in-out"
+          style={{ 
+            transform: `translateX(-${currentIndex * 100}%)`,
+            width: `${displayItems.length * 100}%`
+          }}
         >
           {displayItems.map((item, index) => (
-            <div key={index} className="swipeable-item">
+            <div 
+              key={index} 
+              className="flex-shrink-0 h-full p-2 sm:p-3 overflow-hidden"
+              style={{ width: `${100 / displayItems.length}%` }}
+            >
               {renderItem(item, index)}
             </div>
           ))}
         </div>
       </div>
-
-      {/* Swipe Message Overlay */}
-      {showMessage && (
-        <div className="absolute inset-0 bg-black/70 flex items-center justify-center z-10 transition-opacity duration-300">
-          <div className="bg-slate-800/90 border border-slate-600 rounded-lg px-4 py-3 text-center backdrop-blur-sm">
-            <p className="text-slate-100 text-sm font-medium">{messageText}</p>
-          </div>
-        </div>
-      )}
 
       {/* Swipe indicator dots */}
       <div className="swipeable-card-dots">
@@ -203,7 +148,6 @@ const SwipeableCard: React.FC<SwipeableCardProps> = ({
               if (!isTransitioning) {
                 setIsTransitioning(true)
                 setCurrentIndex(index)
-                showSwipeMessage(index > currentIndex ? 'next' : 'prev')
                 setTimeout(() => setIsTransitioning(false), 300)
               }
             }}
