@@ -406,7 +406,9 @@ const EventsPage: React.FC = () => {
       {/* Modals */}
       {showSubmissionModal && (
         <RaceSubmissionModal
+          isOpen={!!showSubmissionModal}
           eventId={showSubmissionModal}
+          eventTitle={events.find(e => e.id === showSubmissionModal)?.title || 'Event'}
           onClose={() => setShowSubmissionModal(null)}
           onSubmit={handleRaceSubmission}
         />
@@ -425,7 +427,24 @@ const EventsPage: React.FC = () => {
               </button>
             </div>
             <div className="p-4 overflow-y-auto">
-              <EventLeaderboard eventId={showLeaderboard} />
+              <EventLeaderboard 
+                eventId={showLeaderboard}
+                eventTitle={events.find(e => e.id === showLeaderboard)?.title || 'Event'}
+                entries={getLeaderboard(showLeaderboard).map(participation => ({
+                  id: participation.id,
+                  userId: participation.userId,
+                  username: participation.username,
+                  time: participation.time || '0:00.000',
+                  position: 1, // Will be calculated in the component
+                  submissionDate: participation.submissionDate,
+                  documentationType: participation.documentationType || 'photo',
+                  mediaUrl: participation.mediaUrl,
+                  livestreamUrl: participation.livestreamUrl,
+                  verified: participation.verified,
+                  notes: participation.notes
+                }))}
+                currentUserId={user?.id}
+              />
             </div>
           </div>
         </div>
