@@ -70,6 +70,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen = false, onClose }) => {
               <li className={location.pathname === '/community' ? 'active' : ''}><Link to="/community" onClick={handleLinkClick}>👥 {t('nav.community')}</Link></li>
               <li className={location.pathname === '/quiz' ? 'active' : ''}><Link to="/quiz" onClick={handleLinkClick}>❓ {t('nav.quiz')}</Link></li>
               <li className={location.pathname.startsWith('/forum') ? 'active' : ''}><Link to="/forum" onClick={handleLinkClick}>💬 {t('nav.forum')}</Link></li>
+              <li className={location.pathname === '/chat' ? 'active' : ''}><Link to="/chat" onClick={handleLinkClick}>💭 {t('nav.chat')}</Link></li>
               <li className={location.pathname === '/fanart' ? 'active' : ''}><Link to="/fanart" onClick={handleLinkClick}>🎨 {t('nav.fanart')}</Link></li>
               <li className={location.pathname === '/newsfeed' ? 'active' : ''}><Link to="/newsfeed" onClick={handleLinkClick}>📰 {t('nav.news')}</Link></li>
               
