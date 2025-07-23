@@ -15,6 +15,9 @@ interface NewsCardProps {
 }
 
 const NewsCard: React.FC<NewsCardProps> = ({ newsItem, index }) => {
+  // Debug logging
+  console.log('NewsCard rendering:', { title: newsItem.title, content: newsItem.content, index })
+  
   const formatTime = (date: Date) => {
     return date.toLocaleTimeString('de-DE', {
       hour: '2-digit',
@@ -71,10 +74,10 @@ const NewsCard: React.FC<NewsCardProps> = ({ newsItem, index }) => {
       <div className="swipeable-card-content">
         <div className="swipeable-item p-3 h-full flex flex-col">
           <div className="flex-1">
-            <h4 className="text-sm font-semibold text-slate-100 mb-2 line-clamp-2">
+            <h4 className="text-sm font-semibold text-slate-100 mb-2" style={{ color: '#f1f5f9', fontSize: '14px' }}>
               {newsItem.title}
             </h4>
-            <p className="text-xs text-slate-300 mb-3 line-clamp-4">
+            <p className="text-xs text-slate-300 mb-3" style={{ color: '#cbd5e1', fontSize: '12px' }}>
               {newsItem.content}
             </p>
           </div>

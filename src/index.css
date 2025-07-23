@@ -784,19 +784,7 @@ html, body {
   @apply flex-1 overflow-hidden relative;
 }
 
-.swipeable-item-container {
-  @apply flex h-full transition-transform duration-300 ease-in-out;
-  width: calc(100% * var(--item-count, 10));
-}
-
-.swipeable-item-container.transitioning {
-  transition-duration: 300ms;
-}
-
-.swipeable-item {
-  @apply flex-shrink-0 w-full h-full p-3 overflow-hidden;
-  width: calc(100% / var(--item-count, 10));
-}
+/* Removed swipeable-item-container and swipeable-item classes - now handled inline */
 
 .swipeable-card-dots {
   @apply flex justify-center gap-1 p-2 flex-shrink-0;
@@ -873,6 +861,13 @@ html, body {
 .line-clamp-3 {
   display: -webkit-box;
   -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-4 {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
