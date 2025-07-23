@@ -128,6 +128,13 @@ const translations = {
     'home.livestreamProof': 'Livestream Beweis',
     'home.noMediaAvailable': 'Kein Media verfügbar',
     'home.showMoreNews': 'weitere News anzeigen',
+    'home.news': 'News',
+    
+    // News
+    'news.speedrunEvent': 'Speedrun-Event: GoldenEye 007 Rekorde gebrochen!',
+    'news.speedrunEventContent': 'Unglaubliche Leistungen beim gestrigen Event - neue Weltrekorde aufgestellt!',
+    'news.n64History': 'N64-Geschichte: 27 Jahre Nintendo 64',
+    'news.n64HistoryContent': 'Ein Rückblick auf die legendäre Konsole und ihre besten Spiele.',
     
     // Common
     'common.welcome': 'Willkommen',
@@ -681,8 +688,6 @@ const translations = {
     'news.luigiEventContent': 'Eine ganze Woche lang Luigi\'s Raceway! Zeigt eure beste Zeit auf der klassischen Mario Kart 64 Strecke. Event läuft bis 27.07.2025 - Jetzt teilnehmen!',
     'news.eventWinner': 'Event Winner: Mario Kart 64 Challenge',
     'news.eventWinnerContent': 'Spieler "SpeedDemon64" hat das Mario Kart 64 Speedrun Event mit einer Zeit von 1:47:32 gewonnen!',
-    'news.n64History': 'Heute in der N64 Geschichte',
-    'news.n64HistoryContent': 'Vor 27 Jahren (1996) wurde das Nintendo 64 in Japan veröffentlicht. Das erste Spiel war Super Mario 64!',
     'news.communityUpdate': 'Community Update: Neue Features',
     'news.communityUpdateContent': 'Neue Speedrun-Kategorien für GoldenEye 007 wurden hinzugefügt. Jetzt mit Agent, Secret Agent und 00 Agent Modi!',
     'news.newFeatures': 'Neue Features verfügbar',
@@ -886,6 +891,13 @@ const translations = {
     'home.livestreamProof': 'Livestream Proof',
     'home.noMediaAvailable': 'No media available',
     'home.showMoreNews': 'more news',
+    'home.news': 'News',
+    
+    // News
+    'news.speedrunEvent': 'Speedrun Event: GoldenEye 007 Records Broken!',
+    'news.speedrunEventContent': 'Incredible performances at yesterday\'s event - new world records set!',
+    'news.n64History': 'N64 History: 27 Years of Nintendo 64',
+    'news.n64HistoryContent': 'A look back at the legendary console and its greatest games.',
     
     // Common
     'common.welcome': 'Welcome',
@@ -1459,8 +1471,6 @@ const translations = {
     'news.luigiEventContent': 'A whole week of Luigi\'s Raceway! Show your best time on the classic Mario Kart 64 track. Event runs until 27.07.2025 - Join now!',
     'news.eventWinner': 'Event Winner: Mario Kart 64 Challenge',
     'news.eventWinnerContent': 'Player "SpeedDemon64" won the Mario Kart 64 Speedrun Event with a time of 1:47:32!',
-    'news.n64History': 'Today in N64 History',
-    'news.n64HistoryContent': '27 years ago (1996) the Nintendo 64 was released in Japan. The first game was Super Mario 64!',
     'news.communityUpdate': 'Community Update: New Features',
     'news.communityUpdateContent': 'New speedrun categories for GoldenEye 007 have been added. Now featuring Agent, Secret Agent and 00 Agent modes!',
     'news.newFeatures': 'New Features Available',

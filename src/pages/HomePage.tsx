@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useUser } from '../contexts/UserContext'
 import { useEvent } from '../contexts/EventContext'
-import { useLanguage, getLocaleString } from '../contexts/LanguageContext'
+import { useLanguage } from '../contexts/LanguageContext'
 import EventFeedWidget from '../components/EventFeedWidget'
 import { GameEvent } from '../types'
 import {
@@ -53,27 +53,15 @@ const HomePage: React.FC = () => {
   const newsItems: NewsItem[] = [
     {
       id: '1',
-      title: getLocaleString(currentLanguage, {
-        de: 'Speedrun-Event: GoldenEye 007 Rekorde gebrochen!',
-        en: 'Speedrun Event: GoldenEye 007 Records Broken!'
-      }),
-      content: getLocaleString(currentLanguage, {
-        de: 'Unglaubliche Leistungen beim gestrigen Event - neue Weltrekorde aufgestellt!',
-        en: 'Incredible performances at yesterday\'s event - new world records set!'
-      }),
+      title: t('news.speedrunEvent'),
+      content: t('news.speedrunEventContent'),
       date: new Date(Date.now() - 86400000),
       type: 'event_winner'
     },
     {
       id: '2',
-      title: getLocaleString(currentLanguage, {
-        de: 'N64-Geschichte: 27 Jahre Nintendo 64',
-        en: 'N64 History: 27 Years of Nintendo 64'
-      }),
-      content: getLocaleString(currentLanguage, {
-        de: 'Ein Rückblick auf die legendäre Konsole und ihre besten Spiele.',
-        en: 'A look back at the legendary console and its greatest games.'
-      }),
+      title: t('news.n64History'),
+      content: t('news.n64HistoryContent'),
       date: new Date(Date.now() - 172800000),
       type: 'n64_history'
     }
@@ -222,7 +210,7 @@ const HomePage: React.FC = () => {
               {activeEvents.slice(0, 2).map((event) => (
                 <div key={event.id} className="bg-slate-700/30 rounded-lg p-3">
                   <h3 className="text-responsive-sm font-semibold text-slate-100 mb-1">
-                    {getLocaleString(currentLanguage, event.title)}
+                    {event.title}
                   </h3>
                   <div className="flex flex-wrap items-center gap-2 text-responsive-xs text-slate-400">
                     <Clock className="w-3 h-3 sm:w-4 sm:h-4" />
