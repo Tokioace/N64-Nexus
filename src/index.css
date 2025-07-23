@@ -881,3 +881,74 @@ html, body {
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+
+/* Book Page Turning Effect */
+.book-container {
+  position: relative;
+  perspective: 1000px;
+}
+
+.book-page-flip-left {
+  transform: rotateY(-180deg);
+  backface-visibility: hidden;
+}
+
+.book-page-flip-right {
+  transform: rotateY(180deg);
+  backface-visibility: hidden;
+}
+
+/* Add shadow effects for more realistic book page turning */
+.book-page-flip-left::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to right, 
+    rgba(0, 0, 0, 0.1) 0%, 
+    rgba(0, 0, 0, 0.05) 50%, 
+    rgba(0, 0, 0, 0) 100%
+  );
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.book-page-flip-right::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to left, 
+    rgba(0, 0, 0, 0.1) 0%, 
+    rgba(0, 0, 0, 0.05) 50%, 
+    rgba(0, 0, 0, 0) 100%
+  );
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+/* Show shadow during flip */
+.book-page-flip-left::before,
+.book-page-flip-right::before {
+  opacity: 1;
+}
+
+/* Smooth transition for the 3D effect */
+.book-container > div {
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Ensure proper stacking and positioning */
+.book-container .swipeable-card {
+  position: relative;
+  backface-visibility: hidden;
+  will-change: transform;
+}

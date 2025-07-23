@@ -17,7 +17,8 @@ interface SingleForumCardProps {
 
 const SingleForumCard: React.FC<SingleForumCardProps> = ({ forumThreads, className = '' }) => {
   const [currentIndex, setCurrentIndex] = useState(0)
-  const [isAnimating, setIsAnimating] = useState(false)
+  const [isFlipping, setIsFlipping] = useState(false)
+  const [flipDirection, setFlipDirection] = useState<'left' | 'right'>('left')
   const touchStartX = useRef<number>(0)
   const touchEndX = useRef<number>(0)
 
@@ -28,17 +29,27 @@ const SingleForumCard: React.FC<SingleForumCardProps> = ({ forumThreads, classNa
     })
   }
 
-  const handleDismiss = () => {
-    if (isAnimating || forumThreads.length === 0) return
+  const goToNext = () => {
+    if (isFlipping || currentIndex >= forumThreads.length - 1) return
     
-    setIsAnimating(true)
+    setFlipDirection('left')
+    setIsFlipping(true)
     
     setTimeout(() => {
-      setCurrentIndex((prev) => {
-        const nextIndex = prev + 1
-        return nextIndex >= forumThreads.length ? 0 : nextIndex
-      })
-      setIsAnimating(false)
+      setCurrentIndex(prev => prev + 1)
+      setIsFlipping(false)
+    }, 300)
+  }
+
+  const goToPrevious = () => {
+    if (isFlipping || currentIndex <= 0) return
+    
+    setFlipDirection('right')
+    setIsFlipping(true)
+    
+    setTimeout(() => {
+      setCurrentIndex(prev => prev - 1)
+      setIsFlipping(false)
     }, 300)
   }
 
@@ -57,13 +68,46 @@ const SingleForumCard: React.FC<SingleForumCardProps> = ({ forumThreads, classNa
     const isLeftSwipe = distance > 50
     const isRightSwipe = distance < -50
 
-    if (isLeftSwipe || isRightSwipe) {
-      handleDismiss()
+    if (isLeftSwipe) {
+      goToNext()
+    } else if (isRightSwipe) {
+      goToPrevious()
     }
 
     touchStartX.current = 0
     touchEndX.current = 0
   }
+
+  const renderForumCard = (thread: ForumThread, index: number, isAnimating: boolean = false) => (
+    <div className={`swipeable-card bg-gradient-to-br from-cyan-600/10 to-blue-600/10 border-l-4 border-cyan-400 relative transition-all duration-300 ${isAnimating ? 'scale-95 opacity-80' : 'scale-100 opacity-100'}`}>
+      <div className="swipeable-card-header">
+        <div className="flex items-center gap-2">
+          <MessageSquare className="w-5 h-5 text-cyan-400" />
+          <h3 className="text-responsive-base font-bold text-slate-100">💬 Forum Posts</h3>
+        </div>
+        <div className="text-xs text-slate-400">
+          <span className="capitalize text-cyan-400">{thread.category}</span>
+        </div>
+      </div>
+      
+      <div className="swipeable-card-content">
+        <div className="p-3 h-full flex flex-col">
+          <div className="flex-1">
+            <h4 className="text-sm sm:text-base font-semibold text-slate-100 mb-2 leading-tight">
+              {thread.title}
+            </h4>
+            <div className="text-xs text-slate-300 mb-2">
+              <span className="text-blue-400">{thread.author}</span> • {thread.category}
+            </div>
+          </div>
+          <div className="flex items-center justify-between text-xs text-slate-400 mt-auto">
+            <span>{thread.replies} Antworten</span>
+            <span>{formatTime(thread.lastActivity)}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
 
   if (forumThreads.length === 0) {
     return (
@@ -85,52 +129,71 @@ const SingleForumCard: React.FC<SingleForumCardProps> = ({ forumThreads, classNa
     )
   }
 
-  const currentThread = forumThreads[currentIndex]
-
   return (
     <div className={`${className} flex justify-center`}>
       <div 
-        className="relative"
+        className="relative book-container"
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
       >
-        <div className={`swipeable-card bg-gradient-to-br from-cyan-600/10 to-blue-600/10 border-l-4 border-cyan-400 relative transition-all duration-300 ${isAnimating ? 'scale-95 opacity-80' : 'scale-100 opacity-100'}`}>
-          {/* Dismiss Button */}
-          <button
-            onClick={handleDismiss}
-            className="absolute top-2 right-2 z-10 p-1 rounded-full bg-slate-700/80 hover:bg-slate-600/80 text-slate-300 hover:text-white transition-colors"
-            aria-label="Dismiss forum post"
+        {/* Stack of cards - render current and next card */}
+        <div className="relative" style={{ perspective: '1000px' }}>
+          {/* Next card (underneath) */}
+          {currentIndex < forumThreads.length - 1 && (
+            <div className="absolute inset-0 z-10">
+              {renderForumCard(forumThreads[currentIndex + 1], currentIndex + 1, false)}
+            </div>
+          )}
+          
+          {/* Previous card (for right swipe) */}
+          {currentIndex > 0 && flipDirection === 'right' && isFlipping && (
+            <div className="absolute inset-0 z-10">
+              {renderForumCard(forumThreads[currentIndex - 1], currentIndex - 1, false)}
+            </div>
+          )}
+          
+          {/* Current card (on top) */}
+          <div 
+            className={`relative z-20 transition-transform duration-300 ease-in-out ${
+              isFlipping 
+                ? flipDirection === 'left' 
+                  ? 'book-page-flip-left' 
+                  : 'book-page-flip-right'
+                : ''
+            }`}
+            style={{ 
+              transformOrigin: flipDirection === 'left' ? 'left center' : 'right center',
+              transformStyle: 'preserve-3d'
+            }}
           >
-            <X className="w-4 h-4" />
+            {renderForumCard(forumThreads[currentIndex], currentIndex, isFlipping)}
+          </div>
+        </div>
+        
+        {/* Navigation buttons */}
+        <div className="absolute top-1/2 -translate-y-1/2 left-2 right-2 flex justify-between pointer-events-none z-30">
+          <button
+            onClick={goToPrevious}
+            disabled={isFlipping || currentIndex <= 0}
+            className={`pointer-events-auto p-2 rounded-full bg-slate-700/80 hover:bg-slate-600/80 text-slate-300 hover:text-white transition-all duration-200 ${
+              currentIndex <= 0 ? 'opacity-30 cursor-not-allowed' : 'opacity-70 hover:opacity-100'
+            }`}
+            aria-label="Previous card"
+          >
+            <span className="text-lg">‹</span>
           </button>
           
-          <div className="swipeable-card-header">
-            <div className="flex items-center gap-2">
-              <MessageSquare className="w-5 h-5 text-cyan-400" />
-              <h3 className="text-responsive-base font-bold text-slate-100">💬 Forum Posts</h3>
-            </div>
-            <div className="text-xs text-slate-400">
-              <span className="capitalize text-cyan-400">{currentThread.category}</span>
-            </div>
-          </div>
-          
-          <div className="swipeable-card-content">
-            <div className="p-3 h-full flex flex-col">
-              <div className="flex-1">
-                <h4 className="text-sm sm:text-base font-semibold text-slate-100 mb-2 leading-tight">
-                  {currentThread.title}
-                </h4>
-                <div className="text-xs text-slate-300 mb-2">
-                  <span className="text-blue-400">{currentThread.author}</span> • {currentThread.category}
-                </div>
-              </div>
-              <div className="flex items-center justify-between text-xs text-slate-400 mt-auto">
-                <span>{currentThread.replies} Antworten</span>
-                <span>{formatTime(currentThread.lastActivity)}</span>
-              </div>
-            </div>
-          </div>
+          <button
+            onClick={goToNext}
+            disabled={isFlipping || currentIndex >= forumThreads.length - 1}
+            className={`pointer-events-auto p-2 rounded-full bg-slate-700/80 hover:bg-slate-600/80 text-slate-300 hover:text-white transition-all duration-200 ${
+              currentIndex >= forumThreads.length - 1 ? 'opacity-30 cursor-not-allowed' : 'opacity-70 hover:opacity-100'
+            }`}
+            aria-label="Next card"
+          >
+            <span className="text-lg">›</span>
+          </button>
         </div>
         
         {/* Progress indicator */}
@@ -141,6 +204,8 @@ const SingleForumCard: React.FC<SingleForumCardProps> = ({ forumThreads, classNa
               className={`w-2 h-2 rounded-full transition-colors duration-200 ${
                 index === currentIndex 
                   ? 'bg-cyan-400' 
+                  : index < currentIndex
+                  ? 'bg-slate-500'
                   : 'bg-slate-600'
               }`}
             />
