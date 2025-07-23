@@ -147,7 +147,7 @@ const HomePage: React.FC = () => {
           <EventFeedWidget
             eventTitle={activeEvents[0].title}
             eventGame={activeEvents[0].game || 'N64'}
-            participants={activeEvents[0].participants?.length || 0}
+            participants={activeEvents[0].participants || 0}
             timeRemaining={getEventTimeRemaining(activeEvents[0])}
             leaderboard={getLeaderboard(activeEvents[0].id)}
             isExpanded={isEventExpanded}
