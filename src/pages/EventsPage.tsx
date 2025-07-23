@@ -4,6 +4,7 @@ import { useUser } from '../contexts/UserContext'
 import { useLanguage } from '../contexts/LanguageContext'
 import RaceSubmissionModal, { RaceSubmissionData } from '../components/RaceSubmissionModal'
 import EventLeaderboard from '../components/EventLeaderboard'
+import AuthGuard from '../components/AuthGuard'
 import { 
   Trophy, 
   Calendar, 
@@ -73,7 +74,8 @@ const EventsPage: React.FC = () => {
 
   const handleJoinEvent = async (eventId: string) => {
     if (!user) {
-      alert(t('auth.loginRequiredForEvents'))
+      // Redirect to auth page instead of just showing alert
+      window.location.href = '/auth'
       return
     }
 
@@ -205,9 +207,13 @@ const EventsPage: React.FC = () => {
         </div>
       </div>
 
-      {/* Events List */}
-      <div className="space-y-6">
-        {filteredEvents.length === 0 ? (
+      {/* Events List - Protected by AuthGuard */}
+      <AuthGuard 
+        customMessage={t('events.loginToViewEvents')}
+        className="min-h-[400px]"
+      >
+        <div className="space-y-6">
+          {filteredEvents.length === 0 ? (
           <div className="simple-tile text-center py-12">
             <Trophy className="w-16 h-16 text-slate-500 mx-auto mb-4" />
             <h3 className="text-xl font-bold text-slate-300 mb-2">
@@ -424,9 +430,10 @@ const EventsPage: React.FC = () => {
                 </div>
               </div>
             )
-          })
-        )}
-      </div>
+            })
+          )}
+        </div>
+      </AuthGuard>
 
       {/* Footer */}
       <div className="text-center mt-12">

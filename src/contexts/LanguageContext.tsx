@@ -87,6 +87,8 @@ const translations = {
     'fanart.artworksFound': 'Kunstwerke gefunden',
     'fanart.noArtworksFound': 'Keine Kunstwerke gefunden',
     'fanart.noArtworksDescription': 'Versuche einen anderen Filter oder lade deine eigene Kunst hoch.',
+    'fanart.loginToViewArt': 'Melde dich an, um Fan-Art zu sehen und zu bewerten!',
+    'fanart.loginToUpload': 'Melde dich an, um eigene Kunstwerke hochzuladen!',
     'fanart.uploadDescription': 'Teile deine N64-inspirierten Kunstwerke mit der Community.',
     'fanart.ratings': 'Bewertungen',
     'fanart.yourRating': 'Deine Bewertung',
@@ -313,6 +315,7 @@ const translations = {
     'events.livestreamUrlLabel': 'Livestream URL',
     'events.streamingPlatforms': 'Unterstützt: Twitch, YouTube Live, Facebook Gaming und andere Streaming-Plattformen',
     'events.subtitle': 'Turniere, Challenges und Community-Events',
+    'events.loginToViewEvents': 'Melde dich an, um an Events teilzunehmen und Leaderboards zu sehen!',
     'events.tabs.active': 'Aktiv',
     'events.tabs.upcoming': 'Kommend',
     'events.tabs.completed': 'Beendet',
@@ -375,6 +378,7 @@ const translations = {
     
     // Forum
     'forum.title': 'Community Forum',
+    'forum.loginToViewCategories': 'Melde dich an, um Forumskategorien und Diskussionen zu sehen!',
     'forum.categories': 'Kategorien',
     'forum.threads': 'Threads',
     'forum.posts': 'Beiträge',
@@ -396,6 +400,7 @@ const translations = {
     // Community
     'community.title': 'Community',
     'community.subtitle': 'Entdecke andere Spieler und ihre Sammlungen',
+    'community.loginToViewProfiles': 'Melde dich an, um Spielerprofile und Sammlungen zu sehen!',
     'community.members': 'Mitglieder',
     'community.games': 'Spiele',
     'community.records': 'Rekorde',
@@ -700,6 +705,16 @@ const translations = {
 
     // Page content
     'speedrun.description': 'Speedrun-Videos und Screenshots werden hier angezeigt.',
+    'speedrun.mediaDescription': 'Entdecke Videos, Streams und Fotos aus der Speedrun-Community!',
+    'speedrun.uploadMedia': 'Medien hochladen',
+    'speedrun.loginToUpload': 'Melde dich an, um eigene Speedrun-Medien zu teilen!',
+    'speedrun.loginToViewMedia': 'Melde dich an, um Speedrun-Videos, Streams und Fotos zu sehen!',
+    'speedrun.videos': 'Videos',
+    'speedrun.streams': 'Streams',
+    'speedrun.photos': 'Fotos',
+    'speedrun.mediaItemsFound': 'Medien gefunden',
+    'speedrun.noMediaFound': 'Keine Medien gefunden',
+    'speedrun.noMediaDescription': 'Versuche es mit anderen Filtern oder lade deine eigenen Medien hoch.',
     'forumCategory.description': 'Kategorie {categoryId} - Threads werden hier angezeigt.',
     'forumCategory.title': 'Forum Kategorie',
     'leaderboard.noData': 'Noch keine Leaderboard-Daten verfügbar',
@@ -845,6 +860,8 @@ const translations = {
     'fanart.artworksFound': 'artworks found',
     'fanart.noArtworksFound': 'No artworks found',
     'fanart.noArtworksDescription': 'Try a different filter or upload your own art.',
+    'fanart.loginToViewArt': 'Log in to view and rate fan art!',
+    'fanart.loginToUpload': 'Log in to upload your own artwork!',
     'fanart.uploadDescription': 'Share your N64-inspired artworks with the community.',
     'fanart.ratings': 'ratings',
     'fanart.yourRating': 'Your rating',
@@ -1071,6 +1088,7 @@ const translations = {
     'events.livestreamUrlLabel': 'Livestream URL',
     'events.streamingPlatforms': 'Supported: Twitch, YouTube Live, Facebook Gaming and other streaming platforms',
     'events.subtitle': 'Tournaments, Challenges and Community Events',
+    'events.loginToViewEvents': 'Log in to participate in events and view leaderboards!',
     'events.tabs.active': 'Active',
     'events.tabs.upcoming': 'Upcoming',
     'events.tabs.completed': 'Completed',
@@ -1133,6 +1151,7 @@ const translations = {
     
     // Forum
     'forum.title': 'Community Forum',
+    'forum.loginToViewCategories': 'Log in to view forum categories and discussions!',
     'forum.categories': 'Categories',
     'forum.threads': 'Threads',
     'forum.posts': 'Posts',
@@ -1154,6 +1173,7 @@ const translations = {
     // Community
     'community.title': 'Community',
     'community.subtitle': 'Discover other players and their collections',
+    'community.loginToViewProfiles': 'Log in to view player profiles and collections!',
     'community.members': 'Members',
     'community.games': 'Games',
     'community.records': 'Records',
@@ -1478,6 +1498,16 @@ const translations = {
 
     // Page content
     'speedrun.description': 'Speedrun videos and screenshots will be displayed here.',
+    'speedrun.mediaDescription': 'Discover videos, streams and photos from the speedrun community!',
+    'speedrun.uploadMedia': 'Upload Media',
+    'speedrun.loginToUpload': 'Log in to share your own speedrun media!',
+    'speedrun.loginToViewMedia': 'Log in to view speedrun videos, streams and photos!',
+    'speedrun.videos': 'Videos',
+    'speedrun.streams': 'Streams',
+    'speedrun.photos': 'Photos',
+    'speedrun.mediaItemsFound': 'media items found',
+    'speedrun.noMediaFound': 'No media found',
+    'speedrun.noMediaDescription': 'Try different filters or upload your own media.',
     'forumCategory.description': 'Category {categoryId} - Threads will be displayed here.',
     'forumCategory.title': 'Forum Category',
     'leaderboard.noData': 'No leaderboard data available yet',

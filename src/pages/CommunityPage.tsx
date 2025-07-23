@@ -4,6 +4,7 @@ import { useUser } from '../contexts/UserContext'
 import { useLanguage, getLocaleString } from '../contexts/LanguageContext'
 import { User } from '../types'
 import { Users, Trophy, Package, Star, Gamepad2, Globe, Search, Filter } from 'lucide-react'
+import AuthGuard from '../components/AuthGuard'
 
 const CommunityPage: React.FC = () => {
   const { getAllUsers } = useUser()
@@ -161,8 +162,12 @@ const CommunityPage: React.FC = () => {
         </div>
       </div>
 
-      {/* Users Grid */}
-      {filteredAndSortedUsers.length === 0 ? (
+      {/* Users Grid - Protected by AuthGuard */}
+      <AuthGuard 
+        customMessage={t('community.loginToViewProfiles')}
+        className="min-h-[400px]"
+      >
+        {filteredAndSortedUsers.length === 0 ? (
         <div className="simple-tile text-center py-12">
           <Users className="w-16 h-16 text-slate-600 mx-auto mb-4" />
           <h3 className="text-xl font-semibold text-slate-300 mb-2">
@@ -262,18 +267,19 @@ const CommunityPage: React.FC = () => {
                 </div>
               )}
             </Link>
-          ))}
-        </div>
-      )}
+            ))}
+          </div>
+        )}
 
-      {/* Load More Button (for future pagination) */}
+        {/* Load More Button (for future pagination) */}
       {filteredAndSortedUsers.length >= 20 && (
         <div className="text-center">
           <button className="px-6 py-3 bg-slate-700 hover:bg-slate-600 text-slate-200 rounded-lg transition-colors">
                               {t('common.viewAll')}
           </button>
         </div>
-      )}
+        )}
+      </AuthGuard>
     </div>
   )
 }

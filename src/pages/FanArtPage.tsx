@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useLanguage } from '../contexts/LanguageContext'
 import { useUser } from '../contexts/UserContext'
 import { Palette, Heart, Eye, MessageSquare, Upload, Filter, Grid, List, Zap, X, Image as ImageIcon } from 'lucide-react'
+import AuthGuard from '../components/AuthGuard'
 
 interface FanArtItem {
   id: string
@@ -461,7 +462,7 @@ const FanArtPage: React.FC = () => {
 
         {/* Action Buttons */}
         <div className="flex flex-wrap items-center justify-center gap-4">
-          {isAuthenticated && (
+          {isAuthenticated ? (
             <button
               onClick={() => setShowUploadModal(true)}
               className="flex items-center gap-2 px-6 py-3 bg-rose-600 hover:bg-rose-700 
@@ -470,6 +471,23 @@ const FanArtPage: React.FC = () => {
               <Upload className="w-5 h-5" />
               {t('fanart.uploadArt')}
             </button>
+          ) : (
+            <AuthGuard 
+              requireAuth={true}
+              blurContent={false}
+              showLoginPrompt={true}
+              customMessage={t('fanart.loginToUpload')}
+              className="inline-block"
+            >
+              <button
+                disabled
+                className="flex items-center gap-2 px-6 py-3 bg-slate-600 cursor-not-allowed
+                           text-slate-400 rounded-lg transition-colors font-medium"
+              >
+                <Upload className="w-5 h-5" />
+                {t('fanart.uploadArt')}
+              </button>
+            </AuthGuard>
           )}
 
           {/* View Mode Toggle */}
@@ -531,9 +549,13 @@ const FanArtPage: React.FC = () => {
       </div>
 
       {/* Fan Art Grid/List */}
-      {viewMode === 'grid' ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredItems.map(item => (
+      <AuthGuard 
+        customMessage={t('fanart.loginToViewArt')}
+        className="min-h-[400px]"
+      >
+        {viewMode === 'grid' ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {filteredItems.map(item => (
             <div key={item.id} className="n64-tile bg-slate-800/50 hover:bg-slate-800/70 transition-colors">
               <div className="aspect-video bg-slate-700 rounded-lg mb-4 overflow-hidden">
                 <img 
@@ -599,11 +621,11 @@ const FanArtPage: React.FC = () => {
                 </div>
               </div>
             </div>
-          ))}
-        </div>
-      ) : (
-        <div className="space-y-4">
-          {filteredItems.map(item => (
+            ))}
+          </div>
+        ) : (
+          <div className="space-y-4">
+            {filteredItems.map(item => (
             <div key={item.id} className="n64-tile bg-slate-800/50 hover:bg-slate-800/70 transition-colors">
               <div className="flex gap-4">
                 <div className="w-32 h-20 bg-slate-700 rounded-lg overflow-hidden flex-shrink-0">
@@ -668,11 +690,11 @@ const FanArtPage: React.FC = () => {
                 </div>
               </div>
             </div>
-          ))}
-        </div>
-      )}
+                      ))}
+          </div>
+        )}
 
-      {/* Empty State */}
+        {/* Empty State */}
       {filteredItems.length === 0 && (
         <div className="text-center py-12">
           <Palette className="w-16 h-16 text-slate-500 mx-auto mb-4" />
@@ -683,7 +705,8 @@ const FanArtPage: React.FC = () => {
             {t('fanart.noArtworksDescription')}
           </p>
         </div>
-      )}
+        )}
+      </AuthGuard>
 
       {/* Upload Modal */}
       {showUploadModal && (
