@@ -153,6 +153,10 @@ code {
   @apply fixed left-0 top-0 h-full w-64 bg-slate-900 border-r border-slate-700 
          transform -translate-x-full transition-transform duration-300 ease-in-out 
          lg:translate-x-0 z-40;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  height: 100vh;
+  height: 100dvh; /* Dynamic viewport height for mobile browsers */
 }
 
 .sidebar.open {
@@ -174,6 +178,26 @@ code {
 
 .sidebar li.active a {
   @apply bg-slate-800 text-blue-400 border-l-blue-400;
+}
+
+/* Scrollable container improvements */
+.scrollable-container {
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  touch-action: pan-y;
+  scroll-behavior: smooth;
+}
+
+/* Improve mobile touch scrolling */
+@media (max-width: 1024px) {
+  .sidebar {
+    overscroll-behavior-y: contain;
+  }
+  
+  .sidebar .scrollable-container {
+    overscroll-behavior-y: contain;
+    -webkit-overflow-scrolling: touch;
+  }
 }
 
 /* Main Content */
