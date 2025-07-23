@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { TrendingUp } from 'lucide-react'
 
 interface NewsItem {
@@ -15,36 +15,11 @@ interface NewsCardProps {
 }
 
 const NewsCard: React.FC<NewsCardProps> = ({ newsItem, index }) => {
-  const [showMessage, setShowMessage] = useState(false)
-  const [messageText, setMessageText] = useState('')
-
   const formatTime = (date: Date) => {
     return date.toLocaleTimeString('de-DE', {
       hour: '2-digit',
       minute: '2-digit'
     })
-  }
-
-  const handleCardClick = () => {
-    const messages = [
-      '📰 News gelesen!',
-      '✨ Interessant!',
-      '🎮 N64 News!',
-      '📱 Artikel geöffnet!',
-      '🎯 News entdeckt!',
-      '⭐ Mehr erfahren!',
-      '🔥 Hot News!',
-      '💫 News geladen!'
-    ]
-    
-    const randomMessage = messages[Math.floor(Math.random() * messages.length)]
-    setMessageText(randomMessage)
-    setShowMessage(true)
-    
-    // Hide message after 2 seconds
-    setTimeout(() => {
-      setShowMessage(false)
-    }, 2000)
   }
 
   const getTypeColor = (type: string) => {
@@ -78,10 +53,7 @@ const NewsCard: React.FC<NewsCardProps> = ({ newsItem, index }) => {
   }
 
   return (
-    <div 
-      className="swipeable-card bg-gradient-to-br from-blue-600/10 to-purple-600/10 border-l-4 border-blue-400 relative cursor-pointer hover:shadow-xl transition-all duration-300 hover:scale-105"
-      onClick={handleCardClick}
-    >
+    <div className="swipeable-card bg-gradient-to-br from-blue-600/10 to-purple-600/10 border-l-4 border-blue-400 relative">
       <div className="swipeable-card-header">
         <div className="flex items-center gap-2">
           <TrendingUp className="w-5 h-5 text-blue-400" />
@@ -108,19 +80,10 @@ const NewsCard: React.FC<NewsCardProps> = ({ newsItem, index }) => {
           </div>
           <div className="flex items-center justify-between text-xs text-slate-400">
             <span>{formatTime(newsItem.date)}</span>
-            <span className="text-blue-400">Klicken für mehr</span>
+            <span className="text-blue-400">News Details</span>
           </div>
         </div>
       </div>
-
-      {/* Click Message Overlay */}
-      {showMessage && (
-        <div className="absolute inset-0 bg-black/70 flex items-center justify-center z-10 transition-opacity duration-300">
-          <div className="bg-slate-800/90 border border-slate-600 rounded-lg px-4 py-3 text-center backdrop-blur-sm">
-            <p className="text-slate-100 text-sm font-medium">{messageText}</p>
-          </div>
-        </div>
-      )}
     </div>
   )
 }
