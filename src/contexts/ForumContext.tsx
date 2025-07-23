@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react'
+import React, { createContext, useContext, useState, useEffect, ReactNode, useMemo, useCallback } from 'react'
 import { ForumCategory, ForumThread, ForumPost, ForumStats } from '../types'
 import { useUser } from './UserContext'
 import { useLanguage } from './LanguageContext'
@@ -219,17 +219,20 @@ export const ForumProvider: React.FC<{ children: ReactNode }> = ({ children }) =
   const [error, setError] = useState<string | null>(null)
   const { user } = useUser()
 
-  const getCategories = () => {
+  // Memoize expensive operations
+  const memoizedCategories = useMemo(() => createMockCategories(t), [t])
+
+  const getCategories = useCallback(() => {
     setLoading(true)
     setError(null)
-    // Simulate API call
+    // Reduced delay for better performance
     setTimeout(() => {
-      setCategories(createMockCategories(t))
+      setCategories(memoizedCategories)
       setLoading(false)
-    }, 500)
-  }
+    }, 100)
+  }, [memoizedCategories])
 
-  const getThreadsByCategory = (categoryId: string) => {
+  const getThreadsByCategory = useCallback((categoryId: string) => {
     setLoading(true)
     setError(null)
     // Filter threads by category
@@ -237,10 +240,10 @@ export const ForumProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     setTimeout(() => {
       setThreads(filteredThreads)
       setLoading(false)
-    }, 300)
-  }
+    }, 50) // Reduced delay
+  }, [])
 
-  const getPostsByThread = (threadId: string) => {
+  const getPostsByThread = useCallback((threadId: string) => {
     setLoading(true)
     setError(null)
     // Filter posts by thread
@@ -248,10 +251,10 @@ export const ForumProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     setTimeout(() => {
       setPosts(filteredPosts)
       setLoading(false)
-    }, 300)
-  }
+    }, 50) // Reduced delay
+  }, [])
 
-  const createThread = async (categoryId: string, title: string, content: string, imageUrl?: string): Promise<boolean> => {
+  const createThread = useCallback(async (categoryId: string, title: string, content: string, imageUrl?: string): Promise<boolean> => {
     if (!user) return false
     
     // Validate input
@@ -298,20 +301,20 @@ export const ForumProvider: React.FC<{ children: ReactNode }> = ({ children }) =
         isDeleted: false
       }
 
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 500))
+      // Reduced delay for better performance
+      await new Promise(resolve => setTimeout(resolve, 200))
       setThreads(prev => [newThread, ...prev])
       setPosts(prev => [...prev, newPost])
       setLoading(false)
       return true
     } catch (err) {
-              setError(t('error.generic'))
+      setError(t('error.generic'))
       setLoading(false)
       return false
     }
-  }
+  }, [user, t])
 
-  const createPost = async (threadId: string, content: string, imageUrl?: string): Promise<boolean> => {
+  const createPost = useCallback(async (threadId: string, content: string, imageUrl?: string): Promise<boolean> => {
     if (!user) return false
     
     // Validate input
@@ -339,8 +342,8 @@ export const ForumProvider: React.FC<{ children: ReactNode }> = ({ children }) =
         isDeleted: false
       }
 
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 500))
+      // Reduced delay for better performance
+      await new Promise(resolve => setTimeout(resolve, 200))
       setPosts(prev => [...prev, newPost])
       // Update thread post count and last updated
       setThreads(prev => prev.map(thread => 
@@ -361,40 +364,41 @@ export const ForumProvider: React.FC<{ children: ReactNode }> = ({ children }) =
       setLoading(false)
       return true
     } catch (err) {
-              setError(t('error.generic'))
+      setError(t('error.generic'))
       setLoading(false)
       return false
     }
-  }
+  }, [user, t])
 
-  const selectCategory = (category: ForumCategory | null) => {
+  const selectCategory = useCallback((category: ForumCategory | null) => {
     setSelectedCategory(category)
     if (category) {
       getThreadsByCategory(category.id)
     }
-  }
+  }, [getThreadsByCategory])
 
-  const selectThread = (thread: ForumThread | null) => {
+  const selectThread = useCallback((thread: ForumThread | null) => {
     setSelectedThread(thread)
     if (thread) {
       getPostsByThread(thread.id)
       incrementThreadViews(thread.id)
     }
-  }
+  }, [getPostsByThread])
 
-  const incrementThreadViews = (threadId: string) => {
+  const incrementThreadViews = useCallback((threadId: string) => {
     setThreads(prev => prev.map(thread => 
       thread.id === threadId 
         ? { ...thread, views: thread.views + 1 }
         : thread
     ))
-  }
+  }, [])
 
   useEffect(() => {
     getCategories()
-  }, [])
+  }, [getCategories])
 
-  const value: ForumContextType = {
+  // Memoize the context value to prevent unnecessary re-renders
+  const value: ForumContextType = useMemo(() => ({
     categories,
     threads,
     posts,
@@ -411,7 +415,24 @@ export const ForumProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     selectCategory,
     selectThread,
     incrementThreadViews
-  }
+  }), [
+    categories,
+    threads,
+    posts,
+    stats,
+    selectedCategory,
+    selectedThread,
+    loading,
+    error,
+    getCategories,
+    getThreadsByCategory,
+    getPostsByThread,
+    createThread,
+    createPost,
+    selectCategory,
+    selectThread,
+    incrementThreadViews
+  ])
 
   return (
     <ForumContext.Provider value={value}>

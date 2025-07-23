@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useMemo, useCallback } from 'react'
 import { useParams, Link, useNavigate } from 'react-router-dom'
 import { useForum } from '../contexts/ForumContext'
 import { useUser } from '../contexts/UserContext'
@@ -48,7 +48,7 @@ const ForumThreadPage: React.FC = () => {
     }
   }, [threadId, threads, selectThread])
 
-  const handleSubmitReply = async (e: React.FormEvent) => {
+  const handleSubmitReply = useCallback(async (e: React.FormEvent) => {
     e.preventDefault()
     if (!threadId || !replyContent.trim() || !isAuthenticated) return
 
@@ -62,9 +62,9 @@ const ForumThreadPage: React.FC = () => {
       setShowReplyForm(false)
     }
     setIsSubmitting(false)
-  }
+  }, [threadId, replyContent, isAuthenticated, createPost, replyImageUrl])
 
-  const formatDate = (date: Date) => {
+  const formatDate = useCallback((date: Date) => {
     return new Intl.DateTimeFormat('de-DE', {
       day: '2-digit',
       month: '2-digit',
@@ -72,22 +72,31 @@ const ForumThreadPage: React.FC = () => {
       hour: '2-digit',
       minute: '2-digit'
     }).format(date)
-  }
+  }, [])
 
-  const handleReplyImageSelect = (url: string, file: File) => {
+  const handleReplyImageSelect = useCallback((url: string, file: File) => {
     setReplyImageUrl(url)
     setReplyImageFile(file)
-  }
+  }, [])
 
-  const handleReplyImageRemove = () => {
+  const handleReplyImageRemove = useCallback(() => {
     setReplyImageUrl('')
     setReplyImageFile(null)
-  }
+  }, [])
 
-  const getThreadPosts = () => {
+  // Memoize the filtered and sorted posts to prevent unnecessary recalculations
+  const threadPosts = useMemo(() => {
     return posts.filter(post => post.threadId === threadId && !post.isDeleted)
       .sort((a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime())
-  }
+  }, [posts, threadId])
+
+  // Memoize form reset function
+  const resetReplyForm = useCallback(() => {
+    setShowReplyForm(false)
+    setReplyContent('')
+    setReplyImageUrl('')
+    setReplyImageFile(null)
+  }, [])
 
   if (loading) {
     return (
@@ -130,8 +139,6 @@ const ForumThreadPage: React.FC = () => {
       </div>
     )
   }
-
-  const threadPosts = getThreadPosts()
 
   return (
     <div className="container mx-auto px-4 py-6">
@@ -296,12 +303,7 @@ const ForumThreadPage: React.FC = () => {
                 <div className="flex gap-2">
                   <button
                     type="button"
-                    onClick={() => {
-                      setShowReplyForm(false)
-                      setReplyContent('')
-                      setReplyImageUrl('')
-                      setReplyImageFile(null)
-                    }}
+                    onClick={resetReplyForm}
                     className="px-4 py-2 text-slate-400 hover:text-slate-200 transition-colors"
                     disabled={isSubmitting}
                   >
