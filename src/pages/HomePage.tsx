@@ -4,8 +4,12 @@ import { useUser } from '../contexts/UserContext'
 import { useEvent } from '../contexts/EventContext'
 import { useLanguage } from '../contexts/LanguageContext'
 import EventFeedWidget from '../components/EventFeedWidget'
-import SwipeableCard from '../components/SwipeableCard'
 import SingleNewsCard from '../components/SingleNewsCard'
+import SingleForumCard from '../components/SingleForumCard'
+import SingleFanArtCard from '../components/SingleFanArtCard'
+import SingleMediaCard from '../components/SingleMediaCard'
+import SingleRecordCard from '../components/SingleRecordCard'
+import SingleMarketplaceCard from '../components/SingleMarketplaceCard'
 import { GameEvent } from '../types'
 import {
   Trophy,
@@ -439,57 +443,35 @@ const HomePage: React.FC = () => {
           />
         </div>
 
-        {/* Forum Posts - Keep as SwipeableCard */}
-        <div className="flex justify-center">
-          <SwipeableCard
-            title="💬 Forum Posts"
-            icon={<MessageSquare className="w-5 h-5 text-cyan-400" />}
-            items={forumThreads}
-            renderItem={renderForumThread}
-            gradientColors="from-cyan-600/10 to-blue-600/10"
-            borderColor="border-cyan-400"
-          />
-        </div>
+        {/* Forum Posts - Single card interface */}
+        <SingleForumCard 
+          forumThreads={forumThreads}
+          className="w-full"
+        />
 
         {/* Other Content - FanArts and Media */}
         <div className="swipeable-grid-2col">
-          <SwipeableCard
-            title="🎨 FanArts"
-            icon={<Palette className="w-5 h-5 text-rose-400" />}
-            items={fanArtItems}
-            renderItem={renderFanArtItem}
-            gradientColors="from-rose-600/10 to-pink-600/10"
-            borderColor="border-rose-400"
+          <SingleFanArtCard 
+            fanArtItems={fanArtItems}
+            className="w-full"
           />
           
-          <SwipeableCard
-            title="📹 Medien"
-            icon={<Camera className="w-5 h-5 text-green-400" />}
-            items={mediaItems}
-            renderItem={renderMediaItem}
-            gradientColors="from-green-600/10 to-emerald-600/10"
-            borderColor="border-green-400"
+          <SingleMediaCard 
+            mediaItems={mediaItems}
+            className="w-full"
           />
         </div>
 
         {/* Records and Marketplace */}
         <div className="swipeable-grid-2col">
-          <SwipeableCard
-            title="🏆 Rekorde"
-            icon={<Award className="w-5 h-5 text-yellow-400" />}
-            items={recordItems}
-            renderItem={renderRecordItem}
-            gradientColors="from-yellow-600/10 to-orange-600/10"
-            borderColor="border-yellow-400"
+          <SingleRecordCard 
+            recordItems={recordItems}
+            className="w-full"
           />
           
-          <SwipeableCard
-            title="🛒 Marktplatz"
-            icon={<ShoppingCart className="w-5 h-5 text-emerald-400" />}
-            items={marketplaceItems}
-            renderItem={renderMarketplaceItem}
-            gradientColors="from-emerald-600/10 to-green-600/10"
-            borderColor="border-emerald-400"
+          <SingleMarketplaceCard 
+            marketplaceItems={marketplaceItems}
+            className="w-full"
           />
         </div>
       </div>
