@@ -211,7 +211,7 @@ export interface MediaMeta {
   gameId: string
   gameName: string
   eventId?: string
-  type: 'speedrun' | 'screenshot' | 'achievement'
+  type: 'speedrun' | 'screenshot' | 'achievement' | 'livestream'
   title: string
   description?: string
   url: string
@@ -221,11 +221,40 @@ export interface MediaMeta {
   likes: number
   views: number
   tags: string[]
+  // Speedrun specific fields
+  time?: string
+  category?: string
+  platform?: 'N64' | 'PC' | 'Emulator'
+  // Livestream specific fields
+  livestreamUrl?: string
+  isLive?: boolean
+  streamPlatform?: 'Twitch' | 'YouTube' | 'Facebook' | 'Other'
+}
+
+export interface SpeedrunPost {
+  id: string
+  userId: string
+  username: string
+  userAvatar?: string
+  gameId: string
+  gameName: string
+  title: string
+  description?: string
+  time?: string
+  category?: string
+  platform: 'N64' | 'PC' | 'Emulator'
+  media: MediaMeta[]
+  tags: string[]
+  createdAt: Date
+  likes: number
+  comments: number
+  verified: boolean
 }
 
 export interface MediaContextType {
   media: MediaMeta[]
   userMedia: MediaMeta[]
+  speedrunPosts: SpeedrunPost[]
   loading: boolean
   error: string | null
   
@@ -237,6 +266,14 @@ export interface MediaContextType {
   getMediaByGame: (gameId: string) => MediaMeta[]
   verifyMedia: (mediaId: string, isVerified: boolean) => Promise<void>
   isCapturingAllowed: (eventId?: string) => boolean
+  
+  // Speedrun specific functions
+  createSpeedrunPost: (post: Omit<SpeedrunPost, 'id' | 'createdAt' | 'likes' | 'comments'>) => Promise<boolean>
+  getSpeedrunPosts: (gameId?: string, category?: string) => SpeedrunPost[]
+  likeSpeedrunPost: (postId: string) => Promise<boolean>
+  startLivestream: (streamData: { title: string, gameId: string, platform: string, streamUrl: string }) => Promise<boolean>
+  stopLivestream: (streamId: string) => Promise<boolean>
+  getLivestreams: () => MediaMeta[]
 }
 
 // Forum System Types
