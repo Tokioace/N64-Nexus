@@ -4,6 +4,7 @@ import { useUser } from '../contexts/UserContext'
 import { useLanguage, getLocaleString } from '../contexts/LanguageContext'
 import { User } from '../types'
 import { Users, Trophy, Package, Star, Gamepad2, Globe, Search, Filter } from 'lucide-react'
+import AuthGuard from '../components/AuthGuard'
 
 const CommunityPage: React.FC = () => {
   const { getAllUsers } = useUser()
@@ -161,106 +162,111 @@ const CommunityPage: React.FC = () => {
         </div>
       </div>
 
-      {/* Users Grid */}
-      {filteredAndSortedUsers.length === 0 ? (
-        <div className="simple-tile text-center py-8 sm:py-12">
-          <Users className="w-12 h-12 sm:w-16 sm:h-16 text-slate-600 mx-auto mb-4" />
-          <h3 className="text-responsive-lg font-semibold text-slate-300 mb-2">
-            Keine Spieler gefunden
-          </h3>
-          <p className="text-responsive-sm text-slate-400">
-            Versuche andere Suchbegriffe oder Filter.
-          </p>
-        </div>
-      ) : (
-        <div className="grid grid-responsive grid-1-2-3 gap-responsive">
-          {filteredAndSortedUsers.map((user) => (
-            <Link
-              key={user.id}
-              to={`/profile/${user.id}`}
-              className="simple-tile hover:border-blue-500/50 transition-all hover:scale-[1.02]"
-            >
-              {/* User Header */}
-              <div className="flex items-center gap-3 sm:gap-4 mb-4">
-                <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full flex items-center justify-center text-lg sm:text-2xl">
-                  {user.avatar || '🎮'}
-                </div>
-                <div className="flex-1 min-w-0">
-                  <h3 className="text-responsive-base font-bold text-slate-100 mb-1 truncate">
-                    {user.username}
-                  </h3>
-                  <div className="flex items-center gap-2 text-responsive-xs flex-wrap">
-                    <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                      user.platform === 'N64' 
-                        ? 'text-blue-400 bg-blue-400/20' 
-                        : 'text-green-400 bg-green-400/20'
-                    }`}>
-                      {user.platform}
-                    </span>
-                    <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                      user.region === 'PAL' 
-                        ? 'text-purple-400 bg-purple-400/20' 
-                        : 'text-orange-400 bg-orange-400/20'
-                    }`}>
-                      {user.region}
-                    </span>
+      {/* Users Grid - Protected by AuthGuard */}
+      <AuthGuard 
+        customMessage={t('community.loginToViewProfiles')}
+        className="min-h-[400px]"
+      >
+        {filteredAndSortedUsers.length === 0 ? (
+          <div className="simple-tile text-center py-8 sm:py-12">
+            <Users className="w-12 h-12 sm:w-16 sm:h-16 text-slate-600 mx-auto mb-4" />
+            <h3 className="text-responsive-lg font-semibold text-slate-300 mb-2">
+              Keine Spieler gefunden
+            </h3>
+            <p className="text-responsive-sm text-slate-400">
+              Versuche andere Suchbegriffe oder Filter.
+            </p>
+          </div>
+        ) : (
+          <div className="grid grid-responsive grid-1-2-3 gap-responsive">
+            {filteredAndSortedUsers.map((user) => (
+              <Link
+                key={user.id}
+                to={`/profile/${user.id}`}
+                className="simple-tile hover:border-blue-500/50 transition-all hover:scale-[1.02]"
+              >
+                {/* User Header */}
+                <div className="flex items-center gap-3 sm:gap-4 mb-4">
+                  <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full flex items-center justify-center text-lg sm:text-2xl">
+                    {user.avatar || '🎮'}
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <h3 className="text-responsive-base font-bold text-slate-100 mb-1 truncate">
+                      {user.username}
+                    </h3>
+                    <div className="flex items-center gap-2 text-responsive-xs flex-wrap">
+                      <span className={`px-2 py-1 rounded-full text-xs font-medium ${
+                        user.platform === 'N64' 
+                          ? 'text-blue-400 bg-blue-400/20' 
+                          : 'text-green-400 bg-green-400/20'
+                      }`}>
+                        {user.platform}
+                      </span>
+                      <span className={`px-2 py-1 rounded-full text-xs font-medium ${
+                        user.region === 'PAL' 
+                          ? 'text-purple-400 bg-purple-400/20' 
+                          : 'text-orange-400 bg-orange-400/20'
+                      }`}>
+                        {user.region}
+                      </span>
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              {/* User Stats */}
-              <div className="grid grid-cols-3 gap-2 sm:gap-4 mb-4">
-                <div className="text-center">
-                  <div className="flex items-center justify-center gap-1 text-blue-400 mb-1">
-                    <Trophy className="w-3 h-3 sm:w-4 sm:h-4" />
-                    <span className="font-bold text-responsive-sm">{user.level}</span>
+                {/* User Stats */}
+                <div className="grid grid-cols-3 gap-2 sm:gap-4 mb-4">
+                  <div className="text-center">
+                    <div className="flex items-center justify-center gap-1 text-blue-400 mb-1">
+                      <Trophy className="w-3 h-3 sm:w-4 sm:h-4" />
+                      <span className="font-bold text-responsive-sm">{user.level}</span>
+                    </div>
+                    <div className="text-responsive-xs text-slate-400">{t('profile.level')}</div>
                   </div>
-                  <div className="text-responsive-xs text-slate-400">{t('profile.level')}</div>
-                </div>
-                <div className="text-center">
-                  <div className="flex items-center justify-center gap-1 text-green-400 mb-1">
-                    <Package className="w-3 h-3 sm:w-4 sm:h-4" />
-                    <span className="font-bold text-responsive-sm">{user.collections.filter(c => !c.isWishlist).length}</span>
+                  <div className="text-center">
+                    <div className="flex items-center justify-center gap-1 text-green-400 mb-1">
+                      <Package className="w-3 h-3 sm:w-4 sm:h-4" />
+                      <span className="font-bold text-responsive-sm">{user.collections.filter(c => !c.isWishlist).length}</span>
+                    </div>
+                    <div className="text-responsive-xs text-slate-400">{t('community.games')}</div>
                   </div>
-                  <div className="text-responsive-xs text-slate-400">{t('community.games')}</div>
-                </div>
-                <div className="text-center">
-                  <div className="flex items-center justify-center gap-1 text-purple-400 mb-1">
-                    <Star className="w-3 h-3 sm:w-4 sm:h-4" />
-                    <span className="font-bold text-responsive-sm">{user.personalRecords.filter(r => r.verified).length}</span>
+                  <div className="text-center">
+                    <div className="flex items-center justify-center gap-1 text-purple-400 mb-1">
+                      <Star className="w-3 h-3 sm:w-4 sm:h-4" />
+                      <span className="font-bold text-responsive-sm">{user.personalRecords.filter(r => r.verified).length}</span>
+                    </div>
+                    <div className="text-responsive-xs text-slate-400">{t('community.records')}</div>
                   </div>
-                  <div className="text-responsive-xs text-slate-400">{t('community.records')}</div>
                 </div>
-              </div>
 
-              {/* Bio Preview */}
-              {user.bio && (
-                <p className="text-responsive-sm text-slate-300 mb-4 overflow-hidden line-clamp-2">
-                  {user.bio}
-                </p>
-              )}
+                {/* Bio Preview */}
+                {user.bio && (
+                  <p className="text-responsive-sm text-slate-300 mb-4 overflow-hidden line-clamp-2">
+                    {user.bio}
+                  </p>
+                )}
 
-              {/* Join Date */}
-              <div className="text-responsive-xs text-slate-500">
-                {t('profile.joinDate')} {user.joinDate.toLocaleDateString(getLocaleString(currentLanguage), { 
-                  month: 'long', 
-                  year: 'numeric' 
-                })}
-              </div>
-
-              {/* Recent Activity Preview */}
-              {user.personalRecords.length > 0 && (
-                <div className="mt-3 pt-3 border-t border-slate-700">
-                  <div className="text-responsive-xs text-slate-400 mb-1">{t('community.recentRecord')}</div>
-                  <div className="text-responsive-sm text-slate-200 truncate">
-                    {user.personalRecords[user.personalRecords.length - 1].gameName}
-                  </div>
+                {/* Join Date */}
+                <div className="text-responsive-xs text-slate-500">
+                  {t('profile.joinDate')} {user.joinDate.toLocaleDateString(getLocaleString(currentLanguage), { 
+                    month: 'long', 
+                    year: 'numeric' 
+                  })}
                 </div>
-              )}
-            </Link>
-          ))}
-        </div>
-      )}
+
+                {/* Recent Activity Preview */}
+                {user.personalRecords.length > 0 && (
+                  <div className="mt-3 pt-3 border-t border-slate-700">
+                    <div className="text-responsive-xs text-slate-400 mb-1">{t('community.recentRecord')}</div>
+                    <div className="text-responsive-sm text-slate-200 truncate">
+                      {user.personalRecords[user.personalRecords.length - 1].gameName}
+                    </div>
+                  </div>
+                )}
+              </Link>
+            ))}
+          </div>
+        )}
+      </AuthGuard>
 
       {/* Load More Button (for future pagination) */}
       {filteredAndSortedUsers.length >= 20 && (
