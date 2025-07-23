@@ -1,5 +1,7 @@
 import React, { ReactNode, useState, useEffect } from 'react'
 import Sidebar from './Sidebar'
+import { useUser } from '../contexts/UserContext'
+import { Link } from 'react-router-dom'
 
 interface LayoutProps {
   children: ReactNode
@@ -8,6 +10,7 @@ interface LayoutProps {
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
+  const { user, isAuthenticated } = useUser()
 
   const toggleMobileSidebar = () => {
     setIsMobileSidebarOpen(!isMobileSidebarOpen)
@@ -104,9 +107,30 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       <Sidebar isOpen={isMobileSidebarOpen} onClose={closeMobileSidebar} />
       
       <div className="flex-1 lg:ml-64 min-h-screen">
+        {/* Header */}
+        <header className="hidden lg:flex items-center justify-between px-6 py-4 bg-slate-800/50 backdrop-blur-sm border-b border-slate-700">
+          <h1 className="text-2xl font-bold text-blue-400">Battle64</h1>
+          
+          {/* User Profile Image - only show when authenticated */}
+          {isAuthenticated && user && (
+            <Link 
+              to="/profile" 
+              className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-700/50 transition-colors group"
+            >
+              <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full flex items-center justify-center text-sm group-hover:scale-105 transition-transform">
+                {user.avatar || '🎮'}
+              </div>
+              <div className="text-sm">
+                <div className="font-medium text-slate-100">{user.username}</div>
+                <div className="text-slate-400">Level {user.level}</div>
+              </div>
+            </Link>
+          )}
+        </header>
+
         {/* Main Content */}
         <main className="main-content min-h-screen">
-          <div className="pt-12 lg:pt-0 px-3 sm:px-4 lg:px-6">
+          <div className="pt-12 lg:pt-6 px-3 sm:px-4 lg:px-6">
             {children}
           </div>
         </main>
