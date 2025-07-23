@@ -3,6 +3,7 @@ import { useParams, Link, useNavigate } from 'react-router-dom'
 import { useForum } from '../contexts/ForumContext'
 import { useUser } from '../contexts/UserContext'
 import { useLanguage } from '../contexts/LanguageContext'
+import ImageUpload from '../components/ImageUpload'
 import { 
   MessageSquare, 
   Clock, 
@@ -32,6 +33,8 @@ const ForumThreadPage: React.FC = () => {
   const navigate = useNavigate()
   
   const [replyContent, setReplyContent] = useState('')
+  const [replyImageUrl, setReplyImageUrl] = useState<string>('')
+  const [replyImageFile, setReplyImageFile] = useState<File | null>(null)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [showReplyForm, setShowReplyForm] = useState(false)
 
@@ -50,10 +53,12 @@ const ForumThreadPage: React.FC = () => {
     if (!threadId || !replyContent.trim() || !isAuthenticated) return
 
     setIsSubmitting(true)
-    const success = await createPost(threadId, replyContent.trim())
+    const success = await createPost(threadId, replyContent.trim(), replyImageUrl || undefined)
     
     if (success) {
       setReplyContent('')
+      setReplyImageUrl('')
+      setReplyImageFile(null)
       setShowReplyForm(false)
     }
     setIsSubmitting(false)
@@ -67,6 +72,16 @@ const ForumThreadPage: React.FC = () => {
       hour: '2-digit',
       minute: '2-digit'
     }).format(date)
+  }
+
+  const handleReplyImageSelect = (url: string, file: File) => {
+    setReplyImageUrl(url)
+    setReplyImageFile(file)
+  }
+
+  const handleReplyImageRemove = () => {
+    setReplyImageUrl('')
+    setReplyImageFile(null)
   }
 
   const getThreadPosts = () => {
@@ -259,6 +274,21 @@ const ForumThreadPage: React.FC = () => {
                 required
               />
 
+              {/* Image Upload for Reply */}
+              <div className="mt-4">
+                <label className="block text-sm font-medium text-slate-200 mb-2">
+                  Bild anhängen (optional)
+                </label>
+                <ImageUpload
+                  onImageSelect={handleReplyImageSelect}
+                  onImageRemove={handleReplyImageRemove}
+                  currentImage={replyImageUrl}
+                  disabled={isSubmitting}
+                  isAuthenticated={isAuthenticated}
+                  className="mb-2"
+                />
+              </div>
+
               <div className="flex items-center justify-between mt-4">
                 <div className="text-sm text-slate-400">
                   {replyContent.length}/2000 Zeichen
@@ -269,6 +299,8 @@ const ForumThreadPage: React.FC = () => {
                     onClick={() => {
                       setShowReplyForm(false)
                       setReplyContent('')
+                      setReplyImageUrl('')
+                      setReplyImageFile(null)
                     }}
                     className="px-4 py-2 text-slate-400 hover:text-slate-200 transition-colors"
                     disabled={isSubmitting}
