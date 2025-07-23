@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect } from 'react'
-import { ChevronLeft, ChevronRight } from 'lucide-react'
 
 interface SwipeableCardProps {
   title: string
@@ -68,7 +67,7 @@ const SwipeableCard: React.FC<SwipeableCardProps> = ({
     touchEndX.current = 0
   }
 
-  // Auto-advance every 8 seconds when not interacting
+  // Auto-advance every 10 seconds when not interacting
   useEffect(() => {
     if (displayItems.length <= 1) return
     
@@ -76,7 +75,7 @@ const SwipeableCard: React.FC<SwipeableCardProps> = ({
       if (!isTransitioning) {
         nextItem()
       }
-    }, 8000)
+    }, 10000) // Changed from 8000 to 10000 (10 seconds)
 
     return () => clearInterval(interval)
   }, [currentIndex, isTransitioning, displayItems.length])
@@ -108,37 +107,9 @@ const SwipeableCard: React.FC<SwipeableCardProps> = ({
       ref={containerRef}
     >
       <div className="swipeable-card-header">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            {icon}
-            <h3 className="text-responsive-base font-bold text-slate-100">{title}</h3>
-          </div>
-          
-          {displayItems.length > 1 && (
-            <div className="flex items-center gap-2">
-              <button
-                onClick={prevItem}
-                disabled={isTransitioning}
-                className="swipe-button"
-                aria-label="Vorheriger"
-              >
-                <ChevronLeft className="w-4 h-4" />
-              </button>
-              
-              <span className="text-xs text-slate-400 min-w-[3rem] text-center">
-                {currentIndex + 1} / {displayItems.length}
-              </span>
-              
-              <button
-                onClick={nextItem}
-                disabled={isTransitioning}
-                className="swipe-button"
-                aria-label="Nächster"
-              >
-                <ChevronRight className="w-4 h-4" />
-              </button>
-            </div>
-          )}
+        <div className="flex items-center gap-2">
+          {icon}
+          <h3 className="text-responsive-base font-bold text-slate-100">{title}</h3>
         </div>
       </div>
       
@@ -154,25 +125,6 @@ const SwipeableCard: React.FC<SwipeableCardProps> = ({
           ))}
         </div>
       </div>
-      
-      {displayItems.length > 1 && (
-        <div className="swipeable-card-dots">
-          {displayItems.map((_, index) => (
-            <button
-              key={index}
-              className={`swipe-dot ${index === currentIndex ? 'active' : ''}`}
-              onClick={() => {
-                if (!isTransitioning) {
-                  setIsTransitioning(true)
-                  setCurrentIndex(index)
-                  setTimeout(() => setIsTransitioning(false), 300)
-                }
-              }}
-              aria-label={`Gehe zu Element ${index + 1}`}
-            />
-          ))}
-        </div>
-      )}
     </div>
   )
 }
