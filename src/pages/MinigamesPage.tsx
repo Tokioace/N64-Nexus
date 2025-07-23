@@ -809,74 +809,77 @@ const MinigamesPage: React.FC = () => {
   }
 
   return (
-    <div className="container mx-auto px-4 py-6">
+    <div className="container-lg py-responsive space-responsive responsive-max-width responsive-overflow-hidden">
       {/* Header */}
-      <div className="text-center mb-8">
-        <Gamepad2 className="w-16 h-16 text-red-400 mx-auto mb-4" />
-        <h1 className="text-4xl font-bold text-slate-100 mb-2">
+      <div className="text-center mb-responsive responsive-max-width">
+        <Gamepad2 className="w-12 h-12 sm:w-16 sm:h-16 text-red-400 mx-auto mb-4" />
+        <h1 className="text-responsive-2xl font-bold text-slate-100 mb-2 responsive-word-break">
           Battle64 {t('minigames.title')}
         </h1>
-        <p className="text-slate-400 text-lg">
+        <p className="text-responsive-base text-slate-400 responsive-word-break px-2">
           {t('minigames.subtitle')}
         </p>
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+      <div className="grid-auto-fit mb-responsive responsive-max-width">
         <div className="simple-tile text-center">
-          <Gamepad2 className="w-8 h-8 text-blue-400 mx-auto mb-2" />
-          <div className="text-2xl font-bold text-slate-100">
+          <Gamepad2 className="w-6 h-6 sm:w-8 sm:h-8 text-blue-400 mx-auto mb-2" />
+          <div className="text-responsive-lg font-bold text-slate-100">
             {minigames.filter(g => g.available).length}
           </div>
-          <div className="text-sm text-slate-400">{t('minigames.available') || 'Verfügbar'}</div>
+          <div className="text-responsive-xs text-slate-400 responsive-word-break">{t('minigames.available') || 'Verfügbar'}</div>
         </div>
         
         <div className="simple-tile text-center">
-          <Trophy className="w-8 h-8 text-yellow-400 mx-auto mb-2" />
-          <div className="text-2xl font-bold text-slate-100">
+          <Trophy className="w-6 h-6 sm:w-8 sm:h-8 text-yellow-400 mx-auto mb-2" />
+          <div className="text-responsive-lg font-bold text-slate-100">
             {Math.max(...minigames.filter(g => g.highScore).map(g => g.highScore || 0)).toLocaleString()}
           </div>
-          <div className="text-sm text-slate-400">{t('minigames.highScore')}</div>
+          <div className="text-responsive-xs text-slate-400 responsive-word-break">{t('minigames.highScore')}</div>
         </div>
         
         <div className="simple-tile text-center">
-          <Target className="w-8 h-8 text-green-400 mx-auto mb-2" />
-          <div className="text-2xl font-bold text-slate-100">
+          <Target className="w-6 h-6 sm:w-8 sm:h-8 text-green-400 mx-auto mb-2" />
+          <div className="text-responsive-lg font-bold text-slate-100">
             {minigames.filter(g => g.difficulty === 'easy').length}
           </div>
-          <div className="text-sm text-slate-400">{t('minigames.easy')} {t('minigames.games') || 'Spiele'}</div>
+          <div className="text-responsive-xs text-slate-400 responsive-word-break">{t('minigames.easy')} {t('minigames.games') || 'Spiele'}</div>
         </div>
         
         <div className="simple-tile text-center">
-          <Users className="w-8 h-8 text-purple-400 mx-auto mb-2" />
-          <div className="text-2xl font-bold text-slate-100">
+          <Users className="w-6 h-6 sm:w-8 sm:h-8 text-purple-400 mx-auto mb-2" />
+          <div className="text-responsive-lg font-bold text-slate-100">
             {minigames.filter(g => g.category === 'multiplayer').length}
           </div>
-          <div className="text-sm text-slate-400">{t('minigames.multiplayer')}</div>
+          <div className="text-responsive-xs text-slate-400 responsive-word-break">{t('minigames.multiplayer')}</div>
         </div>
       </div>
 
       {/* Category Filter */}
-      <div className="flex justify-center mb-8">
-        <div className="bg-slate-800 rounded-lg p-1 inline-flex flex-wrap">
-          {categories.map((category) => (
-            <button
-              key={category.key}
-              onClick={() => setSelectedCategory(category.key)}
-              className={`px-4 py-2 rounded-md transition-all duration-200 text-sm ${
-                selectedCategory === category.key
-                  ? 'bg-slate-700 text-slate-100'
-                  : 'text-slate-400 hover:text-slate-200 hover:bg-slate-700/50'
-              }`}
-            >
-              {category.label} ({category.count})
-            </button>
-          ))}
+      <div className="flex justify-center mb-responsive responsive-max-width">
+        <div className="bg-slate-800 rounded-lg p-1 w-full max-w-4xl responsive-overflow-hidden">
+          <div className="flex flex-wrap justify-center gap-1">
+            {categories.map((category) => (
+              <button
+                key={category.key}
+                onClick={() => setSelectedCategory(category.key)}
+                className={`px-3 sm:px-4 py-2 rounded-md transition-all duration-200 text-xs sm:text-sm ${
+                  selectedCategory === category.key
+                    ? 'bg-slate-700 text-slate-100'
+                    : 'text-slate-400 hover:text-slate-200 hover:bg-slate-700/50'
+                }`}
+              >
+                <span className="hidden sm:inline">{category.label} ({category.count})</span>
+                <span className="sm:hidden">{category.label.split(' ')[0]} ({category.count})</span>
+              </button>
+            ))}
+          </div>
         </div>
       </div>
 
       {/* Games Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+      <div className="grid-auto-fit-lg mb-responsive responsive-max-width">
         {filteredGames.map((game) => {
           const IconComponent = game.icon
           

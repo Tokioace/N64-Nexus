@@ -39,11 +39,15 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       document.body.style.touchAction = 'none'
       document.body.style.position = 'fixed'
       document.body.style.width = '100%'
+      document.body.style.top = '0'
+      document.body.style.left = '0'
     } else {
       document.body.style.overflow = ''
       document.body.style.touchAction = ''
       document.body.style.position = ''
       document.body.style.width = ''
+      document.body.style.top = ''
+      document.body.style.left = ''
     }
 
     return () => {
@@ -51,6 +55,8 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       document.body.style.touchAction = ''
       document.body.style.position = ''
       document.body.style.width = ''
+      document.body.style.top = ''
+      document.body.style.left = ''
     }
   }, [isMobileSidebarOpen, isMobile])
 
@@ -74,7 +80,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   }, [isMobileSidebarOpen, isMobile])
 
   return (
-    <div className="flex min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+    <div className="flex min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 responsive-overflow-hidden responsive-max-width">
       {/* Mobile overlay */}
       {isMobileSidebarOpen && (
         <div 
@@ -87,7 +93,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       {/* Mobile menu button */}
       <button
         onClick={toggleMobileSidebar}
-        className="mobile-menu-button fixed top-3 left-3 z-50 lg:hidden bg-slate-800/90 backdrop-blur-sm text-white p-2 sm:p-3 rounded-lg shadow-lg hover:bg-slate-700 transition-all duration-200 border border-slate-600"
+        className="mobile-menu-button fixed top-2 left-2 sm:top-3 sm:left-3 z-50 lg:hidden bg-slate-800/90 backdrop-blur-sm text-white p-2 sm:p-3 rounded-lg shadow-lg hover:bg-slate-700 transition-all duration-200 border border-slate-600 min-h-[44px] min-w-[44px] flex items-center justify-center"
         aria-label="Toggle mobile menu"
       >
         <svg
@@ -108,10 +114,10 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       {isAuthenticated && user && (
         <Link 
           to="/profile" 
-          className="fixed top-3 right-3 z-50 flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-slate-800/90 backdrop-blur-sm hover:bg-slate-700/90 transition-all duration-200 border border-slate-600 shadow-lg group"
+          className="fixed top-2 right-2 sm:top-3 sm:right-3 z-50 flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-slate-800/90 backdrop-blur-sm hover:bg-slate-700/90 transition-all duration-200 border border-slate-600 shadow-lg group min-h-[44px] min-w-[44px]"
           title={`${user.username} - Level ${user.level}`}
         >
-          <div className="w-7 h-7 sm:w-8 sm:h-8 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full flex items-center justify-center text-sm font-medium text-white group-hover:scale-105 transition-transform shadow-inner">
+          <div className="w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full flex items-center justify-center text-xs sm:text-sm font-medium text-white group-hover:scale-105 transition-transform shadow-inner">
             {user.avatar || '🎮'}
           </div>
         </Link>
@@ -119,18 +125,18 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
 
       <Sidebar isOpen={isMobileSidebarOpen} onClose={closeMobileSidebar} />
       
-      <div className="flex-1 lg:ml-64 min-h-screen">
+      <div className="flex-1 lg:ml-64 min-h-screen responsive-max-width responsive-overflow-hidden">
         {/* Header - Desktop only */}
-        <header className="hidden lg:flex items-center justify-between px-6 py-4 bg-slate-800/50 backdrop-blur-sm border-b border-slate-700">
-          <h1 className="text-2xl font-bold text-blue-400">Battle64</h1>
+        <header className="hidden lg:flex items-center justify-between px-4 lg:px-6 py-4 bg-slate-800/50 backdrop-blur-sm border-b border-slate-700 responsive-max-width">
+          <h1 className="text-xl lg:text-2xl font-bold text-blue-400">Battle64</h1>
           
           {/* Spacer for desktop header balance */}
           <div className="w-10 h-10"></div>
         </header>
 
         {/* Main Content */}
-        <main className="main-content min-h-screen">
-          <div className="pt-12 lg:pt-6 px-3 sm:px-4 lg:px-6">
+        <main className="main-content min-h-screen responsive-max-width">
+          <div className="pt-14 sm:pt-16 lg:pt-6 px-2 sm:px-3 lg:px-4 xl:px-6 responsive-max-width">
             {children}
           </div>
         </main>
