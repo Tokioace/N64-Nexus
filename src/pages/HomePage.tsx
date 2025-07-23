@@ -49,21 +49,42 @@ const HomePage: React.FC = () => {
     return () => clearInterval(timer)
   }, [])
 
-  // Mock news data
+  // Enhanced news data with more N64 and app news
   const newsItems: NewsItem[] = [
     {
       id: '1',
-      title: t('news.speedrunEvent'),
-      content: t('news.speedrunEventContent'),
-      date: new Date(Date.now() - 86400000),
+      title: '🏆 Mario Kart 64 Speedrun Weltrekord gebrochen!',
+      content: 'SpeedDemon64 hat einen neuen Weltrekord in Wario Stadium mit einer Zeit von 1:42.33 aufgestellt! Das Video läuft in Dauerschleife auf unserer Event-Seite.',
+      date: new Date(Date.now() - 3600000), // 1 hour ago
       type: 'event_winner'
     },
     {
       id: '2',
-      title: t('news.n64History'),
-      content: t('news.n64HistoryContent'),
-      date: new Date(Date.now() - 172800000),
+      title: '🎮 N64 Controller Update: Neue Analog-Stick Kalibrierung',
+      content: 'Die Battle64 App unterstützt jetzt präzisere Controller-Eingaben für bessere Speedrun-Aufzeichnungen. Update jetzt verfügbar!',
+      date: new Date(Date.now() - 7200000), // 2 hours ago
+      type: 'community_news'
+    },
+    {
+      id: '3',
+      title: '📺 Live Event: GoldenEye 007 Tournament JETZT',
+      content: 'Das GoldenEye 007 Facility Tournament läuft gerade! Sieh dir die besten Spieler live an und verfolge ihre Strategien.',
+      date: new Date(Date.now() - 1800000), // 30 minutes ago
+      type: 'event_announcement'
+    },
+    {
+      id: '4',
+      title: '🎯 N64 Sammler-Feature: Neue Rarität-Bewertungen',
+      content: 'Wir haben unser Bewertungssystem für seltene N64-Spiele erweitert. Jetzt mit Preisvergleich und Zustandsbewertung!',
+      date: new Date(Date.now() - 86400000), // 1 day ago
       type: 'n64_history'
+    },
+    {
+      id: '5',
+      title: '🏁 Super Mario 64 120-Star Challenge Ergebnisse',
+      content: 'Die Gewinner des 120-Star Challenge stehen fest! ProGamer_MK hat mit 1:37:42 gewonnen. Gratulation an alle Teilnehmer!',
+      date: new Date(Date.now() - 172800000), // 2 days ago
+      type: 'event_winner'
     }
   ]
 
@@ -120,6 +141,95 @@ const HomePage: React.FC = () => {
         </div>
       </div>
 
+      {/* LIVE EVENTS SECTION - TOP PRIORITY */}
+      <div className="mb-responsive responsive-max-width">
+        {activeEvents.length > 0 ? (
+          <EventFeedWidget
+            eventTitle={activeEvents[0].title}
+            eventGame={activeEvents[0].game || 'N64'}
+            participants={activeEvents[0].participants || 0}
+            timeRemaining={getEventTimeRemaining(activeEvents[0])}
+            leaderboard={getLeaderboard(activeEvents[0].id)}
+            isExpanded={isEventExpanded}
+            onToggleExpanded={() => setIsEventExpanded(!isEventExpanded)}
+          />
+        ) : (
+          <div className="n64-tile n64-tile-large bg-gradient-to-br from-red-600/20 to-pink-600/20 border-l-4 border-red-400 responsive-max-width">
+            <div className="flex items-center gap-2 sm:gap-3 mb-4">
+              <Trophy className="w-5 h-5 sm:w-6 sm:h-6 text-red-400 flex-shrink-0" />
+              <h2 className="text-responsive-lg font-bold text-slate-100 responsive-word-break">🔴 {t('home.liveEvents')}</h2>
+            </div>
+            <div className="text-center py-4 sm:py-8">
+              <Calendar className="w-8 h-8 sm:w-12 sm:h-12 text-slate-500 mx-auto mb-3" />
+              <p className="text-responsive-sm text-slate-400 mb-4 responsive-word-break">Kein Live-Event aktiv - Nächstes Event startet bald!</p>
+              <Link 
+                to="/events" 
+                className="inline-block px-3 py-2 sm:px-4 sm:py-2 rounded-lg bg-red-500/20 text-red-400 hover:bg-red-500/30 transition-colors text-responsive-sm w-full sm:w-auto text-center"
+              >
+                📅 Alle Events anzeigen
+              </Link>
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* ENHANCED NEWS SECTION - N64 & APP NEWS */}
+      <div className="mb-responsive responsive-max-width">
+        <div className="simple-tile responsive-max-width bg-gradient-to-br from-blue-600/10 to-purple-600/10 border-l-4 border-blue-400">
+          <div className="simple-tile-header">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-0">
+              <h2 className="text-responsive-xl font-bold text-slate-100 flex items-center gap-2">
+                <TrendingUp className="w-6 h-6 sm:w-7 sm:h-7 text-blue-400 flex-shrink-0" />
+                <span className="responsive-word-break">📰 N64 & App News</span>
+              </h2>
+              <button
+                onClick={() => setIsNewsExpanded(!isNewsExpanded)}
+                className="btn-secondary btn-sm w-full sm:w-auto flex items-center justify-center gap-2"
+              >
+                {isNewsExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+                <span>{isNewsExpanded ? 'Weniger anzeigen' : 'Alle News anzeigen'}</span>
+              </button>
+            </div>
+          </div>
+          
+          <div className="space-y-4">
+            {newsItems.slice(0, isNewsExpanded ? newsItems.length : 3).map((item) => {
+              const getTypeColor = (type: string) => {
+                switch(type) {
+                  case 'event_winner': return 'border-yellow-400 bg-yellow-400/10'
+                  case 'event_announcement': return 'border-red-400 bg-red-400/10'
+                  case 'n64_history': return 'border-purple-400 bg-purple-400/10'
+                  case 'community_news': return 'border-green-400 bg-green-400/10'
+                  default: return 'border-blue-400 bg-blue-400/10'
+                }
+              }
+              
+              return (
+                <div key={item.id} className={`border-l-4 pl-3 sm:pl-4 py-3 rounded-r-lg ${getTypeColor(item.type)}`}>
+                  <div className="flex justify-between items-start mb-2">
+                    <h3 className="text-responsive-base font-semibold text-slate-100 mb-1 responsive-word-break">
+                      {item.title}
+                    </h3>
+                    <span className="text-responsive-xs text-slate-500 ml-2 flex-shrink-0">
+                      {item.date.toLocaleTimeString(currentLanguage === 'de' ? 'de-DE' : 'en-US', {
+                        hour: '2-digit',
+                        minute: '2-digit'
+                      })}
+                    </span>
+                  </div>
+                  <p className="text-responsive-sm text-slate-300 mb-2 responsive-word-break">
+                    {item.content}
+                  </p>
+                  <div className="text-responsive-xs text-slate-500">
+                    {item.date.toLocaleDateString(currentLanguage === 'de' ? 'de-DE' : 'en-US')}
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+        </div>
+      </div>
+
       {/* Stats Overview */}
       {user && (
         <div className="grid-auto-fit mb-responsive responsive-max-width">
@@ -160,93 +270,6 @@ const HomePage: React.FC = () => {
           </div>
         </div>
       )}
-
-      {/* News and Events Section */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-responsive mb-responsive responsive-max-width">
-        
-        {/* News Section */}
-        <div className="lg:col-span-2 responsive-max-width">
-          <div className="simple-tile responsive-max-width">
-            <div className="simple-tile-header">
-              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-0">
-                <h2 className="text-responsive-lg font-bold text-slate-100 flex items-center gap-2">
-                  <TrendingUp className="w-5 h-5 sm:w-6 sm:h-6 text-blue-400 flex-shrink-0" />
-                  <span className="responsive-word-break">{t('home.news')}</span>
-                </h2>
-                <button
-                  onClick={() => setIsNewsExpanded(!isNewsExpanded)}
-                  className="btn-secondary btn-sm w-full sm:w-auto flex items-center justify-center gap-2"
-                >
-                  {isNewsExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
-                  <span>{isNewsExpanded ? t('common.collapse') : t('common.expand')}</span>
-                </button>
-              </div>
-            </div>
-            
-            <div className="space-y-4">
-              {newsItems.slice(0, isNewsExpanded ? newsItems.length : 2).map((item) => (
-                <div key={item.id} className="border-l-4 border-blue-400 pl-3 sm:pl-4 py-2">
-                  <h3 className="text-responsive-base font-semibold text-slate-100 mb-1 responsive-word-break">
-                    {item.title}
-                  </h3>
-                  <p className="text-responsive-sm text-slate-400 mb-2 responsive-word-break">
-                    {item.content}
-                  </p>
-                  <div className="text-responsive-xs text-slate-500">
-                    {item.date.toLocaleDateString(currentLanguage === 'de' ? 'de-DE' : 'en-US')}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Live Events Section */}
-        {activeEvents.length > 0 ? (
-          <div className="n64-tile n64-tile-large bg-gradient-to-br from-green-600/20 to-emerald-600/20 border-l-4 border-green-400 responsive-max-width">
-            <div className="flex items-center gap-2 sm:gap-3 mb-4">
-              <Trophy className="w-5 h-5 sm:w-6 sm:h-6 text-green-400 flex-shrink-0" />
-              <h2 className="text-responsive-lg font-bold text-slate-100 responsive-word-break">{t('home.liveEvents')}</h2>
-            </div>
-            <div className="space-y-3">
-              {activeEvents.slice(0, 2).map((event) => (
-                <div key={event.id} className="bg-slate-700/30 rounded-lg p-3">
-                  <h3 className="text-responsive-sm font-semibold text-slate-100 mb-1 responsive-word-break">
-                    {event.title}
-                  </h3>
-                  <div className="flex flex-wrap items-center gap-2 text-responsive-xs text-slate-400">
-                    <Clock className="w-3 h-3 sm:w-4 sm:h-4 flex-shrink-0" />
-                    <span>{new Date(event.endDate).toLocaleDateString()}</span>
-                  </div>
-                </div>
-              ))}
-            </div>
-            <Link 
-              to="/events" 
-              className="inline-block mt-4 px-3 py-2 sm:px-4 sm:py-2 rounded-lg bg-green-500/20 text-green-400 hover:bg-green-500/30 transition-colors text-responsive-sm w-full sm:w-auto text-center"
-            >
-              {t('events.viewAll')}
-            </Link>
-          </div>
-        ) : (
-          <div className="n64-tile n64-tile-large bg-gradient-to-br from-red-600/20 to-pink-600/20 border-l-4 border-red-400 responsive-max-width">
-            <div className="flex items-center gap-2 sm:gap-3 mb-4">
-              <Trophy className="w-5 h-5 sm:w-6 sm:h-6 text-red-400 flex-shrink-0" />
-              <h2 className="text-responsive-lg font-bold text-slate-100 responsive-word-break">{t('home.liveEvents')}</h2>
-            </div>
-            <div className="text-center py-4 sm:py-8">
-              <Calendar className="w-8 h-8 sm:w-12 sm:h-12 text-slate-500 mx-auto mb-3" />
-              <p className="text-responsive-sm text-slate-400 mb-4 responsive-word-break">{t('events.noActive')}</p>
-              <Link 
-                to="/events" 
-                className="inline-block px-3 py-2 sm:px-4 sm:py-2 rounded-lg bg-red-500/20 text-red-400 hover:bg-red-500/30 transition-colors text-responsive-sm w-full sm:w-auto text-center"
-              >
-                {t('events.viewAll')}
-              </Link>
-            </div>
-          </div>
-        )}
-      </div>
 
       {/* Navigation Grid */}
       <div className="grid-auto-fit-sm responsive-max-width">
@@ -367,7 +390,7 @@ const HomePage: React.FC = () => {
           {t('home.footer.tagline')}
         </p>
         <Link 
-          to="/" 
+          to="/retro" 
           className="inline-block mt-4 px-4 py-2 rounded-lg bg-slate-700/50 hover:bg-slate-600/50 transition-colors text-responsive-sm text-slate-300 w-full sm:w-auto"
         >
           🎮 Zur Retro-Ansicht

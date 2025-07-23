@@ -38,10 +38,10 @@ function App() {
               <ForumProvider>
                 <Layout>
                   <Routes>
-                    <Route path="/" element={<HomeScreenRetro />} />
+                    <Route path="/" element={<HomePage />} />
                     <Route path="/auth" element={<AuthPage />} />
                     <Route path="/community" element={<CommunityPage />} />
-                    <Route path="/classic" element={<HomePage />} />
+                    <Route path="/retro" element={<HomeScreenRetro />} />
                     <Route path="/quiz" element={<QuizPage />} />
                     <Route path="/quiz/result" element={<QuizResultPage />} />
                     <Route path="/leaderboard" element={<LeaderboardPage />} />
