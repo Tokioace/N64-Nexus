@@ -43,49 +43,49 @@ const LeaderboardPage: React.FC = () => {
   }
 
   return (
-    <div className="container mx-auto px-4 py-6">
+    <div className="container-lg py-responsive space-responsive responsive-max-width responsive-overflow-hidden">
       {/* Header */}
-      <div className="text-center mb-8">
-        <Trophy className="w-16 h-16 text-yellow-400 mx-auto mb-4" />
-        <h1 className="text-4xl font-bold text-slate-100 mb-2">
+      <div className="text-center mb-responsive responsive-max-width">
+        <Trophy className="w-12 h-12 sm:w-16 sm:h-16 text-yellow-400 mx-auto mb-4" />
+        <h1 className="text-responsive-2xl font-bold text-slate-100 mb-2 responsive-word-break">
           {t('leaderboard.pageTitle')}
         </h1>
-        <p className="text-slate-400 text-lg">
+        <p className="text-responsive-base text-slate-400 responsive-word-break px-2">
           {t('leaderboard.pageSubtitle')}
         </p>
       </div>
 
       {/* Event Selection */}
       {activeEventsWithLeaderboard.length > 1 && (
-        <div className="simple-tile mb-8">
-          <h2 className="text-xl font-bold text-slate-100 mb-4 flex items-center">
-            <Calendar className="w-5 h-5 mr-2" />
-            {t('leaderboard.selectEvent')}
+        <div className="simple-tile mb-responsive responsive-max-width">
+          <h2 className="text-responsive-lg font-bold text-slate-100 mb-4 flex items-center">
+            <Calendar className="w-4 h-4 sm:w-5 sm:h-5 mr-2 flex-shrink-0" />
+            <span className="responsive-word-break">{t('leaderboard.selectEvent')}</span>
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid-auto-fit">
             {activeEventsWithLeaderboard.map((event) => (
               <button
                 key={event.id}
                 onClick={() => setSelectedEvent(event.id)}
-                className={`p-4 rounded-lg border-2 transition-all text-left ${
+                className={`p-3 sm:p-4 rounded-lg border-2 transition-all text-left w-full ${
                   currentEventId === event.id
                     ? 'border-blue-400 bg-blue-400/10'
                     : 'border-slate-600 bg-slate-700 hover:border-slate-500'
                 }`}
               >
                 <div className="flex items-center space-x-2 mb-2">
-                  <Trophy className={`w-4 h-4 ${
+                  <Trophy className={`w-4 h-4 flex-shrink-0 ${
                     currentEventId === event.id ? 'text-blue-400' : 'text-slate-400'
                   }`} />
-                  <span className="font-medium text-slate-100">{event.title}</span>
+                  <span className="font-medium text-slate-100 text-sm sm:text-base responsive-word-break">{event.title}</span>
                 </div>
-                <div className="flex items-center space-x-4 text-sm text-slate-400">
+                <div className="flex flex-wrap items-center gap-2 sm:gap-4 text-xs sm:text-sm text-slate-400">
                   <div className="flex items-center space-x-1">
-                    <Target className="w-3 h-3" />
-                    <span>{event.game}</span>
+                    <Target className="w-3 h-3 flex-shrink-0" />
+                    <span className="responsive-word-break">{event.game}</span>
                   </div>
                   <div className="flex items-center space-x-1">
-                    <Users className="w-3 h-3" />
+                    <Users className="w-3 h-3 flex-shrink-0" />
                     <span>{getLeaderboard(event.id).length}</span>
                   </div>
                 </div>
@@ -94,7 +94,19 @@ const LeaderboardPage: React.FC = () => {
                     ? 'bg-green-500/20 text-green-400' 
                     : 'bg-gray-500/20 text-gray-400'
                 }`}>
-                  {getEventStatus(event) === 'active' ? `🔴 ${t('events.status.live')}` : `✅ ${t('events.status.completed')}`}
+                  {getEventStatus(event) === 'active' ? (
+                    <span className="flex items-center gap-1">
+                      <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+                      <span className="hidden sm:inline">{t('events.status.live')}</span>
+                      <span className="sm:hidden">Live</span>
+                    </span>
+                  ) : (
+                    <span className="flex items-center gap-1">
+                      <Medal className="w-3 h-3" />
+                      <span className="hidden sm:inline">{t('events.status.completed')}</span>
+                      <span className="sm:hidden">Done</span>
+                    </span>
+                  )}
                 </div>
               </button>
             ))}
@@ -104,31 +116,33 @@ const LeaderboardPage: React.FC = () => {
 
       {/* Leaderboard */}
       {currentEventId ? (
-        <EventLeaderboard
-          eventId={currentEventId}
-          eventTitle={events.find(e => e.id === currentEventId)?.title || 'Event'}
-          entries={getLeaderboard(currentEventId).map(participation => ({
-            id: participation.id,
-            userId: participation.userId,
-            username: participation.username,
-            time: participation.time || '0:00.000',
-            position: 1, // Will be calculated in the component
-            submissionDate: participation.submissionDate,
-            documentationType: participation.documentationType || 'photo',
-            mediaUrl: participation.mediaUrl,
-            livestreamUrl: participation.livestreamUrl,
-            verified: participation.verified,
-            notes: participation.notes
-          }))}
-          currentUserId={user?.id}
-        />
+        <div className="responsive-max-width">
+          <EventLeaderboard
+            eventId={currentEventId}
+            eventTitle={events.find(e => e.id === currentEventId)?.title || 'Event'}
+            entries={getLeaderboard(currentEventId).map(participation => ({
+              id: participation.id,
+              userId: participation.userId,
+              username: participation.username,
+              time: participation.time || '0:00.000',
+              position: 1, // Will be calculated in the component
+              submissionDate: participation.submissionDate,
+              documentationType: participation.documentationType || 'photo',
+              mediaUrl: participation.mediaUrl,
+              livestreamUrl: participation.livestreamUrl,
+              verified: participation.verified,
+              notes: participation.notes
+            }))}
+            currentUserId={user?.id}
+          />
+        </div>
       ) : (
-        <div className="simple-tile text-center py-12">
-          <Medal className="w-16 h-16 text-slate-500 mx-auto mb-4" />
-          <h3 className="text-xl font-bold text-slate-300 mb-2">
+        <div className="simple-tile text-center py-8 sm:py-12 responsive-max-width">
+          <Medal className="w-12 h-12 sm:w-16 sm:h-16 text-slate-500 mx-auto mb-4" />
+          <h3 className="text-lg sm:text-xl font-bold text-slate-300 mb-2 responsive-word-break">
             {t('leaderboard.noData')}
           </h3>
-          <p className="text-slate-400">
+          <p className="text-slate-400 responsive-word-break">
             {t('leaderboard.noDataDesc')}
           </p>
         </div>

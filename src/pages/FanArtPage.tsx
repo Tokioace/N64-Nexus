@@ -446,55 +446,55 @@ const FanArtPage: React.FC = () => {
   }
 
   return (
-    <div className="container mx-auto px-4 py-6">
+    <div className="container-lg py-responsive space-responsive responsive-max-width responsive-overflow-hidden">
       {/* Header */}
-      <div className="text-center mb-8">
+      <div className="text-center mb-responsive responsive-max-width">
         <div className="flex items-center justify-center gap-3 mb-4">
-          <Palette className="w-8 h-8 text-rose-400" />
-          <h1 className="text-3xl font-bold text-slate-100">
+          <Palette className="w-6 h-6 sm:w-8 sm:h-8 text-rose-400" />
+          <h1 className="text-responsive-2xl font-bold text-slate-100 responsive-word-break">
             {t('nav.fanart')}
           </h1>
         </div>
-        <p className="text-slate-400 text-lg mb-6">
+        <p className="text-responsive-base text-slate-400 mb-6 responsive-word-break px-2">
           {t('fanart.subtitle')}
         </p>
 
         {/* Action Buttons */}
-        <div className="flex flex-wrap items-center justify-center gap-4">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 responsive-max-width">
           {isAuthenticated && (
             <button
               onClick={() => setShowUploadModal(true)}
-              className="flex items-center gap-2 px-6 py-3 bg-rose-600 hover:bg-rose-700 
-                         text-white rounded-lg transition-colors font-medium"
+              className="flex items-center gap-2 px-4 sm:px-6 py-3 bg-rose-600 hover:bg-rose-700 
+                         text-white rounded-lg transition-colors font-medium w-full sm:w-auto justify-center"
             >
-              <Upload className="w-5 h-5" />
-              {t('fanart.uploadArt')}
+              <Upload className="w-4 h-4 sm:w-5 sm:h-5" />
+              <span className="text-sm sm:text-base">{t('fanart.uploadArt')}</span>
             </button>
           )}
 
           {/* View Mode Toggle */}
-          <div className="flex bg-slate-800 rounded-lg p-1">
+          <div className="flex bg-slate-800 rounded-lg p-1 w-full sm:w-auto">
             <button
               onClick={() => setViewMode('grid')}
-              className={`flex items-center gap-2 px-4 py-2 rounded-md transition-colors ${
+              className={`flex-1 sm:flex-none flex items-center justify-center gap-2 px-3 sm:px-4 py-2 rounded-md transition-colors ${
                 viewMode === 'grid' 
                   ? 'bg-slate-700 text-slate-100' 
                   : 'text-slate-400 hover:text-slate-200'
               }`}
             >
               <Grid className="w-4 h-4" />
-              Grid
+              <span className="text-sm sm:text-base">Grid</span>
             </button>
             <button
               onClick={() => setViewMode('list')}
-              className={`flex items-center gap-2 px-4 py-2 rounded-md transition-colors ${
+              className={`flex-1 sm:flex-none flex items-center justify-center gap-2 px-3 sm:px-4 py-2 rounded-md transition-colors ${
                 viewMode === 'list' 
                   ? 'bg-slate-700 text-slate-100' 
                   : 'text-slate-400 hover:text-slate-200'
               }`}
             >
               <List className="w-4 h-4" />
-              List
+              <span className="text-sm sm:text-base">List</span>
             </button>
           </div>
         </div>

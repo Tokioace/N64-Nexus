@@ -12,6 +12,11 @@ body {
   background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
   color: #f1f5f9;
   min-height: 100vh;
+  overflow-x: hidden; /* Prevent horizontal scroll globally */
+}
+
+* {
+  box-sizing: border-box; /* Ensure all elements use border-box */
 }
 
 code {
@@ -21,61 +26,68 @@ code {
 
 /* Battle64 Core Styles */
 .container {
-  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  @apply max-w-7xl mx-auto px-3 sm:px-4 lg:px-6 xl:px-8;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 /* Responsive Container Variants */
 .container-sm {
-  @apply max-w-2xl mx-auto px-4 sm:px-6;
+  @apply max-w-2xl mx-auto px-3 sm:px-4 lg:px-6;
+  width: 100%;
 }
 
 .container-md {
-  @apply max-w-4xl mx-auto px-4 sm:px-6 lg:px-8;
+  @apply max-w-4xl mx-auto px-3 sm:px-4 lg:px-6 xl:px-8;
+  width: 100%;
 }
 
 .container-lg {
-  @apply max-w-6xl mx-auto px-4 sm:px-6 lg:px-8;
+  @apply max-w-6xl mx-auto px-3 sm:px-4 lg:px-6 xl:px-8;
+  width: 100%;
 }
 
 .container-xl {
-  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  @apply max-w-7xl mx-auto px-3 sm:px-4 lg:px-6 xl:px-8;
+  width: 100%;
 }
 
 /* Button Styles */
 .btn-primary {
-  @apply inline-flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 
+  @apply inline-flex items-center px-3 py-2 sm:px-4 sm:py-2 bg-blue-600 hover:bg-blue-700 
          text-white font-medium rounded-lg transition-colors duration-200 
          focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2
-         text-sm sm:text-base;
+         text-sm sm:text-base min-h-[44px] justify-center;
 }
 
 .btn-secondary {
-  @apply inline-flex items-center px-4 py-2 bg-slate-600 hover:bg-slate-700 
+  @apply inline-flex items-center px-3 py-2 sm:px-4 sm:py-2 bg-slate-600 hover:bg-slate-700 
          text-slate-100 font-medium rounded-lg transition-colors duration-200 
          focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2
-         text-sm sm:text-base;
+         text-sm sm:text-base min-h-[44px] justify-center;
 }
 
 /* Responsive Button Sizes */
 .btn-sm {
-  @apply px-3 py-1.5 text-sm;
+  @apply px-2 py-1 sm:px-3 sm:py-1.5 text-xs sm:text-sm min-h-[36px];
 }
 
 .btn-lg {
-  @apply px-6 py-3 text-lg;
+  @apply px-4 py-3 sm:px-6 sm:py-3 text-base sm:text-lg min-h-[52px];
 }
 
 /* N64-Style Retro Tiles */
 .n64-tile {
   @apply bg-slate-800/50 border border-slate-600/50 rounded-lg shadow-lg 
          transition-all duration-300 hover:shadow-xl hover:scale-105 
-         backdrop-blur-sm;
+         backdrop-blur-sm w-full;
   background: linear-gradient(135deg, 
     rgba(30, 41, 59, 0.8) 0%, 
     rgba(51, 65, 85, 0.6) 50%, 
     rgba(30, 41, 59, 0.8) 100%);
   position: relative;
   overflow: hidden;
+  box-sizing: border-box;
 }
 
 .n64-tile::before {
@@ -101,12 +113,12 @@ code {
 }
 
 .n64-tile-large {
-  @apply min-h-[180px] sm:min-h-[220px] lg:min-h-[240px] p-4 sm:p-6;
+  @apply min-h-[160px] sm:min-h-[200px] lg:min-h-[240px] p-3 sm:p-4 lg:p-6;
   animation: float 6s ease-in-out infinite;
 }
 
 .n64-tile-small {
-  @apply min-h-[100px] sm:min-h-[120px] p-3 sm:p-4 cursor-pointer;
+  @apply min-h-[100px] sm:min-h-[120px] lg:min-h-[140px] p-2 sm:p-3 lg:p-4 cursor-pointer;
   animation: float 4s ease-in-out infinite;
 }
 
@@ -131,7 +143,7 @@ code {
 /* Enhanced hover effects for tiles */
 .n64-tile-small:hover {
   animation-play-state: paused;
-  transform: translateY(-6px) scale(1.05);
+  transform: translateY(-6px) scale(1.02);
 }
 
 /* Retro glow effects */
@@ -143,13 +155,14 @@ code {
 
 /* Legacy simple tile styles for compatibility */
 .simple-tile {
-  @apply bg-slate-800 border border-slate-700 rounded-lg p-3 sm:p-4 lg:p-6 shadow-lg;
+  @apply bg-slate-800 border border-slate-700 rounded-lg p-2 sm:p-3 lg:p-4 xl:p-6 shadow-lg w-full;
   background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
   border: 1px solid #475569;
+  box-sizing: border-box;
 }
 
 .simple-tile-header {
-  @apply mb-3 pb-2 border-b border-slate-600;
+  @apply mb-2 sm:mb-3 pb-2 border-b border-slate-600;
 }
 
 .simple-tile-content {
@@ -157,23 +170,23 @@ code {
 }
 
 .simple-tile-large {
-  @apply min-h-[160px] sm:min-h-[180px] lg:min-h-[200px] p-4 sm:p-6;
+  @apply min-h-[140px] sm:min-h-[160px] lg:min-h-[180px] xl:min-h-[200px] p-3 sm:p-4 lg:p-6;
 }
 
 .simple-tile-medium {
-  @apply min-h-[120px] sm:min-h-[140px] lg:min-h-[150px] p-3 sm:p-4;
+  @apply min-h-[100px] sm:min-h-[120px] lg:min-h-[140px] xl:min-h-[150px] p-2 sm:p-3 lg:p-4;
 }
 
 .simple-tile-small {
-  @apply min-h-[80px] sm:min-h-[90px] lg:min-h-[100px] p-2 sm:p-3 text-center flex flex-col items-center justify-center;
+  @apply min-h-[70px] sm:min-h-[80px] lg:min-h-[90px] xl:min-h-[100px] p-2 sm:p-3 text-center flex flex-col items-center justify-center;
 }
 
 .simple-tile-icon {
-  @apply mb-2 flex items-center justify-center;
+  @apply mb-1 sm:mb-2 flex items-center justify-center;
 }
 
 .simple-tile-label {
-  @apply text-center text-sm sm:text-base;
+  @apply text-center text-xs sm:text-sm lg:text-base;
 }
 
 /* Navigation Styles */
@@ -199,12 +212,16 @@ code {
   @apply block;
 }
 
-.sidebar li a {
-  @apply block px-4 sm:px-6 py-3 text-slate-300 hover:bg-slate-800 hover:text-blue-400 
-         transition-colors duration-200 border-l-4 border-transparent text-sm sm:text-base;
+.sidebar li a,
+.nav-link {
+  @apply block px-3 sm:px-4 lg:px-6 py-3 text-slate-300 hover:bg-slate-800 hover:text-blue-400 
+         transition-colors duration-200 border-l-4 border-transparent text-sm sm:text-base
+         min-h-[44px] flex items-center w-full;
+  text-decoration: none;
 }
 
-.sidebar li.active a {
+.sidebar li.active a,
+.sidebar li.active .nav-link {
   @apply bg-slate-800 text-blue-400 border-l-blue-400;
 }
 
@@ -231,7 +248,10 @@ code {
 /* Main Content */
 .main-content {
   @apply min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 
-         px-0 sm:px-2 lg:px-4;
+         px-0 sm:px-1 lg:px-2;
+  width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
 }
 
 .main-content.sidebar-open {
@@ -240,29 +260,33 @@ code {
 
 /* Page Header */
 .page-header {
-  @apply bg-slate-800 border-b border-slate-700 px-4 sm:px-6 py-3 sm:py-4;
+  @apply bg-slate-800 border-b border-slate-700 px-3 sm:px-4 lg:px-6 py-3 sm:py-4;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .page-title {
-  @apply text-xl sm:text-2xl lg:text-3xl font-bold text-slate-100;
+  @apply text-lg sm:text-xl lg:text-2xl xl:text-3xl font-bold text-slate-100;
 }
 
 /* Cards */
 .card {
-  @apply bg-slate-800 border border-slate-700 rounded-lg shadow-lg overflow-hidden;
+  @apply bg-slate-800 border border-slate-700 rounded-lg shadow-lg overflow-hidden w-full;
+  box-sizing: border-box;
 }
 
 .card-header {
-  @apply px-4 sm:px-6 py-3 sm:py-4 border-b border-slate-700 bg-slate-700;
+  @apply px-3 sm:px-4 lg:px-6 py-3 sm:py-4 border-b border-slate-700 bg-slate-700;
 }
 
 .card-body {
-  @apply p-4 sm:p-6;
+  @apply p-3 sm:p-4 lg:p-6;
 }
 
 /* Responsive Grid Layouts */
 .grid-responsive {
-  @apply grid gap-4 sm:gap-6;
+  @apply grid gap-3 sm:gap-4 lg:gap-6;
+  width: 100%;
 }
 
 .grid-1-2-3 {
@@ -270,7 +294,7 @@ code {
 }
 
 .grid-1-2-4 {
-  @apply grid-cols-1 sm:grid-cols-2 lg:grid-cols-4;
+  @apply grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4;
 }
 
 .grid-1-3 {
@@ -278,7 +302,29 @@ code {
 }
 
 .grid-2-4 {
-  @apply grid-cols-2 lg:grid-cols-4;
+  @apply grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4;
+}
+
+/* Auto-fit grids for maximum responsiveness */
+.grid-auto-fit {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  width: 100%;
+}
+
+.grid-auto-fit-sm {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 0.75rem;
+  width: 100%;
+}
+
+.grid-auto-fit-lg {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  width: 100%;
 }
 
 /* Responsive Text Sizes */
@@ -335,6 +381,10 @@ code {
   @apply mb-3 sm:mb-4 lg:mb-6;
 }
 
+.mt-responsive {
+  @apply mt-3 sm:mt-4 lg:mt-6;
+}
+
 /* Mobile-First Responsive Utilities */
 .mobile-stack {
   @apply flex flex-col sm:flex-row;
@@ -374,9 +424,40 @@ code {
   @apply hidden lg:block;
 }
 
+/* Responsive Image and Media */
+.responsive-img {
+  @apply w-full h-auto max-w-full;
+}
+
+.responsive-video {
+  @apply w-full h-auto max-w-full;
+}
+
+/* Responsive Tables */
+.table-responsive {
+  @apply w-full overflow-x-auto;
+}
+
+.table-responsive table {
+  @apply min-w-full;
+}
+
+/* Responsive Forms */
+.form-responsive {
+  @apply w-full max-w-full;
+}
+
+.form-responsive input,
+.form-responsive select,
+.form-responsive textarea {
+  @apply w-full max-w-full;
+  box-sizing: border-box;
+}
+
 /* Forum-specific styles */
 .forum-post {
-  @apply bg-slate-800 border border-slate-700 rounded-lg p-3 sm:p-4 mb-4;
+  @apply bg-slate-800 border border-slate-700 rounded-lg p-3 sm:p-4 mb-4 w-full;
+  box-sizing: border-box;
 }
 
 .forum-post-header {
@@ -385,6 +466,8 @@ code {
 
 .forum-post-content {
   @apply text-slate-100 leading-relaxed text-sm sm:text-base;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .forum-post-content p {
@@ -396,19 +479,22 @@ code {
 }
 
 .forum-thread-title {
-  @apply text-lg sm:text-xl font-bold text-slate-100 hover:text-blue-400 transition-colors cursor-pointer;
+  @apply text-base sm:text-lg lg:text-xl font-bold text-slate-100 hover:text-blue-400 transition-colors cursor-pointer;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .forum-category-icon {
-  @apply w-5 h-5 sm:w-6 sm:h-6 flex-shrink-0;
+  @apply w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 flex-shrink-0;
 }
 
 .forum-stats-tile {
-  @apply bg-slate-800 border border-slate-700 rounded-lg p-3 sm:p-4 text-center;
+  @apply bg-slate-800 border border-slate-700 rounded-lg p-3 sm:p-4 text-center w-full;
+  box-sizing: border-box;
 }
 
 .forum-stats-number {
-  @apply text-xl sm:text-2xl font-bold text-blue-400;
+  @apply text-lg sm:text-xl lg:text-2xl font-bold text-blue-400;
 }
 
 .forum-stats-label {
@@ -440,22 +526,48 @@ code {
   @apply bg-yellow-700 text-yellow-200;
 }
 
+/* Responsive Flexbox Utilities */
+.flex-responsive {
+  @apply flex flex-col sm:flex-row;
+}
+
+.flex-responsive-reverse {
+  @apply flex flex-col-reverse sm:flex-row;
+}
+
+.items-responsive-center {
+  @apply items-start sm:items-center;
+}
+
+.justify-responsive-between {
+  @apply justify-start sm:justify-between;
+}
+
+/* Responsive Width Utilities */
+.w-responsive-full {
+  @apply w-full sm:w-auto;
+}
+
+.w-responsive-auto {
+  @apply w-auto sm:w-full;
+}
+
 /* Mobile Optimizations */
 @media (max-width: 640px) {
   .container {
-    @apply px-3;
+    @apply px-2;
   }
   
   .simple-tile {
-    @apply p-3;
+    @apply p-2;
   }
   
   .btn-primary, .btn-secondary {
-    @apply px-3 py-2 text-sm;
+    @apply px-3 py-2 text-sm min-h-[44px];
   }
   
   .page-title {
-    @apply text-lg;
+    @apply text-base;
   }
   
   /* Stack elements vertically on mobile */
@@ -470,11 +582,21 @@ code {
   
   /* Smaller text on mobile for better fit */
   .forum-thread-title {
-    @apply text-base;
+    @apply text-sm;
   }
   
   .forum-stats-number {
-    @apply text-lg;
+    @apply text-base;
+  }
+  
+  /* Ensure no horizontal overflow */
+  * {
+    max-width: 100vw;
+  }
+  
+  /* Fix potential overflow issues */
+  .grid-responsive {
+    @apply gap-2;
   }
 }
 
@@ -517,15 +639,26 @@ code {
   }
 }
 
+/* Extra Large Screen Optimizations */
+@media (min-width: 1536px) {
+  .container {
+    @apply px-8;
+  }
+  
+  .grid-1-2-4 {
+    @apply grid-cols-4;
+  }
+}
+
 /* Touch and Accessibility Improvements */
 @media (hover: none) and (pointer: coarse) {
   /* Touch device optimizations */
   .btn-primary, .btn-secondary {
-    @apply py-3 px-4 min-h-[44px]; /* Minimum touch target size */
+    @apply py-3 px-4 min-h-[48px]; /* Larger touch targets */
   }
   
   .sidebar li a {
-    @apply py-4; /* Larger touch targets for navigation */
+    @apply py-4 min-h-[48px]; /* Larger touch targets for navigation */
   }
   
   .n64-tile:hover, .simple-tile:hover {
@@ -573,4 +706,32 @@ code {
     max-width: none !important;
     padding: 0 !important;
   }
+}
+
+/* Additional responsive utilities for specific use cases */
+.responsive-overflow-hidden {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.responsive-word-break {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.responsive-max-width {
+  max-width: 100%;
+  width: 100%;
+}
+
+/* Prevent horizontal scrolling for all screen sizes */
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+#root {
+  overflow-x: hidden;
+  max-width: 100vw;
 }
