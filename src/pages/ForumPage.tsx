@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import React, { memo, useMemo, useCallback } from 'react'
 import { useForum } from '../contexts/ForumContext'
 import { useUser } from '../contexts/UserContext'
 import { useLanguage } from '../contexts/LanguageContext'
@@ -19,7 +19,7 @@ const ForumPage: React.FC = () => {
   const { user } = useUser()
   const { t } = useLanguage()
 
-  const getIconComponent = (iconName: string) => {
+  const getIconComponent = useCallback((iconName: string) => {
     switch (iconName) {
       case 'Zap': return <Zap className="w-6 h-6" />
       case 'Calendar': return <Calendar className="w-6 h-6" />
@@ -28,9 +28,9 @@ const ForumPage: React.FC = () => {
       case 'Users': return <Users className="w-6 h-6" />
       default: return <MessageSquare className="w-6 h-6" />
     }
-  }
+  }, [])
 
-  const getColorClasses = (color: string) => {
+  const getColorClasses = useCallback((color: string) => {
     switch (color) {
       case 'red': return 'text-red-400 border-red-600 bg-red-900/20'
       case 'blue': return 'text-blue-400 border-blue-600 bg-blue-900/20'
@@ -39,9 +39,9 @@ const ForumPage: React.FC = () => {
       case 'yellow': return 'text-yellow-400 border-yellow-600 bg-yellow-900/20'
       default: return 'text-slate-400 border-slate-600 bg-slate-900/20'
     }
-  }
+  }, [])
 
-  const formatDate = (date: Date) => {
+  const formatDate = useCallback((date: Date) => {
     return new Intl.DateTimeFormat('de-DE', {
       day: '2-digit',
       month: '2-digit',
@@ -49,7 +49,31 @@ const ForumPage: React.FC = () => {
       hour: '2-digit',
       minute: '2-digit'
     }).format(date)
-  }
+  }, [])
+
+  // Memoize the stats cards to prevent unnecessary re-renders
+  const statsCards = useMemo(() => [
+    {
+      icon: <MessageSquare className="w-6 h-6 text-blue-400 mx-auto" />,
+      value: stats.totalThreads,
+      label: t('forum.threads')
+    },
+    {
+      icon: <Users className="w-6 h-6 text-green-400 mx-auto" />,
+      value: stats.totalPosts,
+      label: t('forum.posts')
+    },
+    {
+      icon: <Users className="w-6 h-6 text-purple-400 mx-auto" />,
+      value: stats.totalMembers,
+      label: t('community.members')
+    },
+    {
+      icon: <TrendingUp className="w-6 h-6 text-yellow-400 mx-auto" />,
+      value: stats.mostActiveCategory,
+      label: t('forum.mostActive')
+    }
+  ], [stats, t])
 
   if (loading) {
     return (
@@ -76,45 +100,17 @@ const ForumPage: React.FC = () => {
 
       {/* Stats Bar */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-        <div className="simple-tile simple-tile-small">
-          <div className="simple-tile-icon">
-            <MessageSquare className="w-6 h-6 text-blue-400 mx-auto" />
+        {statsCards.map((stat, index) => (
+          <div key={index} className="simple-tile simple-tile-small">
+            <div className="simple-tile-icon">
+              {stat.icon}
+            </div>
+            <div className="simple-tile-label">
+              <div className="text-xl font-bold text-slate-100">{stat.value}</div>
+              <div className="text-sm text-slate-400">{stat.label}</div>
+            </div>
           </div>
-          <div className="simple-tile-label">
-            <div className="text-xl font-bold text-slate-100">{stats.totalThreads}</div>
-            <div className="text-sm text-slate-400">{t('forum.threads')}</div>
-          </div>
-        </div>
-        
-        <div className="simple-tile simple-tile-small">
-          <div className="simple-tile-icon">
-            <Users className="w-6 h-6 text-green-400 mx-auto" />
-          </div>
-          <div className="simple-tile-label">
-            <div className="text-xl font-bold text-slate-100">{stats.totalPosts}</div>
-            <div className="text-sm text-slate-400">{t('forum.posts')}</div>
-          </div>
-        </div>
-        
-        <div className="simple-tile simple-tile-small">
-          <div className="simple-tile-icon">
-            <Users className="w-6 h-6 text-purple-400 mx-auto" />
-          </div>
-          <div className="simple-tile-label">
-            <div className="text-xl font-bold text-slate-100">{stats.totalMembers}</div>
-                          <div className="text-sm text-slate-400">{t('community.members')}</div>
-          </div>
-        </div>
-        
-        <div className="simple-tile simple-tile-small">
-          <div className="simple-tile-icon">
-            <TrendingUp className="w-6 h-6 text-yellow-400 mx-auto" />
-          </div>
-          <div className="simple-tile-label">
-            <div className="text-xl font-bold text-slate-100">{stats.mostActiveCategory}</div>
-                          <div className="text-sm text-slate-400">{t('forum.mostActive')}</div>
-          </div>
-        </div>
+        ))}
       </div>
 
       {/* Categories */}
