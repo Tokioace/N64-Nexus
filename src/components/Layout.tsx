@@ -104,25 +104,28 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         </svg>
       </button>
 
+      {/* User Profile Icon - Fixed position for all screen sizes */}
+      {isAuthenticated && user && (
+        <Link 
+          to="/profile" 
+          className="fixed top-3 right-3 z-50 flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-slate-800/90 backdrop-blur-sm hover:bg-slate-700/90 transition-all duration-200 border border-slate-600 shadow-lg group"
+          title={`${user.username} - Level ${user.level}`}
+        >
+          <div className="w-7 h-7 sm:w-8 sm:h-8 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full flex items-center justify-center text-sm font-medium text-white group-hover:scale-105 transition-transform shadow-inner">
+            {user.avatar || '🎮'}
+          </div>
+        </Link>
+      )}
+
       <Sidebar isOpen={isMobileSidebarOpen} onClose={closeMobileSidebar} />
       
       <div className="flex-1 lg:ml-64 min-h-screen">
-        {/* Header */}
+        {/* Header - Desktop only */}
         <header className="hidden lg:flex items-center justify-between px-6 py-4 bg-slate-800/50 backdrop-blur-sm border-b border-slate-700">
           <h1 className="text-2xl font-bold text-blue-400">Battle64</h1>
           
-          {/* User Profile Icon - only show when authenticated */}
-          {isAuthenticated && user && (
-            <Link 
-              to="/profile" 
-              className="flex items-center justify-center w-10 h-10 rounded-full hover:bg-slate-700/50 transition-colors group"
-              title={`${user.username} - Level ${user.level}`}
-            >
-              <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full flex items-center justify-center text-sm group-hover:scale-105 transition-transform">
-                {user.avatar || '🎮'}
-              </div>
-            </Link>
-          )}
+          {/* Spacer for desktop header balance */}
+          <div className="w-10 h-10"></div>
         </header>
 
         {/* Main Content */}
