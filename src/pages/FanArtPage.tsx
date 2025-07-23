@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useLanguage } from '../contexts/LanguageContext'
 import { useUser } from '../contexts/UserContext'
-import { Palette, Heart, Eye, MessageSquare, Upload, Filter, Grid, List } from 'lucide-react'
+import { Palette, Heart, Eye, MessageSquare, Upload, Filter, Grid, List, Zap, X, Image as ImageIcon } from 'lucide-react'
 
 interface FanArtItem {
   id: string
@@ -14,6 +14,286 @@ interface FanArtItem {
   tags: string[]
   createdAt: Date
   game: string
+  rating: number // Average rating (0-5)
+  ratingCount: number // Number of ratings
+  userRating?: number // Current user's rating
+}
+
+interface RatingDisplayProps {
+  rating: number
+  size?: 'sm' | 'md' | 'lg'
+  showNumber?: boolean
+}
+
+const RatingDisplay: React.FC<RatingDisplayProps> = ({ rating, size = 'md', showNumber = true }) => {
+  const roundedRating = Math.ceil(rating) // Round up as requested
+  const sizeClasses = {
+    sm: 'w-3 h-3',
+    md: 'w-4 h-4',
+    lg: 'w-5 h-5'
+  }
+
+  return (
+    <div className="flex items-center gap-1">
+      <div className="flex items-center">
+        {[1, 2, 3, 4, 5].map((star) => (
+          <Zap
+            key={star}
+            className={`${sizeClasses[size]} ${
+              star <= roundedRating
+                ? 'text-sky-400 fill-sky-400' // Light blue lightning bolts
+                : 'text-slate-600'
+            }`}
+          />
+        ))}
+      </div>
+      {showNumber && (
+        <span className="text-slate-400 text-sm ml-1">
+          ({rating.toFixed(1)})
+        </span>
+      )}
+    </div>
+  )
+}
+
+interface RatingInputProps {
+  currentRating: number
+  onRate: (rating: number) => void
+  disabled?: boolean
+}
+
+const RatingInput: React.FC<RatingInputProps> = ({ currentRating, onRate, disabled = false }) => {
+  const [hoverRating, setHoverRating] = useState(0)
+
+  return (
+    <div className="flex items-center gap-1">
+      {[1, 2, 3, 4, 5].map((star) => (
+        <button
+          key={star}
+          disabled={disabled}
+          onMouseEnter={() => setHoverRating(star)}
+          onMouseLeave={() => setHoverRating(0)}
+          onClick={() => onRate(star)}
+          className={`w-5 h-5 transition-colors ${disabled ? 'cursor-not-allowed' : 'cursor-pointer hover:scale-110'}`}
+        >
+          <Zap
+            className={`w-full h-full ${
+              star <= (hoverRating || currentRating)
+                ? 'text-sky-400 fill-sky-400'
+                : 'text-slate-600 hover:text-sky-300'
+            }`}
+          />
+        </button>
+      ))}
+    </div>
+  )
+}
+
+interface UploadModalProps {
+  onClose: () => void
+  onUpload: (artwork: FanArtItem) => void
+}
+
+const UploadModal: React.FC<UploadModalProps> = ({ onClose, onUpload }) => {
+  const { t } = useLanguage()
+  const { user } = useUser()
+  const [title, setTitle] = useState('')
+  const [selectedGame, setSelectedGame] = useState('')
+  const [tags, setTags] = useState('')
+  const [imageFile, setImageFile] = useState<File | null>(null)
+  const [imagePreview, setImagePreview] = useState<string>('')
+  const [isUploading, setIsUploading] = useState(false)
+
+  const gameOptions = [
+    'Super Mario 64',
+    'The Legend of Zelda: Ocarina of Time',
+    'GoldenEye 007',
+    'Mario Kart 64',
+    'Star Fox 64',
+    'Donkey Kong 64',
+    'Super Smash Bros.',
+    'Mario Party',
+    'Paper Mario',
+    'Banjo-Kazooie'
+  ]
+
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    if (file) {
+      setImageFile(file)
+      const reader = new FileReader()
+      reader.onload = () => {
+        setImagePreview(reader.result as string)
+      }
+      reader.readAsDataURL(file)
+    }
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    if (!title || !selectedGame || !imageFile || !user) return
+
+    setIsUploading(true)
+
+    // Simulate upload delay
+    await new Promise(resolve => setTimeout(resolve, 1500))
+
+    const newArtwork: FanArtItem = {
+      id: Date.now().toString(),
+      title,
+      artist: user.username,
+      imageUrl: imagePreview, // In a real app, this would be the uploaded image URL
+      likes: 0,
+      views: 1,
+      comments: 0,
+      rating: 0,
+      ratingCount: 0,
+      userRating: undefined,
+      tags: tags.split(',').map(tag => tag.trim()).filter(tag => tag),
+      createdAt: new Date(),
+      game: selectedGame
+    }
+
+    onUpload(newArtwork)
+    setIsUploading(false)
+  }
+
+  return (
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+      <div className="bg-slate-800 rounded-lg p-6 max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+        <div className="flex items-center justify-between mb-6">
+          <h3 className="text-2xl font-bold text-slate-100">
+            {t('fanart.uploadArt')}
+          </h3>
+          <button
+            onClick={onClose}
+            className="p-2 text-slate-400 hover:text-slate-200 transition-colors"
+          >
+            <X className="w-5 h-5" />
+          </button>
+        </div>
+
+        <form onSubmit={handleSubmit} className="space-y-6">
+          {/* Image Upload */}
+          <div>
+            <label className="block text-slate-300 font-medium mb-2">
+              {t('fanart.uploadImage')}
+            </label>
+            <div className="border-2 border-dashed border-slate-600 rounded-lg p-6 text-center">
+              {imagePreview ? (
+                <div className="space-y-4">
+                  <img
+                    src={imagePreview}
+                    alt="Preview"
+                    className="max-w-full max-h-48 mx-auto rounded-lg"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setImageFile(null)
+                      setImagePreview('')
+                    }}
+                    className="text-rose-400 hover:text-rose-300 text-sm"
+                  >
+                    {t('common.remove')}
+                  </button>
+                </div>
+              ) : (
+                <div className="space-y-4">
+                  <ImageIcon className="w-12 h-12 text-slate-500 mx-auto" />
+                  <div>
+                    <label className="cursor-pointer">
+                      <span className="bg-rose-600 hover:bg-rose-700 text-white px-4 py-2 rounded-lg transition-colors">
+                        {t('fanart.chooseImage')}
+                      </span>
+                      <input
+                        type="file"
+                        accept="image/*"
+                        onChange={handleImageChange}
+                        className="hidden"
+                      />
+                    </label>
+                  </div>
+                  <p className="text-slate-400 text-sm">
+                    {t('fanart.imageFormats')}
+                  </p>
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* Title */}
+          <div>
+            <label className="block text-slate-300 font-medium mb-2">
+              {t('fanart.artworkTitle')}
+            </label>
+            <input
+              type="text"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              className="w-full px-4 py-3 bg-slate-700 text-slate-100 rounded-lg border border-slate-600 focus:border-rose-500 focus:outline-none"
+              placeholder={t('fanart.titlePlaceholder')}
+              required
+            />
+          </div>
+
+          {/* Game Selection */}
+          <div>
+            <label className="block text-slate-300 font-medium mb-2">
+              {t('fanart.selectGame')}
+            </label>
+            <select
+              value={selectedGame}
+              onChange={(e) => setSelectedGame(e.target.value)}
+              className="w-full px-4 py-3 bg-slate-700 text-slate-100 rounded-lg border border-slate-600 focus:border-rose-500 focus:outline-none"
+              required
+            >
+              <option value="">{t('fanart.chooseGame')}</option>
+              {gameOptions.map(game => (
+                <option key={game} value={game}>{game}</option>
+              ))}
+            </select>
+          </div>
+
+          {/* Tags */}
+          <div>
+            <label className="block text-slate-300 font-medium mb-2">
+              {t('fanart.tags')}
+            </label>
+            <input
+              type="text"
+              value={tags}
+              onChange={(e) => setTags(e.target.value)}
+              className="w-full px-4 py-3 bg-slate-700 text-slate-100 rounded-lg border border-slate-600 focus:border-rose-500 focus:outline-none"
+              placeholder={t('fanart.tagsPlaceholder')}
+            />
+            <p className="text-slate-400 text-sm mt-1">
+              {t('fanart.tagsHint')}
+            </p>
+          </div>
+
+          {/* Submit Buttons */}
+          <div className="flex gap-3 pt-4">
+            <button
+              type="button"
+              onClick={onClose}
+              className="flex-1 px-6 py-3 bg-slate-700 hover:bg-slate-600 text-slate-200 rounded-lg transition-colors"
+              disabled={isUploading}
+            >
+              {t('common.cancel')}
+            </button>
+            <button
+              type="submit"
+              className="flex-1 px-6 py-3 bg-rose-600 hover:bg-rose-700 text-white rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              disabled={!title || !selectedGame || !imageFile || isUploading}
+            >
+              {isUploading ? t('fanart.uploading') : t('common.upload')}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  )
 }
 
 const FanArtPage: React.FC = () => {
@@ -22,9 +302,7 @@ const FanArtPage: React.FC = () => {
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid')
   const [selectedCategory, setSelectedCategory] = useState('all')
   const [showUploadModal, setShowUploadModal] = useState(false)
-
-  // Mock fan art data
-  const fanArtItems: FanArtItem[] = [
+  const [fanArtItems, setFanArtItems] = useState<FanArtItem[]>([
     {
       id: '1',
       title: 'Mario 64 Castle Reimagined',
@@ -33,6 +311,9 @@ const FanArtPage: React.FC = () => {
       likes: 142,
       views: 1205,
       comments: 23,
+      rating: 4.7,
+      ratingCount: 89,
+      userRating: undefined,
       tags: ['Mario', 'Castle', 'Digital Art'],
       createdAt: new Date('2024-01-15'),
       game: 'Super Mario 64'
@@ -45,6 +326,9 @@ const FanArtPage: React.FC = () => {
       likes: 89,
       views: 756,
       comments: 15,
+      rating: 4.2,
+      ratingCount: 54,
+      userRating: undefined,
       tags: ['Zelda', 'Link', 'Landscape'],
       createdAt: new Date('2024-01-14'),
       game: 'The Legend of Zelda: Ocarina of Time'
@@ -57,6 +341,9 @@ const FanArtPage: React.FC = () => {
       likes: 67,
       views: 432,
       comments: 8,
+      rating: 3.8,
+      ratingCount: 32,
+      userRating: undefined,
       tags: ['GoldenEye', 'Facility', '3D'],
       createdAt: new Date('2024-01-13'),
       game: 'GoldenEye 007'
@@ -69,6 +356,9 @@ const FanArtPage: React.FC = () => {
       likes: 156,
       views: 923,
       comments: 31,
+      rating: 4.9,
+      ratingCount: 127,
+      userRating: undefined,
       tags: ['DK', 'Jungle', 'Nature'],
       createdAt: new Date('2024-01-12'),
       game: 'Donkey Kong 64'
@@ -81,6 +371,9 @@ const FanArtPage: React.FC = () => {
       likes: 98,
       views: 645,
       comments: 19,
+      rating: 4.1,
+      ratingCount: 73,
+      userRating: undefined,
       tags: ['Star Fox', 'Arwing', 'Space'],
       createdAt: new Date('2024-01-11'),
       game: 'Star Fox 64'
@@ -93,11 +386,14 @@ const FanArtPage: React.FC = () => {
       likes: 203,
       views: 1456,
       comments: 42,
+      rating: 4.6,
+      ratingCount: 156,
+      userRating: undefined,
       tags: ['Mario Kart', 'Rainbow Road', 'Racing'],
       createdAt: new Date('2024-01-10'),
       game: 'Mario Kart 64'
     }
-  ]
+  ])
 
   const categories = [
     { id: 'all', name: t('fanart.allCategories') },
@@ -115,6 +411,39 @@ const FanArtPage: React.FC = () => {
         item.game.toLowerCase().includes(selectedCategory) ||
         item.tags.some(tag => tag.toLowerCase().includes(selectedCategory))
       )
+
+  const handleRateArtwork = (artworkId: string, rating: number) => {
+    if (!isAuthenticated) return
+
+    setFanArtItems(prev => prev.map(item => {
+      if (item.id === artworkId) {
+        const wasRated = item.userRating !== undefined
+        const oldRating = item.userRating || 0
+        const totalRating = item.rating * item.ratingCount
+        
+        let newRating: number
+        let newRatingCount: number
+
+        if (wasRated) {
+          // Update existing rating
+          newRating = (totalRating - oldRating + rating) / item.ratingCount
+          newRatingCount = item.ratingCount
+        } else {
+          // Add new rating
+          newRating = (totalRating + rating) / (item.ratingCount + 1)
+          newRatingCount = item.ratingCount + 1
+        }
+
+        return {
+          ...item,
+          rating: newRating,
+          ratingCount: newRatingCount,
+          userRating: rating
+        }
+      }
+      return item
+    }))
+  }
 
   return (
     <div className="container mx-auto px-4 py-6">
@@ -221,6 +550,26 @@ const FanArtPage: React.FC = () => {
                   <p className="text-slate-500 text-xs">{item.game}</p>
                 </div>
 
+                {/* Rating Display and Input */}
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between">
+                    <RatingDisplay rating={item.rating} size="sm" />
+                    <span className="text-slate-500 text-xs">
+                      {item.ratingCount} {t('fanart.ratings')}
+                    </span>
+                  </div>
+                  
+                  {isAuthenticated && (
+                    <div className="flex items-center gap-2">
+                      <span className="text-slate-400 text-sm">{t('fanart.yourRating')}:</span>
+                      <RatingInput
+                        currentRating={item.userRating || 0}
+                        onRate={(rating) => handleRateArtwork(item.id, rating)}
+                      />
+                    </div>
+                  )}
+                </div>
+
                 <div className="flex flex-wrap gap-2">
                   {item.tags.map(tag => (
                     <span key={tag} className="px-2 py-1 bg-slate-700 text-slate-300 text-xs rounded">
@@ -271,6 +620,24 @@ const FanArtPage: React.FC = () => {
                     <p className="text-slate-400 text-sm">by {item.artist} • {item.game}</p>
                   </div>
 
+                  {/* Rating Display and Input */}
+                  <div className="flex items-center gap-4">
+                    <RatingDisplay rating={item.rating} size="sm" />
+                    <span className="text-slate-500 text-xs">
+                      {item.ratingCount} {t('fanart.ratings')}
+                    </span>
+                    
+                    {isAuthenticated && (
+                      <div className="flex items-center gap-2">
+                        <span className="text-slate-400 text-sm">{t('fanart.yourRating')}:</span>
+                        <RatingInput
+                          currentRating={item.userRating || 0}
+                          onRate={(rating) => handleRateArtwork(item.id, rating)}
+                        />
+                      </div>
+                    )}
+                  </div>
+
                   <div className="flex flex-wrap gap-2">
                     {item.tags.map(tag => (
                       <span key={tag} className="px-2 py-1 bg-slate-700 text-slate-300 text-xs rounded">
@@ -318,32 +685,15 @@ const FanArtPage: React.FC = () => {
         </div>
       )}
 
-      {/* Upload Modal Placeholder */}
+      {/* Upload Modal */}
       {showUploadModal && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-          <div className="bg-slate-800 rounded-lg p-6 max-w-md w-full">
-            <h3 className="text-xl font-bold text-slate-100 mb-4">
-              {t('fanart.uploadArt')}
-            </h3>
-            <p className="text-slate-400 mb-6">
-              {t('fanart.uploadDescription')}
-            </p>
-            <div className="flex gap-3">
-              <button
-                onClick={() => setShowUploadModal(false)}
-                className="flex-1 px-4 py-2 bg-slate-700 hover:bg-slate-600 text-slate-200 rounded-lg transition-colors"
-              >
-                {t('common.cancel')}
-              </button>
-              <button
-                onClick={() => setShowUploadModal(false)}
-                className="flex-1 px-4 py-2 bg-rose-600 hover:bg-rose-700 text-white rounded-lg transition-colors"
-              >
-                {t('common.upload')}
-              </button>
-            </div>
-          </div>
-        </div>
+        <UploadModal
+          onClose={() => setShowUploadModal(false)}
+          onUpload={(newArtwork) => {
+            setFanArtItems(prev => [newArtwork, ...prev])
+            setShowUploadModal(false)
+          }}
+        />
       )}
     </div>
   )
