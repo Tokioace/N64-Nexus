@@ -461,16 +461,20 @@ const FanArtPage: React.FC = () => {
 
         {/* Action Buttons */}
         <div className="flex flex-wrap items-center justify-center gap-4">
-          {isAuthenticated && (
-            <button
-              onClick={() => setShowUploadModal(true)}
-              className="flex items-center gap-2 px-6 py-3 bg-rose-600 hover:bg-rose-700 
-                         text-white rounded-lg transition-colors font-medium"
-            >
-              <Upload className="w-5 h-5" />
-              {t('fanart.uploadArt')}
-            </button>
-          )}
+          <button
+            onClick={() => {
+              if (isAuthenticated) {
+                setShowUploadModal(true)
+              } else {
+                alert(t('auth.loginRequired') || 'Bitte melden Sie sich an, um Fanart hochzuladen.')
+              }
+            }}
+            className="flex items-center gap-2 px-6 py-3 bg-rose-600 hover:bg-rose-700 
+                       text-white rounded-lg transition-colors font-medium"
+          >
+            <Upload className="w-5 h-5" />
+            {t('fanart.uploadArt')}
+          </button>
 
           {/* View Mode Toggle */}
           <div className="flex bg-slate-800 rounded-lg p-1">
