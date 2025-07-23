@@ -466,7 +466,7 @@ export const ChatProvider: React.FC<ChatProviderProps> = ({ children }) => {
         const updated = { ...prev }
         Object.keys(updated).forEach(conversationId => {
           updated[conversationId] = updated[conversationId].map(msg => {
-            if (msg.id === messageId && msg.offerData) {
+            if (msg.id === messageId && msg.type === 'offer' && msg.offerData) {
               return {
                 ...msg,
                 offerData: {
@@ -526,24 +526,24 @@ export const ChatProvider: React.FC<ChatProviderProps> = ({ children }) => {
 
       Object.keys(messages).forEach(convId => {
         const msg = messages[convId].find(m => m.id === messageId)
-        if (msg && msg.offerData) {
+        if (msg && msg.type === 'offer' && msg.offerData) {
           originalOffer = msg
           conversationId = convId
         }
       })
 
-      if (!originalOffer || !originalOffer.offerData) return false
+      if (!originalOffer || originalOffer.type !== 'offer' || !originalOffer.offerData) return false
 
       // Mark original offer as countered
       setMessages(prev => {
         const updated = { ...prev }
         updated[conversationId] = updated[conversationId].map(msg => {
-          if (msg.id === messageId && msg.offerData) {
+          if (msg.id === messageId && msg.type === 'offer' && msg.offerData) {
             return {
               ...msg,
               offerData: {
                 ...msg.offerData,
-                status: 'countered'
+                status: 'countered' as const
               }
             }
           }
