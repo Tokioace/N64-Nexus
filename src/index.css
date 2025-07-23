@@ -889,12 +889,12 @@ html, body {
 }
 
 .book-page-flip-left {
-  transform: rotateY(-180deg);
+  transform: rotateY(180deg);
   backface-visibility: hidden;
 }
 
 .book-page-flip-right {
-  transform: rotateY(180deg);
+  transform: rotateY(-180deg);
   backface-visibility: hidden;
 }
 
@@ -906,7 +906,7 @@ html, body {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(to right, 
+  background: linear-gradient(to left, 
     rgba(0, 0, 0, 0.1) 0%, 
     rgba(0, 0, 0, 0.05) 50%, 
     rgba(0, 0, 0, 0) 100%
@@ -924,7 +924,7 @@ html, body {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(to left, 
+  background: linear-gradient(to right, 
     rgba(0, 0, 0, 0.1) 0%, 
     rgba(0, 0, 0, 0.05) 50%, 
     rgba(0, 0, 0, 0) 100%
