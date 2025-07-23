@@ -757,31 +757,41 @@ html, body {
 @media (max-width: 768px) {
   .swipeable-card {
     width: 90vw;
-    height: 45vw;
+    height: auto;
     min-width: 90vw;
-    min-height: 45vw;
+    min-height: 200px;
     max-width: 90vw;
-    max-height: 45vw;
+    max-height: none;
   }
 }
 
 @media (max-width: 480px) {
   .swipeable-card {
     width: 95vw;
-    height: 50vw;
+    height: auto;
     min-width: 95vw;
-    min-height: 50vw;
+    min-height: 180px;
     max-width: 95vw;
-    max-height: 50vw;
+    max-height: none;
   }
 }
 
 .swipeable-card-header {
-  @apply p-3 border-b border-slate-600/30 flex-shrink-0;
+  @apply p-2 sm:p-3 border-b border-slate-600/30 flex-shrink-0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .swipeable-card-content {
   @apply flex-1 overflow-hidden relative;
+  min-height: 120px;
+}
+
+@media (max-width: 768px) {
+  .swipeable-card-content {
+    min-height: 100px;
+  }
 }
 
 /* Removed swipeable-item-container and swipeable-item classes - now handled inline */

@@ -130,7 +130,7 @@ const SwipeableCard: React.FC<SwipeableCardProps> = ({
           {displayItems.map((item, index) => (
             <div 
               key={index} 
-              className="flex-shrink-0 h-full p-3 overflow-hidden"
+              className="flex-shrink-0 h-full p-2 sm:p-3 overflow-hidden"
               style={{ width: `${100 / displayItems.length}%` }}
             >
               {renderItem(item, index)}
