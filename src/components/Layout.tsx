@@ -1,4 +1,4 @@
-import React, { ReactNode, useState } from 'react'
+import React, { ReactNode, useState, useEffect } from 'react'
 import Sidebar from './Sidebar'
 
 interface LayoutProps {
@@ -16,6 +16,22 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     setIsMobileSidebarOpen(false)
   }
 
+  // Prevent body scroll when mobile sidebar is open
+  useEffect(() => {
+    if (isMobileSidebarOpen) {
+      document.body.style.overflow = 'hidden'
+      document.body.style.touchAction = 'none'
+    } else {
+      document.body.style.overflow = ''
+      document.body.style.touchAction = ''
+    }
+
+    return () => {
+      document.body.style.overflow = ''
+      document.body.style.touchAction = ''
+    }
+  }, [isMobileSidebarOpen])
+
   return (
     <div className="flex min-h-screen">
       {/* Mobile overlay */}
@@ -23,6 +39,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         <div 
           className="fixed inset-0 bg-black bg-opacity-50 z-30 lg:hidden"
           onClick={closeMobileSidebar}
+          style={{ touchAction: 'none' }}
         />
       )}
       

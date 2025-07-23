@@ -29,7 +29,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen = false, onClose }) => {
 
   return (
     <div className={`sidebar ${isOpen ? 'open' : ''}`}>
-      <div className="flex flex-col h-full">
+      <div className="flex flex-col h-full" style={{ touchAction: 'pan-y' }}>
         {/* Header with Logo and Language Selector */}
         <div className="flex items-center justify-between p-6 border-b border-slate-700">
           <h1 className="text-2xl font-bold text-blue-400">Battle64</h1>
@@ -56,7 +56,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen = false, onClose }) => {
         )}
         
         {/* Scrollable Navigation */}
-        <div className="flex-1 overflow-y-auto">
+        <div className="flex-1 overflow-y-auto scrollable-container">
           <nav className="p-6">
             <ul>
               <li className={location.pathname === '/' ? 'active' : ''}><Link to="/" onClick={handleLinkClick}>🏠 {t('nav.home')}</Link></li>
