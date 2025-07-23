@@ -5,6 +5,8 @@ import { EventProvider } from './contexts/EventContext'
 import { MediaProvider } from './contexts/MediaContext'
 import { ForumProvider } from './contexts/ForumContext'
 import { LanguageProvider } from './contexts/LanguageContext'
+import { MarketplaceProvider } from './contexts/MarketplaceContext'
+import { ChatProvider } from './contexts/ChatContext'
 import HomePage from './pages/HomePage'
 import HomeScreenRetro from './components/HomeScreenRetro'
 import AuthPage from './pages/AuthPage'
@@ -22,6 +24,8 @@ import ForumCategoryPage from './pages/ForumCategoryPage'
 import ForumThreadPage from './pages/ForumThreadPage'
 import ForumNewThreadPage from './pages/ForumNewThreadPage'
 import NewsFeedPage from './pages/NewsFeedPage'
+import MarketplacePage from './pages/MarketplacePage'
+import ChatPage from './pages/ChatPage'
 import ErrorBoundary from './components/ErrorBoundary'
 import Layout from './components/Layout'
 
@@ -33,7 +37,9 @@ function App() {
           <EventProvider>
             <MediaProvider>
               <ForumProvider>
-                <Layout>
+                <MarketplaceProvider>
+                  <ChatProvider>
+                    <Layout>
                   <Routes>
                     <Route path="/" element={<HomeScreenRetro />} />
                     <Route path="/auth" element={<AuthPage />} />
@@ -53,8 +59,12 @@ function App() {
                     <Route path="/forum/category/:categoryId/new-thread" element={<ErrorBoundary><ForumNewThreadPage /></ErrorBoundary>} />
                     <Route path="/forum/thread/:threadId" element={<ErrorBoundary><ForumThreadPage /></ErrorBoundary>} />
                     <Route path="/newsfeed" element={<NewsFeedPage />} />
+                    <Route path="/marketplace" element={<MarketplacePage />} />
+                    <Route path="/chat" element={<ChatPage />} />
                   </Routes>
                 </Layout>
+                  </ChatProvider>
+                </MarketplaceProvider>
               </ForumProvider>
             </MediaProvider>
           </EventProvider>
