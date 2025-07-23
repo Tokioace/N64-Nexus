@@ -48,6 +48,7 @@ function App() {
                     <Route path="/events" element={<EventsPage />} />
                     <Route path="/speedrun-media" element={<SpeedrunMediaPage />} />
                     <Route path="/collector" element={<CollectorMode />} />
+                    <Route path="/marktplatz" element={<CollectorMode />} />
                     <Route path="/forum" element={<ErrorBoundary><ForumPage /></ErrorBoundary>} />
                     <Route path="/forum/category/:categoryId" element={<ErrorBoundary><ForumCategoryPage /></ErrorBoundary>} />
                     <Route path="/forum/category/:categoryId/new-thread" element={<ErrorBoundary><ForumNewThreadPage /></ErrorBoundary>} />
