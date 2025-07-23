@@ -1,5 +1,5 @@
 import React from 'react'
-import { TrendingUp } from 'lucide-react'
+import { TrendingUp, X } from 'lucide-react'
 
 interface NewsItem {
   id: string
@@ -12,9 +12,11 @@ interface NewsItem {
 interface NewsCardProps {
   newsItem: NewsItem
   index: number
+  onDismiss?: () => void
+  isAnimating?: boolean
 }
 
-const NewsCard: React.FC<NewsCardProps> = ({ newsItem, index }) => {
+const NewsCard: React.FC<NewsCardProps> = ({ newsItem, index, onDismiss, isAnimating = false }) => {
   const formatTime = (date: Date) => {
     return date.toLocaleTimeString('de-DE', {
       hour: '2-digit',
@@ -53,7 +55,18 @@ const NewsCard: React.FC<NewsCardProps> = ({ newsItem, index }) => {
   }
 
   return (
-    <div className="swipeable-card bg-gradient-to-br from-blue-600/10 to-purple-600/10 border-l-4 border-blue-400 relative">
+    <div className={`swipeable-card bg-gradient-to-br from-blue-600/10 to-purple-600/10 border-l-4 border-blue-400 relative transition-all duration-300 ${isAnimating ? 'scale-95 opacity-80' : 'scale-100 opacity-100'}`}>
+      {/* Dismiss Button */}
+      {onDismiss && (
+        <button
+          onClick={onDismiss}
+          className="absolute top-2 right-2 z-10 p-1 rounded-full bg-slate-700/80 hover:bg-slate-600/80 text-slate-300 hover:text-white transition-colors"
+          aria-label="Dismiss news"
+        >
+          <X className="w-4 h-4" />
+        </button>
+      )}
+      
       <div className="swipeable-card-header">
         <div className="flex items-center gap-2">
           <TrendingUp className="w-5 h-5 text-blue-400" />

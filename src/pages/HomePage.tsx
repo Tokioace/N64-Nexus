@@ -5,7 +5,7 @@ import { useEvent } from '../contexts/EventContext'
 import { useLanguage } from '../contexts/LanguageContext'
 import EventFeedWidget from '../components/EventFeedWidget'
 import SwipeableCard from '../components/SwipeableCard'
-import NewsCard from '../components/NewsCard'
+import SingleNewsCard from '../components/SingleNewsCard'
 import { GameEvent } from '../types'
 import {
   Trophy,
@@ -428,20 +428,15 @@ const HomePage: React.FC = () => {
 
       {/* NEWS CARDS SECTION */}
       <div className="space-y-6">
-        {/* News Cards - Individual cards for each news item */}
+        {/* Single News Card - One card at a time with dismiss functionality */}
         <div className="space-y-4">
           <h2 className="text-responsive-xl font-bold text-slate-100 text-center mb-6">
             📰 N64 & App News
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 justify-items-center">
-            {newsItems.slice(0, 8).map((newsItem, index) => (
-              <NewsCard 
-                key={newsItem.id} 
-                newsItem={newsItem} 
-                index={index}
-              />
-            ))}
-          </div>
+          <SingleNewsCard 
+            newsItems={newsItems.slice(0, 8)}
+            className="w-full"
+          />
         </div>
 
         {/* Forum Posts - Keep as SwipeableCard */}
