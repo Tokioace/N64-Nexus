@@ -13,7 +13,7 @@ interface SpeedrunPostCreatorProps {
 const SpeedrunPostCreator: React.FC<SpeedrunPostCreatorProps> = ({ onClose, onSuccess }) => {
   const { t } = useLanguage()
   const { createSpeedrunPost, uploadMedia, loading } = useMedia()
-  const { currentUser } = useUser()
+  const { user } = useUser()
   
   const [formData, setFormData] = useState({
     title: '',
@@ -104,7 +104,7 @@ const SpeedrunPostCreator: React.FC<SpeedrunPostCreatorProps> = ({ onClose, onSu
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     
-    if (!validateForm() || !currentUser) return
+    if (!validateForm() || !user) return
 
     try {
       // Upload images first
@@ -119,8 +119,8 @@ const SpeedrunPostCreator: React.FC<SpeedrunPostCreatorProps> = ({ onClose, onSu
         if (success) {
           mediaItems.push({
             id: Date.now().toString() + Math.random(),
-            userId: currentUser.id,
-            username: currentUser.username,
+            userId: user.id,
+            username: user.username,
             gameId: formData.gameId,
             gameName: formData.gameName,
             type: 'speedrun' as const,
@@ -139,9 +139,9 @@ const SpeedrunPostCreator: React.FC<SpeedrunPostCreatorProps> = ({ onClose, onSu
       }
 
       const success = await createSpeedrunPost({
-        userId: currentUser.id,
-        username: currentUser.username,
-        userAvatar: currentUser.avatar,
+        userId: user.id,
+        username: user.username,
+        userAvatar: user.avatar,
         gameId: formData.gameId,
         gameName: formData.gameName,
         title: formData.title,
@@ -163,7 +163,7 @@ const SpeedrunPostCreator: React.FC<SpeedrunPostCreatorProps> = ({ onClose, onSu
     }
   }
 
-  if (!currentUser) {
+  if (!user) {
     return (
       <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
         <div className="bg-slate-800 rounded-lg p-6 max-w-md w-full mx-4">

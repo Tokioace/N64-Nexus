@@ -11,7 +11,7 @@ interface LivestreamManagerProps {
 const LivestreamManager: React.FC<LivestreamManagerProps> = ({ onClose }) => {
   const { t } = useLanguage()
   const { startLivestream, stopLivestream, getLivestreams, loading } = useMedia()
-  const { currentUser } = useUser()
+  const { user } = useUser()
   
   const [activeTab, setActiveTab] = useState<'start' | 'live'>('start')
   const [streamData, setStreamData] = useState({
@@ -76,7 +76,7 @@ const LivestreamManager: React.FC<LivestreamManagerProps> = ({ onClose }) => {
   const handleStartStream = async (e: React.FormEvent) => {
     e.preventDefault()
     
-    if (!validateForm() || !currentUser) return
+    if (!validateForm() || !user) return
 
     const success = await startLivestream({
       title: streamData.title,
@@ -119,7 +119,7 @@ const LivestreamManager: React.FC<LivestreamManagerProps> = ({ onClose }) => {
     }
   }
 
-  if (!currentUser) {
+  if (!user) {
     return (
       <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
         <div className="bg-slate-800 rounded-lg p-6 max-w-md w-full mx-4">
@@ -344,7 +344,7 @@ const LivestreamManager: React.FC<LivestreamManagerProps> = ({ onClose }) => {
                             Stream öffnen
                           </a>
                           
-                          {stream.userId === currentUser.id && (
+                                                     {stream.userId === user.id && (
                             <button
                               onClick={() => handleStopStream(stream.id)}
                               className="bg-red-600 hover:bg-red-700 text-white px-3 py-2 rounded-lg transition-colors flex items-center gap-1"
