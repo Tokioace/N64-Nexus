@@ -346,6 +346,10 @@ export interface Achievement {
 export interface PointsConfig {
   'speedrun.upload': number
   'speedrun.top3': number
+  'media.speedrun': number
+  'media.screenshot': number
+  'media.achievement': number
+  'media.stream': number
   'fanart.upload': number
   'fanart.likeReceived': number
   'quiz.answerCorrect': number

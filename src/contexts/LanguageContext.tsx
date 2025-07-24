@@ -463,6 +463,7 @@ const translations = {
     'success.submitted': 'Erfolgreich eingereicht',
     'success.joined': 'Erfolgreich beigetreten',
     'success.left': 'Erfolgreich verlassen',
+    'success.uploaded': 'Erfolgreich hochgeladen',
     
     // Time and Date
     'time.seconds': 'Sekunden',
@@ -719,6 +720,10 @@ const translations = {
     // Points System
     'points.speedrunUpload': 'Speedrun hochgeladen',
     'points.speedrunTop3': 'Top 3 Speedrun',
+    'points.mediaSpeedrun': 'Speedrun Media hochgeladen',
+    'points.mediaScreenshot': 'Screenshot hochgeladen',
+    'points.mediaAchievement': 'Achievement hochgeladen',
+    'points.mediaStream': 'Live Stream gestartet',
     'points.fanartUpload': 'Fanart hochgeladen',
     'points.fanartLike': 'Fanart Like erhalten',
     'points.quizCorrect': 'Quiz richtig beantwortet',
@@ -1312,6 +1317,7 @@ const translations = {
     'success.submitted': 'Successfully submitted',
     'success.joined': 'Successfully joined',
     'success.left': 'Successfully left',
+    'success.uploaded': 'Successfully uploaded',
     
     // Time and Date
     'time.seconds': 'seconds',
@@ -1587,6 +1593,10 @@ const translations = {
     // Points System
     'points.speedrunUpload': 'Speedrun uploaded',
     'points.speedrunTop3': 'Top 3 Speedrun',
+    'points.mediaSpeedrun': 'Speedrun media uploaded',
+    'points.mediaScreenshot': 'Screenshot uploaded',
+    'points.mediaAchievement': 'Achievement uploaded',
+    'points.mediaStream': 'Live stream started',
     'points.fanartUpload': 'Fanart uploaded',
     'points.fanartLike': 'Fanart like received',
     'points.quizCorrect': 'Quiz answered correctly',
