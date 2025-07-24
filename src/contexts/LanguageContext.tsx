@@ -803,6 +803,19 @@ const translations = {
     'achievement.recordHolder': 'Rekordhalter',
     'achievement.recordHolderDesc': '5 verifizierte Rekorde',
     'achievement.today': 'Heute',
+    
+    // New Achievement System
+    'achievement.quizGuru': 'Quiz Guru',
+    'achievement.fanartArtist': 'Fanart Künstler',
+    'achievement.communityVeteran': 'Community Veteran',
+    'achievement.marketPro': 'Marktplatz Profi',
+    'achievement.eventKing': 'Event König',
+    'achievement.n64Knowledge': 'N64 Wissensexperte',
+    'achievement.unlocked': 'Erfolg freigeschaltet!',
+    'achievement.progress': 'Fortschritt',
+    'achievement.requirements': 'Anforderungen',
+    'achievement.unlockedOn': 'Freigeschaltet am',
+    'achievement.notUnlocked': 'Noch nicht freigeschaltet',
 
     // Notifications
     'notifications.enabled': '🔔 Benachrichtigungen aktiviert! Du wirst über neue Events informiert.',
@@ -1658,6 +1671,19 @@ const translations = {
     'achievement.recordHolder': 'Record Holder',
     'achievement.recordHolderDesc': '5 verified records',
     'achievement.today': 'Today',
+    
+    // New Achievement System
+    'achievement.quizGuru': 'Quiz Guru',
+    'achievement.fanartArtist': 'Fanart Artist',
+    'achievement.communityVeteran': 'Community Veteran',
+    'achievement.marketPro': 'Market Pro',
+    'achievement.eventKing': 'Event King',
+    'achievement.n64Knowledge': 'N64 Knowledge Expert',
+    'achievement.unlocked': 'Achievement unlocked!',
+    'achievement.progress': 'Progress',
+    'achievement.requirements': 'Requirements',
+    'achievement.unlockedOn': 'Unlocked on',
+    'achievement.notUnlocked': 'Not unlocked yet',
 
     // Notifications
     'notifications.enabled': '🔔 Notifications enabled! You will be informed about new events.',
