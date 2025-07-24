@@ -103,21 +103,27 @@ const WinnerMediaDisplay: React.FC<WinnerMediaDisplayProps> = ({ winner, t }) =>
       
       {winner.documentationType === 'livestream' && winner.livestreamUrl && (
         <div className="text-center">
-          <div className="bg-slate-700 rounded-lg p-4 mb-2">
+          <a 
+            href={winner.livestreamUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block bg-gradient-to-r from-purple-600/20 to-purple-700/20 border border-purple-400/30 rounded-lg p-4 mb-2 hover:from-purple-600/30 hover:to-purple-700/30 transition-all"
+          >
             <Radio className="w-8 h-8 text-purple-400 mx-auto mb-2" />
-            <p className="text-xs text-slate-400">{t('home.livestreamProof')}</p>
-          </div>
-          <div className="flex items-center justify-center space-x-1 text-xs text-slate-400">
-            <Radio className="w-3 h-3" />
+            <p className="text-sm text-slate-300 font-medium">{t('home.livestreamProof')}</p>
+            <p className="text-xs text-purple-400 mt-1">Klicken zum Anschauen</p>
+          </a>
+          <div className="flex items-center justify-center space-x-2 text-sm text-slate-400">
+            <Radio className="w-4 h-4" />
             <span>{t('home.livestream')}</span>
           </div>
         </div>
       )}
       
-      <div className="absolute top-2 left-2 bg-yellow-500/20 backdrop-blur-sm rounded px-2 py-1">
+      <div className="absolute top-2 left-2 bg-gradient-to-r from-yellow-500/30 to-yellow-600/30 backdrop-blur-sm rounded-lg px-2 py-1 border border-yellow-400/30">
         <div className="flex items-center space-x-1">
-          <Crown className="w-3 h-3 text-yellow-400" />
-          <span className="text-xs font-bold text-yellow-400">#1</span>
+          <Crown className="w-4 h-4 text-yellow-400" />
+          <span className="text-sm font-bold text-yellow-400">#1</span>
         </div>
       </div>
     </div>
@@ -183,44 +189,51 @@ const EventFeedWidget: React.FC<EventFeedWidgetProps> = ({
   const winner = sortedLeaderboard[0]
 
   return (
-    <div className="n64-tile n64-tile-large bg-gradient-to-br from-red-600/20 to-pink-600/20 border-l-4 border-red-400">
-      <div className="flex items-center justify-between mb-4">
-        <div className="flex items-center space-x-3">
-          <Trophy className="w-6 h-6 text-red-400" />
-          <h2 className="text-xl font-bold text-slate-100">{t('home.liveEvents')}</h2>
+    <div className="event-tile bg-gradient-to-br from-red-600/20 to-pink-600/20 border-l-4 border-red-400">
+      <div className="event-card-header">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center space-x-3">
+            <Trophy className="event-icon text-red-400" />
+            <h2 className="text-xl font-bold text-slate-100">{t('home.liveEvents')}</h2>
+          </div>
+          <button
+            onClick={onToggleExpanded}
+            className="p-2 rounded-lg bg-slate-700/50 hover:bg-slate-600/50 transition-colors"
+          >
+            {isExpanded ? (
+              <ChevronUp className="w-5 h-5 text-slate-300" />
+            ) : (
+              <ChevronDown className="w-5 h-5 text-slate-300" />
+            )}
+          </button>
         </div>
-        <button
-          onClick={onToggleExpanded}
-          className="p-2 rounded-lg bg-slate-700/50 hover:bg-slate-600/50 transition-colors"
-        >
-          {isExpanded ? (
-            <ChevronUp className="w-5 h-5 text-slate-300" />
-          ) : (
-            <ChevronDown className="w-5 h-5 text-slate-300" />
-          )}
-        </button>
       </div>
 
       <div className="space-y-4">
         {/* Event Info */}
-        <div className="p-3 rounded-lg bg-slate-800/30 border border-slate-600/30">
-          <div className="flex items-center justify-between mb-2">
-            <span className="px-2 py-1 rounded-full bg-green-500/20 text-green-400 text-xs font-medium">
-              🔴 {t('events.status.live')}
-            </span>
-            <span className="text-xs text-slate-400">{timeRemaining}</span>
+        <div className="p-4 rounded-lg bg-slate-800/30 border border-slate-600/30">
+          <div className="flex items-center justify-between mb-3">
+            <div className="event-status-live">
+              <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+              <span>{t('events.status.live')}</span>
+            </div>
+            <span className="text-sm text-slate-300 font-medium">{timeRemaining}</span>
           </div>
-          <h3 className="font-bold text-slate-100 mb-2">{eventTitle}</h3>
+          <h3 className="font-bold text-slate-100 mb-3 text-lg">{eventTitle}</h3>
           
-          <div className="flex items-center justify-between text-sm">
+          <div className="event-tile-separator"></div>
+          
+          <div className="flex items-center justify-between text-base">
             <div className="flex items-center space-x-4">
-              <div className="flex items-center space-x-1">
-                <Users className="w-4 h-4 text-blue-400" />
-                <span className="text-slate-300">{participants}</span>
+              <div className="flex items-center space-x-2">
+                <Users className="event-icon text-blue-400" />
+                <span className="event-participants-text">
+                  {participants > 0 ? `${participants} ${participants === 1 ? 'Teilnehmer' : 'Teilnehmer'}` : 'Keine Teilnehmer'}
+                </span>
               </div>
-              <div className="flex items-center space-x-1">
-                <Gamepad2 className="w-4 h-4 text-purple-400" />
-                <span className="text-slate-300">{eventGame}</span>
+              <div className="flex items-center space-x-2">
+                <Gamepad2 className="event-icon text-purple-400" />
+                <span className="event-game-mode-text">{eventGame}</span>
               </div>
             </div>
           </div>
@@ -229,14 +242,17 @@ const EventFeedWidget: React.FC<EventFeedWidgetProps> = ({
         {/* Winner's Media (Always visible if available) */}
         {winner && (winner.mediaUrl || winner.livestreamUrl) && (
           <div>
-            <h4 className="text-sm font-medium text-slate-200 mb-2 flex items-center">
-              <Crown className="w-4 h-4 text-yellow-400 mr-1" />
-                              {t('home.winner')}
+            <div className="event-tile-separator"></div>
+            <h4 className="text-base font-semibold text-slate-200 mb-3 flex items-center">
+              <Crown className="event-icon text-yellow-400 mr-2" />
+              {t('home.winner')}
             </h4>
-                            <WinnerMediaDisplay winner={winner} t={t} />
-            <div className="mt-2 text-center">
-              <div className="text-sm font-medium text-slate-100">{winner.username}</div>
-              <div className="text-lg font-mono font-bold text-yellow-400">{winner.time}</div>
+            <div className="bg-gradient-to-r from-yellow-500/10 to-yellow-600/10 border border-yellow-400/20 rounded-lg p-3">
+              <WinnerMediaDisplay winner={winner} t={t} />
+              <div className="mt-3 text-center">
+                <div className="text-base font-semibold text-slate-100">{winner.username}</div>
+                <div className="leaderboard-time text-yellow-400">{winner.time}</div>
+              </div>
             </div>
           </div>
         )}
@@ -244,30 +260,35 @@ const EventFeedWidget: React.FC<EventFeedWidgetProps> = ({
         {/* Top 3 Compact Display */}
         {sortedLeaderboard.length > 0 && (
           <div>
-                          <h4 className="text-sm font-medium text-slate-200 mb-2">{t('home.topLeaderboard')}</h4>
-            <div className="space-y-2">
+            <div className="event-tile-separator"></div>
+            <h4 className="text-base font-semibold text-slate-200 mb-3">{t('home.topLeaderboard')}</h4>
+            <div className="space-y-3">
               {sortedLeaderboard.map((entry, index) => {
                 const position = index + 1
                 return (
-                  <div key={entry.id} className="flex items-center justify-between p-2 rounded bg-slate-800/20">
-                    <div className="flex items-center space-x-2">
-                      {getRankIcon(position)}
-                      <span className="text-sm text-slate-300">{entry.username}</span>
-                      {entry.verified && (
-                        <div className="w-2 h-2 bg-green-400 rounded-full" title={t('home.verified')}></div>
-                      )}
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      <span className={`text-sm font-mono font-bold ${getRankColor(position)}`}>
-                        {entry.time}
-                      </span>
-                      {entry.mediaUrl && (
-                        <div className="flex items-center space-x-1">
-                          {entry.documentationType === 'photo' && <Camera className="w-3 h-3 text-slate-400" />}
-                          {entry.documentationType === 'video' && <Video className="w-3 h-3 text-slate-400" />}
-                          {entry.documentationType === 'livestream' && <Radio className="w-3 h-3 text-slate-400" />}
-                        </div>
-                      )}
+                  <div key={entry.id} className="leaderboard-entry">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center space-x-3">
+                        {getRankIcon(position)}
+                        <span className="text-base font-medium text-slate-200">{entry.username}</span>
+                        {entry.verified && (
+                          <div className="verification-badge" title={t('home.verified')}>
+                            <div className="w-3 h-3 bg-green-400 rounded-full"></div>
+                          </div>
+                        )}
+                      </div>
+                      <div className="flex items-center space-x-3">
+                        <span className={`leaderboard-time ${getRankColor(position)}`}>
+                          {entry.time}
+                        </span>
+                        {entry.mediaUrl && (
+                          <div className="flex items-center space-x-1">
+                            {entry.documentationType === 'photo' && <Camera className="w-4 h-4 text-slate-400" />}
+                            {entry.documentationType === 'video' && <Video className="w-4 h-4 text-slate-400" />}
+                            {entry.documentationType === 'livestream' && <Radio className="w-4 h-4 text-slate-400" />}
+                          </div>
+                        )}
+                      </div>
                     </div>
                   </div>
                 )

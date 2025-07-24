@@ -295,22 +295,22 @@ const EventsPage: React.FC = () => {
                     </div>
                   </div>
                   
-                  <div className="flex flex-col sm:flex-row gap-2 lg:flex-col lg:gap-2 w-full sm:w-auto lg:w-auto">
+                  <div className="event-button-group">
                     {status === 'active' && (
                       <button
                         onClick={() => handleJoinEvent(event.id)}
-                        className="btn-primary w-full sm:w-auto lg:w-full flex items-center justify-center gap-2"
+                        className="btn-primary flex items-center justify-center gap-2"
                         disabled={loading}
                       >
                         {isParticipating ? (
                           <>
-                            <Upload className="w-4 h-4" />
+                            <Upload className="event-icon" />
                             <span className="hidden sm:inline lg:inline">{t('events.submitTime')}</span>
                             <span className="sm:hidden lg:hidden">Submit</span>
                           </>
                         ) : (
                           <>
-                            <Trophy className="w-4 h-4" />
+                            <Trophy className="event-icon" />
                             <span className="hidden sm:inline lg:inline">{t('events.join')}</span>
                             <span className="sm:hidden lg:hidden">Join</span>
                           </>
@@ -320,18 +320,18 @@ const EventsPage: React.FC = () => {
                     
                     <button
                       onClick={() => setShowLeaderboard(event.id)}
-                      className="btn-secondary w-full sm:w-auto lg:w-full flex items-center justify-center gap-2"
+                      className="btn-secondary flex items-center justify-center gap-2"
                     >
-                      <BarChart3 className="w-4 h-4" />
+                      <BarChart3 className="event-icon" />
                       <span className="hidden sm:inline lg:inline">{t('events.leaderboard')}</span>
                       <span className="sm:hidden lg:hidden">Board</span>
                     </button>
                     
                     <button
                       onClick={() => handleShowDetails(event.id)}
-                      className="btn-secondary w-full sm:w-auto lg:w-full flex items-center justify-center gap-2"
+                      className="btn-secondary flex items-center justify-center gap-2"
                     >
-                      <Info className="w-4 h-4" />
+                      <Info className="event-icon" />
                       <span className="hidden sm:inline lg:inline">{showDetails ? t('common.hide') : t('common.details')}</span>
                       <span className="sm:hidden lg:hidden">{showDetails ? 'Hide' : 'Info'}</span>
                     </button>
@@ -340,29 +340,53 @@ const EventsPage: React.FC = () => {
                 
                 {/* Event Details */}
                 {showDetails && (
-                  <div className="border-t border-slate-700 pt-4 mt-4 responsive-max-width">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                      <div>
-                        <h4 className="font-semibold text-slate-300 mb-2">{t('events.details.startDate')}</h4>
-                        <p className="text-sm text-slate-400">{new Date(event.startDate).toLocaleString()}</p>
+                  <div className="event-tile-separator mt-6 pt-6 responsive-max-width">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                      <div className="space-y-2">
+                        <h4 className="font-semibold text-slate-200 text-base flex items-center">
+                          <Clock className="event-icon text-green-400 mr-2" />
+                          {t('events.details.startDate')}
+                        </h4>
+                        <p className="text-base text-slate-300 font-medium">{new Date(event.startDate).toLocaleString()}</p>
                       </div>
-                      <div>
-                        <h4 className="font-semibold text-slate-300 mb-2">{t('events.details.endDate')}</h4>
-                        <p className="text-sm text-slate-400">{new Date(event.endDate).toLocaleString()}</p>
+                      <div className="space-y-2">
+                        <h4 className="font-semibold text-slate-200 text-base flex items-center">
+                          <Clock className="event-icon text-red-400 mr-2" />
+                          {t('events.details.endDate')}
+                        </h4>
+                        <p className="text-base text-slate-300 font-medium">{new Date(event.endDate).toLocaleString()}</p>
                       </div>
-                      <div>
-                        <h4 className="font-semibold text-slate-300 mb-2">{t('events.details.rules')}</h4>
-                        <p className="text-sm text-slate-400 responsive-word-break">{event.rules}</p>
+                      <div className="space-y-2 sm:col-span-2 lg:col-span-1">
+                        <h4 className="font-semibold text-slate-200 text-base flex items-center">
+                          <Target className="event-icon text-blue-400 mr-2" />
+                          {t('events.details.rules')}
+                        </h4>
+                        <div className="text-base text-slate-300 leading-relaxed responsive-word-break">
+                          {event.rules.map((rule: string, index: number) => (
+                            <p key={index} className="mb-2">{rule}</p>
+                          ))}
+                        </div>
                       </div>
                     </div>
                     
                     {event.prizes && event.prizes.length > 0 && (
-                      <div className="mt-4">
-                        <h4 className="font-semibold text-slate-300 mb-2">{t('events.details.prizes')}</h4>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
+                      <div className="mt-6">
+                        <div className="event-tile-separator mb-4"></div>
+                        <h4 className="font-semibold text-slate-200 text-base mb-4 flex items-center">
+                          <Award className="event-icon text-yellow-400 mr-2" />
+                          {t('events.details.prizes')}
+                        </h4>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
                           {event.prizes.map((prize: string, index: number) => (
-                            <div key={index} className="bg-slate-700/30 rounded-lg p-2">
-                              <span className="text-sm text-slate-400 responsive-word-break">{prize}</span>
+                            <div key={index} className="bg-gradient-to-r from-yellow-500/10 to-yellow-600/10 border border-yellow-400/20 rounded-lg p-3 shadow-sm">
+                              <div className="flex items-center mb-2">
+                                {index === 0 && <span className="text-lg">🥇</span>}
+                                {index === 1 && <span className="text-lg">🥈</span>}
+                                {index === 2 && <span className="text-lg">🥉</span>}
+                                {index > 2 && <span className="text-lg">🏆</span>}
+                                <span className="ml-2 font-semibold text-slate-200">#{index + 1}</span>
+                              </div>
+                              <span className="text-base text-slate-300 responsive-word-break">{prize}</span>
                             </div>
                           ))}
                         </div>

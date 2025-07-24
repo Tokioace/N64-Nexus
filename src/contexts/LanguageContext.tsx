@@ -276,6 +276,10 @@ const translations = {
     'events.completed': 'Abgeschlossene Events',
     'events.participate': 'Teilnehmen',
     'events.details': 'Details',
+    'events.details.startDate': 'Startzeit',
+    'events.details.endDate': 'Endzeit',
+    'events.details.rules': 'Regeln',
+    'events.details.prizes': 'Preise',
     'events.noActive': 'Keine aktiven Events',
     'events.viewAll': 'Alle Events anzeigen',
     'events.joinEvent': 'Event beitreten',
@@ -1032,7 +1036,6 @@ const translations = {
     'profile.bestTime': 'Best Time',
     'profile.highScore': 'High Score',
     'profile.achievedOn': 'Achieved on',
-    
     // Events
     'events.title': 'Events',
     'events.upcoming': 'Upcoming Events',
@@ -1040,6 +1043,10 @@ const translations = {
     'events.completed': 'Completed Events',
     'events.participate': 'Participate',
     'events.details': 'Details',
+    'events.details.startDate': 'Start Time',
+    'events.details.endDate': 'End Time',
+    'events.details.rules': 'Rules',
+    'events.details.prizes': 'Prizes',
     'events.noActive': 'No active events',
     'events.viewAll': 'View all events',
     'events.joinEvent': 'Join Event',
@@ -1372,7 +1379,6 @@ const translations = {
     'media.unmute': 'Unmute',
     'media.fullscreen': 'Fullscreen',
     'media.exitFullscreen': 'Exit Fullscreen',
-
     // Additional English translations
     'auth.invalidCredentials': 'Invalid credentials. Please check your email and password.',
     'auth.errorOccurred': 'An error occurred. Please try again.',
@@ -1718,7 +1724,6 @@ const translations = {
     'auth.loginRequired': 'Connexion requise',
     'auth.loginRequiredMessage': 'Vous devez être connecté pour voir cette page.',
     'auth.loginRequiredForEvents': 'Veuillez vous connecter pour participer aux événements !',
-    
     // Quiz
     'quiz.title': 'Quiz N64',
     'quiz.start': 'Commencer le Quiz',
@@ -2067,7 +2072,6 @@ const translations = {
     'quiz.question2.explanation': 'Super Mario 64 a un total de 120 étoiles à collecter.',
     'quiz.category.history': 'Histoire',
     'quiz.category.mario': 'Mario',
-
     // Forum content
     'forum.category.help': 'Aide et Support',
     'forum.category.helpDesc': 'Questions sur l\'app, problèmes techniques et feedback',
@@ -2400,7 +2404,6 @@ const translations = {
     'language.portuguese': 'Portoghese',
     'language.hindi': 'Hindi',
     'language.arabic': 'Arabo',
-
     // Additional Italian translations
     'auth.invalidCredentials': 'Credenziali non valide. Controlla email e password.',
     'auth.errorOccurred': 'Si è verificato un errore. Riprova.',
@@ -2731,7 +2734,6 @@ const translations = {
     'language.portuguese': 'Portugués',
     'language.hindi': 'Hindi',
     'language.arabic': 'Árabe',
-
     // Additional Spanish translations
     'auth.invalidCredentials': 'Credenciales inválidas. Verifica tu email y contraseña.',
     'auth.errorOccurred': 'Ocurrió un error. Inténtalo de nuevo.',
@@ -3077,7 +3079,6 @@ const translations = {
     'language.portuguese': 'Πορτογαλικά',
     'language.hindi': 'Χίντι',
     'language.arabic': 'Αραβικά',
-
     // Collection Management
     'collection.confirmRemove': 'Θέλετε πραγματικά να αφαιρέσετε αυτό το παιχνίδι από τη συλλογή σας;',
     'collection.packaging': 'Συσκευασία',
@@ -3414,7 +3415,6 @@ const translations = {
     'community.sortByCollection': 'Ταξινόμηση κατά συλλογή',
     'community.sortByRecords': 'Ταξινόμηση κατά ρεκόρ',
     'community.sortByJoinDate': 'Ταξινόμηση κατά ημερομηνία εγγραφής',
-    
     // Leaderboard - Additional
     'leaderboard.rank': 'Κατάταξη',
     'leaderboard.player': 'Παίκτης',
@@ -3751,7 +3751,6 @@ const translations = {
     'minigames.sound.zelda': '"Hey! Listen!" - Navi Sesi',
     'minigames.sound.goldeneye': '"Pew Pew" - Susturucu Ateş',
     'minigames.sound.mariokart': '"Here we go!" - Yarış Başlangıcı',
-
     // News content
     'news.title': 'Haber Akışı',
     'news.subtitle': 'N64 topluluğundan tüm son haberler',
@@ -4393,7 +4392,6 @@ const translations = {
     'minigames.highScore': 'Лучший результат',
     'minigames.difficulty': 'Сложность',
     'minigames.category': 'Категория',
-    
     // Events
     'events.title': 'События',
     'events.upcoming': 'Предстоящие события',
@@ -4732,7 +4730,6 @@ const translations = {
     'minigames.sound.zelda': '"Hey! Listen!" - Som da Navi',
     'minigames.sound.goldeneye': '"Pew Pew" - Tiro com silenciador',
     'minigames.sound.mariokart': '"Here we go!" - Início da corrida',
-
     // News content
     'news.title': 'Feed de Notícias',
     'news.subtitle': 'Todas as últimas notícias da comunidade N64',
@@ -5075,7 +5072,6 @@ const translations = {
     'collection.used': 'प्रयुक्त',
     'collection.estimatedValue': 'अनुमानित मूल्य',
     'collection.cancel': 'रद्द करें',
-
     // Additional placeholders and labels
     'placeholder.gameName': 'उदा. Super Mario 64',
     'placeholder.category': 'उदा. 120 स्टार, Any%, High Score',
@@ -5407,7 +5403,6 @@ const translations = {
     'events.prize.luigiThird': '🥉 المركز الثالث: كأس Luigi البرونزي + 100 XP + شارة خبير سباق الوقت',
     'events.prize.luigiTop10': '🏆 أفضل 10: شارة محارب Luigi\'s Raceway + 50 XP',
     'events.prize.luigiParticipant': '🎮 جميع المشاركين: شارة مشارك Luigi\'s Raceway + 25 XP',
-
     // News content
     'news.title': 'تغذية الأخبار',
     'news.subtitle': 'جميع آخر الأخبار من مجتمع N64',
