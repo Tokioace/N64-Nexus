@@ -5254,7 +5254,7 @@ const translations = {
     
     // Home Screen
     'home.subtitle': 'N64 сообщество для миллениалов',
-    'home.welcome': 'Добро пожаловать',
+    'home.welcome': 'Добро пожаловать обратно',
     'home.quiz.subtitle': 'Знания N64',
     'home.events.subtitle': 'Турниры',
     'home.media.subtitle': 'Спидраны',
