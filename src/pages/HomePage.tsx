@@ -385,20 +385,15 @@ const HomePage: React.FC = () => {
 
   return (
     <div className="container-lg py-responsive space-responsive responsive-max-width responsive-overflow-hidden">
-      {/* Welcome Section with Mascot and Battle64 Branding */}
+      {/* Welcome Section with Mascot */}
       <div className="text-center mb-responsive responsive-max-width">
         <div className="battle64-header-container mb-4">
-          {/* Mascot Image - Left side on desktop, below title on mobile */}
+          {/* Mascot Image */}
           <img 
             src="/mascot.png" 
             alt="Battle64 CRT-TV Mascot" 
-            className="battle64-mascot h-48 md:h-64 lg:h-80 w-auto object-contain"
+            className="battle64-mascot h-64 md:h-80 lg:h-96 w-auto object-contain"
           />
-          
-          {/* Battle64 Title - Right side on desktop, above mascot on mobile */}
-          <h1 className="battle64-title text-6xl md:text-8xl lg:text-10xl font-bold responsive-word-break">
-            Battle64
-          </h1>
         </div>
         
         {/* Welcome Back Text */}

@@ -23,20 +23,15 @@ const HomeScreenRetro: React.FC = () => {
 
   return (
     <div className="retro-page container mx-auto px-4 py-6">
-      {/* Header with Mascot and Battle64 Branding */}
+      {/* Header with Mascot */}
       <div className="text-center mb-8">
         <div className="battle64-header-container mb-4">
-          {/* Mascot Image - Left side on desktop, below title on mobile */}
+          {/* Mascot Image */}
           <img 
             src="/mascot.png" 
             alt="Battle64 CRT-TV Mascot" 
             className="battle64-mascot h-64 md:h-80 lg:h-96 w-auto object-contain"
           />
-          
-          {/* Battle64 Title - Right side on desktop, above mascot on mobile */}
-          <h1 className="battle64-title text-8xl md:text-9xl lg:text-10xl font-bold">
-            Battle64
-          </h1>
         </div>
         
         {/* Welcome Back Text */}
