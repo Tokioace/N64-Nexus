@@ -1813,10 +1813,12 @@ html, body {
   transition: transform 0.3s ease;
   /* Ensure exact height matching with title */
   object-fit: contain;
+  /* Stretch horizontally to make it wider but keep same height */
+  transform: scaleX(1.3);
 }
 
 .battle64-mascot:hover {
-  transform: scale(1.05) rotate(1deg);
+  transform: scaleX(1.37) scaleY(1.05) rotate(1deg);
 }
 
 
