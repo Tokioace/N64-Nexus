@@ -251,7 +251,7 @@ const EventFeedWidget: React.FC<EventFeedWidgetProps> = ({
               <WinnerMediaDisplay winner={winner} t={t} />
               <div className="mt-3 text-center">
                 <div className="text-base font-semibold text-slate-100">{winner.username}</div>
-                <div className="leaderboard-time text-yellow-400">{winner.time}</div>
+                <div className="leaderboard-time-compact text-yellow-400">{winner.time}</div>
               </div>
             </div>
           </div>
@@ -278,9 +278,9 @@ const EventFeedWidget: React.FC<EventFeedWidgetProps> = ({
                         )}
                       </div>
                       <div className="flex items-center space-x-3">
-                        <span className={`leaderboard-time ${getRankColor(position)}`}>
-                          {entry.time}
-                        </span>
+                                                  <span className={`leaderboard-time-compact ${getRankColor(position)}`}>
+                            {entry.time}
+                          </span>
                         {entry.mediaUrl && (
                           <div className="flex items-center space-x-1">
                             {entry.documentationType === 'photo' && <Camera className="w-4 h-4 text-slate-400" />}
