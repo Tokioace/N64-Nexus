@@ -507,7 +507,7 @@ const HomePage: React.FC = () => {
           to="/retro" 
           className="inline-block mt-4 px-4 py-2 rounded-lg bg-slate-700/50 hover:bg-slate-600/50 transition-colors text-responsive-sm text-slate-300 w-full sm:w-auto"
         >
-          🎮 Zur Retro-Ansicht
+          🎮 {t('home.footer.classic')}
         </Link>
       </div>
     </div>
