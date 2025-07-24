@@ -6,6 +6,7 @@ export interface User {
   password?: string // Only used during registration, not stored in state
   level: number
   xp: number
+  points: number // Points earned from achievements and activities
   region: 'PAL' | 'NTSC'
   platform: 'N64' | 'PC' // New field for platform preference
   joinDate: Date
