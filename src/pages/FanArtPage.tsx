@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useLanguage } from '../contexts/LanguageContext'
 import { useUser } from '../contexts/UserContext'
+import { usePoints } from '../contexts/PointsContext'
 import { Palette, Heart, Eye, MessageSquare, Upload, Filter, Grid, List, Zap, X, Image as ImageIcon } from 'lucide-react'
 
 interface FanArtItem {
@@ -92,9 +93,10 @@ const RatingInput: React.FC<RatingInputProps> = ({ currentRating, onRate, disabl
 interface UploadModalProps {
   onClose: () => void
   onUpload: (artwork: FanArtItem) => void
+  awardPoints: (action: keyof import('../types').PointsConfig, description?: string) => Promise<boolean>
 }
 
-const UploadModal: React.FC<UploadModalProps> = ({ onClose, onUpload }) => {
+const UploadModal: React.FC<UploadModalProps> = ({ onClose, onUpload, awardPoints }) => {
   const { t } = useLanguage()
   const { user } = useUser()
   const [title, setTitle] = useState('')
@@ -155,6 +157,14 @@ const UploadModal: React.FC<UploadModalProps> = ({ onClose, onUpload }) => {
     }
 
     onUpload(newArtwork)
+    
+    // Award points for fanart upload
+    try {
+      await awardPoints('fanart.upload', `Fanart uploaded: ${title}`)
+    } catch (error) {
+      console.error('Failed to award points for fanart upload:', error)
+    }
+    
     setIsUploading(false)
   }
 
@@ -299,6 +309,7 @@ const UploadModal: React.FC<UploadModalProps> = ({ onClose, onUpload }) => {
 const FanArtPage: React.FC = () => {
   const { t } = useLanguage()
   const { user, isAuthenticated } = useUser()
+  const { awardPoints } = usePoints()
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid')
   const [selectedCategory, setSelectedCategory] = useState('all')
   const [showUploadModal, setShowUploadModal] = useState(false)
@@ -411,6 +422,38 @@ const FanArtPage: React.FC = () => {
         item.game.toLowerCase().includes(selectedCategory) ||
         item.tags.some(tag => tag.toLowerCase().includes(selectedCategory))
       )
+
+  const handleLikeArtwork = async (artworkId: string) => {
+    if (!isAuthenticated || !user) return
+
+    const artwork = fanArtItems.find(item => item.id === artworkId)
+    if (!artwork) return
+
+    // Prevent self-liking
+    if (artwork.artist === user.username) {
+      console.log('Cannot like your own artwork')
+      return
+    }
+
+    // In a real app, you'd check if user already liked this artwork
+    // For now, we'll just increment the likes
+    setFanArtItems(prev => prev.map(item => {
+      if (item.id === artworkId) {
+        return {
+          ...item,
+          likes: item.likes + 1
+        }
+      }
+      return item
+    }))
+
+    // Award points to the artwork creator
+    try {
+      await awardPoints('fanart.likeReceived', `Like received on: ${artwork.title}`)
+    } catch (error) {
+      console.error('Failed to award points for fanart like:', error)
+    }
+  }
 
   const handleRateArtwork = (artworkId: string, rating: number) => {
     if (!isAuthenticated) return
@@ -580,10 +623,14 @@ const FanArtPage: React.FC = () => {
 
                 <div className="flex items-center justify-between text-sm text-slate-400">
                   <div className="flex items-center gap-4">
-                    <div className="flex items-center gap-1">
+                    <button 
+                      onClick={() => handleLikeArtwork(item.id)}
+                      className="flex items-center gap-1 hover:text-rose-400 transition-colors"
+                      disabled={!isAuthenticated}
+                    >
                       <Heart className="w-4 h-4" />
                       <span>{item.likes}</span>
-                    </div>
+                    </button>
                     <div className="flex items-center gap-1">
                       <Eye className="w-4 h-4" />
                       <span>{item.views}</span>
@@ -648,10 +695,14 @@ const FanArtPage: React.FC = () => {
 
                   <div className="flex items-center justify-between text-sm text-slate-400">
                     <div className="flex items-center gap-4">
-                      <div className="flex items-center gap-1">
+                      <button 
+                        onClick={() => handleLikeArtwork(item.id)}
+                        className="flex items-center gap-1 hover:text-rose-400 transition-colors"
+                        disabled={!isAuthenticated}
+                      >
                         <Heart className="w-4 h-4" />
                         <span>{item.likes}</span>
-                      </div>
+                      </button>
                       <div className="flex items-center gap-1">
                         <Eye className="w-4 h-4" />
                         <span>{item.views}</span>
@@ -693,6 +744,7 @@ const FanArtPage: React.FC = () => {
             setFanArtItems(prev => [newArtwork, ...prev])
             setShowUploadModal(false)
           }}
+          awardPoints={awardPoints}
         />
       )}
     </div>

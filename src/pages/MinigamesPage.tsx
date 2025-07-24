@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import { useLanguage } from '../contexts/LanguageContext'
+import { usePoints } from '../contexts/PointsContext'
 import { 
   Gamepad2, 
   Zap, 
@@ -43,6 +44,7 @@ interface GameState {
 
 const MinigamesPage: React.FC = () => {
   const { t } = useLanguage()
+  const { awardPoints } = usePoints()
   const [selectedCategory, setSelectedCategory] = useState<string>('all')
   const [gameState, setGameState] = useState<GameState>({
     currentGame: null,
@@ -247,7 +249,7 @@ const MinigamesPage: React.FC = () => {
         setMoves(moves + 1)
         const [first, second] = newFlippedCards
         if (cards[first].game === cards[second].game) {
-          setTimeout(() => {
+          setTimeout(async () => {
             const matchedCards = [...cards]
             matchedCards[first].matched = true
             matchedCards[second].matched = true
@@ -260,6 +262,13 @@ const MinigamesPage: React.FC = () => {
             if (matchedCards.every(card => card.matched)) {
               const bonus = Math.max(0, (30 - moves) * 10)
               setGameState(prev => ({ ...prev, score: newScore + bonus, isPlaying: false }))
+              
+              // Award points for minigame success
+              try {
+                await awardPoints('minigame.success', 'Memory game completed')
+              } catch (error) {
+                console.error('Failed to award points for memory game:', error)
+              }
             }
           }, 1000)
         } else {
@@ -399,13 +408,22 @@ const MinigamesPage: React.FC = () => {
         setGameState(prev => ({ ...prev, score: prev.score + points }))
       }
 
-      setTimeout(() => {
+      setTimeout(async () => {
         if (currentQuestion < triviaQuestions.length - 1) {
           setCurrentQuestion(currentQuestion + 1)
           setSelectedAnswer(null)
           setShowResult(false)
         } else {
           setGameState(prev => ({ ...prev, isPlaying: false }))
+          
+          // Award points for completing trivia game (if scored well)
+          if (correctAnswers >= triviaQuestions.length / 2) {
+            try {
+              await awardPoints('minigame.success', 'Trivia game completed successfully')
+            } catch (error) {
+              console.error('Failed to award points for trivia game:', error)
+            }
+          }
         }
       }, 2000)
     }
@@ -535,7 +553,7 @@ const MinigamesPage: React.FC = () => {
     const options = [currentSoundData.game, ...n64Games.filter(g => g !== currentSoundData.game).slice(0, 3)]
       .sort(() => Math.random() - 0.5)
 
-    const handleAnswer = (selectedGame: string) => {
+    const handleAnswer = async (selectedGame: string) => {
       if (selectedGame === currentSoundData.game) {
         setScore(score + 100)
         setGameState(prev => ({ ...prev, score: prev.score + 100 }))
@@ -545,6 +563,15 @@ const MinigamesPage: React.FC = () => {
         setCurrentSound(currentSound + 1)
       } else {
         setGameState(prev => ({ ...prev, isPlaying: false }))
+        
+        // Award points for completing sound guessing game (if scored well)
+        if (score >= sounds.length * 50) { // At least 50% correct
+          try {
+            await awardPoints('minigame.success', 'Sound guessing game completed successfully')
+          } catch (error) {
+            console.error('Failed to award points for sound guessing game:', error)
+          }
+        }
       }
     }
 

@@ -14,6 +14,7 @@ import {
 } from '../types'
 import { useUser } from './UserContext'
 import { useLanguage } from './LanguageContext'
+import PointsNotification from '../components/PointsNotification'
 
 const PointsContext = createContext<PointsContextType | undefined>(undefined)
 
@@ -123,6 +124,35 @@ export const PointsProvider: React.FC<{ children: ReactNode }> = ({ children }) 
   const [currentSeason, setCurrentSeason] = useState<string>('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [notifications, setNotifications] = useState<Array<{
+    id: string
+    action: string
+    points: number
+    description?: string
+  }>>([])
+  const [lastActionTimes, setLastActionTimes] = useState<Record<string, number>>({})
+
+  const showNotification = (action: string, points: number, description?: string) => {
+    const notification = {
+      id: `${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
+      action,
+      points,
+      description
+    }
+    setNotifications(prev => [...prev, notification].slice(-5)) // Keep max 5 notifications
+  }
+
+  const removeNotification = (id: string) => {
+    setNotifications(prev => prev.filter(n => n.id !== id))
+  }
+
+  const isRateLimited = (action: string): boolean => {
+    const now = Date.now()
+    const lastTime = lastActionTimes[action] || 0
+    const cooldown = action === 'chat.messages' ? 1000 : 5000 // 1s for chat, 5s for others
+    
+    return now - lastTime < cooldown
+  }
 
   // Initialize current season
   useEffect(() => {
@@ -142,6 +172,30 @@ export const PointsProvider: React.FC<{ children: ReactNode }> = ({ children }) 
   useEffect(() => {
     loadLeaderboards()
   }, [])
+
+  // Check for profile completion and award points
+  useEffect(() => {
+    if (!user || !userPoints) return
+
+    const isProfileComplete = !!(
+      user.bio && 
+      user.location && 
+      user.avatar && 
+      user.collections && user.collections.length > 0
+    )
+
+    const hasProfileCompletionPoints = userPoints.pointHistory.some(
+      entry => entry.action === 'profile.setupComplete'
+    )
+
+    if (isProfileComplete && !hasProfileCompletionPoints) {
+      try {
+        awardPoints('profile.setupComplete', 'Profile setup completed')
+      } catch (error) {
+        console.error('Failed to award points for profile completion:', error)
+      }
+    }
+  }, [user?.bio, user?.location, user?.avatar, user?.collections?.length, userPoints?.pointHistory?.length])
 
   const initializeUserPoints = () => {
     if (!user) return
@@ -239,8 +293,17 @@ export const PointsProvider: React.FC<{ children: ReactNode }> = ({ children }) 
   const awardPoints = async (action: keyof PointsConfig, description?: string): Promise<boolean> => {
     if (!user || !userPoints) return false
 
+    // Check rate limiting
+    if (isRateLimited(action)) {
+      console.warn(`Rate limited: ${action}`)
+      return false
+    }
+
     const pointsToAward = POINTS_CONFIG[action]
     if (!pointsToAward) return false
+
+    // Update last action time
+    setLastActionTimes(prev => ({ ...prev, [action]: Date.now() }))
 
     try {
       setLoading(true)
@@ -272,6 +335,9 @@ export const PointsProvider: React.FC<{ children: ReactNode }> = ({ children }) 
       const success = await saveUserPoints(updatedPoints)
       
       if (success) {
+        // Show notification
+        showNotification(action, pointsToAward, description)
+        
         // Check for new achievements
         await checkAchievements()
       }
@@ -453,6 +519,17 @@ export const PointsProvider: React.FC<{ children: ReactNode }> = ({ children }) 
   return (
     <PointsContext.Provider value={contextValue}>
       {children}
+      
+      {/* Render notifications */}
+      {notifications.map(notification => (
+        <PointsNotification
+          key={notification.id}
+          action={notification.action}
+          points={notification.points}
+          description={notification.description}
+          onClose={() => removeNotification(notification.id)}
+        />
+      ))}
     </PointsContext.Provider>
   )
 }

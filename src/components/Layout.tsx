@@ -1,7 +1,9 @@
 import React, { ReactNode, useState, useEffect } from 'react'
 import Sidebar from './Sidebar'
 import { useUser } from '../contexts/UserContext'
+import { usePoints } from '../contexts/PointsContext'
 import { Link } from 'react-router-dom'
+import { Trophy, Zap } from 'lucide-react'
 
 interface LayoutProps {
   children: ReactNode
@@ -11,6 +13,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
   const { user, isAuthenticated } = useUser()
+  const { userPoints } = usePoints()
 
   const toggleMobileSidebar = () => {
     setIsMobileSidebarOpen(!isMobileSidebarOpen)
@@ -130,8 +133,24 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         <header className="hidden lg:flex items-center justify-between px-4 lg:px-6 py-4 bg-slate-800/50 backdrop-blur-sm border-b border-slate-700 responsive-max-width">
           <h1 className="text-xl lg:text-2xl font-bold text-blue-400">Battle64</h1>
           
-          {/* Spacer for desktop header balance */}
-          <div className="w-10 h-10"></div>
+          {/* Points Display */}
+          {isAuthenticated && userPoints && (
+            <div className="flex items-center gap-4">
+              <div className="flex items-center gap-2 bg-gradient-to-r from-yellow-500/20 to-yellow-600/20 border border-yellow-500/30 rounded-lg px-3 py-2">
+                <Trophy className="w-4 h-4 text-yellow-400" />
+                <span className="text-sm font-medium text-yellow-100">
+                  {userPoints.totalPoints.toLocaleString()}
+                </span>
+              </div>
+              
+              <div className="flex items-center gap-2 bg-gradient-to-r from-blue-500/20 to-blue-600/20 border border-blue-500/30 rounded-lg px-3 py-2">
+                <Zap className="w-4 h-4 text-blue-400" />
+                <span className="text-xs text-blue-200">
+                  {userPoints.currentRank.key.split('.')[1] || 'Beginner'}
+                </span>
+              </div>
+            </div>
+          )}
         </header>
 
         {/* Main Content */}
