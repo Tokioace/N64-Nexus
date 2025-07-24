@@ -1,7 +1,7 @@
 # Complete Language Implementation for Leaderboard Feature
 
 ## Overview
-I have now **fully implemented all 13 languages** for the leaderboard time display feature. Initially, only German, English, French, and Italian had the complete `eventLeaderboard.*` translation keys. I have added the missing translations for the remaining 9 languages.
+I have now **fully implemented all 13 languages** for the leaderboard time display feature. Initially, only German, English, French, Italian, Spanish, and Greek had the complete `eventLeaderboard.*` translation keys. I have added the missing translations for the remaining 7 languages and fixed duplicate property errors that occurred during the initial implementation.
 
 ## ✅ All 13 Languages Now Supported
 
@@ -37,7 +37,7 @@ I have now **fully implemented all 13 languages** for the leaderboard time displ
 - `eventLeaderboard.verified`: 'Verificato'
 - And 14 more keys...
 
-### 5. **Spanish (es)** - ✅ **NEWLY ADDED**
+### 5. **Spanish (es)** - ✅ Complete (Already existed)
 - `eventLeaderboard.title`: 'Clasificación del Evento'
 - `eventLeaderboard.time`: 'Tiempo'
 - `eventLeaderboard.screenshotFrom`: 'Captura de pantalla de {username}'
@@ -45,7 +45,7 @@ I have now **fully implemented all 13 languages** for the leaderboard time displ
 - `eventLeaderboard.verified`: 'Verificado'
 - And 14 more keys...
 
-### 6. **Greek (el)** - ✅ **NEWLY ADDED**
+### 6. **Greek (el)** - ✅ Complete (Already existed)
 - `eventLeaderboard.title`: 'Κατάταξη Εκδήλωσης'
 - `eventLeaderboard.time`: 'Χρόνος'
 - `eventLeaderboard.screenshotFrom`: 'Στιγμιότυπο από {username}'
@@ -111,7 +111,7 @@ I have now **fully implemented all 13 languages** for the leaderboard time displ
 
 ## Complete Translation Keys Added
 
-For each of the 9 languages that were missing translations, I added these 19 keys:
+For each of the 7 languages that were missing translations, I added these 19 keys:
 
 ```typescript
 'eventLeaderboard.title': string

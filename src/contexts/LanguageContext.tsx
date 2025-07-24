@@ -3363,28 +3363,7 @@ const translations = {
     'success.submitted': 'Enviado con éxito',
     'success.joined': 'Unido con éxito',
     'success.left': 'Abandonado con éxito',
-    'success.uploaded': 'Subido con éxito',
-
-    // Event Leaderboard
-    'eventLeaderboard.title': 'Clasificación del Evento',
-    'eventLeaderboard.time': 'Tiempo',
-    'eventLeaderboard.screenshotFrom': 'Captura de pantalla de {username}',
-    'eventLeaderboard.livestream': 'Transmisión en vivo',
-    'eventLeaderboard.livestreamProofText': 'Esta prueba fue proporcionada a través de transmisión en vivo',
-    'eventLeaderboard.watchStream': 'Ver Transmisión',
-    'eventLeaderboard.notes': 'Notas',
-    'eventLeaderboard.screenshot': 'Captura de pantalla',
-    'eventLeaderboard.video': 'Video',
-    'eventLeaderboard.verified': 'Verificado',
-    'eventLeaderboard.unverified': 'No verificado',
-    'eventLeaderboard.participants': 'participantes',
-    'eventLeaderboard.yourPosition': 'Tu Posición',
-    'eventLeaderboard.clickToView': 'Haz clic para ver',
-    'eventLeaderboard.fullLeaderboard': 'Clasificación Completa',
-    'eventLeaderboard.view': 'Ver',
-    'eventLeaderboard.documentation': 'Documentación',
-    'eventLeaderboard.viewMedia': 'Ver Medios',
-    'eventLeaderboard.noTimes': 'No se han enviado tiempos aún'
+    'success.uploaded': 'Subido con éxito'
   },
 
   el: {
@@ -4104,28 +4083,7 @@ const translations = {
     'leaderboard.filterRegion': 'Περιοχή',
     'leaderboard.timeframeAllTime': 'Όλων των Εποχών',
     'leaderboard.timeframeSeason': 'Τρέχουσα Σεζόν',
-    'leaderboard.timeframeMonth': 'Αυτός ο Μήνας',
-
-    // Event Leaderboard
-    'eventLeaderboard.title': 'Κατάταξη Εκδήλωσης',
-    'eventLeaderboard.time': 'Χρόνος',
-    'eventLeaderboard.screenshotFrom': 'Στιγμιότυπο από {username}',
-    'eventLeaderboard.livestream': 'Ζωντανή μετάδοση',
-    'eventLeaderboard.livestreamProofText': 'Αυτή η απόδειξη παρασχέθηκε μέσω ζωντανής μετάδοσης',
-    'eventLeaderboard.watchStream': 'Παρακολούθηση μετάδοσης',
-    'eventLeaderboard.notes': 'Σημειώσεις',
-    'eventLeaderboard.screenshot': 'Στιγμιότυπο',
-    'eventLeaderboard.video': 'Βίντεο',
-    'eventLeaderboard.verified': 'Επαληθευμένο',
-    'eventLeaderboard.unverified': 'Μη επαληθευμένο',
-    'eventLeaderboard.participants': 'συμμετέχοντες',
-    'eventLeaderboard.yourPosition': 'Η Θέση σας',
-    'eventLeaderboard.clickToView': 'Κάντε κλικ για προβολή',
-    'eventLeaderboard.fullLeaderboard': 'Πλήρης Κατάταξη',
-    'eventLeaderboard.view': 'Προβολή',
-    'eventLeaderboard.documentation': 'Τεκμηρίωση',
-    'eventLeaderboard.viewMedia': 'Προβολή Μέσων',
-    'eventLeaderboard.noTimes': 'Δεν έχουν υποβληθεί χρόνοι ακόμη'
+    'leaderboard.timeframeMonth': 'Αυτός ο Μήνας'
 
   },
 
