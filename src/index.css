@@ -219,70 +219,117 @@ code {
   border-color: rgba(71, 85, 105, 0.7);
 }
 
+/* CSS Custom Properties for Leaderboard */
+:root {
+  --leaderboard-time-font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', 'Consolas', 'Courier New', monospace;
+  --leaderboard-time-font-weight: 600;
+  --leaderboard-time-line-height: 1.2;
+  --leaderboard-time-compact-line-height: 1.1;
+  
+  /* Font sizes */
+  --leaderboard-time-font-size-base: 18px;
+  --leaderboard-time-font-size-mobile: 16px;
+  --leaderboard-time-font-size-small: 15px;
+  --leaderboard-time-font-size-tiny: 14px;
+  
+  --leaderboard-time-compact-font-size-base: 14px;
+  --leaderboard-time-compact-font-size-small: 13px;
+  --leaderboard-time-compact-font-size-tiny: 12px;
+  
+  /* Spacing */
+  --leaderboard-time-letter-spacing-base: 0.5px;
+  --leaderboard-time-letter-spacing-mobile: 0.3px;
+  --leaderboard-time-letter-spacing-small: 0.2px;
+  --leaderboard-time-letter-spacing-tiny: 0.1px;
+  --leaderboard-time-letter-spacing-none: 0px;
+  
+  /* Container widths */
+  --leaderboard-time-container-width-base: 120px;
+  --leaderboard-time-container-width-mobile: 100px;
+  --leaderboard-time-container-width-small: 90px;
+  --leaderboard-time-container-width-tiny: 80px;
+  
+  --leaderboard-time-compact-width-base: 80px;
+  --leaderboard-time-compact-width-mobile: 70px;
+  --leaderboard-time-compact-width-small: 65px;
+  --leaderboard-time-compact-width-tiny: 60px;
+  
+  /* Username widths */
+  --leaderboard-username-width-base: 120px;
+  --leaderboard-username-width-mobile: 100px;
+  --leaderboard-username-width-small: 80px;
+  --leaderboard-username-width-tiny: 70px;
+}
+
 /* Leaderboard Time Display - Responsive & Overflow-Safe */
 .leaderboard-time {
-  font-family: 'JetBrains Mono', 'Fira Code', monospace;
-  font-weight: 600;
-  font-size: 18px;
-  letter-spacing: 0.5px;
+  font-family: var(--leaderboard-time-font-family);
+  font-weight: var(--leaderboard-time-font-weight);
+  font-size: var(--leaderboard-time-font-size-base);
+  letter-spacing: var(--leaderboard-time-letter-spacing-base);
   white-space: nowrap;
   overflow: visible;
   text-overflow: clip;
   min-width: 0;
   flex-shrink: 0;
   display: inline-block;
-  line-height: 1.2;
+  line-height: var(--leaderboard-time-line-height);
+  font-display: swap; /* Improve font loading performance */
+  contain: layout style; /* CSS containment for performance */
 }
 
 /* Responsive time display for different screen sizes */
 @media (max-width: 480px) {
   .leaderboard-time {
-    font-size: 16px;
-    letter-spacing: 0.3px;
+    font-size: var(--leaderboard-time-font-size-mobile);
+    letter-spacing: var(--leaderboard-time-letter-spacing-mobile);
   }
 }
 
 @media (max-width: 390px) {
   .leaderboard-time {
-    font-size: 15px;
-    letter-spacing: 0.2px;
+    font-size: var(--leaderboard-time-font-size-small);
+    letter-spacing: var(--leaderboard-time-letter-spacing-small);
   }
 }
 
 @media (max-width: 320px) {
   .leaderboard-time {
-    font-size: 14px;
-    letter-spacing: 0.1px;
+    font-size: var(--leaderboard-time-font-size-tiny);
+    letter-spacing: var(--leaderboard-time-letter-spacing-tiny);
   }
 }
 
 /* Compact time display for very tight spaces */
 .leaderboard-time-compact {
-  font-family: 'JetBrains Mono', 'Fira Code', monospace;
-  font-weight: 600;
-  font-size: 14px;
-  letter-spacing: 0.2px;
+  font-family: var(--leaderboard-time-font-family);
+  font-weight: var(--leaderboard-time-font-weight);
+  font-size: var(--leaderboard-time-compact-font-size-base);
+  letter-spacing: var(--leaderboard-time-letter-spacing-small);
   white-space: nowrap;
   overflow: visible;
   text-overflow: clip;
-  min-width: 0;
   flex-shrink: 0;
   display: inline-block;
-  line-height: 1.1;
-  min-width: 80px; /* Minimum width for time display */
+  line-height: var(--leaderboard-time-compact-line-height);
+  min-width: var(--leaderboard-time-compact-width-base);
+  font-display: swap; /* Improve font loading performance */
+  contain: layout style; /* CSS containment for performance */
 }
 
 @media (max-width: 390px) {
   .leaderboard-time-compact {
-    font-size: 13px;
-    letter-spacing: 0.1px;
+    font-size: var(--leaderboard-time-compact-font-size-small);
+    letter-spacing: var(--leaderboard-time-letter-spacing-tiny);
+    min-width: var(--leaderboard-time-compact-width-small);
   }
 }
 
 @media (max-width: 320px) {
   .leaderboard-time-compact {
-    font-size: 12px;
-    letter-spacing: 0px;
+    font-size: var(--leaderboard-time-compact-font-size-tiny);
+    letter-spacing: var(--leaderboard-time-letter-spacing-none);
+    min-width: var(--leaderboard-time-compact-width-tiny);
   }
 }
 
@@ -302,10 +349,6 @@ code {
     font-size: 12px;
     min-height: 40px;
     padding: 8px 12px;
-  }
-  
-  .leaderboard-time {
-    font-size: 16px;
   }
   
   .event-tile-content {
@@ -372,7 +415,7 @@ code {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 120px;
+  max-width: var(--leaderboard-username-width-base);
   flex-shrink: 1;
 }
 
@@ -382,8 +425,7 @@ code {
   align-items: center;
   gap: 8px;
   flex-shrink: 0;
-  min-width: fit-content;
-  min-width: 120px; /* Enough space for "9:59.999" + icon */
+  min-width: var(--leaderboard-time-container-width-base);
 }
 
 /* Responsive username and time adjustments */
@@ -393,17 +435,13 @@ code {
   }
   
   .leaderboard-username {
-    max-width: 100px;
+    max-width: var(--leaderboard-username-width-mobile);
     font-size: 15px;
   }
   
   .leaderboard-time-container {
-    min-width: 100px;
+    min-width: var(--leaderboard-time-container-width-mobile);
     gap: 6px;
-  }
-  
-  .leaderboard-time-compact {
-    min-width: 70px;
   }
 }
 
@@ -413,17 +451,13 @@ code {
   }
   
   .leaderboard-username {
-    max-width: 80px;
+    max-width: var(--leaderboard-username-width-small);
     font-size: 14px;
   }
   
   .leaderboard-time-container {
-    min-width: 90px;
+    min-width: var(--leaderboard-time-container-width-small);
     gap: 4px;
-  }
-  
-  .leaderboard-time-compact {
-    min-width: 65px;
   }
 }
 
@@ -433,17 +467,13 @@ code {
   }
   
   .leaderboard-username {
-    max-width: 70px;
+    max-width: var(--leaderboard-username-width-tiny);
     font-size: 13px;
   }
   
   .leaderboard-time-container {
-    min-width: 80px;
+    min-width: var(--leaderboard-time-container-width-tiny);
     gap: 3px;
-  }
-  
-  .leaderboard-time-compact {
-    min-width: 60px;
   }
 }
 

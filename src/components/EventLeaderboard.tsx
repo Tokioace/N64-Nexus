@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useLanguage, getLocaleString } from '../contexts/LanguageContext'
+import { safeFormatTime } from '../utils/timeUtils'
 import { 
   Trophy, 
   Medal, 
@@ -190,8 +191,7 @@ const EventLeaderboard: React.FC<EventLeaderboardProps> = ({
   const [mediaViewerEntry, setMediaViewerEntry] = useState<EventLeaderboardEntry | null>(null)
 
   const formatTime = (time: string) => {
-    // Convert MM:SS.mmm to a more readable format if needed
-    return time
+    return safeFormatTime(time)
   }
 
   const getRankIcon = (position: number) => {
