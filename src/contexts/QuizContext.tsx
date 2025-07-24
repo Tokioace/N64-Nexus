@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState, ReactNode } from 'react'
 import { QuizQuestion, QuizResult, QuizContextType } from '../types'
 import { useLanguage } from './LanguageContext'
+import { usePoints } from './PointsContext'
 
 const QuizContext = createContext<QuizContextType | undefined>(undefined)
 
@@ -28,6 +29,7 @@ const getQuizQuestions = (t: (key: string) => string): QuizQuestion[] => [
 
 export const QuizProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const { t } = useLanguage()
+  const { awardPoints } = usePoints()
   const [currentQuestion, setCurrentQuestion] = useState<QuizQuestion | null>(null)
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
   const [totalQuestions] = useState(10)
@@ -46,9 +48,11 @@ export const QuizProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     setQuizResult(null)
   }
 
-  const answerQuestion = (answerIndex: number) => {
+  const answerQuestion = async (answerIndex: number) => {
     if (currentQuestion && answerIndex === currentQuestion.correctAnswer) {
       setScore(prev => prev + 1)
+      // Award points for correct answer
+      await awardPoints('quiz.answerCorrect', `Correct answer: ${currentQuestion.question}`)
     }
   }
 
@@ -63,7 +67,7 @@ export const QuizProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     }
   }
 
-  const finishQuiz = () => {
+  const finishQuiz = async () => {
     const timeSpent = timeStarted ? Date.now() - timeStarted.getTime() : 0
     const result: QuizResult = {
       score: Math.round((score / totalQuestions) * 100),
@@ -72,6 +76,12 @@ export const QuizProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       timeSpent: Math.round(timeSpent / 1000),
       xpEarned: score * 10
     }
+    
+    // Award bonus points for perfect quiz
+    if (score === totalQuestions) {
+      await awardPoints('quiz.fullPerfect', `Perfect quiz completed: ${score}/${totalQuestions}`)
+    }
+    
     setQuizResult(result)
     setIsQuizActive(false)
   }

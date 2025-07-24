@@ -14,6 +14,7 @@ import {
 } from '../types'
 import { useUser } from './UserContext'
 import { useLanguage } from './LanguageContext'
+import PointsNotification from '../components/PointsNotification'
 
 const PointsContext = createContext<PointsContextType | undefined>(undefined)
 
@@ -123,6 +124,26 @@ export const PointsProvider: React.FC<{ children: ReactNode }> = ({ children }) 
   const [currentSeason, setCurrentSeason] = useState<string>('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [notifications, setNotifications] = useState<Array<{
+    id: string
+    action: string
+    points: number
+    description?: string
+  }>>([])
+
+  const showNotification = (action: string, points: number, description?: string) => {
+    const notification = {
+      id: Date.now().toString(),
+      action,
+      points,
+      description
+    }
+    setNotifications(prev => [...prev, notification])
+  }
+
+  const removeNotification = (id: string) => {
+    setNotifications(prev => prev.filter(n => n.id !== id))
+  }
 
   // Initialize current season
   useEffect(() => {
@@ -142,6 +163,26 @@ export const PointsProvider: React.FC<{ children: ReactNode }> = ({ children }) 
   useEffect(() => {
     loadLeaderboards()
   }, [])
+
+  // Check for profile completion and award points
+  useEffect(() => {
+    if (!user || !userPoints) return
+
+    const isProfileComplete = !!(
+      user.bio && 
+      user.location && 
+      user.avatar && 
+      user.collections && user.collections.length > 0
+    )
+
+    const hasProfileCompletionPoints = userPoints.pointHistory.some(
+      entry => entry.action === 'profile.setupComplete'
+    )
+
+    if (isProfileComplete && !hasProfileCompletionPoints) {
+      awardPoints('profile.setupComplete', 'Profile setup completed')
+    }
+  }, [user, userPoints])
 
   const initializeUserPoints = () => {
     if (!user) return
@@ -272,6 +313,9 @@ export const PointsProvider: React.FC<{ children: ReactNode }> = ({ children }) 
       const success = await saveUserPoints(updatedPoints)
       
       if (success) {
+        // Show notification
+        showNotification(action, pointsToAward, description)
+        
         // Check for new achievements
         await checkAchievements()
       }
@@ -453,6 +497,17 @@ export const PointsProvider: React.FC<{ children: ReactNode }> = ({ children }) 
   return (
     <PointsContext.Provider value={contextValue}>
       {children}
+      
+      {/* Render notifications */}
+      {notifications.map(notification => (
+        <PointsNotification
+          key={notification.id}
+          action={notification.action}
+          points={notification.points}
+          description={notification.description}
+          onClose={() => removeNotification(notification.id)}
+        />
+      ))}
     </PointsContext.Provider>
   )
 }

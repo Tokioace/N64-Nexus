@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import { useLanguage } from '../contexts/LanguageContext'
+import { usePoints } from '../contexts/PointsContext'
 import { 
   Gamepad2, 
   Zap, 
@@ -43,6 +44,7 @@ interface GameState {
 
 const MinigamesPage: React.FC = () => {
   const { t } = useLanguage()
+  const { awardPoints } = usePoints()
   const [selectedCategory, setSelectedCategory] = useState<string>('all')
   const [gameState, setGameState] = useState<GameState>({
     currentGame: null,
@@ -260,6 +262,9 @@ const MinigamesPage: React.FC = () => {
             if (matchedCards.every(card => card.matched)) {
               const bonus = Math.max(0, (30 - moves) * 10)
               setGameState(prev => ({ ...prev, score: newScore + bonus, isPlaying: false }))
+              
+              // Award points for minigame success
+              awardPoints('minigame.success', 'Memory game completed')
             }
           }, 1000)
         } else {
@@ -406,6 +411,11 @@ const MinigamesPage: React.FC = () => {
           setShowResult(false)
         } else {
           setGameState(prev => ({ ...prev, isPlaying: false }))
+          
+          // Award points for completing trivia game (if scored well)
+          if (correctAnswers >= triviaQuestions.length / 2) {
+            awardPoints('minigame.success', 'Trivia game completed successfully')
+          }
         }
       }, 2000)
     }
@@ -545,6 +555,11 @@ const MinigamesPage: React.FC = () => {
         setCurrentSound(currentSound + 1)
       } else {
         setGameState(prev => ({ ...prev, isPlaying: false }))
+        
+        // Award points for completing sound guessing game (if scored well)
+        if (score >= sounds.length * 50) { // At least 50% correct
+          awardPoints('minigame.success', 'Sound guessing game completed successfully')
+        }
       }
     }
 

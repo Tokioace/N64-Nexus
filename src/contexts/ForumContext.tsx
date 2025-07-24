@@ -2,6 +2,7 @@ import React, { createContext, useContext, useState, useEffect, ReactNode, useMe
 import { ForumCategory, ForumThread, ForumPost, ForumStats } from '../types'
 import { useUser } from './UserContext'
 import { useLanguage } from './LanguageContext'
+import { usePoints } from './PointsContext'
 
 interface ForumContextType {
   categories: ForumCategory[]
@@ -209,6 +210,7 @@ const mockStats: ForumStats = {
 
 export const ForumProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const { t } = useLanguage()
+  const { awardPoints } = usePoints()
   const [categories, setCategories] = useState<ForumCategory[]>(() => createMockCategories(t))
   const [threads, setThreads] = useState<ForumThread[]>(mockThreads)
   const [posts, setPosts] = useState<ForumPost[]>(mockPosts)
@@ -305,6 +307,10 @@ export const ForumProvider: React.FC<{ children: ReactNode }> = ({ children }) =
       await new Promise(resolve => setTimeout(resolve, 200))
       setThreads(prev => [newThread, ...prev])
       setPosts(prev => [...prev, newPost])
+      
+      // Award points for creating forum thread
+      await awardPoints('forum.post', `Thread created: ${title}`)
+      
       setLoading(false)
       return true
     } catch (err) {
@@ -361,6 +367,10 @@ export const ForumProvider: React.FC<{ children: ReactNode }> = ({ children }) =
             }
           : thread
       ))
+      
+      // Award points for forum reply
+      await awardPoints('forum.reply', `Reply posted in thread`)
+      
       setLoading(false)
       return true
     } catch (err) {
