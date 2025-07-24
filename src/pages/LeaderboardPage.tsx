@@ -3,12 +3,15 @@ import { useEvent } from '../contexts/EventContext'
 import { useUser } from '../contexts/UserContext'
 import { useLanguage } from '../contexts/LanguageContext'
 import EventLeaderboard from '../components/EventLeaderboard'
+import N64FanLeaderboard from '../components/N64FanLeaderboard'
 import { 
   Trophy, 
   Calendar, 
   Target,
   Users,
-  Medal
+  Medal,
+  Star,
+  Crown
 } from 'lucide-react'
 
 const LeaderboardPage: React.FC = () => {
@@ -16,6 +19,7 @@ const LeaderboardPage: React.FC = () => {
   const { user } = useUser()
   const { t } = useLanguage()
   const [selectedEvent, setSelectedEvent] = useState<string | null>(null)
+  const [activeTab, setActiveTab] = useState<'n64fan' | 'events'>('n64fan')
 
   // Get active events with leaderboard data
   const activeEventsWithLeaderboard = events.filter(event => {
@@ -55,8 +59,45 @@ const LeaderboardPage: React.FC = () => {
         </p>
       </div>
 
+      {/* Tab Navigation */}
+      <div className="simple-tile mb-responsive responsive-max-width">
+        <div className="flex gap-2">
+          <button
+            onClick={() => setActiveTab('n64fan')}
+            className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-all ${
+              activeTab === 'n64fan'
+                ? 'bg-yellow-400 text-slate-900'
+                : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
+            }`}
+          >
+            <Crown className="w-4 h-4" />
+            <span className="hidden sm:inline">{t('leaderboard.globalLeaderboard')}</span>
+            <span className="sm:hidden">N64Fan</span>
+          </button>
+          <button
+            onClick={() => setActiveTab('events')}
+            className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-all ${
+              activeTab === 'events'
+                ? 'bg-yellow-400 text-slate-900'
+                : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
+            }`}
+          >
+            <Calendar className="w-4 h-4" />
+            <span className="hidden sm:inline">Event Leaderboards</span>
+            <span className="sm:hidden">Events</span>
+          </button>
+        </div>
+      </div>
+
+      {/* N64Fan Leaderboard */}
+      {activeTab === 'n64fan' && (
+        <div className="responsive-max-width">
+          <N64FanLeaderboard />
+        </div>
+      )}
+
       {/* Event Selection */}
-      {activeEventsWithLeaderboard.length > 1 && (
+      {activeTab === 'events' && activeEventsWithLeaderboard.length > 1 && (
         <div className="simple-tile mb-responsive responsive-max-width">
           <h2 className="text-responsive-lg font-bold text-slate-100 mb-4 flex items-center">
             <Calendar className="w-4 h-4 sm:w-5 sm:h-5 mr-2 flex-shrink-0" />
@@ -114,8 +155,8 @@ const LeaderboardPage: React.FC = () => {
         </div>
       )}
 
-      {/* Leaderboard */}
-      {currentEventId ? (
+      {/* Event Leaderboard */}
+      {activeTab === 'events' && currentEventId ? (
         <div className="responsive-max-width">
           <EventLeaderboard
             eventId={currentEventId}
@@ -136,7 +177,7 @@ const LeaderboardPage: React.FC = () => {
             currentUserId={user?.id}
           />
         </div>
-      ) : (
+      ) : activeTab === 'events' ? (
         <div className="simple-tile text-center py-8 sm:py-12 responsive-max-width">
           <Medal className="w-12 h-12 sm:w-16 sm:h-16 text-slate-500 mx-auto mb-4" />
           <h3 className="text-lg sm:text-xl font-bold text-slate-300 mb-2 responsive-word-break">
@@ -146,7 +187,7 @@ const LeaderboardPage: React.FC = () => {
             {t('leaderboard.noDataDesc')}
           </p>
         </div>
-      )}
+      ) : null}
     </div>
   )
 }

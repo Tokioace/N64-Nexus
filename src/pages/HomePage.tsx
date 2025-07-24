@@ -4,6 +4,8 @@ import { useUser } from '../contexts/UserContext'
 import { useEvent } from '../contexts/EventContext'
 import { useLanguage } from '../contexts/LanguageContext'
 import EventFeedWidget from '../components/EventFeedWidget'
+import PointsWidget from '../components/PointsWidget'
+import N64FanLeaderboard from '../components/N64FanLeaderboard'
 import SingleNewsCard from '../components/SingleNewsCard'
 import SingleForumCard from '../components/SingleForumCard'
 import SingleFanArtCard from '../components/SingleFanArtCard'
@@ -430,6 +432,13 @@ const HomePage: React.FC = () => {
         )}
       </div>
 
+      {/* POINTS WIDGET SECTION */}
+      {user && (
+        <div className="mb-responsive responsive-max-width">
+          <PointsWidget />
+        </div>
+      )}
+
       {/* NEWS CARDS SECTION */}
       <div className="space-y-6">
         {/* Single News Card - One card at a time with dismiss functionality */}
@@ -474,6 +483,19 @@ const HomePage: React.FC = () => {
             className="w-full"
           />
         </div>
+
+        {/* N64Fan Leaderboard - Compact */}
+        {user && (
+          <div className="responsive-max-width">
+            <div className="simple-tile">
+              <N64FanLeaderboard 
+                maxEntries={5}
+                showFilters={false}
+                compact={true}
+              />
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Footer */}
