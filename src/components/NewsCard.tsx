@@ -27,15 +27,30 @@ const NewsCard: React.FC<NewsCardProps> = ({ newsItem, index, onDismiss, isAnima
   const getTypeColor = (type: string) => {
     switch (type) {
       case 'event_winner':
-        return 'text-yellow-400'
+        return 'text-accent-yellow'
       case 'n64_history':
-        return 'text-purple-400'
+        return 'text-accent-purple'
       case 'community_news':
-        return 'text-blue-400'
+        return 'text-accent-blue'
       case 'event_announcement':
-        return 'text-green-400'
+        return 'text-accent-green'
       default:
-        return 'text-slate-400'
+        return 'text-text-muted'
+    }
+  }
+
+  const getCardClass = (type: string) => {
+    switch (type) {
+      case 'event_winner':
+        return 'card-event-winner'
+      case 'n64_history':
+        return 'card-news-post'
+      case 'community_news':
+        return 'card-community-update'
+      case 'event_announcement':
+        return 'card-live-event'
+      default:
+        return 'card-news-post'
     }
   }
 
@@ -55,12 +70,24 @@ const NewsCard: React.FC<NewsCardProps> = ({ newsItem, index, onDismiss, isAnima
   }
 
   return (
-    <div className={`swipeable-card bg-gradient-to-br from-blue-600/10 to-purple-600/10 border-l-4 border-blue-400 relative transition-all duration-300 ${isAnimating ? 'scale-95 opacity-80' : 'scale-100 opacity-100'}`}>
+    <div className={`swipeable-card ${getCardClass(newsItem.type)} relative transition-all duration-300 ${isAnimating ? 'scale-95 opacity-80' : 'scale-100 opacity-100'}`}>
       {/* Dismiss Button */}
       {onDismiss && (
         <button
           onClick={onDismiss}
-          className="absolute top-2 right-2 z-10 p-1 rounded-full bg-slate-700/80 hover:bg-slate-600/80 text-slate-300 hover:text-white transition-colors"
+          className="absolute top-2 right-2 z-10 p-1 rounded-full transition-colors"
+          style={{
+            backgroundColor: 'rgba(46, 47, 64, 0.8)',
+            color: '#CCCCCC'
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.backgroundColor = 'rgba(58, 60, 85, 0.8)'
+            e.currentTarget.style.color = '#FFFFFF'
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.backgroundColor = 'rgba(46, 47, 64, 0.8)'
+            e.currentTarget.style.color = '#CCCCCC'
+          }}
           aria-label="Dismiss news"
         >
           <X className="w-4 h-4" />
@@ -69,12 +96,12 @@ const NewsCard: React.FC<NewsCardProps> = ({ newsItem, index, onDismiss, isAnima
       
       <div className="swipeable-card-header">
         <div className="flex items-center gap-2">
-          <TrendingUp className="w-5 h-5 text-blue-400" />
-          <h3 className="text-responsive-base font-bold text-slate-100">
+          <TrendingUp className="w-5 h-5 text-accent-blue" />
+          <h3 className="text-responsive-base font-bold text-text-primary">
             {getTypeIcon(newsItem.type)} News #{index + 1}
           </h3>
         </div>
-        <div className="text-xs text-slate-400">
+        <div className="text-xs text-text-muted">
           <span className={`capitalize ${getTypeColor(newsItem.type)}`}>
             {newsItem.type.replace('_', ' ')}
           </span>
@@ -84,16 +111,16 @@ const NewsCard: React.FC<NewsCardProps> = ({ newsItem, index, onDismiss, isAnima
       <div className="swipeable-card-content">
         <div className="p-3 h-full flex flex-col">
           <div className="flex-1">
-            <h4 className="text-sm sm:text-base font-semibold text-slate-100 mb-2 leading-tight">
+            <h4 className="text-sm sm:text-base font-semibold text-text-primary mb-2 leading-tight">
               {newsItem.title}
             </h4>
-            <p className="text-xs sm:text-sm text-slate-300 mb-3 leading-relaxed">
+            <p className="text-xs sm:text-sm text-text-secondary mb-3 leading-relaxed">
               {newsItem.content}
             </p>
           </div>
-          <div className="flex items-center justify-between text-xs text-slate-400 mt-auto">
+          <div className="flex items-center justify-between text-xs text-text-muted mt-auto">
             <span>{formatTime(newsItem.date)}</span>
-            <span className="text-blue-400">News Details</span>
+            <span className="text-accent-blue">News Details</span>
           </div>
         </div>
       </div>
