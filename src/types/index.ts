@@ -239,6 +239,24 @@ export interface MediaContextType {
   getMediaByGame: (gameId: string) => MediaMeta[]
   verifyMedia: (mediaId: string, isVerified: boolean) => Promise<void>
   isCapturingAllowed: (eventId?: string) => boolean
+  
+  // Extended functionality
+  uploadMediaFromUrl?: (url: string, metadata: Partial<MediaMeta>) => Promise<boolean>
+  getMediaByDateRange?: (startDate: Date, endDate: Date) => MediaMeta[]
+  getUserMediaHistory?: (userId: string) => MediaMeta[]
+  getMediaStats?: () => {
+    totalMedia: number
+    totalViews: number
+    totalLikes: number
+    verifiedMedia: number
+    mediaByType: {
+      speedrun: number
+      screenshot: number
+      achievement: number
+    }
+    mediaByUser: Record<string, number>
+  }
+  clearAllMedia?: () => void
 }
 
 // Forum System Types

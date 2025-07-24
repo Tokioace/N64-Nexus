@@ -11,6 +11,8 @@ The restored Media/Speedrun Media functionality allows users to upload, share, a
 - **Achievement Screenshots** (+30 points)
 - File upload support (MP4, WebM, JPG, PNG up to 100MB)
 - External URL support (YouTube, Twitch, etc.)
+- **Event Association**: Link uploads to specific events
+- **Persistent Storage**: All uploads stored with timestamps
 
 ### 📡 Live Streaming
 - **Stream Integration** (+50 points for starting a stream)
@@ -36,6 +38,13 @@ Points are automatically awarded when users:
 - Total screenshots count
 - Total achievements count
 - Total community views
+
+### 📅 User Media History
+- **Personal Upload History**: View all your uploads chronologically
+- **Event Tracking**: See which uploads were for specific events
+- **Upload Dates**: Precise timestamps for every upload
+- **Performance Metrics**: Views, likes, and verification status
+- **Filtering & Sorting**: Filter by type, sort by date/popularity
 
 ## Technical Implementation
 
@@ -71,9 +80,16 @@ interface MediaMeta {
 ```
 
 ### Context Integration
-- **MediaContext**: Handles media upload, storage, and retrieval
+- **MediaContext**: Handles media upload, storage, and retrieval with localStorage persistence
 - **PointsContext**: Awards points for media activities
 - **UserContext**: Links media to user accounts
+- **EventContext**: Provides event data for upload association
+
+### Storage System
+- **LocalStorage Persistence**: All media data persists across sessions
+- **User-specific Storage**: Individual media histories per user
+- **Date Tracking**: Automatic upload timestamp recording
+- **Event Association**: Links media to specific events when uploaded
 
 ## User Experience
 

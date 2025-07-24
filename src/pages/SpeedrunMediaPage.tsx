@@ -3,7 +3,9 @@ import { useLanguage } from '../contexts/LanguageContext'
 import { useUser } from '../contexts/UserContext'
 import { useMedia } from '../contexts/MediaContext'
 import { usePoints } from '../contexts/PointsContext'
+import { useEvent } from '../contexts/EventContext'
 import { MediaMeta, PointsConfig } from '../types'
+import UserMediaHistory from '../components/UserMediaHistory'
 import { 
   Camera, 
   Video, 
@@ -36,6 +38,8 @@ interface MediaUploadData {
   description: string
   gameId: string
   gameName: string
+  eventId?: string
+  eventName?: string
   type: 'speedrun' | 'screenshot' | 'achievement'
   tags: string[]
   file?: File
@@ -45,8 +49,9 @@ interface MediaUploadData {
 const SpeedrunMediaPage: React.FC = () => {
   const { t } = useLanguage()
   const { user, isAuthenticated } = useUser()
-  const { media, userMedia, loading, uploadMedia, likeMedia, getMediaByGame, getMediaByUser } = useMedia()
+  const { media, userMedia, loading, uploadMedia, uploadMediaFromUrl, likeMedia, getMediaByGame, getMediaByUser, getMediaStats } = useMedia()
   const { awardPoints } = usePoints()
+  const { events, activeEvents } = useEvent()
   
   const [selectedFilter, setSelectedFilter] = useState<'all' | 'speedrun' | 'screenshot' | 'achievement'>('all')
   const [selectedGame, setSelectedGame] = useState<string>('all')
@@ -57,6 +62,8 @@ const SpeedrunMediaPage: React.FC = () => {
     description: '',
     gameId: '',
     gameName: '',
+    eventId: '',
+    eventName: '',
     type: 'speedrun',
     tags: [],
     livestreamUrl: ''
@@ -84,60 +91,7 @@ const SpeedrunMediaPage: React.FC = () => {
     { id: 'dk64', name: 'Donkey Kong 64' }
   ]
 
-  // Sample media data - in real app this would come from MediaContext
-  const [sampleMedia, setSampleMedia] = useState<MediaMeta[]>([
-    {
-      id: '1',
-      userId: 'user1',
-      username: 'SpeedRunner64',
-      gameId: 'mario64',
-      gameName: 'Super Mario 64',
-      type: 'speedrun',
-      title: '120 Stars World Record Attempt',
-      description: 'Going for the world record in 120 stars category!',
-      url: 'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4',
-      thumbnailUrl: 'https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?w=400&h=300&fit=crop',
-      uploadDate: new Date(Date.now() - 3600000),
-      verified: true,
-      likes: 42,
-      views: 156,
-      tags: ['120stars', 'worldrecord', 'mario64']
-    },
-    {
-      id: '2',
-      userId: 'user2',
-      username: 'RetroGamer',
-      gameId: 'mariokart64',
-      gameName: 'Mario Kart 64',
-      type: 'screenshot',
-      title: 'Perfect Lap on Rainbow Road',
-      description: 'Finally got that perfect lap!',
-      url: 'https://images.unsplash.com/photo-1511512578047-dfb367046420?w=800&h=600&fit=crop',
-      uploadDate: new Date(Date.now() - 7200000),
-      verified: false,
-      likes: 28,
-      views: 89,
-      tags: ['mariokart', 'rainbow-road', 'perfect-lap']
-    },
-    {
-      id: '3',
-      userId: 'user3',
-      username: 'N64Master',
-      gameId: 'goldeneye',
-      gameName: 'GoldenEye 007',
-      type: 'achievement',
-      title: 'All Cheats Unlocked',
-      description: 'Finally unlocked all cheats in GoldenEye!',
-      url: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&h=600&fit=crop',
-      uploadDate: new Date(Date.now() - 10800000),
-      verified: true,
-      likes: 35,
-      views: 124,
-      tags: ['goldeneye', 'cheats', 'achievement']
-    }
-  ])
-
-  const filteredMedia = sampleMedia.filter(item => {
+  const filteredMedia = media.filter(item => {
     const matchesFilter = selectedFilter === 'all' || item.type === selectedFilter
     const matchesGame = selectedGame === 'all' || item.gameId === selectedGame
     const matchesSearch = searchTerm === '' || 
@@ -162,52 +116,56 @@ const SpeedrunMediaPage: React.FC = () => {
     setUploading(true)
     
     try {
-      // Create new media item
-      const newMedia: MediaMeta = {
-        id: Date.now().toString(),
-        userId: user.id,
-        username: user.username,
+      let success = false
+      
+      // Prepare metadata for upload
+      const metadata: Partial<MediaMeta> = {
         gameId: uploadData.gameId,
         gameName: uploadData.gameName,
+        eventId: uploadData.eventId,
         type: uploadData.type,
         title: uploadData.title,
         description: uploadData.description,
-        url: uploadData.livestreamUrl || 'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4',
-        thumbnailUrl: 'https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?w=400&h=300&fit=crop',
-        uploadDate: new Date(),
-        verified: false,
-        likes: 0,
-        views: 0,
         tags: uploadData.tags
       }
 
-      // Add to sample media (in real app, this would use MediaContext)
-      setSampleMedia(prev => [newMedia, ...prev])
-
-      // Award points for upload based on media type
-      const pointsMap = {
-        'speedrun': 'media.speedrun' as keyof PointsConfig,
-        'screenshot': 'media.screenshot' as keyof PointsConfig,
-        'achievement': 'media.achievement' as keyof PointsConfig
+      // Upload via file or URL
+      if (uploadData.file) {
+        success = await uploadMedia(uploadData.file, metadata)
+      } else if (uploadData.livestreamUrl && uploadMediaFromUrl) {
+        success = await uploadMediaFromUrl(uploadData.livestreamUrl, metadata)
       }
-      
-      await awardPoints(pointsMap[uploadData.type], `${uploadData.type} uploaded: ${uploadData.title}`)
 
-      // Reset form
-      setUploadData({
-        title: '',
-        description: '',
-        gameId: '',
-        gameName: '',
-        type: 'speedrun',
-        tags: [],
-        livestreamUrl: ''
-      })
-      setShowUploadModal(false)
-      
-      // Show success message with points info
-      const pointsEarned = uploadData.type === 'speedrun' ? 50 : uploadData.type === 'achievement' ? 30 : 25
-      alert(`${t('success.uploaded')} 🎉\n+${pointsEarned} Punkte erhalten!`)
+      if (success) {
+        // Award points for upload based on media type
+        const pointsMap = {
+          'speedrun': 'media.speedrun' as keyof PointsConfig,
+          'screenshot': 'media.screenshot' as keyof PointsConfig,
+          'achievement': 'media.achievement' as keyof PointsConfig
+        }
+        
+        await awardPoints(pointsMap[uploadData.type], `${uploadData.type} uploaded: ${uploadData.title}`)
+
+        // Reset form
+        setUploadData({
+          title: '',
+          description: '',
+          gameId: '',
+          gameName: '',
+          eventId: '',
+          eventName: '',
+          type: 'speedrun',
+          tags: [],
+          livestreamUrl: ''
+        })
+        setShowUploadModal(false)
+        
+        // Show success message with points info
+        const pointsEarned = uploadData.type === 'speedrun' ? 50 : uploadData.type === 'achievement' ? 30 : 25
+        alert(`${t('success.uploaded')} 🎉\n+${pointsEarned} Punkte erhalten!`)
+      } else {
+        alert(t('error.generic'))
+      }
     } catch (error) {
       alert(t('error.generic'))
     } finally {
@@ -221,12 +179,7 @@ const SpeedrunMediaPage: React.FC = () => {
       return
     }
 
-    // Update likes in sample data (in real app, this would use MediaContext)
-    setSampleMedia(prev => prev.map(item => 
-      item.id === mediaId 
-        ? { ...item, likes: item.likes + 1 }
-        : item
-    ))
+    await likeMedia(mediaId)
   }
 
   const startStream = async () => {
@@ -293,11 +246,17 @@ const SpeedrunMediaPage: React.FC = () => {
         <h3 className="font-semibold text-slate-100 mb-1 truncate">{media.title}</h3>
         <p className="text-sm text-slate-400 mb-2">{media.gameName}</p>
         <p className="text-xs text-slate-500 mb-2 line-clamp-2">{media.description}</p>
-        <div className="flex items-center justify-between text-xs text-slate-400">
+        <div className="flex items-center justify-between text-xs text-slate-400 mb-2">
           <span>by {media.username}</span>
-          <span>{new Date(media.uploadDate).toLocaleDateString()}</span>
+          <span>{new Date(media.uploadDate).toLocaleDateString('de-DE')}</span>
         </div>
-        <div className="flex flex-wrap gap-1 mt-2">
+        {media.eventId && (
+          <div className="text-xs text-blue-400 mb-2 flex items-center gap-1">
+            <Trophy className="w-3 h-3" />
+            Event Upload
+          </div>
+        )}
+        <div className="flex flex-wrap gap-1">
           {media.tags.slice(0, 3).map(tag => (
             <span key={tag} className="px-2 py-1 bg-slate-700 text-xs text-slate-300 rounded">
               #{tag}
@@ -428,22 +387,22 @@ const SpeedrunMediaPage: React.FC = () => {
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
         <div className="bg-slate-800 rounded-lg p-4 text-center">
           <Video className="w-8 h-8 text-blue-400 mx-auto mb-2" />
-          <div className="text-2xl font-bold text-slate-100">{sampleMedia.filter(m => m.type === 'speedrun').length}</div>
+          <div className="text-2xl font-bold text-slate-100">{getMediaStats?.()?.mediaByType.speedrun || 0}</div>
           <div className="text-sm text-slate-400">Speedruns</div>
         </div>
         <div className="bg-slate-800 rounded-lg p-4 text-center">
           <Camera className="w-8 h-8 text-green-400 mx-auto mb-2" />
-          <div className="text-2xl font-bold text-slate-100">{sampleMedia.filter(m => m.type === 'screenshot').length}</div>
+          <div className="text-2xl font-bold text-slate-100">{getMediaStats?.()?.mediaByType.screenshot || 0}</div>
           <div className="text-sm text-slate-400">Screenshots</div>
         </div>
         <div className="bg-slate-800 rounded-lg p-4 text-center">
           <Trophy className="w-8 h-8 text-yellow-400 mx-auto mb-2" />
-          <div className="text-2xl font-bold text-slate-100">{sampleMedia.filter(m => m.type === 'achievement').length}</div>
+          <div className="text-2xl font-bold text-slate-100">{getMediaStats?.()?.mediaByType.achievement || 0}</div>
           <div className="text-sm text-slate-400">Achievements</div>
         </div>
         <div className="bg-slate-800 rounded-lg p-4 text-center">
           <Eye className="w-8 h-8 text-purple-400 mx-auto mb-2" />
-          <div className="text-2xl font-bold text-slate-100">{sampleMedia.reduce((sum, m) => sum + m.views, 0)}</div>
+          <div className="text-2xl font-bold text-slate-100">{getMediaStats?.()?.totalViews || 0}</div>
           <div className="text-sm text-slate-400">Total Views</div>
         </div>
       </div>
@@ -490,6 +449,13 @@ const SpeedrunMediaPage: React.FC = () => {
           </div>
         </div>
       </div>
+
+      {/* User Media History */}
+      {isAuthenticated && user && (
+        <div className="mb-8">
+          <UserMediaHistory />
+        </div>
+      )}
 
       {/* Media Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -574,6 +540,33 @@ const SpeedrunMediaPage: React.FC = () => {
                       <option key={game.id} value={game.id}>{game.name}</option>
                     ))}
                   </select>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-slate-300 mb-2">Event (optional)</label>
+                  <select
+                    value={uploadData.eventId}
+                    onChange={(e) => {
+                      const event = [...(events || []), ...(activeEvents || [])].find(ev => ev.id === e.target.value)
+                      setUploadData({
+                        ...uploadData, 
+                        eventId: e.target.value,
+                        eventName: event?.title || ''
+                      })
+                    }}
+                    className="w-full bg-slate-700 text-slate-100 rounded-lg px-4 py-2"
+                  >
+                    <option value="">Kein Event</option>
+                    {activeEvents?.map(event => (
+                      <option key={event.id} value={event.id}>🔴 {event.title} (Aktiv)</option>
+                    ))}
+                    {events?.filter(event => !activeEvents?.some(ae => ae.id === event.id)).map(event => (
+                      <option key={event.id} value={event.id}>{event.title}</option>
+                    ))}
+                  </select>
+                  <p className="text-xs text-slate-400 mt-1">
+                    Wähle ein Event aus, wenn dein Media für ein bestimmtes Event ist
+                  </p>
                 </div>
 
                 <div>
@@ -763,8 +756,18 @@ const SpeedrunMediaPage: React.FC = () => {
 
                     <div>
                       <h3 className="font-medium text-slate-300 mb-1">Hochgeladen</h3>
-                      <p className="text-slate-100">{new Date(selectedMedia.uploadDate).toLocaleString()}</p>
+                      <p className="text-slate-100">{new Date(selectedMedia.uploadDate).toLocaleString('de-DE')}</p>
                     </div>
+
+                    {selectedMedia.eventId && (
+                      <div>
+                        <h3 className="font-medium text-slate-300 mb-1">Event</h3>
+                        <p className="text-slate-100 flex items-center gap-2">
+                          <Trophy className="w-4 h-4 text-yellow-400" />
+                          Event Upload
+                        </p>
+                      </div>
+                    )}
 
                     <div className="flex items-center gap-4">
                       <div className="flex items-center gap-1">
