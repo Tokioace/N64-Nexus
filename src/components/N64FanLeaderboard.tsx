@@ -118,23 +118,26 @@ const N64FanLeaderboard: React.FC<N64FanLeaderboardProps> = ({
           {leaderboard.slice(0, 5).map((entry) => (
             <div
               key={entry.userId}
-              className={`flex items-center justify-between p-2 rounded-lg border transition-all ${
+              className={`leaderboard-entry ${
                 getPositionBg(entry.position, entry.isCurrentUser || false)
               }`}
             >
-              <div className="flex items-center gap-2">
-                <span className="w-6 text-center">
+              <div className="leaderboard-user-info">
+                <span className="w-6 text-center flex-shrink-0">
                   {entry.position <= 3 ? getRankIcon(entry.position) : `#${entry.position}`}
                 </span>
-                <span className="font-medium text-slate-100 text-sm">
+                <span 
+                  className="leaderboard-username"
+                  title={entry.username.length > 10 ? entry.username : undefined}
+                >
                   {entry.username}
                 </span>
-                <span className="text-xs">
+                <span className="text-xs flex-shrink-0">
                   {getRankEmoji(entry.currentRank.key)}
                 </span>
               </div>
-              <div className="text-right">
-                <div className={`text-sm font-bold ${getRankColor(entry.position)}`}>
+              <div className="leaderboard-time-container">
+                <div className={`leaderboard-time-compact ${getRankColor(entry.position)}`}>
                   {entry.totalPoints.toLocaleString()}
                 </div>
               </div>
@@ -251,13 +254,13 @@ const N64FanLeaderboard: React.FC<N64FanLeaderboardProps> = ({
             leaderboard.map((entry, index) => (
               <div
                 key={entry.userId}
-                className={`flex items-center justify-between p-4 rounded-lg border transition-all hover:scale-[1.02] ${
+                className={`leaderboard-entry hover:scale-[1.02] ${
                   getPositionBg(entry.position, entry.isCurrentUser || false)
                 } ${entry.position <= 3 ? 'shadow-lg' : ''}`}
               >
-                <div className="flex items-center gap-4">
+                <div className="leaderboard-user-info">
                   {/* Position */}
-                  <div className="flex items-center justify-center w-10 h-10">
+                  <div className="flex items-center justify-center w-10 h-10 flex-shrink-0">
                     {entry.position <= 3 ? (
                       getRankIcon(entry.position)
                     ) : (
@@ -268,32 +271,35 @@ const N64FanLeaderboard: React.FC<N64FanLeaderboardProps> = ({
                   </div>
 
                   {/* User Info */}
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-slate-700 flex items-center justify-center text-lg">
+                  <div className="flex items-center gap-3 min-w-0">
+                    <div className="w-10 h-10 rounded-full bg-slate-700 flex items-center justify-center text-lg flex-shrink-0">
                       {entry.avatar || '🎮'}
                     </div>
-                    <div>
+                    <div className="min-w-0">
                       <div className="flex items-center gap-2">
-                        <span className={`font-bold ${getRankColor(entry.position)}`}>
+                        <span 
+                          className={`leaderboard-username ${getRankColor(entry.position)}`}
+                          title={entry.username.length > 12 ? entry.username : undefined}
+                        >
                           {entry.username}
                         </span>
                         {entry.isCurrentUser && (
-                          <span className="px-2 py-1 bg-blue-500/20 text-blue-400 text-xs rounded-full">
+                          <span className="px-2 py-1 bg-blue-500/20 text-blue-400 text-xs rounded-full flex-shrink-0">
                             You
                           </span>
                         )}
                       </div>
-                      <div className="flex items-center gap-2 text-xs text-slate-400">
-                        <span className="flex items-center gap-1">
+                      <div className="flex items-center gap-2 text-xs text-slate-400 flex-wrap">
+                        <span className="flex items-center gap-1 flex-shrink-0">
                           {getRankEmoji(entry.currentRank.key)}
                           {t(entry.currentRank.key)}
                         </span>
                         <span>•</span>
-                        <span className="flex items-center gap-1">
+                        <span className="flex items-center gap-1 flex-shrink-0">
                           <MapPin className="w-3 h-3" />
                           {entry.region}
                         </span>
-                        <span className="flex items-center gap-1">
+                        <span className="flex items-center gap-1 flex-shrink-0">
                           <Gamepad2 className="w-3 h-3" />
                           {entry.platform}
                         </span>
@@ -302,9 +308,9 @@ const N64FanLeaderboard: React.FC<N64FanLeaderboardProps> = ({
                   </div>
                 </div>
 
-                <div className="text-right">
+                <div className="leaderboard-time-container">
                   {/* Points */}
-                  <div className={`text-xl font-bold ${getRankColor(entry.position)}`}>
+                  <div className={`leaderboard-time ${getRankColor(entry.position)}`}>
                     {filter.timeframe === 'season' 
                       ? entry.seasonPoints.toLocaleString()
                       : entry.totalPoints.toLocaleString()

@@ -251,7 +251,7 @@ const EventFeedWidget: React.FC<EventFeedWidgetProps> = ({
               <WinnerMediaDisplay winner={winner} t={t} />
               <div className="mt-3 text-center">
                 <div className="text-base font-semibold text-slate-100">{winner.username}</div>
-                <div className="leaderboard-time text-yellow-400">{winner.time}</div>
+                <div className="leaderboard-time-compact text-yellow-400">{winner.time}</div>
               </div>
             </div>
           </div>
@@ -267,28 +267,36 @@ const EventFeedWidget: React.FC<EventFeedWidgetProps> = ({
                 const position = index + 1
                 return (
                   <div key={entry.id} className="leaderboard-entry">
-                    <div className="flex items-center justify-between">
+                    <div className="leaderboard-user-info">
                       <div className="flex items-center space-x-3">
                         {getRankIcon(position)}
-                        <span className="text-base font-medium text-slate-200">{entry.username}</span>
+                        <span 
+                          className="leaderboard-username text-slate-200"
+                          title={entry.username.length > 12 ? entry.username : undefined}
+                        >
+                          {entry.username}
+                        </span>
                         {entry.verified && (
                           <div className="verification-badge" title={t('home.verified')}>
                             <div className="w-3 h-3 bg-green-400 rounded-full"></div>
                           </div>
                         )}
                       </div>
-                      <div className="flex items-center space-x-3">
-                        <span className={`leaderboard-time ${getRankColor(position)}`}>
-                          {entry.time}
-                        </span>
-                        {entry.mediaUrl && (
-                          <div className="flex items-center space-x-1">
-                            {entry.documentationType === 'photo' && <Camera className="w-4 h-4 text-slate-400" />}
-                            {entry.documentationType === 'video' && <Video className="w-4 h-4 text-slate-400" />}
-                            {entry.documentationType === 'livestream' && <Radio className="w-4 h-4 text-slate-400" />}
-                          </div>
-                        )}
-                      </div>
+                    </div>
+                    <div className="leaderboard-time-container">
+                      <span 
+                        className={`leaderboard-time-compact ${getRankColor(position)}`}
+                        aria-label={`Race time: ${entry.time} for ${entry.username}`}
+                      >
+                        {entry.time}
+                      </span>
+                      {entry.mediaUrl && (
+                        <div className="flex items-center space-x-1">
+                          {entry.documentationType === 'photo' && <Camera className="w-4 h-4 text-slate-400" />}
+                          {entry.documentationType === 'video' && <Video className="w-4 h-4 text-slate-400" />}
+                          {entry.documentationType === 'livestream' && <Radio className="w-4 h-4 text-slate-400" />}
+                        </div>
+                      )}
                     </div>
                   </div>
                 )

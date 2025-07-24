@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useLanguage } from '../contexts/LanguageContext'
+import { isValidTimeFormat } from '../utils/timeUtils'
 import { 
   X, 
   Camera, 
@@ -88,9 +89,8 @@ const RaceSubmissionModal: React.FC<RaceSubmissionModalProps> = ({
     }
     
     // Validate time format (MM:SS.mmm)
-    const timeRegex = /^\d{1,2}:\d{2}\.\d{3}$/
-    if (!timeRegex.test(raceTime)) {
-      setError('Zeit muss im Format MM:SS.mmm sein (z.B. 1:32.456)')
+    if (!isValidTimeFormat(raceTime)) {
+      setError(t('events.invalidTimeFormat'))
       return
     }
 

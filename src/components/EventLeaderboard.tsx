@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useLanguage, getLocaleString } from '../contexts/LanguageContext'
+import { safeFormatTime } from '../utils/timeUtils'
 import { 
   Trophy, 
   Medal, 
@@ -190,8 +191,7 @@ const EventLeaderboard: React.FC<EventLeaderboardProps> = ({
   const [mediaViewerEntry, setMediaViewerEntry] = useState<EventLeaderboardEntry | null>(null)
 
   const formatTime = (time: string) => {
-    // Convert MM:SS.mmm to a more readable format if needed
-    return time
+    return safeFormatTime(time)
   }
 
   const getRankIcon = (position: number) => {
@@ -334,7 +334,7 @@ const EventLeaderboard: React.FC<EventLeaderboardProps> = ({
                 </div>
                 <div className="flex items-center space-x-2">
                   <Clock className="w-4 h-4 text-blue-400" />
-                  <span className="text-xl font-mono text-blue-400">
+                  <span className="leaderboard-time text-blue-400" aria-label={`Your race time: ${formatTime(currentUserEntry.time)}`}>
                     {formatTime(currentUserEntry.time)}
                   </span>
                 </div>
@@ -374,7 +374,7 @@ const EventLeaderboard: React.FC<EventLeaderboardProps> = ({
               )}
               
               <h3 className="font-bold text-slate-100 text-lg">{entry.username}</h3>
-              <div className="leaderboard-time text-slate-100 mb-3">
+              <div className="leaderboard-time text-slate-100 mb-3" aria-label={`Race time: ${formatTime(entry.time)} for ${entry.username}`}>
                 {formatTime(entry.time)}
               </div>
               <div className="event-tile-separator"></div>
@@ -415,58 +415,62 @@ const EventLeaderboard: React.FC<EventLeaderboardProps> = ({
                 } ${selectedEntry === entry.id ? 'ring-2 ring-blue-400' : ''}`}
                 onClick={() => setSelectedEntry(selectedEntry === entry.id ? null : entry.id)}
               >
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center space-x-4">
-                    <div className="flex items-center space-x-3">
-                      {getRankIcon(entry.position)}
-                      <div>
-                        <div className="flex items-center space-x-3">
-                          <span className="font-semibold text-slate-100 text-lg">{entry.username}</span>
-                          {entry.verified && (
-                            <div className="verification-badge" title={t('eventLeaderboard.verified')}>
-                              <Verified className="w-4 h-4" />
-                            </div>
-                          )}
-                          {!entry.verified && (
-                            <AlertCircle className="w-4 h-4 text-yellow-400" />
-                          )}
-                        </div>
-                        <div className="text-sm text-slate-400 mt-1">
-                          {new Date(entry.submissionDate).toLocaleDateString(getLocaleString(currentLanguage), {
-                            day: '2-digit',
-                            month: '2-digit',
-                            year: 'numeric',
-                            hour: '2-digit',
-                            minute: '2-digit'
-                          })}
-                        </div>
+                <div className="leaderboard-user-info">
+                  <div className="flex items-center space-x-3">
+                    {getRankIcon(entry.position)}
+                    <div>
+                      <div className="flex items-center space-x-3">
+                        <span 
+                          className="leaderboard-username" 
+                          title={entry.username.length > 12 ? entry.username : undefined}
+                        >
+                          {entry.username}
+                        </span>
+                        {entry.verified && (
+                          <div className="verification-badge" title={t('eventLeaderboard.verified')}>
+                            <Verified className="w-4 h-4" />
+                          </div>
+                        )}
+                        {!entry.verified && (
+                          <AlertCircle className="w-4 h-4 text-yellow-400" />
+                        )}
+                      </div>
+                      <div className="text-sm text-slate-400 mt-1">
+                        {new Date(entry.submissionDate).toLocaleDateString(getLocaleString(currentLanguage), {
+                          day: '2-digit',
+                          month: '2-digit',
+                          year: 'numeric',
+                          hour: '2-digit',
+                          minute: '2-digit'
+                        })}
                       </div>
                     </div>
                   </div>
-                  <div className="flex items-center space-x-4">
-                    <div className="flex items-center space-x-3">
-                      <Clock className="event-icon text-slate-400" />
-                      <span className="leaderboard-time text-slate-100">
-                        {formatTime(entry.time)}
-                      </span>
-                    </div>
-                    <div className="flex items-center space-x-3 text-base text-slate-400">
-                      {getDocumentationIcon(entry.documentationType)}
-                      <span>{getDocumentationLabel(entry.documentationType)}</span>
-                      {(entry.mediaUrl || entry.livestreamUrl) && (
-                        <button
-                          onClick={(e) => {
-                            e.stopPropagation()
-                            handleMediaClick(entry)
-                          }}
-                          className="text-blue-400 hover:text-blue-300 underline font-medium"
-                        >
-                          {t('eventLeaderboard.view')}
-                        </button>
-                      )}
-                    </div>
-                  </div>
                 </div>
+                <div className="leaderboard-time-container">
+                  <div className="flex items-center space-x-3">
+                    <Clock className="event-icon text-slate-400" />
+                    <span className="leaderboard-time text-slate-100" aria-label={`Race time: ${formatTime(entry.time)}`}>
+                      {formatTime(entry.time)}
+                      <span className="sr-only">for {entry.username}</span>
+                    </span>
+                                     </div>
+                   <div className="flex items-center space-x-3 text-base text-slate-400">
+                     {getDocumentationIcon(entry.documentationType)}
+                     <span>{getDocumentationLabel(entry.documentationType)}</span>
+                     {(entry.mediaUrl || entry.livestreamUrl) && (
+                       <button
+                         onClick={(e) => {
+                           e.stopPropagation()
+                           handleMediaClick(entry)
+                         }}
+                         className="text-blue-400 hover:text-blue-300 underline font-medium"
+                       >
+                         {t('eventLeaderboard.view')}
+                       </button>
+                     )}
+                   </div>
+                 </div>
 
                 {/* Expanded Details */}
                 {selectedEntry === entry.id && (

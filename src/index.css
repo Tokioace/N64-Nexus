@@ -219,11 +219,118 @@ code {
   border-color: rgba(71, 85, 105, 0.7);
 }
 
+/* CSS Custom Properties for Leaderboard */
+:root {
+  --leaderboard-time-font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', 'Consolas', 'Courier New', monospace;
+  --leaderboard-time-font-weight: 600;
+  --leaderboard-time-line-height: 1.2;
+  --leaderboard-time-compact-line-height: 1.1;
+  
+  /* Font sizes */
+  --leaderboard-time-font-size-base: 18px;
+  --leaderboard-time-font-size-mobile: 16px;
+  --leaderboard-time-font-size-small: 15px;
+  --leaderboard-time-font-size-tiny: 14px;
+  
+  --leaderboard-time-compact-font-size-base: 14px;
+  --leaderboard-time-compact-font-size-small: 13px;
+  --leaderboard-time-compact-font-size-tiny: 12px;
+  
+  /* Spacing */
+  --leaderboard-time-letter-spacing-base: 0.5px;
+  --leaderboard-time-letter-spacing-mobile: 0.3px;
+  --leaderboard-time-letter-spacing-small: 0.2px;
+  --leaderboard-time-letter-spacing-tiny: 0.1px;
+  --leaderboard-time-letter-spacing-none: 0px;
+  
+  /* Container widths */
+  --leaderboard-time-container-width-base: 120px;
+  --leaderboard-time-container-width-mobile: 100px;
+  --leaderboard-time-container-width-small: 90px;
+  --leaderboard-time-container-width-tiny: 80px;
+  
+  --leaderboard-time-compact-width-base: 80px;
+  --leaderboard-time-compact-width-mobile: 70px;
+  --leaderboard-time-compact-width-small: 65px;
+  --leaderboard-time-compact-width-tiny: 60px;
+  
+  /* Username widths */
+  --leaderboard-username-width-base: 120px;
+  --leaderboard-username-width-mobile: 100px;
+  --leaderboard-username-width-small: 80px;
+  --leaderboard-username-width-tiny: 70px;
+}
+
+/* Leaderboard Time Display - Responsive & Overflow-Safe */
 .leaderboard-time {
-  font-family: 'JetBrains Mono', 'Fira Code', monospace;
-  font-weight: 600;
-  font-size: 18px;
-  letter-spacing: 0.5px;
+  font-family: var(--leaderboard-time-font-family);
+  font-weight: var(--leaderboard-time-font-weight);
+  font-size: var(--leaderboard-time-font-size-base);
+  letter-spacing: var(--leaderboard-time-letter-spacing-base);
+  white-space: nowrap;
+  overflow: visible;
+  text-overflow: clip;
+  min-width: 0;
+  flex-shrink: 0;
+  display: inline-block;
+  line-height: var(--leaderboard-time-line-height);
+  font-display: swap; /* Improve font loading performance */
+  contain: layout style; /* CSS containment for performance */
+}
+
+/* Responsive time display for different screen sizes */
+@media (max-width: 480px) {
+  .leaderboard-time {
+    font-size: var(--leaderboard-time-font-size-mobile);
+    letter-spacing: var(--leaderboard-time-letter-spacing-mobile);
+  }
+}
+
+@media (max-width: 390px) {
+  .leaderboard-time {
+    font-size: var(--leaderboard-time-font-size-small);
+    letter-spacing: var(--leaderboard-time-letter-spacing-small);
+  }
+}
+
+@media (max-width: 320px) {
+  .leaderboard-time {
+    font-size: var(--leaderboard-time-font-size-tiny);
+    letter-spacing: var(--leaderboard-time-letter-spacing-tiny);
+  }
+}
+
+/* Compact time display for very tight spaces */
+.leaderboard-time-compact {
+  font-family: var(--leaderboard-time-font-family);
+  font-weight: var(--leaderboard-time-font-weight);
+  font-size: var(--leaderboard-time-compact-font-size-base);
+  letter-spacing: var(--leaderboard-time-letter-spacing-small);
+  white-space: nowrap;
+  overflow: visible;
+  text-overflow: clip;
+  flex-shrink: 0;
+  display: inline-block;
+  line-height: var(--leaderboard-time-compact-line-height);
+  min-width: var(--leaderboard-time-compact-width-base);
+  font-display: swap; /* Improve font loading performance */
+  contain: layout style; /* CSS containment for performance */
+}
+
+@media (max-width: 390px) {
+  .leaderboard-time-compact {
+    font-size: var(--leaderboard-time-compact-font-size-small);
+    letter-spacing: var(--leaderboard-time-letter-spacing-tiny);
+    min-width: var(--leaderboard-time-compact-width-small);
+  }
+}
+
+@media (max-width: 320px) {
+  .leaderboard-time-compact {
+    font-size: var(--leaderboard-time-compact-font-size-tiny);
+    letter-spacing: var(--leaderboard-time-letter-spacing-none);
+    min-width: var(--leaderboard-time-compact-width-tiny);
+  }
 }
 
 .verification-badge {
@@ -244,10 +351,6 @@ code {
     padding: 8px 12px;
   }
   
-  .leaderboard-time {
-    font-size: 16px;
-  }
-  
   .event-tile-content {
     font-size: 14px;
   }
@@ -256,6 +359,141 @@ code {
     width: 18px !important;
     height: 18px !important;
   }
+}
+
+/* Enhanced responsive styles for leaderboard entries */
+.leaderboard-entry {
+  @apply p-4 rounded-lg border border-slate-600 transition-all;
+  background: rgba(30, 41, 59, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 80px;
+  gap: 12px;
+}
+
+/* Responsive leaderboard entry adjustments */
+@media (max-width: 480px) {
+  .leaderboard-entry {
+    padding: 12px;
+    min-height: 70px;
+    gap: 8px;
+    flex-wrap: nowrap;
+  }
+}
+
+@media (max-width: 390px) {
+  .leaderboard-entry {
+    padding: 10px;
+    min-height: 65px;
+    gap: 6px;
+  }
+}
+
+@media (max-width: 320px) {
+  .leaderboard-entry {
+    padding: 8px;
+    min-height: 60px;
+    gap: 4px;
+  }
+}
+
+/* Username and time container responsive styles */
+.leaderboard-user-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+}
+
+/* Edge case handling for long usernames and maximum time lengths */
+.leaderboard-username {
+  font-weight: 600;
+  color: rgb(241 245 249);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: var(--leaderboard-username-width-base);
+  flex-shrink: 1;
+}
+
+/* Ensure time containers can accommodate maximum time format (9:59.999) */
+.leaderboard-time-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  min-width: var(--leaderboard-time-container-width-base);
+}
+
+/* Responsive username and time adjustments */
+@media (max-width: 480px) {
+  .leaderboard-user-info {
+    gap: 8px;
+  }
+  
+  .leaderboard-username {
+    max-width: var(--leaderboard-username-width-mobile);
+    font-size: 15px;
+  }
+  
+  .leaderboard-time-container {
+    min-width: var(--leaderboard-time-container-width-mobile);
+    gap: 6px;
+  }
+}
+
+@media (max-width: 390px) {
+  .leaderboard-user-info {
+    gap: 6px;
+  }
+  
+  .leaderboard-username {
+    max-width: var(--leaderboard-username-width-small);
+    font-size: 14px;
+  }
+  
+  .leaderboard-time-container {
+    min-width: var(--leaderboard-time-container-width-small);
+    gap: 4px;
+  }
+}
+
+@media (max-width: 320px) {
+  .leaderboard-user-info {
+    gap: 4px;
+  }
+  
+  .leaderboard-username {
+    max-width: var(--leaderboard-username-width-tiny);
+    font-size: 13px;
+  }
+  
+  .leaderboard-time-container {
+    min-width: var(--leaderboard-time-container-width-tiny);
+    gap: 3px;
+  }
+}
+
+/* Special handling for very long usernames (fallback) */
+.leaderboard-username[title] {
+  cursor: help;
+}
+
+/* Ensure consistent spacing in all leaderboard contexts */
+.event-tile .leaderboard-time,
+.simple-tile .leaderboard-time {
+  margin: 0;
+  padding: 0;
+}
+
+/* Prevent layout shift when switching between different time lengths */
+.leaderboard-time,
+.leaderboard-time-compact {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
 }
 
 @media (max-width: 640px) {
@@ -1350,4 +1588,50 @@ html, body {
   position: relative;
   backface-visibility: hidden;
   will-change: transform;
+}
+
+/* Accessibility improvements for screen readers */
+.leaderboard-time,
+.leaderboard-time-compact {
+  /* Ensure screen readers can properly announce times */
+  speak: literal-punctuation;
+}
+
+/* Screen reader only text for time context */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Focus styles for keyboard navigation on leaderboard entries */
+.leaderboard-entry:focus-within {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .leaderboard-time,
+  .leaderboard-time-compact {
+    font-weight: 700;
+    text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.8);
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .leaderboard-entry {
+    transition: none;
+  }
+  
+  .leaderboard-entry:hover {
+    transform: none;
+  }
 }
