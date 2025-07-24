@@ -12,7 +12,7 @@ body {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  background: linear-gradient(135deg, #0E0F1A 0%, #181A2C 100%);
   color: #FFFFFF;
   min-height: 100vh;
   overflow-x: hidden; /* Prevent horizontal scroll globally */
@@ -55,19 +55,29 @@ code {
   width: 100%;
 }
 
-/* Button Styles */
+/* Button Styles - N64 Theme */
 .btn-primary {
-  @apply inline-flex items-center px-3 py-2 sm:px-4 sm:py-2 bg-blue-600 hover:bg-blue-700 
-         text-white font-medium rounded-lg transition-colors duration-200 
-         focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2
+  @apply inline-flex items-center px-3 py-2 sm:px-4 sm:py-2 font-medium rounded-lg transition-colors duration-200 
+         focus:outline-none focus:ring-2 focus:ring-accent-blue focus:ring-offset-2
          text-sm sm:text-base min-h-[44px] justify-center;
+  background-color: #1E90FF;
+  color: #FFFFFF;
+}
+
+.btn-primary:hover {
+  background-color: #3399FF;
 }
 
 .btn-secondary {
-  @apply inline-flex items-center px-3 py-2 sm:px-4 sm:py-2 bg-slate-600 hover:bg-slate-700 
-         text-slate-100 font-medium rounded-lg transition-colors duration-200 
-         focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2
+  @apply inline-flex items-center px-3 py-2 sm:px-4 sm:py-2 font-medium rounded-lg transition-colors duration-200 
+         focus:outline-none focus:ring-2 focus:ring-border-light focus:ring-offset-2
          text-sm sm:text-base min-h-[44px] justify-center;
+  background-color: #2E2F40;
+  color: #FFFFFF;
+}
+
+.btn-secondary:hover {
+  background-color: #3A3C55;
 }
 
 /* Responsive Button Sizes */
@@ -79,15 +89,15 @@ code {
   @apply px-4 py-3 sm:px-6 sm:py-3 text-base sm:text-lg min-h-[52px];
 }
 
-/* N64-Style Retro Tiles */
+/* N64-Style Retro Tiles - Enhanced with new color palette */
 .n64-tile {
-  @apply bg-slate-800/50 border border-slate-600/50 rounded-lg shadow-lg 
-         transition-all duration-300 hover:shadow-xl hover:scale-105 
+  @apply rounded-lg shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105 
          backdrop-blur-sm w-full;
   background: linear-gradient(135deg, 
-    rgba(30, 41, 59, 0.8) 0%, 
-    rgba(51, 65, 85, 0.6) 50%, 
-    rgba(30, 41, 59, 0.8) 100%);
+    rgba(24, 26, 44, 0.8) 0%, 
+    rgba(46, 47, 64, 0.6) 50%, 
+    rgba(24, 26, 44, 0.8) 100%);
+  border: 1px solid #2C2F4A;
   position: relative;
   overflow: hidden;
   box-sizing: border-box;
@@ -113,6 +123,7 @@ code {
 .n64-tile:hover {
   transform: translateY(-2px);
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  border-color: #66ccff;
 }
 
 .n64-tile-large {
@@ -149,27 +160,64 @@ code {
   transform: translateY(-6px) scale(1.02);
 }
 
-/* Retro glow effects */
+/* Enhanced retro glow effects with N64 colors */
 .n64-tile:hover {
   box-shadow: 
-    0 0 20px rgba(59, 130, 246, 0.3),
+    0 0 20px rgba(30, 144, 255, 0.3),
     0 10px 25px rgba(0, 0, 0, 0.3);
 }
 
-/* Legacy simple tile styles for compatibility */
+/* Legacy simple tile styles for compatibility - Updated with N64 colors */
 .simple-tile {
-  @apply bg-slate-800 border border-slate-700 rounded-lg p-2 sm:p-3 lg:p-4 xl:p-6 shadow-lg w-full;
-  background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
-  border: 1px solid #475569;
+  @apply rounded-lg p-2 sm:p-3 lg:p-4 xl:p-6 shadow-lg w-full;
+  background: linear-gradient(135deg, #181A2C 0%, #2E2F40 100%);
+  border: 1px solid #2C2F4A;
   box-sizing: border-box;
 }
 
+/* Content-type specific card styles */
+.card-live-event {
+  background: #181A2C;
+  border-left: 4px solid #00C47C;
+  border-radius: 0.5rem;
+}
+
+.card-event-winner {
+  background: #1E1F2F;
+  border-left: 4px solid #FFD700;
+  border-radius: 0.5rem;
+}
+
+.card-news-post {
+  background: #181A2C;
+  border-left: 4px solid #8A2BE2;
+  border-radius: 0.5rem;
+}
+
+.card-community-update {
+  background: #1A242F;
+  border-left: 4px solid #1E90FF;
+  border-radius: 0.5rem;
+}
+
+/* Card hover states */
+.card-live-event:hover,
+.card-event-winner:hover,
+.card-news-post:hover,
+.card-community-update:hover {
+  background: #22243B;
+  border-color: #66ccff;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
 .simple-tile-header {
-  @apply mb-2 sm:mb-3 pb-2 border-b border-slate-600;
+  @apply mb-2 sm:mb-3 pb-2;
+  border-bottom: 1px solid #2C2F4A;
 }
 
 .simple-tile-content {
-  @apply text-slate-100;
+  color: #FFFFFF;
 }
 
 .simple-tile-large {
@@ -192,11 +240,12 @@ code {
   @apply text-center text-xs sm:text-sm lg:text-base;
 }
 
-/* Navigation Styles */
+/* Navigation Styles - N64 Theme */
 .sidebar {
-  @apply fixed left-0 top-0 h-full w-64 sm:w-72 lg:w-64 bg-slate-900 border-r border-slate-700 
-         transform -translate-x-full transition-transform duration-300 ease-in-out 
+  @apply fixed left-0 top-0 h-full w-64 sm:w-72 lg:w-64 transform -translate-x-full transition-transform duration-300 ease-in-out 
          lg:translate-x-0 z-40;
+  background: #0E0F1A;
+  border-right: 1px solid #2C2F4A;
   -webkit-overflow-scrolling: touch;
   overscroll-behavior: contain;
   height: 100vh;
@@ -217,15 +266,23 @@ code {
 
 .sidebar li a,
 .nav-link {
-  @apply block px-3 sm:px-4 lg:px-6 py-3 text-slate-300 hover:bg-slate-800 hover:text-blue-400 
-         transition-colors duration-200 border-l-4 border-transparent text-sm sm:text-base
+  @apply block px-3 sm:px-4 lg:px-6 py-3 transition-colors duration-200 border-l-4 border-transparent text-sm sm:text-base
          min-h-[44px] flex items-center w-full;
   text-decoration: none;
+  color: #CCCCCC;
+}
+
+.sidebar li a:hover,
+.nav-link:hover {
+  background-color: #22243B;
+  color: #1E90FF;
 }
 
 .sidebar li.active a,
 .sidebar li.active .nav-link {
-  @apply bg-slate-800 text-blue-400 border-l-blue-400;
+  background-color: #22243B;
+  color: #1E90FF;
+  border-left-color: #1E90FF;
 }
 
 /* Scrollable container improvements */
@@ -248,10 +305,10 @@ code {
   }
 }
 
-/* Main Content */
+/* Main Content - N64 Theme */
 .main-content {
-  @apply min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 
-         px-0 sm:px-1 lg:px-2;
+  @apply min-h-screen px-0 sm:px-1 lg:px-2;
+  background: linear-gradient(135deg, #0E0F1A 0%, #181A2C 50%, #0E0F1A 100%);
   width: 100%;
   overflow-x: hidden;
   box-sizing: border-box;
@@ -261,25 +318,32 @@ code {
   @apply lg:ml-64;
 }
 
-/* Page Header */
+/* Page Header - N64 Theme */
 .page-header {
-  @apply bg-slate-800 border-b border-slate-700 px-3 sm:px-4 lg:px-6 py-3 sm:py-4;
+  @apply px-3 sm:px-4 lg:px-6 py-3 sm:py-4;
+  background: #181A2C;
+  border-bottom: 1px solid #2C2F4A;
   width: 100%;
   box-sizing: border-box;
 }
 
 .page-title {
-  @apply text-lg sm:text-xl lg:text-2xl xl:text-3xl font-bold text-slate-100;
+  @apply text-lg sm:text-xl lg:text-2xl xl:text-3xl font-bold;
+  color: #FFFFFF;
 }
 
-/* Cards */
+/* Cards - N64 Theme */
 .card {
-  @apply bg-slate-800 border border-slate-700 rounded-lg shadow-lg overflow-hidden w-full;
+  @apply rounded-lg shadow-lg overflow-hidden w-full;
+  background: #181A2C;
+  border: 1px solid #2C2F4A;
   box-sizing: border-box;
 }
 
 .card-header {
-  @apply px-3 sm:px-4 lg:px-6 py-3 sm:py-4 border-b border-slate-700 bg-slate-700;
+  @apply px-3 sm:px-4 lg:px-6 py-3 sm:py-4;
+  background: #2E2F40;
+  border-bottom: 1px solid #2C2F4A;
 }
 
 .card-body {
@@ -367,7 +431,7 @@ code {
 
 .typography-body-secondary {
   @apply font-body text-fluid-body font-body text-left;
-  color: #B0B0B0;
+  color: #CCCCCC;
 }
 
 .typography-body-muted {
@@ -377,7 +441,7 @@ code {
 
 .typography-small {
   @apply font-body text-fluid-small font-body text-left;
-  color: #B0B0B0;
+  color: #CCCCCC;
 }
 
 /* Link Typography */
@@ -418,10 +482,10 @@ code {
 
 .typography-event-description {
   @apply font-body text-fluid-body font-body text-left;
-  color: #B0B0B0;
+  color: #CCCCCC;
 }
 
-/* Mobile Optimizations */
+/* Mobile Optimizations - N64 Theme */
 @media (max-width: 768px) {
   .typography-h1,
   .typography-h1-highlight,
@@ -452,6 +516,22 @@ code {
   .typography-event-description {
     padding: 0 1rem;
     font-size: clamp(0.9rem, 2.5vw, 0.95rem);
+  }
+  
+  /* Mobile card adjustments */
+  .card-live-event,
+  .card-event-winner,
+  .card-news-post,
+  .card-community-update {
+    background: color-mix(in srgb, #181A2C 95%, #000000 5%);
+  }
+  
+  .btn-primary {
+    background-color: #2979FF;
+  }
+  
+  .simple-tile-label {
+    font-size: 1.1rem;
   }
 }
 
@@ -582,18 +662,22 @@ code {
   box-sizing: border-box;
 }
 
-/* Forum-specific styles */
+/* Forum-specific styles - N64 Theme */
 .forum-post {
-  @apply bg-slate-800 border border-slate-700 rounded-lg p-3 sm:p-4 mb-4 w-full;
+  @apply rounded-lg p-3 sm:p-4 mb-4 w-full;
+  background: #181A2C;
+  border: 1px solid #2C2F4A;
   box-sizing: border-box;
 }
 
 .forum-post-header {
-  @apply flex flex-col sm:flex-row sm:items-center justify-between mb-3 pb-2 border-b border-slate-600 gap-2 sm:gap-0;
+  @apply flex flex-col sm:flex-row sm:items-center justify-between mb-3 pb-2 gap-2 sm:gap-0;
+  border-bottom: 1px solid #2C2F4A;
 }
 
 .forum-post-content {
-  @apply text-slate-100 leading-relaxed text-sm sm:text-base;
+  @apply leading-relaxed text-sm sm:text-base;
+  color: #FFFFFF;
   word-wrap: break-word;
   overflow-wrap: break-word;
 }
@@ -603,13 +687,19 @@ code {
 }
 
 .forum-post-meta {
-  @apply text-xs sm:text-sm text-slate-400 flex flex-wrap items-center gap-2;
+  @apply text-xs sm:text-sm flex flex-wrap items-center gap-2;
+  color: #888888;
 }
 
 .forum-thread-title {
-  @apply text-base sm:text-lg lg:text-xl font-bold text-slate-100 hover:text-blue-400 transition-colors cursor-pointer;
+  @apply text-base sm:text-lg lg:text-xl font-bold transition-colors cursor-pointer;
+  color: #FFFFFF;
   word-wrap: break-word;
   overflow-wrap: break-word;
+}
+
+.forum-thread-title:hover {
+  color: #1E90FF;
 }
 
 .forum-category-icon {
@@ -617,16 +707,20 @@ code {
 }
 
 .forum-stats-tile {
-  @apply bg-slate-800 border border-slate-700 rounded-lg p-3 sm:p-4 text-center w-full;
+  @apply rounded-lg p-3 sm:p-4 text-center w-full;
+  background: #181A2C;
+  border: 1px solid #2C2F4A;
   box-sizing: border-box;
 }
 
 .forum-stats-number {
-  @apply text-lg sm:text-xl lg:text-2xl font-bold text-blue-400;
+  @apply text-lg sm:text-xl lg:text-2xl font-bold;
+  color: #1E90FF;
 }
 
 .forum-stats-label {
-  @apply text-xs sm:text-sm text-slate-400 mt-1;
+  @apply text-xs sm:text-sm mt-1;
+  color: #888888;
 }
 
 /* Forum user badges */
@@ -864,10 +958,11 @@ html, body {
   max-width: 100vw;
 }
 
-/* Swipeable Card Styles */
+/* Swipeable Card Styles - N64 Theme */
 .swipeable-card {
-  @apply bg-slate-800/50 border border-slate-600/50 rounded-lg shadow-lg 
-         transition-all duration-300 hover:shadow-xl backdrop-blur-sm;
+  @apply rounded-lg shadow-lg transition-all duration-300 hover:shadow-xl backdrop-blur-sm;
+  background: rgba(24, 26, 44, 0.8);
+  border: 1px solid rgba(44, 47, 74, 0.8);
   width: 200mm;
   height: 100mm;
   min-width: 200mm;
@@ -905,7 +1000,8 @@ html, body {
 }
 
 .swipeable-card-header {
-  @apply p-2 sm:p-3 border-b border-slate-600/30 flex-shrink-0;
+  @apply p-2 sm:p-3 flex-shrink-0;
+  border-bottom: 1px solid rgba(44, 47, 74, 0.5);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -929,20 +1025,28 @@ html, body {
 }
 
 .swipe-dot {
-  @apply w-2 h-2 rounded-full bg-slate-600 transition-colors duration-200;
+  @apply w-2 h-2 rounded-full transition-colors duration-200;
+  background-color: #2C2F4A;
 }
 
 .swipe-dot.active {
-  @apply bg-blue-400;
+  background-color: #1E90FF;
 }
 
 .swipe-button {
-  @apply p-1 rounded bg-slate-700/50 hover:bg-slate-600/50 text-slate-300 hover:text-slate-100 
-         transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed;
+  @apply p-1 rounded transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed;
+  background-color: rgba(46, 47, 64, 0.5);
+  color: #CCCCCC;
 }
 
-.swipe-button:disabled {
-  @apply hover:bg-slate-700/50 hover:text-slate-300;
+.swipe-button:hover {
+  background-color: rgba(58, 60, 85, 0.5);
+  color: #FFFFFF;
+}
+
+.swipe-button:disabled:hover {
+  background-color: rgba(46, 47, 64, 0.5);
+  color: #CCCCCC;
 }
 
 /* Homepage card grid for swipeable cards */

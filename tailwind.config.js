@@ -60,15 +60,45 @@ export default {
         'heading': '0.5px',
         'body': '0.25px',
       },
-      // 🎨 Typography Colors
+      // 🎨 N64-Inspired Color Palette
       colors: {
+        // Background colors
+        'bg-primary': '#0E0F1A',
+        'bg-card': '#181A2C',
+        'bg-hover': '#22243B',
+        'bg-secondary': '#2E2F40',
+        'bg-active': '#3A3C55',
+        
+        // Accent colors - N64 Mario Kart 64 inspired
+        'accent-purple': '#8A2BE2',     // News/Events (Luigi's Raceway)
+        'accent-blue': '#1E90FF',       // Speedrun notifications, buttons
+        'accent-green': '#00C47C',      // Live badges
+        'accent-yellow': '#FFD700',     // Winner tiles, trophies
+        'accent-red': '#FF4C4C',        // Errors, warnings
+        
+        // Text colors
+        'text-primary': '#FFFFFF',
+        'text-secondary': '#CCCCCC',
+        'text-muted': '#888888',
+        
+        // Border colors
+        'border-light': '#2C2F4A',
+        'border-active': '#66ccff',
+        
+        // Legacy text colors for backward compatibility
         text: {
           primary: '#FFFFFF',
-          secondary: '#B0B0B0',
+          secondary: '#CCCCCC',
           muted: '#888888',
           'heading-highlight': '#FFD700',
           link: '#66ccff',
         },
+        
+        // Card-specific colors by content type
+        'card-live': '#181A2C',
+        'card-winner': '#1E1F2F',
+        'card-news': '#181A2C',
+        'card-community': '#1A242F',
       },
       maxWidth: {
         'xs': '20rem',

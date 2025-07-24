@@ -44,143 +44,143 @@ const HomeScreenRetro: React.FC = () => {
         {/* Quiz Tile */}
         <Link to="/quiz" className="simple-tile simple-tile-small">
           <div className="simple-tile-icon">
-            <Target className="w-7 h-7 text-purple-400 mx-auto" />
+            <Target className="w-7 h-7 text-accent-purple mx-auto" />
           </div>
           <div className="simple-tile-label">
-            <div className="typography-small font-medium text-slate-100">{t('nav.quiz')}</div>
-            <div className="text-xs text-slate-400">{t('home.quiz.subtitle')}</div>
+            <div className="typography-small font-medium text-text-primary">{t('nav.quiz')}</div>
+            <div className="text-xs text-text-muted">{t('home.quiz.subtitle')}</div>
           </div>
         </Link>
 
         {/* Events Tile */}
         <Link to="/events" className="simple-tile simple-tile-small">
           <div className="simple-tile-icon">
-            <Trophy className="w-7 h-7 text-yellow-400 mx-auto" />
+            <Trophy className="w-7 h-7 text-accent-yellow mx-auto" />
           </div>
           <div className="simple-tile-label">
-            <div className="font-medium text-slate-100 text-sm">{t('nav.events')}</div>
-            <div className="text-xs text-slate-400">{t('home.events.subtitle')}</div>
+            <div className="font-medium text-text-primary text-sm">{t('nav.events')}</div>
+            <div className="text-xs text-text-muted">{t('home.events.subtitle')}</div>
           </div>
         </Link>
 
         {/* Speedrun Media Tile */}
         <Link to="/speedrun-media" className="simple-tile simple-tile-small">
           <div className="simple-tile-icon">
-            <Camera className="w-7 h-7 text-green-400 mx-auto" />
+            <Camera className="w-7 h-7 text-accent-green mx-auto" />
           </div>
           <div className="simple-tile-label">
-            <div className="font-medium text-slate-100 text-sm">{t('nav.media')}</div>
-            <div className="text-xs text-slate-400">{t('home.media.subtitle')}</div>
+            <div className="font-medium text-text-primary text-sm">{t('nav.media')}</div>
+            <div className="text-xs text-text-muted">{t('home.media.subtitle')}</div>
           </div>
         </Link>
 
         {/* Collector Mode Tile */}
         <Link to="/collector" className="simple-tile simple-tile-small">
           <div className="simple-tile-icon">
-            <Package className="w-7 h-7 text-orange-400 mx-auto" />
+            <Package className="w-7 h-7 text-accent-yellow mx-auto" />
           </div>
           <div className="simple-tile-label">
-            <div className="font-medium text-slate-100 text-sm">{t('nav.collector')}</div>
-            <div className="text-xs text-slate-400">{t('home.collector.subtitle')}</div>
+            <div className="font-medium text-text-primary text-sm">{t('nav.collector')}</div>
+            <div className="text-xs text-text-muted">{t('home.collector.subtitle')}</div>
           </div>
         </Link>
 
         {/* Forum Tile */}
         <Link to="/forum" className="simple-tile simple-tile-small">
           <div className="simple-tile-icon">
-            <MessageSquare className="w-7 h-7 text-cyan-400 mx-auto" />
+            <MessageSquare className="w-7 h-7 text-accent-blue mx-auto" />
           </div>
           <div className="simple-tile-label">
-            <div className="font-medium text-slate-100 text-sm">{t('nav.forum')}</div>
-            <div className="text-xs text-slate-400">{t('home.forum.subtitle')}</div>
+            <div className="font-medium text-text-primary text-sm">{t('nav.forum')}</div>
+            <div className="text-xs text-text-muted">{t('home.forum.subtitle')}</div>
           </div>
         </Link>
 
         {/* Profile Tile */}
         <Link to="/profile" className="simple-tile simple-tile-small">
           <div className="simple-tile-icon">
-            <UsersIcon className="w-7 h-7 text-blue-400 mx-auto" />
+            <UsersIcon className="w-7 h-7 text-accent-blue mx-auto" />
           </div>
           <div className="simple-tile-label">
-            <div className="font-medium text-slate-100 text-sm">{t('nav.profile')}</div>
-            <div className="text-xs text-slate-400">{t('home.profile.subtitle')}</div>
+            <div className="font-medium text-text-primary text-sm">{t('nav.profile')}</div>
+            <div className="text-xs text-text-muted">{t('home.profile.subtitle')}</div>
           </div>
         </Link>
 
         {/* Leaderboard Tile */}
         <Link to="/leaderboard" className="simple-tile simple-tile-small">
           <div className="simple-tile-icon">
-            <Star className="w-7 h-7 text-pink-400 mx-auto" />
+            <Star className="w-7 h-7 text-accent-yellow mx-auto" />
           </div>
           <div className="simple-tile-label">
-            <div className="font-medium text-slate-100 text-sm">{t('nav.leaderboard')}</div>
-            <div className="text-xs text-slate-400">{t('home.leaderboard.subtitle')}</div>
+            <div className="font-medium text-text-primary text-sm">{t('nav.leaderboard')}</div>
+            <div className="text-xs text-text-muted">{t('home.leaderboard.subtitle')}</div>
           </div>
         </Link>
 
         {/* Minigames Tile */}
         <Link to="/minigames" className="simple-tile simple-tile-small">
           <div className="simple-tile-icon">
-            <Gamepad2 className="w-7 h-7 text-red-400 mx-auto" />
+            <Gamepad2 className="w-7 h-7 text-accent-red mx-auto" />
           </div>
           <div className="simple-tile-label">
-            <div className="font-medium text-slate-100 text-sm">{t('nav.minigames')}</div>
-            <div className="text-xs text-slate-400">{t('home.minigames.subtitle')}</div>
+            <div className="font-medium text-text-primary text-sm">{t('nav.minigames')}</div>
+            <div className="text-xs text-text-muted">{t('home.minigames.subtitle')}</div>
           </div>
         </Link>
 
         {/* Marketplace Tile */}
         <Link to="/marktplatz" className="simple-tile simple-tile-small">
           <div className="simple-tile-icon">
-            <ShoppingCart className="w-7 h-7 text-emerald-400 mx-auto" />
+            <ShoppingCart className="w-7 h-7 text-accent-green mx-auto" />
           </div>
           <div className="simple-tile-label">
-            <div className="font-medium text-slate-100 text-sm">{t('nav.marketplace')}</div>
-            <div className="text-xs text-slate-400">{t('home.marketplace.subtitle')}</div>
+            <div className="font-medium text-text-primary text-sm">{t('nav.marketplace')}</div>
+            <div className="text-xs text-text-muted">{t('home.marketplace.subtitle')}</div>
           </div>
         </Link>
 
         {/* Community Tile */}
         <Link to="/community" className="simple-tile simple-tile-small">
           <div className="simple-tile-icon">
-            <UsersIcon className="w-7 h-7 text-indigo-400 mx-auto" />
+            <UsersIcon className="w-7 h-7 text-accent-blue mx-auto" />
           </div>
           <div className="simple-tile-label">
-            <div className="font-medium text-slate-100 text-sm">{t('nav.community')}</div>
-            <div className="text-xs text-slate-400">{t('community.subtitle')}</div>
+            <div className="font-medium text-text-primary text-sm">{t('nav.community')}</div>
+            <div className="text-xs text-text-muted">{t('community.subtitle')}</div>
           </div>
         </Link>
 
         {/* Chat Tile */}
         <Link to="/chat" className="simple-tile simple-tile-small">
           <div className="simple-tile-icon">
-            <MessageCircle className="w-7 h-7 text-violet-400 mx-auto" />
+            <MessageCircle className="w-7 h-7 text-accent-purple mx-auto" />
           </div>
           <div className="simple-tile-label">
-            <div className="font-medium text-slate-100 text-sm">{t('nav.chat')}</div>
-            <div className="text-xs text-slate-400">Live Chat</div>
+            <div className="font-medium text-text-primary text-sm">{t('nav.chat')}</div>
+            <div className="text-xs text-text-muted">Live Chat</div>
           </div>
         </Link>
 
         {/* Fanart Tile */}
         <Link to="/fanart" className="simple-tile simple-tile-small">
           <div className="simple-tile-icon">
-            <Palette className="w-7 h-7 text-rose-400 mx-auto" />
+            <Palette className="w-7 h-7 text-accent-red mx-auto" />
           </div>
           <div className="simple-tile-label">
-            <div className="font-medium text-slate-100 text-sm">{t('nav.fanart')}</div>
-            <div className="text-xs text-slate-400">{t('home.fanart.subtitle')}</div>
+            <div className="font-medium text-text-primary text-sm">{t('nav.fanart')}</div>
+            <div className="text-xs text-text-muted">{t('home.fanart.subtitle')}</div>
           </div>
         </Link>
 
         {/* Newsfeed Tile */}
         <Link to="/newsfeed" className="simple-tile simple-tile-small">
           <div className="simple-tile-icon">
-            <Newspaper className="w-7 h-7 text-amber-400 mx-auto" />
+            <Newspaper className="w-7 h-7 text-accent-yellow mx-auto" />
           </div>
           <div className="simple-tile-label">
-            <div className="font-medium text-slate-100 text-sm">{t('nav.news')}</div>
-            <div className="text-xs text-slate-400">{t('home.newsfeed')}</div>
+            <div className="font-medium text-text-primary text-sm">{t('nav.news')}</div>
+            <div className="text-xs text-text-muted">{t('home.newsfeed')}</div>
           </div>
         </Link>
 
@@ -188,14 +188,25 @@ const HomeScreenRetro: React.FC = () => {
 
       {/* Footer */}
       <div className="text-center mt-8">
-        <p className="text-slate-400 text-sm">
+        <p className="text-text-muted text-sm">
           {t('home.footer.retro')} - {t('home.footer.n64')}
         </p>
         <Link 
           to="/" 
-          className="inline-block mt-3 px-4 py-2 rounded-lg bg-blue-600/20 hover:bg-blue-600/30 
-                     border border-blue-500/30 text-blue-400 hover:text-blue-300 
-                     transition-all duration-200 text-sm font-medium"
+          className="inline-block mt-3 px-4 py-2 rounded-lg transition-all duration-200 text-sm font-medium"
+          style={{
+            backgroundColor: 'rgba(30, 144, 255, 0.2)',
+            border: '1px solid rgba(30, 144, 255, 0.3)',
+            color: '#1E90FF'
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.backgroundColor = 'rgba(30, 144, 255, 0.3)'
+            e.currentTarget.style.color = '#3399FF'
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.backgroundColor = 'rgba(30, 144, 255, 0.2)'
+            e.currentTarget.style.color = '#1E90FF'
+          }}
         >
           📰 {t('home.footer.classic')}
         </Link>
