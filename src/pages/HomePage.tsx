@@ -390,14 +390,14 @@ const HomePage: React.FC = () => {
         <div className="flex items-center justify-center gap-4 mb-4">
           {/* Mascot Image */}
           <img 
-            src="/mascot.png" 
+            src="/FC86D897-BFCF-4A0A-9027-77FAE8A89314.png" 
             alt="Battle64 Mascot" 
-            className="h-12 md:h-16 lg:h-20 w-auto object-contain"
+            className="h-24 md:h-32 lg:h-40 w-auto object-contain"
             style={{ imageRendering: 'pixelated' }}
           />
           
           {/* Battle64 Title */}
-          <h1 className="battle64-title text-3xl md:text-4xl lg:text-5xl font-bold responsive-word-break">
+          <h1 className="battle64-title text-6xl md:text-8xl lg:text-10xl font-bold responsive-word-break">
             Battle64
           </h1>
         </div>
