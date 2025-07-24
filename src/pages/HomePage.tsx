@@ -388,23 +388,23 @@ const HomePage: React.FC = () => {
       {/* Welcome Section with Mascot and Battle64 Branding */}
       <div className="text-center mb-responsive responsive-max-width">
         <div className="flex items-center justify-center gap-4 mb-4">
-          {/* Mascot Image */}
-          <img 
-            src="/FC86D897-BFCF-4A0A-9027-77FAE8A89314.png" 
-            alt="Battle64 Mascot" 
-            className="h-24 md:h-32 lg:h-40 w-auto object-contain"
-            style={{ imageRendering: 'pixelated' }}
-          />
-          
-          {/* Battle64 Title */}
+          {/* Battle64 Title - Now First */}
           <h1 className="battle64-title text-6xl md:text-8xl lg:text-10xl font-bold responsive-word-break">
             Battle64
           </h1>
+          
+          {/* Mascot Image - Now Second and Double Size */}
+          <img 
+            src="/FC86D897-BFCF-4A0A-9027-77FAE8A89314.png" 
+            alt="Battle64 Mascot" 
+            className="h-48 md:h-64 lg:h-80 w-auto object-contain"
+            style={{ imageRendering: 'pixelated' }}
+          />
         </div>
         
         {/* Welcome Back Text */}
         <p className="text-sm md:text-base text-slate-400 mb-4">
-          {t('home.welcomeBack')}
+          {t('home.welcome')}
         </p>
         
         <p className="text-responsive-base text-slate-400 max-w-2xl mx-auto responsive-word-break px-2">
