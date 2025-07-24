@@ -201,6 +201,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         email: data.email,
         level: 1,
         xp: 0,
+        points: 0,
         region: data.region,
         platform: data.platform,
         joinDate: new Date(),
