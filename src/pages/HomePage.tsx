@@ -387,17 +387,17 @@ const HomePage: React.FC = () => {
     <div className="container-lg py-responsive space-responsive responsive-max-width responsive-overflow-hidden">
       {/* Welcome Section with Mascot */}
       <div className="text-center mb-responsive responsive-max-width">
-        <div className="battle64-header-container mb-4">
+        <div className="battle64-header-container mb-2">
           {/* Mascot Image */}
           <img 
             src="/mascot.png" 
             alt="Battle64 CRT-TV Mascot" 
-            className="battle64-mascot h-64 md:h-80 lg:h-96 w-auto object-contain"
+            className="battle64-mascot h-48 sm:h-56 md:h-64 lg:h-80 w-auto object-contain"
           />
         </div>
         
         {/* Welcome Back Text */}
-        <p className="battle64-welcome-text">
+        <p className="battle64-welcome-text mt-2">
           {user ? `${t('home.welcome')}, ${user.username}!` : t('home.welcome')}
         </p>
         
