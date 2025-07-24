@@ -1638,19 +1638,69 @@ html, body {
 
 /* Battle64 Branding Styles - N64 Inspired */
 .battle64-title {
-  background: linear-gradient(135deg, #4A90E2 0%, #7B68EE 50%, #9370DB 100%);
+  /* Enhanced N64-inspired gradient with more vibrant colors */
+  background: linear-gradient(
+    135deg, 
+    #FF6B35 0%,     /* N64 Orange */
+    #F7931E 15%,    /* Bright Orange */
+    #FFD700 30%,    /* Gold */
+    #4A90E2 45%,    /* N64 Blue */
+    #7B68EE 60%,    /* Medium Slate Blue */
+    #9370DB 75%,    /* Medium Purple */
+    #FF6B9D 90%,    /* Pink accent */
+    #FF6B35 100%    /* Back to orange for smooth loop */
+  );
+  background-size: 200% 200%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   font-family: 'Inter', sans-serif;
-  font-weight: 800;
-  letter-spacing: -0.02em;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  
+  /* Enhanced multi-layer shadow for depth */
   text-shadow: 
-    2px 2px 0px rgba(74, 144, 226, 0.3),
-    4px 4px 0px rgba(123, 104, 238, 0.2),
-    6px 6px 0px rgba(147, 112, 219, 0.1);
+    1px 1px 0px rgba(255, 107, 53, 0.8),    /* Orange shadow */
+    2px 2px 0px rgba(247, 147, 30, 0.6),    /* Bright orange */
+    3px 3px 0px rgba(255, 215, 0, 0.4),     /* Gold */
+    4px 4px 0px rgba(74, 144, 226, 0.3),    /* Blue */
+    5px 5px 0px rgba(123, 104, 238, 0.2),   /* Medium slate blue */
+    6px 6px 0px rgba(147, 112, 219, 0.15),  /* Medium purple */
+    7px 7px 0px rgba(255, 107, 157, 0.1),   /* Pink */
+    8px 8px 12px rgba(0, 0, 0, 0.4);        /* Deep shadow for depth */
+  
   position: relative;
   display: inline-block;
+  
+  /* Subtle animation for the gradient */
+  animation: battle64-gradient 6s ease-in-out infinite;
+  
+  /* Add a subtle glow */
+  filter: drop-shadow(0 0 8px rgba(255, 107, 53, 0.3));
+  
+  /* Ensure proper alignment with mascot */
+  line-height: 1;
+  align-self: center;
+}
+
+/* Animated gradient background */
+@keyframes battle64-gradient {
+  0%, 100% { 
+    background-position: 0% 50%; 
+    filter: drop-shadow(0 0 8px rgba(255, 107, 53, 0.3));
+  }
+  25% { 
+    background-position: 50% 0%; 
+    filter: drop-shadow(0 0 12px rgba(255, 215, 0, 0.4));
+  }
+  50% { 
+    background-position: 100% 50%; 
+    filter: drop-shadow(0 0 10px rgba(74, 144, 226, 0.4));
+  }
+  75% { 
+    background-position: 50% 100%; 
+    filter: drop-shadow(0 0 12px rgba(147, 112, 219, 0.4));
+  }
 }
 
 .battle64-title::before {
@@ -1660,49 +1710,194 @@ html, body {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, #4A90E2 0%, #7B68EE 50%, #9370DB 100%);
+  background: linear-gradient(
+    135deg, 
+    #FF6B35 0%, #F7931E 15%, #FFD700 30%, #4A90E2 45%, 
+    #7B68EE 60%, #9370DB 75%, #FF6B9D 90%, #FF6B35 100%
+  );
+  background-size: 200% 200%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  filter: blur(1px);
+  filter: blur(1.5px);
+  opacity: 0.7;
   z-index: -1;
+  animation: battle64-gradient 6s ease-in-out infinite reverse;
 }
 
-/* N64-inspired glow effect */
+/* Enhanced N64-inspired glow effect */
 .battle64-title::after {
   content: 'Battle64';
   position: absolute;
   top: 0;
   left: 0;
-  background: linear-gradient(135deg, #4A90E2 0%, #7B68EE 50%, #9370DB 100%);
+  background: linear-gradient(
+    135deg, 
+    #FF6B35 0%, #F7931E 15%, #FFD700 30%, #4A90E2 45%, 
+    #7B68EE 60%, #9370DB 75%, #FF6B9D 90%, #FF6B35 100%
+  );
+  background-size: 200% 200%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  filter: blur(2px);
-  opacity: 0.5;
+  filter: blur(3px);
+  opacity: 0.4;
   z-index: -2;
+  animation: battle64-gradient 8s ease-in-out infinite;
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
+/* Responsive adjustments - Mobile First */
+@media (max-width: 640px) {
   .battle64-title {
+    /* Reduced shadow complexity for mobile performance */
     text-shadow: 
-      1px 1px 0px rgba(74, 144, 226, 0.3),
-      2px 2px 0px rgba(123, 104, 238, 0.2),
-      3px 3px 0px rgba(147, 112, 219, 0.1);
+      1px 1px 0px rgba(255, 107, 53, 0.7),
+      2px 2px 0px rgba(247, 147, 30, 0.5),
+      3px 3px 0px rgba(255, 215, 0, 0.3),
+      4px 4px 0px rgba(74, 144, 226, 0.2),
+      5px 5px 8px rgba(0, 0, 0, 0.3);
+    
+    letter-spacing: -0.02em;
+    filter: drop-shadow(0 0 6px rgba(255, 107, 53, 0.25));
   }
 }
 
-/* Animation for subtle N64-style effect */
+@media (min-width: 641px) and (max-width: 768px) {
+  .battle64-title {
+    /* Tablet optimization */
+    text-shadow: 
+      1px 1px 0px rgba(255, 107, 53, 0.8),
+      2px 2px 0px rgba(247, 147, 30, 0.6),
+      3px 3px 0px rgba(255, 215, 0, 0.4),
+      4px 4px 0px rgba(74, 144, 226, 0.3),
+      5px 5px 0px rgba(123, 104, 238, 0.2),
+      6px 6px 10px rgba(0, 0, 0, 0.35);
+  }
+}
+
+/* Hover effect for interactive enhancement */
+.battle64-title:hover {
+  animation: battle64-pulse 1.5s ease-in-out infinite, battle64-gradient 6s ease-in-out infinite;
+  transform: scale(1.02);
+  transition: transform 0.3s ease;
+}
+
+/* Enhanced pulse animation */
 @keyframes battle64-pulse {
   0%, 100% { 
-    filter: brightness(1) saturate(1); 
+    filter: drop-shadow(0 0 8px rgba(255, 107, 53, 0.3)) brightness(1) saturate(1); 
   }
   50% { 
-    filter: brightness(1.1) saturate(1.2); 
+    filter: drop-shadow(0 0 16px rgba(255, 215, 0, 0.5)) brightness(1.15) saturate(1.3); 
   }
 }
 
-.battle64-title:hover {
-  animation: battle64-pulse 2s ease-in-out infinite;
+/* Container styles for perfect alignment */
+.battle64-header-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: nowrap;
+  /* Ensure perfect height matching */
+  align-items: stretch;
+}
+
+/* Mascot image optimization */
+.battle64-mascot {
+  flex-shrink: 0;
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
+  transition: transform 0.3s ease;
+  /* Ensure exact height matching with title */
+  object-fit: contain;
+}
+
+.battle64-mascot:hover {
+  transform: scale(1.05) rotate(1deg);
+}
+
+
+
+/* Responsive container adjustments */
+@media (max-width: 640px) {
+  .battle64-header-container {
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: center;
+  }
+  
+  .battle64-mascot {
+    order: 2; /* Mascot below title on mobile */
+    max-height: 12rem; /* h-48 equivalent */
+  }
+  
+  .battle64-title {
+    order: 1; /* Title above mascot on mobile */
+    /* Mobile font sizes handled by Tailwind classes */
+  }
+}
+
+@media (min-width: 641px) {
+  .battle64-header-container {
+    flex-direction: row;
+    gap: 1.5rem;
+    align-items: center;
+  }
+  
+  .battle64-mascot {
+    order: 1; /* Mascot left of title on larger screens */
+  }
+  
+  .battle64-title {
+    order: 2; /* Title right of mascot on larger screens */
+  }
+  
+  /* Exact height matching for desktop */
+  .battle64-mascot {
+    height: auto;
+    max-height: 16rem; /* md:h-64 equivalent */
+  }
+}
+
+@media (min-width: 1024px) {
+  .battle64-mascot {
+    max-height: 20rem; /* lg:h-80 equivalent */
+  }
+}
+
+/* Special rules for the retro page with larger mascot */
+.retro-page .battle64-mascot {
+  max-height: 16rem; /* h-64 equivalent */
+}
+
+@media (min-width: 768px) {
+  .retro-page .battle64-mascot {
+    max-height: 20rem; /* md:h-80 equivalent */
+  }
+}
+
+@media (min-width: 1024px) {
+  .retro-page .battle64-mascot {
+    max-height: 24rem; /* lg:h-96 equivalent */
+  }
+}
+
+/* Welcome text styling */
+.battle64-welcome-text {
+  color: rgba(148, 163, 184, 0.9);
+  font-size: 0.875rem;
+  margin-top: 1rem;
+  text-align: center;
+  font-weight: 400;
+  letter-spacing: 0.025em;
+}
+
+@media (min-width: 768px) {
+  .battle64-welcome-text {
+    font-size: 1rem;
+    margin-top: 1.25rem;
+  }
 }

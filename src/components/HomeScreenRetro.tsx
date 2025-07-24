@@ -22,37 +22,31 @@ const HomeScreenRetro: React.FC = () => {
   const { t } = useLanguage()
 
   return (
-    <div className="container mx-auto px-4 py-6">
+    <div className="retro-page container mx-auto px-4 py-6">
       {/* Header with Mascot and Battle64 Branding */}
       <div className="text-center mb-8">
-        <div className="flex items-center justify-center gap-4 mb-4">
-          {/* Battle64 Title - Now First */}
+        <div className="battle64-header-container mb-4">
+          {/* Mascot Image - Left side on desktop, below title on mobile */}
+          <img 
+            src="/mascot.png" 
+            alt="Battle64 CRT-TV Mascot" 
+            className="battle64-mascot h-64 md:h-80 lg:h-96 w-auto object-contain"
+          />
+          
+          {/* Battle64 Title - Right side on desktop, above mascot on mobile */}
           <h1 className="battle64-title text-8xl md:text-9xl lg:text-10xl font-bold">
             Battle64
           </h1>
-          
-          {/* Mascot Image - Now Second and Double Size */}
-          <img 
-            src="/FC86D897-BFCF-4A0A-9027-77FAE8A89314.png" 
-            alt="Battle64 Mascot" 
-            className="h-64 md:h-80 lg:h-96 w-auto object-contain"
-            style={{ imageRendering: 'pixelated' }}
-          />
         </div>
         
         {/* Welcome Back Text */}
-        <p className="text-sm md:text-base text-slate-400 mb-4">
-          {t('home.welcome')}
+        <p className="battle64-welcome-text">
+          {user ? `${t('home.welcome')}, ${user.username}! (${t('profile.level')} ${user.level})` : t('home.welcome')}
         </p>
         
-        <p className="typography-body-center mb-4">
+        <p className="typography-body-center mt-4 mb-4">
           {t('home.subtitle')}
         </p>
-        {user && (
-          <p className="typography-link text-center">
-            {t('home.welcome')}, {user.username}! ({t('profile.level')} {user.level})
-          </p>
-        )}
       </div>
 
       {/* Main Grid */}
