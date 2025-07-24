@@ -1363,6 +1363,8 @@ const translations = {
     'minigames.tournamentsDesc': 'Participate in weekly mini-game tournaments!',
     'minigames.currentTournaments': '🎯 Current Tournaments',
     'minigames.multiplayer': 'Multiplayer',
+    'minigames.available': 'Available',
+    'minigames.games': 'Games',
 
     // Collection Manager
     'collection.myCollection': 'My Collection',
@@ -1662,6 +1664,12 @@ const translations = {
     'leaderboard.seasonLeaderboard': 'Season Leaderboard',
     'leaderboard.filterType': 'Type',
     'leaderboard.timeframe': 'Timeframe',
+    'leaderboard.filterGlobal': 'Global',
+    'leaderboard.filterFriends': 'Friends',
+    'leaderboard.filterRegion': 'Local',
+    'leaderboard.timeframeAllTime': 'All Time',
+    'leaderboard.timeframeSeason': 'This Week',
+    'leaderboard.timeframeMonth': 'Today',
 
     // Placeholders and form text
     'placeholder.additionalInfo': 'Additional information...',
