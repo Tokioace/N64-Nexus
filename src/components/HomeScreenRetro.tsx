@@ -25,14 +25,14 @@ const HomeScreenRetro: React.FC = () => {
     <div className="container mx-auto px-4 py-6">
       {/* Header */}
       <div className="text-center mb-8">
-        <h1 className="text-4xl font-bold text-slate-100 mb-2">
+        <h1 className="typography-h1-center mb-4">
           🎮 Battle64
         </h1>
-        <p className="text-slate-400 text-lg">
+        <p className="typography-body-center mb-4">
           {t('home.subtitle')}
         </p>
         {user && (
-          <p className="text-blue-400 mt-2">
+          <p className="typography-link text-center">
             {t('home.welcome')}, {user.username}! ({t('profile.level')} {user.level})
           </p>
         )}
@@ -47,7 +47,7 @@ const HomeScreenRetro: React.FC = () => {
             <Target className="w-7 h-7 text-purple-400 mx-auto" />
           </div>
           <div className="simple-tile-label">
-            <div className="font-medium text-slate-100 text-sm">{t('nav.quiz')}</div>
+            <div className="typography-small font-medium text-slate-100">{t('nav.quiz')}</div>
             <div className="text-xs text-slate-400">{t('home.quiz.subtitle')}</div>
           </div>
         </Link>
