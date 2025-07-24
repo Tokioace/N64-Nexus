@@ -18,6 +18,26 @@ const mockUsers: User[] = [
     bio: 'Leidenschaftlicher N64-Sammler und Speedrunner. Spezialisiert auf Mario 64 und Zelda-Spiele.',
     location: 'Berlin, Germany',
     isPublic: true,
+    points: {
+      totalPoints: 150,
+      seasonPoints: { '2025-01': 75 },
+      currentRank: {
+        key: 'rank.moduleCollector',
+        minPoints: 100,
+        currentPoints: 150
+      },
+      achievementsUnlocked: ['achievement.speedrunMaster'],
+      medals: [],
+      pointHistory: [
+        {
+          id: 'ph1',
+          date: new Date('2024-07-20'),
+          action: 'speedrun.upload',
+          points: 50,
+          description: 'Mario 64 120 Stars PB'
+        }
+      ]
+    },
     collections: [
       {
         id: 'c1',
@@ -74,6 +94,35 @@ const mockUsers: User[] = [
     bio: 'NTSC Speedrunner aus den USA. Halte mehrere Weltrekorde!',
     location: 'California, USA',
     isPublic: true,
+    points: {
+      totalPoints: 275,
+      seasonPoints: { '2025-01': 125 },
+      currentRank: {
+        key: 'rank.retroGeek',
+        minPoints: 250,
+        currentPoints: 275
+      },
+      achievementsUnlocked: ['achievement.speedrunMaster', 'achievement.quizGuru'],
+      medals: [
+        {
+          id: '2024-12_1',
+          season: '2024-12',
+          rank: 1,
+          medalKey: 'medal.legend',
+          bonusXP: 200,
+          awardedDate: new Date('2024-12-31')
+        }
+      ],
+      pointHistory: [
+        {
+          id: 'ph2',
+          date: new Date('2024-07-22'),
+          action: 'speedrun.upload',
+          points: 50,
+          description: 'Luigi Raceway WR'
+        }
+      ]
+    },
     collections: [],
     personalRecords: [
       {

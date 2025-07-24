@@ -5,6 +5,8 @@ import { useLanguage } from '../contexts/LanguageContext'
 import { User } from '../types'
 import UserCollectionManager from '../components/UserCollectionManager'
 import PersonalRecordsManager from '../components/PersonalRecordsManager'
+import PointsOverview from '../components/PointsOverview'
+import AchievementsPanel from '../components/AchievementsPanel'
 import { 
   User as UserIcon, 
   Trophy, 
@@ -19,7 +21,9 @@ import {
   Star,
   LogIn,
   Globe,
-  ArrowLeft
+  ArrowLeft,
+  Award,
+  Crown
 } from 'lucide-react'
 
 interface Achievement {
@@ -45,7 +49,7 @@ const ProfilePage: React.FC = () => {
   const navigate = useNavigate()
   const [profileUser, setProfileUser] = useState<User | null>(null)
   const [loading, setLoading] = useState(false)
-  const [activeTab, setActiveTab] = useState<'overview' | 'achievements' | 'stats' | 'collection' | 'records'>('overview')
+  const [activeTab, setActiveTab] = useState<'overview' | 'points' | 'achievements' | 'stats' | 'collection' | 'records'>('overview')
   const [isEditing, setIsEditing] = useState(false)
 
   const isOwnProfile = Boolean(!userId || (user && userId === user.id))
@@ -326,7 +330,35 @@ const ProfilePage: React.FC = () => {
               : 'text-slate-400 hover:text-slate-200'
           }`}
         >
-                            {t('profile.overview')}
+          {t('profile.overview')}
+        </button>
+        <button
+          onClick={() => setActiveTab('points')}
+          className={`flex-1 py-2 px-4 rounded-md text-sm font-medium transition-all ${
+            activeTab === 'points'
+              ? 'bg-yellow-500 text-slate-900 shadow-lg'
+              : 'text-slate-400 hover:text-slate-200'
+          }`}
+        >
+          <div className="flex items-center justify-center gap-1">
+            <Trophy className="w-4 h-4" />
+            <span className="hidden sm:inline">{t('profile.pointsOverview')}</span>
+            <span className="sm:hidden">Points</span>
+          </div>
+        </button>
+        <button
+          onClick={() => setActiveTab('achievements')}
+          className={`flex-1 py-2 px-4 rounded-md text-sm font-medium transition-all ${
+            activeTab === 'achievements'
+              ? 'bg-yellow-500 text-slate-900 shadow-lg'
+              : 'text-slate-400 hover:text-slate-200'
+          }`}
+        >
+          <div className="flex items-center justify-center gap-1">
+            <Award className="w-4 h-4" />
+            <span className="hidden sm:inline">{t('profile.achievements.title')}</span>
+            <span className="sm:hidden">Achievements</span>
+          </div>
         </button>
         <button
           onClick={() => setActiveTab('collection')}
@@ -336,7 +368,8 @@ const ProfilePage: React.FC = () => {
               : 'text-slate-400 hover:text-slate-200'
           }`}
         >
-          {t('profile.collection')}
+          <span className="hidden sm:inline">{t('profile.collection')}</span>
+          <span className="sm:hidden">Collection</span>
         </button>
         <button
           onClick={() => setActiveTab('records')}
@@ -346,27 +379,8 @@ const ProfilePage: React.FC = () => {
               : 'text-slate-400 hover:text-slate-200'
           }`}
         >
-          {t('profile.records')}
-        </button>
-        <button
-          onClick={() => setActiveTab('achievements')}
-          className={`flex-1 py-2 px-4 rounded-md text-sm font-medium transition-all ${
-            activeTab === 'achievements'
-              ? 'bg-blue-600 text-white shadow-lg'
-              : 'text-slate-400 hover:text-slate-200'
-          }`}
-        >
-          {t('profile.achievements')}
-        </button>
-        <button
-          onClick={() => setActiveTab('stats')}
-          className={`flex-1 py-2 px-4 rounded-md text-sm font-medium transition-all ${
-            activeTab === 'stats'
-              ? 'bg-blue-600 text-white shadow-lg'
-              : 'text-slate-400 hover:text-slate-200'
-          }`}
-        >
-          {t('profile.statistics')}
+          <span className="hidden sm:inline">{t('profile.records')}</span>
+          <span className="sm:hidden">Records</span>
         </button>
       </div>
 
@@ -374,7 +388,17 @@ const ProfilePage: React.FC = () => {
       <div>
         {activeTab === 'overview' && (
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {/* Points Overview */}
+            <div className="simple-tile p-6">
+              <PointsOverview compact={true} showHistory={false} />
+            </div>
+
             {/* Recent Achievements */}
+            <div className="simple-tile p-6">
+              <AchievementsPanel compact={true} showProgress={false} />
+            </div>
+
+            {/* Recent Achievements (Legacy) */}
             <div className="simple-tile p-6">
               <h3 className="text-xl font-bold text-slate-100 mb-4">
                 {t('profile.achievements')}
@@ -435,6 +459,14 @@ const ProfilePage: React.FC = () => {
           </div>
         )}
 
+        {activeTab === 'points' && (
+          <PointsOverview />
+        )}
+
+        {activeTab === 'achievements' && (
+          <AchievementsPanel />
+        )}
+
         {activeTab === 'collection' && (
           <UserCollectionManager isOwnProfile={isOwnProfile} />
         )}
@@ -443,7 +475,7 @@ const ProfilePage: React.FC = () => {
           <PersonalRecordsManager isOwnProfile={isOwnProfile} />
         )}
 
-        {activeTab === 'achievements' && (
+        {activeTab === 'stats' && (
           <div className="simple-tile p-6">
             <h3 className="text-xl font-bold text-slate-100 mb-6">
               Erfolge

@@ -5,6 +5,7 @@ import { EventProvider } from './contexts/EventContext'
 import { MediaProvider } from './contexts/MediaContext'
 import { ForumProvider } from './contexts/ForumContext'
 import { LanguageProvider } from './contexts/LanguageContext'
+import { PointsProvider } from './contexts/PointsContext'
 import HomePage from './pages/HomePage'
 import HomeScreenRetro from './components/HomeScreenRetro'
 import AuthPage from './pages/AuthPage'
@@ -33,11 +34,12 @@ function App() {
   return (
     <LanguageProvider>
       <UserProvider>
-        <QuizProvider>
-          <EventProvider>
-            <MediaProvider>
-              <ForumProvider>
-                <Layout>
+        <PointsProvider>
+          <QuizProvider>
+            <EventProvider>
+              <MediaProvider>
+                <ForumProvider>
+                  <Layout>
                   <Routes>
                     <Route path="/" element={<HomePage />} />
                     <Route path="/auth" element={<AuthPage />} />
@@ -62,11 +64,12 @@ function App() {
                     <Route path="/fanart" element={<FanArtPage />} />
                     <Route path="/typography-showcase" element={<TypographyShowcase />} />
                   </Routes>
-                </Layout>
-              </ForumProvider>
-            </MediaProvider>
-          </EventProvider>
-        </QuizProvider>
+                  </Layout>
+                </ForumProvider>
+              </MediaProvider>
+            </EventProvider>
+          </QuizProvider>
+        </PointsProvider>
       </UserProvider>
     </LanguageProvider>
   )
