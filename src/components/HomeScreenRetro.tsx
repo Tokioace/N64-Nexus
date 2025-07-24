@@ -28,14 +28,14 @@ const HomeScreenRetro: React.FC = () => {
         <div className="flex items-center justify-center gap-4 mb-4">
           {/* Mascot Image */}
           <img 
-            src="/mascot.png" 
+            src="/FC86D897-BFCF-4A0A-9027-77FAE8A89314.png" 
             alt="Battle64 Mascot" 
-            className="h-16 md:h-20 lg:h-24 w-auto object-contain"
+            className="h-32 md:h-40 lg:h-48 w-auto object-contain"
             style={{ imageRendering: 'pixelated' }}
           />
           
           {/* Battle64 Title */}
-          <h1 className="battle64-title text-4xl md:text-5xl lg:text-6xl font-bold">
+          <h1 className="battle64-title text-8xl md:text-9xl lg:text-10xl font-bold">
             Battle64
           </h1>
         </div>
