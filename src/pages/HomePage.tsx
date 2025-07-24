@@ -385,11 +385,28 @@ const HomePage: React.FC = () => {
 
   return (
     <div className="container-lg py-responsive space-responsive responsive-max-width responsive-overflow-hidden">
-      {/* Welcome Section */}
+      {/* Welcome Section with Mascot and Battle64 Branding */}
       <div className="text-center mb-responsive responsive-max-width">
-        <h1 className="text-responsive-2xl font-bold text-slate-100 mb-4 responsive-word-break">
-          {user ? t('home.welcomeBack', { name: user.username }) : t('home.welcome')}
-        </h1>
+        <div className="flex items-center justify-center gap-4 mb-4">
+          {/* Mascot Image */}
+          <img 
+            src="/mascot.png" 
+            alt="Battle64 Mascot" 
+            className="h-12 md:h-16 lg:h-20 w-auto object-contain"
+            style={{ imageRendering: 'pixelated' }}
+          />
+          
+          {/* Battle64 Title */}
+          <h1 className="battle64-title text-3xl md:text-4xl lg:text-5xl font-bold responsive-word-break">
+            Battle64
+          </h1>
+        </div>
+        
+        {/* Welcome Back Text */}
+        <p className="text-sm md:text-base text-slate-400 mb-4">
+          {t('home.welcomeBack')}
+        </p>
+        
         <p className="text-responsive-base text-slate-400 max-w-2xl mx-auto responsive-word-break px-2">
           {t('home.subtitle')}
         </p>
