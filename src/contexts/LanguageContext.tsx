@@ -715,6 +715,75 @@ const translations = {
     'leaderboard.noData': 'Noch keine Leaderboard-Daten verfügbar',
     'leaderboard.noDataDesc': 'Sobald Spieler ihre Zeiten einreichen, werden hier die Bestenlisten angezeigt.',
     'eventLeaderboard.noTimes': 'Noch keine Zeiten eingereicht',
+    
+    // Points System
+    'points.speedrunUpload': 'Speedrun hochgeladen',
+    'points.speedrunTop3': 'Top 3 Speedrun',
+    'points.fanartUpload': 'Fanart hochgeladen',
+    'points.fanartLike': 'Fanart Like erhalten',
+    'points.quizCorrect': 'Quiz richtig beantwortet',
+    'points.quizPerfect': 'Quiz perfekt abgeschlossen',
+    'points.minigameWin': 'Minispiel gewonnen',
+    'points.forumPost': 'Forumsbeitrag erstellt',
+    'points.forumReply': 'Forum Antwort verfasst',
+    'points.chatMessage': 'Chat Nachricht gesendet',
+    'points.profileComplete': 'Profil vervollständigt',
+    'points.marketSale': 'Marktplatz Verkauf bestätigt',
+    'points.newsShared': 'News geteilt',
+    'points.total': 'Gesamtpunkte',
+    'points.season': 'Saison Punkte',
+    'points.earned': 'Punkte erhalten',
+    'points.history': 'Punkte Verlauf',
+    'points.recentActivity': 'Letzte Aktivität',
+    'points.noData': 'Keine Punktedaten verfügbar',
+    'points.noActivity': 'Keine Aktivität',
+    'points.startEarning': 'Beginne Punkte zu sammeln!',
+    
+    // Ranks
+    'rank.n64Beginner': 'N64 Anfänger',
+    'rank.moduleCollector': 'Modul Sammler',
+    'rank.retroGeek': 'Retro Geek',
+    'rank.speedrunner': 'Speedrunner',
+    'rank.fanartMaster': 'Fanart Meister',
+    'rank.retroChampion': 'Retro Champion',
+    'rank.n64Legend': 'N64 Legende',
+    'rank.current': 'Aktueller Rang',
+    'rank.nextRank': 'Nächster Rang',
+    'rank.pointsToNext': 'Punkte bis zum nächsten Rang',
+    'rank.congratulations': 'Glückwunsch! Neuer Rang erreicht!',
+    'rank.maxRank': 'Maximaler Rang erreicht',
+    
+
+    
+    // Medals
+    'medal.legend': 'Legende',
+    'medal.champion': 'Champion',
+    'medal.pixelHero': 'Pixel Held',
+    'medal.earned': 'Medaille erhalten',
+    'medal.season': 'Saison',
+    'medal.bonusXP': 'Bonus XP',
+    'medal.awardedOn': 'Verliehen am',
+    'medal.noMedals': 'Noch keine Medaillen erhalten',
+    'medal.congratulations': 'Glückwunsch zu deiner Medaille!',
+    
+    // Profile Extensions
+    'profile.totalPoints': 'Gesamtpunkte',
+    'profile.seasonPoints': 'Saison Punkte',
+    'profile.currentRank': 'Aktueller Rang',
+    'profile.nextRank': 'Nächster Rang',
+    'profile.medals.title': 'Medaillen',
+    'profile.achievements.title': 'Erfolge',
+    'profile.activityHistory': 'Aktivitätsverlauf',
+    'profile.pointsOverview': 'Punkte Übersicht',
+    'profile.rankProgress': 'Rang Fortschritt',
+    'profile.seasonRank': 'Saison Rang',
+    'profile.globalRank': 'Globaler Rang',
+    
+    // Leaderboard Extensions
+    'leaderboard.globalLeaderboard': 'Globale N64Fan Bestenliste',
+    'leaderboard.seasonLeaderboard': 'Saison Bestenliste',
+    'leaderboard.filterType': 'Typ',
+    'leaderboard.timeframe': 'Zeitraum',
 
     // Placeholders and form text
     'placeholder.additionalInfo': 'Zusätzliche Informationen...',
@@ -1501,6 +1570,75 @@ const translations = {
     'leaderboard.noData': 'No leaderboard data available yet',
     'leaderboard.noDataDesc': 'Once players submit their times, leaderboards will be displayed here.',
     'eventLeaderboard.noTimes': 'No times submitted yet',
+    
+    // Points System
+    'points.speedrunUpload': 'Speedrun uploaded',
+    'points.speedrunTop3': 'Top 3 Speedrun',
+    'points.fanartUpload': 'Fanart uploaded',
+    'points.fanartLike': 'Fanart like received',
+    'points.quizCorrect': 'Quiz answered correctly',
+    'points.quizPerfect': 'Quiz completed perfectly',
+    'points.minigameWin': 'Minigame won',
+    'points.forumPost': 'Forum post created',
+    'points.forumReply': 'Forum reply posted',
+    'points.chatMessage': 'Chat message sent',
+    'points.profileComplete': 'Profile completed',
+    'points.marketSale': 'Marketplace sale confirmed',
+    'points.newsShared': 'News shared',
+    'points.total': 'Total Points',
+    'points.season': 'Season Points',
+    'points.earned': 'Points earned',
+    'points.history': 'Points History',
+    'points.recentActivity': 'Recent Activity',
+    'points.noData': 'No points data available',
+    'points.noActivity': 'No activity',
+    'points.startEarning': 'Start earning points!',
+    
+    // Ranks
+    'rank.n64Beginner': 'N64 Beginner',
+    'rank.moduleCollector': 'Module Collector',
+    'rank.retroGeek': 'Retro Geek',
+    'rank.speedrunner': 'Speedrunner',
+    'rank.fanartMaster': 'Fanart Master',
+    'rank.retroChampion': 'Retro Champion',
+    'rank.n64Legend': 'N64 Legend',
+    'rank.current': 'Current Rank',
+    'rank.nextRank': 'Next Rank',
+    'rank.pointsToNext': 'Points to next rank',
+    'rank.congratulations': 'Congratulations! New rank achieved!',
+    'rank.maxRank': 'Maximum rank reached',
+    
+
+    
+    // Medals
+    'medal.legend': 'Legend',
+    'medal.champion': 'Champion',
+    'medal.pixelHero': 'Pixel Hero',
+    'medal.earned': 'Medal earned',
+    'medal.season': 'Season',
+    'medal.bonusXP': 'Bonus XP',
+    'medal.awardedOn': 'Awarded on',
+    'medal.noMedals': 'No medals earned yet',
+    'medal.congratulations': 'Congratulations on your medal!',
+    
+    // Profile Extensions
+    'profile.totalPoints': 'Total Points',
+    'profile.seasonPoints': 'Season Points',
+    'profile.currentRank': 'Current Rank',
+    'profile.nextRank': 'Next Rank',
+    'profile.medals.title': 'Medals',
+    'profile.achievements.title': 'Achievements',
+    'profile.activityHistory': 'Activity History',
+    'profile.pointsOverview': 'Points Overview',
+    'profile.rankProgress': 'Rank Progress',
+    'profile.seasonRank': 'Season Rank',
+    'profile.globalRank': 'Global Rank',
+    
+    // Leaderboard Extensions
+    'leaderboard.globalLeaderboard': 'Global N64Fan Leaderboard',
+    'leaderboard.seasonLeaderboard': 'Season Leaderboard',
+    'leaderboard.filterType': 'Type',
+    'leaderboard.timeframe': 'Timeframe',
 
     // Placeholders and form text
     'placeholder.additionalInfo': 'Additional information...',
