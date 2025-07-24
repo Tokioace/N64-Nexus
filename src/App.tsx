@@ -42,7 +42,6 @@ function App() {
                   <Layout>
                     <Routes>
                       <Route path="/" element={<HomePage />} />
-                      <Route path="/classic" element={<HomePage />} />
                       <Route path="/auth" element={<AuthPage />} />
                       <Route path="/community" element={<CommunityPage />} />
                       <Route path="/retro" element={<HomeScreenRetro />} />

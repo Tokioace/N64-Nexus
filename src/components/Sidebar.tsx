@@ -67,8 +67,8 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen = false, onClose }) => {
                   <span className="truncate">{t('nav.home')}</span>
                 </Link>
               </li>
-              <li className={location.pathname === '/classic' ? 'active' : ''}>
-                <Link to="/classic" onClick={handleLinkClick} className="nav-link">
+              <li className={location.pathname === '/retro' ? 'active' : ''}>
+                <Link to="/retro" onClick={handleLinkClick} className="nav-link">
                   <span className="mr-2 sm:mr-3">🎮</span>
                   <span className="truncate">{t('nav.classic')}</span>
                 </Link>

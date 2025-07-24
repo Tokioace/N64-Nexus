@@ -192,7 +192,7 @@ const HomeScreenRetro: React.FC = () => {
           {t('home.footer.retro')} - {t('home.footer.n64')}
         </p>
         <Link 
-          to="/classic" 
+          to="/" 
           className="inline-block mt-3 px-4 py-2 rounded-lg transition-all duration-200 text-sm font-medium"
           style={{
             backgroundColor: 'rgba(30, 144, 255, 0.2)',
@@ -208,7 +208,7 @@ const HomeScreenRetro: React.FC = () => {
             e.currentTarget.style.color = '#1E90FF'
           }}
         >
-          📰 {t('home.footer.classic')}
+          🏠 Zurück zur Hauptseite
         </Link>
       </div>
     </div>
