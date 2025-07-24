@@ -24,18 +24,18 @@ const HomeScreenRetro: React.FC = () => {
   return (
     <div className="retro-page container mx-auto px-4 py-6">
       {/* Header with Mascot */}
-      <div className="text-center mb-8">
-        <div className="battle64-header-container mb-4">
+      <div className="text-center mb-6">
+        <div className="battle64-header-container mb-2">
           {/* Mascot Image */}
           <img 
             src="/mascot.png" 
             alt="Battle64 CRT-TV Mascot" 
-            className="battle64-mascot h-64 md:h-80 lg:h-96 w-auto object-contain"
+            className="battle64-mascot h-48 sm:h-56 md:h-64 lg:h-80 w-auto object-contain"
           />
         </div>
         
         {/* Welcome Back Text */}
-        <p className="battle64-welcome-text">
+        <p className="battle64-welcome-text mt-2">
           {user ? `${t('home.welcome')}, ${user.username}! (${t('profile.level')} ${user.level})` : t('home.welcome')}
         </p>
         
