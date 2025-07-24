@@ -15,6 +15,8 @@ export interface User {
   isPublic: boolean // Whether profile is visible to others
   collections: UserCollection[]
   personalRecords: PersonalRecord[]
+  // New points system fields
+  points?: UserPoints
 }
 
 export interface UserRegistrationData {
@@ -295,4 +297,129 @@ export interface ForumStats {
   totalMembers: number
   newestMember: string
   mostActiveCategory: string
+}
+
+// Points System Types
+export interface UserPoints {
+  totalPoints: number
+  seasonPoints: { [seasonKey: string]: number }
+  currentRank: UserRank
+  achievementsUnlocked: string[] // i18n keys
+  medals: UserMedal[]
+  pointHistory: PointsHistoryEntry[]
+}
+
+export interface PointsHistoryEntry {
+  id: string
+  date: Date
+  action: string // i18n key like 'points.speedrunUpload'
+  points: number
+  description?: string
+}
+
+export interface UserRank {
+  key: string // i18n key like 'rank.n64Legend'
+  minPoints: number
+  currentPoints: number
+}
+
+export interface UserMedal {
+  id: string
+  season: string
+  rank: number
+  medalKey: string // i18n key like 'medal.legend'
+  bonusXP: number
+  awardedDate: Date
+}
+
+export interface Achievement {
+  id: string
+  key: string // i18n key like 'achievement.speedrunMaster'
+  iconKey: string
+  requiredPoints?: number
+  requiredActions?: { action: string; count: number }[]
+  unlocked: boolean
+  unlockedDate?: Date
+}
+
+// Points Configuration
+export interface PointsConfig {
+  'speedrun.upload': number
+  'speedrun.top3': number
+  'fanart.upload': number
+  'fanart.likeReceived': number
+  'quiz.answerCorrect': number
+  'quiz.fullPerfect': number
+  'minigame.success': number
+  'forum.post': number
+  'forum.reply': number
+  'chat.messages': number
+  'profile.setupComplete': number
+  'marketplace.saleConfirmed': number
+  'news.shared': number
+}
+
+export interface RankConfig {
+  key: string // i18n key
+  minPoints: number
+  iconKey: string
+}
+
+export interface MedalConfig {
+  place: number
+  key: string // i18n key
+  iconKey: string
+  bonusXP: number
+}
+
+// N64Fan Leaderboard Types
+export interface N64FanLeaderboardEntry {
+  userId: string
+  username: string
+  avatar?: string
+  totalPoints: number
+  seasonPoints: number
+  currentRank: UserRank
+  region: 'PAL' | 'NTSC'
+  platform: 'N64' | 'PC'
+  position: number
+  medals: UserMedal[]
+  isCurrentUser?: boolean
+}
+
+export interface LeaderboardFilter {
+  type: 'global' | 'friends' | 'region'
+  timeframe: 'allTime' | 'season' | 'month'
+  region?: 'PAL' | 'NTSC'
+  platform?: 'N64' | 'PC'
+}
+
+// Points System Context Type
+export interface PointsContextType {
+  // User points data
+  userPoints: UserPoints | null
+  globalLeaderboard: N64FanLeaderboardEntry[]
+  seasonLeaderboard: N64FanLeaderboardEntry[]
+  
+  // Configuration
+  pointsConfig: PointsConfig
+  ranksConfig: RankConfig[]
+  achievementsConfig: Achievement[]
+  medalsConfig: MedalConfig[]
+  
+  // Actions
+  awardPoints: (action: keyof PointsConfig, description?: string) => Promise<boolean>
+  updateUserRank: () => Promise<void>
+  checkAchievements: () => Promise<Achievement[]>
+  getLeaderboard: (filter: LeaderboardFilter) => N64FanLeaderboardEntry[]
+  getUserPosition: (userId: string, filter: LeaderboardFilter) => number
+  
+  // Season management
+  currentSeason: string
+  startNewSeason: () => Promise<void>
+  awardSeasonMedals: () => Promise<void>
+  
+  // Loading states
+  loading: boolean
+  error: string | null
 }
