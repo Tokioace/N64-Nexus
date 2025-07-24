@@ -47,7 +47,7 @@ const HomeScreenRetro: React.FC = () => {
             <Target className="w-7 h-7 text-accent-purple mx-auto" />
           </div>
           <div className="simple-tile-label">
-            <div className="typography-small font-medium text-text-primary">{t('nav.quiz')}</div>
+            <div className="font-medium text-text-primary text-sm">{t('nav.quiz')}</div>
             <div className="text-xs text-text-muted">{t('home.quiz.subtitle')}</div>
           </div>
         </Link>
