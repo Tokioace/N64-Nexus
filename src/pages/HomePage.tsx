@@ -503,12 +503,6 @@ const HomePage: React.FC = () => {
         <p className="text-responsive-sm text-slate-400 responsive-word-break">
           {t('home.footer.tagline')}
         </p>
-        <Link 
-          to="/retro" 
-          className="inline-block mt-4 px-4 py-2 rounded-lg bg-slate-700/50 hover:bg-slate-600/50 transition-colors text-responsive-sm text-slate-300 w-full sm:w-auto"
-        >
-          🎮 {t('home.footer.classic')}
-        </Link>
       </div>
     </div>
   )

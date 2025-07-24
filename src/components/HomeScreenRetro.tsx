@@ -47,7 +47,7 @@ const HomeScreenRetro: React.FC = () => {
             <Target className="w-7 h-7 text-accent-purple mx-auto" />
           </div>
           <div className="simple-tile-label">
-            <div className="typography-small font-medium text-text-primary">{t('nav.quiz')}</div>
+            <div className="font-medium text-text-primary text-sm">{t('nav.quiz')}</div>
             <div className="text-xs text-text-muted">{t('home.quiz.subtitle')}</div>
           </div>
         </Link>
@@ -192,7 +192,7 @@ const HomeScreenRetro: React.FC = () => {
           {t('home.footer.retro')} - {t('home.footer.n64')}
         </p>
         <Link 
-          to="/classic" 
+          to="/" 
           className="inline-block mt-3 px-4 py-2 rounded-lg transition-all duration-200 text-sm font-medium"
           style={{
             backgroundColor: 'rgba(30, 144, 255, 0.2)',
@@ -208,7 +208,7 @@ const HomeScreenRetro: React.FC = () => {
             e.currentTarget.style.color = '#1E90FF'
           }}
         >
-          📰 {t('home.footer.classic')}
+          🏠 Zurück zur Hauptseite
         </Link>
       </div>
     </div>
