@@ -387,27 +387,26 @@ const HomePage: React.FC = () => {
     <div className="container-lg py-responsive space-responsive responsive-max-width responsive-overflow-hidden">
       {/* Welcome Section with Mascot and Battle64 Branding */}
       <div className="text-center mb-responsive responsive-max-width">
-        <div className="flex items-center justify-center gap-4 mb-4">
-          {/* Battle64 Title - Now First */}
+        <div className="battle64-header-container mb-4">
+          {/* Mascot Image - Left side on desktop, below title on mobile */}
+          <img 
+            src="/mascot.png" 
+            alt="Battle64 CRT-TV Mascot" 
+            className="battle64-mascot h-48 md:h-64 lg:h-80 w-auto object-contain"
+          />
+          
+          {/* Battle64 Title - Right side on desktop, above mascot on mobile */}
           <h1 className="battle64-title text-6xl md:text-8xl lg:text-10xl font-bold responsive-word-break">
             Battle64
           </h1>
-          
-          {/* Mascot Image - Now Second and Double Size */}
-          <img 
-            src="/FC86D897-BFCF-4A0A-9027-77FAE8A89314.png" 
-            alt="Battle64 Mascot" 
-            className="h-48 md:h-64 lg:h-80 w-auto object-contain"
-            style={{ imageRendering: 'pixelated' }}
-          />
         </div>
         
         {/* Welcome Back Text */}
-        <p className="text-sm md:text-base text-slate-400 mb-4">
-          {t('home.welcome')}
+        <p className="battle64-welcome-text">
+          {user ? `${t('home.welcome')}, ${user.username}!` : t('home.welcome')}
         </p>
         
-        <p className="text-responsive-base text-slate-400 max-w-2xl mx-auto responsive-word-break px-2">
+        <p className="text-responsive-base text-slate-400 max-w-2xl mx-auto responsive-word-break px-2 mt-4">
           {t('home.subtitle')}
         </p>
         <div className="mt-4 text-responsive-sm text-slate-500">
