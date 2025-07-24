@@ -71,11 +71,20 @@ const NewsCard: React.FC<NewsCardProps> = ({ newsItem, index, onDismiss, isAnima
 
   return (
     <div className={`swipeable-card ${getCardClass(newsItem.type)} relative transition-all duration-300 ${isAnimating ? 'scale-95 opacity-80' : 'scale-100 opacity-100'}`}>
+      {/* Event Winner Label */}
+      {newsItem.type === 'event_winner' && (
+        <div className="news-event-winner-label">
+          Event Winner
+        </div>
+      )}
+      
       {/* Dismiss Button */}
       {onDismiss && (
         <button
           onClick={onDismiss}
-          className="absolute top-2 right-2 z-10 p-1 rounded-full transition-colors"
+          className={`absolute top-2 z-10 p-1 rounded-full transition-colors ${
+            newsItem.type === 'event_winner' ? 'left-2' : 'right-2'
+          }`}
           style={{
             backgroundColor: 'rgba(46, 47, 64, 0.8)',
             color: '#CCCCCC'
@@ -109,18 +118,20 @@ const NewsCard: React.FC<NewsCardProps> = ({ newsItem, index, onDismiss, isAnima
       </div>
       
       <div className="swipeable-card-content">
-        <div className="p-3 h-full flex flex-col">
+        <div className="p-4 h-full flex flex-col">
           <div className="flex-1">
-            <h4 className="text-sm sm:text-base font-semibold text-text-primary mb-2 leading-tight">
+            <h4 className="text-base sm:text-lg font-semibold text-text-primary mb-3 leading-tight">
               {newsItem.title}
             </h4>
-            <p className="text-xs sm:text-sm text-text-secondary mb-3 leading-relaxed">
+            <p className="text-base text-text-secondary mb-4 leading-relaxed line-clamp-2">
               {newsItem.content}
             </p>
           </div>
-          <div className="flex items-center justify-between text-xs text-text-muted mt-auto">
-            <span>{formatTime(newsItem.date)}</span>
-            <span className="text-accent-blue">News Details</span>
+          <div className="border-t border-slate-600/30 pt-3 mt-auto">
+            <div className="flex items-center justify-between text-sm text-text-muted">
+              <span className="font-medium">{formatTime(newsItem.date)}</span>
+              <span className="text-accent-blue font-medium">News Details</span>
+            </div>
           </div>
         </div>
       </div>
