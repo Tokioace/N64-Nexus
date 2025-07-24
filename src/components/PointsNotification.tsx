@@ -25,7 +25,8 @@ const PointsNotification: React.FC<PointsNotificationProps> = ({
     // Auto-close after 4 seconds
     const timer = setTimeout(() => {
       setIsVisible(false)
-      setTimeout(onClose, 300) // Wait for fade out animation
+      const closeTimer = setTimeout(onClose, 300) // Wait for fade out animation
+      return () => clearTimeout(closeTimer)
     }, 4000)
 
     return () => clearTimeout(timer)
@@ -33,7 +34,8 @@ const PointsNotification: React.FC<PointsNotificationProps> = ({
 
   const handleClose = () => {
     setIsVisible(false)
-    setTimeout(onClose, 300)
+    const closeTimer = setTimeout(onClose, 300)
+    // Cleanup handled by component unmount
   }
 
   return (

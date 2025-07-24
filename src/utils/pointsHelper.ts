@@ -143,3 +143,28 @@ export const awardChatMessagePoints = (
     'Chat message sent'
   )
 }
+
+// TODO: Implement these helper functions when the corresponding features are built:
+
+export const awardSpeedrunTop3Points = (
+  awardPoints: (action: keyof PointsConfig, description?: string) => Promise<boolean>,
+  rank: number,
+  gameName?: string
+) => {
+  return awardPointsForAction(
+    awardPoints,
+    'speedrun.top3',
+    `Achieved rank ${rank} in ${gameName || 'speedrun'}`
+  )
+}
+
+export const awardMarketplacePoints = (
+  awardPoints: (action: keyof PointsConfig, description?: string) => Promise<boolean>,
+  itemName?: string
+) => {
+  return awardPointsForAction(
+    awardPoints,
+    'marketplace.saleConfirmed',
+    itemName ? `Marketplace sale confirmed: ${itemName}` : 'Marketplace sale confirmed'
+  )
+}

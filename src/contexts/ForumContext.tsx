@@ -309,7 +309,11 @@ export const ForumProvider: React.FC<{ children: ReactNode }> = ({ children }) =
       setPosts(prev => [...prev, newPost])
       
       // Award points for creating forum thread
-      await awardPoints('forum.post', `Thread created: ${title}`)
+      try {
+        await awardPoints('forum.post', `Thread created: ${title}`)
+      } catch (error) {
+        console.error('Failed to award points for forum thread:', error)
+      }
       
       setLoading(false)
       return true
@@ -369,7 +373,11 @@ export const ForumProvider: React.FC<{ children: ReactNode }> = ({ children }) =
       ))
       
       // Award points for forum reply
-      await awardPoints('forum.reply', `Reply posted in thread`)
+      try {
+        await awardPoints('forum.reply', `Reply posted in thread`)
+      } catch (error) {
+        console.error('Failed to award points for forum reply:', error)
+      }
       
       setLoading(false)
       return true

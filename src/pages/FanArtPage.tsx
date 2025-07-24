@@ -159,7 +159,11 @@ const UploadModal: React.FC<UploadModalProps> = ({ onClose, onUpload, awardPoint
     onUpload(newArtwork)
     
     // Award points for fanart upload
-    await awardPoints('fanart.upload', `Fanart uploaded: ${title}`)
+    try {
+      await awardPoints('fanart.upload', `Fanart uploaded: ${title}`)
+    } catch (error) {
+      console.error('Failed to award points for fanart upload:', error)
+    }
     
     setIsUploading(false)
   }
@@ -420,11 +424,19 @@ const FanArtPage: React.FC = () => {
       )
 
   const handleLikeArtwork = async (artworkId: string) => {
-    if (!isAuthenticated) return
+    if (!isAuthenticated || !user) return
 
     const artwork = fanArtItems.find(item => item.id === artworkId)
     if (!artwork) return
 
+    // Prevent self-liking
+    if (artwork.artist === user.username) {
+      console.log('Cannot like your own artwork')
+      return
+    }
+
+    // In a real app, you'd check if user already liked this artwork
+    // For now, we'll just increment the likes
     setFanArtItems(prev => prev.map(item => {
       if (item.id === artworkId) {
         return {
@@ -435,9 +447,11 @@ const FanArtPage: React.FC = () => {
       return item
     }))
 
-    // Award points to the artwork creator (if it's not the current user liking their own art)
-    if (artwork.artist !== user?.username) {
+    // Award points to the artwork creator
+    try {
       await awardPoints('fanart.likeReceived', `Like received on: ${artwork.title}`)
+    } catch (error) {
+      console.error('Failed to award points for fanart like:', error)
     }
   }
 

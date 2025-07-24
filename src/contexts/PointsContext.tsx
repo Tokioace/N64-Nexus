@@ -130,19 +130,28 @@ export const PointsProvider: React.FC<{ children: ReactNode }> = ({ children }) 
     points: number
     description?: string
   }>>([])
+  const [lastActionTimes, setLastActionTimes] = useState<Record<string, number>>({})
 
   const showNotification = (action: string, points: number, description?: string) => {
     const notification = {
-      id: Date.now().toString(),
+      id: `${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
       action,
       points,
       description
     }
-    setNotifications(prev => [...prev, notification])
+    setNotifications(prev => [...prev, notification].slice(-5)) // Keep max 5 notifications
   }
 
   const removeNotification = (id: string) => {
     setNotifications(prev => prev.filter(n => n.id !== id))
+  }
+
+  const isRateLimited = (action: string): boolean => {
+    const now = Date.now()
+    const lastTime = lastActionTimes[action] || 0
+    const cooldown = action === 'chat.messages' ? 1000 : 5000 // 1s for chat, 5s for others
+    
+    return now - lastTime < cooldown
   }
 
   // Initialize current season
@@ -180,9 +189,13 @@ export const PointsProvider: React.FC<{ children: ReactNode }> = ({ children }) 
     )
 
     if (isProfileComplete && !hasProfileCompletionPoints) {
-      awardPoints('profile.setupComplete', 'Profile setup completed')
+      try {
+        awardPoints('profile.setupComplete', 'Profile setup completed')
+      } catch (error) {
+        console.error('Failed to award points for profile completion:', error)
+      }
     }
-  }, [user, userPoints])
+  }, [user?.bio, user?.location, user?.avatar, user?.collections?.length, userPoints?.pointHistory?.length])
 
   const initializeUserPoints = () => {
     if (!user) return
@@ -280,8 +293,17 @@ export const PointsProvider: React.FC<{ children: ReactNode }> = ({ children }) 
   const awardPoints = async (action: keyof PointsConfig, description?: string): Promise<boolean> => {
     if (!user || !userPoints) return false
 
+    // Check rate limiting
+    if (isRateLimited(action)) {
+      console.warn(`Rate limited: ${action}`)
+      return false
+    }
+
     const pointsToAward = POINTS_CONFIG[action]
     if (!pointsToAward) return false
+
+    // Update last action time
+    setLastActionTimes(prev => ({ ...prev, [action]: Date.now() }))
 
     try {
       setLoading(true)

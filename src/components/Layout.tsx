@@ -146,7 +146,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
               <div className="flex items-center gap-2 bg-gradient-to-r from-blue-500/20 to-blue-600/20 border border-blue-500/30 rounded-lg px-3 py-2">
                 <Zap className="w-4 h-4 text-blue-400" />
                 <span className="text-xs text-blue-200">
-                  {userPoints.currentRank.key.split('.')[1]}
+                  {userPoints.currentRank.key.split('.')[1] || 'Beginner'}
                 </span>
               </div>
             </div>

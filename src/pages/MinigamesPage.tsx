@@ -249,7 +249,7 @@ const MinigamesPage: React.FC = () => {
         setMoves(moves + 1)
         const [first, second] = newFlippedCards
         if (cards[first].game === cards[second].game) {
-          setTimeout(() => {
+          setTimeout(async () => {
             const matchedCards = [...cards]
             matchedCards[first].matched = true
             matchedCards[second].matched = true
@@ -264,7 +264,11 @@ const MinigamesPage: React.FC = () => {
               setGameState(prev => ({ ...prev, score: newScore + bonus, isPlaying: false }))
               
               // Award points for minigame success
-              awardPoints('minigame.success', 'Memory game completed')
+              try {
+                await awardPoints('minigame.success', 'Memory game completed')
+              } catch (error) {
+                console.error('Failed to award points for memory game:', error)
+              }
             }
           }, 1000)
         } else {
@@ -404,7 +408,7 @@ const MinigamesPage: React.FC = () => {
         setGameState(prev => ({ ...prev, score: prev.score + points }))
       }
 
-      setTimeout(() => {
+      setTimeout(async () => {
         if (currentQuestion < triviaQuestions.length - 1) {
           setCurrentQuestion(currentQuestion + 1)
           setSelectedAnswer(null)
@@ -414,7 +418,11 @@ const MinigamesPage: React.FC = () => {
           
           // Award points for completing trivia game (if scored well)
           if (correctAnswers >= triviaQuestions.length / 2) {
-            awardPoints('minigame.success', 'Trivia game completed successfully')
+            try {
+              await awardPoints('minigame.success', 'Trivia game completed successfully')
+            } catch (error) {
+              console.error('Failed to award points for trivia game:', error)
+            }
           }
         }
       }, 2000)
@@ -545,7 +553,7 @@ const MinigamesPage: React.FC = () => {
     const options = [currentSoundData.game, ...n64Games.filter(g => g !== currentSoundData.game).slice(0, 3)]
       .sort(() => Math.random() - 0.5)
 
-    const handleAnswer = (selectedGame: string) => {
+    const handleAnswer = async (selectedGame: string) => {
       if (selectedGame === currentSoundData.game) {
         setScore(score + 100)
         setGameState(prev => ({ ...prev, score: prev.score + 100 }))
@@ -558,7 +566,11 @@ const MinigamesPage: React.FC = () => {
         
         // Award points for completing sound guessing game (if scored well)
         if (score >= sounds.length * 50) { // At least 50% correct
-          awardPoints('minigame.success', 'Sound guessing game completed successfully')
+          try {
+            await awardPoints('minigame.success', 'Sound guessing game completed successfully')
+          } catch (error) {
+            console.error('Failed to award points for sound guessing game:', error)
+          }
         }
       }
     }

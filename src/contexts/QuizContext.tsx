@@ -52,7 +52,11 @@ export const QuizProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     if (currentQuestion && answerIndex === currentQuestion.correctAnswer) {
       setScore(prev => prev + 1)
       // Award points for correct answer
-      await awardPoints('quiz.answerCorrect', `Correct answer: ${currentQuestion.question}`)
+      try {
+        await awardPoints('quiz.answerCorrect', `Correct answer: ${currentQuestion.question}`)
+      } catch (error) {
+        console.error('Failed to award points for correct answer:', error)
+      }
     }
   }
 
@@ -68,18 +72,24 @@ export const QuizProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   }
 
   const finishQuiz = async () => {
+    const questions = getQuizQuestions(t)
+    const actualQuestionCount = questions.length
     const timeSpent = timeStarted ? Date.now() - timeStarted.getTime() : 0
     const result: QuizResult = {
-      score: Math.round((score / totalQuestions) * 100),
-      totalQuestions,
+      score: Math.round((score / actualQuestionCount) * 100),
+      totalQuestions: actualQuestionCount,
       correctAnswers: score,
       timeSpent: Math.round(timeSpent / 1000),
       xpEarned: score * 10
     }
     
     // Award bonus points for perfect quiz
-    if (score === totalQuestions) {
-      await awardPoints('quiz.fullPerfect', `Perfect quiz completed: ${score}/${totalQuestions}`)
+    if (score === actualQuestionCount) {
+      try {
+        await awardPoints('quiz.fullPerfect', `Perfect quiz completed: ${score}/${actualQuestionCount}`)
+      } catch (error) {
+        console.error('Failed to award points for perfect quiz:', error)
+      }
     }
     
     setQuizResult(result)
