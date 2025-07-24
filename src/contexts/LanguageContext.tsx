@@ -463,6 +463,7 @@ const translations = {
     'success.submitted': 'Erfolgreich eingereicht',
     'success.joined': 'Erfolgreich beigetreten',
     'success.left': 'Erfolgreich verlassen',
+    'success.uploaded': 'Erfolgreich hochgeladen',
     
     // Time and Date
     'time.seconds': 'Sekunden',
@@ -719,6 +720,10 @@ const translations = {
     // Points System
     'points.speedrunUpload': 'Speedrun hochgeladen',
     'points.speedrunTop3': 'Top 3 Speedrun',
+    'points.mediaSpeedrun': 'Speedrun Media hochgeladen',
+    'points.mediaScreenshot': 'Screenshot hochgeladen',
+    'points.mediaAchievement': 'Achievement hochgeladen',
+    'points.mediaStream': 'Live Stream gestartet',
     'points.fanartUpload': 'Fanart hochgeladen',
     'points.fanartLike': 'Fanart Like erhalten',
     'points.quizCorrect': 'Quiz richtig beantwortet',
@@ -1312,6 +1317,7 @@ const translations = {
     'success.submitted': 'Successfully submitted',
     'success.joined': 'Successfully joined',
     'success.left': 'Successfully left',
+    'success.uploaded': 'Successfully uploaded',
     
     // Time and Date
     'time.seconds': 'seconds',
@@ -1587,6 +1593,10 @@ const translations = {
     // Points System
     'points.speedrunUpload': 'Speedrun uploaded',
     'points.speedrunTop3': 'Top 3 Speedrun',
+    'points.mediaSpeedrun': 'Speedrun media uploaded',
+    'points.mediaScreenshot': 'Screenshot uploaded',
+    'points.mediaAchievement': 'Achievement uploaded',
+    'points.mediaStream': 'Live stream started',
     'points.fanartUpload': 'Fanart uploaded',
     'points.fanartLike': 'Fanart like received',
     'points.quizCorrect': 'Quiz answered correctly',
@@ -2126,6 +2136,7 @@ const translations = {
     'success.submitted': 'Soumis avec succès',
     'success.joined': 'Rejoint avec succès',
     'success.left': 'Quitté avec succès',
+    'success.uploaded': 'Téléchargé avec succès',
     
     // Time and Date
     'time.seconds': 'secondes',
@@ -2322,6 +2333,10 @@ const translations = {
     // Points System
     'points.speedrunUpload': 'Speedrun téléchargé',
     'points.speedrunTop3': 'Top 3 Speedrun',
+    'points.mediaSpeedrun': 'Média speedrun téléchargé',
+    'points.mediaScreenshot': 'Capture d\'écran téléchargée',
+    'points.mediaAchievement': 'Succès téléchargé',
+    'points.mediaStream': 'Stream en direct démarré',
     'points.fanartUpload': 'Fanart téléchargé',
     'points.fanartLike': 'Like fanart reçu',
     'points.quizCorrect': 'Quiz répondu correctement',
@@ -2695,6 +2710,10 @@ const translations = {
     // Points System
     'points.speedrunUpload': 'Speedrun caricato',
     'points.speedrunTop3': 'Top 3 Speedrun',
+    'points.mediaSpeedrun': 'Media speedrun caricato',
+    'points.mediaScreenshot': 'Screenshot caricato',
+    'points.mediaAchievement': 'Achievement caricato',
+    'points.mediaStream': 'Stream live avviato',
     'points.fanartUpload': 'Fanart caricato',
     'points.fanartLike': 'Like fanart ricevuto',
     'points.quizCorrect': 'Quiz risposto correttamente',
@@ -2904,7 +2923,16 @@ const translations = {
     'eventLeaderboard.fullLeaderboard': 'Classifica Completa',
     'eventLeaderboard.view': 'Visualizza',
     'eventLeaderboard.documentation': 'Documentazione',
-    'eventLeaderboard.viewMedia': 'Visualizza Media'
+    'eventLeaderboard.viewMedia': 'Visualizza Media',
+
+    // Success Messages
+    'success.saved': 'Salvato con successo',
+    'success.updated': 'Aggiornato con successo',
+    'success.deleted': 'Eliminato con successo',
+    'success.submitted': 'Inviato con successo',
+    'success.joined': 'Iscritto con successo',
+    'success.left': 'Abbandonato con successo',
+    'success.uploaded': 'Caricato con successo'
   },
 
   es: {
@@ -3113,6 +3141,10 @@ const translations = {
     // Points System
     'points.speedrunUpload': 'Speedrun subido',
     'points.speedrunTop3': 'Top 3 Speedrun',
+    'points.mediaSpeedrun': 'Media speedrun subido',
+    'points.mediaScreenshot': 'Captura de pantalla subida',
+    'points.mediaAchievement': 'Logro subido',
+    'points.mediaStream': 'Stream en vivo iniciado',
     'points.fanartUpload': 'Fanart subido',
     'points.fanartLike': 'Like fanart recibido',
     'points.quizCorrect': 'Quiz respondido correctamente',
@@ -3322,7 +3354,16 @@ const translations = {
     'common.veryRare': 'Muy raro',
     'common.ultraRare': 'Ultra raro',
     'common.unknown': 'Desconocido',
-    'common.genres': 'Géneros'
+    'common.genres': 'Géneros',
+
+    // Success Messages
+    'success.saved': 'Guardado con éxito',
+    'success.updated': 'Actualizado con éxito',
+    'success.deleted': 'Eliminado con éxito',
+    'success.submitted': 'Enviado con éxito',
+    'success.joined': 'Unido con éxito',
+    'success.left': 'Abandonado con éxito',
+    'success.uploaded': 'Subido con éxito'
   },
 
   el: {
@@ -3877,6 +3918,7 @@ const translations = {
     'success.submitted': 'Υποβλήθηκε επιτυχώς',
     'success.joined': 'Συμμετείχατε επιτυχώς',
     'success.left': 'Αποχωρήσατε επιτυχώς',
+    'success.uploaded': 'Ανέβηκε επιτυχώς',
     
     // Time and Date
     'time.seconds': 'Δευτερόλεπτα',
@@ -3956,6 +3998,10 @@ const translations = {
     // Points System
     'points.speedrunUpload': 'Speedrun ανέβηκε',
     'points.speedrunTop3': 'Top 3 Speedrun',
+    'points.mediaSpeedrun': 'Media speedrun ανέβηκε',
+    'points.mediaScreenshot': 'Screenshot ανέβηκε',
+    'points.mediaAchievement': 'Επίτευγμα ανέβηκε',
+    'points.mediaStream': 'Live stream ξεκίνησε',
     'points.fanartUpload': 'Fanart ανέβηκε',
     'points.fanartLike': 'Like fanart ελήφθη',
     'points.quizCorrect': 'Quiz απαντήθηκε σωστά',
@@ -4330,6 +4376,10 @@ const translations = {
     // Points System
     'points.speedrunUpload': 'Speedrun yüklendi',
     'points.speedrunTop3': 'Top 3 Speedrun',
+    'points.mediaSpeedrun': 'Media speedrun yüklendi',
+    'points.mediaScreenshot': 'Ekran görüntüsü yüklendi',
+    'points.mediaAchievement': 'Başarı yüklendi',
+    'points.mediaStream': 'Canlı yayın başlatıldı',
     'points.fanartUpload': 'Fanart yüklendi',
     'points.fanartLike': 'Fanart beğenisi alındı',
     'points.quizCorrect': 'Quiz doğru cevaplandı',
@@ -4411,7 +4461,16 @@ const translations = {
     'leaderboard.filterRegion': 'Bölge',
     'leaderboard.timeframeAllTime': 'Tüm Zamanlar',
     'leaderboard.timeframeSeason': 'Mevcut Sezon',
-    'leaderboard.timeframeMonth': 'Bu Ay'
+    'leaderboard.timeframeMonth': 'Bu Ay',
+
+    // Success Messages
+    'success.saved': 'Başarıyla kaydedildi',
+    'success.updated': 'Başarıyla güncellendi',
+    'success.deleted': 'Başarıyla silindi',
+    'success.submitted': 'Başarıyla gönderildi',
+    'success.joined': 'Başarıyla katıldı',
+    'success.left': 'Başarıyla ayrıldı',
+    'success.uploaded': 'Başarıyla yüklendi'
   },
 
   zh: {
@@ -4662,6 +4721,10 @@ const translations = {
     // Points System
     'points.speedrunUpload': '速通已上传',
     'points.speedrunTop3': '前3名速通',
+    'points.mediaSpeedrun': '媒体竞速上传',
+    'points.mediaScreenshot': '截图上传',
+    'points.mediaAchievement': '成就上传',
+    'points.mediaStream': '直播开始',
     'points.fanartUpload': '同人作品已上传',
     'points.fanartLike': '同人作品获得点赞',
     'points.quizCorrect': '测验回答正确',
@@ -4743,7 +4806,16 @@ const translations = {
     'leaderboard.filterRegion': '地区',
     'leaderboard.timeframeAllTime': '全部时间',
     'leaderboard.timeframeSeason': '当前赛季',
-    'leaderboard.timeframeMonth': '本月'
+    'leaderboard.timeframeMonth': '本月',
+
+    // Success Messages
+    'success.saved': '保存成功',
+    'success.updated': '更新成功',
+    'success.deleted': '删除成功',
+    'success.submitted': '提交成功',
+    'success.joined': '加入成功',
+    'success.left': '离开成功',
+    'success.uploaded': '上传成功'
   },
 
   ja: {
@@ -4994,6 +5066,10 @@ const translations = {
     // Points System
     'points.speedrunUpload': 'スピードランがアップロードされました',
     'points.speedrunTop3': 'トップ3スピードラン',
+    'points.mediaSpeedrun': 'メディアスピードラン投稿',
+    'points.mediaScreenshot': 'スクリーンショット投稿',
+    'points.mediaAchievement': '実績投稿',
+    'points.mediaStream': 'ライブストリーム開始',
     'points.fanartUpload': 'ファンアートがアップロードされました',
     'points.fanartLike': 'ファンアートにいいねを受信',
     'points.quizCorrect': 'クイズに正解',
@@ -5075,7 +5151,16 @@ const translations = {
     'leaderboard.filterRegion': '地域',
     'leaderboard.timeframeAllTime': '全期間',
     'leaderboard.timeframeSeason': '現在のシーズン',
-    'leaderboard.timeframeMonth': '今月'
+    'leaderboard.timeframeMonth': '今月',
+
+    // Success Messages
+    'success.saved': '保存に成功しました',
+    'success.updated': '更新に成功しました',
+    'success.deleted': '削除に成功しました',
+    'success.submitted': '送信に成功しました',
+    'success.joined': '参加に成功しました',
+    'success.left': '退出に成功しました',
+    'success.uploaded': 'アップロード成功'
   },
 
   ru: {
@@ -5328,6 +5413,10 @@ const translations = {
     // Points System
     'points.speedrunUpload': 'Спидран загружен',
     'points.speedrunTop3': 'Топ 3 Спидран',
+    'points.mediaSpeedrun': 'Медиа спидран загружен',
+    'points.mediaScreenshot': 'Скриншот загружен',
+    'points.mediaAchievement': 'Достижение загружено',
+    'points.mediaStream': 'Прямая трансляция начата',
     'points.fanartUpload': 'Фанарт загружен',
     'points.fanartLike': 'Лайк фанарта получен',
     'points.quizCorrect': 'Викторина отвечена правильно',
@@ -5409,7 +5498,16 @@ const translations = {
     'leaderboard.filterRegion': 'Регион',
     'leaderboard.timeframeAllTime': 'Все Время',
     'leaderboard.timeframeSeason': 'Текущий Сезон',
-    'leaderboard.timeframeMonth': 'Этот Месяц'
+    'leaderboard.timeframeMonth': 'Этот Месяц',
+
+    // Success Messages
+    'success.saved': 'Успешно сохранено',
+    'success.updated': 'Успешно обновлено',
+    'success.deleted': 'Успешно удалено',
+    'success.submitted': 'Успешно отправлено',
+    'success.joined': 'Успешно присоединились',
+    'success.left': 'Успешно покинули',
+    'success.uploaded': 'Успешно загружено'
   },
 
   pt: {
@@ -5662,6 +5760,10 @@ const translations = {
     // Points System
     'points.speedrunUpload': 'Speedrun enviado',
     'points.speedrunTop3': 'Top 3 Speedrun',
+    'points.mediaSpeedrun': 'Media speedrun enviado',
+    'points.mediaScreenshot': 'Screenshot enviado',
+    'points.mediaAchievement': 'Conquista enviada',
+    'points.mediaStream': 'Stream ao vivo iniciado',
     'points.fanartUpload': 'Fanart enviado',
     'points.fanartLike': 'Like fanart recebido',
     'points.quizCorrect': 'Quiz respondido corretamente',
@@ -5743,7 +5845,16 @@ const translations = {
     'leaderboard.filterRegion': 'Região',
     'leaderboard.timeframeAllTime': 'Todo o Tempo',
     'leaderboard.timeframeSeason': 'Época Atual',
-    'leaderboard.timeframeMonth': 'Este Mês'
+    'leaderboard.timeframeMonth': 'Este Mês',
+
+    // Success Messages
+    'success.saved': 'Guardado com sucesso',
+    'success.updated': 'Atualizado com sucesso',
+    'success.deleted': 'Eliminado com sucesso',
+    'success.submitted': 'Enviado com sucesso',
+    'success.joined': 'Juntou-se com sucesso',
+    'success.left': 'Saiu com sucesso',
+    'success.uploaded': 'Enviado com sucesso'
   },
 
   hi: {
@@ -6084,6 +6195,10 @@ const translations = {
     // Points System
     'points.speedrunUpload': 'स्पीडरन अपलोड किया गया',
     'points.speedrunTop3': 'टॉप 3 स्पीडरन',
+    'points.mediaSpeedrun': 'मीडिया स्पीडरन अपलोड',
+    'points.mediaScreenshot': 'स्क्रीनशॉट अपलोड',
+    'points.mediaAchievement': 'उपलब्धि अपलोड',
+    'points.mediaStream': 'लाइव स्ट्रीम शुरू',
     'points.fanartUpload': 'फैनआर्ट अपलोड किया गया',
     'points.fanartLike': 'फैनआर्ट लाइक प्राप्त',
     'points.quizCorrect': 'क्विज़ सही उत्तर',
@@ -6165,7 +6280,16 @@ const translations = {
     'leaderboard.filterRegion': 'क्षेत्र',
     'leaderboard.timeframeAllTime': 'सभी समय',
     'leaderboard.timeframeSeason': 'वर्तमान सीज़न',
-    'leaderboard.timeframeMonth': 'इस महीने'
+    'leaderboard.timeframeMonth': 'इस महीने',
+
+    // Success Messages
+    'success.saved': 'सफलतापूर्वक सहेजा गया',
+    'success.updated': 'सफलतापूर्वक अपडेट किया गया',
+    'success.deleted': 'सफलतापूर्वक हटाया गया',
+    'success.submitted': 'सफलतापूर्वक सबमिट किया गया',
+    'success.joined': 'सफलतापूर्वक शामिल हुए',
+    'success.left': 'सफलतापूर्वक छोड़ा',
+    'success.uploaded': 'सफलतापूर्वक अपलोड'
   },
 
   ar: {
@@ -6479,6 +6603,10 @@ const translations = {
     // Points System
     'points.speedrunUpload': 'تم رفع السباق السريع',
     'points.speedrunTop3': 'أفضل 3 سباق سريع',
+    'points.mediaSpeedrun': 'تم رفع سباق السرعة',
+    'points.mediaScreenshot': 'تم رفع لقطة الشاشة',
+    'points.mediaAchievement': 'تم رفع الإنجاز',
+    'points.mediaStream': 'تم بدء البث المباشر',
     'points.fanartUpload': 'تم رفع فن المعجبين',
     'points.fanartLike': 'تم استلام إعجاب فن المعجبين',
     'points.quizCorrect': 'تم الإجابة على الاختبار بشكل صحيح',
@@ -6560,7 +6688,16 @@ const translations = {
     'leaderboard.filterRegion': 'المنطقة',
     'leaderboard.timeframeAllTime': 'كل الأوقات',
     'leaderboard.timeframeSeason': 'الموسم الحالي',
-    'leaderboard.timeframeMonth': 'هذا الشهر'
+    'leaderboard.timeframeMonth': 'هذا الشهر',
+
+    // Success Messages
+    'success.saved': 'تم الحفظ بنجاح',
+    'success.updated': 'تم التحديث بنجاح',
+    'success.deleted': 'تم الحذف بنجاح',
+    'success.submitted': 'تم الإرسال بنجاح',
+    'success.joined': 'تم الانضمام بنجاح',
+    'success.left': 'تم المغادرة بنجاح',
+    'success.uploaded': 'تم الرفع بنجاح'
   }
 }
 

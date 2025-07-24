@@ -22,6 +22,10 @@ const PointsContext = createContext<PointsContextType | undefined>(undefined)
 const POINTS_CONFIG: PointsConfig = {
   'speedrun.upload': 50,
   'speedrun.top3': 25,
+  'media.speedrun': 50,
+  'media.screenshot': 25,
+  'media.achievement': 30,
+  'media.stream': 50,
   'fanart.upload': 40,
   'fanart.likeReceived': 5,
   'quiz.answerCorrect': 10,
