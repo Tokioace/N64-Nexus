@@ -25,6 +25,7 @@ import ForumThreadPage from './pages/ForumThreadPage'
 import ForumNewThreadPage from './pages/ForumNewThreadPage'
 import NewsFeedPage from './pages/NewsFeedPage'
 import FanArtPage from './pages/FanArtPage'
+import TypographyShowcase from './components/TypographyShowcase'
 import ErrorBoundary from './components/ErrorBoundary'
 import Layout from './components/Layout'
 
@@ -59,6 +60,7 @@ function App() {
                     <Route path="/forum/thread/:threadId" element={<ErrorBoundary><ForumThreadPage /></ErrorBoundary>} />
                     <Route path="/newsfeed" element={<NewsFeedPage />} />
                     <Route path="/fanart" element={<FanArtPage />} />
+                    <Route path="/typography-showcase" element={<TypographyShowcase />} />
                   </Routes>
                 </Layout>
               </ForumProvider>

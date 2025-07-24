@@ -4,16 +4,13 @@
 
 body {
   margin: 0;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
-  font-weight: 400;
-  letter-spacing: 0.25px;
-  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-  color: #FFFFFF;
+  color: #f1f5f9;
   min-height: 100vh;
   overflow-x: hidden; /* Prevent horizontal scroll globally */
 }
@@ -330,132 +327,7 @@ code {
   width: 100%;
 }
 
-/* 🎮 Battle64 Typography System - Retro + Modern */
-
-/* Heading Typography - Retro Style with Press Start 2P */
-.typography-h1 {
-  @apply font-heading text-fluid-h1 font-heading text-left;
-  color: #FFFFFF;
-}
-
-.typography-h2 {
-  @apply font-heading text-fluid-h2 font-heading text-left;
-  color: #FFFFFF;
-}
-
-.typography-h3 {
-  @apply font-heading text-fluid-h3 font-heading text-left;
-  color: #FFFFFF;
-}
-
-/* Special heading with highlight color */
-.typography-h1-highlight {
-  @apply font-heading text-fluid-h1 font-heading text-left;
-  color: #FFD700;
-}
-
-.typography-h2-highlight {
-  @apply font-heading text-fluid-h2 font-heading text-left;
-  color: #FFD700;
-}
-
-/* Body Typography - Modern & Readable with Inter */
-.typography-body {
-  @apply font-body text-fluid-body font-body text-left;
-  color: #FFFFFF;
-}
-
-.typography-body-secondary {
-  @apply font-body text-fluid-body font-body text-left;
-  color: #B0B0B0;
-}
-
-.typography-body-muted {
-  @apply font-body text-fluid-body font-body text-left;
-  color: #888888;
-}
-
-.typography-small {
-  @apply font-body text-fluid-small font-body text-left;
-  color: #B0B0B0;
-}
-
-/* Link Typography */
-.typography-link {
-  @apply font-body text-fluid-body font-body;
-  color: #66ccff;
-  text-decoration: none;
-  transition: color 0.2s ease;
-}
-
-.typography-link:hover {
-  color: #88ddff;
-  text-decoration: underline;
-}
-
-/* Centered Typography Variants */
-.typography-h1-center {
-  @apply typography-h1 text-center;
-}
-
-.typography-h2-center {
-  @apply typography-h2 text-center;
-}
-
-.typography-h3-center {
-  @apply typography-h3 text-center;
-}
-
-.typography-body-center {
-  @apply typography-body text-center;
-}
-
-/* Event Card Specific Typography */
-.typography-event-title {
-  @apply font-heading text-fluid-h3 font-subheading text-left;
-  color: #FFFFFF;
-}
-
-.typography-event-description {
-  @apply font-body text-fluid-body font-body text-left;
-  color: #B0B0B0;
-}
-
-/* Mobile Optimizations */
-@media (max-width: 768px) {
-  .typography-h1,
-  .typography-h1-highlight,
-  .typography-h1-center {
-    font-size: clamp(1.4rem, 4vw, 1.8rem);
-    line-height: 1.4;
-  }
-  
-  .typography-h2,
-  .typography-h2-highlight,
-  .typography-h2-center {
-    font-size: clamp(1.2rem, 3.5vw, 1.4rem);
-    line-height: 1.4;
-  }
-  
-  .typography-h3,
-  .typography-h3-center,
-  .typography-event-title {
-    font-size: clamp(1rem, 3vw, 1.2rem);
-    line-height: 1.4;
-  }
-  
-  .typography-body,
-  .typography-body-secondary,
-  .typography-body-muted,
-  .typography-body-center,
-  .typography-link,
-  .typography-event-description {
-    padding: 0 1rem;
-    font-size: clamp(0.9rem, 2.5vw, 0.95rem);
-  }
-}
-
-/* Legacy Responsive Text Sizes - Maintained for backward compatibility */
+/* Responsive Text Sizes */
 .text-responsive-xs {
   @apply text-xs sm:text-sm;
 }
