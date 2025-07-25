@@ -124,9 +124,9 @@ const ChatPage: React.FC = () => {
   return (
     <div className="chatWrapper w-full flex justify-center">
       <div className="max-w-[600px] w-full px-4">
-        <div className="flex flex-col" style={{ height: 'clamp(400px, calc(100vh - 120px), 900px)' }}>
+        <div className="flex flex-col space-y-4 sm:space-y-6">
           {/* Header - Improved Layout */}
-          <div className="simple-tile p-4 sm:p-6 mb-4 sm:mb-6">
+          <div className="simple-tile p-4 sm:p-6">
           <div className="relative">
             {/* CRT Mascot for larger screens */}
             <div className="hidden lg:block absolute -left-4 -top-4">
@@ -162,10 +162,10 @@ const ChatPage: React.FC = () => {
           )}
         </div>
 
-        {/* Messages Container - Improved responsive design */}
-        <div className="simple-tile flex-1 flex flex-col overflow-hidden">
+        {/* Messages Container - No internal scrolling */}
+        <div className="simple-tile flex flex-col">
           {/* Messages List */}
-          <div className="flex-1 overflow-y-auto p-4 space-y-4" style={{ minHeight: 0 }}>
+          <div className="p-4 space-y-4">
             {messages.map((message) => (
               <div key={message.id} className="flex gap-3">
                 {/* Avatar */}
@@ -251,13 +251,13 @@ const ChatPage: React.FC = () => {
           )}
         </div>
 
-          {/* Chat Guidelines - Improved Typography */}
-          <div className="simple-tile p-4 sm:p-6 mt-4 sm:mt-6 mb-6">
+          {/* Chat Guidelines - Full content display */}
+          <div className="simple-tile p-4 sm:p-6">
           <div className="flex items-center gap-2 mb-4">
             <Info className="w-5 h-5 text-blue-400" />
             <h3 className="font-semibold text-slate-200 text-lg">{t('chat.rulesTitle')}</h3>
           </div>
-          <ul className="text-sm text-slate-300 space-y-3 list-disc list-inside pl-2 leading-relaxed font-['Inter',system-ui,sans-serif] mb-4">
+          <ul className="text-sm text-slate-300 space-y-3 list-disc list-inside pl-2 leading-relaxed font-['Inter',system-ui,sans-serif]">
             <li>{t('chat.rules.respect')}</li>
             <li>{t('chat.rules.noSpam')}</li>
             <li>{t('chat.rules.shareExperience')}</li>
