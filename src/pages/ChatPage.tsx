@@ -152,8 +152,8 @@ const ChatPage: React.FC = () => {
           
           {/* Login Prompt for unauthenticated users */}
           {!isAuthenticated && (
-            <div className="bg-blue-600/20 border border-blue-500/30 rounded-lg p-4 text-center">
-              <p className="text-blue-200">
+            <div className="bg-blue-600/20 border border-blue-500/30 rounded-lg p-4 mb-4 text-center">
+              <p className="text-blue-200 mb-0">
                 <a href="/auth" className="text-blue-400 hover:text-blue-300 font-semibold underline">
                   {t('chat.joinPrompt')}
                 </a>
@@ -252,12 +252,12 @@ const ChatPage: React.FC = () => {
         </div>
 
           {/* Chat Guidelines - Improved Typography */}
-          <div className="simple-tile p-4 sm:p-6 mt-4 sm:mt-6">
+          <div className="simple-tile p-4 sm:p-6 mt-4 sm:mt-6 mb-6">
           <div className="flex items-center gap-2 mb-4">
             <Info className="w-5 h-5 text-blue-400" />
             <h3 className="font-semibold text-slate-200 text-lg">{t('chat.rulesTitle')}</h3>
           </div>
-          <ul className="text-sm text-slate-300 space-y-2 list-disc list-inside pl-2 leading-relaxed font-['Inter',system-ui,sans-serif]">
+          <ul className="text-sm text-slate-300 space-y-3 list-disc list-inside pl-2 leading-relaxed font-['Inter',system-ui,sans-serif] mb-4">
             <li>{t('chat.rules.respect')}</li>
             <li>{t('chat.rules.noSpam')}</li>
             <li>{t('chat.rules.shareExperience')}</li>
