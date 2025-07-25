@@ -604,7 +604,7 @@ const translations = {
     'community.sortByCollection': 'Nach Sammlung',
     'community.sortByRecords': 'Nach Rekorden',
     'community.sortByJoinDate': 'Nach Beitrittsdatum',
-    'community.loginToViewProfiles': 'Bitte logge dich ein, um Spielerprofile zu sehen.',
+
 
     // Language selector
     'language.german': 'Deutsch',
@@ -1494,7 +1494,7 @@ const translations = {
     'community.sortByCollection': 'By Collection',
     'community.sortByRecords': 'By Records',
     'community.sortByJoinDate': 'By Join Date',
-    'community.loginToViewProfiles': 'Please log in to view player profiles.',
+
 
     // Language selector
     'language.german': 'German',

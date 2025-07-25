@@ -268,15 +268,14 @@ const CommunityPage: React.FC = () => {
         )}
       </AuthGuard>
 
-        {/* Load More Button (for future pagination) */}
+      {/* Load More Button (for future pagination) */}
       {filteredAndSortedUsers.length >= 20 && (
         <div className="text-center">
           <button className="btn-secondary mobile-full sm:w-auto">
             {t('common.viewAll')}
           </button>
         </div>
-        )}
-      </AuthGuard>
+      )}
     </div>
   )
 }
