@@ -2088,3 +2088,54 @@ input[type="submit"] {
   padding: 1rem;
   box-sizing: border-box;
 }
+
+/* Enhanced Mobile Chat Styles */
+@media (max-width: 640px) {
+  .simple-tile {
+    padding: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  /* Ensure touch targets are at least 44px */
+  button {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Better input field sizing on mobile */
+  input[type="text"] {
+    font-size: 16px; /* Prevents zoom on iOS */
+    min-height: 44px;
+  }
+  
+  /* Optimize chat message spacing */
+  .chat-message {
+    padding: 0.5rem 0;
+  }
+  
+  /* Prevent horizontal scrolling */
+  .chat-container {
+    overflow-x: hidden;
+    word-wrap: break-word;
+  }
+  
+  /* Better scrolling performance */
+  .chat-messages {
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+  }
+}
+
+/* Improved focus states for accessibility */
+input:focus, button:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* Better text readability on mobile */
+@media (max-width: 640px) {
+  .text-responsive {
+    font-size: clamp(14px, 4vw, 16px);
+    line-height: 1.5;
+  }
+}

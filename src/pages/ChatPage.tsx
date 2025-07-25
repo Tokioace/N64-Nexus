@@ -122,146 +122,140 @@ const ChatPage: React.FC = () => {
   }
 
   return (
-    <div className="chatWrapper w-full flex justify-center">
-      <div className="max-w-[600px] w-full px-4">
-        <div className="flex flex-col" style={{ height: 'clamp(400px, calc(100vh - 120px), 900px)' }}>
-          {/* Header - Improved Layout */}
-          <div className="simple-tile p-4 sm:p-6 mb-4 sm:mb-6">
-          <div className="relative">
-            {/* CRT Mascot for larger screens */}
-            <div className="hidden lg:block absolute -left-4 -top-4">
-              <img 
-                src="/mascot.png" 
-                alt="Battle64 CRT-TV Mascot" 
-                className="w-16 h-16 opacity-90 hover:opacity-100 transition-opacity duration-300"
-              />
+    <div className="w-full min-h-screen bg-slate-900 px-2 sm:px-4 py-2 sm:py-4">
+      <div className="max-w-4xl mx-auto">
+        <div className="flex flex-col" style={{ height: 'calc(100vh - 140px)' }}>
+          {/* Header - Mobile Optimized */}
+          <div className="simple-tile mb-3 sm:mb-4">
+            <div className="text-center">
+              <div className="flex items-center justify-center gap-2 sm:gap-3 mb-2">
+                <MessageCircle className="w-6 h-6 sm:w-8 sm:h-8 text-blue-400" />
+                <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-slate-100">{t('chat.title')}</h1>
+              </div>
+              <div className="flex items-center justify-center gap-2 text-sm text-slate-400 mb-2">
+                <Users className="w-4 h-4" />
+                <span>{onlineUsers} {t('chat.onlineUsers')}</span>
+              </div>
+              <p className="text-slate-300 text-sm sm:text-base">{t('chat.description')}</p>
             </div>
             
-            <div className="text-center mb-4">
-              <div className="flex items-center justify-center gap-3 mb-2">
-                <MessageCircle className="w-8 h-8 text-blue-400" />
-                <h1 className="text-3xl font-bold text-slate-100">{t('chat.title')}</h1>
-                <div className="flex items-center gap-2 text-sm text-slate-400 ml-4">
-                  <Users className="w-4 h-4" />
-                  <span>{onlineUsers} {t('chat.onlineUsers')}</span>
-                </div>
+            {/* Login Prompt for unauthenticated users */}
+            {!isAuthenticated && (
+              <div className="bg-blue-600/20 border border-blue-500/30 rounded-lg p-3 sm:p-4 text-center mt-3">
+                <p className="text-blue-200 text-sm sm:text-base">
+                  <a href="/auth" className="text-blue-400 hover:text-blue-300 font-semibold underline">
+                    {t('chat.joinPrompt')}
+                  </a>
+                </p>
               </div>
-              <p className="text-slate-300 text-lg">{t('chat.description')}</p>
-            </div>
+            )}
           </div>
-          
-          {/* Login Prompt for unauthenticated users */}
-          {!isAuthenticated && (
-            <div className="bg-blue-600/20 border border-blue-500/30 rounded-lg p-4 text-center">
-              <p className="text-blue-200">
-                <a href="/auth" className="text-blue-400 hover:text-blue-300 font-semibold underline">
-                  {t('chat.joinPrompt')}
-                </a>
-              </p>
-            </div>
-          )}
-        </div>
 
-        {/* Messages Container - Improved responsive design */}
-        <div className="simple-tile flex-1 flex flex-col overflow-hidden">
-          {/* Messages List */}
-          <div className="flex-1 overflow-y-auto p-4 space-y-4" style={{ minHeight: 0 }}>
-            {messages.map((message) => (
-              <div key={message.id} className="flex gap-3">
-                {/* Avatar */}
-                <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full flex items-center justify-center text-lg flex-shrink-0">
-                  {message.avatar}
-                </div>
-                
-                {/* Message Content */}
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-3 mb-1 flex-wrap">
-                    <span className="font-semibold text-slate-100">
-                      {message.username}
-                    </span>
-                    {/* Points Display */}
-                    {message.userPoints !== undefined && (
-                      <div 
-                        className="flex items-center gap-1 px-2 py-1 bg-yellow-600/20 border border-yellow-500/30 rounded-full text-xs text-yellow-300 cursor-help"
-                        title={t('chat.pointsTooltip')}
-                      >
-                        <Star className="w-3 h-3" />
-                        <span>{message.userPoints.toLocaleString()} {t('chat.points')}</span>
-                      </div>
-                    )}
-                    <span className="text-xs text-slate-500">
-                      {formatDate(message.timestamp)}
-                    </span>
+          {/* Messages Container - Mobile Optimized */}
+          <div className="simple-tile flex-1 flex flex-col overflow-hidden">
+            {/* Messages List */}
+            <div className="flex-1 overflow-y-auto p-2 sm:p-4 space-y-3 sm:space-y-4" style={{ minHeight: 0 }}>
+              {messages.map((message) => (
+                <div key={message.id} className="flex gap-2 sm:gap-3">
+                  {/* Avatar - Smaller on mobile */}
+                  <div className="w-8 h-8 sm:w-12 sm:h-12 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full flex items-center justify-center text-sm sm:text-lg flex-shrink-0">
+                    {message.avatar}
                   </div>
-                  <p className="text-slate-200 break-words leading-relaxed">
-                    {message.message}
-                  </p>
+                  
+                  {/* Message Content */}
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2 sm:gap-3 mb-1 flex-wrap">
+                      <span className="font-semibold text-slate-100 text-sm sm:text-base">
+                        {message.username}
+                      </span>
+                      {/* Points Display - Smaller on mobile */}
+                      {message.userPoints !== undefined && (
+                        <div 
+                          className="flex items-center gap-1 px-1.5 sm:px-2 py-0.5 sm:py-1 bg-yellow-600/20 border border-yellow-500/30 rounded-full text-xs text-yellow-300 cursor-help"
+                          title={t('chat.pointsTooltip')}
+                        >
+                          <Star className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
+                          <span className="hidden sm:inline">{message.userPoints.toLocaleString()} {t('chat.points')}</span>
+                          <span className="sm:hidden">{message.userPoints > 999 ? `${Math.floor(message.userPoints/1000)}k` : message.userPoints}</span>
+                        </div>
+                      )}
+                      <span className="text-xs text-slate-500">
+                        {formatDate(message.timestamp)}
+                      </span>
+                    </div>
+                    <p className="text-slate-200 break-words leading-relaxed text-sm sm:text-base">
+                      {message.message}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            ))}
-            <div ref={messagesEndRef} />
-          </div>
+              ))}
+              <div ref={messagesEndRef} />
+            </div>
 
-          {/* Message Input */}
-          {isAuthenticated ? (
-            <div className="border-t border-slate-700 p-4">
-              <form onSubmit={handleSendMessage} className="flex gap-3">
-                <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full flex items-center justify-center text-lg flex-shrink-0">
-                  {user?.avatar || '🎮'}
-                </div>
-                <div className="w-full flex flex-col sm:flex-row gap-2">
-                  <input
-                    type="text"
-                    value={newMessage}
-                    onChange={(e) => setNewMessage(e.target.value)}
-                    placeholder={t('chat.messagePlaceholder')}
-                    className="flex-grow px-4 py-2 rounded bg-slate-700 border border-slate-600 text-slate-100 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
-                    maxLength={500}
-                  />
-                  <button
-                    type="submit"
-                    disabled={!newMessage.trim()}
-                    className="px-4 py-2 rounded bg-blue-600 hover:bg-blue-700 disabled:bg-slate-600 disabled:cursor-not-allowed text-white transition-colors flex items-center gap-2 justify-center"
-                  >
-                    <Send className="w-4 h-4" />
-                    <span className="hidden sm:inline">{t('chat.send')}</span>
-                  </button>
-                </div>
-              </form>
-              <div className="text-xs text-slate-500 mt-2 flex items-center justify-between">
-                <span>
-                  {newMessage.length}/500 {t('chat.charactersLeft')} • {t('chat.beRespectful')}
-                </span>
-                {userPoints && (
-                  <span className="text-yellow-400">
-                    <Star className="w-3 h-3 inline mr-1" />
-                    {userPoints.totalPoints.toLocaleString()} {t('chat.points')}
+            {/* Message Input - Mobile Optimized */}
+            {isAuthenticated ? (
+              <div className="border-t border-slate-700 p-2 sm:p-4">
+                <form onSubmit={handleSendMessage} className="space-y-2">
+                  <div className="flex gap-2 sm:gap-3">
+                    <div className="w-8 h-8 sm:w-12 sm:h-12 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full flex items-center justify-center text-sm sm:text-lg flex-shrink-0">
+                      {user?.avatar || '🎮'}
+                    </div>
+                    <div className="flex-1 flex gap-2">
+                      <input
+                        type="text"
+                        value={newMessage}
+                        onChange={(e) => setNewMessage(e.target.value)}
+                        placeholder={t('chat.messagePlaceholder')}
+                        className="flex-1 px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg bg-slate-700 border border-slate-600 text-slate-100 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all text-sm sm:text-base"
+                        maxLength={500}
+                      />
+                      <button
+                        type="submit"
+                        disabled={!newMessage.trim()}
+                        className="px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg bg-blue-600 hover:bg-blue-700 disabled:bg-slate-600 disabled:cursor-not-allowed text-white transition-colors flex items-center gap-1 sm:gap-2 justify-center min-w-[44px] sm:min-w-auto"
+                      >
+                        <Send className="w-4 h-4" />
+                        <span className="hidden sm:inline text-sm sm:text-base">{t('chat.send')}</span>
+                      </button>
+                    </div>
+                  </div>
+                </form>
+                <div className="text-xs text-slate-500 mt-2 flex items-center justify-between">
+                  <span>
+                    {newMessage.length}/500
+                    <span className="hidden sm:inline"> {t('chat.charactersLeft')} • {t('chat.beRespectful')}</span>
                   </span>
-                )}
+                  {userPoints && (
+                    <span className="text-yellow-400 flex items-center gap-1">
+                      <Star className="w-3 h-3" />
+                      <span className="hidden sm:inline">{userPoints.totalPoints.toLocaleString()} {t('chat.points')}</span>
+                      <span className="sm:hidden">{userPoints.totalPoints > 999 ? `${Math.floor(userPoints.totalPoints/1000)}k` : userPoints.totalPoints}</span>
+                    </span>
+                  )}
+                </div>
               </div>
-            </div>
-          ) : (
-            <div className="border-t border-slate-700 p-6 text-center">
-              <p className="text-slate-400 text-lg">
-                <a href="/auth" className="text-blue-400 hover:text-blue-300 font-semibold">
-                  {t('chat.joinPrompt')}
-                </a>
-              </p>
-            </div>
-          )}
-        </div>
-
-          {/* Chat Guidelines - Improved Typography */}
-          <div className="simple-tile p-4 sm:p-6 mt-4 sm:mt-6">
-          <div className="flex items-center gap-2 mb-4">
-            <Info className="w-5 h-5 text-blue-400" />
-            <h3 className="font-semibold text-slate-200 text-lg">{t('chat.rulesTitle')}</h3>
+            ) : (
+              <div className="border-t border-slate-700 p-4 sm:p-6 text-center">
+                <p className="text-slate-400 text-sm sm:text-lg">
+                  <a href="/auth" className="text-blue-400 hover:text-blue-300 font-semibold">
+                    {t('chat.joinPrompt')}
+                  </a>
+                </p>
+              </div>
+            )}
           </div>
-          <ul className="text-sm text-slate-300 space-y-2 list-disc list-inside pl-2 leading-relaxed font-['Inter',system-ui,sans-serif]">
-            <li>{t('chat.rules.respect')}</li>
-            <li>{t('chat.rules.noSpam')}</li>
-            <li>{t('chat.rules.shareExperience')}</li>
-            <li>{t('chat.rules.noLinks')}</li>
+
+          {/* Chat Guidelines - Mobile Optimized */}
+          <div className="simple-tile mt-3 sm:mt-4">
+            <div className="flex items-center gap-2 mb-3">
+              <Info className="w-4 h-4 sm:w-5 sm:h-5 text-blue-400" />
+              <h3 className="font-semibold text-slate-200 text-sm sm:text-lg">{t('chat.rulesTitle')}</h3>
+            </div>
+            <ul className="text-xs sm:text-sm text-slate-300 space-y-1 sm:space-y-2 list-disc list-inside pl-2 leading-relaxed">
+              <li>{t('chat.rules.respect')}</li>
+              <li>{t('chat.rules.noSpam')}</li>
+              <li>{t('chat.rules.shareExperience')}</li>
+              <li>{t('chat.rules.noLinks')}</li>
             </ul>
           </div>
         </div>
