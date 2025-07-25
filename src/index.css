@@ -1552,10 +1552,9 @@ code {
   border-radius: 2px;
 }
 
-  .swipeable-card {
-    scroll-snap-align: start;
-    flex-shrink: 0;
-  }
+.swipeable-card {
+  scroll-snap-align: start;
+  flex-shrink: 0;
 }
 
 /* Additional responsive utilities */

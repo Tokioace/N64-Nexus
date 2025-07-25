@@ -101,7 +101,7 @@ const ChatPage: React.FC = () => {
   }
 
   return (
-    <div className="container mx-auto px-4 py-6 h-[calc(100vh-120px)]">
+          <div className="container mx-auto px-4 py-6" style={{ height: 'clamp(400px, calc(100vh - 120px), 800px)' }}>
       <div className="flex flex-col h-full max-w-4xl mx-auto">
         {/* Header */}
         <div className="simple-tile p-4 mb-4">
