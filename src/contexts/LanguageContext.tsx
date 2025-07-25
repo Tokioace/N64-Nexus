@@ -423,6 +423,23 @@ const translations = {
     'community.totalScore': 'Gesamtpunktzahl',
     'community.recentRecord': 'Neuester Rekord:',
     
+    // Chat
+    'chat.title': 'Community Chat',
+    'chat.description': 'Chatte mit anderen N64-Fans',
+    'chat.joinPrompt': 'Melde dich an, um am Chat teilzunehmen',
+    'chat.rulesTitle': 'Chat-Regeln',
+    'chat.rules.respect': 'Sei respektvoll und freundlich zu anderen Mitgliedern',
+    'chat.rules.noSpam': 'Keine Beleidigungen, Spam oder Off-Topic-Diskussionen',
+    'chat.rules.shareExperience': 'Teile deine N64-Erfahrungen und hilf anderen Spielern',
+    'chat.rules.noLinks': 'Verwende keine externen Links ohne Kontext',
+    'chat.onlineUsers': 'online',
+    'chat.messagePlaceholder': 'Schreibe eine Nachricht...',
+    'chat.charactersLeft': 'Zeichen',
+    'chat.beRespectful': 'Sei respektvoll und freundlich',
+    'chat.points': 'Punkte',
+    'chat.pointsTooltip': 'Diese Punkte fließen in dein Fan-Ranking ein!',
+    'chat.pointsEarned': 'Punkte erhalten!',
+    
     // Leaderboard
     'leaderboard.title': 'Bestenliste',
     'leaderboard.pageTitle': 'Battle64 Bestenliste',
@@ -732,6 +749,8 @@ const translations = {
     'points.forumPost': 'Forumsbeitrag erstellt',
     'points.forumReply': 'Forum Antwort verfasst',
     'points.chatMessage': 'Chat Nachricht gesendet',
+    'points.chatHelpfulReply': 'Hilfreiche Chat Antwort',
+    'points.chatLikeReceived': 'Chat Like erhalten',
     'points.profileComplete': 'Profil vervollständigt',
     'points.marketSale': 'Marktplatz Verkauf bestätigt',
     'points.newsShared': 'News geteilt',
@@ -1276,6 +1295,23 @@ const translations = {
     'community.gamesPlayed': 'Games Played',
     'community.totalScore': 'Total Score',
     'community.recentRecord': 'Recent Record:',
+    
+    // Chat
+    'chat.title': 'Community Chat',
+    'chat.description': 'Chat with other N64 fans',
+    'chat.joinPrompt': 'Sign in to join the chat',
+    'chat.rulesTitle': 'Chat Rules',
+    'chat.rules.respect': 'Be respectful and friendly to other members',
+    'chat.rules.noSpam': 'No insults, spam or off-topic discussions',
+    'chat.rules.shareExperience': 'Share your N64 experiences and help other players',
+    'chat.rules.noLinks': 'Do not use external links without context',
+    'chat.onlineUsers': 'online',
+    'chat.messagePlaceholder': 'Write a message...',
+    'chat.charactersLeft': 'characters',
+    'chat.beRespectful': 'Be respectful and friendly',
+    'chat.points': 'Points',
+    'chat.pointsTooltip': 'These points contribute to your fan ranking!',
+    'chat.pointsEarned': 'Points earned!',
     
     // Leaderboard
     'leaderboard.title': 'Leaderboard',
@@ -2103,6 +2139,23 @@ const translations = {
     'community.gamesPlayed': 'Jeux joués',
     'community.totalScore': 'Score total',
     'community.recentRecord': 'Record récent:',
+    
+    // Chat
+    'chat.title': 'Chat Communautaire',
+    'chat.description': 'Chattez avec d\'autres fans de N64',
+    'chat.joinPrompt': 'Connectez-vous pour rejoindre le chat',
+    'chat.rulesTitle': 'Règles du Chat',
+    'chat.rules.respect': 'Soyez respectueux et amicaux envers les autres membres',
+    'chat.rules.noSpam': 'Pas d\'insultes, de spam ou de discussions hors-sujet',
+    'chat.rules.shareExperience': 'Partagez vos expériences N64 et aidez les autres joueurs',
+    'chat.rules.noLinks': 'N\'utilisez pas de liens externes sans contexte',
+    'chat.onlineUsers': 'en ligne',
+    'chat.messagePlaceholder': 'Écrivez un message...',
+    'chat.charactersLeft': 'caractères',
+    'chat.beRespectful': 'Soyez respectueux et amical',
+    'chat.points': 'Points',
+    'chat.pointsTooltip': 'Ces points contribuent à votre classement de fan!',
+    'chat.pointsEarned': 'Points gagnés!',
     
     // Leaderboard
     'leaderboard.title': 'Classement',
