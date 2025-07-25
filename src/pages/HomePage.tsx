@@ -384,30 +384,35 @@ const HomePage: React.FC = () => {
   )
 
   return (
-    <div className="container-lg py-responsive space-responsive responsive-max-width responsive-overflow-hidden">
+    <div className="container-lg space-responsive responsive-max-width responsive-overflow-hidden">
       {/* Welcome Section with Mascot */}
       <div className="text-center mb-responsive responsive-max-width">
-        <div className="battle64-header-container mb-2">
+        <div className="battle64-header-container mb-responsive">
           {/* Mascot Image */}
           <img 
             src="/mascot.png" 
             alt="Battle64 CRT-TV Mascot" 
-            className="battle64-mascot h-48 sm:h-56 md:h-64 lg:h-80 w-auto object-contain"
+            className="battle64-mascot"
           />
         </div>
         
         {/* Welcome Back Text */}
-        <p className="battle64-welcome-text mt-2">
+        <p className="battle64-welcome-text">
           {user ? `${t('home.welcome')}, ${user.username}!` : t('home.welcome')}
         </p>
         
-        <p className="text-responsive-base text-slate-400 max-w-2xl mx-auto responsive-word-break px-2 mt-4">
+        <p className="text-responsive-base text-slate-400 responsive-word-break" style={{ 
+          maxWidth: 'min(42rem, 90vw)', 
+          margin: '0 auto', 
+          marginTop: 'clamp(1rem, 2vw, 1.5rem)',
+          padding: '0 clamp(0.5rem, 2vw, 1rem)'
+        }}>
           {t('home.subtitle')}
         </p>
-        <div className="mt-4 text-responsive-sm text-slate-500">
-          <span className="block sm:inline">{formatDate(currentTime)}</span>
-          <span className="hidden sm:inline mx-2">•</span>
-          <span className="block sm:inline">{formatTime(currentTime)}</span>
+        <div className="text-responsive-sm text-slate-500 responsive-flex-center" style={{ marginTop: 'clamp(1rem, 2vw, 1.5rem)' }}>
+          <span>{formatDate(currentTime)}</span>
+          <span className="hidden sm:inline">•</span>
+          <span>{formatTime(currentTime)}</span>
         </div>
       </div>
 
@@ -470,28 +475,28 @@ const HomePage: React.FC = () => {
         />
 
         {/* Other Content - FanArts and Media */}
-        <div className="swipeable-grid-2col">
+        <div className="responsive-grid-2">
           <SingleFanArtCard 
             fanArtItems={fanArtItems}
-            className="w-full"
+            className="responsive-max-width"
           />
           
           <SingleMediaCard 
             mediaItems={mediaItems}
-            className="w-full"
+            className="responsive-max-width"
           />
         </div>
 
         {/* Records and Marketplace */}
-        <div className="swipeable-grid-2col">
+        <div className="responsive-grid-2">
           <SingleRecordCard 
             recordItems={recordItems}
-            className="w-full"
+            className="responsive-max-width"
           />
           
           <SingleMarketplaceCard 
             marketplaceItems={marketplaceItems}
-            className="w-full"
+            className="responsive-max-width"
           />
         </div>
 

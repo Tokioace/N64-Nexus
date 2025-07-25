@@ -65,7 +65,7 @@ const CreateOfferModal: React.FC<CreateOfferModalProps> = ({ isOpen, onClose, on
 
   return (
     <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-3 sm:p-4">
-      <div className="bg-slate-800 rounded-xl max-w-2xl w-full max-h-[95vh] sm:max-h-[90vh] overflow-y-auto">
+              <div className="bg-slate-800 rounded-xl max-w-2xl w-full overflow-y-auto" style={{ maxHeight: 'clamp(400px, 90vh, 800px)' }}>
         <div className="p-4 sm:p-6">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-6 gap-4 sm:gap-0">
             <h2 className="text-responsive-xl font-bold text-slate-100">{t('marketplace.createOffer')}</h2>
