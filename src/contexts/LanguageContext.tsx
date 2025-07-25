@@ -440,6 +440,11 @@ const translations = {
     'chat.pointsTooltip': 'Diese Punkte fließen in dein Fan-Ranking ein!',
     'chat.pointsEarned': 'Punkte erhalten!',
     'chat.send': 'Senden',
+    'chat.searchUsers': 'Benutzer suchen...',
+    'chat.newChat': 'Neuer Chat',
+    'chat.privateChat': 'Privater Chat',
+    'chat.startChat': 'Chat starten',
+    'chat.chats': 'Chats',
     
     // Leaderboard
     'leaderboard.title': 'Bestenliste',
@@ -1314,6 +1319,11 @@ const translations = {
     'chat.pointsTooltip': 'These points contribute to your fan ranking!',
     'chat.pointsEarned': 'Points earned!',
     'chat.send': 'Send',
+    'chat.searchUsers': 'Search users...',
+    'chat.newChat': 'New Chat',
+    'chat.privateChat': 'Private Chat',
+    'chat.startChat': 'Start Chat',
+    'chat.chats': 'Chats',
     
     // Leaderboard
     'leaderboard.title': 'Leaderboard',
@@ -2159,6 +2169,11 @@ const translations = {
     'chat.pointsTooltip': 'Ces points contribuent à votre classement de fan!',
     'chat.pointsEarned': 'Points gagnés!',
     'chat.send': 'Envoyer',
+    'chat.searchUsers': 'Rechercher des utilisateurs...',
+    'chat.newChat': 'Nouveau Chat',
+    'chat.privateChat': 'Chat Privé',
+    'chat.startChat': 'Démarrer le Chat',
+    'chat.chats': 'Chats',
     
     // Leaderboard
     'leaderboard.title': 'Classement',
