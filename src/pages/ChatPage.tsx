@@ -23,6 +23,8 @@ const ChatPage: React.FC = () => {
   const [onlineUsers] = useState(12) // Mock online users count
   const [lastPointsTime, setLastPointsTime] = useState(0)
   const messagesEndRef = useRef<HTMLDivElement>(null)
+  const messagesContainerRef = useRef<HTMLDivElement>(null)
+  const [isUserScrolling, setIsUserScrolling] = useState(false)
 
   // Mock initial messages with points
   useEffect(() => {
@@ -58,13 +60,46 @@ const ChatPage: React.FC = () => {
     setMessages(mockMessages)
   }, [])
 
-  // Auto scroll to bottom when new messages arrive
+  // Handle scroll detection to prevent auto-scroll when user is manually scrolling
   useEffect(() => {
-    scrollToBottom()
-  }, [messages])
+    const container = messagesContainerRef.current
+    if (!container) return
+
+    let scrollTimeout: NodeJS.Timeout
+
+    const handleScroll = () => {
+      setIsUserScrolling(true)
+      clearTimeout(scrollTimeout)
+      scrollTimeout = setTimeout(() => {
+        setIsUserScrolling(false)
+      }, 1000)
+    }
+
+    container.addEventListener('scroll', handleScroll, { passive: true })
+    return () => {
+      container.removeEventListener('scroll', handleScroll)
+      clearTimeout(scrollTimeout)
+    }
+  }, [])
+
+  // Auto scroll to bottom when new messages arrive (only if user isn't scrolling)
+  useEffect(() => {
+    if (!isUserScrolling) {
+      scrollToBottom()
+    }
+  }, [messages, isUserScrolling])
 
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
+    const container = messagesContainerRef.current
+    if (container) {
+      const isNearBottom = container.scrollHeight - container.scrollTop - container.clientHeight < 100
+      if (isNearBottom || !isUserScrolling) {
+        messagesEndRef.current?.scrollIntoView({ 
+          behavior: 'smooth',
+          block: 'end'
+        })
+      }
+    }
   }
 
   const handleSendMessage = async (e: React.FormEvent) => {
@@ -86,6 +121,9 @@ const ChatPage: React.FC = () => {
 
     setMessages(prev => [...prev, message])
     setNewMessage('')
+
+    // Force scroll to bottom for new messages from current user
+    setIsUserScrolling(false)
 
     // Award points for meaningful messages (with cooldown)
     if (canEarnPoints && newMessage.trim().length > 10) {
@@ -123,10 +161,10 @@ const ChatPage: React.FC = () => {
 
   return (
     <div className="w-full max-w-none px-2 sm:px-4 py-4 sm:py-6" style={{ height: 'clamp(400px, calc(100vh - 120px), 900px)' }}>
-      <div className="container mx-auto max-w-6xl">
+      <div className="container mx-auto max-w-6xl h-full">
         <div className="flex flex-col h-full">
           {/* Header - Improved Layout */}
-          <div className="simple-tile p-4 sm:p-6 mb-4 sm:mb-6">
+          <div className="simple-tile p-4 sm:p-6 mb-4 sm:mb-6 flex-shrink-0">
           <div className="relative">
             {/* CRT Mascot for larger screens */}
             <div className="hidden lg:block absolute -left-4 -top-4">
@@ -152,7 +190,7 @@ const ChatPage: React.FC = () => {
           
           {/* Login Prompt for unauthenticated users */}
           {!isAuthenticated && (
-            <div className="bg-blue-600/20 border border-blue-500/30 rounded-lg p-4 text-center">
+            <div className="bg-blue-600/20 border border-blue-500/30 rounded-lg p-4 text-center flex-shrink-0 mb-4">
               <p className="text-blue-200">
                 <a href="/auth" className="text-blue-400 hover:text-blue-300 font-semibold underline">
                   {t('chat.joinPrompt')}
@@ -162,10 +200,19 @@ const ChatPage: React.FC = () => {
           )}
         </div>
 
-        {/* Messages Container - Improved responsive design */}
-        <div className="simple-tile flex-1 flex flex-col overflow-hidden">
-          {/* Messages List */}
-          <div className="flex-1 overflow-y-auto p-4 space-y-4" style={{ minHeight: 0 }}>
+        {/* Messages Container - Fixed scrolling behavior */}
+        <div className="simple-tile flex-1 flex flex-col overflow-hidden min-h-0">
+          {/* Messages List - Improved scrolling */}
+          <div 
+            ref={messagesContainerRef}
+            className="flex-1 overflow-y-auto p-4 space-y-4 scrollable-container"
+            style={{ 
+              minHeight: 0,
+              scrollBehavior: 'smooth',
+              WebkitOverflowScrolling: 'touch',
+              overscrollBehavior: 'contain'
+            }}
+          >
             {messages.map((message) => (
               <div key={message.id} className="flex gap-3">
                 {/* Avatar */}
@@ -204,7 +251,7 @@ const ChatPage: React.FC = () => {
 
           {/* Message Input */}
           {isAuthenticated ? (
-            <div className="border-t border-slate-700 p-4">
+            <div className="border-t border-slate-700 p-4 flex-shrink-0">
               <form onSubmit={handleSendMessage} className="flex gap-3">
                 <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full flex items-center justify-center text-lg flex-shrink-0">
                   {user?.avatar || '🎮'}
@@ -240,7 +287,7 @@ const ChatPage: React.FC = () => {
               </div>
             </div>
           ) : (
-            <div className="border-t border-slate-700 p-6 text-center">
+            <div className="border-t border-slate-700 p-6 text-center flex-shrink-0">
               <p className="text-slate-400 text-lg">
                 <a href="/auth" className="text-blue-400 hover:text-blue-300 font-semibold">
                   {t('chat.joinPrompt')}
@@ -251,7 +298,7 @@ const ChatPage: React.FC = () => {
         </div>
 
           {/* Chat Guidelines - Improved Typography */}
-          <div className="simple-tile p-4 sm:p-6 mt-4 sm:mt-6">
+          <div className="simple-tile p-4 sm:p-6 mt-4 sm:mt-6 flex-shrink-0">
           <div className="flex items-center gap-2 mb-4">
             <Info className="w-5 h-5 text-blue-400" />
             <h3 className="font-semibold text-slate-200 text-lg">{t('chat.rulesTitle')}</h3>

@@ -13,6 +13,7 @@ import {
   Package
 } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import AuthGuard from '../components/AuthGuard'
 
 const ForumPage: React.FC = () => {
   const { categories, stats, loading, selectCategory } = useForum()
@@ -113,9 +114,13 @@ const ForumPage: React.FC = () => {
         ))}
       </div>
 
-      {/* Categories */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 responsive-max-width">
-        {categories.map((category) => (
+      {/* Categories - Protected by AuthGuard */}
+      <AuthGuard 
+        customMessage={t('forum.loginToViewCategories')}
+        className="min-h-[400px]"
+      >
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 responsive-max-width">
+          {categories.map((category) => (
           <Link
             key={category.id}
             to={`/forum/category/${category.id}`}
@@ -163,11 +168,11 @@ const ForumPage: React.FC = () => {
                 </div>
               )}
             </div>
-          </Link>
-        ))}
-      </div>
+            </Link>
+          ))}
+        </div>
 
-      {/* Welcome Message for New Users */}
+        {/* Welcome Message for New Users */}
       {user && (
         <div className="mt-responsive simple-tile responsive-max-width">
           <div className="simple-tile-header">
@@ -185,7 +190,8 @@ const ForumPage: React.FC = () => {
             </div>
           </div>
         </div>
-      )}
+        )}
+      </AuthGuard>
     </div>
   )
 }

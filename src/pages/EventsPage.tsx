@@ -4,6 +4,7 @@ import { useUser } from '../contexts/UserContext'
 import { useLanguage } from '../contexts/LanguageContext'
 import RaceSubmissionModal, { RaceSubmissionData } from '../components/RaceSubmissionModal'
 import EventLeaderboard from '../components/EventLeaderboard'
+import AuthGuard from '../components/AuthGuard'
 import { 
   Trophy, 
   Calendar, 
@@ -73,7 +74,8 @@ const EventsPage: React.FC = () => {
 
   const handleJoinEvent = async (eventId: string) => {
     if (!user) {
-      alert(t('auth.loginRequiredForEvents'))
+      // Redirect to auth page instead of just showing alert
+      window.location.href = '/auth'
       return
     }
 
@@ -208,12 +210,16 @@ const EventsPage: React.FC = () => {
         </div>
       </div>
 
-      {/* Events List */}
-      <div className="space-y-6 responsive-max-width">
-        {filteredEvents.length === 0 ? (
-          <div className="simple-tile text-center py-8 sm:py-12 responsive-max-width">
-            <Trophy className="w-12 h-12 sm:w-16 sm:h-16 text-slate-500 mx-auto mb-4" />
-            <h3 className="text-lg sm:text-xl font-bold text-slate-300 mb-2 responsive-word-break">
+      {/* Events List - Protected by AuthGuard */}
+      <AuthGuard 
+        customMessage={t('events.loginToViewEvents')}
+        className="min-h-[400px]"
+      >
+        <div className="space-y-6 responsive-max-width">
+          {filteredEvents.length === 0 ? (
+            <div className="simple-tile text-center py-8 sm:py-12 responsive-max-width">
+              <Trophy className="w-12 h-12 sm:w-16 sm:h-16 text-slate-500 mx-auto mb-4" />
+              <h3 className="text-lg sm:text-xl font-bold text-slate-300 mb-2 responsive-word-break">
               {t(`events.noEvents.${selectedTab}`)}
             </h3>
             <p className="text-slate-400 responsive-word-break">
@@ -396,9 +402,10 @@ const EventsPage: React.FC = () => {
                 )}
               </div>
             )
-          })
-        )}
-      </div>
+            })
+          )}
+        </div>
+      </AuthGuard>
 
       {/* Footer */}
       <div className="text-center mt-12 responsive-max-width">

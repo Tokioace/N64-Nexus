@@ -795,8 +795,31 @@ code {
 .scrollable-container {
   -webkit-overflow-scrolling: touch;
   overscroll-behavior: contain;
+  overscroll-behavior-y: contain;
   touch-action: pan-y;
   scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(59, 130, 246, 0.5) rgba(30, 41, 59, 0.3);
+}
+
+/* Custom scrollbar for webkit browsers */
+.scrollable-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.scrollable-container::-webkit-scrollbar-track {
+  background: rgba(30, 41, 59, 0.3);
+  border-radius: 4px;
+}
+
+.scrollable-container::-webkit-scrollbar-thumb {
+  background: rgba(59, 130, 246, 0.5);
+  border-radius: 4px;
+  border: 1px solid rgba(30, 41, 59, 0.5);
+}
+
+.scrollable-container::-webkit-scrollbar-thumb:hover {
+  background: rgba(59, 130, 246, 0.7);
 }
 
 /* Improve mobile touch scrolling */
@@ -808,6 +831,16 @@ code {
   .sidebar .scrollable-container {
     overscroll-behavior-y: contain;
     -webkit-overflow-scrolling: touch;
+  }
+
+  /* Chat specific mobile improvements */
+  .scrollable-container {
+    /* Prevent elastic bounce on iOS */
+    overscroll-behavior: none;
+    /* Improve momentum scrolling on iOS */
+    -webkit-overflow-scrolling: touch;
+    /* Prevent scroll chaining */
+    overscroll-behavior-y: contain;
   }
 }
 
