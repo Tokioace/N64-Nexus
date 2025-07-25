@@ -31,25 +31,32 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen = false, onClose }) => {
     <div className={`sidebar ${isOpen ? 'open' : ''}`}>
       <div className="flex flex-col h-full responsive-max-width" style={{ touchAction: 'pan-y' }}>
         {/* Header with Logo and Language Selector */}
-        <div className="flex items-center justify-between p-3 sm:p-4 lg:p-6 border-b border-slate-700 responsive-max-width">
-          <h1 className="text-lg sm:text-xl lg:text-2xl font-bold text-blue-400 truncate">Battle64</h1>
-          <div className="flex-shrink-0 ml-2">
+        <div className="flex items-center justify-between border-b border-slate-700 responsive-max-width" style={{ padding: 'clamp(0.75rem, 2vw, 1.5rem)' }}>
+          <h1 className="font-bold text-blue-400 truncate" style={{ fontSize: 'clamp(1.125rem, 3vw, 1.5rem)' }}>Battle64</h1>
+          <div className="flex-shrink-0" style={{ marginLeft: 'clamp(0.5rem, 1vw, 0.75rem)' }}>
             <LanguageSelector />
           </div>
         </div>
         
         {/* User Info Section */}
         {isAuthenticated && user && (
-          <div className="p-3 sm:p-4 border-b border-slate-700 responsive-max-width">
-            <div className="flex items-center gap-2 sm:gap-3">
-              <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full flex items-center justify-center text-sm sm:text-lg flex-shrink-0">
+          <div className="border-b border-slate-700 responsive-max-width" style={{ padding: 'clamp(0.75rem, 2vw, 1rem)' }}>
+            <div className="flex items-center" style={{ gap: 'clamp(0.5rem, 1.5vw, 0.75rem)' }}>
+              <div 
+                className="bg-gradient-to-br from-blue-600 to-purple-600 rounded-full flex items-center justify-center flex-shrink-0"
+                style={{ 
+                  width: 'clamp(32px, 8vw, 40px)', 
+                  height: 'clamp(32px, 8vw, 40px)',
+                  fontSize: 'clamp(0.875rem, 2vw, 1.125rem)'
+                }}
+              >
                 {user.avatar || '🎮'}
               </div>
               <div className="flex-1 min-w-0">
-                <div className="font-semibold text-slate-100 truncate text-sm sm:text-base">
+                <div className="font-semibold text-slate-100 truncate" style={{ fontSize: 'clamp(0.875rem, 2vw, 1rem)' }}>
                   {user.username}
                 </div>
-                <div className="text-xs sm:text-sm text-slate-400 truncate">
+                <div className="text-slate-400 truncate" style={{ fontSize: 'clamp(0.75rem, 1.8vw, 0.875rem)' }}>
                   Level {user.level} • {user.xp} XP
                 </div>
               </div>

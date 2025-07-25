@@ -83,7 +83,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   }, [isMobileSidebarOpen, isMobile])
 
   return (
-    <div className="flex min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 responsive-overflow-hidden responsive-max-width">
+    <div className="flex min-h-screen min-h-[100dvh] bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 responsive-overflow-hidden responsive-max-width safe-area-padding">
       {/* Mobile overlay */}
       {isMobileSidebarOpen && (
         <div 
@@ -96,7 +96,14 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       {/* Mobile menu button */}
       <button
         onClick={toggleMobileSidebar}
-        className="mobile-menu-button fixed top-2 left-2 sm:top-3 sm:left-3 z-50 lg:hidden bg-slate-800/90 backdrop-blur-sm text-white p-2 sm:p-3 rounded-lg shadow-lg hover:bg-slate-700 transition-all duration-200 border border-slate-600 min-h-[44px] min-w-[44px] flex items-center justify-center"
+        className="mobile-menu-button fixed z-50 lg:hidden bg-slate-800/90 backdrop-blur-sm text-white rounded-lg shadow-lg hover:bg-slate-700 transition-all duration-200 border border-slate-600 flex items-center justify-center"
+        style={{
+          top: 'clamp(0.5rem, 2vw, 1rem)',
+          left: 'clamp(0.5rem, 2vw, 1rem)',
+          width: 'clamp(44px, 10vw, 52px)',
+          height: 'clamp(44px, 10vw, 52px)',
+          padding: 'clamp(0.5rem, 1.5vw, 0.75rem)'
+        }}
         aria-label="Toggle mobile menu"
       >
         <svg
@@ -104,6 +111,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
+          style={{ width: 'clamp(20px, 4vw, 24px)', height: 'clamp(20px, 4vw, 24px)' }}
         >
           {isMobileSidebarOpen ? (
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -113,14 +121,27 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         </svg>
       </button>
 
-      {/* User Profile Icon - Fixed position for all screen sizes */}
+      {/* User Profile Icon - Responsive fixed position */}
       {isAuthenticated && user && (
         <Link 
           to="/profile" 
-          className="fixed top-2 right-2 sm:top-3 sm:right-3 z-50 flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-slate-800/90 backdrop-blur-sm hover:bg-slate-700/90 transition-all duration-200 border border-slate-600 shadow-lg group min-h-[44px] min-w-[44px]"
+          className="fixed z-50 flex items-center justify-center rounded-full bg-slate-800/90 backdrop-blur-sm hover:bg-slate-700/90 transition-all duration-200 border border-slate-600 shadow-lg group"
+          style={{
+            top: 'clamp(0.5rem, 2vw, 1rem)',
+            right: 'clamp(0.5rem, 2vw, 1rem)',
+            width: 'clamp(44px, 10vw, 52px)',
+            height: 'clamp(44px, 10vw, 52px)'
+          }}
           title={`${user.username} - Level ${user.level}`}
         >
-          <div className="w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full flex items-center justify-center text-xs sm:text-sm font-medium text-white group-hover:scale-105 transition-transform shadow-inner">
+          <div 
+            className="bg-gradient-to-br from-blue-600 to-purple-600 rounded-full flex items-center justify-center font-medium text-white group-hover:scale-105 transition-transform shadow-inner"
+            style={{
+              width: 'clamp(24px, 6vw, 32px)',
+              height: 'clamp(24px, 6vw, 32px)',
+              fontSize: 'clamp(0.75rem, 2vw, 0.875rem)'
+            }}
+          >
             {user.avatar || '🎮'}
           </div>
         </Link>
@@ -128,24 +149,24 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
 
       <Sidebar isOpen={isMobileSidebarOpen} onClose={closeMobileSidebar} />
       
-      <div className="flex-1 lg:ml-64 min-h-screen responsive-max-width responsive-overflow-hidden">
+      <div className="flex-1 lg:ml-64 min-h-screen min-h-[100dvh] responsive-max-width responsive-overflow-hidden">
         {/* Header - Desktop only */}
-        <header className="hidden lg:flex items-center justify-between px-4 lg:px-6 py-4 bg-slate-800/50 backdrop-blur-sm border-b border-slate-700 responsive-max-width">
-          <h1 className="text-xl lg:text-2xl font-bold text-blue-400">Battle64</h1>
+        <header className="hidden lg:flex items-center justify-between bg-slate-800/50 backdrop-blur-sm border-b border-slate-700 responsive-max-width" style={{ padding: 'clamp(1rem, 2vw, 1.5rem)' }}>
+          <h1 className="font-bold text-blue-400" style={{ fontSize: 'clamp(1.25rem, 3vw, 1.5rem)' }}>Battle64</h1>
           
           {/* Points Display */}
           {isAuthenticated && userPoints && (
-            <div className="flex items-center gap-4">
-              <div className="flex items-center gap-2 bg-gradient-to-r from-yellow-500/20 to-yellow-600/20 border border-yellow-500/30 rounded-lg px-3 py-2">
-                <Trophy className="w-4 h-4 text-yellow-400" />
-                <span className="text-sm font-medium text-yellow-100">
+            <div className="responsive-flex-center">
+              <div className="flex items-center gap-2 bg-gradient-to-r from-yellow-500/20 to-yellow-600/20 border border-yellow-500/30 rounded-lg" style={{ padding: 'clamp(0.5rem, 1.5vw, 0.75rem)' }}>
+                <Trophy className="text-yellow-400" style={{ width: 'clamp(16px, 3vw, 20px)', height: 'clamp(16px, 3vw, 20px)' }} />
+                <span className="font-medium text-yellow-100" style={{ fontSize: 'clamp(0.875rem, 2vw, 1rem)' }}>
                   {userPoints.totalPoints.toLocaleString()}
                 </span>
               </div>
               
-              <div className="flex items-center gap-2 bg-gradient-to-r from-blue-500/20 to-blue-600/20 border border-blue-500/30 rounded-lg px-3 py-2">
-                <Zap className="w-4 h-4 text-blue-400" />
-                <span className="text-xs text-blue-200">
+              <div className="flex items-center gap-2 bg-gradient-to-r from-blue-500/20 to-blue-600/20 border border-blue-500/30 rounded-lg" style={{ padding: 'clamp(0.5rem, 1.5vw, 0.75rem)' }}>
+                <Zap className="text-blue-400" style={{ width: 'clamp(16px, 3vw, 20px)', height: 'clamp(16px, 3vw, 20px)' }} />
+                <span className="text-blue-200" style={{ fontSize: 'clamp(0.75rem, 1.8vw, 0.875rem)' }}>
                   {userPoints.currentRank.key.split('.')[1] || 'Beginner'}
                 </span>
               </div>
@@ -154,8 +175,13 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         </header>
 
         {/* Main Content */}
-        <main className="main-content min-h-screen responsive-max-width">
-          <div className="pt-14 sm:pt-16 lg:pt-6 px-2 sm:px-3 lg:px-4 xl:px-6 responsive-max-width">
+        <main className="main-content min-h-screen min-h-[100dvh] responsive-max-width">
+          <div className="responsive-max-width" style={{ 
+            paddingTop: 'clamp(3.5rem, 8vw, 4rem)', 
+            paddingLeft: 'clamp(0.5rem, 2vw, 1.5rem)', 
+            paddingRight: 'clamp(0.5rem, 2vw, 1.5rem)',
+            paddingBottom: 'clamp(1rem, 3vw, 2rem)'
+          }}>
             {children}
           </div>
         </main>
