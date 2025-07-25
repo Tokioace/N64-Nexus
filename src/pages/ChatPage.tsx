@@ -122,9 +122,9 @@ const ChatPage: React.FC = () => {
   }
 
   return (
-    <div className="w-full max-w-none px-2 sm:px-4 py-4 sm:py-6" style={{ height: 'clamp(400px, calc(100vh - 120px), 900px)' }}>
-      <div className="container mx-auto max-w-6xl">
-        <div className="flex flex-col h-full">
+    <div className="chatWrapper w-full flex justify-center">
+      <div className="max-w-[600px] w-full px-4">
+        <div className="flex flex-col" style={{ height: 'clamp(400px, calc(100vh - 120px), 900px)' }}>
           {/* Header - Improved Layout */}
           <div className="simple-tile p-4 sm:p-6 mb-4 sm:mb-6">
           <div className="relative">
@@ -209,21 +209,22 @@ const ChatPage: React.FC = () => {
                 <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full flex items-center justify-center text-lg flex-shrink-0">
                   {user?.avatar || '🎮'}
                 </div>
-                <div className="flex-1 flex gap-2">
+                <div className="w-full flex flex-col sm:flex-row gap-2">
                   <input
                     type="text"
                     value={newMessage}
                     onChange={(e) => setNewMessage(e.target.value)}
                     placeholder={t('chat.messagePlaceholder')}
-                    className="flex-1 px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-slate-100 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+                    className="flex-grow px-4 py-2 rounded bg-slate-700 border border-slate-600 text-slate-100 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
                     maxLength={500}
                   />
                   <button
                     type="submit"
                     disabled={!newMessage.trim()}
-                    className="px-6 py-3 bg-blue-600 hover:bg-blue-700 disabled:bg-slate-600 disabled:cursor-not-allowed text-white rounded-lg transition-colors flex items-center gap-2"
+                    className="px-4 py-2 rounded bg-blue-600 hover:bg-blue-700 disabled:bg-slate-600 disabled:cursor-not-allowed text-white transition-colors flex items-center gap-2 justify-center"
                   >
                     <Send className="w-4 h-4" />
+                    <span className="hidden sm:inline">{t('chat.send')}</span>
                   </button>
                 </div>
               </form>

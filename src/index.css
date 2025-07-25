@@ -2080,3 +2080,11 @@ input[type="submit"] {
   max-width: 100%;
   word-wrap: break-word;
 }
+
+/* Chat Responsiveness Fixes */
+.chatWrapper {
+  max-width: 100%;
+  overflow-x: hidden;
+  padding: 1rem;
+  box-sizing: border-box;
+}
