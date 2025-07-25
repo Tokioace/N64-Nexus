@@ -6,6 +6,7 @@ import { usePoints } from '../contexts/PointsContext'
 import { useEvent } from '../contexts/EventContext'
 import { MediaMeta, PointsConfig } from '../types'
 import UserMediaHistory from '../components/UserMediaHistory'
+import AuthGuard from '../components/AuthGuard'
 import { 
   Camera, 
   Video, 
@@ -92,6 +93,7 @@ class MediaErrorBoundary extends React.Component<
 
     return this.props.children
   }
+
 }
 
 const SpeedrunMediaPage: React.FC = () => {
@@ -399,6 +401,227 @@ const SpeedrunMediaPage: React.FC = () => {
           </div>
         </div>
       </div>
+
+      {/* Filters and View Controls */}
+      <div className="flex flex-wrap items-center justify-between gap-4 mb-8 p-4 bg-slate-800/50 rounded-lg">
+        <div className="flex flex-wrap items-center gap-4">
+          <div className="flex items-center gap-2">
+            <Filter className="w-5 h-5 text-slate-400" />
+            <span className="text-slate-300 font-medium">{t('common.filter')}:</span>
+          </div>
+          <div className="flex flex-wrap gap-2">
+            {[
+              { id: 'all', name: t('common.all'), icon: <Trophy className="w-4 h-4" /> },
+              { id: 'video', name: t('speedrun.videos'), icon: <Video className="w-4 h-4" /> },
+              { id: 'stream', name: t('speedrun.streams'), icon: <Play className="w-4 h-4" /> },
+              { id: 'photo', name: t('speedrun.photos'), icon: <Camera className="w-4 h-4" /> }
+            ].map(type => (
+              <button
+                key={type.id}
+                onClick={() => setSelectedType(type.id as any)}
+                className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                  selectedType === type.id
+                    ? 'bg-blue-600 text-white'
+                    : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
+                }`}
+              >
+                {type.icon}
+                {type.name}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* View Mode Toggle */}
+        <div className="flex bg-slate-800 rounded-lg p-1">
+          <button
+            onClick={() => setViewMode('grid')}
+            className={`flex items-center gap-2 px-4 py-2 rounded-md transition-colors ${
+              viewMode === 'grid' 
+                ? 'bg-slate-700 text-slate-100' 
+                : 'text-slate-400 hover:text-slate-200'
+            }`}
+          >
+            <Grid className="w-4 h-4" />
+            Grid
+          </button>
+          <button
+            onClick={() => setViewMode('list')}
+            className={`flex items-center gap-2 px-4 py-2 rounded-md transition-colors ${
+              viewMode === 'list' 
+                ? 'bg-slate-700 text-slate-100' 
+                : 'text-slate-400 hover:text-slate-200'
+            }`}
+          >
+            <List className="w-4 h-4" />
+            List
+          </button>
+        </div>
+      </div>
+
+      {/* Results Count */}
+      <div className="mb-6">
+        <p className="text-slate-400">
+          {filteredItems.length} {t('speedrun.mediaItemsFound')}
+        </p>
+      </div>
+
+      {/* Media Content - Protected by AuthGuard */}
+      <AuthGuard 
+        customMessage={t('speedrun.loginToViewMedia')}
+        className="min-h-[500px]"
+      >
+        {viewMode === 'grid' ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {filteredItems.map(item => (
+              <div key={item.id} className="n64-tile bg-slate-800/50 hover:bg-slate-800/70 transition-colors">
+                <div className="relative aspect-video bg-slate-700 rounded-lg mb-4 overflow-hidden">
+                  <img 
+                    src={item.thumbnailUrl} 
+                    alt={item.title}
+                    className="w-full h-full object-cover"
+                  />
+                  
+                  {/* Type Badge */}
+                  <div className={`absolute top-2 left-2 flex items-center gap-1 px-2 py-1 ${getTypeColor(item.type)} text-white text-xs rounded-full`}>
+                    {getTypeIcon(item.type)}
+                    {item.type.toUpperCase()}
+                  </div>
+                  
+                  {/* Live Badge */}
+                  {item.isLive && (
+                    <div className="absolute top-2 right-2 flex items-center gap-1 px-2 py-1 bg-red-500 text-white text-xs rounded-full animate-pulse">
+                      <div className="w-2 h-2 bg-white rounded-full"></div>
+                      LIVE
+                    </div>
+                  )}
+                  
+                  {/* Play Button Overlay */}
+                  <div className="absolute inset-0 flex items-center justify-center bg-black/30 opacity-0 hover:opacity-100 transition-opacity">
+                    <Play className="w-12 h-12 text-white" />
+                  </div>
+                </div>
+                
+                <div className="space-y-3">
+                  <div>
+                    <h3 className="font-bold text-slate-100 text-lg mb-1">{item.title}</h3>
+                    <p className="text-slate-400 text-sm flex items-center gap-2">
+                      <User className="w-4 h-4" />
+                      {item.creator}
+                    </p>
+                    <p className="text-slate-500 text-xs">{item.game} • {item.category}</p>
+                    {item.time && (
+                      <p className="text-blue-400 text-sm font-mono flex items-center gap-1">
+                        <Clock className="w-4 h-4" />
+                        {item.time}
+                      </p>
+                    )}
+                  </div>
+
+                  <div className="flex items-center justify-between text-sm text-slate-400">
+                    <div className="flex items-center gap-4">
+                      <div className="flex items-center gap-1">
+                        <Eye className="w-4 h-4" />
+                        <span>{item.views.toLocaleString()}</span>
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <Heart className="w-4 h-4" />
+                        <span>{item.likes}</span>
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <MessageSquare className="w-4 h-4" />
+                        <span>{item.comments}</span>
+                      </div>
+                    </div>
+                    <span className="text-xs">
+                      {item.uploadDate.toLocaleDateString()}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="space-y-4">
+            {filteredItems.map(item => (
+              <div key={item.id} className="n64-tile bg-slate-800/50 hover:bg-slate-800/70 transition-colors">
+                <div className="flex gap-4">
+                  <div className="relative w-48 h-28 bg-slate-700 rounded-lg overflow-hidden flex-shrink-0">
+                    <img 
+                      src={item.thumbnailUrl} 
+                      alt={item.title}
+                      className="w-full h-full object-cover"
+                    />
+                    
+                    {/* Type Badge */}
+                    <div className={`absolute top-2 left-2 flex items-center gap-1 px-2 py-1 ${getTypeColor(item.type)} text-white text-xs rounded-full`}>
+                      {getTypeIcon(item.type)}
+                      {item.type.toUpperCase()}
+                    </div>
+                    
+                    {/* Live Badge */}
+                    {item.isLive && (
+                      <div className="absolute top-2 right-2 flex items-center gap-1 px-2 py-1 bg-red-500 text-white text-xs rounded-full animate-pulse">
+                        <div className="w-2 h-2 bg-white rounded-full"></div>
+                        LIVE
+                      </div>
+                    )}
+                  </div>
+                  
+                  <div className="flex-1 space-y-2">
+                    <div>
+                      <h3 className="font-bold text-slate-100 text-lg">{item.title}</h3>
+                      <p className="text-slate-400 text-sm flex items-center gap-2">
+                        <User className="w-4 h-4" />
+                        {item.creator} • {item.game} • {item.category}
+                      </p>
+                      {item.time && (
+                        <p className="text-blue-400 text-sm font-mono flex items-center gap-1">
+                          <Clock className="w-4 h-4" />
+                          {item.time}
+                        </p>
+                      )}
+                    </div>
+
+                    <div className="flex items-center justify-between text-sm text-slate-400">
+                      <div className="flex items-center gap-4">
+                        <div className="flex items-center gap-1">
+                          <Eye className="w-4 h-4" />
+                          <span>{item.views.toLocaleString()}</span>
+                        </div>
+                        <div className="flex items-center gap-1">
+                          <Heart className="w-4 h-4" />
+                          <span>{item.likes}</span>
+                        </div>
+                        <div className="flex items-center gap-1">
+                          <MessageSquare className="w-4 h-4" />
+                          <span>{item.comments}</span>
+                        </div>
+                      </div>
+                      <span className="text-xs">
+                        {item.uploadDate.toLocaleDateString()}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {/* Empty State */}
+        {filteredItems.length === 0 && (
+          <div className="text-center py-12">
+            <Trophy className="w-16 h-16 text-slate-500 mx-auto mb-4" />
+            <h3 className="text-xl font-semibold text-slate-300 mb-2">
+              {t('speedrun.noMediaFound')}
+            </h3>
+            <p className="text-slate-500">
+              {t('speedrun.noMediaDescription')}
+            </p>
+          </div>
+        )}
+      </AuthGuard>
     </div>
   ))
 

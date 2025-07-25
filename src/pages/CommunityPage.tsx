@@ -171,10 +171,10 @@ const CommunityPage: React.FC = () => {
           <div className="simple-tile text-center py-8 sm:py-12">
             <Users className="w-12 h-12 sm:w-16 sm:h-16 text-slate-600 mx-auto mb-4" />
             <h3 className="text-responsive-lg font-semibold text-slate-300 mb-2">
-              Keine Spieler gefunden
+              {t('community.noPlayersFound')}
             </h3>
             <p className="text-responsive-sm text-slate-400">
-              Versuche andere Suchbegriffe oder Filter.
+              {t('community.tryDifferentFilters')}
             </p>
           </div>
         ) : (
@@ -268,14 +268,15 @@ const CommunityPage: React.FC = () => {
         )}
       </AuthGuard>
 
-      {/* Load More Button (for future pagination) */}
+        {/* Load More Button (for future pagination) */}
       {filteredAndSortedUsers.length >= 20 && (
         <div className="text-center">
           <button className="btn-secondary mobile-full sm:w-auto">
             {t('common.viewAll')}
           </button>
         </div>
-      )}
+        )}
+      </AuthGuard>
     </div>
   )
 }
