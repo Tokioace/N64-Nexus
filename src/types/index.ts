@@ -376,6 +376,8 @@ export interface PointsConfig {
   'forum.post': number
   'forum.reply': number
   'chat.messages': number
+  'chat.helpfulReply': number
+  'chat.likeReceived': number
   'profile.setupComplete': number
   'marketplace.saleConfirmed': number
   'news.shared': number

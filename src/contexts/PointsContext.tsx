@@ -34,6 +34,8 @@ const POINTS_CONFIG: PointsConfig = {
   'forum.post': 10,
   'forum.reply': 5,
   'chat.messages': 1,
+  'chat.helpfulReply': 3,
+  'chat.likeReceived': 1,
   'profile.setupComplete': 10,
   'marketplace.saleConfirmed': 20,
   'news.shared': 10
