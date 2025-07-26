@@ -371,6 +371,19 @@ const ChatPage: React.FC = () => {
         ) : (
           // Chat View (Mobile)
           <div className="flex-1 flex flex-col">
+            {/* Feature Header - Centered like other pages */}
+            {!selectedChat && (
+              <div className="text-center py-6 border-b border-slate-700">
+                <MessageCircle className="w-12 h-12 sm:w-16 sm:h-16 text-violet-400 mx-auto mb-4" />
+                <h1 className="text-2xl sm:text-3xl font-bold text-slate-100 mb-2">
+                  Chat
+                </h1>
+                <p className="text-slate-400 text-sm sm:text-base">
+                  {onlineUsers} {t('chat.onlineUsers')}
+                </p>
+              </div>
+            )}
+            
             {/* Chat Header */}
             <div className="bg-slate-800 border-b border-slate-700 p-4">
               <div className="flex items-center gap-3">
@@ -588,6 +601,19 @@ const ChatPage: React.FC = () => {
 
           {/* Main Chat Area */}
           <div className="flex-1 bg-slate-800 rounded-lg border border-slate-700 flex flex-col">
+            {/* Feature Header - Centered like other pages */}
+            {!selectedChat && (
+              <div className="text-center py-6 border-b border-slate-700">
+                <MessageCircle className="w-12 h-12 sm:w-16 sm:h-16 text-violet-400 mx-auto mb-4" />
+                <h1 className="text-2xl sm:text-3xl font-bold text-slate-100 mb-2">
+                  Chat
+                </h1>
+                <p className="text-slate-400 text-sm sm:text-base">
+                  {onlineUsers} {t('chat.onlineUsers')}
+                </p>
+              </div>
+            )}
+            
             {/* Chat Header */}
             <div className="p-4 border-b border-slate-700">
               <div className="flex items-center justify-between">

@@ -8,6 +8,7 @@ import {
   Gamepad2,
   Star,
   Users as UsersIcon,
+  User,
   Camera,
   Package,
   MessageSquare,
@@ -61,7 +62,7 @@ const HomeScreenRetro: React.FC = () => {
         {/* Events Tile */}
         <Link to="/events" className="simple-tile simple-tile-small">
           <div className="simple-tile-icon">
-            <Trophy className="w-7 h-7 text-yellow-400 mx-auto" />
+            <Trophy className="w-7 h-7 text-yellow-500 mx-auto" />
           </div>
           <div className="simple-tile-label">
             <div className="font-medium text-text-primary text-sm">{t('nav.events')}</div>
@@ -69,7 +70,7 @@ const HomeScreenRetro: React.FC = () => {
           </div>
         </Link>
 
-        {/* Speedrun Media Tile */}
+        {/* Media Tile */}
         <Link to="/speedrun-media" className="simple-tile simple-tile-small">
           <div className="simple-tile-icon">
             <Camera className="w-7 h-7 text-blue-400 mx-auto" />
@@ -105,7 +106,7 @@ const HomeScreenRetro: React.FC = () => {
         {/* Profile Tile */}
         <Link to="/profile" className="simple-tile simple-tile-small">
           <div className="simple-tile-icon">
-            <UsersIcon className="w-7 h-7 text-slate-400 mx-auto" />
+            <User className="w-7 h-7 text-slate-400 mx-auto" />
           </div>
           <div className="simple-tile-label">
             <div className="font-medium text-text-primary text-sm">{t('nav.profile')}</div>
@@ -182,10 +183,10 @@ const HomeScreenRetro: React.FC = () => {
         {/* Newsfeed Tile */}
         <Link to="/newsfeed" className="simple-tile simple-tile-small">
           <div className="simple-tile-icon">
-            <Newspaper className="w-7 h-7 text-amber-400 mx-auto" />
+            <Newspaper className="w-7 h-7 text-orange-500 mx-auto" />
           </div>
           <div className="simple-tile-label">
-            <div className="font-medium text-text-primary text-sm">{t('nav.news')}</div>
+            <div className="font-medium text-text-primary text-sm">{t('nav.newsfeed')}</div>
             <div className="text-xs text-text-muted">{t('home.newsfeed')}</div>
           </div>
         </Link>
