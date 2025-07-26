@@ -4045,9 +4045,6 @@ const translations = {
     'home.noMediaAvailable': 'Δεν υπάρχουν διαθέσιμα μέσα',
     'home.showMoreNews': 'δείξε περισσότερα νέα',
 
-    // Navigation - Additional
-    'nav.community': 'Κοινότητα',
-
     // Quiz content
     'quiz.question1': 'Ποιο παιχνίδι N64 κυκλοφόρησε πρώτο;',
     'quiz.question1.explanation': 'Το Super Mario 64 ήταν launch title για το Nintendo 64 στην Ιαπωνία το 1996.',
