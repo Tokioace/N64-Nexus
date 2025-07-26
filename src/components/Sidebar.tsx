@@ -89,7 +89,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen = false, onClose }) => {
               <li className={location.pathname === '/speedrun-media' ? 'active' : ''}>
                 <Link to="/speedrun-media" onClick={handleLinkClick} className="nav-link">
                   <span className="mr-2 sm:mr-3">📹</span>
-                  <span className="truncate">{t('nav.speedrun')}</span>
+                  <span className="truncate">{t('nav.media')}</span>
                 </Link>
               </li>
               <li className={location.pathname === '/collector' ? 'active' : ''}>
@@ -149,7 +149,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen = false, onClose }) => {
               <li className={location.pathname === '/newsfeed' ? 'active' : ''}>
                 <Link to="/newsfeed" onClick={handleLinkClick} className="nav-link">
                   <span className="mr-2 sm:mr-3">📰</span>
-                  <span className="truncate">{t('nav.news')}</span>
+                  <span className="truncate">{t('nav.newsfeed')}</span>
                 </Link>
               </li>
               
