@@ -86,7 +86,7 @@ const SingleRecordCard: React.FC<SingleRecordCardProps> = ({ recordItems, classN
       <div className="swipeable-card-header">
         <div className="flex items-center gap-2">
           <Trophy className="w-5 h-5 text-yellow-400" />
-          <h3 className="text-responsive-base font-bold text-slate-100">Records</h3>
+          <h3 className="text-responsive-base font-bold text-slate-100">{t('card.records')}</h3>
         </div>
         <div className="text-xs text-slate-400">
           <span className="text-yellow-400">{record.game}</span>
@@ -106,7 +106,7 @@ const SingleRecordCard: React.FC<SingleRecordCardProps> = ({ recordItems, classN
           </div>
           <div className="flex items-center justify-between text-xs text-slate-400 mt-auto">
             <span>{formatTime(record.date)}</span>
-            {record.verified && <span className="text-green-400">✓ Verifiziert</span>}
+            {record.verified && <span className="text-green-400">✓ {t('card.verified')}</span>}
           </div>
         </div>
       </div>
@@ -120,12 +120,12 @@ const SingleRecordCard: React.FC<SingleRecordCardProps> = ({ recordItems, classN
           <div className="swipeable-card-header">
             <div className="flex items-center gap-2">
               <Trophy className="w-5 h-5 text-yellow-400" />
-              <h3 className="text-responsive-base font-bold text-slate-100">Records</h3>
+              <h3 className="text-responsive-base font-bold text-slate-100">{t('card.records')}</h3>
             </div>
           </div>
           <div className="swipeable-card-content">
             <div className="flex items-center justify-center h-full text-slate-400 text-responsive-sm">
-              Keine Records verfügbar
+{t('card.noRecords')}
             </div>
           </div>
         </div>

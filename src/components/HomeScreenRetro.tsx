@@ -165,7 +165,7 @@ const HomeScreenRetro: React.FC = () => {
           </div>
           <div className="simple-tile-label">
             <div className="font-medium text-text-primary text-sm">{t('nav.chat')}</div>
-            <div className="text-xs text-text-muted">Live Chat</div>
+            <div className="text-xs text-text-muted">{t('ui.liveChat')}</div>
           </div>
         </Link>
 

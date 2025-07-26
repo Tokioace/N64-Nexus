@@ -132,7 +132,7 @@ const NewsCard: React.FC<NewsCardProps> = ({ newsItem, index, onDismiss, isAnima
           <div className="border-t border-slate-600/30 pt-3 mt-auto">
             <div className="flex items-center justify-between text-sm text-text-muted">
               <span className="font-medium">{formatTime(newsItem.date)}</span>
-              <span className="text-accent-blue font-medium">News Details</span>
+              <span className="text-accent-blue font-medium">{t('ui.newsDetails')}</span>
             </div>
           </div>
         </div>

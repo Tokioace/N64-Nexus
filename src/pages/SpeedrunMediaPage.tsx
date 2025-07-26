@@ -480,7 +480,7 @@ const SpeedrunMediaPage: React.FC = () => {
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-slate-300 mb-2">Spiel</label>
+                      <label className="block text-sm font-medium text-slate-300 mb-2">{t('media.game')}</label>
                       <input
                         type="text"
                         value={streamData.game}
@@ -526,22 +526,22 @@ const SpeedrunMediaPage: React.FC = () => {
             <div className="bg-slate-800 rounded-lg p-4 text-center">
               <Video className="w-8 h-8 text-blue-400 mx-auto mb-2" />
               <div className="text-2xl font-bold text-slate-100">{getMediaStats?.()?.mediaByType.speedrun || 0}</div>
-              <div className="text-sm text-slate-400">Speedruns</div>
+              <div className="text-sm text-slate-400">{t('media.speedruns')}</div>
             </div>
             <div className="bg-slate-800 rounded-lg p-4 text-center">
               <Camera className="w-8 h-8 text-green-400 mx-auto mb-2" />
               <div className="text-2xl font-bold text-slate-100">{getMediaStats?.()?.mediaByType.screenshot || 0}</div>
-              <div className="text-sm text-slate-400">Screenshots</div>
+              <div className="text-sm text-slate-400">{t('media.screenshots')}</div>
             </div>
             <div className="bg-slate-800 rounded-lg p-4 text-center">
               <Trophy className="w-8 h-8 text-yellow-400 mx-auto mb-2" />
               <div className="text-2xl font-bold text-slate-100">{getMediaStats?.()?.mediaByType.achievement || 0}</div>
-              <div className="text-sm text-slate-400">Achievements</div>
+              <div className="text-sm text-slate-400">{t('media.achievements')}</div>
             </div>
             <div className="bg-slate-800 rounded-lg p-4 text-center">
               <Eye className="w-8 h-8 text-purple-400 mx-auto mb-2" />
               <div className="text-2xl font-bold text-slate-100">{getMediaStats?.()?.totalViews || 0}</div>
-              <div className="text-sm text-slate-400">Total Views</div>
+              <div className="text-sm text-slate-400">{t('media.totalViews')}</div>
             </div>
           </div>
 
@@ -556,10 +556,10 @@ const SpeedrunMediaPage: React.FC = () => {
                     onChange={(e) => setSelectedFilter(e.target.value as any)}
                     className="bg-slate-700 text-slate-100 rounded-lg px-4 py-2 min-w-0 w-full sm:w-auto"
                   >
-                    <option value="all">Alle Typen</option>
-                    <option value="speedrun">Speedruns</option>
-                    <option value="screenshot">Screenshots</option>
-                    <option value="achievement">Achievements</option>
+                    <option value="all">{t('media.allTypes')}</option>
+                    <option value="speedrun">{t('media.speedruns')}</option>
+                    <option value="screenshot">{t('media.screenshots')}</option>
+                    <option value="achievement">{t('media.achievements')}</option>
                   </select>
                 </div>
 
@@ -570,7 +570,7 @@ const SpeedrunMediaPage: React.FC = () => {
                     onChange={(e) => setSelectedGame(e.target.value)}
                     className="bg-slate-700 text-slate-100 rounded-lg px-4 py-2 min-w-0 w-full sm:w-auto"
                   >
-                    <option value="all">Alle Spiele</option>
+                    <option value="all">{t('media.allGames')}</option>
                     {games.map(game => (
                       <option key={game.id} value={game.id}>{game.name}</option>
                     ))}
@@ -625,7 +625,7 @@ const SpeedrunMediaPage: React.FC = () => {
               <div className="bg-slate-800 rounded-lg w-full max-w-2xl max-h-[90vh] overflow-y-auto">
                 <div className="p-6">
                   <div className="flex items-center justify-between mb-6">
-                    <h2 className="text-xl font-semibold text-slate-100">Media hochladen</h2>
+                    <h2 className="text-xl font-semibold text-slate-100">{t('media.upload')}</h2>
                     <button
                       onClick={() => {
                         setShowUploadModal(false)
@@ -640,7 +640,7 @@ const SpeedrunMediaPage: React.FC = () => {
                   <div className="space-y-4">
                     {/* Upload Method Selection */}
                     <div>
-                      <label className="block text-sm font-medium text-slate-300 mb-2">Upload Methode</label>
+                      <label className="block text-sm font-medium text-slate-300 mb-2">{t('media.uploadMethod')}</label>
                       <div className="flex gap-4">
                         <label className="flex items-center">
                           <input
@@ -650,7 +650,7 @@ const SpeedrunMediaPage: React.FC = () => {
                             onChange={(e) => setUploadMethod(e.target.value as 'file' | 'url')}
                             className="mr-2"
                           />
-                          <span className="text-slate-300">Datei hochladen</span>
+                          <span className="text-slate-300">{t('media.fileUpload')}</span>
                         </label>
                         <label className="flex items-center">
                           <input
@@ -660,14 +660,14 @@ const SpeedrunMediaPage: React.FC = () => {
                             onChange={(e) => setUploadMethod(e.target.value as 'file' | 'url')}
                             className="mr-2"
                           />
-                          <span className="text-slate-300">URL eingeben</span>
+                          <span className="text-slate-300">{t('media.urlInput')}</span>
                         </label>
                       </div>
                     </div>
 
                     {/* Title */}
                     <div>
-                      <label className="block text-sm font-medium text-slate-300 mb-2">Titel *</label>
+                      <label className="block text-sm font-medium text-slate-300 mb-2">{t('media.titleRequired')}</label>
                       <input
                         type="text"
                         value={uploadData.title}
@@ -675,7 +675,7 @@ const SpeedrunMediaPage: React.FC = () => {
                         className={`w-full bg-slate-700 text-slate-100 rounded-lg px-4 py-2 ${
                           formErrors.title ? 'border border-red-500' : ''
                         }`}
-                        placeholder="z.B. 120 Stars World Record Attempt"
+                        placeholder={t('media.titlePlaceholder')}
                       />
                       {formErrors.title && (
                         <p className="text-red-400 text-sm mt-1">{formErrors.title}</p>
