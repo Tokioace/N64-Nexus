@@ -77,7 +77,7 @@ class MediaErrorBoundary extends React.Component<
         <div className="min-h-screen bg-slate-900 flex items-center justify-center">
           <div className="text-center">
             <AlertCircle className="w-16 h-16 text-red-400 mx-auto mb-4" />
-            <h2 className="text-xl font-semibold text-slate-100 mb-2">{t('media.somethingWrong')}</h2>
+            <h2 className="text-xl font-semibold text-slate-100 mb-2">Something went wrong</h2>
             <p className="text-slate-400 mb-4">The media feature encountered an error.</p>
             <button 
               onClick={() => window.location.reload()} 

@@ -496,23 +496,7 @@ const translations = {
     'minigames.resumeGame': 'Spiel fortsetzen',
     'minigames.quitGame': 'Spiel beenden',
     
-    // Forum
-    'forum.title': 'Community Forum',
-    'forum.categories': 'Kategorien',
-    'forum.threads': 'Threads',
-    'forum.posts': 'Beiträge',
-    'forum.newThread': 'Neuer Thread',
-    'forum.reply': 'Antworten',
-    'forum.author': 'Autor',
-    'forum.lastPost': 'Letzter Beitrag',
-    'forum.loading': 'Forum wird geladen...',
-    'forum.discussWithCommunity': 'Diskutiere mit der Battle64-Community über N64-Spiele, Events und mehr',
-    'forum.communityNexus': 'Community Nexus',
-    'forum.activeUsers': 'Aktive Benutzer',
-    'forum.totalUsers': 'Benutzer insgesamt',
-    'forum.mostActive': 'Aktivste Kategorie',
-    'forum.recentActivity': 'Letzte Aktivität',
-    'forum.viewCategory': 'Kategorie anzeigen',
+
     'forum.noThreads': 'Keine Threads in dieser Kategorie',
     'forum.createFirstThread': 'Erstelle den ersten Thread!',
     
@@ -1566,25 +1550,7 @@ const translations = {
     'minigames.resumeGame': 'Resume Game',
     'minigames.quitGame': 'Quit Game',
     
-    // Forum
-    'forum.title': 'Community Forum',
-    'forum.categories': 'Categories',
-    'forum.threads': 'Threads',
-    'forum.posts': 'Posts',
-    'forum.newThread': 'New Thread',
-    'forum.reply': 'Reply',
-    'forum.author': 'Author',
-    'forum.lastPost': 'Last Post',
-    'forum.loading': 'Loading forum...',
-    'forum.discussWithCommunity': 'Discuss with the Battle64 community about N64 games, events and more',
-    'forum.communityNexus': 'Community Nexus',
-    'forum.activeUsers': 'Active Users',
-    'forum.totalUsers': 'Total Users',
-    'forum.mostActive': 'Most Active',
-    'forum.recentActivity': 'Recent Activity',
-    'forum.viewCategory': 'View Category',
-    'forum.noThreads': 'No threads in this category',
-    'forum.createFirstThread': 'Create the first thread!',
+
     
     // Community
     'community.title': 'Community',
@@ -2602,25 +2568,7 @@ const translations = {
     'minigames.currentTournaments': '🎯 Tournois actuels',
     'minigames.multiplayer': 'Multijoueur',
     
-    // Forum
-    'forum.title': 'Forum Communautaire',
-    'forum.categories': 'Catégories',
-    'forum.threads': 'Fils',
-    'forum.posts': 'Messages',
-    'forum.newThread': 'Nouveau Fil',
-    'forum.reply': 'Répondre',
-    'forum.author': 'Auteur',
-    'forum.lastPost': 'Dernier Message',
-    'forum.loading': 'Chargement du forum...',
-    'forum.discussWithCommunity': 'Discutez avec la communauté Battle64 des jeux N64, événements et plus',
-    'forum.communityNexus': 'Nexus communautaire',
-    'forum.activeUsers': 'Utilisateurs actifs',
-    'forum.totalUsers': 'Total des utilisateurs',
-    'forum.mostActive': 'Plus actif',
-    'forum.recentActivity': 'Activité récente',
-    'forum.viewCategory': 'Voir la catégorie',
-    'forum.noThreads': 'Aucun sujet dans cette catégorie',
-    'forum.createFirstThread': 'Créez le premier sujet !',
+
     
     // Community
     'community.title': 'Communauté',
