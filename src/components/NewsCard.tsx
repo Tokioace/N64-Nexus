@@ -1,5 +1,5 @@
 import React from 'react'
-import { TrendingUp, X } from 'lucide-react'
+import { Newspaper, X } from 'lucide-react'
 
 interface NewsItem {
   id: string
@@ -105,9 +105,9 @@ const NewsCard: React.FC<NewsCardProps> = ({ newsItem, index, onDismiss, isAnima
       
       <div className="swipeable-card-header">
         <div className="flex items-center gap-2">
-          <TrendingUp className="w-5 h-5 text-accent-blue" />
+          <Newspaper className="w-5 h-5 text-accent-blue" />
           <h3 className="text-responsive-base font-bold text-text-primary">
-            {getTypeIcon(newsItem.type)} News #{index + 1}
+            News #{index + 1}
           </h3>
         </div>
         <div className="text-xs text-text-muted">

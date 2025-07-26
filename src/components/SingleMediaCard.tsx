@@ -84,7 +84,7 @@ const SingleMediaCard: React.FC<SingleMediaCardProps> = ({ mediaItems, className
       <div className="swipeable-card-header">
         <div className="flex items-center gap-2">
           <Camera className="w-5 h-5 text-green-400" />
-          <h3 className="text-responsive-base font-bold text-slate-100">📹 Media</h3>
+          <h3 className="text-responsive-base font-bold text-slate-100">Media</h3>
         </div>
         <div className="text-xs text-slate-400">
           <span className="capitalize text-green-400">{item.type}</span>
@@ -121,7 +121,7 @@ const SingleMediaCard: React.FC<SingleMediaCardProps> = ({ mediaItems, className
           <div className="swipeable-card-header">
             <div className="flex items-center gap-2">
               <Camera className="w-5 h-5 text-green-400" />
-              <h3 className="text-responsive-base font-bold text-slate-100">📹 Media</h3>
+              <h3 className="text-responsive-base font-bold text-slate-100">Media</h3>
             </div>
           </div>
           <div className="swipeable-card-content">

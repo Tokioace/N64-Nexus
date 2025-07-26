@@ -83,7 +83,7 @@ const SingleForumCard: React.FC<SingleForumCardProps> = ({ forumThreads, classNa
       <div className="swipeable-card-header">
         <div className="flex items-center gap-2">
           <MessageSquare className="w-5 h-5 text-cyan-400" />
-          <h3 className="text-responsive-base font-bold text-slate-100">💬 Forum Posts</h3>
+          <h3 className="text-responsive-base font-bold text-slate-100">Forum Posts</h3>
         </div>
         <div className="text-xs text-slate-400">
           <span className="capitalize text-cyan-400">{thread.category}</span>
@@ -116,7 +116,7 @@ const SingleForumCard: React.FC<SingleForumCardProps> = ({ forumThreads, classNa
           <div className="swipeable-card-header">
             <div className="flex items-center gap-2">
               <MessageSquare className="w-5 h-5 text-cyan-400" />
-              <h3 className="text-responsive-base font-bold text-slate-100">💬 Forum Posts</h3>
+              <h3 className="text-responsive-base font-bold text-slate-100">Forum Posts</h3>
             </div>
           </div>
           <div className="swipeable-card-content">

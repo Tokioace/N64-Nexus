@@ -5,17 +5,17 @@ import { useLanguage } from '../contexts/LanguageContext'
 import {
   Trophy,
   Target,
-  Gamepad2,
+  Camera,
   Star,
   Users as UsersIcon,
   User,
-  Camera,
   Package,
   MessageSquare,
   ShoppingCart,
   MessageCircle,
   Palette,
-  Newspaper
+  Newspaper,
+  BarChart3
 } from 'lucide-react'
 
 const HomeScreenRetro: React.FC = () => {
@@ -117,7 +117,7 @@ const HomeScreenRetro: React.FC = () => {
         {/* Leaderboard Tile */}
         <Link to="/leaderboard" className="simple-tile simple-tile-small">
           <div className="simple-tile-icon">
-            <Star className="w-7 h-7 text-orange-400 mx-auto" />
+            <BarChart3 className="w-7 h-7 text-orange-400 mx-auto" />
           </div>
           <div className="simple-tile-label">
             <div className="font-medium text-text-primary text-sm">{t('nav.leaderboard')}</div>
@@ -128,7 +128,7 @@ const HomeScreenRetro: React.FC = () => {
         {/* Minigames Tile */}
         <Link to="/minigames" className="simple-tile simple-tile-small">
           <div className="simple-tile-icon">
-            <Gamepad2 className="w-7 h-7 text-red-400 mx-auto" />
+            <Target className="w-7 h-7 text-red-400 mx-auto" />
           </div>
           <div className="simple-tile-label">
             <div className="font-medium text-text-primary text-sm">{t('nav.minigames')}</div>

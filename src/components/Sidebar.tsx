@@ -3,7 +3,24 @@ import { Link, useLocation } from 'react-router-dom'
 import { useLanguage } from '../contexts/LanguageContext'
 import { useUser } from '../contexts/UserContext'
 import LanguageSelector from './LanguageSelector'
-import { LogIn, LogOut, User } from 'lucide-react'
+import { 
+  LogIn, 
+  LogOut, 
+  User,
+  Home,
+  Gamepad2,
+  Trophy,
+  Camera,
+  Package,
+  BarChart3,
+  Target,
+  ShoppingCart,
+  Users,
+  MessageSquare,
+  MessageCircle,
+  Palette,
+  Newspaper
+} from 'lucide-react'
 
 interface SidebarProps {
   isOpen?: boolean
@@ -70,85 +87,85 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen = false, onClose }) => {
             <ul className="space-y-1">
               <li className={location.pathname === '/' ? 'active' : ''}>
                 <Link to="/" onClick={handleLinkClick} className="nav-link">
-                  <span className="mr-2 sm:mr-3">🏠</span>
+                  <Home className="w-4 h-4 sm:w-5 sm:h-5 mr-2 sm:mr-3 flex-shrink-0" />
                   <span className="truncate">{t('nav.home')}</span>
                 </Link>
               </li>
               <li className={location.pathname === '/retro' ? 'active' : ''}>
                 <Link to="/retro" onClick={handleLinkClick} className="nav-link">
-                  <span className="mr-2 sm:mr-3">🎮</span>
+                  <Gamepad2 className="w-4 h-4 sm:w-5 sm:h-5 mr-2 sm:mr-3 flex-shrink-0" />
                   <span className="truncate">{t('nav.classic')}</span>
                 </Link>
               </li>
               <li className={location.pathname === '/events' ? 'active' : ''}>
                 <Link to="/events" onClick={handleLinkClick} className="nav-link">
-                  <span className="mr-2 sm:mr-3">🏆</span>
+                  <Trophy className="w-4 h-4 sm:w-5 sm:h-5 mr-2 sm:mr-3 flex-shrink-0" />
                   <span className="truncate">{t('nav.events')}</span>
                 </Link>
               </li>
               <li className={location.pathname === '/speedrun-media' ? 'active' : ''}>
                 <Link to="/speedrun-media" onClick={handleLinkClick} className="nav-link">
-                  <span className="mr-2 sm:mr-3">📹</span>
+                  <Camera className="w-4 h-4 sm:w-5 sm:h-5 mr-2 sm:mr-3 flex-shrink-0" />
                   <span className="truncate">{t('nav.media')}</span>
                 </Link>
               </li>
               <li className={location.pathname === '/collector' ? 'active' : ''}>
                 <Link to="/collector" onClick={handleLinkClick} className="nav-link">
-                  <span className="mr-2 sm:mr-3">📦</span>
+                  <Package className="w-4 h-4 sm:w-5 sm:h-5 mr-2 sm:mr-3 flex-shrink-0" />
                   <span className="truncate">{t('nav.collector')}</span>
                 </Link>
               </li>
               <li className={location.pathname === '/leaderboard' ? 'active' : ''}>
                 <Link to="/leaderboard" onClick={handleLinkClick} className="nav-link">
-                  <span className="mr-2 sm:mr-3">📊</span>
+                  <BarChart3 className="w-4 h-4 sm:w-5 sm:h-5 mr-2 sm:mr-3 flex-shrink-0" />
                   <span className="truncate">{t('nav.leaderboard')}</span>
                 </Link>
               </li>
               <li className={location.pathname === '/minigames' ? 'active' : ''}>
                 <Link to="/minigames" onClick={handleLinkClick} className="nav-link">
-                  <span className="mr-2 sm:mr-3">🎯</span>
+                  <Target className="w-4 h-4 sm:w-5 sm:h-5 mr-2 sm:mr-3 flex-shrink-0" />
                   <span className="truncate">{t('nav.minigames')}</span>
                 </Link>
               </li>
               <li className={location.pathname === '/marktplatz' ? 'active' : ''}>
                 <Link to="/marktplatz" onClick={handleLinkClick} className="nav-link">
-                  <span className="mr-2 sm:mr-3">🛒</span>
+                  <ShoppingCart className="w-4 h-4 sm:w-5 sm:h-5 mr-2 sm:mr-3 flex-shrink-0" />
                   <span className="truncate">{t('nav.marketplace')}</span>
                 </Link>
               </li>
               <li className={location.pathname === '/community' ? 'active' : ''}>
                 <Link to="/community" onClick={handleLinkClick} className="nav-link">
-                  <span className="mr-2 sm:mr-3">👥</span>
+                  <Users className="w-4 h-4 sm:w-5 sm:h-5 mr-2 sm:mr-3 flex-shrink-0" />
                   <span className="truncate">{t('nav.community')}</span>
                 </Link>
               </li>
               <li className={location.pathname === '/quiz' ? 'active' : ''}>
                 <Link to="/quiz" onClick={handleLinkClick} className="nav-link">
-                  <span className="mr-2 sm:mr-3">❓</span>
+                  <Target className="w-4 h-4 sm:w-5 sm:h-5 mr-2 sm:mr-3 flex-shrink-0" />
                   <span className="truncate">{t('nav.quiz')}</span>
                 </Link>
               </li>
               <li className={location.pathname.startsWith('/forum') ? 'active' : ''}>
                 <Link to="/forum" onClick={handleLinkClick} className="nav-link">
-                  <span className="mr-2 sm:mr-3">💬</span>
+                  <MessageSquare className="w-4 h-4 sm:w-5 sm:h-5 mr-2 sm:mr-3 flex-shrink-0" />
                   <span className="truncate">{t('nav.forum')}</span>
                 </Link>
               </li>
               <li className={location.pathname === '/chat' ? 'active' : ''}>
                 <Link to="/chat" onClick={handleLinkClick} className="nav-link">
-                  <span className="mr-2 sm:mr-3">💭</span>
+                  <MessageCircle className="w-4 h-4 sm:w-5 sm:h-5 mr-2 sm:mr-3 flex-shrink-0" />
                   <span className="truncate">{t('nav.chat')}</span>
                 </Link>
               </li>
               <li className={location.pathname === '/fanart' ? 'active' : ''}>
                 <Link to="/fanart" onClick={handleLinkClick} className="nav-link">
-                  <span className="mr-2 sm:mr-3">🎨</span>
+                  <Palette className="w-4 h-4 sm:w-5 sm:h-5 mr-2 sm:mr-3 flex-shrink-0" />
                   <span className="truncate">{t('nav.fanart')}</span>
                 </Link>
               </li>
               <li className={location.pathname === '/newsfeed' ? 'active' : ''}>
                 <Link to="/newsfeed" onClick={handleLinkClick} className="nav-link">
-                  <span className="mr-2 sm:mr-3">📰</span>
+                  <Newspaper className="w-4 h-4 sm:w-5 sm:h-5 mr-2 sm:mr-3 flex-shrink-0" />
                   <span className="truncate">{t('nav.newsfeed')}</span>
                 </Link>
               </li>
@@ -157,7 +174,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen = false, onClose }) => {
               {isAuthenticated ? (
                 <li className={location.pathname === '/profile' ? 'active' : ''}>
                   <Link to="/profile" onClick={handleLinkClick} className="nav-link">
-                    <span className="mr-2 sm:mr-3">👤</span>
+                    <User className="w-4 h-4 sm:w-5 sm:h-5 mr-2 sm:mr-3 flex-shrink-0" />
                     <span className="truncate">{t('nav.profile')}</span>
                   </Link>
                 </li>

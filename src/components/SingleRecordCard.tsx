@@ -84,7 +84,7 @@ const SingleRecordCard: React.FC<SingleRecordCardProps> = ({ recordItems, classN
       <div className="swipeable-card-header">
         <div className="flex items-center gap-2">
           <Trophy className="w-5 h-5 text-yellow-400" />
-          <h3 className="text-responsive-base font-bold text-slate-100">🏆 Records</h3>
+          <h3 className="text-responsive-base font-bold text-slate-100">Records</h3>
         </div>
         <div className="text-xs text-slate-400">
           <span className="text-yellow-400">{record.game}</span>
@@ -118,7 +118,7 @@ const SingleRecordCard: React.FC<SingleRecordCardProps> = ({ recordItems, classN
           <div className="swipeable-card-header">
             <div className="flex items-center gap-2">
               <Trophy className="w-5 h-5 text-yellow-400" />
-              <h3 className="text-responsive-base font-bold text-slate-100">🏆 Records</h3>
+              <h3 className="text-responsive-base font-bold text-slate-100">Records</h3>
             </div>
           </div>
           <div className="swipeable-card-content">
