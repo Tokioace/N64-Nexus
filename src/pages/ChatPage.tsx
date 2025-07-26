@@ -246,25 +246,36 @@ const ChatPage: React.FC = () => {
   // Mobile layout: show chat list or chat view
   if (isMobileView) {
     return (
-      <div className="chatWrapper w-full h-screen flex flex-col">
-        {(!selectedChat && !showUserSearch) ? (
-          // Chat List View (Mobile)
-          <div className="flex-1 flex flex-col">
-            {/* Header */}
-            <div className="bg-slate-800 border-b border-slate-700 p-4">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <MessageCircle className="w-6 h-6 text-blue-400" />
-                  <h1 className="text-xl font-bold text-slate-100">{t('chat.chats')}</h1>
+      <div className="container-lg py-responsive space-responsive responsive-max-width responsive-overflow-hidden">
+        {/* Feature Header - Centered like other pages */}
+        <div className="text-center mb-responsive responsive-max-width">
+          <MessageCircle className="w-12 h-12 sm:w-16 sm:h-16 text-violet-400 mx-auto mb-4" />
+          <h1 className="text-responsive-2xl font-bold text-slate-100 mb-2 responsive-word-break">
+            Chat
+          </h1>
+          <p className="text-responsive-base text-slate-400 max-w-2xl mx-auto responsive-word-break px-2">
+            {onlineUsers} {t('chat.onlineUsers')}
+          </p>
+        </div>
+
+        <div className="chatWrapper w-full flex flex-col bg-slate-800 rounded-lg border border-slate-700" style={{ height: 'calc(100vh - 200px)' }}>
+          {(!selectedChat && !showUserSearch) ? (
+            // Chat List View (Mobile)
+            <div className="flex-1 flex flex-col">
+              {/* Header */}
+              <div className="bg-slate-800 border-b border-slate-700 p-4">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <h1 className="text-xl font-bold text-slate-100">{t('chat.chats')}</h1>
+                  </div>
+                  <button
+                    onClick={() => setShowUserSearch(true)}
+                    className="p-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white"
+                  >
+                    <Plus className="w-5 h-5" />
+                  </button>
                 </div>
-                <button
-                  onClick={() => setShowUserSearch(true)}
-                  className="p-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white"
-                >
-                  <Plus className="w-5 h-5" />
-                </button>
               </div>
-            </div>
 
             {/* Community Chat */}
             <div 
@@ -371,19 +382,6 @@ const ChatPage: React.FC = () => {
         ) : (
           // Chat View (Mobile)
           <div className="flex-1 flex flex-col">
-            {/* Feature Header - Centered like other pages */}
-            {!selectedChat && (
-              <div className="text-center py-6 border-b border-slate-700">
-                <MessageCircle className="w-12 h-12 sm:w-16 sm:h-16 text-violet-400 mx-auto mb-4" />
-                <h1 className="text-2xl sm:text-3xl font-bold text-slate-100 mb-2">
-                  Chat
-                </h1>
-                <p className="text-slate-400 text-sm sm:text-base">
-                  {onlineUsers} {t('chat.onlineUsers')}
-                </p>
-              </div>
-            )}
-            
             {/* Chat Header */}
             <div className="bg-slate-800 border-b border-slate-700 p-4">
               <div className="flex items-center gap-3">
@@ -479,14 +477,27 @@ const ChatPage: React.FC = () => {
             )}
           </div>
         )}
+        </div>
       </div>
     )
   }
 
   // Desktop layout
   return (
-    <div className="chatWrapper w-full flex justify-center">
-      <div className="max-w-[1200px] w-full px-4">
+    <div className="container-lg py-responsive space-responsive responsive-max-width responsive-overflow-hidden">
+      {/* Feature Header - Centered like other pages */}
+      <div className="text-center mb-responsive responsive-max-width">
+        <MessageCircle className="w-12 h-12 sm:w-16 sm:h-16 text-violet-400 mx-auto mb-4" />
+        <h1 className="text-responsive-2xl font-bold text-slate-100 mb-2 responsive-word-break">
+          Chat
+        </h1>
+        <p className="text-responsive-base text-slate-400 max-w-2xl mx-auto responsive-word-break px-2">
+          {onlineUsers} {t('chat.onlineUsers')}
+        </p>
+      </div>
+
+      <div className="chatWrapper w-full flex justify-center">
+        <div className="max-w-[1200px] w-full px-4">
         <div className="flex gap-6 h-[calc(100vh-120px)]">
           {/* Sidebar - Chat List */}
           <div className="w-80 bg-slate-800 rounded-lg border border-slate-700 flex flex-col">
@@ -601,19 +612,6 @@ const ChatPage: React.FC = () => {
 
           {/* Main Chat Area */}
           <div className="flex-1 bg-slate-800 rounded-lg border border-slate-700 flex flex-col">
-            {/* Feature Header - Centered like other pages */}
-            {!selectedChat && (
-              <div className="text-center py-6 border-b border-slate-700">
-                <MessageCircle className="w-12 h-12 sm:w-16 sm:h-16 text-violet-400 mx-auto mb-4" />
-                <h1 className="text-2xl sm:text-3xl font-bold text-slate-100 mb-2">
-                  Chat
-                </h1>
-                <p className="text-slate-400 text-sm sm:text-base">
-                  {onlineUsers} {t('chat.onlineUsers')}
-                </p>
-              </div>
-            )}
-            
             {/* Chat Header */}
             <div className="p-4 border-b border-slate-700">
               <div className="flex items-center justify-between">
@@ -758,6 +756,7 @@ const ChatPage: React.FC = () => {
             </ul>
           </div>
         )}
+        </div>
       </div>
     </div>
   )
