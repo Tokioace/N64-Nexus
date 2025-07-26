@@ -559,6 +559,7 @@ const SpeedrunMediaPage: React.FC = () => {
                 </div>
 
                 <div className="flex items-center gap-2">
+                  <Tv className="w-4 h-4 text-slate-400" />
                   <select
                     value={selectedGame}
                     onChange={(e) => setSelectedGame(e.target.value)}
