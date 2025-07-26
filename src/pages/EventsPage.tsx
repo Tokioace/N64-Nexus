@@ -358,7 +358,7 @@ const EventsPage: React.FC = () => {
                       </div>
                       <div className="space-y-2 sm:col-span-2 lg:col-span-1">
                         <h4 className="font-semibold text-slate-200 text-base flex items-center">
-                          <Target className="event-icon text-blue-400 mr-2" />
+                          <Target className="event-icon text-purple-400 mr-2" />
                           {t('events.details.rules')}
                         </h4>
                         <div className="text-base text-slate-300 leading-relaxed responsive-word-break">

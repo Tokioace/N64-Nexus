@@ -234,7 +234,7 @@ const N64FanLeaderboard: React.FC<N64FanLeaderboardProps> = ({
         <div className="simple-tile bg-gradient-to-r from-blue-500/10 to-purple-500/10 border-blue-400/30">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <Target className="w-5 h-5 text-blue-400" />
+              <Target className="w-5 h-5 text-purple-400" />
               <span className="font-medium text-slate-100">{t('leaderboard.yourRank')}</span>
             </div>
             <div className="flex items-center gap-2">

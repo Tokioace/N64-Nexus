@@ -121,7 +121,7 @@ const NewsFeedPage: React.FC = () => {
       case 'event_announcement':
         return <Calendar className="w-5 h-5 text-purple-400" />
       case 'tournament':
-        return <Trophy className="w-5 h-5 text-orange-400" />
+        return <Trophy className="w-5 h-5 text-yellow-400" />
       case 'update':
         return <Star className="w-5 h-5 text-cyan-400" />
       case 'game_release':
