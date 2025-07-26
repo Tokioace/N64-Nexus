@@ -193,7 +193,7 @@ const EventFeedWidget: React.FC<EventFeedWidgetProps> = ({
       <div className="event-card-header">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-3">
-            <Trophy className="event-icon text-red-400" />
+            <Trophy className="event-icon text-yellow-400" />
             <h2 className="text-xl font-bold text-slate-100">{t('home.liveEvents')}</h2>
           </div>
           <button

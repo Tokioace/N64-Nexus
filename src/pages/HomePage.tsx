@@ -431,7 +431,7 @@ const HomePage: React.FC = () => {
         ) : (
           <div className="n64-tile n64-tile-large bg-gradient-to-br from-red-600/20 to-pink-600/20 border-l-4 border-red-400 responsive-max-width">
             <div className="flex items-center gap-2 sm:gap-3 mb-4">
-              <Trophy className="w-5 h-5 sm:w-6 sm:h-6 text-red-400 flex-shrink-0" />
+              <Trophy className="w-5 h-5 sm:w-6 sm:h-6 text-yellow-400 flex-shrink-0" />
               <h2 className="text-responsive-lg font-bold text-slate-100 responsive-word-break">🔴 {t('home.liveEvents')}</h2>
             </div>
             <div className="text-center py-4 sm:py-8">
