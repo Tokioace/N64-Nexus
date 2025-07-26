@@ -2,6 +2,7 @@ import React, { ReactNode, useState, useEffect } from 'react'
 import Sidebar from './Sidebar'
 import { useUser } from '../contexts/UserContext'
 import { usePoints } from '../contexts/PointsContext'
+import { useLanguage } from '../contexts/LanguageContext'
 import { Link } from 'react-router-dom'
 import { Trophy, Zap } from 'lucide-react'
 
@@ -14,6 +15,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   const [isMobile, setIsMobile] = useState(false)
   const { user, isAuthenticated } = useUser()
   const { userPoints } = usePoints()
+  const { t } = useLanguage()
 
   const toggleMobileSidebar = () => {
     setIsMobileSidebarOpen(!isMobileSidebarOpen)
@@ -104,7 +106,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
           height: 'clamp(44px, 10vw, 52px)',
           padding: 'clamp(0.5rem, 1.5vw, 0.75rem)'
         }}
-        aria-label="Toggle mobile menu"
+                  aria-label={t('aria.toggleMobileMenu')}
       >
         <svg
           className="w-5 h-5 sm:w-6 sm:h-6"

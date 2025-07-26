@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react'
 import { Upload, X, Image as ImageIcon, AlertCircle } from 'lucide-react'
 import { validateImageFile } from '../utils/forumValidation'
+import { useLanguage } from '../contexts/LanguageContext'
 
 interface ImageUploadProps {
   onImageSelect: (imageUrl: string, file: File) => void
@@ -19,6 +20,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
   isAuthenticated,
   className = ''
 }) => {
+  const { t } = useLanguage()
   const [dragActive, setDragActive] = useState(false)
   const [error, setError] = useState<string>('')
   const fileInputRef = useRef<HTMLInputElement>(null)
@@ -100,7 +102,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
         <div className="relative">
           <img
             src={currentImage}
-            alt="Upload preview"
+                          alt={t('alt.uploadPreview')}
             className="w-full max-w-md h-auto rounded-lg border border-slate-600"
           />
           <button

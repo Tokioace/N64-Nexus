@@ -120,7 +120,7 @@ const CreateOfferModal: React.FC<CreateOfferModalProps> = ({ isOpen, onClose, on
                     value={formData.price}
                     onChange={(e) => setFormData(prev => ({ ...prev, price: e.target.value }))}
                     className="flex-1 px-3 sm:px-4 py-2 sm:py-3 bg-slate-700 border border-slate-600 rounded-l-lg text-slate-100 focus:outline-none focus:ring-2 focus:ring-blue-500 text-responsive-sm"
-                    placeholder="0.00"
+                    placeholder={t('placeholder.marketplacePrice')}
                     required
                   />
                   <select
