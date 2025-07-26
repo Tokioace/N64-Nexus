@@ -126,14 +126,14 @@ const ForumThreadPage: React.FC = () => {
       <div className="container mx-auto px-4 py-6">
         <div className="simple-tile text-center">
           <MessageSquare className="w-16 h-16 text-slate-600 mx-auto mb-4" />
-          <h2 className="text-xl font-bold text-slate-100 mb-2">Thread nicht gefunden</h2>
-          <p className="text-slate-400">Der angeforderte Thread existiert nicht oder wurde gelöscht.</p>
+          <h2 className="text-xl font-bold text-slate-100 mb-2">{t('forum.threadNotFound')}</h2>
+                      <p className="text-slate-400">{t('forum.threadNotFoundDesc')}</p>
           <Link 
             to="/forum" 
             className="inline-flex items-center gap-2 mt-4 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
-            Zurück zum Forum
+            {t('forum.backToForum')}
           </Link>
         </div>
       </div>
@@ -149,7 +149,7 @@ const ForumThreadPage: React.FC = () => {
           className="inline-flex items-center gap-2 text-slate-400 hover:text-slate-200 transition-colors"
         >
           <ArrowLeft className="w-4 h-4" />
-          {t('common.back')} zum Forum
+{t('common.back')} {t('forum.backToCategory')} Forum
         </Link>
       </div>
 
@@ -171,7 +171,7 @@ const ForumThreadPage: React.FC = () => {
             <div className="flex items-center gap-4 text-sm text-slate-400">
               <div className="flex items-center gap-1">
                 <User className="w-4 h-4" />
-                <span>von {selectedThread.authorName}</span>
+                <span>{t('forum.createdBy')} {selectedThread.authorName}</span>
               </div>
               <div className="flex items-center gap-1">
                 <Clock className="w-4 h-4" />
@@ -222,7 +222,7 @@ const ForumThreadPage: React.FC = () => {
                     {post.isEdited && (
                       <>
                         <span>•</span>
-                        <span className="text-yellow-400">bearbeitet</span>
+                        <span className="text-yellow-400">{t('forum.edited')}</span>
                       </>
                     )}
                   </div>
@@ -258,7 +258,7 @@ const ForumThreadPage: React.FC = () => {
               className="w-full flex items-center justify-center gap-2 p-4 border-2 border-dashed border-slate-600 hover:border-blue-500 text-slate-400 hover:text-blue-400 rounded-lg transition-colors"
             >
               <Reply className="w-5 h-5" />
-              <span>Antworten</span>
+                              <span>{t('forum.reply')}</span>
             </button>
           ) : (
             <form onSubmit={handleSubmitReply}>
@@ -268,7 +268,7 @@ const ForumThreadPage: React.FC = () => {
                 </div>
                 <div>
                   <div className="font-semibold text-slate-100">{user?.username}</div>
-                  <div className="text-sm text-slate-400">Antwort schreiben</div>
+                  <div className="text-sm text-slate-400">{t('forum.replyWrite')}</div>
                 </div>
               </div>
 
@@ -331,7 +331,7 @@ const ForumThreadPage: React.FC = () => {
           {selectedThread.isLocked ? (
             <div className="flex items-center justify-center gap-2 text-slate-400">
               <Lock className="w-5 h-5" />
-              <span>Dieser Thread ist geschlossen</span>
+                              <span>{t('forum.threadClosed')}</span>
             </div>
           ) : (
             <div className="text-slate-400">

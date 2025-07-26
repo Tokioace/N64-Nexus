@@ -171,7 +171,7 @@ const N64FanLeaderboard: React.FC<N64FanLeaderboardProps> = ({
         <div className="simple-tile">
           <div className="flex items-center gap-2 mb-4">
             <Filter className="w-5 h-5 text-slate-400" />
-            <h3 className="text-lg font-bold text-slate-100">Filter</h3>
+            <h3 className="text-lg font-bold text-slate-100">{t('ui.filter')}</h3>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -220,9 +220,9 @@ const N64FanLeaderboard: React.FC<N64FanLeaderboardProps> = ({
                 }))}
                 className="w-full bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-slate-100"
               >
-                <option value="all">All Regions</option>
-                <option value="PAL">PAL</option>
-                <option value="NTSC">NTSC</option>
+                <option value="all">{t('ui.allRegions')}</option>
+                <option value="PAL">{t('ui.pal')}</option>
+                <option value="NTSC">{t('ui.ntsc')}</option>
               </select>
             </div>
           </div>

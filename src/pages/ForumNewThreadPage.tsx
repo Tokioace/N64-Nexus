@@ -108,13 +108,13 @@ const ForumNewThreadPage: React.FC = () => {
       <div className="container mx-auto px-4 py-6">
         <div className="simple-tile text-center">
           <AlertCircle className="w-16 h-16 text-red-400 mx-auto mb-4" />
-          <h2 className="text-xl font-bold text-slate-100 mb-2">Anmeldung erforderlich</h2>
-          <p className="text-slate-400 mb-4">Du musst angemeldet sein, um einen Thread zu erstellen.</p>
+          <h2 className="text-xl font-bold text-slate-100 mb-2">{t('forum.loginRequired')}</h2>
+                      <p className="text-slate-400 mb-4">{t('forum.loginRequiredDesc')}</p>
           <Link 
             to="/auth" 
             className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors"
           >
-            Anmelden
+{t('ui.login')}
           </Link>
         </div>
       </div>
@@ -137,14 +137,14 @@ const ForumNewThreadPage: React.FC = () => {
       <div className="container mx-auto px-4 py-6">
         <div className="simple-tile text-center">
           <AlertCircle className="w-16 h-16 text-red-400 mx-auto mb-4" />
-          <h2 className="text-xl font-bold text-slate-100 mb-2">Kategorie nicht gefunden</h2>
-          <p className="text-slate-400">Die angeforderte Kategorie existiert nicht.</p>
+          <h2 className="text-xl font-bold text-slate-100 mb-2">{t('forum.categoryNotFound')}</h2>
+                      <p className="text-slate-400">{t('forum.categoryNotFoundDesc')}</p>
           <Link 
             to="/forum" 
             className="inline-flex items-center gap-2 mt-4 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
-            Zurück zum Forum
+{t('forum.backToForum')}
           </Link>
         </div>
       </div>
@@ -160,7 +160,7 @@ const ForumNewThreadPage: React.FC = () => {
           className="inline-flex items-center gap-2 text-slate-400 hover:text-slate-200 transition-colors"
         >
           <ArrowLeft className="w-4 h-4" />
-          {t('common.back')} zu {selectedCategory.name}
+{t('common.back')} {t('forum.backToCategory')} {selectedCategory.name}
         </Link>
       </div>
 
@@ -172,7 +172,7 @@ const ForumNewThreadPage: React.FC = () => {
           </div>
           <div>
             <h1 className="text-3xl font-bold text-slate-100">
-              Neuer Thread
+{t('forum.newThread')}
             </h1>
             <p className="text-slate-400 mt-1">
               Erstelle einen neuen Thread in "{selectedCategory.name}"
@@ -191,7 +191,7 @@ const ForumNewThreadPage: React.FC = () => {
             </div>
             <div>
               <div className="font-semibold text-slate-100">{user?.username}</div>
-              <div className="text-sm text-slate-400">Thread erstellen</div>
+              <div className="text-sm text-slate-400">{t('forum.createThread')}</div>
             </div>
           </div>
 

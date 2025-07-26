@@ -99,7 +99,7 @@ const ForumCategoryPage: React.FC = () => {
       <div className="container mx-auto px-4 py-6">
         <div className="simple-tile text-center">
           <MessageSquare className="w-16 h-16 text-slate-600 mx-auto mb-4" />
-          <h2 className="text-xl font-bold text-slate-100 mb-2">Kategorie nicht gefunden</h2>
+          <h2 className="text-xl font-bold text-slate-100 mb-2">{t('forum.categoryNotFound')}</h2>
           <p className="text-slate-400">Die angeforderte Kategorie existiert nicht.</p>
           <Link 
             to="/forum" 
@@ -153,7 +153,7 @@ const ForumCategoryPage: React.FC = () => {
               className="flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors"
             >
               <Plus className="w-4 h-4" />
-              <span>Neuer Thread</span>
+                              <span>{t('forum.newThread')}</span>
             </Link>
           )}
         </div>
@@ -175,7 +175,7 @@ const ForumCategoryPage: React.FC = () => {
               className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors"
             >
               <Plus className="w-4 h-4" />
-              <span>Ersten Thread erstellen</span>
+                              <span>{t('forum.firstThread')}</span>
             </Link>
           )}
         </div>

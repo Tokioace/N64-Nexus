@@ -495,29 +495,29 @@ const ProfilePage: React.FC = () => {
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="bg-slate-800/50 rounded-lg p-4">
-                <h4 className="font-bold text-slate-100 mb-3">Collection Stats</h4>
+                <h4 className="font-bold text-slate-100 mb-3">{t('profile.collectionStats')}</h4>
                 <div className="space-y-2">
                   <div className="flex justify-between">
-                    <span className="text-slate-400">Total Games:</span>
+                    <span className="text-slate-400">{t('profile.totalGames')}:</span>
                     <span className="text-slate-100">{profileUser?.collections?.length || 0}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-slate-400">Personal Records:</span>
+                    <span className="text-slate-400">{t('profile.personalRecords')}:</span>
                     <span className="text-slate-100">{profileUser?.personalRecords?.length || 0}</span>
                   </div>
                 </div>
               </div>
               <div className="bg-slate-800/50 rounded-lg p-4">
-                <h4 className="font-bold text-slate-100 mb-3">Activity Stats</h4>
+                <h4 className="font-bold text-slate-100 mb-3">{t('profile.activityStats')}</h4>
                 <div className="space-y-2">
                   <div className="flex justify-between">
-                    <span className="text-slate-400">Profile Created:</span>
+                    <span className="text-slate-400">{t('profile.profileCreated')}:</span>
                     <span className="text-slate-100">
                       {profileUser?.joinDate ? new Date(profileUser.joinDate).toLocaleDateString() : 'N/A'}
                     </span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-slate-400">Region:</span>
+                    <span className="text-slate-400">{t('profile.region')}:</span>
                     <span className="text-slate-100">{profileUser?.region || 'N/A'}</span>
                   </div>
                 </div>

@@ -525,7 +525,7 @@ const FanArtPage: React.FC = () => {
               }`}
             >
               <Grid className="w-4 h-4" />
-              <span className="text-sm sm:text-base">Grid</span>
+                              <span className="text-sm sm:text-base">{t('ui.grid')}</span>
             </button>
             <button
               onClick={() => setViewMode('list')}
@@ -536,7 +536,7 @@ const FanArtPage: React.FC = () => {
               }`}
             >
               <List className="w-4 h-4" />
-              <span className="text-sm sm:text-base">List</span>
+                              <span className="text-sm sm:text-base">{t('ui.list')}</span>
             </button>
           </div>
         </div>

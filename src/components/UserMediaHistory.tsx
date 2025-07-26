@@ -121,8 +121,8 @@ const UserMediaHistory: React.FC<UserMediaHistoryProps> = ({ className = '' }) =
       <div className={`${className} bg-slate-800 rounded-lg p-6`}>
         <div className="text-center">
           <Camera className="w-12 h-12 text-slate-400 mx-auto mb-4" />
-          <h3 className="text-lg font-semibold text-slate-300 mb-2">Noch keine Uploads</h3>
-          <p className="text-slate-400">Du hast noch keine Media hochgeladen. Beginne jetzt und sammle Punkte!</p>
+          <h3 className="text-lg font-semibold text-slate-300 mb-2">{t('media.noUploads')}</h3>
+          <p className="text-slate-400">{t('media.noUploadsDesc')}</p>
         </div>
       </div>
     )
@@ -161,7 +161,7 @@ const UserMediaHistory: React.FC<UserMediaHistoryProps> = ({ className = '' }) =
           {media.eventId && (
             <div className="flex items-center gap-1 mb-2">
               <Trophy className="w-3 h-3 text-yellow-400" />
-              <span className="text-xs text-yellow-400">Event Upload</span>
+              <span className="text-xs text-yellow-400">{t('media.eventUpload')}</span>
             </div>
           )}
 
