@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react'
-import { MessageSquare, X } from 'lucide-react'
+import { MessageCircle, X } from 'lucide-react'
+import { useLanguage } from '../contexts/LanguageContext'
 
 interface ForumThread {
   id: string
@@ -16,6 +17,7 @@ interface SingleForumCardProps {
 }
 
 const SingleForumCard: React.FC<SingleForumCardProps> = ({ forumThreads, className = '' }) => {
+  const { t } = useLanguage()
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isFlipping, setIsFlipping] = useState(false)
   const [flipDirection, setFlipDirection] = useState<'left' | 'right'>('left')
@@ -82,7 +84,7 @@ const SingleForumCard: React.FC<SingleForumCardProps> = ({ forumThreads, classNa
     <div className={`swipeable-card bg-gradient-to-br from-cyan-600/10 to-blue-600/10 border-l-4 border-cyan-400 relative transition-all duration-300 ${isAnimating ? 'scale-95 opacity-80' : 'scale-100 opacity-100'}`}>
       <div className="swipeable-card-header">
         <div className="flex items-center gap-2">
-          <MessageSquare className="w-5 h-5 text-cyan-400" />
+          <MessageCircle className="w-5 h-5 text-cyan-400" />
           <h3 className="text-responsive-base font-bold text-slate-100">Forum Posts</h3>
         </div>
         <div className="text-xs text-slate-400">
@@ -115,7 +117,7 @@ const SingleForumCard: React.FC<SingleForumCardProps> = ({ forumThreads, classNa
         <div className="swipeable-card bg-gradient-to-br from-cyan-600/10 to-blue-600/10 border-l-4 border-cyan-400">
           <div className="swipeable-card-header">
             <div className="flex items-center gap-2">
-              <MessageSquare className="w-5 h-5 text-cyan-400" />
+              <MessageCircle className="w-5 h-5 text-cyan-400" />
               <h3 className="text-responsive-base font-bold text-slate-100">Forum Posts</h3>
             </div>
           </div>
@@ -173,7 +175,7 @@ const SingleForumCard: React.FC<SingleForumCardProps> = ({ forumThreads, classNa
             className={`pointer-events-auto p-2 rounded-full bg-slate-700/80 hover:bg-slate-600/80 text-slate-300 hover:text-white transition-all duration-200 ${
               currentIndex <= 0 ? 'opacity-30 cursor-not-allowed' : 'opacity-70 hover:opacity-100'
             }`}
-            aria-label="Previous card"
+            aria-label={t('aria.previousCard')}
           >
             <span className="text-lg">‹</span>
           </button>
@@ -184,7 +186,7 @@ const SingleForumCard: React.FC<SingleForumCardProps> = ({ forumThreads, classNa
             className={`pointer-events-auto p-2 rounded-full bg-slate-700/80 hover:bg-slate-600/80 text-slate-300 hover:text-white transition-all duration-200 ${
               currentIndex >= forumThreads.length - 1 ? 'opacity-30 cursor-not-allowed' : 'opacity-70 hover:opacity-100'
             }`}
-            aria-label="Next card"
+            aria-label={t('aria.nextCard')}
           >
             <span className="text-lg">›</span>
           </button>

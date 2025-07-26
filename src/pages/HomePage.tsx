@@ -169,24 +169,24 @@ const HomePage: React.FC = () => {
     },
     {
       id: '10',
-      title: '📊 Community Statistiken veröffentlicht',
-      content: 'Über 50.000 registrierte Speedrunner und mehr als 1 Million aufgezeichnete Runs!',
+      title: t('news.communityStats'),
+      content: t('news.communityStatsContent'),
       date: new Date(Date.now() - 604800000),
       type: 'community_news'
     }
   ]
 
   const forumThreads: ForumThread[] = [
-    { id: '1', title: 'Bester N64 Controller für Speedruns?', author: 'SpeedRunner123', replies: 23, lastActivity: new Date(Date.now() - 1800000), category: 'Hardware' },
-    { id: '2', title: 'Mario Kart 64: Neue Shortcuts entdeckt!', author: 'MKExplorer', replies: 45, lastActivity: new Date(Date.now() - 3600000), category: 'Glitches' },
-    { id: '3', title: 'OoT Randomizer Tournament Anmeldung', author: 'ZeldaFan64', replies: 67, lastActivity: new Date(Date.now() - 7200000), category: 'Events' },
-    { id: '4', title: 'Perfekte Dark Strategie Guide', author: 'PerfectAgent', replies: 12, lastActivity: new Date(Date.now() - 10800000), category: 'Guides' },
-    { id: '5', title: 'N64 Emulator vs Original Hardware', author: 'RetroGamer', replies: 89, lastActivity: new Date(Date.now() - 14400000), category: 'Diskussion' },
-    { id: '6', title: 'Super Mario 64 BLJ Tutorial', author: 'BLJMaster', replies: 34, lastActivity: new Date(Date.now() - 18000000), category: 'Tutorials' },
-    { id: '7', title: 'Banjo-Kazooie 100% Route optimiert', author: 'BearBirdRunner', replies: 56, lastActivity: new Date(Date.now() - 21600000), category: 'Routen' },
-    { id: '8', title: 'Goldeneye 007 Facility unter 1:00?', author: 'SecretAgent', replies: 78, lastActivity: new Date(Date.now() - 25200000), category: 'Challenges' },
-    { id: '9', title: 'N64 Sammlung: Seltene Spiele bewerten', author: 'Collector64', replies: 23, lastActivity: new Date(Date.now() - 28800000), category: 'Sammeln' },
-    { id: '10', title: 'Paper Mario Speedrun Tipps', author: 'PaperSpeedster', replies: 41, lastActivity: new Date(Date.now() - 32400000), category: 'Tipps' }
+    { id: '1', title: t('forum.thread.controllerQuestion'), author: 'SpeedRunner123', replies: 23, lastActivity: new Date(Date.now() - 1800000), category: t('category.hardware') },
+    { id: '2', title: t('forum.thread.mariokartShortcuts'), author: 'MKExplorer', replies: 45, lastActivity: new Date(Date.now() - 3600000), category: t('category.glitches') },
+    { id: '3', title: t('forum.thread.ootRandomizer'), author: 'ZeldaFan64', replies: 67, lastActivity: new Date(Date.now() - 7200000), category: t('category.events') },
+    { id: '4', title: t('forum.thread.perfectDarkGuide'), author: 'PerfectAgent', replies: 12, lastActivity: new Date(Date.now() - 10800000), category: t('category.guides') },
+    { id: '5', title: t('forum.thread.emulatorVsHardware'), author: 'RetroGamer', replies: 89, lastActivity: new Date(Date.now() - 14400000), category: t('category.discussion') },
+    { id: '6', title: t('forum.thread.marioBLJ'), author: 'BLJMaster', replies: 34, lastActivity: new Date(Date.now() - 18000000), category: t('category.tutorials') },
+    { id: '7', title: t('forum.thread.banjoRoute'), author: 'BearBirdRunner', replies: 56, lastActivity: new Date(Date.now() - 21600000), category: t('category.routes') },
+    { id: '8', title: t('forum.thread.goldeneye'), author: 'SecretAgent', replies: 78, lastActivity: new Date(Date.now() - 25200000), category: t('category.challenges') },
+    { id: '9', title: t('forum.thread.collecting'), author: 'Collector64', replies: 23, lastActivity: new Date(Date.now() - 28800000), category: t('category.collecting') },
+    { id: '10', title: t('forum.thread.paperMario'), author: 'PaperSpeedster', replies: 41, lastActivity: new Date(Date.now() - 32400000), category: t('category.tips') }
   ]
 
   const fanArtItems: FanArtItem[] = [
@@ -391,7 +391,7 @@ const HomePage: React.FC = () => {
           {/* Mascot Image */}
           <img 
             src="/mascot.png" 
-            alt="Battle64 CRT-TV Mascot" 
+            alt={t('alt.battle64Mascot')} 
             className="battle64-mascot"
           />
         </div>

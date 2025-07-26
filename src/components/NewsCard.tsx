@@ -1,5 +1,6 @@
-import React from 'react'
-import { Newspaper, X } from 'lucide-react'
+import React, { useState } from 'react'
+import { Newspaper, X, Calendar, User, MessageCircle } from 'lucide-react'
+import { useLanguage } from '../contexts/LanguageContext'
 
 interface NewsItem {
   id: string
@@ -17,6 +18,7 @@ interface NewsCardProps {
 }
 
 const NewsCard: React.FC<NewsCardProps> = ({ newsItem, index, onDismiss, isAnimating = false }) => {
+  const { t } = useLanguage()
   const formatTime = (date: Date) => {
     return date.toLocaleTimeString('de-DE', {
       hour: '2-digit',
@@ -97,7 +99,7 @@ const NewsCard: React.FC<NewsCardProps> = ({ newsItem, index, onDismiss, isAnima
             e.currentTarget.style.backgroundColor = 'rgba(46, 47, 64, 0.8)'
             e.currentTarget.style.color = '#CCCCCC'
           }}
-          aria-label="Dismiss news"
+          aria-label={t('aria.dismissNews')}
         >
           <X className="w-4 h-4" />
         </button>

@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react'
 import { Upload, X, Image as ImageIcon, AlertCircle } from 'lucide-react'
 import { validateImageFile } from '../utils/forumValidation'
+import { useLanguage } from '../contexts/LanguageContext'
 
 interface ImageUploadProps {
   onImageSelect: (imageUrl: string, file: File) => void
@@ -19,6 +20,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
   isAuthenticated,
   className = ''
 }) => {
+  const { t } = useLanguage()
   const [dragActive, setDragActive] = useState(false)
   const [error, setError] = useState<string>('')
   const fileInputRef = useRef<HTMLInputElement>(null)
@@ -87,9 +89,9 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
     return (
       <div className={`p-4 border-2 border-dashed border-slate-600 rounded-lg text-center ${className}`}>
         <AlertCircle className="w-8 h-8 text-slate-500 mx-auto mb-2" />
-        <p className="text-slate-400 text-sm">
-          Du musst angemeldet sein, um Bilder hochzuladen
-        </p>
+                  <p className="text-slate-400 text-sm">
+            Du musst angemeldet sein, um Bilder hochzuladen
+          </p>
       </div>
     )
   }
@@ -100,7 +102,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
         <div className="relative">
           <img
             src={currentImage}
-            alt="Upload preview"
+            alt={t('alt.uploadPreview')}
             className="w-full max-w-md h-auto rounded-lg border border-slate-600"
           />
           <button
@@ -136,15 +138,15 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
               )}
             </div>
             <div>
-              <p className="text-slate-200 font-medium">
-                {dragActive ? 'Bild hier ablegen' : 'Bild hochladen'}
-              </p>
-              <p className="text-slate-400 text-sm mt-1">
-                Klicken oder Drag & Drop
-              </p>
-              <p className="text-slate-500 text-xs mt-1">
-                JPEG, PNG, GIF, WebP (max. 5MB)
-              </p>
+                              <p className="text-slate-200 font-medium">
+                  {dragActive ? 'Bild hier ablegen' : 'Bild hochladen'}
+                </p>
+                <p className="text-slate-400 text-sm mt-1">
+                  Klicken oder Drag & Drop
+                </p>
+                <p className="text-slate-500 text-xs mt-1">
+                  JPEG, PNG, GIF, WebP (max. 5MB)
+                </p>
             </div>
           </div>
         </div>

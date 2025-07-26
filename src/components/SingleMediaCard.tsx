@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react'
 import { Camera, Eye, X } from 'lucide-react'
+import { useLanguage } from '../contexts/LanguageContext'
 
 interface MediaItem {
   id: string
@@ -17,6 +18,7 @@ interface SingleMediaCardProps {
 }
 
 const SingleMediaCard: React.FC<SingleMediaCardProps> = ({ mediaItems, className = '' }) => {
+  const { t } = useLanguage()
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isFlipping, setIsFlipping] = useState(false)
   const [flipDirection, setFlipDirection] = useState<'left' | 'right'>('left')
@@ -178,7 +180,7 @@ const SingleMediaCard: React.FC<SingleMediaCardProps> = ({ mediaItems, className
             className={`pointer-events-auto p-2 rounded-full bg-slate-700/80 hover:bg-slate-600/80 text-slate-300 hover:text-white transition-all duration-200 ${
               currentIndex <= 0 ? 'opacity-30 cursor-not-allowed' : 'opacity-70 hover:opacity-100'
             }`}
-            aria-label="Previous card"
+            aria-label={t('aria.previousCard')}
           >
             <span className="text-lg">‹</span>
           </button>
@@ -189,7 +191,7 @@ const SingleMediaCard: React.FC<SingleMediaCardProps> = ({ mediaItems, className
             className={`pointer-events-auto p-2 rounded-full bg-slate-700/80 hover:bg-slate-600/80 text-slate-300 hover:text-white transition-all duration-200 ${
               currentIndex >= mediaItems.length - 1 ? 'opacity-30 cursor-not-allowed' : 'opacity-70 hover:opacity-100'
             }`}
-            aria-label="Next card"
+            aria-label={t('aria.nextCard')}
           >
             <span className="text-lg">›</span>
           </button>

@@ -466,7 +466,7 @@ const SpeedrunMediaPage: React.FC = () => {
                         value={streamData.title}
                         onChange={(e) => setStreamData({...streamData, title: e.target.value})}
                         className="w-full bg-slate-700 text-slate-100 rounded-lg px-4 py-2"
-                        placeholder="z.B. Mario 64 120 Stars Speedrun"
+                        placeholder={t('placeholder.speedrunTitle')}
                       />
                     </div>
                     <div>
@@ -476,7 +476,7 @@ const SpeedrunMediaPage: React.FC = () => {
                         value={streamData.url}
                         onChange={(e) => setStreamData({...streamData, url: e.target.value})}
                         className="w-full bg-slate-700 text-slate-100 rounded-lg px-4 py-2"
-                        placeholder="https://twitch.tv/deinkanal"
+                        placeholder={t('placeholder.speedrunUrl')}
                       />
                     </div>
                     <div>
@@ -584,7 +584,7 @@ const SpeedrunMediaPage: React.FC = () => {
                   type="text"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  placeholder="Suche nach Titel, Beschreibung oder Tags..."
+                  placeholder={t('placeholder.mediaSearch')}
                   className="bg-slate-700 text-slate-100 rounded-lg px-4 py-2 flex-1 min-w-0 w-full"
                 />
               </div>
