@@ -542,42 +542,44 @@ const SpeedrunMediaPage: React.FC = () => {
 
           {/* Filters */}
           <div className="bg-slate-800 rounded-lg p-6 mb-8">
-            <div className="flex flex-wrap gap-4 items-center">
-              <div className="flex items-center gap-2">
-                <Filter className="w-4 h-4 text-slate-400" />
-                <select
-                  value={selectedFilter}
-                  onChange={(e) => setSelectedFilter(e.target.value as any)}
-                  className="bg-slate-700 text-slate-100 rounded-lg px-4 py-2"
-                >
-                  <option value="all">Alle Typen</option>
-                  <option value="speedrun">Speedruns</option>
-                  <option value="screenshot">Screenshots</option>
-                  <option value="achievement">Achievements</option>
-                </select>
-              </div>
+            <div className="flex flex-col sm:flex-row gap-4 items-stretch sm:items-center">
+              <div className="flex flex-col sm:flex-row gap-4 items-stretch sm:items-center">
+                <div className="flex items-center gap-2">
+                  <Filter className="w-4 h-4 text-slate-400" />
+                  <select
+                    value={selectedFilter}
+                    onChange={(e) => setSelectedFilter(e.target.value as any)}
+                    className="bg-slate-700 text-slate-100 rounded-lg px-4 py-2 min-w-0 w-full sm:w-auto"
+                  >
+                    <option value="all">Alle Typen</option>
+                    <option value="speedrun">Speedruns</option>
+                    <option value="screenshot">Screenshots</option>
+                    <option value="achievement">Achievements</option>
+                  </select>
+                </div>
 
-              <div className="flex items-center gap-2">
-                <select
-                  value={selectedGame}
-                  onChange={(e) => setSelectedGame(e.target.value)}
-                  className="bg-slate-700 text-slate-100 rounded-lg px-4 py-2"
-                >
-                  <option value="all">Alle Spiele</option>
-                  {games.map(game => (
-                    <option key={game.id} value={game.id}>{game.name}</option>
-                  ))}
-                </select>
+                <div className="flex items-center gap-2">
+                  <select
+                    value={selectedGame}
+                    onChange={(e) => setSelectedGame(e.target.value)}
+                    className="bg-slate-700 text-slate-100 rounded-lg px-4 py-2 min-w-0 w-full sm:w-auto"
+                  >
+                    <option value="all">Alle Spiele</option>
+                    {games.map(game => (
+                      <option key={game.id} value={game.id}>{game.name}</option>
+                    ))}
+                  </select>
+                </div>
               </div>
 
               <div className="flex items-center gap-2 flex-1 min-w-0">
-                <Search className="w-4 h-4 text-slate-400" />
+                <Search className="w-4 h-4 text-slate-400 flex-shrink-0" />
                 <input
                   type="text"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   placeholder="Suche nach Titel, Beschreibung oder Tags..."
-                  className="bg-slate-700 text-slate-100 rounded-lg px-4 py-2 flex-1 min-w-0"
+                  className="bg-slate-700 text-slate-100 rounded-lg px-4 py-2 flex-1 min-w-0 w-full"
                 />
               </div>
             </div>

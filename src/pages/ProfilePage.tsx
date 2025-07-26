@@ -226,17 +226,17 @@ const ProfilePage: React.FC = () => {
       )}
 
       {/* Profile Header */}
-      <div className="simple-tile p-6">
-        <div className="flex items-start gap-6">
+      <div className="simple-tile p-4 sm:p-6">
+        <div className="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
           {/* Avatar */}
-          <div className="w-24 h-24 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full flex items-center justify-center text-4xl">
+          <div className="w-20 h-20 sm:w-24 sm:h-24 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full flex items-center justify-center text-3xl sm:text-4xl flex-shrink-0">
             {profileUser.avatar || '🎮'}
           </div>
 
           {/* User Info */}
-          <div className="flex-1">
-            <div className="flex items-center gap-3 mb-2">
-              <h1 className="text-3xl font-bold text-slate-100">
+          <div className="flex-1 min-w-0">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 mb-2">
+              <h1 className="text-2xl sm:text-3xl font-bold text-slate-100 truncate">
                 {profileUser.username}
               </h1>
               <div className="flex items-center gap-2 text-sm">
@@ -257,52 +257,52 @@ const ProfilePage: React.FC = () => {
               </div>
             </div>
 
-            <div className="flex items-center gap-4 text-slate-400 mb-4">
+            <div className="flex flex-wrap items-center gap-3 sm:gap-4 text-slate-400 mb-4 text-sm">
               <div className="flex items-center gap-1">
-                <Trophy className="w-4 h-4" />
-                <span>{t('profile.level')} {profileUser.level}</span>
+                <Trophy className="w-4 h-4 flex-shrink-0" />
+                <span className="whitespace-nowrap">{t('profile.level')} {profileUser.level}</span>
               </div>
               <div className="flex items-center gap-1">
-                <Star className="w-4 h-4" />
-                <span>{profileUser.xp.toLocaleString()} XP</span>
+                <Star className="w-4 h-4 flex-shrink-0" />
+                <span className="whitespace-nowrap">{profileUser.xp.toLocaleString()} XP</span>
               </div>
               <div className="flex items-center gap-1">
-                <Calendar className="w-4 h-4" />
-                <span>{t('profile.joinDate')} {profileUser.joinDate.toLocaleDateString()}</span>
+                <Calendar className="w-4 h-4 flex-shrink-0" />
+                <span className="whitespace-nowrap">{t('profile.joinDate')} {profileUser.joinDate.toLocaleDateString()}</span>
               </div>
               {profileUser.location && (
                 <div className="flex items-center gap-1">
-                  <MapPin className="w-4 h-4" />
-                  <span>{profileUser.location}</span>
+                  <MapPin className="w-4 h-4 flex-shrink-0" />
+                  <span className="truncate">{profileUser.location}</span>
                 </div>
               )}
             </div>
 
             {profileUser.bio && (
-              <p className="text-slate-300 mb-4">
+              <p className="text-slate-300 mb-4 text-sm sm:text-base">
                 {profileUser.bio}
               </p>
             )}
 
             {/* Quick Stats */}
-            <div className="flex gap-6 text-sm">
+            <div className="flex gap-4 sm:gap-6 text-sm">
               <div className="text-center">
-                <div className="text-xl font-bold text-blue-400">
+                <div className="text-lg sm:text-xl font-bold text-blue-400">
                   {profileUser.collections.filter(c => !c.isWishlist).length}
                 </div>
-                <div className="text-slate-400">{t('profile.collection')}</div>
+                <div className="text-slate-400 text-xs sm:text-sm">{t('profile.collection')}</div>
               </div>
               <div className="text-center">
-                <div className="text-xl font-bold text-green-400">
+                <div className="text-lg sm:text-xl font-bold text-green-400">
                   {profileUser.personalRecords.filter(r => r.verified).length}
                 </div>
-                <div className="text-slate-400">{t('profile.records')}</div>
+                <div className="text-slate-400 text-xs sm:text-sm">{t('profile.records')}</div>
               </div>
               <div className="text-center">
-                <div className="text-xl font-bold text-purple-400">
+                <div className="text-lg sm:text-xl font-bold text-purple-400">
                   {achievements.filter(a => a.earned).length}
                 </div>
-                <div className="text-slate-400">{t('profile.achievements')}</div>
+                <div className="text-slate-400 text-xs sm:text-sm">{t('profile.achievements')}</div>
               </div>
             </div>
           </div>
@@ -311,87 +311,90 @@ const ProfilePage: React.FC = () => {
           {isOwnProfile && (
             <button
               onClick={() => setIsEditing(true)}
-              className="flex items-center gap-2 px-4 py-2 text-slate-300 hover:text-slate-100 hover:bg-slate-700 rounded-lg transition-colors"
+              className="flex items-center gap-2 px-3 sm:px-4 py-2 text-slate-300 hover:text-slate-100 hover:bg-slate-700 rounded-lg transition-colors text-sm flex-shrink-0"
             >
               <Edit className="w-4 h-4" />
-              Bearbeiten
+              <span className="hidden sm:inline">Bearbeiten</span>
             </button>
           )}
         </div>
       </div>
 
       {/* Tab Navigation */}
-      <div className="flex space-x-1 bg-slate-800 rounded-lg p-1">
-        <button
-          onClick={() => setActiveTab('overview')}
-          className={`flex-1 py-2 px-4 rounded-md text-sm font-medium transition-all ${
-            activeTab === 'overview'
-              ? 'bg-blue-600 text-white shadow-lg'
-              : 'text-slate-400 hover:text-slate-200'
-          }`}
-        >
-          {t('profile.overview')}
-        </button>
-        <button
-          onClick={() => setActiveTab('points')}
-          className={`flex-1 py-2 px-4 rounded-md text-sm font-medium transition-all ${
-            activeTab === 'points'
-              ? 'bg-yellow-500 text-slate-900 shadow-lg'
-              : 'text-slate-400 hover:text-slate-200'
-          }`}
-        >
-          <div className="flex items-center justify-center gap-1">
-            <Trophy className="w-4 h-4" />
-            <span className="hidden sm:inline">{t('profile.pointsOverview')}</span>
-            <span className="sm:hidden">Points</span>
-          </div>
-        </button>
-        <button
-          onClick={() => setActiveTab('achievements')}
-          className={`flex-1 py-2 px-4 rounded-md text-sm font-medium transition-all ${
-            activeTab === 'achievements'
-              ? 'bg-yellow-500 text-slate-900 shadow-lg'
-              : 'text-slate-400 hover:text-slate-200'
-          }`}
-        >
-          <div className="flex items-center justify-center gap-1">
-            <Award className="w-4 h-4" />
-            <span className="hidden sm:inline">{t('profile.achievements.title')}</span>
-            <span className="sm:hidden">Achievements</span>
-          </div>
-        </button>
-        <button
-          onClick={() => setActiveTab('collection')}
-          className={`flex-1 py-2 px-4 rounded-md text-sm font-medium transition-all ${
-            activeTab === 'collection'
-              ? 'bg-blue-600 text-white shadow-lg'
-              : 'text-slate-400 hover:text-slate-200'
-          }`}
-        >
-          <span className="hidden sm:inline">{t('profile.collection')}</span>
-          <span className="sm:hidden">Collection</span>
-        </button>
-        <button
-          onClick={() => setActiveTab('records')}
-          className={`flex-1 py-2 px-4 rounded-md text-sm font-medium transition-all ${
-            activeTab === 'records'
-              ? 'bg-blue-600 text-white shadow-lg'
-              : 'text-slate-400 hover:text-slate-200'
-          }`}
-        >
-          <span className="hidden sm:inline">{t('profile.records')}</span>
-          <span className="sm:hidden">Records</span>
-        </button>
-        <button
-          onClick={() => setActiveTab('stats')}
-          className={`flex-1 py-2 px-4 rounded-md text-sm font-medium transition-all ${
-            activeTab === 'stats'
-              ? 'bg-blue-600 text-white shadow-lg'
-              : 'text-slate-400 hover:text-slate-200'
-          }`}
-        >
-          {t('profile.statistics')}
-        </button>
+      <div className="bg-slate-800 rounded-lg p-1 overflow-x-auto">
+        <div className="flex space-x-1 min-w-max">
+          <button
+            onClick={() => setActiveTab('overview')}
+            className={`py-2 px-3 sm:px-4 rounded-md text-xs sm:text-sm font-medium transition-all whitespace-nowrap ${
+              activeTab === 'overview'
+                ? 'bg-blue-600 text-white shadow-lg'
+                : 'text-slate-400 hover:text-slate-200'
+            }`}
+          >
+            {t('profile.overview')}
+          </button>
+          <button
+            onClick={() => setActiveTab('points')}
+            className={`py-2 px-3 sm:px-4 rounded-md text-xs sm:text-sm font-medium transition-all whitespace-nowrap ${
+              activeTab === 'points'
+                ? 'bg-yellow-500 text-slate-900 shadow-lg'
+                : 'text-slate-400 hover:text-slate-200'
+            }`}
+          >
+            <div className="flex items-center justify-center gap-1">
+              <Trophy className="w-3 h-3 sm:w-4 sm:h-4" />
+              <span className="hidden sm:inline">{t('profile.pointsOverview')}</span>
+              <span className="sm:hidden">Points</span>
+            </div>
+          </button>
+          <button
+            onClick={() => setActiveTab('achievements')}
+            className={`py-2 px-3 sm:px-4 rounded-md text-xs sm:text-sm font-medium transition-all whitespace-nowrap ${
+              activeTab === 'achievements'
+                ? 'bg-yellow-500 text-slate-900 shadow-lg'
+                : 'text-slate-400 hover:text-slate-200'
+            }`}
+          >
+            <div className="flex items-center justify-center gap-1">
+              <Award className="w-3 h-3 sm:w-4 sm:h-4" />
+              <span className="hidden sm:inline">{t('profile.achievements.title')}</span>
+              <span className="sm:hidden">Awards</span>
+            </div>
+          </button>
+          <button
+            onClick={() => setActiveTab('collection')}
+            className={`py-2 px-3 sm:px-4 rounded-md text-xs sm:text-sm font-medium transition-all whitespace-nowrap ${
+              activeTab === 'collection'
+                ? 'bg-blue-600 text-white shadow-lg'
+                : 'text-slate-400 hover:text-slate-200'
+            }`}
+          >
+            <span className="hidden sm:inline">{t('profile.collection')}</span>
+            <span className="sm:hidden">Games</span>
+          </button>
+          <button
+            onClick={() => setActiveTab('records')}
+            className={`py-2 px-3 sm:px-4 rounded-md text-xs sm:text-sm font-medium transition-all whitespace-nowrap ${
+              activeTab === 'records'
+                ? 'bg-blue-600 text-white shadow-lg'
+                : 'text-slate-400 hover:text-slate-200'
+            }`}
+          >
+            <span className="hidden sm:inline">{t('profile.records')}</span>
+            <span className="sm:hidden">Records</span>
+          </button>
+          <button
+            onClick={() => setActiveTab('stats')}
+            className={`py-2 px-3 sm:px-4 rounded-md text-xs sm:text-sm font-medium transition-all whitespace-nowrap ${
+              activeTab === 'stats'
+                ? 'bg-blue-600 text-white shadow-lg'
+                : 'text-slate-400 hover:text-slate-200'
+            }`}
+          >
+            <span className="hidden sm:inline">{t('profile.statistics')}</span>
+            <span className="sm:hidden">Stats</span>
+          </button>
+        </div>
       </div>
 
       {/* Tab Content */}
