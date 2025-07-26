@@ -858,68 +858,6 @@ const translations = {
     'records.points': 'Punkte (für High Scores)',
     'records.addButton': 'Hinzufügen',
 
-    // Collection Management
-    'collection.confirmRemove': 'Möchtest du dieses Spiel wirklich aus deiner Sammlung entfernen?',
-    'collection.packaging': 'Verpackung',
-    'collection.manual': 'Anleitung',
-    'collection.module': 'Modul',
-    'collection.used': 'Gebraucht',
-    'collection.estimatedValue': 'Geschätzter Wert',
-    'collection.cancel': 'Abbrechen',
-
-    // Common terms
-    'common.rarity': 'Seltenheit',
-    'common.common': 'Häufig',
-    'common.uncommon': 'Ungewöhnlich',
-    'common.rare': 'Selten',
-    'common.veryRare': 'Sehr selten',
-    'common.ultraRare': 'Ultra selten',
-    'common.unknown': 'Unbekannt',
-    'common.genres': 'Genres',
-
-    // Additional placeholders and labels
-    'placeholder.gameName': 'z.B. Super Mario 64',
-    'placeholder.category': 'z.B. 120 Stars, Any%, High Score',
-    'placeholder.time': 'z.B. 1:39:42 oder 99.42',
-    'placeholder.score': 'z.B. 999999',
-    'placeholder.proofUrl': 'https://youtube.com/watch?v=...',
-    'placeholder.notes': 'Optionale Notizen...',
-    'placeholder.recordNotes': 'Optionale Notizen zum Rekord...',
-    'placeholder.password': '••••••••',
-    'label.gameName': 'Spielname',
-    'label.platform': 'Plattform',
-    'label.region': 'Region',
-    'label.category': 'Kategorie',
-    'label.proofUrl': 'Beweis-URL (optional)',
-    'label.notes': 'Notizen',
-    'label.required': '*',
-
-    // Minigame sound descriptions
-    'minigames.sound.mario64': '"Wahoo!" - Mario Jump Sound',
-    'minigames.sound.zelda': '"Hey! Listen!" - Navi Sound',
-    'minigames.sound.goldeneye': '"Pew Pew" - Silencer Shot',
-    'minigames.sound.mariokart': '"Here we go!" - Race Start',
-
-    // EventLeaderboard
-    'eventLeaderboard.title': 'Event Leaderboard',
-    'eventLeaderboard.time': 'Zeit',
-    'eventLeaderboard.screenshotFrom': 'Screenshot von {username}',
-    'eventLeaderboard.livestream': 'Livestream',
-    'eventLeaderboard.livestreamProofText': 'Dieser Beweis wurde über einen Livestream erbracht',
-    'eventLeaderboard.watchStream': 'Stream ansehen',
-    'eventLeaderboard.notes': 'Notizen',
-    'eventLeaderboard.screenshot': 'Screenshot',
-    'eventLeaderboard.video': 'Video',
-    'eventLeaderboard.verified': 'Verifiziert',
-    'eventLeaderboard.unverified': 'Unverifiziert',
-    'eventLeaderboard.participants': 'Teilnehmer',
-    'eventLeaderboard.yourPosition': 'Deine Position',
-    'eventLeaderboard.clickToView': 'Klicken zum Anzeigen',
-    'eventLeaderboard.fullLeaderboard': 'Vollständiges Leaderboard',
-    'eventLeaderboard.view': 'Anzeigen',
-    'eventLeaderboard.documentation': 'Dokumentation',
-    'eventLeaderboard.viewMedia': 'Media anzeigen',
-
     // Additional missing translations for complete internationalization
     'aria.previousCard': 'Vorherige Karte',
     'aria.nextCard': 'Nächste Karte',
@@ -988,7 +926,78 @@ const translations = {
     'error.urlRequired': 'URL ist erforderlich',
     'error.invalidUrl': 'Ungültiges URL-Format',
     'error.userNotAuthenticated': 'Benutzer nicht authentifiziert',
-    'error.contentRequired': 'Inhalt ist erforderlich'
+    'error.contentRequired': 'Inhalt ist erforderlich',
+
+    // Collection Management
+    'collection.confirmRemove': 'Möchtest du dieses Spiel wirklich aus deiner Sammlung entfernen?',
+    'collection.packaging': 'Verpackung',
+    'collection.manual': 'Anleitung',
+    'collection.module': 'Modul',
+    'collection.used': 'Gebraucht',
+    'collection.estimatedValue': 'Geschätzter Wert',
+    'collection.cancel': 'Abbrechen',
+
+    // Common terms
+    'common.rarity': 'Seltenheit',
+    'common.common': 'Häufig',
+    'common.uncommon': 'Ungewöhnlich',
+    'common.rare': 'Selten',
+    'common.veryRare': 'Sehr selten',
+    'common.ultraRare': 'Ultra selten',
+    'common.unknown': 'Unbekannt',
+    'common.genres': 'Genres',
+
+    // Additional placeholders and labels
+    'placeholder.gameName': 'z.B. Super Mario 64',
+    'placeholder.category': 'z.B. 120 Stars, Any%, High Score',
+    'placeholder.time': 'z.B. 1:39:42 oder 99.42',
+    'placeholder.score': 'z.B. 999999',
+    'placeholder.proofUrl': 'https://youtube.com/watch?v=...',
+    'placeholder.notes': 'Optionale Notizen...',
+    'placeholder.recordNotes': 'Optionale Notizen zum Rekord...',
+    'placeholder.password': '••••••••',
+    'label.gameName': 'Spielname',
+    'label.platform': 'Plattform',
+    'label.region': 'Region',
+    'label.category': 'Kategorie',
+    'label.proofUrl': 'Beweis-URL (optional)',
+    'label.notes': 'Notizen',
+    'label.required': '*',
+
+    // Minigame sound descriptions
+    'minigames.sound.mario64': '"Wahoo!" - Mario Jump Sound',
+    'minigames.sound.zelda': '"Hey! Listen!" - Navi Sound',
+    'minigames.sound.goldeneye': '"Pew Pew" - Silencer Shot',
+    'minigames.sound.mariokart': '"Here we go!" - Race Start',
+
+    // EventLeaderboard
+    'eventLeaderboard.title': 'Event Leaderboard',
+    'eventLeaderboard.time': 'Zeit',
+    'eventLeaderboard.screenshotFrom': 'Screenshot von {username}',
+    'eventLeaderboard.livestream': 'Livestream',
+    'eventLeaderboard.livestreamProofText': 'Dieser Beweis wurde über einen Livestream erbracht',
+    'eventLeaderboard.watchStream': 'Stream ansehen',
+    'eventLeaderboard.notes': 'Notizen',
+    'eventLeaderboard.screenshot': 'Screenshot',
+    'eventLeaderboard.video': 'Video',
+    'eventLeaderboard.verified': 'Verifiziert',
+    'eventLeaderboard.unverified': 'Unverifiziert',
+    'eventLeaderboard.participants': 'Teilnehmer',
+    'eventLeaderboard.yourPosition': 'Deine Position',
+    'eventLeaderboard.clickToView': 'Klicken zum Anzeigen',
+    'eventLeaderboard.fullLeaderboard': 'Vollständiges Leaderboard',
+    'eventLeaderboard.view': 'Anzeigen',
+    'eventLeaderboard.documentation': 'Dokumentation',
+    'eventLeaderboard.viewMedia': 'Media anzeigen',
+
+    // Additional missing translations for complete internationalization
+    
+    
+    
+    
+    
+    
+    
   },
   
   en: {
@@ -2812,77 +2821,7 @@ const translations = {
     'records.addFirst': 'Ajoutez votre premier record personnel !',
     'records.addPersonal': 'Ajouter un Record Personnel',
     'records.points': 'Points (pour les High Scores)',
-    'records.time': 'Temps (pour les Speedruns)',
-
-    // Additional missing translations for complete internationalization
-    'aria.previousCard': 'Carte précédente',
-    'aria.nextCard': 'Carte suivante',
-    'aria.toggleMobileMenu': 'Basculer le menu mobile',
-    'aria.dismissNews': 'Fermer les nouvelles',
-    'aria.gridView': 'Vue grille',
-    'aria.listView': 'Vue liste',
-    
-    'alt.uploadPreview': 'Aperçu du téléchargement',
-    'alt.battle64Mascot': 'Mascotte Battle64 CRT-TV',
-    'alt.postAttachment': 'Pièce jointe du message',
-    'alt.preview': 'Aperçu',
-    
-    'placeholder.threadTitle': 'Donnez un titre significatif à votre sujet...',
-    'placeholder.threadContent': 'Décrivez votre sujet en détail...',
-    'placeholder.replyContent': 'Votre réponse...',
-    'placeholder.raceTime': '1:32.456',
-    'placeholder.livestreamUrl': 'https://twitch.tv/votre-chaine ou https://youtube.com/watch?v=...',
-    'placeholder.speedrunTitle': 'ex. Mario 64 120 Étoiles Speedrun',
-    'placeholder.speedrunUrl': 'https://twitch.tv/votre-chaine',
-    'placeholder.speedrunGame': 'ex. Super Mario 64',
-    'placeholder.mediaSearch': 'Rechercher par titre, description ou tags...',
-    'placeholder.mediaTitle': 'ex. Tentative de Record Mondial 120 Étoiles',
-    'placeholder.mediaDescription': 'Décrivez votre performance...',
-    'placeholder.mediaTags': 'recordmondial, any%, glitchless (séparés par virgule)',
-    'placeholder.mediaUrl': 'https://youtube.com/watch?v=...',
-    'placeholder.marketplacePrice': '0.00',
-    
-    'forum.thread.controllerQuestion': 'Meilleure Manette N64 pour les Speedruns ?',
-    'forum.thread.mariokartShortcuts': 'Mario Kart 64 : Nouveaux Raccourcis Découverts !',
-    'forum.thread.ootRandomizer': 'Inscription Tournoi OoT Randomizer',
-    'forum.thread.perfectDarkGuide': 'Guide Stratégique Perfect Dark',
-    'forum.thread.emulatorVsHardware': 'Émulateur N64 vs Matériel Original',
-    'forum.thread.marioBLJ': 'Tutoriel Super Mario 64 BLJ',
-    'forum.thread.banjoRoute': 'Route Banjo-Kazooie 100% Optimisée',
-    'forum.thread.goldeneye': 'GoldenEye 007 Facility sous 1:00 ?',
-    'forum.thread.collecting': 'Collection N64 : Évaluer les Jeux Rares',
-    'forum.thread.paperMario': 'Conseils Speedrun Paper Mario',
-    
-    'category.hardware': 'Matériel',
-    'category.glitches': 'Glitches',
-    'category.events': 'Événements',
-    'category.guides': 'Guides',
-    'category.discussion': 'Discussion',
-    'category.tutorials': 'Tutoriels',
-    'category.routes': 'Routes',
-    'category.challenges': 'Défis',
-    'category.collecting': 'Collection',
-    'category.tips': 'Conseils',
-    
-    'minigame.reactionTest': 'Test de Réaction Manette',
-    'minigame.reactionDesc': 'Quelle est la vitesse de vos réflexes ? Testez votre temps de réaction !',
-    'minigame.triviaRush': 'N64 Trivia Rush',
-    'minigame.triviaDesc': 'Répondez aux questions N64 le plus vite possible !',
-    'minigame.cheatTyping': 'Frappe de Codes de Triche',
-    'minigame.cheatDesc': 'Tapez les codes de triche N64 célèbres le plus vite possible !',
-    'minigame.clickToStart': 'Cliquer pour Commencer',
-    
-    'news.communityStats': '📊 Statistiques Communautaires Publiées',
-    'news.communityStatsContent': 'Plus de 50 000 speedrunners enregistrés et plus d\'un million de runs enregistrés !',
-    
-    'error.titleRequired': 'Le titre est requis',
-    'error.gameRequired': 'La sélection du jeu est requise',
-    'error.mediaTypeRequired': 'Le type de média est requis',
-    'error.fileRequired': 'Le fichier est requis',
-    'error.urlRequired': 'L\'URL est requise',
-    'error.invalidUrl': 'Format d\'URL invalide',
-    'error.userNotAuthenticated': 'Utilisateur non authentifié',
-    'error.contentRequired': 'Le contenu est requis'
+    'records.time': 'Temps (pour les Speedruns)'
   },
 
   it: {
@@ -3456,76 +3395,6 @@ const translations = {
     'records.addPersonal': 'Aggiungi Record Personale',
     'records.points': 'Punti (per High Score)',
     'records.time': 'Tempo (per Speedrun)',
-
-    // Additional missing translations for complete internationalization
-    'aria.previousCard': 'Carta precedente',
-    'aria.nextCard': 'Carta successiva',
-    'aria.toggleMobileMenu': 'Attiva/disattiva menu mobile',
-    'aria.dismissNews': 'Chiudi notizie',
-    'aria.gridView': 'Vista griglia',
-    'aria.listView': 'Vista elenco',
-    
-    'alt.uploadPreview': 'Anteprima upload',
-    'alt.battle64Mascot': 'Mascotte Battle64 CRT-TV',
-    'alt.postAttachment': 'Allegato post',
-    'alt.preview': 'Anteprima',
-    
-    'placeholder.threadTitle': 'Dai al tuo thread un titolo significativo...',
-    'placeholder.threadContent': 'Descrivi il tuo argomento in dettaglio...',
-    'placeholder.replyContent': 'La tua risposta...',
-    'placeholder.raceTime': '1:32.456',
-    'placeholder.livestreamUrl': 'https://twitch.tv/tuo-canale o https://youtube.com/watch?v=...',
-    'placeholder.speedrunTitle': 'es. Mario 64 120 Stelle Speedrun',
-    'placeholder.speedrunUrl': 'https://twitch.tv/tuocanale',
-    'placeholder.speedrunGame': 'es. Super Mario 64',
-    'placeholder.mediaSearch': 'Cerca per titolo, descrizione o tag...',
-    'placeholder.mediaTitle': 'es. Tentativo Record Mondiale 120 Stelle',
-    'placeholder.mediaDescription': 'Descrivi la tua prestazione...',
-    'placeholder.mediaTags': 'recordmondiale, any%, glitchless (separati da virgola)',
-    'placeholder.mediaUrl': 'https://youtube.com/watch?v=...',
-    'placeholder.marketplacePrice': '0.00',
-    
-    'forum.thread.controllerQuestion': 'Miglior Controller N64 per gli Speedrun?',
-    'forum.thread.mariokartShortcuts': 'Mario Kart 64: Nuove Scorciatoie Scoperte!',
-    'forum.thread.ootRandomizer': 'Registrazione Torneo OoT Randomizer',
-    'forum.thread.perfectDarkGuide': 'Guida Strategica Perfect Dark',
-    'forum.thread.emulatorVsHardware': 'Emulatore N64 vs Hardware Originale',
-    'forum.thread.marioBLJ': 'Tutorial Super Mario 64 BLJ',
-    'forum.thread.banjoRoute': 'Percorso Banjo-Kazooie 100% Ottimizzato',
-    'forum.thread.goldeneye': 'GoldenEye 007 Facility sotto 1:00?',
-    'forum.thread.collecting': 'Collezione N64: Valutare Giochi Rari',
-    'forum.thread.paperMario': 'Consigli Speedrun Paper Mario',
-    
-    'category.hardware': 'Hardware',
-    'category.glitches': 'Glitch',
-    'category.events': 'Eventi',
-    'category.guides': 'Guide',
-    'category.discussion': 'Discussione',
-    'category.tutorials': 'Tutorial',
-    'category.routes': 'Percorsi',
-    'category.challenges': 'Sfide',
-    'category.collecting': 'Collezionismo',
-    'category.tips': 'Consigli',
-    
-    'minigame.reactionTest': 'Test di Reazione Controller',
-    'minigame.reactionDesc': 'Quanto sono veloci i tuoi riflessi? Testa il tuo tempo di reazione!',
-    'minigame.triviaRush': 'N64 Trivia Rush',
-    'minigame.triviaDesc': 'Rispondi alle domande N64 il più velocemente possibile!',
-    'minigame.cheatTyping': 'Digitazione Codici Trucco',
-    'minigame.cheatDesc': 'Digita i famosi codici trucco N64 il più velocemente possibile!',
-    'minigame.clickToStart': 'Clicca per Iniziare',
-    
-    'news.communityStats': '📊 Statistiche Comunità Pubblicate',
-    'news.communityStatsContent': 'Oltre 50.000 speedrunner registrati e più di 1 milione di run registrati!',
-    
-    'error.titleRequired': 'Il titolo è obbligatorio',
-    'error.gameRequired': 'La selezione del gioco è obbligatoria',
-    'error.mediaTypeRequired': 'Il tipo di media è obbligatorio',
-    'error.fileRequired': 'Il file è obbligatorio',
-    'error.urlRequired': 'L\'URL è obbligatorio',
-    'error.invalidUrl': 'Formato URL non valido',
-    'error.userNotAuthenticated': 'Utente non autenticato',
-    'error.contentRequired': 'Il contenuto è obbligatorio',
 
     // Completed missing translations
     'auth.confirmPassword': 'Conferma password',
@@ -6801,6 +6670,14 @@ const translations = {
     'events.livestreamUrlRequired': '直播文档需要直播URL',
     'events.livestreamUrlLabel': '直播URL',
 
+    // Records
+    'records.add': '添加记录',
+    'records.addButton': '添加',
+    'records.addFirst': '添加您的第一个个人记录！',
+    'records.addPersonal': '添加个人记录',
+    'records.points': '积分（高分用）',
+    'records.time': '时间（速通用）',
+
     // Completed missing translations
     'achievement.collector': 'Sammler',
     'achievement.communityHero': 'Community Hero',
@@ -7109,12 +6986,6 @@ const translations = {
     'quiz.question1.explanation': 'Super Mario 64 war ein Launch-Titel für das Nintendo 64 in Japan im Jahr 1996.',
     'quiz.question2': 'Wie viele Sterne gibt es insgesamt in Super Mario 64?',
     'quiz.question2.explanation': 'Super Mario 64 hat insgesamt 120 Sterne zu sammeln.',
-    'records.add': 'Rekord hinzufügen',
-    'records.addButton': 'Hinzufügen',
-    'records.addFirst': 'Füge deinen ersten persönlichen Rekord hinzu!',
-    'records.addPersonal': 'Persönlichen Rekord hinzufügen',
-    'records.points': 'Punkte (für High Scores)',
-    'records.time': 'Zeit (für Speedruns)',
     'speedrun.description': 'Speedrun-Videos und Screenshots werden hier angezeigt.',
     'time.ago': 'vor',
     'time.days': 'Tage',
@@ -7637,6 +7508,14 @@ const translations = {
     'events.livestreamUrlRequired': 'ライブストリームドキュメントにはライブストリームURLが必要です',
     'events.livestreamUrlLabel': 'ライブストリームURL',
 
+    // Records
+    'records.add': 'レコード追加',
+    'records.addButton': '追加',
+    'records.addFirst': '最初の個人記録を追加してください！',
+    'records.addPersonal': '個人記録を追加',
+    'records.points': 'ポイント（ハイスコア用）',
+    'records.time': '時間（スピードラン用）',
+
     // Completed missing translations
     'achievement.collector': 'Sammler',
     'achievement.communityHero': 'Community Hero',
@@ -7945,12 +7824,6 @@ const translations = {
     'quiz.question1.explanation': 'Super Mario 64 war ein Launch-Titel für das Nintendo 64 in Japan im Jahr 1996.',
     'quiz.question2': 'Wie viele Sterne gibt es insgesamt in Super Mario 64?',
     'quiz.question2.explanation': 'Super Mario 64 hat insgesamt 120 Sterne zu sammeln.',
-    'records.add': 'Rekord hinzufügen',
-    'records.addButton': 'Hinzufügen',
-    'records.addFirst': 'Füge deinen ersten persönlichen Rekord hinzu!',
-    'records.addPersonal': 'Persönlichen Rekord hinzufügen',
-    'records.points': 'Punkte (für High Scores)',
-    'records.time': 'Zeit (für Speedruns)',
     'speedrun.description': 'Speedrun-Videos und Screenshots werden hier angezeigt.',
     'time.ago': 'vor',
     'time.days': 'Tage',
@@ -8463,6 +8336,14 @@ const translations = {
     'events.livestreamUrlRequired': 'URL трансляции требуется для документации трансляции',
     'events.livestreamUrlLabel': 'URL трансляции',
 
+    // Records
+    'records.add': 'Добавить рекорд',
+    'records.addButton': 'Добавить',
+    'records.addFirst': 'Добавьте свой первый личный рекорд!',
+    'records.addPersonal': 'Добавить личный рекорд',
+    'records.points': 'Очки (для рекордов)',
+    'records.time': 'Время (для спидранов)',
+
     // Completed missing translations
     'achievement.collector': 'Sammler',
     'achievement.communityHero': 'Community Hero',
@@ -8782,12 +8663,6 @@ const translations = {
     'quiz.question2.explanation': 'Super Mario 64 hat insgesamt 120 Sterne zu sammeln.',
     'quiz.results': 'Ergebnisse',
     'quiz.start': 'Quiz starten',
-    'records.add': 'Rekord hinzufügen',
-    'records.addButton': 'Hinzufügen',
-    'records.addFirst': 'Füge deinen ersten persönlichen Rekord hinzu!',
-    'records.addPersonal': 'Persönlichen Rekord hinzufügen',
-    'records.points': 'Punkte (für High Scores)',
-    'records.time': 'Zeit (für Speedruns)',
     'speedrun.description': 'Speedrun-Videos und Screenshots werden hier angezeigt.',
     'time.ago': 'vor',
     'time.days': 'Tage',
@@ -9300,6 +9175,14 @@ const translations = {
     'events.livestreamUrlRequired': 'URL da transmissão necessária para documentação de transmissão',
     'events.livestreamUrlLabel': 'URL da Transmissão',
 
+    // Records
+    'records.add': 'Adicionar Recorde',
+    'records.addButton': 'Adicionar',
+    'records.addFirst': 'Adicione seu primeiro recorde pessoal!',
+    'records.addPersonal': 'Adicionar Recorde Pessoal',
+    'records.points': 'Pontos (para High Scores)',
+    'records.time': 'Tempo (para Speedruns)',
+
     // Completed missing translations
     'achievement.collector': 'Sammler',
     'achievement.communityHero': 'Community Hero',
@@ -9619,12 +9502,6 @@ const translations = {
     'quiz.question2.explanation': 'Super Mario 64 hat insgesamt 120 Sterne zu sammeln.',
     'quiz.results': 'Ergebnisse',
     'quiz.start': 'Quiz starten',
-    'records.add': 'Rekord hinzufügen',
-    'records.addButton': 'Hinzufügen',
-    'records.addFirst': 'Füge deinen ersten persönlichen Rekord hinzu!',
-    'records.addPersonal': 'Persönlichen Rekord hinzufügen',
-    'records.points': 'Punkte (für High Scores)',
-    'records.time': 'Zeit (für Speedruns)',
     'speedrun.description': 'Speedrun-Videos und Screenshots werden hier angezeigt.',
     'time.ago': 'vor',
     'time.days': 'Tage',
@@ -10185,6 +10062,14 @@ const translations = {
     'events.livestreamUrlRequired': 'लाइवस्ट्रीम प्रलेखन के लिए लाइवस्ट्रीम URL आवश्यक है',
     'events.livestreamUrlLabel': 'लाइवस्ट्रीम URL',
 
+    // Records
+    'records.add': 'रिकॉर्ड जोड़ें',
+    'records.addButton': 'जोड़ें',
+    'records.addFirst': 'अपना पहला व्यक्तिगत रिकॉर्ड जोड़ें!',
+    'records.addPersonal': 'व्यक्तिगत रिकॉर्ड जोड़ें',
+    'records.points': 'अंक (हाई स्कोर के लिए)',
+    'records.time': 'समय (स्पीडरन के लिए)',
+
     // Completed missing translations
     'achievement.collector': 'Sammler',
     'achievement.communityHero': 'Community Hero',
@@ -10460,12 +10345,6 @@ const translations = {
     'quiz.question1.explanation': 'Super Mario 64 war ein Launch-Titel für das Nintendo 64 in Japan im Jahr 1996.',
     'quiz.question2': 'Wie viele Sterne gibt es insgesamt in Super Mario 64?',
     'quiz.question2.explanation': 'Super Mario 64 hat insgesamt 120 Sterne zu sammeln.',
-    'records.add': 'Rekord hinzufügen',
-    'records.addButton': 'Hinzufügen',
-    'records.addFirst': 'Füge deinen ersten persönlichen Rekord hinzu!',
-    'records.addPersonal': 'Persönlichen Rekord hinzufügen',
-    'records.points': 'Punkte (für High Scores)',
-    'records.time': 'Zeit (für Speedruns)',
     'speedrun.description': 'Speedrun-Videos und Screenshots werden hier angezeigt.',
     'time.ago': 'vor',
     'time.days': 'Tage',
@@ -11017,6 +10896,14 @@ const translations = {
     'events.livestreamUrlRequired': 'رابط البث المباشر مطلوب لتوثيق البث المباشر',
     'events.livestreamUrlLabel': 'رابط البث المباشر',
 
+    // Records
+    'records.add': 'إضافة سجل',
+    'records.addButton': 'إضافة',
+    'records.addFirst': 'أضف أول سجل شخصي لك!',
+    'records.addPersonal': 'إضافة سجل شخصي',
+    'records.points': 'النقاط (للنتائج العالية)',
+    'records.time': 'الوقت (للسباقات السريعة)',
+
     // Completed missing translations
     'achievement.collector': 'Sammler',
     'achievement.communityHero': 'Community Hero',
@@ -11299,12 +11186,6 @@ const translations = {
     'quiz.question1.explanation': 'Super Mario 64 war ein Launch-Titel für das Nintendo 64 in Japan im Jahr 1996.',
     'quiz.question2': 'Wie viele Sterne gibt es insgesamt in Super Mario 64?',
     'quiz.question2.explanation': 'Super Mario 64 hat insgesamt 120 Sterne zu sammeln.',
-    'records.add': 'Rekord hinzufügen',
-    'records.addButton': 'Hinzufügen',
-    'records.addFirst': 'Füge deinen ersten persönlichen Rekord hinzu!',
-    'records.addPersonal': 'Persönlichen Rekord hinzufügen',
-    'records.points': 'Punkte (für High Scores)',
-    'records.time': 'Zeit (für Speedruns)',
     'speedrun.description': 'Speedrun-Videos und Screenshots werden hier angezeigt.',
     'time.ago': 'vor',
     'time.days': 'Tage',
