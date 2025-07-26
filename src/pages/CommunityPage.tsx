@@ -80,9 +80,9 @@ const CommunityPage: React.FC = () => {
         </p>
       </div>
 
-             {/* Stats */}
-       <div className="simple-tile mb-responsive responsive-max-width">
-         <div className="grid grid-responsive grid-2-4 gap-responsive">
+      {/* Stats */}
+      <div className="simple-tile mb-responsive responsive-max-width">
+        <div className="grid grid-responsive grid-2-4 gap-responsive">
           <div className="text-center p-3 sm:p-4 bg-slate-700/30 rounded-lg">
             <div className="text-responsive-lg font-bold text-blue-400">{users.length}</div>
             <div className="text-responsive-xs text-slate-400">{t('community.members')}</div>

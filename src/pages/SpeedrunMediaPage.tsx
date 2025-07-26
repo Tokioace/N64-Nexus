@@ -430,18 +430,18 @@ const SpeedrunMediaPage: React.FC = () => {
           )}
         </div>
 
-          {/* Error Display */}
-          {error && (
-            <div className="mb-6 bg-red-900/20 border border-red-800 rounded-lg p-4">
-              <div className="flex items-center gap-2">
-                <AlertCircle className="w-5 h-5 text-red-400" />
-                <span className="text-red-400">{error}</span>
-              </div>
+        {/* Error Display */}
+        {error && (
+          <div className="mb-6 bg-red-900/20 border border-red-800 rounded-lg p-4">
+            <div className="flex items-center gap-2">
+              <AlertCircle className="w-5 h-5 text-red-400" />
+              <span className="text-red-400">{error}</span>
             </div>
-          )}
+          </div>
+        )}
 
-          {/* Live Stream Section */}
-          {isAuthenticated && (
+        {/* Live Stream Section */}
+        {isAuthenticated && (
             <div className="mb-8">
               <div className="bg-slate-800 rounded-lg p-6">
                 <div className="flex items-center justify-between mb-4">
