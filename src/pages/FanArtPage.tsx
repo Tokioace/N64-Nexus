@@ -492,18 +492,17 @@ const FanArtPage: React.FC = () => {
     <div className="container-lg py-responsive space-responsive responsive-max-width responsive-overflow-hidden">
       {/* Header */}
       <div className="text-center mb-responsive responsive-max-width">
-        <div className="flex items-center justify-center gap-3 mb-4">
-          <Palette className="w-6 h-6 sm:w-8 sm:h-8 text-rose-400" />
-          <h1 className="text-responsive-2xl font-bold text-slate-100 responsive-word-break">
-            {t('nav.fanart')}
-          </h1>
-        </div>
-        <p className="text-responsive-base text-slate-400 mb-6 responsive-word-break px-2">
+        <Palette className="w-12 h-12 sm:w-16 sm:h-16 text-pink-400 mx-auto mb-4" />
+        <h1 className="text-responsive-2xl font-bold text-slate-100 mb-2 responsive-word-break">
+          {t('nav.fanart')}
+        </h1>
+        <p className="text-responsive-base text-slate-400 max-w-2xl mx-auto responsive-word-break px-2">
           {t('fanart.subtitle')}
         </p>
+      </div>
 
-        {/* Action Buttons */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 responsive-max-width">
+      {/* Action Buttons */}
+      <div className="flex flex-col sm:flex-row items-center justify-center gap-4 responsive-max-width">
           {isAuthenticated && (
             <button
               onClick={() => setShowUploadModal(true)}
@@ -541,7 +540,6 @@ const FanArtPage: React.FC = () => {
             </button>
           </div>
         </div>
-      </div>
 
       {/* Filters */}
       <div className="flex flex-wrap items-center gap-4 mb-8 p-4 bg-slate-800/50 rounded-lg">

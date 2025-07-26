@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
-import { Search, Plus, Package, DollarSign, Clock, Star, Filter, Grid, List, Eye, MessageCircle, Heart } from 'lucide-react';
+import { Search, Plus, Package, DollarSign, Clock, Star, Filter, Grid, List, Eye, MessageCircle, Heart, ShoppingCart } from 'lucide-react';
 
 interface MarketplaceOffer {
   id: string;
@@ -318,19 +318,23 @@ const MarketplacePage: React.FC = () => {
   });
 
   return (
-    <div className="container-lg py-responsive space-responsive">
+    <div className="container-lg py-responsive space-responsive responsive-max-width responsive-overflow-hidden">
       {/* Header */}
-      <div className="mobile-stack items-start sm:items-center justify-between mb-responsive">
-        <div className="mb-4 lg:mb-0">
-          <h1 className="text-responsive-2xl font-bold text-slate-100 mb-2">
-            {t('nav.marketplace')}
-          </h1>
-          <p className="text-responsive-base text-slate-400">{t('marketplace.subtitle')}</p>
-        </div>
-        
+      <div className="text-center mb-responsive responsive-max-width">
+        <ShoppingCart className="w-12 h-12 sm:w-16 sm:h-16 text-emerald-400 mx-auto mb-4" />
+        <h1 className="text-responsive-2xl font-bold text-slate-100 mb-2 responsive-word-break">
+          {t('nav.marketplace')}
+        </h1>
+        <p className="text-responsive-base text-slate-400 max-w-2xl mx-auto responsive-word-break px-2">
+          {t('marketplace.subtitle')}
+        </p>
+      </div>
+
+      {/* Create Offer Button */}
+      <div className="text-center mb-responsive responsive-max-width">
         <button
           onClick={() => setShowCreateModal(true)}
-          className="btn-primary mobile-full sm:w-auto flex items-center justify-center gap-2"
+          className="btn-primary flex items-center gap-2 mx-auto"
         >
           <Plus size={18} className="sm:w-5 sm:h-5" />
           <span>{t('marketplace.createOffer')}</span>
