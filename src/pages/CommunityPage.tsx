@@ -68,20 +68,20 @@ const CommunityPage: React.FC = () => {
   }
 
   return (
-    <div className="container-lg py-responsive space-responsive">
+    <div className="container-lg py-responsive space-responsive responsive-max-width responsive-overflow-hidden">
       {/* Header */}
-      <div className="simple-tile">
-        <div className="flex items-center gap-3 mb-responsive">
-          <Users className="w-6 h-6 sm:w-8 sm:h-8 text-blue-400" />
-          <div>
-            <h1 className="text-responsive-2xl font-bold text-slate-100">{t('community.title')}</h1>
-            <p className="text-responsive-base text-slate-400">
-              {t('community.subtitle')}
-            </p>
-          </div>
-        </div>
+      <div className="text-center mb-responsive responsive-max-width">
+        <Users className="w-12 h-12 sm:w-16 sm:h-16 text-indigo-400 mx-auto mb-4" />
+        <h1 className="text-responsive-2xl font-bold text-slate-100 mb-2 responsive-word-break">
+          {t('community.title')}
+        </h1>
+        <p className="text-responsive-base text-slate-400 max-w-2xl mx-auto responsive-word-break px-2">
+          {t('community.subtitle')}
+        </p>
+      </div>
 
-        {/* Stats */}
+      {/* Stats */}
+      <div className="simple-tile mb-responsive responsive-max-width">
         <div className="grid grid-responsive grid-2-4 gap-responsive">
           <div className="text-center p-3 sm:p-4 bg-slate-700/30 rounded-lg">
             <div className="text-responsive-lg font-bold text-blue-400">{users.length}</div>

@@ -159,7 +159,7 @@ const EventsPage: React.FC = () => {
         <div className="bg-slate-800 rounded-lg p-1 w-full max-w-md responsive-overflow-hidden">
           <div className="flex w-full">
             {[
-              { key: 'active', label: t('events.tabs.active'), icon: Trophy, color: 'text-green-400' },
+              { key: 'active', label: t('events.tabs.active'), icon: Trophy, color: 'text-yellow-400' },
               { key: 'upcoming', label: t('events.tabs.upcoming'), icon: Calendar, color: 'text-blue-400' },
               { key: 'completed', label: t('events.tabs.completed'), icon: Award, color: 'text-gray-400' }
             ].map((tab) => (
@@ -184,7 +184,7 @@ const EventsPage: React.FC = () => {
       {/* Event Stats */}
       <div className="grid-auto-fit mb-responsive responsive-max-width">
         <div className="simple-tile text-center">
-          <Trophy className="w-6 h-6 sm:w-8 sm:h-8 text-green-400 mx-auto mb-2" />
+          <Trophy className="w-6 h-6 sm:w-8 sm:h-8 text-yellow-400 mx-auto mb-2" />
           <div className="text-responsive-lg font-bold text-slate-100">
             {events.filter(e => getEventStatus(e) === 'active').length}
           </div>

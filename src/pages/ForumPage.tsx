@@ -90,8 +90,9 @@ const ForumPage: React.FC = () => {
     <div className="container-lg py-responsive space-responsive responsive-max-width responsive-overflow-hidden">
       {/* Header */}
       <div className="text-center mb-responsive responsive-max-width">
+        <MessageSquare className="w-12 h-12 sm:w-16 sm:h-16 text-cyan-400 mx-auto mb-4" />
         <h1 className="text-responsive-2xl font-bold text-slate-100 mb-2 responsive-word-break">
-          🎮 {t('forum.communityNexus')}
+          {t('forum.communityNexus')}
         </h1>
         <p className="text-responsive-base text-slate-400 responsive-word-break px-2">
           {t('forum.discussWithCommunity')}

@@ -50,7 +50,7 @@ const HomeScreenRetro: React.FC = () => {
         {/* Quiz Tile */}
         <Link to="/quiz" className="simple-tile simple-tile-small">
           <div className="simple-tile-icon">
-            <Target className="w-7 h-7 text-accent-purple mx-auto" />
+            <Target className="w-7 h-7 text-purple-400 mx-auto" />
           </div>
           <div className="simple-tile-label">
             <div className="font-medium text-text-primary text-sm">{t('nav.quiz')}</div>
@@ -61,7 +61,7 @@ const HomeScreenRetro: React.FC = () => {
         {/* Events Tile */}
         <Link to="/events" className="simple-tile simple-tile-small">
           <div className="simple-tile-icon">
-            <Trophy className="w-7 h-7 text-accent-yellow mx-auto" />
+            <Trophy className="w-7 h-7 text-yellow-400 mx-auto" />
           </div>
           <div className="simple-tile-label">
             <div className="font-medium text-text-primary text-sm">{t('nav.events')}</div>
@@ -72,7 +72,7 @@ const HomeScreenRetro: React.FC = () => {
         {/* Speedrun Media Tile */}
         <Link to="/speedrun-media" className="simple-tile simple-tile-small">
           <div className="simple-tile-icon">
-            <Camera className="w-7 h-7 text-accent-green mx-auto" />
+            <Camera className="w-7 h-7 text-blue-400 mx-auto" />
           </div>
           <div className="simple-tile-label">
             <div className="font-medium text-text-primary text-sm">{t('nav.media')}</div>
@@ -83,7 +83,7 @@ const HomeScreenRetro: React.FC = () => {
         {/* Collector Mode Tile */}
         <Link to="/collector" className="simple-tile simple-tile-small">
           <div className="simple-tile-icon">
-            <Package className="w-7 h-7 text-accent-yellow mx-auto" />
+            <Package className="w-7 h-7 text-green-400 mx-auto" />
           </div>
           <div className="simple-tile-label">
             <div className="font-medium text-text-primary text-sm">{t('nav.collector')}</div>
@@ -94,7 +94,7 @@ const HomeScreenRetro: React.FC = () => {
         {/* Forum Tile */}
         <Link to="/forum" className="simple-tile simple-tile-small">
           <div className="simple-tile-icon">
-            <MessageSquare className="w-7 h-7 text-accent-blue mx-auto" />
+            <MessageSquare className="w-7 h-7 text-cyan-400 mx-auto" />
           </div>
           <div className="simple-tile-label">
             <div className="font-medium text-text-primary text-sm">{t('nav.forum')}</div>
@@ -105,7 +105,7 @@ const HomeScreenRetro: React.FC = () => {
         {/* Profile Tile */}
         <Link to="/profile" className="simple-tile simple-tile-small">
           <div className="simple-tile-icon">
-            <UsersIcon className="w-7 h-7 text-accent-blue mx-auto" />
+            <UsersIcon className="w-7 h-7 text-slate-400 mx-auto" />
           </div>
           <div className="simple-tile-label">
             <div className="font-medium text-text-primary text-sm">{t('nav.profile')}</div>
@@ -116,7 +116,7 @@ const HomeScreenRetro: React.FC = () => {
         {/* Leaderboard Tile */}
         <Link to="/leaderboard" className="simple-tile simple-tile-small">
           <div className="simple-tile-icon">
-            <Star className="w-7 h-7 text-accent-yellow mx-auto" />
+            <Star className="w-7 h-7 text-orange-400 mx-auto" />
           </div>
           <div className="simple-tile-label">
             <div className="font-medium text-text-primary text-sm">{t('nav.leaderboard')}</div>
@@ -127,7 +127,7 @@ const HomeScreenRetro: React.FC = () => {
         {/* Minigames Tile */}
         <Link to="/minigames" className="simple-tile simple-tile-small">
           <div className="simple-tile-icon">
-            <Gamepad2 className="w-7 h-7 text-accent-red mx-auto" />
+            <Gamepad2 className="w-7 h-7 text-red-400 mx-auto" />
           </div>
           <div className="simple-tile-label">
             <div className="font-medium text-text-primary text-sm">{t('nav.minigames')}</div>
@@ -138,7 +138,7 @@ const HomeScreenRetro: React.FC = () => {
         {/* Marketplace Tile */}
         <Link to="/marktplatz" className="simple-tile simple-tile-small">
           <div className="simple-tile-icon">
-            <ShoppingCart className="w-7 h-7 text-accent-green mx-auto" />
+            <ShoppingCart className="w-7 h-7 text-emerald-400 mx-auto" />
           </div>
           <div className="simple-tile-label">
             <div className="font-medium text-text-primary text-sm">{t('nav.marketplace')}</div>
@@ -149,7 +149,7 @@ const HomeScreenRetro: React.FC = () => {
         {/* Community Tile */}
         <Link to="/community" className="simple-tile simple-tile-small">
           <div className="simple-tile-icon">
-            <UsersIcon className="w-7 h-7 text-accent-blue mx-auto" />
+            <UsersIcon className="w-7 h-7 text-indigo-400 mx-auto" />
           </div>
           <div className="simple-tile-label">
             <div className="font-medium text-text-primary text-sm">{t('nav.community')}</div>
@@ -160,7 +160,7 @@ const HomeScreenRetro: React.FC = () => {
         {/* Chat Tile */}
         <Link to="/chat" className="simple-tile simple-tile-small">
           <div className="simple-tile-icon">
-            <MessageCircle className="w-7 h-7 text-accent-purple mx-auto" />
+            <MessageCircle className="w-7 h-7 text-violet-400 mx-auto" />
           </div>
           <div className="simple-tile-label">
             <div className="font-medium text-text-primary text-sm">{t('nav.chat')}</div>
@@ -171,7 +171,7 @@ const HomeScreenRetro: React.FC = () => {
         {/* Fanart Tile */}
         <Link to="/fanart" className="simple-tile simple-tile-small">
           <div className="simple-tile-icon">
-            <Palette className="w-7 h-7 text-accent-red mx-auto" />
+            <Palette className="w-7 h-7 text-pink-400 mx-auto" />
           </div>
           <div className="simple-tile-label">
             <div className="font-medium text-text-primary text-sm">{t('nav.fanart')}</div>
@@ -182,7 +182,7 @@ const HomeScreenRetro: React.FC = () => {
         {/* Newsfeed Tile */}
         <Link to="/newsfeed" className="simple-tile simple-tile-small">
           <div className="simple-tile-icon">
-            <Newspaper className="w-7 h-7 text-accent-yellow mx-auto" />
+            <Newspaper className="w-7 h-7 text-amber-400 mx-auto" />
           </div>
           <div className="simple-tile-label">
             <div className="font-medium text-text-primary text-sm">{t('nav.news')}</div>
