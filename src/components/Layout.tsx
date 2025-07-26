@@ -104,7 +104,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
           height: 'clamp(44px, 10vw, 52px)',
           padding: 'clamp(0.5rem, 1.5vw, 0.75rem)'
         }}
-        aria-label="Toggle mobile menu"
+                  aria-label={t('aria.toggleMobileMenu')}
       >
         <svg
           className="w-5 h-5 sm:w-6 sm:h-6"

@@ -100,7 +100,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
         <div className="relative">
           <img
             src={currentImage}
-            alt="Upload preview"
+                          alt={t('alt.uploadPreview')}
             className="w-full max-w-md h-auto rounded-lg border border-slate-600"
           />
           <button

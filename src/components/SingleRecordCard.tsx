@@ -175,7 +175,7 @@ const SingleRecordCard: React.FC<SingleRecordCardProps> = ({ recordItems, classN
             className={`pointer-events-auto p-2 rounded-full bg-slate-700/80 hover:bg-slate-600/80 text-slate-300 hover:text-white transition-all duration-200 ${
               currentIndex <= 0 ? 'opacity-30 cursor-not-allowed' : 'opacity-70 hover:opacity-100'
             }`}
-            aria-label="Previous card"
+            aria-label={t('aria.previousCard')}
           >
             <span className="text-lg">‹</span>
           </button>
@@ -186,7 +186,7 @@ const SingleRecordCard: React.FC<SingleRecordCardProps> = ({ recordItems, classN
             className={`pointer-events-auto p-2 rounded-full bg-slate-700/80 hover:bg-slate-600/80 text-slate-300 hover:text-white transition-all duration-200 ${
               currentIndex >= recordItems.length - 1 ? 'opacity-30 cursor-not-allowed' : 'opacity-70 hover:opacity-100'
             }`}
-            aria-label="Next card"
+            aria-label={t('aria.nextCard')}
           >
             <span className="text-lg">›</span>
           </button>

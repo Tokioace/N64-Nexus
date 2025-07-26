@@ -1804,7 +1804,77 @@ const translations = {
     
     // Missing translations completed
     'points.chatHelpfulReply': 'Helpful chat reply',
-    'points.chatLikeReceived': 'Chat like received'
+    'points.chatLikeReceived': 'Chat like received',
+    
+    // Additional missing translations for complete internationalization
+    'aria.previousCard': 'Previous card',
+    'aria.nextCard': 'Next card',
+    'aria.toggleMobileMenu': 'Toggle mobile menu',
+    'aria.dismissNews': 'Dismiss news',
+    'aria.gridView': 'Grid view',
+    'aria.listView': 'List view',
+    
+    'alt.uploadPreview': 'Upload preview',
+    'alt.battle64Mascot': 'Battle64 CRT-TV Mascot',
+    'alt.postAttachment': 'Post attachment',
+    'alt.preview': 'Preview',
+    
+    'placeholder.threadTitle': 'Give your thread a meaningful title...',
+    'placeholder.threadContent': 'Describe your topic in detail...',
+    'placeholder.replyContent': 'Your reply...',
+    'placeholder.raceTime': '1:32.456',
+    'placeholder.livestreamUrl': 'https://twitch.tv/your-channel or https://youtube.com/watch?v=...',
+    'placeholder.speedrunTitle': 'e.g. Mario 64 120 Stars Speedrun',
+    'placeholder.speedrunUrl': 'https://twitch.tv/yourchannel',
+    'placeholder.speedrunGame': 'e.g. Super Mario 64',
+    'placeholder.mediaSearch': 'Search by title, description or tags...',
+    'placeholder.mediaTitle': 'e.g. 120 Stars World Record Attempt',
+    'placeholder.mediaDescription': 'Describe your achievement...',
+    'placeholder.mediaTags': 'worldrecord, any%, glitchless (separated by comma)',
+    'placeholder.mediaUrl': 'https://youtube.com/watch?v=...',
+    'placeholder.marketplacePrice': '0.00',
+    
+    'forum.thread.controllerQuestion': 'Best N64 Controller for Speedruns?',
+    'forum.thread.mariokartShortcuts': 'Mario Kart 64: New Shortcuts Discovered!',
+    'forum.thread.ootRandomizer': 'OoT Randomizer Tournament Registration',
+    'forum.thread.perfectDarkGuide': 'Perfect Dark Strategy Guide',
+    'forum.thread.emulatorVsHardware': 'N64 Emulator vs Original Hardware',
+    'forum.thread.marioBLJ': 'Super Mario 64 BLJ Tutorial',
+    'forum.thread.banjoRoute': 'Banjo-Kazooie 100% Route Optimized',
+    'forum.thread.goldeneye': 'GoldenEye 007 Facility under 1:00?',
+    'forum.thread.collecting': 'N64 Collection: Rating Rare Games',
+    'forum.thread.paperMario': 'Paper Mario Speedrun Tips',
+    
+    'category.hardware': 'Hardware',
+    'category.glitches': 'Glitches',
+    'category.events': 'Events',
+    'category.guides': 'Guides',
+    'category.discussion': 'Discussion',
+    'category.tutorials': 'Tutorials',
+    'category.routes': 'Routes',
+    'category.challenges': 'Challenges',
+    'category.collecting': 'Collecting',
+    'category.tips': 'Tips',
+    
+    'minigame.reactionTest': 'Controller Reaction Test',
+    'minigame.reactionDesc': 'How fast are your reflexes? Test your reaction time!',
+    'minigame.triviaRush': 'N64 Trivia Rush',
+    'minigame.triviaDesc': 'Answer N64 questions as fast as possible!',
+    'minigame.cheatTyping': 'Cheat Code Typing',
+    'minigame.cheatDesc': 'Type famous N64 cheat codes as fast as possible!',
+    'minigame.clickToStart': 'Click to Start',
+    
+    'news.communityStats': '📊 Community Statistics Released',
+    'news.communityStatsContent': 'Over 50,000 registered speedrunners and more than 1 million recorded runs!',
+    
+    'error.titleRequired': 'Title is required',
+    'error.gameRequired': 'Game selection is required',
+    'error.mediaTypeRequired': 'Media type is required',
+    'error.fileRequired': 'File is required',
+    'error.urlRequired': 'URL is required',
+    'error.invalidUrl': 'Invalid URL format',
+    'error.userNotAuthenticated': 'User not authenticated',
+    'error.contentRequired': 'Content is required'
   },
   
   fr: {
