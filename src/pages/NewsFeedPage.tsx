@@ -8,6 +8,7 @@ import {
   Trophy,
   Star,
   Gamepad2,
+  Newspaper,
   Camera,
   MessageSquare,
   ChevronLeft,
