@@ -205,8 +205,8 @@ const NewsFeedPage: React.FC = () => {
         </p>
       </div>
 
-        {/* Search and Filter Bar */}
-        <div className="bg-slate-800/50 rounded-lg p-6 mb-8 border border-slate-600/30">
+      {/* Search and Filter Bar */}
+      <div className="bg-slate-800/50 rounded-lg p-6 mb-8 border border-slate-600/30">
           <div className="flex flex-col md:flex-row gap-4">
             
             {/* Search */}
@@ -324,6 +324,7 @@ const NewsFeedPage: React.FC = () => {
           </div>
         )}
 
+      </div>
       </div>
     </div>
   )

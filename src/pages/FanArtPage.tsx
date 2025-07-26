@@ -501,8 +501,8 @@ const FanArtPage: React.FC = () => {
         </p>
       </div>
 
-        {/* Action Buttons */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 responsive-max-width">
+      {/* Action Buttons */}
+      <div className="flex flex-col sm:flex-row items-center justify-center gap-4 responsive-max-width">
           {isAuthenticated && (
             <button
               onClick={() => setShowUploadModal(true)}
@@ -746,6 +746,7 @@ const FanArtPage: React.FC = () => {
           awardPoints={awardPoints}
         />
       )}
+      </div>
     </div>
   )
 }
