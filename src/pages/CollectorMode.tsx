@@ -286,7 +286,7 @@ const CollectorMode: React.FC = () => {
       {/* Statistics */}
       <div className="grid-auto-fit mb-responsive responsive-max-width">
         <div className="simple-tile text-center">
-          <Package className="w-6 h-6 sm:w-8 sm:h-8 text-blue-400 mx-auto mb-2" />
+          <Package className="w-6 h-6 sm:w-8 sm:h-8 text-green-400 mx-auto mb-2" />
           <div className="text-responsive-lg font-bold text-slate-100">
             {stats.collectedCount}
           </div>

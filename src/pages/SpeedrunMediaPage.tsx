@@ -407,7 +407,7 @@ const SpeedrunMediaPage: React.FC = () => {
       <div className="container-lg py-responsive space-responsive responsive-max-width responsive-overflow-hidden">
         {/* Header */}
         <div className="text-center mb-responsive responsive-max-width">
-          <Camera className="w-12 h-12 sm:w-16 sm:h-16 text-green-400 mx-auto mb-4" />
+          <Camera className="w-12 h-12 sm:w-16 sm:h-16 text-blue-400 mx-auto mb-4" />
           <h1 className="text-responsive-2xl font-bold text-slate-100 mb-2 responsive-word-break">
             {t('nav.media')}
           </h1>
