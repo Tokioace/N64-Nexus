@@ -796,7 +796,7 @@ const MinigamesPage: React.FC = () => {
                     <span className="text-yellow-400 font-bold">{gameState.timeLeft}s</span>
                   </div>
                   <div className="flex items-center space-x-2">
-                    <Trophy className="w-4 h-4 text-green-400" />
+                    <Trophy className="w-4 h-4 text-yellow-400" />
                     <span className="text-green-400 font-bold">{gameState.score}</span>
                   </div>
                 </div>
@@ -867,7 +867,7 @@ const MinigamesPage: React.FC = () => {
         </div>
         
         <div className="simple-tile text-center">
-          <Target className="w-6 h-6 sm:w-8 sm:h-8 text-green-400 mx-auto mb-2" />
+          <Target className="w-6 h-6 sm:w-8 sm:h-8 text-purple-400 mx-auto mb-2" />
           <div className="text-responsive-lg font-bold text-slate-100">
             {minigames.filter(g => g.difficulty === 'easy').length}
           </div>

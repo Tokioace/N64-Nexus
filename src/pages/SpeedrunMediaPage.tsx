@@ -404,39 +404,44 @@ const SpeedrunMediaPage: React.FC = () => {
 
   return (
     <MediaErrorBoundary>
-      <div className="min-h-screen bg-slate-900">
-        <div className="container mx-auto px-4 py-8">
-          {/* Header */}
-          <div className="flex items-center justify-between mb-8">
-            <div>
-              <h1 className="text-3xl font-bold text-slate-100 mb-2">Speedrun Media</h1>
-              <p className="text-slate-400">Teile deine Speedruns, Screenshots und Achievements</p>
-            </div>
-            
-            {isAuthenticated && (
-              <button
-                onClick={() => setShowUploadModal(true)}
-                className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg flex items-center gap-2 transition-colors"
-                disabled={loading}
-              >
-                <Upload className="w-5 h-5" />
-                Media hochladen
-              </button>
-            )}
-          </div>
+      <div className="container-lg py-responsive space-responsive responsive-max-width responsive-overflow-hidden">
+        {/* Header */}
+        <div className="text-center mb-responsive responsive-max-width">
+          <Camera className="w-12 h-12 sm:w-16 sm:h-16 text-blue-400 mx-auto mb-4" />
+          <h1 className="text-responsive-2xl font-bold text-slate-100 mb-2 responsive-word-break">
+            {t('nav.media')}
+          </h1>
+          <p className="text-responsive-base text-slate-400 max-w-2xl mx-auto responsive-word-break px-2">
+            {t('home.media.subtitle')}
+          </p>
+        </div>
 
-          {/* Error Display */}
-          {error && (
-            <div className="mb-6 bg-red-900/20 border border-red-800 rounded-lg p-4">
-              <div className="flex items-center gap-2">
-                <AlertCircle className="w-5 h-5 text-red-400" />
-                <span className="text-red-400">{error}</span>
-              </div>
-            </div>
-          )}
-
-          {/* Live Stream Section */}
+        {/* Upload Button */}
+        <div className="text-center mb-responsive responsive-max-width">
           {isAuthenticated && (
+            <button
+              onClick={() => setShowUploadModal(true)}
+              className="btn-primary flex items-center gap-2 mx-auto"
+              disabled={loading}
+            >
+              <Upload className="w-5 h-5" />
+              {t('media.upload')}
+            </button>
+          )}
+        </div>
+
+        {/* Error Display */}
+        {error && (
+          <div className="mb-6 bg-red-900/20 border border-red-800 rounded-lg p-4">
+            <div className="flex items-center gap-2">
+              <AlertCircle className="w-5 h-5 text-red-400" />
+              <span className="text-red-400">{error}</span>
+            </div>
+          </div>
+        )}
+
+        {/* Live Stream Section */}
+        {isAuthenticated && (
             <div className="mb-8">
               <div className="bg-slate-800 rounded-lg p-6">
                 <div className="flex items-center justify-between mb-4">
