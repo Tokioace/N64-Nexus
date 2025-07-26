@@ -120,7 +120,7 @@ const CreateOfferModal: React.FC<CreateOfferModalProps> = ({ isOpen, onClose, on
                     value={formData.price}
                     onChange={(e) => setFormData(prev => ({ ...prev, price: e.target.value }))}
                     className="flex-1 px-3 sm:px-4 py-2 sm:py-3 bg-slate-700 border border-slate-600 rounded-l-lg text-slate-100 focus:outline-none focus:ring-2 focus:ring-blue-500 text-responsive-sm"
-                    placeholder="0.00"
+                    placeholder={t('placeholder.marketplacePrice')}
                     required
                   />
                   <select
@@ -402,7 +402,7 @@ const MarketplacePage: React.FC = () => {
                   ? 'bg-blue-600 text-white' 
                   : 'bg-slate-700 text-slate-400 hover:text-slate-200'
               }`}
-              aria-label="Grid view"
+              aria-label={t('aria.gridView')}
             >
               <Grid size={16} className="sm:w-5 sm:h-5" />
             </button>
@@ -413,7 +413,7 @@ const MarketplacePage: React.FC = () => {
                   ? 'bg-blue-600 text-white' 
                   : 'bg-slate-700 text-slate-400 hover:text-slate-200'
               }`}
-              aria-label="List view"
+              aria-label={t('aria.listView')}
             >
               <List size={16} className="sm:w-5 sm:h-5" />
             </button>

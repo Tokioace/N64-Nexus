@@ -215,7 +215,7 @@ const ForumNewThreadPage: React.FC = () => {
               id="title"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              placeholder="Gib deinem Thread einen aussagekräftigen Titel..."
+              placeholder={t('placeholder.threadTitle')}
               className="w-full p-3 bg-slate-700 border border-slate-600 rounded-lg text-slate-100 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
               maxLength={100}
               required
@@ -234,7 +234,7 @@ const ForumNewThreadPage: React.FC = () => {
               id="content"
               value={content}
               onChange={(e) => setContent(e.target.value)}
-              placeholder="Beschreibe dein Thema ausführlich..."
+              placeholder={t('placeholder.threadContent')}
               className="w-full h-48 p-3 bg-slate-700 border border-slate-600 rounded-lg text-slate-100 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
               maxLength={2000}
               required

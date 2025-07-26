@@ -194,7 +194,7 @@ const UploadModal: React.FC<UploadModalProps> = ({ onClose, onUpload, awardPoint
                 <div className="space-y-4">
                   <img
                     src={imagePreview}
-                    alt="Preview"
+                    alt={t('alt.preview')}
                     className="max-w-full max-h-48 mx-auto rounded-lg"
                   />
                   <button

@@ -238,7 +238,7 @@ const ForumThreadPage: React.FC = () => {
                   <div className="mb-3">
                     <img 
                       src={post.imageUrl} 
-                      alt="Post attachment" 
+                      alt={t('alt.postAttachment')} 
                       className="max-w-full h-auto rounded-lg border border-slate-600"
                     />
                   </div>
@@ -275,7 +275,7 @@ const ForumThreadPage: React.FC = () => {
               <textarea
                 value={replyContent}
                 onChange={(e) => setReplyContent(e.target.value)}
-                placeholder="Deine Antwort..."
+                placeholder={t('placeholder.replyContent')}
                 className="w-full h-32 p-3 bg-slate-700 border border-slate-600 rounded-lg text-slate-100 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
                 maxLength={2000}
                 required

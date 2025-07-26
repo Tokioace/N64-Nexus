@@ -30,7 +30,7 @@ const HomeScreenRetro: React.FC = () => {
           {/* Mascot Image */}
           <img 
             src="/mascot.png" 
-            alt="Battle64 CRT-TV Mascot" 
+            alt={t('alt.battle64Mascot')} 
             className="battle64-mascot h-48 sm:h-56 md:h-64 lg:h-80 w-auto object-contain"
           />
         </div>
