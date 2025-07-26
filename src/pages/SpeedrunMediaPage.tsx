@@ -1026,7 +1026,6 @@ const SpeedrunMediaPage: React.FC = () => {
           )}
         </div>
       </div>
-      </div>
     </MediaErrorBoundary>
   )
 }
