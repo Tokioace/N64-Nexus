@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react'
+import { Newspaper } from 'lucide-react'
 import NewsCard from './NewsCard'
 
 interface NewsItem {
@@ -76,7 +77,8 @@ const SingleNewsCard: React.FC<SingleNewsCardProps> = ({ newsItems, className = 
         <div className="swipeable-card bg-gradient-to-br from-slate-600/20 to-slate-800/20 border-l-4 border-slate-400">
           <div className="swipeable-card-header">
             <div className="flex items-center gap-2">
-              <h3 className="text-responsive-base font-bold text-slate-100">📰 News</h3>
+              <Newspaper className="w-5 h-5 text-blue-400" />
+              <h3 className="text-responsive-base font-bold text-slate-100">News</h3>
             </div>
           </div>
           <div className="swipeable-card-content">
