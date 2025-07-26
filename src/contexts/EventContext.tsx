@@ -41,7 +41,7 @@ const getEventData = (t: (key: string) => string): GameEvent[] => [
     title: t('events.luigiEvent'),
     description: t('events.luigiEventDesc'),
     game: 'Mario Kart 64',
-    category: 'Time Trial',
+    category: t('events.category.timeTrial'),
     startDate: new Date('2025-07-20'),
     endDate: new Date('2025-07-27'),
     isActive: true,

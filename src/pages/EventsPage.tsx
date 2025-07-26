@@ -147,7 +147,7 @@ const EventsPage: React.FC = () => {
       <div className="text-center mb-responsive responsive-max-width">
         <Trophy className="w-12 h-12 sm:w-16 sm:h-16 text-yellow-400 mx-auto mb-4" />
         <h1 className="text-responsive-2xl font-bold text-slate-100 mb-2 responsive-word-break">
-          Battle64 Events
+          {t('events.title')}
         </h1>
         <p className="text-responsive-base text-slate-400 max-w-2xl mx-auto responsive-word-break px-2">
           {t('events.subtitle')}
@@ -290,7 +290,7 @@ const EventsPage: React.FC = () => {
                       </div>
                       <div className="flex items-center gap-1">
                         <Users className="w-3 h-3 sm:w-4 sm:h-4" />
-                        <span>{event.participants} participants</span>
+                        <span>{event.participants} {t('events.participants')}</span>
                       </div>
                     </div>
                   </div>
