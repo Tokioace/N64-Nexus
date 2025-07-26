@@ -325,7 +325,6 @@ const NewsFeedPage: React.FC = () => {
         )}
 
       </div>
-      </div>
     </div>
   )
 }
