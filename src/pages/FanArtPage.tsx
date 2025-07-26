@@ -504,14 +504,14 @@ const FanArtPage: React.FC = () => {
       {/* Action Buttons */}
       <div className="flex flex-col sm:flex-row items-center justify-center gap-4 responsive-max-width">
         {isAuthenticated && (
-            <button
-              onClick={() => setShowUploadModal(true)}
-              className="flex items-center gap-2 px-4 sm:px-6 py-3 bg-rose-600 hover:bg-rose-700 
-                         text-white rounded-lg transition-colors font-medium w-full sm:w-auto justify-center"
-            >
-              <Upload className="w-4 h-4 sm:w-5 sm:h-5" />
-              <span className="text-sm sm:text-base">{t('fanart.uploadArt')}</span>
-            </button>
+          <button
+            onClick={() => setShowUploadModal(true)}
+            className="flex items-center gap-2 px-4 sm:px-6 py-3 bg-rose-600 hover:bg-rose-700 
+                       text-white rounded-lg transition-colors font-medium w-full sm:w-auto justify-center"
+          >
+            <Upload className="w-4 h-4 sm:w-5 sm:h-5" />
+            <span className="text-sm sm:text-base">{t('fanart.uploadArt')}</span>
+          </button>
         )}
 
         {/* View Mode Toggle */}
