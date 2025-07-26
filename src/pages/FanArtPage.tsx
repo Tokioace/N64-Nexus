@@ -503,7 +503,7 @@ const FanArtPage: React.FC = () => {
 
       {/* Action Buttons */}
       <div className="flex flex-col sm:flex-row items-center justify-center gap-4 responsive-max-width">
-          {isAuthenticated && (
+        {isAuthenticated && (
             <button
               onClick={() => setShowUploadModal(true)}
               className="flex items-center gap-2 px-4 sm:px-6 py-3 bg-rose-600 hover:bg-rose-700 
@@ -512,33 +512,32 @@ const FanArtPage: React.FC = () => {
               <Upload className="w-4 h-4 sm:w-5 sm:h-5" />
               <span className="text-sm sm:text-base">{t('fanart.uploadArt')}</span>
             </button>
-          )}
+        )}
 
-          {/* View Mode Toggle */}
-          <div className="flex bg-slate-800 rounded-lg p-1 w-full sm:w-auto">
-            <button
-              onClick={() => setViewMode('grid')}
-              className={`flex-1 sm:flex-none flex items-center justify-center gap-2 px-3 sm:px-4 py-2 rounded-md transition-colors ${
-                viewMode === 'grid' 
-                  ? 'bg-slate-700 text-slate-100' 
-                  : 'text-slate-400 hover:text-slate-200'
-              }`}
-            >
-              <Grid className="w-4 h-4" />
-              <span className="text-sm sm:text-base">Grid</span>
-            </button>
-            <button
-              onClick={() => setViewMode('list')}
-              className={`flex-1 sm:flex-none flex items-center justify-center gap-2 px-3 sm:px-4 py-2 rounded-md transition-colors ${
-                viewMode === 'list' 
-                  ? 'bg-slate-700 text-slate-100' 
-                  : 'text-slate-400 hover:text-slate-200'
-              }`}
-            >
-              <List className="w-4 h-4" />
-              <span className="text-sm sm:text-base">List</span>
-            </button>
-          </div>
+        {/* View Mode Toggle */}
+        <div className="flex bg-slate-800 rounded-lg p-1 w-full sm:w-auto">
+          <button
+            onClick={() => setViewMode('grid')}
+            className={`flex-1 sm:flex-none flex items-center justify-center gap-2 px-3 sm:px-4 py-2 rounded-md transition-colors ${
+              viewMode === 'grid' 
+                ? 'bg-slate-700 text-slate-100' 
+                : 'text-slate-400 hover:text-slate-200'
+            }`}
+          >
+            <Grid className="w-4 h-4" />
+            <span className="text-sm sm:text-base">Grid</span>
+          </button>
+          <button
+            onClick={() => setViewMode('list')}
+            className={`flex-1 sm:flex-none flex items-center justify-center gap-2 px-3 sm:px-4 py-2 rounded-md transition-colors ${
+              viewMode === 'list' 
+                ? 'bg-slate-700 text-slate-100' 
+                : 'text-slate-400 hover:text-slate-200'
+            }`}
+          >
+            <List className="w-4 h-4" />
+            <span className="text-sm sm:text-base">List</span>
+          </button>
         </div>
       </div>
 
