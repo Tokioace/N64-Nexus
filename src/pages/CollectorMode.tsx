@@ -271,58 +271,55 @@ const CollectorMode: React.FC = () => {
   const genres = getUniqueGenres(n64Games);
 
   return (
-    <div className="container mx-auto px-4 py-6">
+    <div className="container-lg py-responsive space-responsive responsive-max-width responsive-overflow-hidden">
       {/* Header */}
-      <div className="text-center mb-8">
-        <h1 className="text-4xl font-bold text-slate-100 mb-2">{t('collection.collectorMode')}</h1>
-        <p className="text-slate-400">{t('collection.manageCollection')}</p>
+      <div className="text-center mb-responsive responsive-max-width">
+        <Package className="w-12 h-12 sm:w-16 sm:h-16 text-green-400 mx-auto mb-4" />
+        <h1 className="text-responsive-2xl font-bold text-slate-100 mb-2 responsive-word-break">
+          {t('collection.collectorMode')}
+        </h1>
+        <p className="text-responsive-base text-slate-400 max-w-2xl mx-auto responsive-word-break px-2">
+          {t('collection.manageCollection')}
+        </p>
       </div>
 
       {/* Statistics */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
-        <div className="bg-slate-800 p-4 rounded-lg border border-slate-700">
-          <div className="flex items-center space-x-3">
-            <Package className="text-blue-400" size={24} />
-            <div>
-              <p className="text-slate-400 text-sm">{t('collection.gamesCollected')}</p>
-              <p className="text-2xl font-bold text-slate-100">{stats.collectedCount}</p>
-            </div>
+      <div className="grid-auto-fit mb-responsive responsive-max-width">
+        <div className="simple-tile text-center">
+          <Package className="w-6 h-6 sm:w-8 sm:h-8 text-blue-400 mx-auto mb-2" />
+          <div className="text-responsive-lg font-bold text-slate-100">
+            {stats.collectedCount}
           </div>
+          <div className="text-responsive-xs text-slate-400 responsive-word-break">{t('collection.gamesCollected')}</div>
         </div>
 
-        <div className="bg-slate-800 p-4 rounded-lg border border-slate-700">
-          <div className="flex items-center space-x-3">
-            <TrendingUp className="text-green-400" size={24} />
-            <div>
-              <p className="text-slate-400 text-sm">{t('collection.completeness')}</p>
-              <p className="text-2xl font-bold text-slate-100">{stats.completionPercentage}%</p>
-            </div>
+        <div className="simple-tile text-center">
+          <TrendingUp className="w-6 h-6 sm:w-8 sm:h-8 text-green-400 mx-auto mb-2" />
+          <div className="text-responsive-lg font-bold text-slate-100">
+            {stats.completionPercentage}%
           </div>
+          <div className="text-responsive-xs text-slate-400 responsive-word-break">{t('collection.completeness')}</div>
         </div>
 
-        <div className="bg-slate-800 p-4 rounded-lg border border-slate-700">
-          <div className="flex items-center space-x-3">
-            <Trophy className="text-yellow-400" size={24} />
-            <div>
-              <p className="text-slate-400 text-sm">{t('collection.collectionValue')}</p>
-              <p className="text-2xl font-bold text-slate-100">€{stats.totalValue}</p>
-            </div>
+        <div className="simple-tile text-center">
+          <Trophy className="w-6 h-6 sm:w-8 sm:h-8 text-yellow-400 mx-auto mb-2" />
+          <div className="text-responsive-lg font-bold text-slate-100">
+            €{stats.totalValue}
           </div>
+          <div className="text-responsive-xs text-slate-400 responsive-word-break">{t('collection.collectionValue')}</div>
         </div>
 
-        <div className="bg-slate-800 p-4 rounded-lg border border-slate-700">
-          <div className="flex items-center space-x-3">
-            <Star className="text-purple-400" size={24} />
-            <div>
-              <p className="text-slate-400 text-sm">{t('collection.collectorLevel')}</p>
-                              <p className="text-lg font-bold text-slate-100">{t(stats.collectorLevel.titleKey)}</p>
-            </div>
+        <div className="simple-tile text-center">
+          <Star className="w-6 h-6 sm:w-8 sm:h-8 text-purple-400 mx-auto mb-2" />
+          <div className="text-responsive-sm font-bold text-slate-100">
+            {t(stats.collectorLevel.titleKey)}
           </div>
+          <div className="text-responsive-xs text-slate-400 responsive-word-break">{t('collection.collectorLevel')}</div>
         </div>
       </div>
 
       {/* Search and Filters */}
-      <div className="bg-slate-800 p-4 rounded-lg border border-slate-700 mb-6">
+      <div className="simple-tile mb-responsive responsive-max-width">
         <div className="flex flex-col md:flex-row gap-4">
           <div className="flex-1">
             <div className="relative">
@@ -379,10 +376,10 @@ const CollectorMode: React.FC = () => {
       </div>
 
       {/* Games Grid/List */}
-      <div className={viewMode === 'grid' 
-        ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4' 
+      <div className={`responsive-max-width ${viewMode === 'grid' 
+        ? 'grid-auto-fit' 
         : 'space-y-2'
-      }>
+      }`}>
         {filteredGames.map(game => {
           const collected = isGameCollected(game.id);
           const collectedGame = collection.find(c => c.gameId === game.id);
@@ -490,8 +487,11 @@ const CollectorMode: React.FC = () => {
       </div>
 
       {filteredGames.length === 0 && (
-        <div className="text-center py-12">
-          <p className="text-slate-400">{t('collection.noGamesFound')}</p>
+        <div className="simple-tile text-center py-8 sm:py-12 responsive-max-width">
+          <Package className="w-12 h-12 sm:w-16 sm:h-16 text-slate-500 mx-auto mb-4" />
+          <p className="text-slate-400 responsive-word-break">
+            {t('collection.noGamesFound')}
+          </p>
         </div>
       )}
 
