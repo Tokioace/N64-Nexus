@@ -1800,7 +1800,11 @@ const translations = {
     'minigames.sound.mario64': '"Wahoo!" - Mario Jump Sound',
     'minigames.sound.zelda': '"Hey! Listen!" - Navi Sound',
     'minigames.sound.goldeneye': '"Pew Pew" - Silencer Shot',
-    'minigames.sound.mariokart': '"Here we go!" - Race Start'
+    'minigames.sound.mariokart': '"Here we go!" - Race Start',
+    
+    // Missing translations completed
+    'points.chatHelpfulReply': 'Helpful chat reply',
+    'points.chatLikeReceived': 'Chat like received'
   },
   
   fr: {
