@@ -49,10 +49,15 @@ This PR implements full internationalization (i18n) for the Battle64 N64 communi
 1. **`src/contexts/LanguageContext.tsx`** - Added 60+ new translation keys for all 13 languages
 2. **`src/pages/HomePage.tsx`** - Replaced hardcoded forum thread titles with translation keys
 3. **`src/pages/SpeedrunMediaPage.tsx`** - Fixed placeholder text to use translations
-4. **`src/components/SingleRecordCard.tsx`** - Added translated accessibility labels
-5. **`src/components/Layout.tsx`** - Fixed mobile menu accessibility
-6. **`src/components/ImageUpload.tsx`** - Added translated alt text
+4. **`src/components/SingleRecordCard.tsx`** - Added translated accessibility labels + import useLanguage
+5. **`src/components/Layout.tsx`** - Fixed mobile menu accessibility + import useLanguage
+6. **`src/components/ImageUpload.tsx`** - Added translated alt text + import useLanguage
 7. **`src/pages/MarketplacePage.tsx`** - Fixed price placeholder translation
+
+### TypeScript Fixes Applied:
+- Added `import { useLanguage } from '../contexts/LanguageContext'` to all components using `t()` function
+- Added `const { t } = useLanguage()` hook calls in component functions
+- Fixed all "Cannot find name 't'" TypeScript errors
 
 ### New Translation Keys Added:
 ```typescript

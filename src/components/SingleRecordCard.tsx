@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react'
 import { Trophy, X } from 'lucide-react'
+import { useLanguage } from '../contexts/LanguageContext'
 
 interface RecordItem {
   id: string
@@ -17,6 +18,7 @@ interface SingleRecordCardProps {
 }
 
 const SingleRecordCard: React.FC<SingleRecordCardProps> = ({ recordItems, className = '' }) => {
+  const { t } = useLanguage()
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isFlipping, setIsFlipping] = useState(false)
   const [flipDirection, setFlipDirection] = useState<'left' | 'right'>('left')
