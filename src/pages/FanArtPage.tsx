@@ -745,7 +745,6 @@ const FanArtPage: React.FC = () => {
           awardPoints={awardPoints}
         />
       )}
-      </div>
     </div>
   )
 }
