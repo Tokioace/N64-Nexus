@@ -81,7 +81,7 @@ const SingleFanArtCard: React.FC<SingleFanArtCardProps> = ({ fanArtItems, classN
           <div className="swipeable-card-header">
             <div className="flex items-center gap-2">
               <Palette className="w-5 h-5 text-rose-400" />
-              <h3 className="text-responsive-base font-bold text-slate-100">FanArts</h3>
+              <h3 className="text-responsive-base font-bold text-slate-100">{t('card.fanarts')}</h3>
             </div>
           </div>
           <div className="swipeable-card-content">
@@ -99,7 +99,7 @@ const SingleFanArtCard: React.FC<SingleFanArtCardProps> = ({ fanArtItems, classN
       <div className="swipeable-card-header">
         <div className="flex items-center gap-2">
           <Palette className="w-5 h-5 text-rose-400" />
-          <h3 className="text-responsive-base font-bold text-slate-100">FanArts</h3>
+          <h3 className="text-responsive-base font-bold text-slate-100">{t('card.fanarts')}</h3>
         </div>
         <div className="text-xs text-slate-400">
           <span className="text-rose-400">{item.game}</span>

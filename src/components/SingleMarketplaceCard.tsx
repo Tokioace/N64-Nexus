@@ -87,7 +87,7 @@ const SingleMarketplaceCard: React.FC<SingleMarketplaceCardProps> = ({ marketpla
       <div className="swipeable-card-header">
         <div className="flex items-center gap-2">
           <ShoppingCart className="w-5 h-5 text-purple-400" />
-          <h3 className="text-responsive-base font-bold text-slate-100">Marktplatz</h3>
+          <h3 className="text-responsive-base font-bold text-slate-100">{t('card.marketplace')}</h3>
         </div>
         <div className="text-xs text-slate-400">
           <span className="text-purple-400">{item.condition}</span>
@@ -122,7 +122,7 @@ const SingleMarketplaceCard: React.FC<SingleMarketplaceCardProps> = ({ marketpla
           <div className="swipeable-card-header">
             <div className="flex items-center gap-2">
               <ShoppingCart className="w-5 h-5 text-purple-400" />
-              <h3 className="text-responsive-base font-bold text-slate-100">Marktplatz</h3>
+              <h3 className="text-responsive-base font-bold text-slate-100">{t('card.marketplace')}</h3>
             </div>
           </div>
           <div className="swipeable-card-content">

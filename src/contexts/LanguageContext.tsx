@@ -360,6 +360,27 @@ const translations = {
     'ui.newsDetails': 'News Details',
     'ui.liveChat': 'Live Chat',
     
+    // Cards and Components
+    'card.records': 'Records',
+    'card.marketplace': 'Marktplatz',
+    'card.news': 'News', 
+    'card.fanarts': 'FanArts',
+    'card.media': 'Media',
+    'card.forumPosts': 'Forum Posts',
+    'card.noRecords': 'Keine Records verfügbar',
+    'card.verified': 'Verifiziert',
+    
+    // Event Status (Mobile)
+    'events.mobile.live': 'Live',
+    'events.mobile.soon': 'Soon',
+    'events.mobile.done': 'Done',
+    'events.mobile.joined': 'Joined',
+    'events.mobile.submit': 'Submit',
+    'events.mobile.join': 'Join',
+    'events.mobile.board': 'Board',
+    'events.mobile.winner': 'WINNER',
+    'events.mobile.clickToWatch': 'Klicken zum Anschauen',
+    
     // Events
     'events.title': 'Events',
     'events.upcoming': 'Kommende Events',
@@ -1409,6 +1430,27 @@ const translations = {
     'ui.newsDetails': 'News Details',
     'ui.liveChat': 'Live Chat',
     
+    // Cards and Components
+    'card.records': 'Records',
+    'card.marketplace': 'Marketplace',
+    'card.news': 'News', 
+    'card.fanarts': 'FanArts',
+    'card.media': 'Media',
+    'card.forumPosts': 'Forum Posts',
+    'card.noRecords': 'No records available',
+    'card.verified': 'Verified',
+    
+    // Event Status (Mobile)
+    'events.mobile.live': 'Live',
+    'events.mobile.soon': 'Soon',
+    'events.mobile.done': 'Done',
+    'events.mobile.joined': 'Joined',
+    'events.mobile.submit': 'Submit',
+    'events.mobile.join': 'Join',
+    'events.mobile.board': 'Board',
+    'events.mobile.winner': 'WINNER',
+    'events.mobile.clickToWatch': 'Click to watch',
+    
     // Events
     'events.title': 'Events',
     'events.upcoming': 'Upcoming Events',
@@ -2424,6 +2466,27 @@ const translations = {
     'ui.clickToWatch': 'Cliquer pour regarder',
     'ui.newsDetails': 'Détails des nouvelles',
     'ui.liveChat': 'Chat en direct',
+    
+    // Cards and Components
+    'card.records': 'Records',
+    'card.marketplace': 'Place de marché',
+    'card.news': 'Nouvelles', 
+    'card.fanarts': 'FanArts',
+    'card.media': 'Media',
+    'card.forumPosts': 'Messages du Forum',
+    'card.noRecords': 'Aucun record disponible',
+    'card.verified': 'Vérifié',
+    
+    // Event Status (Mobile)
+    'events.mobile.live': 'Live',
+    'events.mobile.soon': 'Bientôt',
+    'events.mobile.done': 'Terminé',
+    'events.mobile.joined': 'Rejoint',
+    'events.mobile.submit': 'Soumettre',
+    'events.mobile.join': 'Rejoindre',
+    'events.mobile.board': 'Tableau',
+    'events.mobile.winner': 'GAGNANT',
+    'events.mobile.clickToWatch': 'Cliquer pour regarder',
     
     // Events
     'events.title': 'Événements',

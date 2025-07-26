@@ -369,7 +369,7 @@ const EventLeaderboard: React.FC<EventLeaderboardProps> = ({
               {entry.position === 1 && (
                 <div className="bg-gradient-to-r from-yellow-500/20 to-yellow-600/20 border border-yellow-400/30 rounded-lg p-2">
                   <Crown className="w-6 h-6 text-yellow-400 mx-auto mb-1" />
-                  <div className="text-xs font-semibold text-yellow-400">WINNER</div>
+                  <div className="text-xs font-semibold text-yellow-400">{t('events.mobile.winner')}</div>
                 </div>
               )}
               

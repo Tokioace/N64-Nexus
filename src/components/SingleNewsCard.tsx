@@ -80,7 +80,7 @@ const SingleNewsCard: React.FC<SingleNewsCardProps> = ({ newsItems, className = 
           <div className="swipeable-card-header">
             <div className="flex items-center gap-2">
               <Newspaper className="w-5 h-5 text-blue-400" />
-              <h3 className="text-responsive-base font-bold text-slate-100">News</h3>
+              <h3 className="text-responsive-base font-bold text-slate-100">{t('card.news')}</h3>
             </div>
           </div>
           <div className="swipeable-card-content">

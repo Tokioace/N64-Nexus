@@ -111,7 +111,7 @@ const WinnerMediaDisplay: React.FC<WinnerMediaDisplayProps> = ({ winner, t }) =>
           >
             <Radio className="w-8 h-8 text-purple-400 mx-auto mb-2" />
             <p className="text-sm text-slate-300 font-medium">{t('home.livestreamProof')}</p>
-            <p className="text-xs text-purple-400 mt-1">Klicken zum Anschauen</p>
+            <p className="text-xs text-purple-400 mt-1">{t('events.mobile.clickToWatch')}</p>
           </a>
           <div className="flex items-center justify-center space-x-2 text-sm text-slate-400">
             <Radio className="w-4 h-4" />

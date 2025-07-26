@@ -243,21 +243,21 @@ const EventsPage: React.FC = () => {
                           <>
                             <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
                             <span className="hidden sm:inline">{t('events.status.live')}</span>
-                            <span className="sm:hidden">Live</span>
+                            <span className="sm:hidden">{t('events.mobile.live')}</span>
                           </>
                         )}
                         {status === 'upcoming' && (
                           <>
                             <Calendar className="w-3 h-3" />
                             <span className="hidden sm:inline">{t('events.status.upcoming')}</span>
-                            <span className="sm:hidden">Soon</span>
+                            <span className="sm:hidden">{t('events.mobile.soon')}</span>
                           </>
                         )}
                         {status === 'completed' && (
                           <>
                             <Award className="w-3 h-3" />
                             <span className="hidden sm:inline">{t('events.status.completed')}</span>
-                            <span className="sm:hidden">Done</span>
+                            <span className="sm:hidden">{t('events.mobile.done')}</span>
                           </>
                         )}
                       </div>
@@ -266,7 +266,7 @@ const EventsPage: React.FC = () => {
                         <div className="px-2 py-1 rounded-full text-xs font-medium bg-purple-500/20 text-purple-400 flex items-center gap-1">
                           <Star className="w-3 h-3" />
                           <span className="hidden sm:inline">{t('events.participating')}</span>
-                          <span className="sm:hidden">Joined</span>
+                          <span className="sm:hidden">{t('events.mobile.joined')}</span>
                         </div>
                       )}
                     </div>
@@ -306,13 +306,13 @@ const EventsPage: React.FC = () => {
                           <>
                             <Upload className="event-icon" />
                             <span className="hidden sm:inline lg:inline">{t('events.submitTime')}</span>
-                            <span className="sm:hidden lg:hidden">Submit</span>
+                            <span className="sm:hidden lg:hidden">{t('events.mobile.submit')}</span>
                           </>
                         ) : (
                           <>
                             <Trophy className="event-icon" />
                             <span className="hidden sm:inline lg:inline">{t('events.join')}</span>
-                            <span className="sm:hidden lg:hidden">Join</span>
+                            <span className="sm:hidden lg:hidden">{t('events.mobile.join')}</span>
                           </>
                         )}
                       </button>
@@ -324,7 +324,7 @@ const EventsPage: React.FC = () => {
                     >
                       <BarChart3 className="event-icon" />
                       <span className="hidden sm:inline lg:inline">{t('events.leaderboard')}</span>
-                      <span className="sm:hidden lg:hidden">Board</span>
+                      <span className="sm:hidden lg:hidden">{t('events.mobile.board')}</span>
                     </button>
                     
                     <button
