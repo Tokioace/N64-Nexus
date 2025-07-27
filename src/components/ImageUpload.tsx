@@ -28,9 +28,9 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
   const handleFileSelect = (file: File) => {
     setError('')
     
-    const validation = validateImageFile(file)
+    const validation = validateImageFile(file, t)
     if (!validation.isValid) {
-      setError(validation.error || 'Ungültige Datei')
+      setError(validation.error || t('error.invalidFile'))
       return
     }
 
@@ -89,9 +89,9 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
     return (
       <div className={`p-4 border-2 border-dashed border-slate-600 rounded-lg text-center ${className}`}>
         <AlertCircle className="w-8 h-8 text-slate-500 mx-auto mb-2" />
-                  <p className="text-slate-400 text-sm">
-            Du musst angemeldet sein, um Bilder hochzuladen
-          </p>
+                          <p className="text-slate-400 text-sm">
+          {t('auth.loginRequiredForImageUpload')}
+        </p>
       </div>
     )
   }
@@ -138,15 +138,15 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
               )}
             </div>
             <div>
-                              <p className="text-slate-200 font-medium">
-                  {dragActive ? 'Bild hier ablegen' : 'Bild hochladen'}
-                </p>
-                <p className="text-slate-400 text-sm mt-1">
-                  Klicken oder Drag & Drop
-                </p>
-                <p className="text-slate-500 text-xs mt-1">
-                  JPEG, PNG, GIF, WebP (max. 5MB)
-                </p>
+                                            <p className="text-slate-200 font-medium">
+                {dragActive ? t('imageUpload.dropHere') : t('imageUpload.uploadImage')}
+              </p>
+              <p className="text-slate-400 text-sm mt-1">
+                {t('imageUpload.clickOrDrag')}
+              </p>
+              <p className="text-slate-500 text-xs mt-1">
+                {t('imageUpload.supportedFormats')}
+              </p>
             </div>
           </div>
         </div>

@@ -49,17 +49,17 @@ const ForumNewThreadPage: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (!categoryId || !title.trim() || !content.trim()) {
-      setFormError('Titel und Inhalt sind erforderlich')
+      setFormError(t('validation.allFieldsRequired'))
       return
     }
 
     if (title.length > 100) {
-      setFormError('Der Titel ist zu lang (max. 100 Zeichen)')
+      setFormError(t('validation.titleTooLong'))
       return
     }
 
     if (content.length > 2000) {
-      setFormError('Der Inhalt ist zu lang (max. 2000 Zeichen)')
+      setFormError(t('validation.contentTooLong'))
       return
     }
 
@@ -73,10 +73,10 @@ const ForumNewThreadPage: React.FC = () => {
         // Navigate back to category page
         navigate(`/forum/category/${categoryId}`)
       } else {
-        setFormError('Fehler beim Erstellen des Threads. Bitte versuche es erneut.')
+        setFormError(t('error.threadCreationFailed'))
       }
     } catch (err) {
-      setFormError('Ein unerwarteter Fehler ist aufgetreten.')
+      setFormError(t('error.generic'))
     } finally {
       setIsSubmitting(false)
     }
@@ -208,7 +208,7 @@ const ForumNewThreadPage: React.FC = () => {
           {/* Title Input */}
           <div className="mb-6">
             <label htmlFor="title" className="block text-sm font-medium text-slate-200 mb-2">
-              Thread-Titel *
+              {t('forum.threadTitle')} *
             </label>
             <input
               type="text"
@@ -264,13 +264,13 @@ const ForumNewThreadPage: React.FC = () => {
 
           {/* Guidelines */}
           <div className="mb-6 p-4 bg-slate-700/50 border border-slate-600 rounded-lg">
-            <h3 className="font-semibold text-slate-200 mb-2">Community-Richtlinien</h3>
+            <h3 className="font-semibold text-slate-200 mb-2">{t('forum.communityGuidelines')}</h3>
             <ul className="text-sm text-slate-400 space-y-1">
-              <li>• Sei respektvoll und höflich zu anderen Mitgliedern</li>
-              <li>• Verwende aussagekräftige Titel für deine Threads</li>
-              <li>• Poste in der passenden Kategorie</li>
-              <li>• Keine Spam, Werbung oder Off-Topic-Inhalte</li>
-              <li>• Verwende die Suchfunktion, bevor du ein neues Thema erstellst</li>
+              <li>• {t('forum.guidelines.respectful')}</li>
+              <li>• {t('forum.guidelines.meaningfulTitles')}</li>
+              <li>• {t('forum.guidelines.rightCategory')}</li>
+              <li>• {t('forum.guidelines.noSpam')}</li>
+              <li>• {t('forum.guidelines.useSearch')}</li>
             </ul>
           </div>
 

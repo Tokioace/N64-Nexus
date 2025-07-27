@@ -460,7 +460,7 @@ const SpeedrunMediaPage: React.FC = () => {
                 {!isStreaming ? (
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-sm font-medium text-slate-300 mb-2">Stream Titel *</label>
+                      <label className="block text-sm font-medium text-slate-300 mb-2">{t('media.streamTitle')} *</label>
                       <input
                         type="text"
                         value={streamData.title}
@@ -793,7 +793,7 @@ const SpeedrunMediaPage: React.FC = () => {
 
                     {/* Description */}
                     <div>
-                      <label className="block text-sm font-medium text-slate-300 mb-2">Beschreibung</label>
+                      <label className="block text-sm font-medium text-slate-300 mb-2">{t('media.description')}</label>
                       <textarea
                         value={uploadData.description}
                         onChange={(e) => setUploadData({...uploadData, description: e.target.value})}
@@ -872,12 +872,12 @@ const SpeedrunMediaPage: React.FC = () => {
                         {uploading ? (
                           <>
                             <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
-                            Wird hochgeladen...
+                            {t('common.uploading')}
                           </>
                         ) : (
                           <>
                             <Upload className="w-4 h-4" />
-                            Hochladen
+                            {t('common.upload')}
                           </>
                         )}
                       </button>
@@ -950,7 +950,7 @@ const SpeedrunMediaPage: React.FC = () => {
                       </div>
 
                       <div>
-                        <h3 className="font-medium text-slate-300 mb-1">Hochgeladen</h3>
+                        <h3 className="font-medium text-slate-300 mb-1">{t('media.uploadedOn')}</h3>
                         <p className="text-slate-100">{new Date(selectedMedia.uploadDate).toLocaleString('de-DE')}</p>
                       </div>
 
@@ -983,7 +983,7 @@ const SpeedrunMediaPage: React.FC = () => {
 
                       {selectedMedia.description && (
                         <div>
-                          <h3 className="font-medium text-slate-300 mb-1">Beschreibung</h3>
+                          <h3 className="font-medium text-slate-300 mb-1">{t('media.description')}</h3>
                           <p className="text-slate-100 text-sm">{selectedMedia.description}</p>
                         </div>
                       )}
