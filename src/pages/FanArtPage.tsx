@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { useLanguage } from '../contexts/LanguageContext'
 import { useUser } from '../contexts/UserContext'
+import { usePoints } from '../contexts/PointsContext'
 import { Palette, Heart, Eye, MessageSquare, Upload, Filter, Grid, List, Zap, X, Image as ImageIcon } from 'lucide-react'
-import AuthGuard from '../components/AuthGuard'
 
 interface FanArtItem {
   id: string
@@ -93,9 +93,10 @@ const RatingInput: React.FC<RatingInputProps> = ({ currentRating, onRate, disabl
 interface UploadModalProps {
   onClose: () => void
   onUpload: (artwork: FanArtItem) => void
+  awardPoints: (action: keyof import('../types').PointsConfig, description?: string) => Promise<boolean>
 }
 
-const UploadModal: React.FC<UploadModalProps> = ({ onClose, onUpload }) => {
+const UploadModal: React.FC<UploadModalProps> = ({ onClose, onUpload, awardPoints }) => {
   const { t } = useLanguage()
   const { user } = useUser()
   const [title, setTitle] = useState('')
@@ -156,12 +157,20 @@ const UploadModal: React.FC<UploadModalProps> = ({ onClose, onUpload }) => {
     }
 
     onUpload(newArtwork)
+    
+    // Award points for fanart upload
+    try {
+      await awardPoints('fanart.upload', `Fanart uploaded: ${title}`)
+    } catch (error) {
+      console.error('Failed to award points for fanart upload:', error)
+    }
+    
     setIsUploading(false)
   }
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-slate-800 rounded-lg p-6 max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+      <div className="bg-slate-800 rounded-lg p-6 max-w-2xl w-full overflow-y-auto" style={{ maxHeight: 'clamp(400px, 90vh, 800px)' }}>
         <div className="flex items-center justify-between mb-6">
           <h3 className="text-2xl font-bold text-slate-100">
             {t('fanart.uploadArt')}
@@ -185,7 +194,7 @@ const UploadModal: React.FC<UploadModalProps> = ({ onClose, onUpload }) => {
                 <div className="space-y-4">
                   <img
                     src={imagePreview}
-                    alt="Preview"
+                    alt={t('alt.preview')}
                     className="max-w-full max-h-48 mx-auto rounded-lg"
                   />
                   <button
@@ -300,6 +309,7 @@ const UploadModal: React.FC<UploadModalProps> = ({ onClose, onUpload }) => {
 const FanArtPage: React.FC = () => {
   const { t } = useLanguage()
   const { user, isAuthenticated } = useUser()
+  const { awardPoints } = usePoints()
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid')
   const [selectedCategory, setSelectedCategory] = useState('all')
   const [showUploadModal, setShowUploadModal] = useState(false)
@@ -413,6 +423,38 @@ const FanArtPage: React.FC = () => {
         item.tags.some(tag => tag.toLowerCase().includes(selectedCategory))
       )
 
+  const handleLikeArtwork = async (artworkId: string) => {
+    if (!isAuthenticated || !user) return
+
+    const artwork = fanArtItems.find(item => item.id === artworkId)
+    if (!artwork) return
+
+    // Prevent self-liking
+    if (artwork.artist === user.username) {
+      console.log('Cannot like your own artwork')
+      return
+    }
+
+    // In a real app, you'd check if user already liked this artwork
+    // For now, we'll just increment the likes
+    setFanArtItems(prev => prev.map(item => {
+      if (item.id === artworkId) {
+        return {
+          ...item,
+          likes: item.likes + 1
+        }
+      }
+      return item
+    }))
+
+    // Award points to the artwork creator
+    try {
+      await awardPoints('fanart.likeReceived', `Like received on: ${artwork.title}`)
+    } catch (error) {
+      console.error('Failed to award points for fanart like:', error)
+    }
+  }
+
   const handleRateArtwork = (artworkId: string, rating: number) => {
     if (!isAuthenticated) return
 
@@ -447,76 +489,57 @@ const FanArtPage: React.FC = () => {
   }
 
   return (
-    <div className="container mx-auto px-4 py-6">
+    <div className="container-lg py-responsive space-responsive responsive-max-width responsive-overflow-hidden">
       {/* Header */}
-      <div className="text-center mb-8">
-        <div className="flex items-center justify-center gap-3 mb-4">
-          <Palette className="w-8 h-8 text-rose-400" />
-          <h1 className="text-3xl font-bold text-slate-100">
-            {t('nav.fanart')}
-          </h1>
-        </div>
-        <p className="text-slate-400 text-lg mb-6">
+      <div className="text-center mb-responsive responsive-max-width">
+        <Palette className="w-12 h-12 sm:w-16 sm:h-16 text-pink-400 mx-auto mb-4" />
+        <h1 className="text-responsive-2xl font-bold text-slate-100 mb-2 responsive-word-break">
+          {t('nav.fanart')}
+        </h1>
+        <p className="text-responsive-base text-slate-400 max-w-2xl mx-auto responsive-word-break px-2">
           {t('fanart.subtitle')}
         </p>
+      </div>
 
-        {/* Action Buttons */}
-        <div className="flex flex-wrap items-center justify-center gap-4">
-          {isAuthenticated ? (
+      {/* Action Buttons */}
+      <div className="flex flex-col sm:flex-row items-center justify-center gap-4 responsive-max-width">
+          {isAuthenticated && (
             <button
               onClick={() => setShowUploadModal(true)}
-              className="flex items-center gap-2 px-6 py-3 bg-rose-600 hover:bg-rose-700 
-                         text-white rounded-lg transition-colors font-medium"
+              className="flex items-center gap-2 px-4 sm:px-6 py-3 bg-rose-600 hover:bg-rose-700 
+                         text-white rounded-lg transition-colors font-medium w-full sm:w-auto justify-center"
             >
-              <Upload className="w-5 h-5" />
-              {t('fanart.uploadArt')}
+              <Upload className="w-4 h-4 sm:w-5 sm:h-5" />
+              <span className="text-sm sm:text-base">{t('fanart.uploadArt')}</span>
             </button>
-          ) : (
-            <AuthGuard 
-              requireAuth={true}
-              blurContent={false}
-              showLoginPrompt={true}
-              customMessage={t('fanart.loginToUpload')}
-              className="inline-block"
-            >
-              <button
-                disabled
-                className="flex items-center gap-2 px-6 py-3 bg-slate-600 cursor-not-allowed
-                           text-slate-400 rounded-lg transition-colors font-medium"
-              >
-                <Upload className="w-5 h-5" />
-                {t('fanart.uploadArt')}
-              </button>
-            </AuthGuard>
           )}
 
           {/* View Mode Toggle */}
-          <div className="flex bg-slate-800 rounded-lg p-1">
+          <div className="flex bg-slate-800 rounded-lg p-1 w-full sm:w-auto">
             <button
               onClick={() => setViewMode('grid')}
-              className={`flex items-center gap-2 px-4 py-2 rounded-md transition-colors ${
+              className={`flex-1 sm:flex-none flex items-center justify-center gap-2 px-3 sm:px-4 py-2 rounded-md transition-colors ${
                 viewMode === 'grid' 
                   ? 'bg-slate-700 text-slate-100' 
                   : 'text-slate-400 hover:text-slate-200'
               }`}
             >
               <Grid className="w-4 h-4" />
-              Grid
+                              <span className="text-sm sm:text-base">{t('ui.grid')}</span>
             </button>
             <button
               onClick={() => setViewMode('list')}
-              className={`flex items-center gap-2 px-4 py-2 rounded-md transition-colors ${
+              className={`flex-1 sm:flex-none flex items-center justify-center gap-2 px-3 sm:px-4 py-2 rounded-md transition-colors ${
                 viewMode === 'list' 
                   ? 'bg-slate-700 text-slate-100' 
                   : 'text-slate-400 hover:text-slate-200'
               }`}
             >
               <List className="w-4 h-4" />
-              List
+                              <span className="text-sm sm:text-base">{t('ui.list')}</span>
             </button>
           </div>
         </div>
-      </div>
 
       {/* Filters */}
       <div className="flex flex-wrap items-center gap-4 mb-8 p-4 bg-slate-800/50 rounded-lg">
@@ -549,13 +572,9 @@ const FanArtPage: React.FC = () => {
       </div>
 
       {/* Fan Art Grid/List */}
-      <AuthGuard 
-        customMessage={t('fanart.loginToViewArt')}
-        className="min-h-[400px]"
-      >
-        {viewMode === 'grid' ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredItems.map(item => (
+      {viewMode === 'grid' ? (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {filteredItems.map(item => (
             <div key={item.id} className="n64-tile bg-slate-800/50 hover:bg-slate-800/70 transition-colors">
               <div className="aspect-video bg-slate-700 rounded-lg mb-4 overflow-hidden">
                 <img 
@@ -602,10 +621,14 @@ const FanArtPage: React.FC = () => {
 
                 <div className="flex items-center justify-between text-sm text-slate-400">
                   <div className="flex items-center gap-4">
-                    <div className="flex items-center gap-1">
+                    <button 
+                      onClick={() => handleLikeArtwork(item.id)}
+                      className="flex items-center gap-1 hover:text-rose-400 transition-colors"
+                      disabled={!isAuthenticated}
+                    >
                       <Heart className="w-4 h-4" />
                       <span>{item.likes}</span>
-                    </div>
+                    </button>
                     <div className="flex items-center gap-1">
                       <Eye className="w-4 h-4" />
                       <span>{item.views}</span>
@@ -621,11 +644,11 @@ const FanArtPage: React.FC = () => {
                 </div>
               </div>
             </div>
-            ))}
-          </div>
-        ) : (
-          <div className="space-y-4">
-            {filteredItems.map(item => (
+          ))}
+        </div>
+      ) : (
+        <div className="space-y-4">
+          {filteredItems.map(item => (
             <div key={item.id} className="n64-tile bg-slate-800/50 hover:bg-slate-800/70 transition-colors">
               <div className="flex gap-4">
                 <div className="w-32 h-20 bg-slate-700 rounded-lg overflow-hidden flex-shrink-0">
@@ -670,10 +693,14 @@ const FanArtPage: React.FC = () => {
 
                   <div className="flex items-center justify-between text-sm text-slate-400">
                     <div className="flex items-center gap-4">
-                      <div className="flex items-center gap-1">
+                      <button 
+                        onClick={() => handleLikeArtwork(item.id)}
+                        className="flex items-center gap-1 hover:text-rose-400 transition-colors"
+                        disabled={!isAuthenticated}
+                      >
                         <Heart className="w-4 h-4" />
                         <span>{item.likes}</span>
-                      </div>
+                      </button>
                       <div className="flex items-center gap-1">
                         <Eye className="w-4 h-4" />
                         <span>{item.views}</span>
@@ -690,11 +717,11 @@ const FanArtPage: React.FC = () => {
                 </div>
               </div>
             </div>
-                      ))}
-          </div>
-        )}
+          ))}
+        </div>
+      )}
 
-        {/* Empty State */}
+      {/* Empty State */}
       {filteredItems.length === 0 && (
         <div className="text-center py-12">
           <Palette className="w-16 h-16 text-slate-500 mx-auto mb-4" />
@@ -705,8 +732,7 @@ const FanArtPage: React.FC = () => {
             {t('fanart.noArtworksDescription')}
           </p>
         </div>
-        )}
-      </AuthGuard>
+      )}
 
       {/* Upload Modal */}
       {showUploadModal && (
@@ -716,6 +742,7 @@ const FanArtPage: React.FC = () => {
             setFanArtItems(prev => [newArtwork, ...prev])
             setShowUploadModal(false)
           }}
+          awardPoints={awardPoints}
         />
       )}
     </div>

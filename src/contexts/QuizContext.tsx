@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState, ReactNode } from 'react'
 import { QuizQuestion, QuizResult, QuizContextType } from '../types'
 import { useLanguage } from './LanguageContext'
+import { usePoints } from './PointsContext'
 
 const QuizContext = createContext<QuizContextType | undefined>(undefined)
 
@@ -28,6 +29,7 @@ const getQuizQuestions = (t: (key: string) => string): QuizQuestion[] => [
 
 export const QuizProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const { t } = useLanguage()
+  const { awardPoints } = usePoints()
   const [currentQuestion, setCurrentQuestion] = useState<QuizQuestion | null>(null)
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
   const [totalQuestions] = useState(10)
@@ -46,9 +48,15 @@ export const QuizProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     setQuizResult(null)
   }
 
-  const answerQuestion = (answerIndex: number) => {
+  const answerQuestion = async (answerIndex: number) => {
     if (currentQuestion && answerIndex === currentQuestion.correctAnswer) {
       setScore(prev => prev + 1)
+      // Award points for correct answer
+      try {
+        await awardPoints('quiz.answerCorrect', `Correct answer: ${currentQuestion.question}`)
+      } catch (error) {
+        console.error('Failed to award points for correct answer:', error)
+      }
     }
   }
 
@@ -63,15 +71,27 @@ export const QuizProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     }
   }
 
-  const finishQuiz = () => {
+  const finishQuiz = async () => {
+    const questions = getQuizQuestions(t)
+    const actualQuestionCount = questions.length
     const timeSpent = timeStarted ? Date.now() - timeStarted.getTime() : 0
     const result: QuizResult = {
-      score: Math.round((score / totalQuestions) * 100),
-      totalQuestions,
+      score: Math.round((score / actualQuestionCount) * 100),
+      totalQuestions: actualQuestionCount,
       correctAnswers: score,
       timeSpent: Math.round(timeSpent / 1000),
       xpEarned: score * 10
     }
+    
+    // Award bonus points for perfect quiz
+    if (score === actualQuestionCount) {
+      try {
+        await awardPoints('quiz.fullPerfect', `Perfect quiz completed: ${score}/${actualQuestionCount}`)
+      } catch (error) {
+        console.error('Failed to award points for perfect quiz:', error)
+      }
+    }
+    
     setQuizResult(result)
     setIsQuizActive(false)
   }

@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useLanguage } from '../contexts/LanguageContext'
+import { isValidTimeFormat } from '../utils/timeUtils'
 import { 
   X, 
   Camera, 
@@ -88,9 +89,8 @@ const RaceSubmissionModal: React.FC<RaceSubmissionModalProps> = ({
     }
     
     // Validate time format (MM:SS.mmm)
-    const timeRegex = /^\d{1,2}:\d{2}\.\d{3}$/
-    if (!timeRegex.test(raceTime)) {
-      setError('Zeit muss im Format MM:SS.mmm sein (z.B. 1:32.456)')
+    if (!isValidTimeFormat(raceTime)) {
+      setError(t('events.invalidTimeFormat'))
       return
     }
 
@@ -186,7 +186,7 @@ const RaceSubmissionModal: React.FC<RaceSubmissionModalProps> = ({
               type="text"
               value={raceTime}
               onChange={(e) => setRaceTime(e.target.value)}
-              placeholder="1:32.456"
+              placeholder={t('placeholder.raceTime')}
               className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg 
                        text-slate-100 placeholder-slate-400 focus:outline-none focus:border-blue-400
                        focus:ring-1 focus:ring-blue-400"
@@ -271,7 +271,7 @@ const RaceSubmissionModal: React.FC<RaceSubmissionModalProps> = ({
                 type="url"
                 value={livestreamUrl}
                 onChange={(e) => setLivestreamUrl(e.target.value)}
-                placeholder="https://twitch.tv/dein-kanal oder https://youtube.com/watch?v=..."
+                placeholder={t('placeholder.livestreamUrl')}
                 className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg 
                          text-slate-100 placeholder-slate-400 focus:outline-none focus:border-blue-400
                          focus:ring-1 focus:ring-blue-400"

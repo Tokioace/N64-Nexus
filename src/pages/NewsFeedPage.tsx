@@ -13,7 +13,8 @@ import {
   ChevronLeft,
   ChevronRight,
   Filter,
-  Search
+  Search,
+  Newspaper
 } from 'lucide-react'
 
 interface NewsItem {
@@ -192,20 +193,19 @@ const NewsFeedPage: React.FC = () => {
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 p-6">
-      <div className="max-w-6xl mx-auto">
-        
-        {/* Header */}
-        <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-slate-100 mb-2">
-            📰 {t('news.title')}
-          </h1>
-          <p className="text-slate-400 text-lg">
-            {t('news.subtitle')}
-          </p>
-        </div>
+    <div className="container-lg py-responsive space-responsive responsive-max-width responsive-overflow-hidden">
+      {/* Header */}
+      <div className="text-center mb-responsive responsive-max-width">
+        <Newspaper className="w-12 h-12 sm:w-16 sm:h-16 text-orange-500 mx-auto mb-4" />
+        <h1 className="text-responsive-2xl font-bold text-slate-100 mb-2 responsive-word-break">
+          {t('news.title')}
+        </h1>
+        <p className="text-responsive-base text-slate-400 max-w-2xl mx-auto responsive-word-break px-2">
+          {t('news.subtitle')}
+        </p>
+      </div>
 
-        {/* Search and Filter Bar */}
+      {/* Search and Filter Bar */}
         <div className="bg-slate-800/50 rounded-lg p-6 mb-8 border border-slate-600/30">
           <div className="flex flex-col md:flex-row gap-4">
             
@@ -324,7 +324,6 @@ const NewsFeedPage: React.FC = () => {
           </div>
         )}
 
-      </div>
     </div>
   )
 }
