@@ -1170,7 +1170,7 @@ const translations = {
 
 // News
     'news.speedrunEvent': 'Speedrun Event: GoldenEye 007 Records Broken!',
-    'news.speedrunEventContent': 'Incredible performances at yesterday\',
+    'news.speedrunEventContent': 'Incredible performances at yesterday\'s event!',
     'news.n64History': 'N64 History: 27 Years of Nintendo 64',
     'news.n64HistoryContent': 'A look back at the legendary console and its greatest games.',
 
@@ -1344,7 +1344,7 @@ const translations = {
     'media.description': 'Description',
     'media.noMediaFound': 'No media found',
     'media.noUploads': 'No uploads yet',
-    'media.noUploadsDesc': 'You haven\',
+    'media.noUploadsDesc': 'You haven\'t uploaded any media yet.',
     'media.eventUpload': 'Event Upload',
     'media.totalViews': 'Total Views',
     'media.totalLikes': 'Total Likes',
@@ -1499,7 +1499,7 @@ const translations = {
     'events.showLess': 'Show Less',
     'events.rules': 'Rules',
     'events.prizes': 'Prizes',
-    'events.notificationPrompt': 'Don\',
+    'events.notificationPrompt': 'Don\'t miss out on events!',
     'events.notificationsActive': '🔔 Notifications active',
     'events.enableNotifications': '🔔 Enable notifications',
     'events.eventLeaderboard': 'Event Leaderboard',
@@ -1670,7 +1670,7 @@ const translations = {
 
 // Collection Manager
     'collection.myCollection': 'My Collection',
-    'collection.userCollection': '{username}\',
+    'collection.userCollection': '{username}\'s Collection',
     'collection.noGames': 'No Games',
     'collection.noWishes': 'No Wishes',
     'collection.addFirstGame': 'Add your first game!',
@@ -2136,7 +2136,7 @@ const translations = {
     'nav.marketplace': 'Place de Marché',
     'nav.friends': 'Amis',
     'nav.fanart': 'Art de Fan',
-    'nav.newsfeed': 'Flux d\',
+    'nav.newsfeed': 'Flux d\'actualités',
     'nav.community': 'Communauté',
 
 // Home Screen
@@ -2156,8 +2156,8 @@ const translations = {
     'home.newsfeed.subtitle': 'Mises à jour',
 
 // Fan Art Page
-    'fanart.subtitle': 'Découvrez et partagez l\',
-    'fanart.uploadArt': 'Télécharger de l\',
+    'fanart.subtitle': 'Découvrez et partagez l\'art de fan N64 de la communauté',
+    'fanart.uploadArt': 'Télécharger de l\'art',
     'fanart.filterBy': 'Filtrer par',
     'fanart.allCategories': 'Toutes les Catégories',
     'fanart.artworksFound': 'œuvres trouvées',
@@ -2168,8 +2168,8 @@ const translations = {
     'fanart.yourRating': 'Votre évaluation',
     'fanart.uploadImage': 'Télécharger une Image',
     'fanart.chooseImage': 'Choisir une Image',
-    'fanart.imageFormats': 'JPG, PNG, GIF jusqu\',
-    'fanart.artworkTitle': 'Titre de l\',
+    'fanart.imageFormats': 'JPG, PNG, GIF jusqu\'à 10MB',
+    'fanart.artworkTitle': 'Titre de l\'œuvre',
     'fanart.titlePlaceholder': 'Donnez un titre à votre œuvre...',
     'fanart.selectGame': 'Sélectionner un Jeu',
     'fanart.chooseGame': 'Choisissez un jeu...',
