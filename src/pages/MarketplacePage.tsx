@@ -210,7 +210,7 @@ const MarketplacePage: React.FC = () => {
         price: 45.99,
         currency: 'EUR',
         condition: 'mint',
-        images: ['/api/placeholder/300/200'],
+        images: ['https://via.placeholder.com/300x200/FF6B6B/FFFFFF?text=Mario+64'],
         seller: {
           id: 'user1',
           name: 'RetroGamer92',
@@ -231,7 +231,7 @@ const MarketplacePage: React.FC = () => {
         price: 25.00,
         currency: 'EUR',
         condition: 'good',
-        images: ['/api/placeholder/300/200'],
+        images: ['https://via.placeholder.com/300x200/636E72/FFFFFF?text=N64+Controller'],
         seller: {
           id: 'user2',
           name: 'N64Collector',
@@ -252,7 +252,7 @@ const MarketplacePage: React.FC = () => {
         price: 35.50,
         currency: 'EUR',
         condition: 'very-good',
-        images: ['/api/placeholder/300/200'],
+        images: ['https://via.placeholder.com/300x200/4ECDC4/FFFFFF?text=Zelda+OoT'],
         seller: {
           id: 'user3',
           name: 'ZeldaFan2000',
