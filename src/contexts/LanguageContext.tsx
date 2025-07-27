@@ -3539,7 +3539,7 @@ const translations = {
     'events.livestreamUrl': 'URL Livestream',
     'events.notes': 'Eventi',
     'events.submissionSuccess': 'Eventi',
-    'events.joinSuccess': 'Iscritto all'evento con successo! Ora puoi inviare il tuo tempo.',
+    'events.joinSuccess': 'Iscritto all\'evento con successo! Ora puoi inviare il tuo tempo.',
     'events.timeFormat': 'Formato: MM:SS.mmm (es. 1:32.456)',
     'events.mediaFormatHelp': 'Formati accettati: JPG, PNG, MP4, WebM',
     'events.livestreamFormatHelp': 'Link al tuo stream Twitch o YouTube',
