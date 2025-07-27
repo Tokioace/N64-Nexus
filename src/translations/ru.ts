@@ -998,8 +998,8 @@ export const ru = {
     'common.genres': 'Жанры',
 
 // Additional placeholders and labels
-    'placeholder.gameName': 'Placeholder Gamename',
-    'placeholder.category': 'Placeholder Category',
+    'placeholder.gameName': 'Название игры...',
+    'placeholder.category': 'Категория...',
     'placeholder.time': 'Время...',
     'placeholder.score': 'Счет...',
     'placeholder.proofUrl': 'URL доказательства...',

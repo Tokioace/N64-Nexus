@@ -998,8 +998,8 @@ export const hi = {
     'common.genres': 'शैलियां',
 
 // Additional placeholders and labels
-    'placeholder.gameName': 'Placeholder Gamename',
-    'placeholder.category': 'Placeholder Category',
+    'placeholder.gameName': 'गेम का नाम...',
+    'placeholder.category': 'श्रेणी...',
     'placeholder.time': 'समय...',
     'placeholder.score': 'स्कोर...',
     'placeholder.proofUrl': 'प्रमाण URL...',
