@@ -2,6 +2,7 @@ import React, { createContext, useContext, useState, ReactNode, useEffect, useCa
 import { MediaMeta, MediaContextType } from '../types'
 import { useLanguage } from './LanguageContext'
 import { useUser } from './UserContext'
+import { safeLocalStorage, safeJSONStorage } from '../utils/storage'
 
 const MediaContext = createContext<MediaContextType | undefined>(undefined)
 
@@ -60,7 +61,7 @@ export const MediaProvider: React.FC<{ children: ReactNode }> = ({ children }) =
   // Initialize media from localStorage or default sample data
   const [media, setMedia] = useState<MediaMeta[]>(() => {
     try {
-      const storedMedia = localStorage.getItem(MEDIA_STORAGE_KEY)
+      const storedMedia = safeLocalStorage.getItem(MEDIA_STORAGE_KEY)
       if (storedMedia) {
         const parsedMedia = JSON.parse(storedMedia)
         // Validate and convert date strings back to Date objects
@@ -88,7 +89,7 @@ export const MediaProvider: React.FC<{ children: ReactNode }> = ({ children }) =
       console.error('Error loading media from storage:', error)
       // Clear corrupted data
       try {
-        localStorage.removeItem(MEDIA_STORAGE_KEY)
+        safeLocalStorage.removeItem(MEDIA_STORAGE_KEY)
       } catch (clearError) {
         console.error('Error clearing corrupted media data:', clearError)
       }
@@ -195,7 +196,7 @@ export const MediaProvider: React.FC<{ children: ReactNode }> = ({ children }) =
   // Debounced save to localStorage to prevent excessive writes
   const saveToLocalStorage = useCallback((mediaData: MediaMeta[]) => {
     try {
-      localStorage.setItem(MEDIA_STORAGE_KEY, JSON.stringify(mediaData))
+      safeJSONStorage.set(MEDIA_STORAGE_KEY, mediaData)
     } catch (error) {
       console.error('Error saving media to storage:', error)
       setError('Failed to save media data')
@@ -590,9 +591,9 @@ export const MediaProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     })
     
     setMedia([])
-    localStorage.removeItem(MEDIA_STORAGE_KEY)
+    safeLocalStorage.removeItem(MEDIA_STORAGE_KEY)
     if (user) {
-      localStorage.removeItem(USER_MEDIA_STORAGE_KEY + '_' + user.id)
+      safeLocalStorage.removeItem(USER_MEDIA_STORAGE_KEY + '_' + user.id)
     }
   }, [media, user])
 
