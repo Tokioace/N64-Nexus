@@ -640,13 +640,13 @@ export const ar = {
     'collector.level.n64Legend': 'Collector Level',
 
 // Auth
-    'auth.welcomeBack': 'Auth Welcomeback',
-    'auth.createAccount': 'Auth Createaccount',
-    'auth.loggingIn': 'Auth Loggingin',
-    'auth.registering': 'Auth Registering',
-    'auth.createAccountButton': 'Auth Createaccountbutton',
-    'auth.platform': 'Auth Platform',
-    'auth.region': 'Auth Region',
+    'auth.welcomeBack': 'مرحباً بعودتك',
+    'auth.createAccount': 'إنشاء حساب',
+    'auth.loggingIn': 'جاري تسجيل الدخول...',
+    'auth.registering': 'جاري التسجيل...',
+    'auth.createAccountButton': 'إنشاء حساب',
+    'auth.platform': 'المنصة',
+    'auth.region': 'المنطقة',
 
 // Community
     'community.allPlatforms': 'جميع المنصات',
@@ -689,17 +689,17 @@ export const ar = {
     'media.exitFullscreen': 'الوسائط',
 
 // Additional German translations
-    'auth.invalidCredentials': 'Auth Invalidcredentials',
-    'auth.errorOccurred': 'Auth Erroroccurred',
-    'auth.passwordsDontMatch': 'Auth Passwordsdontmatch',
-    'auth.passwordTooShort': 'Auth Passwordtooshort',
-    'auth.usernameTooShort': 'Auth Usernametooshort',
-    'auth.emailPlaceholder': 'Auth Emailplaceholder',
-    'auth.usernamePlaceholder': 'Auth Usernameplaceholder',
-    'auth.registrationFailed': 'Auth Registrationfailed',
-    'auth.noAccountYet': 'Auth Noaccountyet',
-    'auth.registerNow': 'Auth Registernow',
-    'auth.alreadyHaveAccount': 'Auth Alreadyhaveaccount',
+    'auth.invalidCredentials': 'بيانات اعتماد غير صحيحة',
+    'auth.errorOccurred': 'حدث خطأ',
+    'auth.passwordsDontMatch': 'كلمات المرور غير متطابقة',
+    'auth.passwordTooShort': 'كلمة المرور قصيرة جداً',
+    'auth.usernameTooShort': 'اسم المستخدم قصير جداً',
+    'auth.emailPlaceholder': 'أدخل البريد الإلكتروني...',
+    'auth.usernamePlaceholder': 'أدخل اسم المستخدم...',
+    'auth.registrationFailed': 'فشل التسجيل',
+    'auth.noAccountYet': 'ليس لديك حساب بعد؟',
+    'auth.registerNow': 'سجل الآن',
+    'auth.alreadyHaveAccount': 'لديك حساب بالفعل؟',
     'auth.loginHere': 'تسجيل الدخول هنا',
 
 // Quiz content
@@ -855,8 +855,8 @@ export const ar = {
     'leaderboard.timeframe': 'الإطار الزمني',
 
 // Placeholders and form text
-    'placeholder.additionalInfo': 'Placeholder Additionalinfo',
-    'placeholder.setupController': 'Placeholder Setupcontroller',
+    'placeholder.additionalInfo': 'معلومات إضافية...',
+    'placeholder.setupController': 'إعداد وحدة التحكم...',
     'placeholder.searchGames': 'البحث عن الألعاب...',
     'placeholder.searchPlayers': 'البحث عن اللاعبين...',
     'leaderboard.filterGlobal': 'عالمي',

@@ -640,13 +640,13 @@ export const ja = {
     'collector.level.n64Legend': 'Collector Level',
 
 // Auth
-    'auth.welcomeBack': 'Auth Welcomeback',
-    'auth.createAccount': 'Auth Createaccount',
-    'auth.loggingIn': 'Auth Loggingin',
+    'auth.welcomeBack': 'おかえりなさい',
+    'auth.createAccount': 'アカウント作成',
+    'auth.loggingIn': 'ログイン中...',
     'auth.registering': '登録中...',
-    'auth.createAccountButton': 'Auth Createaccountbutton',
-    'auth.platform': 'Auth Platform',
-    'auth.region': 'Auth Region',
+    'auth.createAccountButton': 'アカウント作成',
+    'auth.platform': 'プラットフォーム',
+    'auth.region': '地域',
 
 // Community
     'community.allPlatforms': 'すべてのプラットフォーム',
@@ -689,17 +689,17 @@ export const ja = {
     'media.exitFullscreen': 'メディア',
 
 // Additional German translations
-    'auth.invalidCredentials': 'Auth Invalidcredentials',
-    'auth.errorOccurred': 'Auth Erroroccurred',
-    'auth.passwordsDontMatch': 'Auth Passwordsdontmatch',
-    'auth.passwordTooShort': 'Auth Passwordtooshort',
+    'auth.invalidCredentials': '認証情報が無効です',
+    'auth.errorOccurred': 'エラーが発生しました',
+    'auth.passwordsDontMatch': 'パスワードが一致しません',
+    'auth.passwordTooShort': 'パスワードが短すぎます',
     'auth.usernameTooShort': 'ユーザー名が短すぎます',
     'auth.emailPlaceholder': 'メールアドレスを入力...',
     'auth.usernamePlaceholder': 'ユーザー名を入力...',
-    'auth.registrationFailed': 'Auth Registrationfailed',
-    'auth.noAccountYet': 'Auth Noaccountyet',
+    'auth.registrationFailed': '登録に失敗しました',
+    'auth.noAccountYet': 'アカウントをお持ちでない方',
     'auth.registerNow': '今すぐ登録',
-    'auth.alreadyHaveAccount': 'Auth Alreadyhaveaccount',
+    'auth.alreadyHaveAccount': '既にアカウントをお持ちの方',
     'auth.loginHere': 'ここでログイン',
 
 // Quiz content
@@ -855,8 +855,8 @@ export const ja = {
     'leaderboard.timeframe': '期間',
 
 // Placeholders and form text
-    'placeholder.additionalInfo': 'Placeholder Additionalinfo',
-    'placeholder.setupController': 'Placeholder Setupcontroller',
+    'placeholder.additionalInfo': '追加情報...',
+    'placeholder.setupController': 'コントローラー設定...',
     'placeholder.searchGames': 'ゲームを検索...',
     'placeholder.searchPlayers': 'プレイヤーを検索...',
     'leaderboard.filterGlobal': 'グローバル',
@@ -1000,11 +1000,11 @@ export const ja = {
 // Additional placeholders and labels
     'placeholder.gameName': 'ゲーム名...',
     'placeholder.category': 'カテゴリ...',
-    'placeholder.time': 'Placeholder Time',
-    'placeholder.score': 'Placeholder Score',
-    'placeholder.proofUrl': 'Placeholder Proofurl',
-    'placeholder.notes': 'Placeholder Notes',
-    'placeholder.recordNotes': 'Placeholder Recordnotes',
+    'placeholder.time': '時間...',
+    'placeholder.score': 'スコア...',
+    'placeholder.proofUrl': '証明URL...',
+    'placeholder.notes': 'メモ...',
+    'placeholder.recordNotes': 'レコードメモ...',
     'placeholder.password': '••••••••',
     'label.gameName': 'Label Gamename',
     'label.platform': 'Label Platform',

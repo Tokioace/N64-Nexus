@@ -640,13 +640,13 @@ export const pt = {
     'collector.level.n64Legend': 'Collector Level',
 
 // Auth
-    'auth.welcomeBack': 'Auth Welcomeback',
-    'auth.createAccount': 'Auth Createaccount',
-    'auth.loggingIn': 'Auth Loggingin',
+    'auth.welcomeBack': 'Bem-vindo de volta',
+    'auth.createAccount': 'Criar conta',
+    'auth.loggingIn': 'Fazendo login...',
     'auth.registering': 'Auth Registering',
-    'auth.createAccountButton': 'Auth Createaccountbutton',
-    'auth.platform': 'Auth Platform',
-    'auth.region': 'Auth Region',
+    'auth.createAccountButton': 'Criar conta',
+    'auth.platform': 'Plataforma',
+    'auth.region': 'Região',
 
 // Community
     'community.allPlatforms': 'Todas as Plataformas',
@@ -689,17 +689,17 @@ export const pt = {
     'media.exitFullscreen': 'Mídia',
 
 // Additional German translations
-    'auth.invalidCredentials': 'Auth Invalidcredentials',
-    'auth.errorOccurred': 'Auth Erroroccurred',
-    'auth.passwordsDontMatch': 'Auth Passwordsdontmatch',
-    'auth.passwordTooShort': 'Auth Passwordtooshort',
+    'auth.invalidCredentials': 'Credenciais inválidas',
+    'auth.errorOccurred': 'Ocorreu um erro',
+    'auth.passwordsDontMatch': 'Senhas não coincidem',
+    'auth.passwordTooShort': 'Senha muito curta',
     'auth.usernameTooShort': 'Auth Usernametooshort',
     'auth.emailPlaceholder': 'Auth Emailplaceholder',
     'auth.usernamePlaceholder': 'Auth Usernameplaceholder',
-    'auth.registrationFailed': 'Auth Registrationfailed',
-    'auth.noAccountYet': 'Auth Noaccountyet',
+    'auth.registrationFailed': 'Falha no registro',
+    'auth.noAccountYet': 'Ainda não tem conta?',
     'auth.registerNow': 'Auth Registernow',
-    'auth.alreadyHaveAccount': 'Auth Alreadyhaveaccount',
+    'auth.alreadyHaveAccount': 'Já tem uma conta?',
     'auth.loginHere': 'Fazer login aqui',
 
 // Quiz content
@@ -855,8 +855,8 @@ export const pt = {
     'leaderboard.timeframe': 'Período de Tempo',
 
 // Placeholders and form text
-    'placeholder.additionalInfo': 'Placeholder Additionalinfo',
-    'placeholder.setupController': 'Placeholder Setupcontroller',
+    'placeholder.additionalInfo': 'Informações adicionais...',
+    'placeholder.setupController': 'Configuração do controle...',
     'placeholder.searchGames': 'Procurar jogos...',
     'placeholder.searchPlayers': 'Procurar jogadores...',
     'leaderboard.filterGlobal': 'Global',
@@ -1000,11 +1000,11 @@ export const pt = {
 // Additional placeholders and labels
     'placeholder.gameName': 'Placeholder Gamename',
     'placeholder.category': 'Placeholder Category',
-    'placeholder.time': 'Placeholder Time',
-    'placeholder.score': 'Placeholder Score',
-    'placeholder.proofUrl': 'Placeholder Proofurl',
-    'placeholder.notes': 'Placeholder Notes',
-    'placeholder.recordNotes': 'Placeholder Recordnotes',
+    'placeholder.time': 'Tempo...',
+    'placeholder.score': 'Pontuação...',
+    'placeholder.proofUrl': 'URL de prova...',
+    'placeholder.notes': 'Notas...',
+    'placeholder.recordNotes': 'Notas do recorde...',
     'placeholder.password': '••••••••',
     'label.gameName': 'Label Gamename',
     'label.platform': 'Label Platform',

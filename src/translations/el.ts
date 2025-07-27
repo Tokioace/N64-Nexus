@@ -700,17 +700,17 @@ export const el = {
     'media.exitFullscreen': 'Μέσα',
 
 // Additional German translations
-    'auth.invalidCredentials': 'Auth Invalidcredentials',
-    'auth.errorOccurred': 'Auth Erroroccurred',
-    'auth.passwordsDontMatch': 'Auth Passwordsdontmatch',
-    'auth.passwordTooShort': 'Auth Passwordtooshort',
-    'auth.usernameTooShort': 'Auth Usernametooshort',
-    'auth.emailPlaceholder': 'Auth Emailplaceholder',
-    'auth.usernamePlaceholder': 'Auth Usernameplaceholder',
-    'auth.registrationFailed': 'Auth Registrationfailed',
-    'auth.noAccountYet': 'Auth Noaccountyet',
-    'auth.registerNow': 'Auth Registernow',
-    'auth.alreadyHaveAccount': 'Auth Alreadyhaveaccount',
+    'auth.invalidCredentials': 'Μη έγκυρα στοιχεία',
+    'auth.errorOccurred': 'Παρουσιάστηκε σφάλμα',
+    'auth.passwordsDontMatch': 'Οι κωδικοί δεν ταιριάζουν',
+    'auth.passwordTooShort': 'Ο κωδικός είναι πολύ μικρός',
+    'auth.usernameTooShort': 'Το όνομα χρήστη είναι πολύ μικρό',
+    'auth.emailPlaceholder': 'Εισάγετε email...',
+    'auth.usernamePlaceholder': 'Εισάγετε όνομα χρήστη...',
+    'auth.registrationFailed': 'Η εγγραφή απέτυχε',
+    'auth.noAccountYet': 'Δεν έχετε λογαριασμό ακόμα;',
+    'auth.registerNow': 'Εγγραφείτε τώρα',
+    'auth.alreadyHaveAccount': 'Έχετε ήδη λογαριασμό;',
     'auth.loginHere': 'Σύνδεση εδώ',
 
 // Quiz content

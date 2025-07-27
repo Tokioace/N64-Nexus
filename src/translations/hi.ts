@@ -640,13 +640,13 @@ export const hi = {
     'collector.level.n64Legend': 'Collector Level',
 
 // Auth
-    'auth.welcomeBack': 'Auth Welcomeback',
-    'auth.createAccount': 'Auth Createaccount',
-    'auth.loggingIn': 'Auth Loggingin',
+    'auth.welcomeBack': 'वापसी पर स्वागत है',
+    'auth.createAccount': 'खाता बनाएं',
+    'auth.loggingIn': 'लॉगिन हो रहा है...',
     'auth.registering': 'पंजीकरण हो रहा है...',
-    'auth.createAccountButton': 'Auth Createaccountbutton',
-    'auth.platform': 'Auth Platform',
-    'auth.region': 'Auth Region',
+    'auth.createAccountButton': 'खाता बनाएं',
+    'auth.platform': 'प्लेटफॉर्म',
+    'auth.region': 'क्षेत्र',
 
 // Community
     'community.allPlatforms': 'सभी प्लेटफॉर्म',
@@ -689,17 +689,17 @@ export const hi = {
     'media.exitFullscreen': 'मीडिया',
 
 // Additional German translations
-    'auth.invalidCredentials': 'Auth Invalidcredentials',
-    'auth.errorOccurred': 'Auth Erroroccurred',
-    'auth.passwordsDontMatch': 'Auth Passwordsdontmatch',
-    'auth.passwordTooShort': 'Auth Passwordtooshort',
+    'auth.invalidCredentials': 'अमान्य क्रेडेंशियल',
+    'auth.errorOccurred': 'त्रुटि हुई',
+    'auth.passwordsDontMatch': 'पासवर्ड मेल नहीं खाते',
+    'auth.passwordTooShort': 'पासवर्ड बहुत छोटा है',
     'auth.usernameTooShort': 'उपयोगकर्ता नाम बहुत छोटा है',
     'auth.emailPlaceholder': 'ईमेल पता दर्ज करें...',
     'auth.usernamePlaceholder': 'उपयोगकर्ता नाम दर्ज करें...',
-    'auth.registrationFailed': 'Auth Registrationfailed',
-    'auth.noAccountYet': 'Auth Noaccountyet',
+    'auth.registrationFailed': 'पंजीकरण असफल',
+    'auth.noAccountYet': 'अभी तक कोई खाता नहीं है?',
     'auth.registerNow': 'अभी पंजीकरण करें',
-    'auth.alreadyHaveAccount': 'Auth Alreadyhaveaccount',
+    'auth.alreadyHaveAccount': 'पहले से खाता है?',
     'auth.loginHere': 'यहां लॉगिन करें',
 
 // Quiz content
@@ -855,8 +855,8 @@ export const hi = {
     'leaderboard.timeframe': 'समय सीमा',
 
 // Placeholders and form text
-    'placeholder.additionalInfo': 'Placeholder Additionalinfo',
-    'placeholder.setupController': 'Placeholder Setupcontroller',
+    'placeholder.additionalInfo': 'अतिरिक्त जानकारी...',
+    'placeholder.setupController': 'कंट्रोलर सेटअप...',
     'placeholder.searchGames': 'गेम खोजें...',
     'placeholder.searchPlayers': 'खिलाड़ी खोजें...',
     'leaderboard.filterGlobal': 'वैश्विक',
@@ -1000,11 +1000,11 @@ export const hi = {
 // Additional placeholders and labels
     'placeholder.gameName': 'Placeholder Gamename',
     'placeholder.category': 'Placeholder Category',
-    'placeholder.time': 'Placeholder Time',
-    'placeholder.score': 'Placeholder Score',
-    'placeholder.proofUrl': 'Placeholder Proofurl',
-    'placeholder.notes': 'Placeholder Notes',
-    'placeholder.recordNotes': 'Placeholder Recordnotes',
+    'placeholder.time': 'समय...',
+    'placeholder.score': 'स्कोर...',
+    'placeholder.proofUrl': 'प्रमाण URL...',
+    'placeholder.notes': 'नोट्स...',
+    'placeholder.recordNotes': 'रिकॉर्ड नोट्स...',
     'placeholder.password': '••••••••',
     'label.gameName': 'Label Gamename',
     'label.platform': 'Label Platform',

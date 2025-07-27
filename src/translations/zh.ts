@@ -640,13 +640,13 @@ export const zh = {
     'collector.level.n64Legend': 'Collector Level',
 
 // Auth
-    'auth.welcomeBack': 'Auth Welcomeback',
-    'auth.createAccount': 'Auth Createaccount',
-    'auth.loggingIn': 'Auth Loggingin',
+    'auth.welcomeBack': '欢迎回来',
+    'auth.createAccount': '创建账户',
+    'auth.loggingIn': '登录中...',
     'auth.registering': '注册中...',
-    'auth.createAccountButton': 'Auth Createaccountbutton',
-    'auth.platform': 'Auth Platform',
-    'auth.region': 'Auth Region',
+    'auth.createAccountButton': '创建账户',
+    'auth.platform': '平台',
+    'auth.region': '地区',
 
 // Community
     'community.allPlatforms': '所有平台',
@@ -689,17 +689,17 @@ export const zh = {
     'media.exitFullscreen': '媒体',
 
 // Additional German translations
-    'auth.invalidCredentials': 'Auth Invalidcredentials',
-    'auth.errorOccurred': 'Auth Erroroccurred',
-    'auth.passwordsDontMatch': 'Auth Passwordsdontmatch',
-    'auth.passwordTooShort': 'Auth Passwordtooshort',
+    'auth.invalidCredentials': '凭据无效',
+    'auth.errorOccurred': '发生错误',
+    'auth.passwordsDontMatch': '密码不匹配',
+    'auth.passwordTooShort': '密码太短',
     'auth.usernameTooShort': '用户名太短',
     'auth.emailPlaceholder': '输入邮箱地址...',
     'auth.usernamePlaceholder': '输入用户名...',
-    'auth.registrationFailed': 'Auth Registrationfailed',
-    'auth.noAccountYet': 'Auth Noaccountyet',
+    'auth.registrationFailed': '注册失败',
+    'auth.noAccountYet': '还没有账户？',
     'auth.registerNow': '立即注册',
-    'auth.alreadyHaveAccount': 'Auth Alreadyhaveaccount',
+    'auth.alreadyHaveAccount': '已有账户？',
     'auth.loginHere': '在这里登录',
 
 // Quiz content
@@ -855,8 +855,8 @@ export const zh = {
     'leaderboard.timeframe': '时间范围',
 
 // Placeholders and form text
-    'placeholder.additionalInfo': 'Placeholder Additionalinfo',
-    'placeholder.setupController': 'Placeholder Setupcontroller',
+    'placeholder.additionalInfo': '附加信息...',
+    'placeholder.setupController': '控制器设置...',
     'placeholder.searchGames': '搜索游戏...',
     'placeholder.searchPlayers': '搜索玩家...',
     'leaderboard.filterGlobal': '全球',
@@ -1000,11 +1000,11 @@ export const zh = {
 // Additional placeholders and labels
     'placeholder.gameName': '游戏名称...',
     'placeholder.category': '类别...',
-    'placeholder.time': 'Placeholder Time',
-    'placeholder.score': 'Placeholder Score',
-    'placeholder.proofUrl': 'Placeholder Proofurl',
-    'placeholder.notes': 'Placeholder Notes',
-    'placeholder.recordNotes': 'Placeholder Recordnotes',
+    'placeholder.time': '时间...',
+    'placeholder.score': '分数...',
+    'placeholder.proofUrl': '证明链接...',
+    'placeholder.notes': '备注...',
+    'placeholder.recordNotes': '记录备注...',
     'placeholder.password': '••••••••',
     'label.gameName': 'Label Gamename',
     'label.platform': 'Label Platform',

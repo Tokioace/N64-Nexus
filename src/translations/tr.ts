@@ -640,13 +640,13 @@ export const tr = {
     'collector.level.n64Legend': 'Collector Level',
 
 // Auth
-    'auth.welcomeBack': 'Auth Welcomeback',
-    'auth.createAccount': 'Auth Createaccount',
-    'auth.loggingIn': 'Auth Loggingin',
+    'auth.welcomeBack': 'Tekrar hoş geldiniz',
+    'auth.createAccount': 'Hesap oluştur',
+    'auth.loggingIn': 'Giriş yapılıyor...',
     'auth.registering': 'Auth Registering',
-    'auth.createAccountButton': 'Auth Createaccountbutton',
-    'auth.platform': 'Auth Platform',
-    'auth.region': 'Auth Region',
+    'auth.createAccountButton': 'Hesap oluştur',
+    'auth.platform': 'Platform',
+    'auth.region': 'Bölge',
 
 // Community
     'community.allPlatforms': 'Tüm Platformlar',
@@ -689,17 +689,17 @@ export const tr = {
     'media.exitFullscreen': 'Medya',
 
 // Additional German translations
-    'auth.invalidCredentials': 'Auth Invalidcredentials',
-    'auth.errorOccurred': 'Auth Erroroccurred',
-    'auth.passwordsDontMatch': 'Auth Passwordsdontmatch',
-    'auth.passwordTooShort': 'Auth Passwordtooshort',
+    'auth.invalidCredentials': 'Geçersiz kimlik bilgileri',
+    'auth.errorOccurred': 'Bir hata oluştu',
+    'auth.passwordsDontMatch': 'Şifreler eşleşmiyor',
+    'auth.passwordTooShort': 'Şifre çok kısa',
     'auth.usernameTooShort': 'Auth Usernametooshort',
     'auth.emailPlaceholder': 'Auth Emailplaceholder',
     'auth.usernamePlaceholder': 'Auth Usernameplaceholder',
-    'auth.registrationFailed': 'Auth Registrationfailed',
-    'auth.noAccountYet': 'Auth Noaccountyet',
+    'auth.registrationFailed': 'Kayıt başarısız',
+    'auth.noAccountYet': 'Henüz hesabınız yok mu?',
     'auth.registerNow': 'Auth Registernow',
-    'auth.alreadyHaveAccount': 'Auth Alreadyhaveaccount',
+    'auth.alreadyHaveAccount': 'Zaten hesabınız var mı?',
     'auth.loginHere': 'Buradan giriş yap',
 
 // Quiz content
@@ -1000,11 +1000,11 @@ export const tr = {
 // Additional placeholders and labels
     'placeholder.gameName': 'Placeholder Gamename',
     'placeholder.category': 'Placeholder Category',
-    'placeholder.time': 'Placeholder Time',
-    'placeholder.score': 'Placeholder Score',
-    'placeholder.proofUrl': 'Placeholder Proofurl',
-    'placeholder.notes': 'Placeholder Notes',
-    'placeholder.recordNotes': 'Placeholder Recordnotes',
+    'placeholder.time': 'Zaman...',
+    'placeholder.score': 'Skor...',
+    'placeholder.proofUrl': 'Kanıt URL'si...',
+    'placeholder.notes': 'Notlar...',
+    'placeholder.recordNotes': 'Rekor notları...',
     'placeholder.password': '••••••••',
     'label.gameName': 'Label Gamename',
     'label.platform': 'Label Platform',
