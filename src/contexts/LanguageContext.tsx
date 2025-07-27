@@ -11391,16 +11391,25 @@ const translations = {
     'profile.globalRank': 'Profile Globalrank',
 
 // Leaderboard Extensions
-    'leaderboard.globalLeaderboard': 'Leaderboard Globalleaderboard',
-    'leaderboard.seasonLeaderboard': 'Leaderboard Seasonleaderboard',
-    'leaderboard.filterType': 'Leaderboard Filtertype',
-    'leaderboard.timeframe': 'Leaderboard Timeframe',
+    'leaderboard.globalLeaderboard': 'Ranking Global N64Fan',
+    'leaderboard.seasonLeaderboard': 'Ranking da Temporada',
+    'leaderboard.filterType': 'Tipo de Filtro',
+    'leaderboard.timeframe': 'Período de Tempo',
 
 // Placeholders and form text
     'placeholder.additionalInfo': 'Placeholder Additionalinfo',
     'placeholder.setupController': 'Placeholder Setupcontroller',
     'placeholder.searchGames': 'Procurar jogos...',
     'placeholder.searchPlayers': 'Procurar jogadores...',
+    'leaderboard.filterGlobal': 'Global',
+    'leaderboard.filterFriends': 'Amigos',
+    'leaderboard.filterRegion': 'Região',
+    'leaderboard.timeframeAllTime': 'Todos os Tempos',
+    'leaderboard.timeframeSeason': 'Temporada',
+    'leaderboard.timeframeMonth': 'Mês',
+    'leaderboard.noData': 'Dados do ranking não disponíveis',
+    'leaderboard.noDataDesc': 'Comece a ganhar pontos para aparecer no ranking!',
+    'leaderboard.regionPlatform': 'Região/Plataforma',
 
 // Achievement descriptions
     'achievement.profilePublic': 'Achievement Profilepublic',
@@ -12429,16 +12438,25 @@ const translations = {
     'profile.globalRank': 'Profile Globalrank',
 
 // Leaderboard Extensions
-    'leaderboard.globalLeaderboard': 'Leaderboard Globalleaderboard',
-    'leaderboard.seasonLeaderboard': 'Leaderboard Seasonleaderboard',
-    'leaderboard.filterType': 'Leaderboard Filtertype',
-    'leaderboard.timeframe': 'Leaderboard Timeframe',
+    'leaderboard.globalLeaderboard': 'ग्लोबल N64Fan लीडरबोर्ड',
+    'leaderboard.seasonLeaderboard': 'सीज़न लीडरबोर्ड',
+    'leaderboard.filterType': 'फिल्टर प्रकार',
+    'leaderboard.timeframe': 'समय सीमा',
 
 // Placeholders and form text
     'placeholder.additionalInfo': 'Placeholder Additionalinfo',
     'placeholder.setupController': 'Placeholder Setupcontroller',
     'placeholder.searchGames': 'गेम खोजें...',
     'placeholder.searchPlayers': 'खिलाड़ी खोजें...',
+    'leaderboard.filterGlobal': 'वैश्विक',
+    'leaderboard.filterFriends': 'दोस्त',
+    'leaderboard.filterRegion': 'क्षेत्र',
+    'leaderboard.timeframeAllTime': 'सभी समय',
+    'leaderboard.timeframeSeason': 'सीज़न',
+    'leaderboard.timeframeMonth': 'महीना',
+    'leaderboard.noData': 'लीडरबोर्ड डेटा उपलब्ध नहीं है',
+    'leaderboard.noDataDesc': 'लीडरबोर्ड पर दिखने के लिए पॉइंट्स कमाना शुरू करें!',
+    'leaderboard.regionPlatform': 'क्षेत्र/प्लेटफॉर्म',
 
 // Achievement descriptions
     'achievement.profilePublic': 'Achievement Profilepublic',
@@ -13467,16 +13485,25 @@ const translations = {
     'profile.globalRank': 'Profile Globalrank',
 
 // Leaderboard Extensions
-    'leaderboard.globalLeaderboard': 'Leaderboard Globalleaderboard',
-    'leaderboard.seasonLeaderboard': 'Leaderboard Seasonleaderboard',
-    'leaderboard.filterType': 'Leaderboard Filtertype',
-    'leaderboard.timeframe': 'Leaderboard Timeframe',
+    'leaderboard.globalLeaderboard': 'لوحة المتصدرين العالمية N64Fan',
+    'leaderboard.seasonLeaderboard': 'لوحة متصدري الموسم',
+    'leaderboard.filterType': 'نوع المرشح',
+    'leaderboard.timeframe': 'الإطار الزمني',
 
 // Placeholders and form text
     'placeholder.additionalInfo': 'Placeholder Additionalinfo',
     'placeholder.setupController': 'Placeholder Setupcontroller',
     'placeholder.searchGames': 'البحث عن الألعاب...',
     'placeholder.searchPlayers': 'البحث عن اللاعبين...',
+    'leaderboard.filterGlobal': 'عالمي',
+    'leaderboard.filterFriends': 'الأصدقاء',
+    'leaderboard.filterRegion': 'المنطقة',
+    'leaderboard.timeframeAllTime': 'كل الأوقات',
+    'leaderboard.timeframeSeason': 'الموسم',
+    'leaderboard.timeframeMonth': 'الشهر',
+    'leaderboard.noData': 'بيانات لوحة المتصدرين غير متوفرة',
+    'leaderboard.noDataDesc': 'ابدأ في كسب النقاط للظهور في لوحة المتصدرين!',
+    'leaderboard.regionPlatform': 'المنطقة/المنصة',
 
 // Achievement descriptions
     'achievement.profilePublic': 'Achievement Profilepublic',
