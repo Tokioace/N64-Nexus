@@ -2386,7 +2386,7 @@ const translations = {
     'media.urlInput': 'Média',
     'media.title': 'Titre',
     'media.titleRequired': 'Titre *',
-    'media.titlePlaceholder': 'ex. Tentative de Record Mondial 120 Étoiles',
+    'media.titlePlaceholder': 'ex. Tentative de Record Mondial 120 Estrelas',
     'media.game': 'Jeu',
     'media.mediaType': 'Type de Media',
     'media.description': 'Description',
@@ -3129,7 +3129,7 @@ const translations = {
 
 // Additional placeholders and labels
     'placeholder.gameName': 'ex. Super Mario 64',
-    'placeholder.category': 'ex. 120 Étoiles, Any%, High Score',
+    'placeholder.category': 'ex. 120 Estrelas, Any%, High Score',
     'placeholder.time': 'ex. 1:39:42 ou 99.42',
     'placeholder.score': 'ex. 999999',
     'placeholder.proofUrl': 'https://youtube.com/watch?v=...',
@@ -7151,9 +7151,9 @@ const translations = {
     'leaderboard.timeframe': 'Leaderboard Timeframe',
 
 // Placeholders and form text
-    'placeholder.additionalInfo': 'Placeholder Additionalinfo',
-    'placeholder.setupController': 'Placeholder Setupcontroller',
-    'placeholder.searchGames': 'Placeholder Searchgames',
+    'placeholder.additionalInfo': 'Ek bilgiler...',
+    'placeholder.setupController': 'Kurulum, kontrolör, özel durumlar...',
+    'placeholder.searchGames': 'Oyun ara...',
     'placeholder.searchPlayers': 'Spieler suchen...',
 
 // Achievement descriptions
@@ -7286,12 +7286,12 @@ const translations = {
 
 // Additional placeholders and labels
     'placeholder.gameName': 'örn. Super Mario 64',
-    'placeholder.category': 'Placeholder Category',
-    'placeholder.time': 'Placeholder Time',
-    'placeholder.score': 'Placeholder Score',
-    'placeholder.proofUrl': 'Placeholder Proofurl',
-    'placeholder.notes': 'Placeholder Notes',
-    'placeholder.recordNotes': 'Placeholder Recordnotes',
+    'placeholder.category': 'örn. 120 Yıldız, Any%, Yüksek Skor',
+    'placeholder.time': 'örn. 1:39:42 veya 99.42',
+    'placeholder.score': 'örn. 999999',
+    'placeholder.proofUrl': 'https://youtube.com/watch?v=...',
+    'placeholder.notes': 'İsteğe bağlı notlar...',
+    'placeholder.recordNotes': 'Rekor hakkında isteğe bağlı notlar...',
     'placeholder.password': '••••••••',
     'label.gameName': 'Label Gamename',
     'label.platform': 'Label Platform',
@@ -8189,9 +8189,9 @@ const translations = {
     'leaderboard.timeframe': 'Leaderboard Timeframe',
 
 // Placeholders and form text
-    'placeholder.additionalInfo': 'Placeholder Additionalinfo',
-    'placeholder.setupController': 'Placeholder Setupcontroller',
-    'placeholder.searchGames': 'Placeholder Searchgames',
+    'placeholder.additionalInfo': 'Ek bilgiler...',
+    'placeholder.setupController': 'Kurulum, kontrolör, özel durumlar...',
+    'placeholder.searchGames': 'Oyun ara...',
     'placeholder.searchPlayers': 'Spieler suchen...',
 
 // Achievement descriptions
@@ -8324,12 +8324,12 @@ const translations = {
 
 // Additional placeholders and labels
     'placeholder.gameName': '例如：超级马里奥64',
-    'placeholder.category': 'Placeholder Category',
-    'placeholder.time': 'Placeholder Time',
-    'placeholder.score': 'Placeholder Score',
-    'placeholder.proofUrl': 'Placeholder Proofurl',
-    'placeholder.notes': 'Placeholder Notes',
-    'placeholder.recordNotes': 'Placeholder Recordnotes',
+    'placeholder.category': 'örn. 120 Yıldız, Any%, Yüksek Skor',
+    'placeholder.time': 'örn. 1:39:42 veya 99.42',
+    'placeholder.score': 'örn. 999999',
+    'placeholder.proofUrl': 'https://youtube.com/watch?v=...',
+    'placeholder.notes': 'İsteğe bağlı notlar...',
+    'placeholder.recordNotes': 'Rekor hakkında isteğe bağlı notlar...',
     'placeholder.password': '••••••••',
     'label.gameName': 'Label Gamename',
     'label.platform': 'Label Platform',
@@ -9227,9 +9227,9 @@ const translations = {
     'leaderboard.timeframe': 'Leaderboard Timeframe',
 
 // Placeholders and form text
-    'placeholder.additionalInfo': 'Placeholder Additionalinfo',
-    'placeholder.setupController': 'Placeholder Setupcontroller',
-    'placeholder.searchGames': 'Placeholder Searchgames',
+    'placeholder.additionalInfo': 'Ek bilgiler...',
+    'placeholder.setupController': 'Kurulum, kontrolör, özel durumlar...',
+    'placeholder.searchGames': 'Oyun ara...',
     'placeholder.searchPlayers': 'Spieler suchen...',
 
 // Achievement descriptions
@@ -9362,12 +9362,12 @@ const translations = {
 
 // Additional placeholders and labels
     'placeholder.gameName': '例: スーパーマリオ64',
-    'placeholder.category': 'Placeholder Category',
-    'placeholder.time': 'Placeholder Time',
-    'placeholder.score': 'Placeholder Score',
-    'placeholder.proofUrl': 'Placeholder Proofurl',
-    'placeholder.notes': 'Placeholder Notes',
-    'placeholder.recordNotes': 'Placeholder Recordnotes',
+    'placeholder.category': 'örn. 120 Yıldız, Any%, Yüksek Skor',
+    'placeholder.time': 'örn. 1:39:42 veya 99.42',
+    'placeholder.score': 'örn. 999999',
+    'placeholder.proofUrl': 'https://youtube.com/watch?v=...',
+    'placeholder.notes': 'İsteğe bağlı notlar...',
+    'placeholder.recordNotes': 'Rekor hakkında isteğe bağlı notlar...',
     'placeholder.password': '••••••••',
     'label.gameName': 'Label Gamename',
     'label.platform': 'Label Platform',
@@ -10265,9 +10265,9 @@ const translations = {
     'leaderboard.timeframe': 'Leaderboard Timeframe',
 
 // Placeholders and form text
-    'placeholder.additionalInfo': 'Placeholder Additionalinfo',
-    'placeholder.setupController': 'Placeholder Setupcontroller',
-    'placeholder.searchGames': 'Placeholder Searchgames',
+    'placeholder.additionalInfo': 'Ek bilgiler...',
+    'placeholder.setupController': 'Kurulum, kontrolör, özel durumlar...',
+    'placeholder.searchGames': 'Oyun ara...',
     'placeholder.searchPlayers': 'Spieler suchen...',
 
 // Achievement descriptions
@@ -10400,12 +10400,12 @@ const translations = {
 
 // Additional placeholders and labels
     'placeholder.gameName': 'например, Супер Марио 64',
-    'placeholder.category': 'Placeholder Category',
-    'placeholder.time': 'Placeholder Time',
-    'placeholder.score': 'Placeholder Score',
-    'placeholder.proofUrl': 'Placeholder Proofurl',
-    'placeholder.notes': 'Placeholder Notes',
-    'placeholder.recordNotes': 'Placeholder Recordnotes',
+    'placeholder.category': 'örn. 120 Yıldız, Any%, Yüksek Skor',
+    'placeholder.time': 'örn. 1:39:42 veya 99.42',
+    'placeholder.score': 'örn. 999999',
+    'placeholder.proofUrl': 'https://youtube.com/watch?v=...',
+    'placeholder.notes': 'İsteğe bağlı notlar...',
+    'placeholder.recordNotes': 'Rekor hakkında isteğe bağlı notlar...',
     'placeholder.password': '••••••••',
     'label.gameName': 'Label Gamename',
     'label.platform': 'Label Platform',
@@ -11303,9 +11303,9 @@ const translations = {
     'leaderboard.timeframe': 'Leaderboard Timeframe',
 
 // Placeholders and form text
-    'placeholder.additionalInfo': 'Placeholder Additionalinfo',
-    'placeholder.setupController': 'Placeholder Setupcontroller',
-    'placeholder.searchGames': 'Placeholder Searchgames',
+    'placeholder.additionalInfo': 'Ek bilgiler...',
+    'placeholder.setupController': 'Kurulum, kontrolör, özel durumlar...',
+    'placeholder.searchGames': 'Oyun ara...',
     'placeholder.searchPlayers': 'Spieler suchen...',
 
 // Achievement descriptions
@@ -11438,12 +11438,12 @@ const translations = {
 
 // Additional placeholders and labels
     'placeholder.gameName': 'ex. Super Mario 64',
-    'placeholder.category': 'Placeholder Category',
-    'placeholder.time': 'Placeholder Time',
-    'placeholder.score': 'Placeholder Score',
-    'placeholder.proofUrl': 'Placeholder Proofurl',
-    'placeholder.notes': 'Placeholder Notes',
-    'placeholder.recordNotes': 'Placeholder Recordnotes',
+    'placeholder.category': 'örn. 120 Yıldız, Any%, Yüksek Skor',
+    'placeholder.time': 'örn. 1:39:42 veya 99.42',
+    'placeholder.score': 'örn. 999999',
+    'placeholder.proofUrl': 'https://youtube.com/watch?v=...',
+    'placeholder.notes': 'İsteğe bağlı notlar...',
+    'placeholder.recordNotes': 'Rekor hakkında isteğe bağlı notlar...',
     'placeholder.password': '••••••••',
     'label.gameName': 'Label Gamename',
     'label.platform': 'Label Platform',
@@ -12341,9 +12341,9 @@ const translations = {
     'leaderboard.timeframe': 'Leaderboard Timeframe',
 
 // Placeholders and form text
-    'placeholder.additionalInfo': 'Placeholder Additionalinfo',
-    'placeholder.setupController': 'Placeholder Setupcontroller',
-    'placeholder.searchGames': 'Placeholder Searchgames',
+    'placeholder.additionalInfo': 'Ek bilgiler...',
+    'placeholder.setupController': 'Kurulum, kontrolör, özel durumlar...',
+    'placeholder.searchGames': 'Oyun ara...',
     'placeholder.searchPlayers': 'Spieler suchen...',
 
 // Achievement descriptions
@@ -12476,12 +12476,12 @@ const translations = {
 
 // Additional placeholders and labels
     'placeholder.gameName': 'उदा. सुपर मारियो 64',
-    'placeholder.category': 'Placeholder Category',
-    'placeholder.time': 'Placeholder Time',
-    'placeholder.score': 'Placeholder Score',
-    'placeholder.proofUrl': 'Placeholder Proofurl',
-    'placeholder.notes': 'Placeholder Notes',
-    'placeholder.recordNotes': 'Placeholder Recordnotes',
+    'placeholder.category': 'örn. 120 Yıldız, Any%, Yüksek Skor',
+    'placeholder.time': 'örn. 1:39:42 veya 99.42',
+    'placeholder.score': 'örn. 999999',
+    'placeholder.proofUrl': 'https://youtube.com/watch?v=...',
+    'placeholder.notes': 'İsteğe bağlı notlar...',
+    'placeholder.recordNotes': 'Rekor hakkında isteğe bağlı notlar...',
     'placeholder.password': '••••••••',
     'label.gameName': 'Label Gamename',
     'label.platform': 'Label Platform',
@@ -13379,9 +13379,9 @@ const translations = {
     'leaderboard.timeframe': 'Leaderboard Timeframe',
 
 // Placeholders and form text
-    'placeholder.additionalInfo': 'Placeholder Additionalinfo',
-    'placeholder.setupController': 'Placeholder Setupcontroller',
-    'placeholder.searchGames': 'Placeholder Searchgames',
+    'placeholder.additionalInfo': 'Ek bilgiler...',
+    'placeholder.setupController': 'Kurulum, kontrolör, özel durumlar...',
+    'placeholder.searchGames': 'Oyun ara...',
     'placeholder.searchPlayers': 'Spieler suchen...',
 
 // Achievement descriptions
@@ -13514,12 +13514,12 @@ const translations = {
 
 // Additional placeholders and labels
     'placeholder.gameName': 'مثال: سوبر ماريو 64',
-    'placeholder.category': 'Placeholder Category',
-    'placeholder.time': 'Placeholder Time',
-    'placeholder.score': 'Placeholder Score',
-    'placeholder.proofUrl': 'Placeholder Proofurl',
-    'placeholder.notes': 'Placeholder Notes',
-    'placeholder.recordNotes': 'Placeholder Recordnotes',
+    'placeholder.category': 'örn. 120 Yıldız, Any%, Yüksek Skor',
+    'placeholder.time': 'örn. 1:39:42 veya 99.42',
+    'placeholder.score': 'örn. 999999',
+    'placeholder.proofUrl': 'https://youtube.com/watch?v=...',
+    'placeholder.notes': 'İsteğe bağlı notlar...',
+    'placeholder.recordNotes': 'Rekor hakkında isteğe bağlı notlar...',
     'placeholder.password': '••••••••',
     'label.gameName': 'Label Gamename',
     'label.platform': 'Label Platform',
