@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useLanguage, getLocaleString } from '../contexts/LanguageContext'
+import { safeFormatTime } from '../utils/timeUtils'
 import { 
   Trophy, 
   Medal, 
@@ -190,8 +191,7 @@ const EventLeaderboard: React.FC<EventLeaderboardProps> = ({
   const [mediaViewerEntry, setMediaViewerEntry] = useState<EventLeaderboardEntry | null>(null)
 
   const formatTime = (time: string) => {
-    // Convert MM:SS.mmm to a more readable format if needed
-    return time
+    return safeFormatTime(time)
   }
 
   const getRankIcon = (position: number) => {
@@ -334,7 +334,7 @@ const EventLeaderboard: React.FC<EventLeaderboardProps> = ({
                 </div>
                 <div className="flex items-center space-x-2">
                   <Clock className="w-4 h-4 text-blue-400" />
-                  <span className="text-xl font-mono text-blue-400">
+                  <span className="leaderboard-time text-blue-400" aria-label={`Your race time: ${formatTime(currentUserEntry.time)}`}>
                     {formatTime(currentUserEntry.time)}
                   </span>
                 </div>
@@ -358,26 +358,37 @@ const EventLeaderboard: React.FC<EventLeaderboardProps> = ({
         {sortedEntries.slice(0, 3).map((entry) => (
           <div
             key={entry.id}
-            className={`simple-tile bg-gradient-to-br ${getRankColor(entry.position)} border-l-4 cursor-pointer hover:scale-105 transition-transform`}
+            className={`event-tile bg-gradient-to-br ${getRankColor(entry.position)} border-l-4 cursor-pointer hover:scale-105 transition-transform`}
             onClick={() => handleMediaClick(entry)}
           >
-            <div className="text-center">
-              <div className="mb-3">
+            <div className="text-center space-y-3">
+              <div className="flex justify-center">
                 {getRankIcon(entry.position)}
               </div>
-              <h3 className="font-bold text-slate-100 mb-1">{entry.username}</h3>
-              <div className="text-2xl font-mono font-bold text-slate-100 mb-2">
+              
+              {entry.position === 1 && (
+                <div className="bg-gradient-to-r from-yellow-500/20 to-yellow-600/20 border border-yellow-400/30 rounded-lg p-2">
+                  <Crown className="w-6 h-6 text-yellow-400 mx-auto mb-1" />
+                  <div className="text-xs font-semibold text-yellow-400">{t('events.mobile.winner')}</div>
+                </div>
+              )}
+              
+              <h3 className="font-bold text-slate-100 text-lg">{entry.username}</h3>
+              <div className="leaderboard-time text-slate-100 mb-3" aria-label={`Race time: ${formatTime(entry.time)} for ${entry.username}`}>
                 {formatTime(entry.time)}
               </div>
-              <div className="flex items-center justify-center space-x-2 text-sm text-slate-400">
+              <div className="event-tile-separator"></div>
+              <div className="flex items-center justify-center space-x-3 text-base text-slate-300">
                 {getDocumentationIcon(entry.documentationType)}
                 <span>{getDocumentationLabel(entry.documentationType)}</span>
                 {entry.verified && (
-                  <Verified className="w-4 h-4 text-green-400" />
+                  <div className="verification-badge">
+                    <Verified className="w-4 h-4" />
+                  </div>
                 )}
               </div>
               {(entry.mediaUrl || entry.livestreamUrl) && (
-                <div className="mt-2 text-xs text-blue-400">
+                <div className="mt-2 text-sm text-blue-400 font-medium">
                   {t('eventLeaderboard.clickToView')}
                 </div>
               )}
@@ -388,35 +399,43 @@ const EventLeaderboard: React.FC<EventLeaderboardProps> = ({
 
       {/* Full Leaderboard */}
       {sortedEntries.length > 3 && (
-        <div className="simple-tile">
-          <h3 className="text-lg font-medium text-slate-100 mb-4">{t('eventLeaderboard.fullLeaderboard')}</h3>
-          <div className="space-y-2">
+        <div className="event-tile">
+          <h3 className="text-xl font-semibold text-slate-100 mb-6 flex items-center">
+            <Trophy className="event-icon text-yellow-400 mr-2" />
+            {t('eventLeaderboard.fullLeaderboard')}
+          </h3>
+          <div className="space-y-3">
             {sortedEntries.map((entry) => (
               <div
                 key={entry.id}
-                className={`p-4 rounded-lg border transition-all cursor-pointer ${
+                className={`leaderboard-entry cursor-pointer ${
                   entry.userId === currentUserId
-                    ? 'bg-blue-600/10 border-blue-400/30'
-                    : 'bg-slate-700/50 border-slate-600 hover:border-slate-500'
+                    ? 'bg-blue-600/15 border-blue-400/40'
+                    : 'hover:border-slate-500'
                 } ${selectedEntry === entry.id ? 'ring-2 ring-blue-400' : ''}`}
                 onClick={() => setSelectedEntry(selectedEntry === entry.id ? null : entry.id)}
               >
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center space-x-4">
-                    <div className="flex items-center space-x-2">
-                      {getRankIcon(entry.position)}
-                    </div>
+                <div className="leaderboard-user-info">
+                  <div className="flex items-center space-x-3">
+                    {getRankIcon(entry.position)}
                     <div>
-                      <div className="flex items-center space-x-2">
-                        <span className="font-medium text-slate-100">{entry.username}</span>
+                      <div className="flex items-center space-x-3">
+                        <span 
+                          className="leaderboard-username" 
+                          title={entry.username.length > 12 ? entry.username : undefined}
+                        >
+                          {entry.username}
+                        </span>
                         {entry.verified && (
-                          <Verified className="w-4 h-4 text-green-400" />
+                          <div className="verification-badge" title={t('eventLeaderboard.verified')}>
+                            <Verified className="w-4 h-4" />
+                          </div>
                         )}
                         {!entry.verified && (
                           <AlertCircle className="w-4 h-4 text-yellow-400" />
                         )}
                       </div>
-                      <div className="text-sm text-slate-400">
+                      <div className="text-sm text-slate-400 mt-1">
                         {new Date(entry.submissionDate).toLocaleDateString(getLocaleString(currentLanguage), {
                           day: '2-digit',
                           month: '2-digit',
@@ -427,30 +446,31 @@ const EventLeaderboard: React.FC<EventLeaderboardProps> = ({
                       </div>
                     </div>
                   </div>
-                  <div className="flex items-center space-x-4">
-                    <div className="flex items-center space-x-2">
-                      <Clock className="w-4 h-4 text-slate-400" />
-                      <span className="text-lg font-mono font-bold text-slate-100">
-                        {formatTime(entry.time)}
-                      </span>
-                    </div>
-                    <div className="flex items-center space-x-2 text-sm text-slate-400">
-                      {getDocumentationIcon(entry.documentationType)}
-                      <span>{getDocumentationLabel(entry.documentationType)}</span>
-                      {(entry.mediaUrl || entry.livestreamUrl) && (
-                        <button
-                          onClick={(e) => {
-                            e.stopPropagation()
-                            handleMediaClick(entry)
-                          }}
-                          className="text-blue-400 hover:text-blue-300 underline"
-                        >
-                          {t('eventLeaderboard.view')}
-                        </button>
-                      )}
-                    </div>
-                  </div>
                 </div>
+                <div className="leaderboard-time-container">
+                  <div className="flex items-center space-x-3">
+                    <Clock className="event-icon text-slate-400" />
+                    <span className="leaderboard-time text-slate-100" aria-label={`Race time: ${formatTime(entry.time)}`}>
+                      {formatTime(entry.time)}
+                      <span className="sr-only">for {entry.username}</span>
+                    </span>
+                                     </div>
+                   <div className="flex items-center space-x-3 text-base text-slate-400">
+                     {getDocumentationIcon(entry.documentationType)}
+                     <span>{getDocumentationLabel(entry.documentationType)}</span>
+                     {(entry.mediaUrl || entry.livestreamUrl) && (
+                       <button
+                         onClick={(e) => {
+                           e.stopPropagation()
+                           handleMediaClick(entry)
+                         }}
+                         className="text-blue-400 hover:text-blue-300 underline font-medium"
+                       >
+                         {t('eventLeaderboard.view')}
+                       </button>
+                     )}
+                   </div>
+                 </div>
 
                 {/* Expanded Details */}
                 {selectedEntry === entry.id && (

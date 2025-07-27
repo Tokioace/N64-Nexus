@@ -24,56 +24,57 @@ const AuthGuard: React.FC<AuthGuardProps> = ({
   const { isAuthenticated } = useUser()
   const { t } = useLanguage()
 
-  if (!requireAuth || isAuthenticated) {
-    return <>{children}</>
+  if (!isAuthenticated && requireAuth) {
+    return (
+      <div className={`simple-tile text-center py-12 ${className}`}>
+        <LogIn className="w-16 h-16 text-slate-600 mx-auto mb-4" />
+        <h3 className="text-xl font-semibold text-slate-300 mb-2">
+          {t('auth.loginRequired')}
+        </h3>
+        <p className="text-slate-400 mb-6">
+          {customMessage || t('auth.loginRequiredMessage')}
+        </p>
+        {showLoginPrompt && (
+          <Link 
+            to="/auth" 
+            className="btn-primary inline-flex items-center gap-2"
+          >
+            <LogIn className="w-4 h-4" />
+            {t('auth.loginHere')}
+          </Link>
+        )}
+      </div>
+    )
   }
 
-  const message = customMessage || t('auth.loginRequiredMessage')
-
-  return (
-    <div className={`relative ${className}`}>
-      {/* Blurred Content */}
-      {blurContent && (
-        <div className="filter blur-md pointer-events-none select-none">
+  if (!isAuthenticated && !requireAuth && blurContent) {
+    return (
+      <div className={`relative ${className}`}>
+        <div className="filter blur-sm pointer-events-none">
           {children}
         </div>
-      )}
-      
-      {/* Overlay */}
-      <div className={`${blurContent ? 'absolute inset-0' : ''} flex items-center justify-center ${blurContent ? 'bg-slate-900/80' : 'bg-slate-800/50 rounded-lg p-8'}`}>
-        <div className="text-center max-w-md mx-auto p-6 bg-slate-800/90 backdrop-blur-sm rounded-lg border border-slate-700">
-          <Lock className="w-16 h-16 text-slate-400 mx-auto mb-4" />
-          
-          <h3 className="text-xl font-bold text-slate-100 mb-2">
-            {t('auth.loginRequired')}
-          </h3>
-          
-          <p className="text-slate-400 mb-6">
-            {message}
-          </p>
-          
-          {showLoginPrompt && (
-            <div className="flex flex-col sm:flex-row gap-3 justify-center">
-              <Link
-                to="/auth"
-                className="flex items-center justify-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors font-medium"
+        {showLoginPrompt && (
+          <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">
+            <div className="simple-tile text-center p-8">
+              <Lock className="w-12 h-12 text-slate-400 mx-auto mb-4" />
+              <h3 className="text-lg font-semibold text-slate-300 mb-4">
+                {customMessage || t('auth.enhancedExperienceMessage')}
+              </h3>
+              <Link 
+                to="/auth" 
+                className="btn-primary inline-flex items-center gap-2"
               >
                 <LogIn className="w-4 h-4" />
-                {t('auth.login')}
-              </Link>
-              <Link
-                to="/auth"
-                className="flex items-center justify-center gap-2 px-6 py-3 bg-slate-700 hover:bg-slate-600 text-slate-200 rounded-lg transition-colors font-medium"
-              >
-                <UserPlus className="w-4 h-4" />
-                {t('auth.register')}
+                {t('auth.loginHere')}
               </Link>
             </div>
-          )}
-        </div>
+          </div>
+        )}
       </div>
-    </div>
-  )
+    )
+  }
+
+  return <>{children}</>
 }
 
 export default AuthGuard

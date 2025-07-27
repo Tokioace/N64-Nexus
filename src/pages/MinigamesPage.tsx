@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import { useLanguage } from '../contexts/LanguageContext'
+import { usePoints } from '../contexts/PointsContext'
 import { 
   Gamepad2, 
   Zap, 
@@ -43,6 +44,7 @@ interface GameState {
 
 const MinigamesPage: React.FC = () => {
   const { t } = useLanguage()
+  const { awardPoints } = usePoints()
   const [selectedCategory, setSelectedCategory] = useState<string>('all')
   const [gameState, setGameState] = useState<GameState>({
     currentGame: null,
@@ -247,7 +249,7 @@ const MinigamesPage: React.FC = () => {
         setMoves(moves + 1)
         const [first, second] = newFlippedCards
         if (cards[first].game === cards[second].game) {
-          setTimeout(() => {
+          setTimeout(async () => {
             const matchedCards = [...cards]
             matchedCards[first].matched = true
             matchedCards[second].matched = true
@@ -260,6 +262,13 @@ const MinigamesPage: React.FC = () => {
             if (matchedCards.every(card => card.matched)) {
               const bonus = Math.max(0, (30 - moves) * 10)
               setGameState(prev => ({ ...prev, score: newScore + bonus, isPlaying: false }))
+              
+              // Award points for minigame success
+              try {
+                await awardPoints('minigame.success', 'Memory game completed')
+              } catch (error) {
+                console.error('Failed to award points for memory game:', error)
+              }
             }
           }, 1000)
         } else {
@@ -399,13 +408,22 @@ const MinigamesPage: React.FC = () => {
         setGameState(prev => ({ ...prev, score: prev.score + points }))
       }
 
-      setTimeout(() => {
+      setTimeout(async () => {
         if (currentQuestion < triviaQuestions.length - 1) {
           setCurrentQuestion(currentQuestion + 1)
           setSelectedAnswer(null)
           setShowResult(false)
         } else {
           setGameState(prev => ({ ...prev, isPlaying: false }))
+          
+          // Award points for completing trivia game (if scored well)
+          if (correctAnswers >= triviaQuestions.length / 2) {
+            try {
+              await awardPoints('minigame.success', 'Trivia game completed successfully')
+            } catch (error) {
+              console.error('Failed to award points for trivia game:', error)
+            }
+          }
         }
       }, 2000)
     }
@@ -535,7 +553,7 @@ const MinigamesPage: React.FC = () => {
     const options = [currentSoundData.game, ...n64Games.filter(g => g !== currentSoundData.game).slice(0, 3)]
       .sort(() => Math.random() - 0.5)
 
-    const handleAnswer = (selectedGame: string) => {
+    const handleAnswer = async (selectedGame: string) => {
       if (selectedGame === currentSoundData.game) {
         setScore(score + 100)
         setGameState(prev => ({ ...prev, score: prev.score + 100 }))
@@ -545,6 +563,15 @@ const MinigamesPage: React.FC = () => {
         setCurrentSound(currentSound + 1)
       } else {
         setGameState(prev => ({ ...prev, isPlaying: false }))
+        
+        // Award points for completing sound guessing game (if scored well)
+        if (score >= sounds.length * 50) { // At least 50% correct
+          try {
+            await awardPoints('minigame.success', 'Sound guessing game completed successfully')
+          } catch (error) {
+            console.error('Failed to award points for sound guessing game:', error)
+          }
+        }
       }
     }
 
@@ -769,7 +796,7 @@ const MinigamesPage: React.FC = () => {
                     <span className="text-yellow-400 font-bold">{gameState.timeLeft}s</span>
                   </div>
                   <div className="flex items-center space-x-2">
-                    <Trophy className="w-4 h-4 text-green-400" />
+                    <Trophy className="w-4 h-4 text-yellow-400" />
                     <span className="text-green-400 font-bold">{gameState.score}</span>
                   </div>
                 </div>
@@ -809,74 +836,77 @@ const MinigamesPage: React.FC = () => {
   }
 
   return (
-    <div className="container mx-auto px-4 py-6">
+    <div className="container-lg py-responsive space-responsive responsive-max-width responsive-overflow-hidden">
       {/* Header */}
-      <div className="text-center mb-8">
-        <Gamepad2 className="w-16 h-16 text-red-400 mx-auto mb-4" />
-        <h1 className="text-4xl font-bold text-slate-100 mb-2">
+      <div className="text-center mb-responsive responsive-max-width">
+        <Gamepad2 className="w-12 h-12 sm:w-16 sm:h-16 text-red-400 mx-auto mb-4" />
+        <h1 className="text-responsive-2xl font-bold text-slate-100 mb-2 responsive-word-break">
           Battle64 {t('minigames.title')}
         </h1>
-        <p className="text-slate-400 text-lg">
+        <p className="text-responsive-base text-slate-400 responsive-word-break px-2">
           {t('minigames.subtitle')}
         </p>
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+      <div className="grid-auto-fit mb-responsive responsive-max-width">
         <div className="simple-tile text-center">
-          <Gamepad2 className="w-8 h-8 text-blue-400 mx-auto mb-2" />
-          <div className="text-2xl font-bold text-slate-100">
+          <Gamepad2 className="w-6 h-6 sm:w-8 sm:h-8 text-blue-400 mx-auto mb-2" />
+          <div className="text-responsive-lg font-bold text-slate-100">
             {minigames.filter(g => g.available).length}
           </div>
-          <div className="text-sm text-slate-400">{t('minigames.available') || 'Verfügbar'}</div>
+          <div className="text-responsive-xs text-slate-400 responsive-word-break">{t('minigames.available') || 'Verfügbar'}</div>
         </div>
         
         <div className="simple-tile text-center">
-          <Trophy className="w-8 h-8 text-yellow-400 mx-auto mb-2" />
-          <div className="text-2xl font-bold text-slate-100">
+          <Trophy className="w-6 h-6 sm:w-8 sm:h-8 text-yellow-400 mx-auto mb-2" />
+          <div className="text-responsive-lg font-bold text-slate-100">
             {Math.max(...minigames.filter(g => g.highScore).map(g => g.highScore || 0)).toLocaleString()}
           </div>
-          <div className="text-sm text-slate-400">{t('minigames.highScore')}</div>
+          <div className="text-responsive-xs text-slate-400 responsive-word-break">{t('minigames.highScore')}</div>
         </div>
         
         <div className="simple-tile text-center">
-          <Target className="w-8 h-8 text-green-400 mx-auto mb-2" />
-          <div className="text-2xl font-bold text-slate-100">
+          <Target className="w-6 h-6 sm:w-8 sm:h-8 text-purple-400 mx-auto mb-2" />
+          <div className="text-responsive-lg font-bold text-slate-100">
             {minigames.filter(g => g.difficulty === 'easy').length}
           </div>
-          <div className="text-sm text-slate-400">{t('minigames.easy')} {t('minigames.games') || 'Spiele'}</div>
+          <div className="text-responsive-xs text-slate-400 responsive-word-break">{t('minigames.easy')} {t('minigames.games') || 'Spiele'}</div>
         </div>
         
         <div className="simple-tile text-center">
-          <Users className="w-8 h-8 text-purple-400 mx-auto mb-2" />
-          <div className="text-2xl font-bold text-slate-100">
+          <Users className="w-6 h-6 sm:w-8 sm:h-8 text-purple-400 mx-auto mb-2" />
+          <div className="text-responsive-lg font-bold text-slate-100">
             {minigames.filter(g => g.category === 'multiplayer').length}
           </div>
-          <div className="text-sm text-slate-400">{t('minigames.multiplayer')}</div>
+          <div className="text-responsive-xs text-slate-400 responsive-word-break">{t('minigames.multiplayer')}</div>
         </div>
       </div>
 
       {/* Category Filter */}
-      <div className="flex justify-center mb-8">
-        <div className="bg-slate-800 rounded-lg p-1 inline-flex flex-wrap">
-          {categories.map((category) => (
-            <button
-              key={category.key}
-              onClick={() => setSelectedCategory(category.key)}
-              className={`px-4 py-2 rounded-md transition-all duration-200 text-sm ${
-                selectedCategory === category.key
-                  ? 'bg-slate-700 text-slate-100'
-                  : 'text-slate-400 hover:text-slate-200 hover:bg-slate-700/50'
-              }`}
-            >
-              {category.label} ({category.count})
-            </button>
-          ))}
+      <div className="flex justify-center mb-responsive responsive-max-width">
+        <div className="bg-slate-800 rounded-lg p-1 w-full max-w-4xl responsive-overflow-hidden">
+          <div className="flex flex-wrap justify-center gap-1">
+            {categories.map((category) => (
+              <button
+                key={category.key}
+                onClick={() => setSelectedCategory(category.key)}
+                className={`px-3 sm:px-4 py-2 rounded-md transition-all duration-200 text-xs sm:text-sm ${
+                  selectedCategory === category.key
+                    ? 'bg-slate-700 text-slate-100'
+                    : 'text-slate-400 hover:text-slate-200 hover:bg-slate-700/50'
+                }`}
+              >
+                <span className="hidden sm:inline">{category.label} ({category.count})</span>
+                <span className="sm:hidden">{category.label.split(' ')[0]} ({category.count})</span>
+              </button>
+            ))}
+          </div>
         </div>
       </div>
 
       {/* Games Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+      <div className="grid-auto-fit-lg mb-responsive responsive-max-width">
         {filteredGames.map((game) => {
           const IconComponent = game.icon
           
