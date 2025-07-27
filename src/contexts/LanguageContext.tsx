@@ -828,8 +828,6 @@ const translations = {
     'speedrun.description': 'Speedrun-Videos und Screenshots werden hier angezeigt.',
     'forumCategory.description': 'Kategorie {categoryId} - Threads werden hier angezeigt.',
     'forumCategory.title': 'Forum Kategorie',
-    'leaderboard.noData': 'Noch keine Leaderboard-Daten verfügbar',
-    'leaderboard.noDataDesc': 'Sobald Spieler ihre Zeiten einreichen, werden hier die Bestenlisten angezeigt.',
     'eventLeaderboard.noTimes': 'Noch keine Zeiten eingereicht',
 
 // Points System
@@ -906,6 +904,15 @@ const translations = {
     'leaderboard.seasonLeaderboard': 'Saison Bestenliste',
     'leaderboard.filterType': 'Typ',
     'leaderboard.timeframe': 'Zeitraum',
+    'leaderboard.filterGlobal': 'Global',
+    'leaderboard.filterFriends': 'Freunde',
+    'leaderboard.filterRegion': 'Region',
+    'leaderboard.timeframeAllTime': 'Alle Zeiten',
+    'leaderboard.timeframeSeason': 'Saison',
+    'leaderboard.timeframeMonth': 'Monat',
+    'leaderboard.noData': 'Noch keine Leaderboard-Daten verfügbar',
+    'leaderboard.noDataDesc': 'Beginne Punkte zu sammeln, um in der Bestenliste zu erscheinen!',
+    'leaderboard.regionPlatform': 'Region/Plattform',
 
 // Placeholders and form text
     'placeholder.additionalInfo': 'Zusätzliche Informationen...',
@@ -1871,8 +1878,6 @@ const translations = {
     'speedrun.description': 'Speedrun videos and screenshots will be displayed here.',
     'forumCategory.description': 'Beschreibung',
     'forumCategory.title': 'Titel',
-    'leaderboard.noData': 'No leaderboard data available yet',
-    'leaderboard.noDataDesc': 'Once players submit their times, leaderboards will be displayed here.',
     'eventLeaderboard.noTimes': 'No times submitted yet',
 
 // Points System
@@ -1949,6 +1954,15 @@ const translations = {
     'leaderboard.seasonLeaderboard': 'Season Leaderboard',
     'leaderboard.filterType': 'Type',
     'leaderboard.timeframe': 'Timeframe',
+    'leaderboard.filterGlobal': 'Global',
+    'leaderboard.filterFriends': 'Friends',
+    'leaderboard.filterRegion': 'Region',
+    'leaderboard.timeframeAllTime': 'All Time',
+    'leaderboard.timeframeSeason': 'Season',
+    'leaderboard.timeframeMonth': 'Month',
+    'leaderboard.noData': 'No leaderboard data available',
+    'leaderboard.noDataDesc': 'Start earning points to appear on the leaderboard!',
+    'leaderboard.regionPlatform': 'Region/Platform',
 
 // Placeholders and form text
     'placeholder.additionalInfo': 'Additional information...',
@@ -2914,8 +2928,6 @@ const translations = {
     'speedrun.description': 'Les vidéos de speedrun et captures d\'abord',
     'forumCategory.description': 'Catégorie {categoryId} - Les fils seront affichés ici.',
     'forumCategory.title': 'Catégorie du Forum',
-    'leaderboard.noData': 'Aucune donnée de classement disponible pour le moment',
-    'leaderboard.noDataDesc': 'Une fois que les joueurs soumettent leurs temps, les classements seront affichés ici.',
     'eventLeaderboard.noTimes': 'Aucun temps soumis pour le moment',
 
 // Points System
@@ -2992,6 +3004,15 @@ const translations = {
     'leaderboard.seasonLeaderboard': 'Classement Saison',
     'leaderboard.filterType': 'Type',
     'leaderboard.timeframe': 'Période',
+    'leaderboard.filterGlobal': 'Global',
+    'leaderboard.filterFriends': 'Amis',
+    'leaderboard.filterRegion': 'Région',
+    'leaderboard.timeframeAllTime': 'Tous les Temps',
+    'leaderboard.timeframeSeason': 'Saison',
+    'leaderboard.timeframeMonth': 'Mois',
+    'leaderboard.noData': 'Aucune donnée de classement disponible',
+    'leaderboard.noDataDesc': 'Commencez à gagner des points pour apparaître dans le classement !',
+    'leaderboard.regionPlatform': 'Région/Plateforme',
 
 // Placeholders and form text
     'placeholder.additionalInfo': 'Informations supplémentaires...',
@@ -3957,8 +3978,6 @@ const translations = {
     'speedrun.description': 'I video speedrun e gli screenshot saranno mostrati qui.',
     'forumCategory.description': 'Categoria {categoryId} - I thread saranno mostrati qui.',
     'forumCategory.title': 'Categoria Forum',
-    'leaderboard.noData': 'Nessun dato di classifica ancora disponibile',
-    'leaderboard.noDataDesc': 'Una volta che i giocatori inviano i loro tempi, le classifiche saranno mostrate qui.',
     'eventLeaderboard.noTimes': 'Nessun tempo ancora inviato',
 
 // Points System
@@ -4035,6 +4054,15 @@ const translations = {
     'leaderboard.seasonLeaderboard': 'Classifica Stagione',
     'leaderboard.filterType': 'Tipo',
     'leaderboard.timeframe': 'Periodo',
+    'leaderboard.filterGlobal': 'Globale',
+    'leaderboard.filterFriends': 'Amici',
+    'leaderboard.filterRegion': 'Regione',
+    'leaderboard.timeframeAllTime': 'Tutti i Tempi',
+    'leaderboard.timeframeSeason': 'Stagione',
+    'leaderboard.timeframeMonth': 'Mese',
+    'leaderboard.noData': 'Nessun dato di classifica disponibile',
+    'leaderboard.noDataDesc': 'Inizia a guadagnare punti per apparire nella classifica!',
+    'leaderboard.regionPlatform': 'Regione/Piattaforma',
 
 // Placeholders and form text
     'placeholder.additionalInfo': 'Informazioni aggiuntive...',
@@ -4995,8 +5023,6 @@ const translations = {
     'speedrun.description': 'Descripción',
     'forumCategory.description': 'Descripción',
     'forumCategory.title': 'Título',
-    'leaderboard.noData': 'No hay datos disponibles',
-    'leaderboard.noDataDesc': 'Tabla de Líderes',
     'eventLeaderboard.noTimes': 'Tabla de Líderes del Evento',
 
 // Points System
@@ -5073,6 +5099,15 @@ const translations = {
     'leaderboard.seasonLeaderboard': 'Tabla de Líderes',
     'leaderboard.filterType': 'Tipo de filtro',
     'leaderboard.timeframe': 'Período',
+    'leaderboard.filterGlobal': 'Global',
+    'leaderboard.filterFriends': 'Amigos',
+    'leaderboard.filterRegion': 'Región',
+    'leaderboard.timeframeAllTime': 'Todos los Tiempos',
+    'leaderboard.timeframeSeason': 'Temporada',
+    'leaderboard.timeframeMonth': 'Mes',
+    'leaderboard.noData': 'No hay datos de clasificación disponibles',
+    'leaderboard.noDataDesc': '¡Comienza a ganar puntos para aparecer en la clasificación!',
+    'leaderboard.regionPlatform': 'Región/Plataforma',
 
 // Placeholders and form text
     'placeholder.additionalInfo': 'Información adicional...',
@@ -5772,6 +5807,19 @@ const translations = {
     'leaderboard.points': 'Πόντοι',
     'leaderboard.wins': 'Νίκες',
     'leaderboard.gamesPlayed': 'Παιχνίδια που Παίχτηκαν',
+    'leaderboard.globalLeaderboard': 'Παγκόσμια Κατάταξη N64Fan',
+    'leaderboard.seasonLeaderboard': 'Κατάταξη Σεζόν',
+    'leaderboard.filterType': 'Τύπος Φίλτρου',
+    'leaderboard.timeframe': 'Χρονικό Διάστημα',
+    'leaderboard.filterGlobal': 'Παγκόσμια',
+    'leaderboard.filterFriends': 'Φίλοι',
+    'leaderboard.filterRegion': 'Περιοχή',
+    'leaderboard.timeframeAllTime': 'Όλων των Εποχών',
+    'leaderboard.timeframeSeason': 'Σεζόν',
+    'leaderboard.timeframeMonth': 'Μήνας',
+    'leaderboard.noData': 'Δεν υπάρχουν διαθέσιμα δεδομένα κατάταξης',
+    'leaderboard.noDataDesc': 'Ξεκινήστε να κερδίζετε πόντους για να εμφανιστείτε στην κατάταξη!',
+    'leaderboard.regionPlatform': 'Περιοχή/Πλατφόρμα',
 
 // Error Messages
     'error.generic': 'Γενικό σφάλμα',
@@ -6033,8 +6081,6 @@ const translations = {
     'speedrun.description': 'Περιγραφή',
     'forumCategory.description': 'Περιγραφή',
     'forumCategory.title': 'Τίτλος',
-    'leaderboard.noData': 'Δεν υπάρχουν διαθέσιμα δεδομένα',
-    'leaderboard.noDataDesc': 'Leaderboard Nodatadesc',
     'eventLeaderboard.noTimes': 'Eventleaderboard Notimes',
 
 // Points System
@@ -6106,11 +6152,7 @@ const translations = {
     'profile.seasonRank': 'Profile Seasonrank',
     'profile.globalRank': 'Profile Globalrank',
 
-// Leaderboard Extensions
-    'leaderboard.globalLeaderboard': 'Παγκόσμιος Πίνακας Κατάταξης',
-    'leaderboard.seasonLeaderboard': 'Πίνακας Κατάταξης Σεζόν',
-    'leaderboard.filterType': 'Τύπος Φίλτρου',
-    'leaderboard.timeframe': 'Χρονικό Διάστημα',
+
 
 // Placeholders and form text
     'placeholder.additionalInfo': 'Επιπλέον πληροφορίες...',
@@ -7071,8 +7113,6 @@ const translations = {
     'speedrun.description': 'Açıklama',
     'forumCategory.description': 'Açıklama',
     'forumCategory.title': 'Başlık',
-    'leaderboard.noData': 'Leaderboard Nodata',
-    'leaderboard.noDataDesc': 'Leaderboard Nodatadesc',
     'eventLeaderboard.noTimes': 'Eventleaderboard Notimes',
 
 // Points System
@@ -7145,10 +7185,19 @@ const translations = {
     'profile.globalRank': 'Profile Globalrank',
 
 // Leaderboard Extensions
-    'leaderboard.globalLeaderboard': 'Leaderboard Globalleaderboard',
-    'leaderboard.seasonLeaderboard': 'Leaderboard Seasonleaderboard',
+    'leaderboard.globalLeaderboard': 'Küresel N64Fan Sıralaması',
+    'leaderboard.seasonLeaderboard': 'Sezon Sıralaması',
     'leaderboard.filterType': 'Filtre Türü',
     'leaderboard.timeframe': 'Zaman Aralığı',
+    'leaderboard.filterGlobal': 'Küresel',
+    'leaderboard.filterFriends': 'Arkadaşlar',
+    'leaderboard.filterRegion': 'Bölge',
+    'leaderboard.timeframeAllTime': 'Tüm Zamanlar',
+    'leaderboard.timeframeSeason': 'Sezon',
+    'leaderboard.timeframeMonth': 'Ay',
+    'leaderboard.noData': 'Sıralama verisi mevcut değil',
+    'leaderboard.noDataDesc': 'Sıralamada görünmek için puan kazanmaya başlayın!',
+    'leaderboard.regionPlatform': 'Bölge/Platform',
 
 // Placeholders and form text
     'placeholder.additionalInfo': 'Ek bilgi...',
@@ -8109,8 +8158,6 @@ const translations = {
     'speedrun.description': '描述',
     'forumCategory.description': '描述',
     'forumCategory.title': '标题',
-    'leaderboard.noData': 'Leaderboard Nodata',
-    'leaderboard.noDataDesc': 'Leaderboard Nodatadesc',
     'eventLeaderboard.noTimes': 'Eventleaderboard Notimes',
 
 // Points System
@@ -8183,16 +8230,25 @@ const translations = {
     'profile.globalRank': 'Profile Globalrank',
 
 // Leaderboard Extensions
-    'leaderboard.globalLeaderboard': 'Leaderboard Globalleaderboard',
-    'leaderboard.seasonLeaderboard': 'Leaderboard Seasonleaderboard',
-    'leaderboard.filterType': 'Leaderboard Filtertype',
-    'leaderboard.timeframe': 'Leaderboard Timeframe',
+    'leaderboard.globalLeaderboard': '全球N64Fan排行榜',
+    'leaderboard.seasonLeaderboard': '赛季排行榜',
+    'leaderboard.filterType': '过滤器类型',
+    'leaderboard.timeframe': '时间范围',
 
 // Placeholders and form text
     'placeholder.additionalInfo': 'Placeholder Additionalinfo',
     'placeholder.setupController': 'Placeholder Setupcontroller',
     'placeholder.searchGames': '搜索游戏...',
     'placeholder.searchPlayers': '搜索玩家...',
+    'leaderboard.filterGlobal': '全球',
+    'leaderboard.filterFriends': '朋友',
+    'leaderboard.filterRegion': '地区',
+    'leaderboard.timeframeAllTime': '全部时间',
+    'leaderboard.timeframeSeason': '赛季',
+    'leaderboard.timeframeMonth': '月份',
+    'leaderboard.noData': '暂无排行榜数据',
+    'leaderboard.noDataDesc': '开始赚取积分以出现在排行榜上！',
+    'leaderboard.regionPlatform': '地区/平台',
 
 // Achievement descriptions
     'achievement.profilePublic': 'Achievement Profilepublic',
@@ -9147,8 +9203,6 @@ const translations = {
     'speedrun.description': '説明',
     'forumCategory.description': '説明',
     'forumCategory.title': 'タイトル',
-    'leaderboard.noData': 'Leaderboard Nodata',
-    'leaderboard.noDataDesc': 'Leaderboard Nodatadesc',
     'eventLeaderboard.noTimes': 'Eventleaderboard Notimes',
 
 // Points System
@@ -9221,16 +9275,25 @@ const translations = {
     'profile.globalRank': 'Profile Globalrank',
 
 // Leaderboard Extensions
-    'leaderboard.globalLeaderboard': 'Leaderboard Globalleaderboard',
-    'leaderboard.seasonLeaderboard': 'Leaderboard Seasonleaderboard',
-    'leaderboard.filterType': 'Leaderboard Filtertype',
-    'leaderboard.timeframe': 'Leaderboard Timeframe',
+    'leaderboard.globalLeaderboard': 'グローバルN64Fanリーダーボード',
+    'leaderboard.seasonLeaderboard': 'シーズンリーダーボード',
+    'leaderboard.filterType': 'フィルタータイプ',
+    'leaderboard.timeframe': '期間',
 
 // Placeholders and form text
     'placeholder.additionalInfo': 'Placeholder Additionalinfo',
     'placeholder.setupController': 'Placeholder Setupcontroller',
     'placeholder.searchGames': 'ゲームを検索...',
     'placeholder.searchPlayers': 'プレイヤーを検索...',
+    'leaderboard.filterGlobal': 'グローバル',
+    'leaderboard.filterFriends': '友達',
+    'leaderboard.filterRegion': '地域',
+    'leaderboard.timeframeAllTime': '全期間',
+    'leaderboard.timeframeSeason': 'シーズン',
+    'leaderboard.timeframeMonth': '月',
+    'leaderboard.noData': 'リーダーボードデータがありません',
+    'leaderboard.noDataDesc': 'ポイントを獲得してリーダーボードに表示されましょう！',
+    'leaderboard.regionPlatform': '地域/プラットフォーム',
 
 // Achievement descriptions
     'achievement.profilePublic': 'Achievement Profilepublic',
@@ -10185,8 +10248,6 @@ const translations = {
     'speedrun.description': 'Описание',
     'forumCategory.description': 'Описание',
     'forumCategory.title': 'Заголовок',
-    'leaderboard.noData': 'Leaderboard Nodata',
-    'leaderboard.noDataDesc': 'Leaderboard Nodatadesc',
     'eventLeaderboard.noTimes': 'Eventleaderboard Notimes',
 
 // Points System
@@ -10259,16 +10320,25 @@ const translations = {
     'profile.globalRank': 'Profile Globalrank',
 
 // Leaderboard Extensions
-    'leaderboard.globalLeaderboard': 'Leaderboard Globalleaderboard',
-    'leaderboard.seasonLeaderboard': 'Leaderboard Seasonleaderboard',
-    'leaderboard.filterType': 'Leaderboard Filtertype',
-    'leaderboard.timeframe': 'Leaderboard Timeframe',
+    'leaderboard.globalLeaderboard': 'Глобальная таблица лидеров N64Fan',
+    'leaderboard.seasonLeaderboard': 'Сезонная таблица лидеров',
+    'leaderboard.filterType': 'Тип фильтра',
+    'leaderboard.timeframe': 'Временной период',
 
 // Placeholders and form text
     'placeholder.additionalInfo': 'Placeholder Additionalinfo',
     'placeholder.setupController': 'Placeholder Setupcontroller',
     'placeholder.searchGames': 'Поиск игр...',
     'placeholder.searchPlayers': 'Поиск игроков...',
+    'leaderboard.filterGlobal': 'Глобальный',
+    'leaderboard.filterFriends': 'Друзья',
+    'leaderboard.filterRegion': 'Регион',
+    'leaderboard.timeframeAllTime': 'Всё время',
+    'leaderboard.timeframeSeason': 'Сезон',
+    'leaderboard.timeframeMonth': 'Месяц',
+    'leaderboard.noData': 'Данные таблицы лидеров недоступны',
+    'leaderboard.noDataDesc': 'Начните зарабатывать очки, чтобы появиться в таблице лидеров!',
+    'leaderboard.regionPlatform': 'Регион/Платформа',
 
 // Achievement descriptions
     'achievement.profilePublic': 'Achievement Profilepublic',
@@ -11223,8 +11293,6 @@ const translations = {
     'speedrun.description': 'Descrição',
     'forumCategory.description': 'Descrição',
     'forumCategory.title': 'Título',
-    'leaderboard.noData': 'Leaderboard Nodata',
-    'leaderboard.noDataDesc': 'Leaderboard Nodatadesc',
     'eventLeaderboard.noTimes': 'Eventleaderboard Notimes',
 
 // Points System
@@ -11297,16 +11365,25 @@ const translations = {
     'profile.globalRank': 'Profile Globalrank',
 
 // Leaderboard Extensions
-    'leaderboard.globalLeaderboard': 'Leaderboard Globalleaderboard',
-    'leaderboard.seasonLeaderboard': 'Leaderboard Seasonleaderboard',
-    'leaderboard.filterType': 'Leaderboard Filtertype',
-    'leaderboard.timeframe': 'Leaderboard Timeframe',
+    'leaderboard.globalLeaderboard': 'Ranking Global N64Fan',
+    'leaderboard.seasonLeaderboard': 'Ranking da Temporada',
+    'leaderboard.filterType': 'Tipo de Filtro',
+    'leaderboard.timeframe': 'Período de Tempo',
 
 // Placeholders and form text
     'placeholder.additionalInfo': 'Placeholder Additionalinfo',
     'placeholder.setupController': 'Placeholder Setupcontroller',
     'placeholder.searchGames': 'Procurar jogos...',
     'placeholder.searchPlayers': 'Procurar jogadores...',
+    'leaderboard.filterGlobal': 'Global',
+    'leaderboard.filterFriends': 'Amigos',
+    'leaderboard.filterRegion': 'Região',
+    'leaderboard.timeframeAllTime': 'Todos os Tempos',
+    'leaderboard.timeframeSeason': 'Temporada',
+    'leaderboard.timeframeMonth': 'Mês',
+    'leaderboard.noData': 'Dados do ranking não disponíveis',
+    'leaderboard.noDataDesc': 'Comece a ganhar pontos para aparecer no ranking!',
+    'leaderboard.regionPlatform': 'Região/Plataforma',
 
 // Achievement descriptions
     'achievement.profilePublic': 'Achievement Profilepublic',
@@ -12261,8 +12338,6 @@ const translations = {
     'speedrun.description': 'विवरण',
     'forumCategory.description': 'विवरण',
     'forumCategory.title': 'शीर्षक',
-    'leaderboard.noData': 'Leaderboard Nodata',
-    'leaderboard.noDataDesc': 'Leaderboard Nodatadesc',
     'eventLeaderboard.noTimes': 'Eventleaderboard Notimes',
 
 // Points System
@@ -12335,16 +12410,25 @@ const translations = {
     'profile.globalRank': 'Profile Globalrank',
 
 // Leaderboard Extensions
-    'leaderboard.globalLeaderboard': 'Leaderboard Globalleaderboard',
-    'leaderboard.seasonLeaderboard': 'Leaderboard Seasonleaderboard',
-    'leaderboard.filterType': 'Leaderboard Filtertype',
-    'leaderboard.timeframe': 'Leaderboard Timeframe',
+    'leaderboard.globalLeaderboard': 'ग्लोबल N64Fan लीडरबोर्ड',
+    'leaderboard.seasonLeaderboard': 'सीज़न लीडरबोर्ड',
+    'leaderboard.filterType': 'फिल्टर प्रकार',
+    'leaderboard.timeframe': 'समय सीमा',
 
 // Placeholders and form text
     'placeholder.additionalInfo': 'Placeholder Additionalinfo',
     'placeholder.setupController': 'Placeholder Setupcontroller',
     'placeholder.searchGames': 'गेम खोजें...',
     'placeholder.searchPlayers': 'खिलाड़ी खोजें...',
+    'leaderboard.filterGlobal': 'वैश्विक',
+    'leaderboard.filterFriends': 'दोस्त',
+    'leaderboard.filterRegion': 'क्षेत्र',
+    'leaderboard.timeframeAllTime': 'सभी समय',
+    'leaderboard.timeframeSeason': 'सीज़न',
+    'leaderboard.timeframeMonth': 'महीना',
+    'leaderboard.noData': 'लीडरबोर्ड डेटा उपलब्ध नहीं है',
+    'leaderboard.noDataDesc': 'लीडरबोर्ड पर दिखने के लिए पॉइंट्स कमाना शुरू करें!',
+    'leaderboard.regionPlatform': 'क्षेत्र/प्लेटफॉर्म',
 
 // Achievement descriptions
     'achievement.profilePublic': 'Achievement Profilepublic',
@@ -13299,8 +13383,6 @@ const translations = {
     'speedrun.description': 'الوصف',
     'forumCategory.description': 'الوصف',
     'forumCategory.title': 'العنوان',
-    'leaderboard.noData': 'Leaderboard Nodata',
-    'leaderboard.noDataDesc': 'Leaderboard Nodatadesc',
     'eventLeaderboard.noTimes': 'Eventleaderboard Notimes',
 
 // Points System
@@ -13373,16 +13455,25 @@ const translations = {
     'profile.globalRank': 'Profile Globalrank',
 
 // Leaderboard Extensions
-    'leaderboard.globalLeaderboard': 'Leaderboard Globalleaderboard',
-    'leaderboard.seasonLeaderboard': 'Leaderboard Seasonleaderboard',
-    'leaderboard.filterType': 'Leaderboard Filtertype',
-    'leaderboard.timeframe': 'Leaderboard Timeframe',
+    'leaderboard.globalLeaderboard': 'لوحة المتصدرين العالمية N64Fan',
+    'leaderboard.seasonLeaderboard': 'لوحة متصدري الموسم',
+    'leaderboard.filterType': 'نوع المرشح',
+    'leaderboard.timeframe': 'الإطار الزمني',
 
 // Placeholders and form text
     'placeholder.additionalInfo': 'Placeholder Additionalinfo',
     'placeholder.setupController': 'Placeholder Setupcontroller',
     'placeholder.searchGames': 'البحث عن الألعاب...',
     'placeholder.searchPlayers': 'البحث عن اللاعبين...',
+    'leaderboard.filterGlobal': 'عالمي',
+    'leaderboard.filterFriends': 'الأصدقاء',
+    'leaderboard.filterRegion': 'المنطقة',
+    'leaderboard.timeframeAllTime': 'كل الأوقات',
+    'leaderboard.timeframeSeason': 'الموسم',
+    'leaderboard.timeframeMonth': 'الشهر',
+    'leaderboard.noData': 'بيانات لوحة المتصدرين غير متوفرة',
+    'leaderboard.noDataDesc': 'ابدأ في كسب النقاط للظهور في لوحة المتصدرين!',
+    'leaderboard.regionPlatform': 'المنطقة/المنصة',
 
 // Achievement descriptions
     'achievement.profilePublic': 'Achievement Profilepublic',

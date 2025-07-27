@@ -210,7 +210,7 @@ const N64FanLeaderboard: React.FC<N64FanLeaderboardProps> = ({
             {/* Region/Platform Filter */}
             <div>
               <label className="block text-sm font-medium text-slate-300 mb-2">
-                Region/Platform
+                {t('leaderboard.regionPlatform')}
               </label>
               <select
                 value={filter.region || 'all'}
@@ -346,10 +346,10 @@ const N64FanLeaderboard: React.FC<N64FanLeaderboardProps> = ({
             <div className="text-center py-8">
               <Trophy className="w-12 h-12 text-slate-500 mx-auto mb-4" />
               <h3 className="text-lg font-bold text-slate-300 mb-2">
-                No leaderboard data available
+                {t('leaderboard.noData')}
               </h3>
               <p className="text-slate-400">
-                Start earning points to appear on the leaderboard!
+                {t('leaderboard.noDataDesc')}
               </p>
             </div>
           )}
