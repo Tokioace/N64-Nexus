@@ -210,7 +210,7 @@ const MarketplacePage: React.FC = () => {
         price: 45.99,
         currency: 'EUR',
         condition: 'mint',
-        images: ['/api/placeholder/300/200'],
+        images: ['data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRTVFN0VCIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIiBmaWxsPSIjNkI3MjgwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiPjMwMHgyMDA8L3RleHQ+PC9zdmc+'],
         seller: {
           id: 'user1',
           name: 'RetroGamer92',
@@ -231,7 +231,7 @@ const MarketplacePage: React.FC = () => {
         price: 25.00,
         currency: 'EUR',
         condition: 'good',
-        images: ['/api/placeholder/300/200'],
+        images: ['data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRTVFN0VCIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIiBmaWxsPSIjNkI3MjgwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiPjMwMHgyMDA8L3RleHQ+PC9zdmc+'],
         seller: {
           id: 'user2',
           name: 'N64Collector',
@@ -252,7 +252,7 @@ const MarketplacePage: React.FC = () => {
         price: 35.50,
         currency: 'EUR',
         condition: 'very-good',
-        images: ['/api/placeholder/300/200'],
+        images: ['data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRTVFN0VCIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIiBmaWxsPSIjNkI3MjgwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiPjMwMHgyMDA8L3RleHQ+PC9zdmc+'],
         seller: {
           id: 'user3',
           name: 'ZeldaFan2000',
