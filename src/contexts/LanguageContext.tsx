@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, ReactNode } from 'react'
 import { translations, Language } from '../translations'
+import { safeLocalStorage } from '../utils/storage'
 
 interface LanguageContextType {
   currentLanguage: Language
@@ -46,7 +47,7 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
   const setLanguage = (language: Language) => {
     setCurrentLanguage(language)
     // Store language preference in localStorage
-    localStorage.setItem('n64-nexus-language', language)
+    safeLocalStorage.setItem('n64-nexus-language', language)
   }
 
   // Translation function with fallback to English and parameter interpolation
@@ -88,7 +89,7 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
 
   // Load language preference from localStorage on component mount
   React.useEffect(() => {
-    const savedLanguage = localStorage.getItem('n64-nexus-language') as Language
+    const savedLanguage = safeLocalStorage.getItem('n64-nexus-language') as Language
     if (savedLanguage && ['de', 'en', 'fr', 'it', 'es', 'el', 'tr', 'zh', 'ja', 'ru', 'pt', 'hi', 'ar'].includes(savedLanguage)) {
       setCurrentLanguage(savedLanguage)
     }
