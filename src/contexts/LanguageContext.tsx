@@ -6540,7 +6540,7 @@ const translations = {
     'media.totalLikes': 'Totallikes',
     'media.verified': 'Doğrulanmış',
     'media.liveStreamActive': 'Livestreamactive',
-    'media.speedruns': 'Speedrun'lar',
+    'media.speedruns': 'Speedrun\'lar',
     'media.screenshots': 'Ekran görüntüleri',
     'media.achievements': 'Başarımlar',
     'media.allTypes': 'Tüm türler',
