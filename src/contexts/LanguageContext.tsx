@@ -828,8 +828,6 @@ const translations = {
     'speedrun.description': 'Speedrun-Videos und Screenshots werden hier angezeigt.',
     'forumCategory.description': 'Kategorie {categoryId} - Threads werden hier angezeigt.',
     'forumCategory.title': 'Forum Kategorie',
-    'leaderboard.noData': 'Noch keine Leaderboard-Daten verfügbar',
-    'leaderboard.noDataDesc': 'Sobald Spieler ihre Zeiten einreichen, werden hier die Bestenlisten angezeigt.',
     'eventLeaderboard.noTimes': 'Noch keine Zeiten eingereicht',
 
 // Points System
@@ -1880,8 +1878,6 @@ const translations = {
     'speedrun.description': 'Speedrun videos and screenshots will be displayed here.',
     'forumCategory.description': 'Beschreibung',
     'forumCategory.title': 'Titel',
-    'leaderboard.noData': 'No leaderboard data available yet',
-    'leaderboard.noDataDesc': 'Once players submit their times, leaderboards will be displayed here.',
     'eventLeaderboard.noTimes': 'No times submitted yet',
 
 // Points System
@@ -2932,8 +2928,6 @@ const translations = {
     'speedrun.description': 'Les vidéos de speedrun et captures d\'abord',
     'forumCategory.description': 'Catégorie {categoryId} - Les fils seront affichés ici.',
     'forumCategory.title': 'Catégorie du Forum',
-    'leaderboard.noData': 'Aucune donnée de classement disponible pour le moment',
-    'leaderboard.noDataDesc': 'Une fois que les joueurs soumettent leurs temps, les classements seront affichés ici.',
     'eventLeaderboard.noTimes': 'Aucun temps soumis pour le moment',
 
 // Points System
@@ -3984,8 +3978,6 @@ const translations = {
     'speedrun.description': 'I video speedrun e gli screenshot saranno mostrati qui.',
     'forumCategory.description': 'Categoria {categoryId} - I thread saranno mostrati qui.',
     'forumCategory.title': 'Categoria Forum',
-    'leaderboard.noData': 'Nessun dato di classifica ancora disponibile',
-    'leaderboard.noDataDesc': 'Una volta che i giocatori inviano i loro tempi, le classifiche saranno mostrate qui.',
     'eventLeaderboard.noTimes': 'Nessun tempo ancora inviato',
 
 // Points System
@@ -5031,8 +5023,6 @@ const translations = {
     'speedrun.description': 'Descripción',
     'forumCategory.description': 'Descripción',
     'forumCategory.title': 'Título',
-    'leaderboard.noData': 'No hay datos disponibles',
-    'leaderboard.noDataDesc': 'Tabla de Líderes',
     'eventLeaderboard.noTimes': 'Tabla de Líderes del Evento',
 
 // Points System
@@ -6091,8 +6081,6 @@ const translations = {
     'speedrun.description': 'Περιγραφή',
     'forumCategory.description': 'Περιγραφή',
     'forumCategory.title': 'Τίτλος',
-    'leaderboard.noData': 'Δεν υπάρχουν διαθέσιμα δεδομένα',
-    'leaderboard.noDataDesc': 'Leaderboard Nodatadesc',
     'eventLeaderboard.noTimes': 'Eventleaderboard Notimes',
 
 // Points System
@@ -6164,11 +6152,7 @@ const translations = {
     'profile.seasonRank': 'Profile Seasonrank',
     'profile.globalRank': 'Profile Globalrank',
 
-// Leaderboard Extensions
-    'leaderboard.globalLeaderboard': 'Παγκόσμιος Πίνακας Κατάταξης',
-    'leaderboard.seasonLeaderboard': 'Πίνακας Κατάταξης Σεζόν',
-    'leaderboard.filterType': 'Τύπος Φίλτρου',
-    'leaderboard.timeframe': 'Χρονικό Διάστημα',
+
 
 // Placeholders and form text
     'placeholder.additionalInfo': 'Επιπλέον πληροφορίες...',
@@ -7129,8 +7113,6 @@ const translations = {
     'speedrun.description': 'Açıklama',
     'forumCategory.description': 'Açıklama',
     'forumCategory.title': 'Başlık',
-    'leaderboard.noData': 'Leaderboard Nodata',
-    'leaderboard.noDataDesc': 'Leaderboard Nodatadesc',
     'eventLeaderboard.noTimes': 'Eventleaderboard Notimes',
 
 // Points System
@@ -8176,8 +8158,6 @@ const translations = {
     'speedrun.description': '描述',
     'forumCategory.description': '描述',
     'forumCategory.title': '标题',
-    'leaderboard.noData': 'Leaderboard Nodata',
-    'leaderboard.noDataDesc': 'Leaderboard Nodatadesc',
     'eventLeaderboard.noTimes': 'Eventleaderboard Notimes',
 
 // Points System
@@ -9223,8 +9203,6 @@ const translations = {
     'speedrun.description': '説明',
     'forumCategory.description': '説明',
     'forumCategory.title': 'タイトル',
-    'leaderboard.noData': 'Leaderboard Nodata',
-    'leaderboard.noDataDesc': 'Leaderboard Nodatadesc',
     'eventLeaderboard.noTimes': 'Eventleaderboard Notimes',
 
 // Points System
@@ -10270,8 +10248,6 @@ const translations = {
     'speedrun.description': 'Описание',
     'forumCategory.description': 'Описание',
     'forumCategory.title': 'Заголовок',
-    'leaderboard.noData': 'Leaderboard Nodata',
-    'leaderboard.noDataDesc': 'Leaderboard Nodatadesc',
     'eventLeaderboard.noTimes': 'Eventleaderboard Notimes',
 
 // Points System
@@ -11317,8 +11293,6 @@ const translations = {
     'speedrun.description': 'Descrição',
     'forumCategory.description': 'Descrição',
     'forumCategory.title': 'Título',
-    'leaderboard.noData': 'Leaderboard Nodata',
-    'leaderboard.noDataDesc': 'Leaderboard Nodatadesc',
     'eventLeaderboard.noTimes': 'Eventleaderboard Notimes',
 
 // Points System
@@ -12364,8 +12338,6 @@ const translations = {
     'speedrun.description': 'विवरण',
     'forumCategory.description': 'विवरण',
     'forumCategory.title': 'शीर्षक',
-    'leaderboard.noData': 'Leaderboard Nodata',
-    'leaderboard.noDataDesc': 'Leaderboard Nodatadesc',
     'eventLeaderboard.noTimes': 'Eventleaderboard Notimes',
 
 // Points System
@@ -13411,8 +13383,6 @@ const translations = {
     'speedrun.description': 'الوصف',
     'forumCategory.description': 'الوصف',
     'forumCategory.title': 'العنوان',
-    'leaderboard.noData': 'Leaderboard Nodata',
-    'leaderboard.noDataDesc': 'Leaderboard Nodatadesc',
     'eventLeaderboard.noTimes': 'Eventleaderboard Notimes',
 
 // Points System
