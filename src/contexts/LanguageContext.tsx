@@ -50,8 +50,8 @@ const translations = {
     'nav.leaderboard': 'Bestenliste',
     'nav.profile': 'Profil',
     'nav.minigames': 'Minispiele',
-    'nav.events': 'Events',
-    'nav.media': 'Media',
+    'nav.events': 'Veranstaltungen',
+    'nav.media': 'Medien',
     'nav.collector': 'Sammler Modus',
     'nav.forum': 'Forum',
     'nav.chat': 'Chat',
@@ -60,7 +60,7 @@ const translations = {
     'nav.friends': 'Freunde',
     'nav.fanart': 'Fanart',
     'nav.newsfeed': 'Newsfeed',
-    'nav.community': 'Community',
+    'nav.community': 'Gemeinschaft',
     
     // Home Screen
     'home.subtitle': 'Die N64-Community für Millennials',
@@ -69,7 +69,7 @@ const translations = {
     'home.events.subtitle': 'Turniere',
     'home.media.subtitle': 'Speedruns',
     'home.collector.subtitle': 'Kollektion',
-    'home.forum.subtitle': 'Community',
+    'home.forum.subtitle': 'Gemeinschaft',
     'home.profile.subtitle': 'Mein Account',
     'home.leaderboard.subtitle': 'Top Spieler',
     'home.minigames.subtitle': 'Spaß',
@@ -351,7 +351,7 @@ const translations = {
     'ui.soon': 'Soon',
     'ui.done': 'Done',
     'ui.joined': 'Joined',
-    'ui.submit': 'Submit',
+    'ui.submit': 'Senden',
     'ui.join': 'Join',
     'ui.board': 'Board',
     'ui.login': 'Anmelden',
@@ -375,17 +375,17 @@ const translations = {
     'events.mobile.soon': 'Soon',
     'events.mobile.done': 'Done',
     'events.mobile.joined': 'Joined',
-    'events.mobile.submit': 'Submit',
+    'events.mobile.submit': 'Senden',
     'events.mobile.join': 'Join',
     'events.mobile.board': 'Board',
     'events.mobile.winner': 'WINNER',
     'events.mobile.clickToWatch': 'Klicken zum Anschauen',
     
     // Events
-    'events.title': 'Events',
-    'events.upcoming': 'Kommende Events',
-    'events.active': 'Aktive Events',
-    'events.completed': 'Abgeschlossene Events',
+    'events.title': 'Veranstaltungen',
+    'events.upcoming': 'Kommende Veranstaltungen',
+    'events.active': 'Aktive Veranstaltungen',
+    'events.completed': 'Abgeschlossene Veranstaltungen',
     'events.participate': 'Teilnehmen',
     'events.details': 'Details',
     'events.details.startDate': 'Startzeit',
@@ -456,7 +456,7 @@ const translations = {
     'events.join': 'Teilnehmen',
     'events.leave': 'Verlassen',
     'events.preRegister': 'Vormerken',
-    'events.leaderboard': 'Leaderboard',
+    'events.leaderboard': 'Bestenliste',
     'events.showLess': 'Weniger',
     'events.rules': 'Regeln',
     'events.prizes': 'Preise',
@@ -502,7 +502,7 @@ const translations = {
     'forum.createFirstThread': 'Erstelle den ersten Thread!',
     
     // Community
-    'community.title': 'Community',
+    'community.title': 'Gemeinschaft',
     'community.subtitle': 'Entdecke andere Spieler und ihre Sammlungen',
     'community.members': 'Mitglieder',
     'community.games': 'Spiele',
@@ -799,10 +799,10 @@ const translations = {
     'news.featured': 'Empfohlene Nachrichten',
     'news.search.placeholder': 'Nach Nachrichten suchen...',
     'news.filter.all': 'Alle',
-    'news.filter.events': 'Events',
+    'news.filter.events': 'Veranstaltungen',
     'news.filter.winners': 'Gewinner',
     'news.filter.tournaments': 'Turniere',
-    'news.filter.community': 'Community',
+    'news.filter.community': 'Gemeinschaft',
     'news.filter.history': 'Geschichte',
     'news.filter.updates': 'Updates',
     'news.filter.games': 'Spiele',
@@ -997,7 +997,7 @@ const translations = {
     
     'category.hardware': 'Hardware',
     'category.glitches': 'Glitches',
-    'category.events': 'Events',
+    'category.events': 'Veranstaltungen',
     'category.guides': 'Guides',
     'category.discussion': 'Diskussion',
     'category.tutorials': 'Tutorials',
@@ -3117,7 +3117,7 @@ const translations = {
 
   it: {
     // Navigation
-    'nav.home': 'Home',
+    'nav.home': 'Casa',
     'nav.quiz': 'Quiz',
     'nav.leaderboard': 'Classifica',
     'nav.profile': 'Profilo',
@@ -3132,7 +3132,7 @@ const translations = {
     'nav.friends': 'Amici',
     'nav.fanart': 'Fanart',
     'nav.newsfeed': 'Notizie',
-    'nav.community': 'Community',
+    'nav.community': 'Comunità',
     
     // Home Screen
     'home.subtitle': 'La Comunità N64 per i Millennials',
@@ -3821,7 +3821,7 @@ const translations = {
     'nav.friends': 'Amigos',
     'nav.fanart': 'Fanart',
     'nav.newsfeed': 'Noticias',
-    'nav.community': 'Community',
+    'nav.community': 'Comunidad',
     
     // Home Screen
     'home.subtitle': 'La Comunidad N64 para Millennials',
