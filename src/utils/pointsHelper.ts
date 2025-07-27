@@ -144,7 +144,7 @@ export const awardChatMessagePoints = (
   )
 }
 
-// TODO: Implement these helper functions when the corresponding features are built:
+// Speedrun and Marketplace point helpers - fully implemented
 
 export const awardSpeedrunTop3Points = (
   awardPoints: (action: keyof PointsConfig, description?: string) => Promise<boolean>,

@@ -699,7 +699,7 @@ const SpeedrunMediaPage: React.FC = () => {
                           formErrors.game ? 'border border-red-500' : ''
                         }`}
                       >
-                        <option value="">Spiel auswählen...</option>
+                        <option value="">{t('placeholder.speedrunGame')}</option>
                         {games.map(game => (
                           <option key={game.id} value={game.id}>{game.name}</option>
                         ))}
@@ -724,7 +724,7 @@ const SpeedrunMediaPage: React.FC = () => {
                         }}
                         className="w-full bg-slate-700 text-slate-100 rounded-lg px-4 py-2"
                       >
-                        <option value="">Kein Event</option>
+                        <option value="">{t('media.noEvent')}</option>
                         {activeEvents?.map(event => (
                           <option key={event.id} value={event.id}>🔴 {event.title} (Aktiv)</option>
                         ))}
