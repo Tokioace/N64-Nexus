@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react'
 import { User, UserContextType, UserRegistrationData, UserCollection, PersonalRecord } from '../types'
+import { safeLocalStorage, safeJSONStorage } from '../utils/storage'
 
 const UserContext = createContext<UserContextType | undefined>(undefined)
 
@@ -104,8 +105,8 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
   // Load data from localStorage on mount
   useEffect(() => {
-    const savedUsers = localStorage.getItem(STORAGE_KEY_USERS)
-    const savedCurrentUser = localStorage.getItem(STORAGE_KEY_CURRENT_USER)
+    const savedUsers = safeLocalStorage.getItem(STORAGE_KEY_USERS)
+    const savedCurrentUser = safeLocalStorage.getItem(STORAGE_KEY_CURRENT_USER)
     
     if (savedUsers) {
       try {
@@ -153,15 +154,15 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
   // Save users to localStorage whenever users array changes
   useEffect(() => {
-    localStorage.setItem(STORAGE_KEY_USERS, JSON.stringify(users))
+    safeJSONStorage.set(STORAGE_KEY_USERS, users)
   }, [users])
 
   // Save current user to localStorage whenever user changes
   useEffect(() => {
     if (user) {
-      localStorage.setItem(STORAGE_KEY_CURRENT_USER, JSON.stringify(user))
+      safeJSONStorage.set(STORAGE_KEY_CURRENT_USER, user)
     } else {
-      localStorage.removeItem(STORAGE_KEY_CURRENT_USER)
+      safeLocalStorage.removeItem(STORAGE_KEY_CURRENT_USER)
     }
   }, [user])
 
@@ -228,7 +229,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const logout = () => {
     setUser(null)
     setIsAuthenticated(false)
-    localStorage.removeItem(STORAGE_KEY_CURRENT_USER)
+    safeLocalStorage.removeItem(STORAGE_KEY_CURRENT_USER)
   }
 
   const updateProfile = async (updates: Partial<User>): Promise<boolean> => {
