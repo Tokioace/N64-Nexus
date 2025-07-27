@@ -5,7 +5,7 @@ export type Language = 'de' | 'en' | 'fr' | 'it' | 'es' | 'el' | 'tr' | 'zh' | '
 interface LanguageContextType {
   currentLanguage: Language
   setLanguage: (language: Language) => void
-  t: (key: string) => string
+  t: (key: string, params?: Record<string, string>) => string
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined)
@@ -16,6 +16,25 @@ export const useLanguage = () => {
     throw new Error('useLanguage must be used within a LanguageProvider')
   }
   return context
+}
+
+// Helper function to get the correct locale for date formatting
+export const getLocaleString = (language: Language): string => {
+  switch (language) {
+    case 'de': return 'de-DE'
+    case 'fr': return 'fr-FR'
+    case 'it': return 'it-IT'
+    case 'es': return 'es-ES'
+    case 'pt': return 'pt-PT'
+    case 'ru': return 'ru-RU'
+    case 'zh': return 'zh-CN'
+    case 'ja': return 'ja-JP'
+    case 'ar': return 'ar-SA'
+    case 'hi': return 'hi-IN'
+    case 'el': return 'el-GR'
+    case 'tr': return 'tr-TR'
+    default: return 'en-US'
+  }
 }
 
 interface LanguageProviderProps {
@@ -2780,10 +2799,19 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
   }
 
   // Translation function
-  const t = (key: string): string => {
+  const t = (key: string, params?: Record<string, string>): string => {
     const currentTranslations = translations[currentLanguage] as any
-    const translation = currentTranslations?.[key]
-    return translation || key
+    const englishTranslations = translations.en as any
+    let translation = currentTranslations?.[key] || englishTranslations?.[key] || key
+    
+    // Replace parameters if provided
+    if (params) {
+      Object.entries(params).forEach(([paramKey, paramValue]) => {
+        translation = translation.replace(`{${paramKey}}`, paramValue)
+      })
+    }
+    
+    return translation
   }
 
   // Initialize language from localStorage on mount
