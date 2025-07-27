@@ -1537,8 +1537,8 @@ const translations = {
     'minigames.quitGame': 'Quit Game',
 
 
-    'forum.noThreads': 'forum.noThreads',
-    'forum.createFirstThread': 'forum.createFirstThread',
+    'forum.noThreads': 'No threads in this category',
+    'forum.createFirstThread': 'Create the first thread!',
 
 // Community
     'community.title': 'Community',
@@ -2575,8 +2575,8 @@ const translations = {
     'minigames.quitGame': 'Quitter le jeu',
 
 
-    'forum.noThreads': 'forum.noThreads',
-    'forum.createFirstThread': 'forum.createFirstThread',
+    'forum.noThreads': 'Aucun sujet dans cette catégorie',
+    'forum.createFirstThread': 'Créez le premier sujet !',
 
 // Community
     'community.title': 'Communauté',
@@ -3609,12 +3609,12 @@ const translations = {
     'minigames.instructions': 'minigames.instructions',
     'minigames.startGame': 'minigames.startGame',
     'minigames.pauseGame': 'minigames.pauseGame',
-    'minigames.resumeGame': 'minigames.resumeGame',
-    'minigames.quitGame': 'minigames.quitGame',
+    'minigames.resumeGame': 'Riprendi gioco',
+    'minigames.quitGame': 'Esci dal gioco',
 
 
-    'forum.noThreads': 'forum.noThreads',
-    'forum.createFirstThread': 'forum.createFirstThread',
+    'forum.noThreads': 'Nessun thread in questa categoria',
+    'forum.createFirstThread': 'Crea il primo thread!',
 
 // Community
     'community.title': 'Comunità',
@@ -4651,7 +4651,7 @@ const translations = {
     'minigames.quitGame': 'minigames.quitGame',
 
 
-    'forum.noThreads': 'forum.noThreads',
+    'forum.noThreads': 'No hay hilos en esta categoría',
     'forum.createFirstThread': 'forum.createFirstThread',
 
 // Community
