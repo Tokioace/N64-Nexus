@@ -486,7 +486,7 @@ const SpeedrunMediaPage: React.FC = () => {
                         value={streamData.game}
                         onChange={(e) => setStreamData({...streamData, game: e.target.value})}
                         className="w-full bg-slate-700 text-slate-100 rounded-lg px-4 py-2"
-                        placeholder="z.B. Super Mario 64"
+                        placeholder={t('placeholder.speedrunGame')}
                       />
                     </div>
                     <div className="flex items-end">
@@ -780,7 +780,7 @@ const SpeedrunMediaPage: React.FC = () => {
                           className={`w-full bg-slate-700 text-slate-100 rounded-lg px-4 py-2 ${
                             formErrors.url ? 'border border-red-500' : ''
                           }`}
-                          placeholder="https://youtube.com/watch?v=..."
+                          placeholder={t('placeholder.mediaUrl')}
                         />
                         <p className="text-xs text-slate-400 mt-1">
                           YouTube, Twitch, oder andere Video/Bild URLs
@@ -800,7 +800,7 @@ const SpeedrunMediaPage: React.FC = () => {
                         className={`w-full bg-slate-700 text-slate-100 rounded-lg px-4 py-2 h-24 resize-none ${
                           formErrors.description ? 'border border-red-500' : ''
                         }`}
-                        placeholder="Beschreibe deine Leistung..."
+                        placeholder={t('placeholder.mediaDescription')}
                       />
                       <div className="flex justify-between items-center mt-1">
                         <span className="text-xs text-slate-400">
@@ -817,7 +817,7 @@ const SpeedrunMediaPage: React.FC = () => {
                       <label className="block text-sm font-medium text-slate-300 mb-2">Tags (optional)</label>
                       <input
                         type="text"
-                        placeholder="worldrecord, any%, glitchless (durch Komma getrennt)"
+                        placeholder={t('placeholder.mediaTags')}
                         className="w-full bg-slate-700 text-slate-100 rounded-lg px-4 py-2"
                         onKeyDown={(e) => {
                           if (e.key === 'Enter' || e.key === ',') {
