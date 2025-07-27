@@ -771,6 +771,8 @@ const translations = {
 // Event content
     'events.mk64Challenge': 'Mario Kart 64 Speedrun Challenge',
     'events.mk64ChallengeDesc': 'Wer schafft die schnellste Zeit auf der Mushroom Cup?',
+    'events.luigiEvent': 'Mario Kart 64 - Luigi\'s Raceway Live Event',
+    'events.luigiEventDesc': 'Eine Woche lang Luigi\'s Raceway Zeitrennen! Zeigt eure beste Zeit auf der klassischen Strecke und kämpft um die Krone!',
     'events.rule.palVersion': 'PAL-Version',
     'events.rule.noGlitches': 'Keine Glitches',
     'events.rule.videoRequired': 'Video-Beweis erforderlich',
@@ -783,8 +785,11 @@ const translations = {
     'events.prize.gold': 'Goldene Cartridge',
     'events.prize.silver': 'Silberne Cartridge',
     'events.prize.bronze': 'Bronze Cartridge',
+    'events.prize.luigiFirst': '🥇 1. Platz: Goldener Luigi Trophy + 250 XP + Raceway Champion Badge',
     'events.prize.luigiSecond': '🥈 2. Platz: Silberner Luigi Trophy + 150 XP + Speed Demon Badge',
     'events.prize.luigiThird': '🥉 3. Platz: Bronzener Luigi Trophy + 100 XP + Time Trial Expert Badge',
+    'events.prize.luigiTop10': '🏆 Top 10: Luigi Participation Badge + 50 XP',
+    'events.prize.luigiParticipant': '🎖️ Teilnahme: Luigi Event Participation Badge + 25 XP',
 
 // News content
     'news.title': 'News Feed',
@@ -1809,6 +1814,8 @@ const translations = {
 // Event content
     'events.mk64Challenge': 'Mario Kart 64 Speedrun Challenge',
     'events.mk64ChallengeDesc': 'Who can achieve the fastest time on the Mushroom Cup?',
+    'events.luigiEvent': 'Mario Kart 64 - Luigi\'s Raceway Live Event',
+    'events.luigiEventDesc': 'A whole week of Luigi\'s Raceway time trials! Show your best time on the classic track and compete for the crown!',
     'events.rule.palVersion': 'PAL Version',
     'events.rule.noGlitches': 'No Glitches',
     'events.rule.videoRequired': 'Video proof required',
@@ -1821,8 +1828,11 @@ const translations = {
     'events.prize.gold': 'Golden Cartridge',
     'events.prize.silver': 'Silver Cartridge',
     'events.prize.bronze': 'Bronze Cartridge',
+    'events.prize.luigiFirst': '🥇 1st Place: Golden Luigi Trophy + 250 XP + Raceway Champion Badge',
     'events.prize.luigiSecond': '🥈 2nd Place: Silver Luigi Trophy + 150 XP + Speed Demon Badge',
     'events.prize.luigiThird': '🥉 3rd Place: Bronze Luigi Trophy + 100 XP + Time Trial Expert Badge',
+    'events.prize.luigiTop10': '🏆 Top 10: Luigi Participation Badge + 50 XP',
+    'events.prize.luigiParticipant': '🎖️ Participation: Luigi Event Participation Badge + 25 XP',
 
 // News content
     'news.title': 'News Feed',
@@ -2847,6 +2857,8 @@ const translations = {
 // Event content
     'events.mk64Challenge': 'Défi Speedrun Mario Kart 64',
     'events.mk64ChallengeDesc': 'Qui peut obtenir le temps le plus rapide sur la Mushroom Cup ?',
+    'events.luigiEvent': 'Mario Kart 64 - Événement Live Luigi\'s Raceway',
+    'events.luigiEventDesc': 'Une semaine entière de contre-la-montre Luigi\'s Raceway ! Montrez votre meilleur temps sur la piste classique et battez-vous pour la couronne !',
     'events.rule.palVersion': 'Version PAL',
     'events.rule.noGlitches': 'Pas de glitches',
     'events.rule.videoRequired': 'Preuve vidéo requise',
@@ -2859,8 +2871,11 @@ const translations = {
     'events.prize.gold': 'Cartouche dorée',
     'events.prize.silver': 'Cartouche argentée',
     'events.prize.bronze': 'Cartouche de bronze',
+    'events.prize.luigiFirst': '🥇 1ère Place : Trophée Luigi Doré + 250 XP + Badge Champion Raceway',
     'events.prize.luigiSecond': '🥈 2ème Place : Trophée Luigi Argenté + 150 XP + Badge Démon de Vitesse',
     'events.prize.luigiThird': '🥉 3ème Place : Trophée Luigi Bronze + 100 XP + Badge Expert Contre-la-montre',
+    'events.prize.luigiTop10': '🏆 Top 10 : Badge Participation Luigi + 50 XP',
+    'events.prize.luigiParticipant': '🎖️ Participation : Badge Participation Événement Luigi + 25 XP',
 
 // News content
     'news.title': 'Flux d\'actualités',
@@ -3885,6 +3900,8 @@ const translations = {
 // Event content
     'events.mk64Challenge': 'Sfida Speedrun Mario Kart 64',
     'events.mk64ChallengeDesc': 'Chi può ottenere il tempo più veloce sulla Mushroom Cup?',
+    'events.luigiEvent': 'Mario Kart 64 - Evento Live Luigi\'s Raceway',
+    'events.luigiEventDesc': 'Una settimana intera di prove a tempo Luigi\'s Raceway! Mostra il tuo miglior tempo sulla pista classica e lotta per la corona!',
     'events.rule.palVersion': 'Versione PAL',
     'events.rule.noGlitches': 'Nessun glitch',
     'events.rule.videoRequired': 'Prova video richiesta',
@@ -3895,10 +3912,13 @@ const translations = {
     'events.rule.startTime': 'Ora di inizio: Domenica 20.07.2025',
     'events.rule.endTime': 'Ora di fine: Domenica 27.07.2025 23:59 UTC',
     'events.prize.gold': 'Cartuccia dorata',
-    'events.prize.silver': 'Cartuccia d\'abord',
+    'events.prize.silver': 'Cartuccia d\'argento',
     'events.prize.bronze': 'Cartuccia di bronzo',
+    'events.prize.luigiFirst': '🥇 1° Posto: Trofeo Luigi Dorato + 250 XP + Badge Campione Raceway',
     'events.prize.luigiSecond': '🥈 2° Posto: Trofeo Luigi Argentato + 150 XP + Badge Demone della Velocità',
     'events.prize.luigiThird': '🥉 3° Posto: Trofeo Luigi di Bronzo + 100 XP + Badge Esperto Prove a Tempo',
+    'events.prize.luigiTop10': '🏆 Top 10: Badge Partecipazione Luigi + 50 XP',
+    'events.prize.luigiParticipant': '🎖️ Partecipazione: Badge Partecipazione Evento Luigi + 25 XP',
 
 // News content
     'news.title': 'Feed delle notizie',
