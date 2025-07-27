@@ -8250,16 +8250,25 @@ const translations = {
     'profile.globalRank': 'Profile Globalrank',
 
 // Leaderboard Extensions
-    'leaderboard.globalLeaderboard': 'Leaderboard Globalleaderboard',
-    'leaderboard.seasonLeaderboard': 'Leaderboard Seasonleaderboard',
-    'leaderboard.filterType': 'Leaderboard Filtertype',
-    'leaderboard.timeframe': 'Leaderboard Timeframe',
+    'leaderboard.globalLeaderboard': '全球N64Fan排行榜',
+    'leaderboard.seasonLeaderboard': '赛季排行榜',
+    'leaderboard.filterType': '过滤器类型',
+    'leaderboard.timeframe': '时间范围',
 
 // Placeholders and form text
     'placeholder.additionalInfo': 'Placeholder Additionalinfo',
     'placeholder.setupController': 'Placeholder Setupcontroller',
     'placeholder.searchGames': '搜索游戏...',
     'placeholder.searchPlayers': '搜索玩家...',
+    'leaderboard.filterGlobal': '全球',
+    'leaderboard.filterFriends': '朋友',
+    'leaderboard.filterRegion': '地区',
+    'leaderboard.timeframeAllTime': '全部时间',
+    'leaderboard.timeframeSeason': '赛季',
+    'leaderboard.timeframeMonth': '月份',
+    'leaderboard.noData': '暂无排行榜数据',
+    'leaderboard.noDataDesc': '开始赚取积分以出现在排行榜上！',
+    'leaderboard.regionPlatform': '地区/平台',
 
 // Achievement descriptions
     'achievement.profilePublic': 'Achievement Profilepublic',
@@ -9288,16 +9297,25 @@ const translations = {
     'profile.globalRank': 'Profile Globalrank',
 
 // Leaderboard Extensions
-    'leaderboard.globalLeaderboard': 'Leaderboard Globalleaderboard',
-    'leaderboard.seasonLeaderboard': 'Leaderboard Seasonleaderboard',
-    'leaderboard.filterType': 'Leaderboard Filtertype',
-    'leaderboard.timeframe': 'Leaderboard Timeframe',
+    'leaderboard.globalLeaderboard': 'グローバルN64Fanリーダーボード',
+    'leaderboard.seasonLeaderboard': 'シーズンリーダーボード',
+    'leaderboard.filterType': 'フィルタータイプ',
+    'leaderboard.timeframe': '期間',
 
 // Placeholders and form text
     'placeholder.additionalInfo': 'Placeholder Additionalinfo',
     'placeholder.setupController': 'Placeholder Setupcontroller',
     'placeholder.searchGames': 'ゲームを検索...',
     'placeholder.searchPlayers': 'プレイヤーを検索...',
+    'leaderboard.filterGlobal': 'グローバル',
+    'leaderboard.filterFriends': '友達',
+    'leaderboard.filterRegion': '地域',
+    'leaderboard.timeframeAllTime': '全期間',
+    'leaderboard.timeframeSeason': 'シーズン',
+    'leaderboard.timeframeMonth': '月',
+    'leaderboard.noData': 'リーダーボードデータがありません',
+    'leaderboard.noDataDesc': 'ポイントを獲得してリーダーボードに表示されましょう！',
+    'leaderboard.regionPlatform': '地域/プラットフォーム',
 
 // Achievement descriptions
     'achievement.profilePublic': 'Achievement Profilepublic',
@@ -10326,16 +10344,25 @@ const translations = {
     'profile.globalRank': 'Profile Globalrank',
 
 // Leaderboard Extensions
-    'leaderboard.globalLeaderboard': 'Leaderboard Globalleaderboard',
-    'leaderboard.seasonLeaderboard': 'Leaderboard Seasonleaderboard',
-    'leaderboard.filterType': 'Leaderboard Filtertype',
-    'leaderboard.timeframe': 'Leaderboard Timeframe',
+    'leaderboard.globalLeaderboard': 'Глобальная таблица лидеров N64Fan',
+    'leaderboard.seasonLeaderboard': 'Сезонная таблица лидеров',
+    'leaderboard.filterType': 'Тип фильтра',
+    'leaderboard.timeframe': 'Временной период',
 
 // Placeholders and form text
     'placeholder.additionalInfo': 'Placeholder Additionalinfo',
     'placeholder.setupController': 'Placeholder Setupcontroller',
     'placeholder.searchGames': 'Поиск игр...',
     'placeholder.searchPlayers': 'Поиск игроков...',
+    'leaderboard.filterGlobal': 'Глобальный',
+    'leaderboard.filterFriends': 'Друзья',
+    'leaderboard.filterRegion': 'Регион',
+    'leaderboard.timeframeAllTime': 'Всё время',
+    'leaderboard.timeframeSeason': 'Сезон',
+    'leaderboard.timeframeMonth': 'Месяц',
+    'leaderboard.noData': 'Данные таблицы лидеров недоступны',
+    'leaderboard.noDataDesc': 'Начните зарабатывать очки, чтобы появиться в таблице лидеров!',
+    'leaderboard.regionPlatform': 'Регион/Платформа',
 
 // Achievement descriptions
     'achievement.profilePublic': 'Achievement Profilepublic',
