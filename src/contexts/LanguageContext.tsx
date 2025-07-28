@@ -159,6 +159,7 @@ const translations = {
     'common.pause': 'Pausieren',
     'common.refresh': 'Aktualisieren',
     'common.details': 'Details',
+    'common.of': 'von',
     'common.viewAll': 'Alle anzeigen',
     'common.noData': 'Keine Daten verfügbar',
     'common.confirm': 'Bestätigen',
@@ -303,6 +304,7 @@ const translations = {
     'media.description': 'Beschreibung',
     'media.streamTitle': 'Stream Titel',
     'media.noMediaFound': 'Keine Media gefunden',
+    'media.tryOtherFilters': 'Versuche andere Filter oder lade dein erstes Media hoch!',
     'media.noUploads': 'Noch keine Uploads',
     'media.noUploadsDesc': 'Du hast noch keine Media hochgeladen. Beginne jetzt und sammle Punkte!',
     'media.eventUpload': 'Event Upload',
@@ -540,6 +542,8 @@ const translations = {
     'community.gamesPlayed': 'Gespielte Spiele',
     'community.totalScore': 'Gesamtpunktzahl',
     'community.recentRecord': 'Neuester Rekord:',
+    'community.noPlayersFound': 'Keine Spieler gefunden',
+    'community.tryOtherFilters': 'Versuche andere Suchbegriffe oder Filter.',
 
 // Chat
     'chat.title': 'Community Chat',
@@ -787,6 +791,9 @@ const translations = {
     'forum.newThread.title': 'Neues Thema',
     'forum.newThread.createFor': 'Neues Thema für Kategorie {categoryId} erstellen.',
     'forum.thread.levelSystem': 'Wie funktioniert das Levelsystem?',
+    'forum.thread.easterEggs': 'Versteckte Easter Eggs in Mario Kart 64',
+    'forum.thread.goldenOcarina': 'Suche: Goldene Ocarina of Time Edition',
+    'forum.loginToCreateThreads': 'um neue Threads zu erstellen und zu antworten',
     'forum.thread.rainbowRoad': 'Rainbow Road Shortcut Tutorial',
     'forum.welcomeMessage': 'Hey {username}! Schön, dass du hier bist. Teile dein N64-Wissen, diskutiere über Speedruns und tausche dich mit anderen Fans aus.',
     'forum.publicNotice': 'Alle Beiträge werden öffentlich gespeichert und sind für andere Nutzer sichtbar.',
@@ -5528,6 +5535,7 @@ const translations = {
     'media.mediaType': 'Τύπος Μέσου',
     'media.description': 'Περιγραφή',
     'media.noMediaFound': 'Δεν βρέθηκαν μέσα',
+    'media.tryOtherFilters': 'Δοκιμάστε άλλα φίλτρα ή ανεβάστε το πρώτο σας μέσο!',
     'media.noUploads': 'Δεν υπάρχουν ανεβάσματα',
     'media.noUploadsDesc': 'Γίνετε ο πρώτος που θα ανεβάσει μέσα!',
     'media.eventUpload': 'Ανέβασμα Εκδήλωσης',
@@ -6007,8 +6015,6 @@ const translations = {
 
 // Media and Documentation
     'media.screenshot': 'Στιγμιότυπο Οθόνης',
-    'media.noMediaFound': 'Δεν βρέθηκαν μέσα',
-    'media.tryOtherFilters': 'Δοκιμάστε άλλα φίλτρα ή ανεβάστε το πρώτο σας μέσο!',
     'media.video': 'Βίντεο',
     'media.livestream': 'Ζωντανή Μετάδοση',
     'media.photo': 'Φωτογραφία',
@@ -6051,7 +6057,7 @@ const translations = {
     'forum.thread.postsWillBeDisplayed': 'Οι αναρτήσεις θα εμφανιστούν εδώ',
     'forum.newThread.title': 'Νέο Θέμα',
     'forum.newThread.createFor': 'Δημιουργία θέματος για',
-    'forum.thread.levelSystem': 'Σύστημα Επιπέδων',
+
     'forum.thread.rainbowRoad': 'Rainbow Road Συζήτηση',
     'forum.welcomeMessage': 'Καλώς ήρθατε στο φόρουμ της κοινότητας N64!',
     'forum.publicNotice': 'Δημόσια Ανακοίνωση',
