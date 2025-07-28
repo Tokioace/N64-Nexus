@@ -646,6 +646,8 @@ const translations = {
     'minigames.globalLeaderboard': 'Globale Bestenliste',
     'minigames.globalLeaderboardDesc': 'Vergleiche deine Scores mit der ganzen Community!',
     'minigames.viewLeaderboards': '🏆 Bestenlisten ansehen',
+    'minigames.games': 'Spiele',
+    'minigames.available': 'Verfügbar',
 
 // Collection Manager
     'collection.myCollection': 'Meine Sammlung',
@@ -1715,6 +1717,8 @@ const translations = {
     'minigames.globalLeaderboard': 'Global Leaderboard',
     'minigames.globalLeaderboardDesc': 'Compare your scores with the entire community!',
     'minigames.viewLeaderboards': '🏆 View Leaderboards',
+    'minigames.games': 'Games',
+    'minigames.available': 'Available',
 
 // Collection Manager
     'collection.myCollection': 'My Collection',
@@ -2781,6 +2785,8 @@ const translations = {
     'minigames.globalLeaderboard': 'Classement Mondial',
     'minigames.globalLeaderboardDesc': 'Comparez vos scores avec toute la communauté !',
     'minigames.viewLeaderboards': '🏆 Voir les Classements',
+    'minigames.games': 'Jeux',
+    'minigames.available': 'Disponible',
 
 // Collection Manager
     'collection.myCollection': 'Ma Collection',
@@ -3824,6 +3830,8 @@ const translations = {
     'minigames.globalLeaderboard': 'Classifica Globale',
     'minigames.globalLeaderboardDesc': 'Confronta i tuoi punteggi con tutta la comunità!',
     'minigames.viewLeaderboards': '🏆 Visualizza Classifiche',
+    'minigames.games': 'Giochi',
+    'minigames.available': 'Disponibile',
 
 // Collection Manager
     'collection.myCollection': 'La Mia Collezione',
@@ -4861,13 +4869,15 @@ const translations = {
     'minigames.moreGamesTitle': 'Weitere Spiele',
     'minigames.moreGamesComingSoon': 'Weitere Minispiele kommen bald! Bleib dran für neue Herausforderungen.',
     'minigames.allGamesFree': '🎮 Alle Spiele sind kostenlos und machen Spaß!',
-    'minigames.tournamentsTitle': 'Turniere',
-    'minigames.tournamentsDesc': 'Tritt gegen andere Spieler in wöchentlichen Turnieren an',
-    'minigames.currentTournaments': 'Aktuelle Turniere',
-    'minigames.multiplayer': 'Minijuegos',
-    'minigames.globalLeaderboard': 'Globale Bestenliste',
-    'minigames.globalLeaderboardDesc': 'Sieh dir die besten Spieler weltweit an',
-    'minigames.viewLeaderboards': 'Bestenlisten anzeigen',
+    'minigames.tournamentsTitle': 'Torneos y Eventos',
+    'minigames.tournamentsDesc': '¡Participa en torneos semanales de minijuegos!',
+    'minigames.currentTournaments': '🎯 Torneos Actuales',
+    'minigames.multiplayer': 'Multijugador',
+    'minigames.globalLeaderboard': 'Clasificación Global',
+    'minigames.globalLeaderboardDesc': '¡Compara tus puntuaciones con toda la comunidad!',
+    'minigames.viewLeaderboards': '🏆 Ver Clasificaciones',
+    'minigames.games': 'Juegos',
+    'minigames.available': 'Disponible',
 
 // Collection Manager
     'collection.myCollection': 'Mi Colección',
@@ -6138,12 +6148,6 @@ const translations = {
     'label.proofUrl': 'URL Απόδειξης (προαιρετικό)',
     'label.notes': 'Σημειώσεις',
     'label.required': '*',
-
-// Minigame sound descriptions
-    'minigames.sound.mario64': '"Wahoo!" - Mario Sprung Sound',
-    'minigames.sound.zelda': '"Hey! Listen!" - Navi Sound',
-    'minigames.sound.goldeneye': '"Pew Pew" - Silencer Schuss',
-    'minigames.sound.mariokart': '"Here we go!" - Rennstart',
 
 // EventLeaderboard
     'eventLeaderboard.title': 'Τίτλος',
