@@ -329,7 +329,7 @@ export const ForumProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     
     // Validate input
     if (!content.trim() || !threadId.trim()) {
-      setError('Inhalt ist erforderlich')
+      setError(t('validation.contentRequired'))
       return false
     }
     

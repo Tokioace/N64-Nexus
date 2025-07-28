@@ -143,6 +143,7 @@ const translations = {
     'common.save': 'Speichern',
     'common.cancel': 'Abbrechen',
     'common.upload': 'Hochladen',
+    'common.uploading': 'Wird hochgeladen...',
     'common.remove': 'Entfernen',
     'common.delete': 'Löschen',
     'common.edit': 'Bearbeiten',
@@ -167,11 +168,24 @@ const translations = {
     'common.retry': 'Wiederholen',
     'common.note': 'Hinweis',
 
+// Image Upload
+    'imageUpload.uploadImage': 'Bild hochladen',
+    'imageUpload.dropHere': 'Bild hier ablegen',
+    'imageUpload.clickOrDrag': 'Klicken oder Drag & Drop',
+    'imageUpload.supportedFormats': 'JPEG, PNG, GIF, WebP (max. 5MB)',
+
 // Form validation
     'validation.allFieldsRequired': 'Alle Felder sind erforderlich',
+    'validation.titleRequired': 'Titel ist erforderlich',
     'validation.titleTooLong': 'Titel ist zu lang (max. 100 Zeichen)',
+    'validation.titleTooShort': 'Titel ist zu kurz (min. 5 Zeichen)',
+    'validation.contentRequired': 'Inhalt ist erforderlich',
     'validation.contentTooLong': 'Inhalt ist zu lang (max. 2000 Zeichen)',
+    'validation.contentTooShort': 'Inhalt ist zu kurz (min. 10 Zeichen)',
     'validation.postTooLong': 'Beitrag ist zu lang (max. 2000 Zeichen)',
+    'validation.imageTooLarge': 'Bild ist zu groß (max. 5MB)',
+    'validation.imageFilesOnly': 'Nur Bilddateien sind erlaubt',
+    'validation.supportedFormats': 'Unterstützte Formate: JPEG, PNG, GIF, WebP',
 
 // Error messages
     'error.boundary.title': 'Oops! Etwas ist schiefgelaufen',
@@ -223,6 +237,7 @@ const translations = {
     'auth.loginRequired': 'Anmeldung erforderlich',
     'auth.loginRequiredMessage': 'Du musst angemeldet sein, um diese Seite zu sehen.',
     'auth.loginRequiredForEvents': 'Bitte logge dich ein, um an Events teilzunehmen!',
+    'auth.loginRequiredForImageUpload': 'Du musst angemeldet sein, um Bilder hochzuladen',
 
 // Quiz
     'quiz.title': 'N64 Quiz',
@@ -304,6 +319,7 @@ const translations = {
     'media.game': 'Spiel',
     'media.mediaType': 'Media Typ',
     'media.description': 'Beschreibung',
+    'media.streamTitle': 'Stream Titel',
     'media.noMediaFound': 'Keine Media gefunden',
     'media.noUploads': 'Noch keine Uploads',
     'media.noUploadsDesc': 'Du hast noch keine Media hochgeladen. Beginne jetzt und sammle Punkte!',
@@ -576,6 +592,7 @@ const translations = {
     'error.somethingWentWrong': 'Etwas ist schief gelaufen',
     'error.technicalDetails': 'Technische Details',
     'error.reloadPage': 'Seite neu laden',
+    'error.threadCreationFailed': 'Fehler beim Erstellen des Threads. Bitte versuche es erneut.',
 
 // Success Messages
     'success.saved': 'Erfolgreich gespeichert',
@@ -767,6 +784,13 @@ const translations = {
     'forum.thread.rainbowRoad': 'Rainbow Road Shortcut Tutorial',
     'forum.welcomeMessage': 'Hey {username}! Schön, dass du hier bist. Teile dein N64-Wissen, diskutiere über Speedruns und tausche dich mit anderen Fans aus.',
     'forum.publicNotice': 'Alle Beiträge werden öffentlich gespeichert und sind für andere Nutzer sichtbar.',
+    'forum.threadTitle': 'Thread-Titel',
+    'forum.communityGuidelines': 'Community-Richtlinien',
+    'forum.guidelines.respectful': 'Sei respektvoll und höflich zu anderen Mitgliedern',
+    'forum.guidelines.meaningfulTitles': 'Verwende aussagekräftige Titel für deine Threads',
+    'forum.guidelines.rightCategory': 'Poste in der passenden Kategorie',
+    'forum.guidelines.noSpam': 'Keine Spam, Werbung oder Off-Topic-Inhalte',
+    'forum.guidelines.useSearch': 'Verwende die Suchfunktion, bevor du ein neues Thema erstellst',
 
 // Event content
     'events.mk64Challenge': 'Mario Kart 64 Speedrun Challenge',
@@ -1021,6 +1045,7 @@ const translations = {
     'error.invalidUrl': 'Ungültiges URL-Format',
     'error.userNotAuthenticated': 'Benutzer nicht authentifiziert',
     'error.contentRequired': 'Inhalt ist erforderlich',
+    'error.invalidFile': 'Ungültige Datei',
 
 // Collection Management
     'collection.confirmRemove': 'Möchtest du dieses Spiel wirklich aus deiner Sammlung entfernen?',
@@ -1186,6 +1211,7 @@ const translations = {
     'common.save': 'Save',
     'common.cancel': 'Cancel',
     'common.upload': 'Upload',
+    'common.uploading': 'Uploading...',
     'common.remove': 'Remove',
     'common.delete': 'Delete',
     'common.edit': 'Edit',
@@ -1210,11 +1236,24 @@ const translations = {
     'common.retry': 'Retry',
     'common.note': 'Note',
 
+// Image Upload
+    'imageUpload.uploadImage': 'Upload Image',
+    'imageUpload.dropHere': 'Drop image here',
+    'imageUpload.clickOrDrag': 'Click or Drag & Drop',
+    'imageUpload.supportedFormats': 'JPEG, PNG, GIF, WebP (max. 5MB)',
+
 // Form validation
     'validation.allFieldsRequired': 'All fields are required',
+    'validation.titleRequired': 'Title is required',
     'validation.titleTooLong': 'Title is too long (max. 100 characters)',
+    'validation.titleTooShort': 'Title is too short (min. 5 characters)',
+    'validation.contentRequired': 'Content is required',
     'validation.contentTooLong': 'Content is too long (max. 2000 characters)',
+    'validation.contentTooShort': 'Content is too short (min. 10 characters)',
     'validation.postTooLong': 'Post is too long (max. 2000 characters)',
+    'validation.imageTooLarge': 'Image is too large (max. 5MB)',
+    'validation.imageFilesOnly': 'Only image files are allowed',
+    'validation.supportedFormats': 'Supported formats: JPEG, PNG, GIF, WebP',
 
 // Error messages
     'error.boundary.title': 'Oops! Something went wrong',
@@ -1266,6 +1305,7 @@ const translations = {
     'auth.loginRequired': 'Login Required',
     'auth.loginRequiredMessage': 'You must be logged in to view this page.',
     'auth.loginRequiredForEvents': 'Please log in to participate in events!',
+    'auth.loginRequiredForImageUpload': 'You must be logged in to upload images',
 
 // Quiz
     'quiz.title': 'N64 Quiz',
@@ -1347,6 +1387,7 @@ const translations = {
     'media.game': 'Game',
     'media.mediaType': 'Medien',
     'media.description': 'Description',
+    'media.streamTitle': 'Stream Title',
     'media.noMediaFound': 'No media found',
     'media.noUploads': 'No uploads yet',
     'media.noUploadsDesc': 'You haven\'t uploaded any media yet.',
@@ -1619,6 +1660,7 @@ const translations = {
     'error.somethingWentWrong': 'Something went wrong',
     'error.technicalDetails': 'Technical Details',
     'error.reloadPage': 'Reload Page',
+    'error.threadCreationFailed': 'Error creating thread. Please try again.',
 
 // Success Messages
     'success.saved': 'Erfolg',
@@ -1810,6 +1852,13 @@ const translations = {
     'forum.thread.rainbowRoad': 'Rainbow Road Shortcut Tutorial',
     'forum.welcomeMessage': 'Hey {username}! Great to have you here. Share your N64 knowledge, discuss speedruns and connect with other fans.',
     'forum.publicNotice': 'All posts are stored publicly and are visible to other users.',
+    'forum.threadTitle': 'Thread Title',
+    'forum.communityGuidelines': 'Community Guidelines',
+    'forum.guidelines.respectful': 'Be respectful and polite to other members',
+    'forum.guidelines.meaningfulTitles': 'Use meaningful titles for your threads',
+    'forum.guidelines.rightCategory': 'Post in the appropriate category',
+    'forum.guidelines.noSpam': 'No spam, advertising or off-topic content',
+    'forum.guidelines.useSearch': 'Use the search function before creating a new topic',
 
 // Event content
     'events.mk64Challenge': 'Mario Kart 64 Speedrun Challenge',
@@ -2064,6 +2113,7 @@ const translations = {
     'error.invalidUrl': 'Fehler',
     'error.userNotAuthenticated': 'User not authenticated',
     'error.contentRequired': 'Content is required',
+    'error.invalidFile': 'Invalid file',
 
 // Collection Management
     'collection.confirmRemove': 'Do you really want to remove this game from your collection?',
@@ -2253,11 +2303,24 @@ const translations = {
     'common.retry': 'Réessayer',
     'common.note': 'Note',
 
+// Image Upload
+    'imageUpload.uploadImage': 'Télécharger une image',
+    'imageUpload.dropHere': 'Déposer l\'image ici',
+    'imageUpload.clickOrDrag': 'Cliquer ou Glisser-Déposer',
+    'imageUpload.supportedFormats': 'JPEG, PNG, GIF, WebP (max. 5MB)',
+
 // Form validation
     'validation.allFieldsRequired': 'Tous les champs sont requis',
+    'validation.titleRequired': 'Le titre est requis',
     'validation.titleTooLong': 'Le titre est trop long (max. 100 caractères)',
+    'validation.titleTooShort': 'Le titre est trop court (min. 5 caractères)',
+    'validation.contentRequired': 'Le contenu est requis',
     'validation.contentTooLong': 'Le contenu est trop long (max. 2000 caractères)',
+    'validation.contentTooShort': 'Le contenu est trop court (min. 10 caractères)',
     'validation.postTooLong': 'Le message est trop long (max. 2000 caractères)',
+    'validation.imageTooLarge': 'L\'image est trop grande (max. 5MB)',
+    'validation.imageFilesOnly': 'Seuls les fichiers image sont autorisés',
+    'validation.supportedFormats': 'Formats supportés: JPEG, PNG, GIF, WebP',
 
 // Error messages
     'error.boundary.title': 'Oups ! Quelque chose s\'est produite',
@@ -2307,6 +2370,7 @@ const translations = {
     'auth.confirmPassword': 'Confirmer le mot de passe',
     'auth.forgotPassword': 'Mot de passe oublié ?',
     'auth.loginRequired': 'Connexion requise',
+    'auth.loginRequiredForImageUpload': 'Vous devez être connecté pour télécharger des images',
     'auth.loginRequiredMessage': 'Vous devez être connecté pour voir cette page.',
     'auth.loginRequiredForEvents': 'Veuillez vous connecter pour participer aux événements !',
 
