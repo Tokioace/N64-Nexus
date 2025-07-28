@@ -31,8 +31,8 @@ const ForumContext = createContext<ForumContextType | undefined>(undefined)
 const createMockCategories = (t: (key: string) => string): ForumCategory[] => [
   {
     id: '1',
-    name: 'Speedruns',
-    description: 'Diskutiere über Speedrun-Strategien, Rekorde und Techniken',
+    name: t('forum.category.speedruns'),
+    description: t('forum.category.speedrunsDesc'),
     threadCount: 23,
     lastPost: {
       id: '1',
@@ -76,8 +76,8 @@ const createMockCategories = (t: (key: string) => string): ForumCategory[] => [
   },
   {
     id: '4',
-    name: 'Tauschbörse',
-    description: 'Tausche N64-Spiele, Module und Zubehör',
+    name: t('forum.category.trading'),
+    description: t('forum.category.tradingDesc'),
     threadCount: 8,
     lastPost: {
       id: '4',
@@ -91,8 +91,8 @@ const createMockCategories = (t: (key: string) => string): ForumCategory[] => [
   },
   {
     id: '5',
-    name: 'Hilfe & Support',
-    description: 'Fragen zur App, technische Probleme und Feedback',
+    name: t('forum.category.help'),
+    description: t('forum.category.helpDesc'),
     threadCount: 12,
     lastPost: {
       id: '5',
