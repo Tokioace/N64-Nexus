@@ -837,7 +837,6 @@ const translations = {
     'events.prize.luigiParticipant': '🎖️ Teilnahme: Luigi Event Participation Badge + 25 XP',
 
 // News content
-    'news.title': 'News Feed',
     'news.subtitle': 'Alle Neuigkeiten aus der N64-Community',
     'news.featured': 'Empfohlene Nachrichten',
     'news.search.placeholder': 'Nach Nachrichten suchen...',
@@ -1944,7 +1943,6 @@ const translations = {
     'events.prize.luigiParticipant': '🎖️ Participation: Luigi Event Participation Badge + 25 XP',
 
 // News content
-    'news.title': 'Titel',
     'news.subtitle': 'All the latest news from the N64 community',
     'news.featured': 'Featured News',
     'news.search.placeholder': 'Search news...',
@@ -3037,7 +3035,6 @@ const translations = {
     'events.prize.luigiParticipant': '🎖️ Participation : Badge Participation Événement Luigi + 25 XP',
 
 // News content
-    'news.title': 'Flux d\'actualités',
     'news.subtitle': 'Toutes les dernières nouvelles de la communauté N64',
     'news.featured': 'Actualités en vedette',
     'news.search.placeholder': 'Rechercher des actualités...',
@@ -4090,7 +4087,6 @@ const translations = {
     'events.prize.luigiParticipant': '🎖️ Partecipazione: Badge Partecipazione Evento Luigi + 25 XP',
 
 // News content
-    'news.title': 'Feed delle notizie',
     'news.subtitle': 'Tutte le ultime notizie dalla comunità N64',
     'news.featured': 'Notizie in evidenza',
     'news.search.placeholder': 'Cerca notizie...',
@@ -5139,7 +5135,6 @@ const translations = {
     'events.prize.luigiThird': '🥉 3er Lugar: Trofeo Luigi Bronce + 100 XP + Insignia Experto en Pruebas de Tiempo',
 
 // News content
-    'news.title': 'Noticias',
     'news.subtitle': 'Subtítulo',
     'news.featured': 'Destacado',
     'news.search.placeholder': 'Buscar noticias...',
@@ -6129,7 +6124,6 @@ const translations = {
     'events.prize.luigiThird': 'Βραβείο Luigi (3η θέση)',
 
 // News content
-    'news.title': 'Νέα',
     'news.subtitle': 'Μείνετε ενημερωμένοι με τα τελευταία νέα της κοινότητας',
     'news.featured': 'Επιλεγμένα',
     'news.search.placeholder': 'Αναζήτηση νέων...',
@@ -7072,7 +7066,6 @@ const translations = {
     'events.prize.luigiThird': 'Etkinlikler',
 
 // News content
-    'news.title': 'Haberler',
     'news.subtitle': 'Haberler',
     'news.featured': 'Haberler',
     'news.search.placeholder': 'Haberler',
@@ -8102,7 +8095,6 @@ const translations = {
     'events.prize.luigiThird': '活动',
 
 // News content
-    'news.title': '新闻',
     'news.subtitle': '新闻',
     'news.featured': '新闻',
     'news.search.placeholder': '新闻',
@@ -9132,7 +9124,6 @@ const translations = {
     'events.prize.luigiThird': 'イベント',
 
 // News content
-    'news.title': 'ニュース',
     'news.subtitle': 'ニュース',
     'news.featured': 'ニュース',
     'news.search.placeholder': 'ニュース',
@@ -10162,7 +10153,6 @@ const translations = {
     'events.prize.luigiThird': 'События',
 
 // News content
-    'news.title': 'Новости',
     'news.subtitle': 'Новости',
     'news.featured': 'Новости',
     'news.search.placeholder': 'Новости',
@@ -11209,7 +11199,6 @@ const translations = {
     'events.prize.luigiThird': 'Eventos',
 
 // News content
-    'news.title': 'Notícias',
     'news.subtitle': 'Notícias',
     'news.featured': 'Notícias',
     'news.search.placeholder': 'Notícias',
@@ -12256,7 +12245,6 @@ const translations = {
     'events.prize.luigiThird': 'इवेंट्स',
 
 // News content
-    'news.title': 'समाचार',
     'news.subtitle': 'समाचार',
     'news.featured': 'समाचार',
     'news.search.placeholder': 'समाचार',
@@ -13303,7 +13291,6 @@ const translations = {
     'events.prize.luigiThird': 'الأحداث',
 
 // News content
-    'news.title': 'الأخبار',
     'news.subtitle': 'الأخبار',
     'news.featured': 'الأخبار',
     'news.search.placeholder': 'الأخبار',
