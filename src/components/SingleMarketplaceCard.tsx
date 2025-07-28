@@ -214,7 +214,7 @@ const SingleMarketplaceCard: React.FC<SingleMarketplaceCardProps> = ({ marketpla
         
         {/* Card counter */}
         <div className="text-center mt-1 text-xs text-slate-400">
-          {currentIndex + 1} von {marketplaceItems.length}
+          {currentIndex + 1} {t('common.of')} {marketplaceItems.length}
         </div>
       </div>
     </div>

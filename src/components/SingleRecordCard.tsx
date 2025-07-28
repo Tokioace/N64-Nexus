@@ -212,7 +212,7 @@ const SingleRecordCard: React.FC<SingleRecordCardProps> = ({ recordItems, classN
         
         {/* Card counter */}
         <div className="text-center mt-1 text-xs text-slate-400">
-          {currentIndex + 1} von {recordItems.length}
+          {currentIndex + 1} {t('common.of')} {recordItems.length}
         </div>
       </div>
     </div>
