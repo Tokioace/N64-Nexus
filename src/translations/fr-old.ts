@@ -17,7 +17,7 @@ const fr = {
   'nav.newsfeed': 'Flux d\'actualités',
   'nav.community': 'Communauté',
 
-  // Home Screen
+  // Home Screen  
   'home.subtitle': 'La Communauté N64 pour les Millennials',
   'home.welcome': 'Bon retour',
   'home.quiz.subtitle': 'Connaissances N64',
@@ -108,6 +108,7 @@ const fr = {
   'events.details': 'Détails',
   'events.noActive': 'Aucun événement actif',
   'events.viewAll': 'Voir tous les événements',
+  'events.joinEvent': 'Rejoindre l\'événement',
   'events.joinEvent': 'Rejoindre l\'événement',
   'events.leaveEvent': 'Quitter l\'événement',
   'events.submitTime': 'Soumettre le temps',
