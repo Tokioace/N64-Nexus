@@ -59,32 +59,38 @@ interface FanArtItem {
 interface MediaItem {
   id: string
   title: string
+  description: string
+  type: 'speedrun' | 'screenshot' | 'achievement' | 'stream'
   uploader: string
-  type: 'video' | 'screenshot' | 'stream'
-  thumbnailUrl: string
-  uploadDate: Date
+  date: Date
   views: number
+  likes: number
+  verified: boolean
+  game: string
+  thumbnailUrl?: string
 }
 
-interface RecordItem {
+interface PersonalRecord {
   id: string
   game: string
-  track: string
-  time: string
-  username: string
+  category: string
+  time?: string
+  score?: number
   date: Date
   verified: boolean
+  platform: string
 }
 
 interface MarketplaceItem {
   id: string
   title: string
+  description: string
   price: number
-  currency: string
-  seller: string
   condition: string
-  imageUrl: string
-  createdAt: Date
+  seller: string
+  date: Date
+  image?: string
+  category: string
 }
 
 const HomePage: React.FC = () => {
@@ -203,42 +209,27 @@ const HomePage: React.FC = () => {
   ]
 
   const mediaItems: MediaItem[] = [
-    { id: '1', title: 'Mario 64 16 Star WR Run', uploader: 'SpeedDemon64', type: 'video', thumbnailUrl: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRkY2QjZCIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIiBmaWxsPSIjRkZGRkZGIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiPk1hcmlvIFZpZGVvPC90ZXh0Pjwvc3ZnPg==', uploadDate: new Date(Date.now() - 3600000), views: 5430 },
-    { id: '2', title: 'OoT Any% New PB!', uploader: 'ZeldaRunner', type: 'video', thumbnailUrl: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjNEVDREMxIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIiBmaWxsPSIjRkZGRkZGIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiPlplbGRhIFZpZGVvPC90ZXh0Pjwvc3ZnPg==', uploadDate: new Date(Date.now() - 7200000), views: 3210 },
-    { id: '3', title: 'Perfect Dark Agent Speedrun', uploader: 'SecretRunner', type: 'video', thumbnailUrl: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjMkQzNDM2Ii8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIiBmaWxsPSIjRkZGRkZGIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiPlBlcmZlY3REYXJrIFZpZGVvPC90ZXh0Pjwvc3ZnPg==', uploadDate: new Date(Date.now() - 10800000), views: 2890 },
-    { id: '4', title: 'Mario Kart 64 Epic Comeback', uploader: 'KartMaster', type: 'screenshot', thumbnailUrl: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjOTZDRUI0Ii8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIiBmaWxsPSIjRkZGRkZGIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiPkthcnQgU2NyZWVuc2hvdDwvdGV4dD48L3N2Zz4=', uploadDate: new Date(Date.now() - 14400000), views: 1560 },
-    { id: '5', title: 'Live: GoldenEye Tournament', uploader: 'EventStream', type: 'stream', thumbnailUrl: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRkZFQUE3Ii8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIiBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiPkdvbGRlbkV5ZSBTdHJlYW08L3RleHQ+PC9zdmc+', uploadDate: new Date(Date.now() - 18000000), views: 8920 },
-    { id: '6', title: 'Banjo-Kazooie 100% Completion', uploader: 'BearRunner', type: 'video', thumbnailUrl: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjNDVCN0QxIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIiBmaWxsPSIjRkZGRkZGIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiPkJhbmpvIFZpZGVvPC90ZXh0Pjwvc3ZnPg==', uploadDate: new Date(Date.now() - 21600000), views: 4560 },
-    { id: '7', title: 'Smash Bros Combo Video', uploader: 'ComboKing', type: 'video', thumbnailUrl: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRkQ3OUE4Ii8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIiBmaWxsPSIjRkZGRkZGIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiPlNtYXNoIFZpZGVvPC90ZXh0Pjwvc3ZnPg==', uploadDate: new Date(Date.now() - 25200000), views: 6780 },
-    { id: '8', title: 'Star Fox 64 Expert Mode', uploader: 'StarPilot', type: 'video', thumbnailUrl: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjNzRCOUZGIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIiBmaWxsPSIjRkZGRkZGIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiPlN0YXJGb3ggVmlkZW88L3RleHQ+PC9zdmc+', uploadDate: new Date(Date.now() - 28800000), views: 2340 },
-    { id: '9', title: 'Paper Mario Glitchless Run', uploader: 'PaperSpeedster', type: 'video', thumbnailUrl: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRkRDQjZFIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIiBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiPlBhcGVyIE1hcmlvPC90ZXh0Pjwvc3ZnPg==', uploadDate: new Date(Date.now() - 32400000), views: 3450 },
-    { id: '10', title: 'Diddy Kong Racing Screenshot', uploader: 'RacingFan', type: 'screenshot', thumbnailUrl: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRERBMEREIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIiBmaWxsPSIjRkZGRkZGIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiPkRpZGR5IFNjcmVlbnNob3Q8L3RleHQ+PC9zdmc+', uploadDate: new Date(Date.now() - 36000000), views: 1230 }
+    { id: '1', title: 'Mario 64 16 Star WR Run', description: 'New world record attempt with frame-perfect BLJ execution', type: 'speedrun', uploader: 'SpeedDemon64', date: new Date(Date.now() - 3600000), views: 5430, likes: 234, verified: true, game: 'Super Mario 64', thumbnailUrl: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRkY2QjZCIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIiBmaWxsPSIjRkZGRkZGIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiPk1hcmlvIFZpZGVvPC90ZXh0Pjwvc3ZnPg==' },
+    { id: '2', title: 'OoT Any% New PB!', description: 'Personal best with improved routing and glitch execution', type: 'speedrun', uploader: 'ZeldaRunner', date: new Date(Date.now() - 7200000), views: 3210, likes: 156, verified: true, game: 'Ocarina of Time' },
+    { id: '3', title: 'Perfect Dark Agent Speedrun', description: 'Agent difficulty completion with stealth tactics', type: 'speedrun', uploader: 'SecretRunner', date: new Date(Date.now() - 10800000), views: 2890, likes: 89, verified: true, game: 'Perfect Dark' },
+    { id: '4', title: 'Mario Kart 64 Epic Comeback', description: 'Amazing last-lap comeback on Rainbow Road', type: 'screenshot', uploader: 'KartMaster', date: new Date(Date.now() - 14400000), views: 1560, likes: 78, verified: false, game: 'Mario Kart 64' },
+    { id: '5', title: 'Live: GoldenEye Tournament', description: 'Live tournament stream with community commentary', type: 'stream', uploader: 'EventStream', date: new Date(Date.now() - 18000000), views: 8920, likes: 445, verified: true, game: 'GoldenEye 007' }
   ]
 
-  const recordItems: RecordItem[] = [
-    { id: '1', game: 'Super Mario 64', track: '16 Star', time: '15:42.33', username: 'SpeedDemon64', date: new Date(Date.now() - 3600000), verified: true },
-    { id: '2', game: 'Mario Kart 64', track: 'Rainbow Road', time: '6:14.82', username: 'RainbowMaster', date: new Date(Date.now() - 7200000), verified: true },
-    { id: '3', game: 'GoldenEye 007', track: 'Facility Agent', time: '0:58.91', username: 'SecretAgent007', date: new Date(Date.now() - 10800000), verified: true },
-    { id: '4', game: 'Ocarina of Time', track: 'Any%', time: '16:58.12', username: 'ZeldaSpeedster', date: new Date(Date.now() - 14400000), verified: true },
-    { id: '5', game: 'Perfect Dark', track: 'DataDyne Central', time: '1:23.45', username: 'PerfectRunner', date: new Date(Date.now() - 18000000), verified: true },
-    { id: '6', game: 'Banjo-Kazooie', track: '100%', time: '2:03:45.67', username: 'BearBirdPro', date: new Date(Date.now() - 21600000), verified: true },
-    { id: '7', game: 'Star Fox 64', track: 'Expert Mode', time: '23:12.89', username: 'StarWingAce', date: new Date(Date.now() - 25200000), verified: true },
-    { id: '8', game: 'Super Smash Bros', track: '1P Mode Very Hard', time: '7:45.23', username: 'SmashChampion', date: new Date(Date.now() - 28800000), verified: true },
-    { id: '9', game: 'F-Zero X', track: 'Death Race', time: '1:34.56', username: 'SpeedRacer64', date: new Date(Date.now() - 32400000), verified: true },
-    { id: '10', game: 'Paper Mario', track: 'Any%', time: '3:12:34.78', username: 'PaperSpeedRun', date: new Date(Date.now() - 36000000), verified: true }
+  const personalRecords: PersonalRecord[] = [
+    { id: '1', game: 'Super Mario 64', category: '16 Star', time: '15:42.33', date: new Date(Date.now() - 3600000), verified: true, platform: 'N64' },
+    { id: '2', game: 'Mario Kart 64', category: 'Rainbow Road', time: '6:14.82', date: new Date(Date.now() - 7200000), verified: true, platform: 'N64' },
+    { id: '3', game: 'GoldenEye 007', category: 'Facility Agent', time: '0:58.91', date: new Date(Date.now() - 10800000), verified: true, platform: 'N64' },
+    { id: '4', game: 'Ocarina of Time', category: 'Any%', time: '16:58.12', date: new Date(Date.now() - 14400000), verified: true, platform: 'N64' },
+    { id: '5', game: 'Perfect Dark', category: 'DataDyne Central', time: '1:23.45', date: new Date(Date.now() - 18000000), verified: true, platform: 'N64' }
   ]
 
   const marketplaceItems: MarketplaceItem[] = [
-    { id: '1', title: 'Super Mario 64 - Mint Condition', price: 89.99, currency: 'EUR', seller: 'RetroCollector', condition: 'Mint', imageUrl: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRkY2QjZCIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIiBmaWxsPSIjRkZGRkZGIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiPk1hcmlvIDY0PC90ZXh0Pjwvc3ZnPg==', createdAt: new Date(Date.now() - 3600000) },
-    { id: '2', title: 'N64 Controller - Original Nintendo', price: 34.50, currency: 'EUR', seller: 'ControllerKing', condition: 'Very Good', imageUrl: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjNjM2RTcyIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIiBmaWxsPSIjRkZGRkZGIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiPk42NCBDb250cm9sbGVyPC90ZXh0Pjwvc3ZnPg==', createdAt: new Date(Date.now() - 7200000) },
-    { id: '3', title: 'GoldenEye 007 - Complete in Box', price: 125.00, currency: 'EUR', seller: 'GameVault', condition: 'Good', imageUrl: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRkZFQUE3Ii8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIiBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiPkdvbGRlbkV5ZSAwMDc8L3RleHQ+PC9zdmc+', createdAt: new Date(Date.now() - 10800000) },
-    { id: '4', title: 'Ocarina of Time - Gold Cartridge', price: 199.99, currency: 'EUR', seller: 'ZeldaFanatic', condition: 'Mint', imageUrl: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRkRDQjZFIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIiBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiPlplbGRhIEdvbGQ8L3RleHQ+PC9zdmc+', createdAt: new Date(Date.now() - 14400000) },
-    { id: '5', title: 'N64 Console - Jungle Green', price: 149.99, currency: 'EUR', seller: 'ConsoleDealer', condition: 'Very Good', imageUrl: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjMDBCODk0Ii8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIiBmaWxsPSIjRkZGRkZGIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiPk42NCBDb25zb2xlPC90ZXh0Pjwvc3ZnPg==', createdAt: new Date(Date.now() - 18000000) },
-    { id: '6', title: 'Mario Kart 64 - Player\'s Choice', price: 45.00, currency: 'EUR', seller: 'KartCollector', condition: 'Good', imageUrl: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjOTZDRUI0Ii8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIiBmaWxsPSIjRkZGRkZGIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiPk1hcmlvIEthcnQ8L3RleHQ+PC9zdmc+', createdAt: new Date(Date.now() - 21600000) },
-    { id: '7', title: 'Perfect Dark - Big Box Edition', price: 89.50, currency: 'EUR', seller: 'RareGameHunter', condition: 'Very Good', imageUrl: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjMkQzNDM2Ii8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIiBmaWxsPSIjRkZGRkZGIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiPlBlcmZlY3QgRGFyazwvdGV4dD48L3N2Zz4=', createdAt: new Date(Date.now() - 25200000) },
-    { id: '8', title: 'Banjo-Kazooie - Manual included', price: 67.99, currency: 'EUR', seller: 'ManualMaster', condition: 'Good', imageUrl: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjNDVCN0QxIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIiBmaWxsPSIjRkZGRkZGIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiPkJhbmpvIEthem9vaWU8L3RleHQ+PC9zdmc+', createdAt: new Date(Date.now() - 28800000) },
-    { id: '9', title: 'Star Fox 64 - Rumble Pak Bundle', price: 78.00, currency: 'EUR', seller: 'BundleBargains', condition: 'Very Good', imageUrl: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjNzRCOUZGIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIiBmaWxsPSIjRkZGRkZGIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiPlN0YXIgRm94IDY0PC90ZXh0Pjwvc3ZnPg==', createdAt: new Date(Date.now() - 32400000) },
-    { id: '10', title: 'Super Smash Bros - Tournament Ed.', price: 156.99, currency: 'EUR', seller: 'TournamentGames', condition: 'Mint', imageUrl: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRkQ3OUE4Ii8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIiBmaWxsPSIjRkZGRkZGIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiPlNtYXNoIEJyb3M8L3RleHQ+PC9zdmc+', createdAt: new Date(Date.now() - 36000000) }
+    { id: '1', title: 'Super Mario 64 - Mint Condition', description: 'Original cartridge in mint condition with manual', price: 89.99, condition: 'Mint', seller: 'RetroCollector', date: new Date(Date.now() - 3600000), category: 'Games' },
+    { id: '2', title: 'N64 Controller - Original Nintendo', description: 'Official Nintendo controller in very good condition', price: 34.50, condition: 'Very Good', seller: 'ControllerKing', date: new Date(Date.now() - 7200000), category: 'Accessories' },
+    { id: '3', title: 'GoldenEye 007 - Complete in Box', description: 'Complete game with box, manual, and cartridge', price: 125.00, condition: 'Good', seller: 'GameVault', date: new Date(Date.now() - 10800000), category: 'Games' },
+    { id: '4', title: 'Ocarina of Time - Gold Cartridge', description: 'Rare gold cartridge edition in mint condition', price: 199.99, condition: 'Mint', seller: 'ZeldaFanatic', date: new Date(Date.now() - 14400000), category: 'Collectibles' },
+    { id: '5', title: 'N64 Console - Jungle Green', description: 'Special edition jungle green N64 console', price: 149.99, condition: 'Very Good', seller: 'ConsoleDealer', date: new Date(Date.now() - 18000000), category: 'Consoles' }
   ]
 
   const formatTime = (date: Date) => {
@@ -343,12 +334,12 @@ const HomePage: React.FC = () => {
         <span className="flex items-center gap-1">
           <Eye className="w-3 h-3" /> {item.views}
         </span>
-        <span>{formatTime(item.uploadDate)}</span>
+        <span>{formatTime(item.date)}</span>
       </div>
     </div>
   )
 
-  const renderRecordItem = (record: RecordItem, index: number) => (
+  const renderRecordItem = (record: PersonalRecord, index: number) => (
     <div className="h-full flex flex-col">
       <div className="flex-1">
         <div className="flex items-center gap-1 mb-2">
@@ -356,8 +347,8 @@ const HomePage: React.FC = () => {
           <h4 className="leaderboard-time-compact text-slate-100 line-clamp-1">{record.time}</h4>
         </div>
         <p className="text-xs text-slate-300 mb-1 line-clamp-1">{record.game}</p>
-        <p className="text-xs text-slate-400 mb-2 line-clamp-1">{record.track}</p>
-        <p className="text-xs text-blue-400">{record.username}</p>
+        <p className="text-xs text-slate-400 mb-2 line-clamp-1">{record.category}</p>
+        <p className="text-xs text-blue-400">{record.platform}</p>
       </div>
       <div className="flex items-center justify-between text-xs text-slate-400">
         <span>{formatTime(record.date)}</span>
@@ -373,12 +364,12 @@ const HomePage: React.FC = () => {
           <ShoppingCart className="w-6 h-6 text-slate-400" />
         </div>
         <h4 className="text-sm font-semibold text-slate-100 mb-1 line-clamp-1">{item.title}</h4>
-        <p className="text-xs text-green-400 mb-1">{item.price} {item.currency}</p>
+        <p className="text-xs text-green-400 mb-1">€{item.price.toFixed(2)}</p>
         <p className="text-xs text-slate-400 mb-1">{item.condition}</p>
         <p className="text-xs text-blue-400">{item.seller}</p>
       </div>
       <div className="text-xs text-slate-400">
-        <span>{formatTime(item.createdAt)}</span>
+        <span>{formatTime(item.date)}</span>
       </div>
     </div>
   )
@@ -490,7 +481,7 @@ const HomePage: React.FC = () => {
         {/* Records and Marketplace */}
         <div className="responsive-grid-2">
           <SingleRecordCard 
-            recordItems={recordItems}
+            personalRecords={personalRecords}
             className="responsive-max-width"
           />
           

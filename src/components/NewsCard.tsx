@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Newspaper, X, Calendar, User, MessageCircle } from 'lucide-react'
-import { useLanguage } from '../contexts/LanguageContext'
+import { useLanguage, getLocaleString } from '../contexts/LanguageContext'
 
 interface NewsItem {
   id: string
@@ -18,9 +18,10 @@ interface NewsCardProps {
 }
 
 const NewsCard: React.FC<NewsCardProps> = ({ newsItem, index, onDismiss, isAnimating = false }) => {
-  const { t } = useLanguage()
+  const { t, currentLanguage } = useLanguage()
+  
   const formatTime = (date: Date) => {
-    return date.toLocaleTimeString('de-DE', {
+    return date.toLocaleTimeString(getLocaleString(currentLanguage), {
       hour: '2-digit',
       minute: '2-digit'
     })
@@ -71,12 +72,27 @@ const NewsCard: React.FC<NewsCardProps> = ({ newsItem, index, onDismiss, isAnima
     }
   }
 
+  const getTypeTranslation = (type: string) => {
+    switch (type) {
+      case 'event_winner':
+        return t('news.type.eventWinner')
+      case 'n64_history':
+        return t('news.type.n64History')
+      case 'community_news':
+        return t('news.type.communityNews')
+      case 'event_announcement':
+        return t('news.type.eventAnnouncement')
+      default:
+        return t('news.type.general')
+    }
+  }
+
   return (
     <div className={`swipeable-card ${getCardClass(newsItem.type)} relative transition-all duration-300 ${isAnimating ? 'scale-95 opacity-80' : 'scale-100 opacity-100'}`}>
       {/* Event Winner Label */}
       {newsItem.type === 'event_winner' && (
         <div className="news-event-winner-label">
-          Event Winner
+          {t('news.eventWinnerLabel')}
         </div>
       )}
       
@@ -109,12 +125,12 @@ const NewsCard: React.FC<NewsCardProps> = ({ newsItem, index, onDismiss, isAnima
         <div className="flex items-center gap-2">
           <Newspaper className="w-5 h-5 text-accent-blue" />
           <h3 className="text-responsive-base font-bold text-text-primary">
-            News #{index + 1}
+            {t('news.title')} #{index + 1}
           </h3>
         </div>
         <div className="text-xs text-text-muted">
           <span className={`capitalize ${getTypeColor(newsItem.type)}`}>
-            {newsItem.type.replace('_', ' ')}
+            {getTypeTranslation(newsItem.type)}
           </span>
         </div>
       </div>

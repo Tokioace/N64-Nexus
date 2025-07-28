@@ -131,6 +131,14 @@ const translations = {
     'home.news': 'News',
 
 // News
+    'news.title': 'News',
+    'news.noNewsAvailable': 'Keine News verfügbar',
+    'news.eventWinnerLabel': 'Event Gewinner',
+    'news.type.eventWinner': 'Event Gewinner',
+    'news.type.n64History': 'N64 Geschichte',
+    'news.type.communityNews': 'Community News',
+    'news.type.eventAnnouncement': 'Event Ankündigung',
+    'news.type.general': 'Allgemein',
     'news.speedrunEvent': 'Speedrun-Event: GoldenEye 007 Rekorde gebrochen!',
     'news.speedrunEventContent': 'Unglaubliche Leistungen beim gestrigen Event - neue Weltrekorde aufgestellt!',
     'news.n64History': 'N64-Geschichte: 27 Jahre Nintendo 64',
@@ -829,7 +837,6 @@ const translations = {
     'events.prize.luigiParticipant': '🎖️ Teilnahme: Luigi Event Participation Badge + 25 XP',
 
 // News content
-    'news.title': 'News Feed',
     'news.subtitle': 'Alle Neuigkeiten aus der N64-Community',
     'news.featured': 'Empfohlene Nachrichten',
     'news.search.placeholder': 'Nach Nachrichten suchen...',
@@ -1237,6 +1244,14 @@ const translations = {
     'home.news': 'News',
 
 // News
+    'news.title': 'News',
+    'news.noNewsAvailable': 'No news available',
+    'news.eventWinnerLabel': 'Event Winner',
+    'news.type.eventWinner': 'Event Winner',
+    'news.type.n64History': 'N64 History',
+    'news.type.communityNews': 'Community News',
+    'news.type.eventAnnouncement': 'Event Announcement',
+    'news.type.general': 'General',
     'news.speedrunEvent': 'Speedrun Event: GoldenEye 007 Records Broken!',
     'news.speedrunEventContent': 'Incredible performances at yesterday\'s event!',
     'news.n64History': 'N64 History: 27 Years of Nintendo 64',
@@ -1928,7 +1943,6 @@ const translations = {
     'events.prize.luigiParticipant': '🎖️ Participation: Luigi Event Participation Badge + 25 XP',
 
 // News content
-    'news.title': 'Titel',
     'news.subtitle': 'All the latest news from the N64 community',
     'news.featured': 'Featured News',
     'news.search.placeholder': 'Search news...',
@@ -2336,9 +2350,17 @@ const translations = {
     'home.news': 'Actualités',
 
 // News
+    'news.title': 'Actualités',
+    'news.noNewsAvailable': 'Aucune actualité disponible',
+    'news.eventWinnerLabel': 'Gagnant de l\'événement',
+    'news.type.eventWinner': 'Gagnant de l\'événement',
+    'news.type.n64History': 'Histoire N64',
+    'news.type.communityNews': 'Actualités de la communauté',
+    'news.type.eventAnnouncement': 'Annonce d\'événement',
+    'news.type.general': 'Général',
     'news.speedrunEvent': 'Événement Speedrun : Records GoldenEye 007 battus !',
     'news.speedrunEventContent': 'Performances incroyables lors de l\'événement',
-    'news.n64History': 'Aujourd\'abord',
+    'news.n64History': 'Histoire N64 : 27 ans de Nintendo 64',
     'news.n64HistoryContent': 'Il y a 27 ans (1996) la Nintendo 64 est sortie au Japon. Le premier jeu était Super Mario 64 !',
 
 // Common
@@ -3013,7 +3035,6 @@ const translations = {
     'events.prize.luigiParticipant': '🎖️ Participation : Badge Participation Événement Luigi + 25 XP',
 
 // News content
-    'news.title': 'Flux d\'actualités',
     'news.subtitle': 'Toutes les dernières nouvelles de la communauté N64',
     'news.featured': 'Actualités en vedette',
     'news.search.placeholder': 'Rechercher des actualités...',
@@ -3395,9 +3416,17 @@ const translations = {
     'home.news': 'Notizie',
 
 // News
+    'news.title': 'Notizie',
+    'news.noNewsAvailable': 'Nessuna notizia disponibile',
+    'news.eventWinnerLabel': 'Vincitore dell\'evento',
+    'news.type.eventWinner': 'Vincitore dell\'evento',
+    'news.type.n64History': 'Storia N64',
+    'news.type.communityNews': 'Notizie della comunità',
+    'news.type.eventAnnouncement': 'Annuncio evento',
+    'news.type.general': 'Generale',
     'news.speedrunEvent': 'Evento Speedrun: Record GoldenEye 007 battuti!',
     'news.speedrunEventContent': 'Performance incredibili all\'événement',
-    'news.n64History': 'Oggi nella storia N64',
+    'news.n64History': 'Storia N64: 27 anni di Nintendo 64',
     'news.n64HistoryContent': '27 anni fa (1996) il Nintendo 64 è stato rilasciato in Giappone. Il primo gioco era Super Mario 64!',
 
 // Common
@@ -4058,7 +4087,6 @@ const translations = {
     'events.prize.luigiParticipant': '🎖️ Partecipazione: Badge Partecipazione Evento Luigi + 25 XP',
 
 // News content
-    'news.title': 'Feed delle notizie',
     'news.subtitle': 'Tutte le ultime notizie dalla comunità N64',
     'news.featured': 'Notizie in evidenza',
     'news.search.placeholder': 'Cerca notizie...',
@@ -4441,9 +4469,17 @@ const translations = {
     'home.news': 'Noticias',
 
 // News
+    'news.title': 'Noticias',
+    'news.noNewsAvailable': 'No hay noticias disponibles',
+    'news.eventWinnerLabel': 'Ganador del evento',
+    'news.type.eventWinner': 'Ganador del evento',
+    'news.type.n64History': 'Historia N64',
+    'news.type.communityNews': 'Noticias de la comunidad',
+    'news.type.eventAnnouncement': 'Anuncio de evento',
+    'news.type.general': 'General',
     'news.speedrunEvent': 'Evento de Speedrun',
     'news.speedrunEventContent': '¡Únete a nuestro evento semanal de speedrun y compite con los mejores jugadores!',
-    'news.n64History': 'Historia del N64',
+    'news.n64History': 'Historia del N64: 27 años de Nintendo 64',
     'news.n64HistoryContent': 'Un vistazo a la consola legendaria y sus mejores juegos.',
 
 // Common
@@ -5099,7 +5135,6 @@ const translations = {
     'events.prize.luigiThird': '🥉 3er Lugar: Trofeo Luigi Bronce + 100 XP + Insignia Experto en Pruebas de Tiempo',
 
 // News content
-    'news.title': 'Noticias',
     'news.subtitle': 'Subtítulo',
     'news.featured': 'Destacado',
     'news.search.placeholder': 'Buscar noticias...',
@@ -5378,9 +5413,17 @@ const translations = {
     'home.news': 'Νέα',
 
 // News
+    'news.title': 'Νέα',
+    'news.noNewsAvailable': 'Δεν υπάρχουν διαθέσιμα νέα',
+    'news.eventWinnerLabel': 'Νικητής Εκδήλωσης',
+    'news.type.eventWinner': 'Νικητής Εκδήλωσης',
+    'news.type.n64History': 'Ιστορία N64',
+    'news.type.communityNews': 'Νέα Κοινότητας',
+    'news.type.eventAnnouncement': 'Ανακοίνωση Εκδήλωσης',
+    'news.type.general': 'Γενικά',
     'news.speedrunEvent': 'Εκδήλωση Speedrun',
     'news.speedrunEventContent': 'Συμμετέχετε στην τελευταία πρόκληση speedrun!',
-    'news.n64History': 'Ιστορία N64',
+    'news.n64History': 'Ιστορία N64: 27 χρόνια Nintendo 64',
     'news.n64HistoryContent': 'Ανακαλύψτε την πλούσια ιστορία του Nintendo 64',
 
 // Common
@@ -6081,7 +6124,6 @@ const translations = {
     'events.prize.luigiThird': 'Βραβείο Luigi (3η θέση)',
 
 // News content
-    'news.title': 'Νέα',
     'news.subtitle': 'Μείνετε ενημερωμένοι με τα τελευταία νέα της κοινότητας',
     'news.featured': 'Επιλεγμένα',
     'news.search.placeholder': 'Αναζήτηση νέων...',
@@ -6360,10 +6402,18 @@ const translations = {
     'home.news': 'Haberler',
 
 // News
-    'news.speedrunEvent': 'Haberler',
-    'news.speedrunEventContent': 'Haberler',
-    'news.n64History': 'Haberler',
-    'news.n64HistoryContent': 'Haberler',
+    'news.title': 'Haberler',
+    'news.noNewsAvailable': 'Mevcut haber yok',
+    'news.eventWinnerLabel': 'Etkinlik Kazananı',
+    'news.type.eventWinner': 'Etkinlik Kazananı',
+    'news.type.n64History': 'N64 Tarihi',
+    'news.type.communityNews': 'Topluluk Haberleri',
+    'news.type.eventAnnouncement': 'Etkinlik Duyurusu',
+    'news.type.general': 'Genel',
+    'news.speedrunEvent': 'Speedrun Etkinliği: GoldenEye 007 Rekorları Kırıldı!',
+    'news.speedrunEventContent': 'Dünkü etkinlikte inanılmaz performanslar!',
+    'news.n64History': 'N64 Tarihi: Nintendo 64\'ün 27 Yılı',
+    'news.n64HistoryContent': 'Efsanevi konsola ve en iyi oyunlarına bir bakış.',
 
 // Common
     'common.welcome': 'Hoş geldiniz',
@@ -7016,7 +7066,6 @@ const translations = {
     'events.prize.luigiThird': 'Etkinlikler',
 
 // News content
-    'news.title': 'Haberler',
     'news.subtitle': 'Haberler',
     'news.featured': 'Haberler',
     'news.search.placeholder': 'Haberler',
@@ -7382,10 +7431,18 @@ const translations = {
     'home.news': '新闻',
 
 // News
-    'news.speedrunEvent': '新闻',
-    'news.speedrunEventContent': '新闻',
-    'news.n64History': '新闻',
-    'news.n64HistoryContent': '新闻',
+    'news.title': '新闻',
+    'news.noNewsAvailable': '暂无新闻',
+    'news.eventWinnerLabel': '活动获胜者',
+    'news.type.eventWinner': '活动获胜者',
+    'news.type.n64History': 'N64历史',
+    'news.type.communityNews': '社区新闻',
+    'news.type.eventAnnouncement': '活动公告',
+    'news.type.general': '一般',
+    'news.speedrunEvent': '速通活动：GoldenEye 007记录被打破！',
+    'news.speedrunEventContent': '昨天活动中的精彩表现！',
+    'news.n64History': 'N64历史：任天堂64的27年',
+    'news.n64HistoryContent': '回顾这台传奇游戏机及其最佳游戏。',
 
 // Common
     'common.welcome': '欢迎',
@@ -8038,7 +8095,6 @@ const translations = {
     'events.prize.luigiThird': '活动',
 
 // News content
-    'news.title': '新闻',
     'news.subtitle': '新闻',
     'news.featured': '新闻',
     'news.search.placeholder': '新闻',
@@ -8404,10 +8460,18 @@ const translations = {
     'home.news': 'ニュース',
 
 // News
-    'news.speedrunEvent': 'ニュース',
-    'news.speedrunEventContent': 'ニュース',
-    'news.n64History': 'ニュース',
-    'news.n64HistoryContent': 'ニュース',
+    'news.title': 'ニュース',
+    'news.noNewsAvailable': 'ニュースはありません',
+    'news.eventWinnerLabel': 'イベント優勝者',
+    'news.type.eventWinner': 'イベント優勝者',
+    'news.type.n64History': 'N64の歴史',
+    'news.type.communityNews': 'コミュニティニュース',
+    'news.type.eventAnnouncement': 'イベント発表',
+    'news.type.general': '一般',
+    'news.speedrunEvent': 'スピードランイベント：GoldenEye 007記録更新！',
+    'news.speedrunEventContent': '昨日のイベントでの素晴らしいパフォーマンス！',
+    'news.n64History': 'N64の歴史：ニンテンドー64の27年',
+    'news.n64HistoryContent': '伝説のゲーム機とその最高のゲームを振り返る。',
 
 // Common
     'common.welcome': 'ようこそ',
@@ -9060,7 +9124,6 @@ const translations = {
     'events.prize.luigiThird': 'イベント',
 
 // News content
-    'news.title': 'ニュース',
     'news.subtitle': 'ニュース',
     'news.featured': 'ニュース',
     'news.search.placeholder': 'ニュース',
@@ -9426,10 +9489,18 @@ const translations = {
     'home.news': 'Новости',
 
 // News
-    'news.speedrunEvent': 'Новости',
-    'news.speedrunEventContent': 'Новости',
-    'news.n64History': 'Новости',
-    'news.n64HistoryContent': 'Новости',
+    'news.title': 'Новости',
+    'news.noNewsAvailable': 'Нет доступных новостей',
+    'news.eventWinnerLabel': 'Победитель события',
+    'news.type.eventWinner': 'Победитель события',
+    'news.type.n64History': 'История N64',
+    'news.type.communityNews': 'Новости сообщества',
+    'news.type.eventAnnouncement': 'Объявление события',
+    'news.type.general': 'Общие',
+    'news.speedrunEvent': 'Событие спидрана: Рекорды GoldenEye 007 побиты!',
+    'news.speedrunEventContent': 'Невероятные выступления на вчерашнем событии!',
+    'news.n64History': 'История N64: 27 лет Nintendo 64',
+    'news.n64HistoryContent': 'Взгляд назад на легендарную консоль и её лучшие игры.',
 
 // Common
     'common.welcome': 'Добро пожаловать',
@@ -10082,7 +10153,6 @@ const translations = {
     'events.prize.luigiThird': 'События',
 
 // News content
-    'news.title': 'Новости',
     'news.subtitle': 'Новости',
     'news.featured': 'Новости',
     'news.search.placeholder': 'Новости',
@@ -10465,10 +10535,18 @@ const translations = {
     'home.news': 'Notícias',
 
 // News
-    'news.speedrunEvent': 'Notícias',
-    'news.speedrunEventContent': 'Notícias',
-    'news.n64History': 'Notícias',
-    'news.n64HistoryContent': 'Notícias',
+    'news.title': 'Notícias',
+    'news.noNewsAvailable': 'Nenhuma notícia disponível',
+    'news.eventWinnerLabel': 'Vencedor do Evento',
+    'news.type.eventWinner': 'Vencedor do Evento',
+    'news.type.n64History': 'História N64',
+    'news.type.communityNews': 'Notícias da Comunidade',
+    'news.type.eventAnnouncement': 'Anúncio de Evento',
+    'news.type.general': 'Geral',
+    'news.speedrunEvent': 'Evento Speedrun: Recordes do GoldenEye 007 quebrados!',
+    'news.speedrunEventContent': 'Performances incríveis no evento de ontem!',
+    'news.n64History': 'História N64: 27 anos do Nintendo 64',
+    'news.n64HistoryContent': 'Uma retrospectiva do console lendário e seus melhores jogos.',
 
 // Common
     'common.welcome': 'Bem-vindo',
@@ -11121,7 +11199,6 @@ const translations = {
     'events.prize.luigiThird': 'Eventos',
 
 // News content
-    'news.title': 'Notícias',
     'news.subtitle': 'Notícias',
     'news.featured': 'Notícias',
     'news.search.placeholder': 'Notícias',
@@ -11504,10 +11581,18 @@ const translations = {
     'home.news': 'समाचार',
 
 // News
-    'news.speedrunEvent': 'समाचार',
-    'news.speedrunEventContent': 'समाचार',
-    'news.n64History': 'समाचार',
-    'news.n64HistoryContent': 'समाचार',
+    'news.title': 'समाचार',
+    'news.noNewsAvailable': 'कोई समाचार उपलब्ध नहीं',
+    'news.eventWinnerLabel': 'इवेंट विजेता',
+    'news.type.eventWinner': 'इवेंट विजेता',
+    'news.type.n64History': 'N64 इतिहास',
+    'news.type.communityNews': 'कम्युनिटी समाचार',
+    'news.type.eventAnnouncement': 'इवेंट घोषणा',
+    'news.type.general': 'सामान्य',
+    'news.speedrunEvent': 'स्पीडरन इवेंट: GoldenEye 007 रिकॉर्ड टूटे!',
+    'news.speedrunEventContent': 'कल के इवेंट में अविश्वसनीय प्रदर्शन!',
+    'news.n64History': 'N64 इतिहास: Nintendo 64 के 27 साल',
+    'news.n64HistoryContent': 'महान कंसोल और इसके बेहतरीन गेम्स पर एक नज़र।',
 
 // Common
     'common.welcome': 'स्वागत है',
@@ -12160,7 +12245,6 @@ const translations = {
     'events.prize.luigiThird': 'इवेंट्स',
 
 // News content
-    'news.title': 'समाचार',
     'news.subtitle': 'समाचार',
     'news.featured': 'समाचार',
     'news.search.placeholder': 'समाचार',
@@ -12543,10 +12627,18 @@ const translations = {
     'home.news': 'الأخبار',
 
 // News
-    'news.speedrunEvent': 'الأخبار',
-    'news.speedrunEventContent': 'الأخبار',
-    'news.n64History': 'الأخبار',
-    'news.n64HistoryContent': 'الأخبار',
+    'news.title': 'الأخبار',
+    'news.noNewsAvailable': 'لا توجد أخبار متاحة',
+    'news.eventWinnerLabel': 'فائز الحدث',
+    'news.type.eventWinner': 'فائز الحدث',
+    'news.type.n64History': 'تاريخ N64',
+    'news.type.communityNews': 'أخبار المجتمع',
+    'news.type.eventAnnouncement': 'إعلان الحدث',
+    'news.type.general': 'عام',
+    'news.speedrunEvent': 'حدث السرعة: كُسرت أرقام GoldenEye 007!',
+    'news.speedrunEventContent': 'أداء مذهل في حدث الأمس!',
+    'news.n64History': 'تاريخ N64: 27 عاماً من Nintendo 64',
+    'news.n64HistoryContent': 'نظرة على الجهاز الأسطوري وأفضل ألعابه.',
 
 // Common
     'common.welcome': 'مرحباً',
@@ -13199,7 +13291,6 @@ const translations = {
     'events.prize.luigiThird': 'الأحداث',
 
 // News content
-    'news.title': 'الأخبار',
     'news.subtitle': 'الأخبار',
     'news.featured': 'الأخبار',
     'news.search.placeholder': 'الأخبار',

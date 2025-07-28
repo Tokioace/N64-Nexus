@@ -85,7 +85,7 @@ const SingleNewsCard: React.FC<SingleNewsCardProps> = ({ newsItems, className = 
           </div>
           <div className="swipeable-card-content">
             <div className="flex items-center justify-center h-full text-slate-400 text-responsive-sm">
-              Keine News verfügbar
+              {t('news.noNewsAvailable')}
             </div>
           </div>
         </div>
