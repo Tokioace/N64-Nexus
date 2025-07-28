@@ -215,7 +215,7 @@ const SingleMediaCard: React.FC<SingleMediaCardProps> = ({ mediaItems, className
         
         {/* Card counter */}
         <div className="text-center mt-1 text-xs text-slate-400">
-          {currentIndex + 1} von {mediaItems.length}
+          {currentIndex + 1} {t('common.of')} {mediaItems.length}
         </div>
       </div>
     </div>

@@ -614,8 +614,8 @@ const SpeedrunMediaPage: React.FC = () => {
           {filteredMedia.length === 0 && !loading && (
             <div className="text-center py-12">
               <Camera className="w-16 h-16 text-slate-400 mx-auto mb-4" />
-              <h3 className="text-lg font-semibold text-slate-300 mb-2">Keine Media gefunden</h3>
-              <p className="text-slate-400">Versuche andere Filter oder lade dein erstes Media hoch!</p>
+              <h3 className="text-lg font-semibold text-slate-300 mb-2">{t('media.noMediaFound')}</h3>
+              <p className="text-slate-400">{t('media.tryOtherFilters')}</p>
             </div>
           )}
 
@@ -945,7 +945,7 @@ const SpeedrunMediaPage: React.FC = () => {
                       </div>
 
                       <div>
-                        <h3 className="font-medium text-slate-300 mb-1">Von</h3>
+                        <h3 className="font-medium text-slate-300 mb-1">{t('media.uploadedBy')}</h3>
                         <p className="text-slate-100">{selectedMedia.username}</p>
                       </div>
 

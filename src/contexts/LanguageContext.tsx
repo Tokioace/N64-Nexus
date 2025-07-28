@@ -5398,6 +5398,7 @@ const translations = {
     'common.pause': 'Παύση',
     'common.refresh': 'Ανανέωση',
     'common.details': 'Λεπτομέρειες',
+    'common.of': 'από',
     'common.viewAll': 'Προβολή όλων',
     'common.noData': 'Δεν υπάρχουν δεδομένα',
     'common.confirm': 'Επιβεβαίωση',
@@ -5764,6 +5765,8 @@ const translations = {
     'community.gamesPlayed': 'Παιχνίδια που Έπαιξε',
     'community.totalScore': 'Συνολική Βαθμολογία',
     'community.recentRecord': 'Πρόσφατο Ρεκόρ',
+    'community.noPlayersFound': 'Δεν βρέθηκαν παίκτες',
+    'community.tryOtherFilters': 'Δοκιμάστε άλλους όρους αναζήτησης ή φίλτρα.',
 
 // Chat
     'chat.title': 'Συνομιλία',
@@ -5907,6 +5910,12 @@ const translations = {
     'forum.category.trading': 'Χρηματιστήριο',
     'forum.category.tradingDesc': 'Ανταλλάξτε παιχνίδια N64, κασέτες και αξεσουάρ',
 
+// Forum Thread Titles
+    'forum.thread.easterEggs': 'Κρυμμένα Easter Eggs στο Mario Kart 64',
+    'forum.thread.goldenOcarina': 'Αναζήτηση: Χρυσή Έκδοση Ocarina of Time',
+    'forum.thread.levelSystem': 'Πώς λειτουργεί το σύστημα επιπέδων;',
+    'forum.loginToCreateThreads': 'για να δημιουργήσετε νήματα και να απαντήσετε',
+
 // Collection Manager
     'collection.myCollection': 'Η Συλλογή μου',
     'collection.userCollection': 'Συλλογή Χρήστη',
@@ -5998,6 +6007,8 @@ const translations = {
 
 // Media and Documentation
     'media.screenshot': 'Στιγμιότυπο Οθόνης',
+    'media.noMediaFound': 'Δεν βρέθηκαν μέσα',
+    'media.tryOtherFilters': 'Δοκιμάστε άλλα φίλτρα ή ανεβάστε το πρώτο σας μέσο!',
     'media.video': 'Βίντεο',
     'media.livestream': 'Ζωντανή Μετάδοση',
     'media.photo': 'Φωτογραφία',

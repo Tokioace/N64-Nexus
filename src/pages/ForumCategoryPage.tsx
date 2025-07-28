@@ -141,7 +141,7 @@ const ForumCategoryPage: React.FC = () => {
                 {selectedCategory.description}
               </p>
               <div className="flex items-center gap-4 mt-2 text-sm text-slate-500">
-                <span>{selectedCategory.threadCount} Threads</span>
+                <span>{selectedCategory.threadCount} {t('forum.threads')}</span>
               </div>
             </div>
           </div>
@@ -164,10 +164,10 @@ const ForumCategoryPage: React.FC = () => {
         <div className="simple-tile text-center py-12">
           <MessageSquare className="w-16 h-16 text-slate-600 mx-auto mb-4" />
           <h3 className="text-xl font-semibold text-slate-300 mb-2">
-            Noch keine Threads
+                            {t('forum.noThreads')}
           </h3>
           <p className="text-slate-400 mb-4">
-            Sei der Erste, der in dieser Kategorie einen Thread erstellt!
+                          {t('forum.createFirstThread')}
           </p>
           {isAuthenticated && (
             <Link
@@ -245,7 +245,7 @@ const ForumCategoryPage: React.FC = () => {
                 {thread.lastPost && (
                   <div className="text-right text-sm text-slate-400 min-w-0">
                     <div className="truncate">
-                      von {thread.lastPost.authorName}
+                      {t('forum.createdBy')} {thread.lastPost.authorName}
                     </div>
                     <div className="text-xs">
                       {formatDate(thread.lastPost.createdAt)}
@@ -263,9 +263,9 @@ const ForumCategoryPage: React.FC = () => {
         <div className="simple-tile text-center mt-6">
           <p className="text-slate-400">
             <Link to="/auth" className="text-blue-400 hover:text-blue-300">
-              Melde dich an
+                              {t('auth.login')}
             </Link>
-            {' '}um neue Threads zu erstellen und zu antworten
+            {' '}{t('forum.loginToCreateThreads')}
           </p>
         </div>
       )}

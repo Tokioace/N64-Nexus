@@ -69,7 +69,7 @@ const createMockCategories = (t: (key: string) => string): ForumCategory[] => [
       authorId: '3',
       authorName: 'Mario64Fan',
       createdAt: new Date('2024-01-14T14:20:00'),
-      threadTitle: 'Versteckte Easter Eggs in Mario Kart 64'
+      threadTitle: t('forum.thread.easterEggs')
     },
     icon: 'Brain',
     color: 'purple'
@@ -84,7 +84,7 @@ const createMockCategories = (t: (key: string) => string): ForumCategory[] => [
       authorId: '4',
       authorName: 'Collector99',
       createdAt: new Date('2024-01-13T19:15:00'),
-      threadTitle: 'Suche: Goldene Ocarina of Time Edition'
+      threadTitle: t('forum.thread.goldenOcarina')
     },
     icon: 'Package',
     color: 'green'
@@ -99,7 +99,7 @@ const createMockCategories = (t: (key: string) => string): ForumCategory[] => [
       authorId: '5',
       authorName: 'NewUser2024',
       createdAt: new Date('2024-01-13T11:30:00'),
-      threadTitle: 'Wie funktioniert das Levelsystem?'
+      threadTitle: t('forum.thread.levelSystem')
     },
     icon: 'Users',
     color: 'yellow'
