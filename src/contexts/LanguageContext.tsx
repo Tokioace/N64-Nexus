@@ -1088,6 +1088,7 @@ const translations = {
     'minigames.sound.zelda': '"Hey! Listen!" - Navi Sound',
     'minigames.sound.goldeneye': '"Pew Pew" - Silencer Shot',
     'minigames.sound.mariokart': '"Here we go!" - Race Start',
+    'minigames.opponentAnswering': 'antwortet...',
 
 // EventLeaderboard
     'eventLeaderboard.title': 'Event Leaderboard',
@@ -2156,6 +2157,7 @@ const translations = {
     'minigames.sound.zelda': '"Hey! Listen!" - Navi Sound',
     'minigames.sound.goldeneye': '"Pew Pew" - Silencer Shot',
     'minigames.sound.mariokart': '"Here we go!" - Race Start',
+    'minigames.opponentAnswering': 'is answering...',
 
 // EventLeaderboard
     'eventLeaderboard.title': 'Event Leaderboard',
@@ -3212,6 +3214,7 @@ const translations = {
     'minigames.sound.zelda': '"Hey! Listen!" - Son de Navi',
     'minigames.sound.goldeneye': '"Pew Pew" - Tir silencieux',
     'minigames.sound.mariokart': '"Here we go!" - Début de course',
+    'minigames.opponentAnswering': 'répond...',
 
 // EventLeaderboard
     'eventLeaderboard.title': 'Classement de l\'événement',
@@ -4255,6 +4258,7 @@ const translations = {
     'minigames.sound.zelda': '"Hey! Listen!" - Suono di Navi',
     'minigames.sound.goldeneye': '"Pew Pew" - Sparo silenziato',
     'minigames.sound.mariokart': '"Here we go!" - Inizio gara',
+    'minigames.opponentAnswering': 'sta rispondendo...',
 
 // EventLeaderboard
     'eventLeaderboard.title': 'Classifica Evento',
@@ -5185,10 +5189,11 @@ const translations = {
     'label.required': '*',
 
 // Minigame sound descriptions
-    'minigames.sound.mario64': '"Wahoo!" - Mario Sprung Sound',
-    'minigames.sound.zelda': '"Hey! Listen!" - Navi Sound',
-    'minigames.sound.goldeneye': '"Pew Pew" - Silencer Schuss',
-    'minigames.sound.mariokart': '"Here we go!" - Rennstart',
+    'minigames.sound.mario64': '"Wahoo!" - Sonido de salto de Mario',
+    'minigames.sound.zelda': '"Hey! Listen!" - Sonido de Navi',
+    'minigames.sound.goldeneye': '"Pew Pew" - Disparo silenciado',
+    'minigames.sound.mariokart': '"Here we go!" - Inicio de carrera',
+    'minigames.opponentAnswering': 'está respondiendo...',
 
 // EventLeaderboard
     'eventLeaderboard.title': 'Título',
@@ -5798,6 +5803,15 @@ const translations = {
     'minigames.globalLeaderboard': 'Παγκόσμια Κατάταξη',
     'minigames.globalLeaderboardDesc': 'Δείτε τους καλύτερους παίκτες παγκοσμίως',
     'minigames.viewLeaderboards': 'Προβολή Καταταξιών',
+    'minigames.games': 'Παιχνίδια',
+    'minigames.available': 'Διαθέσιμα',
+
+// Minigame Sound Effects
+    'minigames.sound.mario64': '"Wahoo!" - Ήχος Άλματος Mario',
+    'minigames.sound.zelda': '"Hey! Listen!" - Φωνή της Navi',
+    'minigames.sound.goldeneye': '"Pew Pew" - Βολή με Silencer',
+    'minigames.sound.mariokart': '"Here we go!" - Έναρξη Αγώνα',
+    'minigames.opponentAnswering': 'απαντά...',
 
 // Collection Manager
     'collection.myCollection': 'Η Συλλογή μου',
@@ -7151,6 +7165,7 @@ const translations = {
     'minigames.sound.zelda': '"Hey! Listen!" - Navi Sesi',
     'minigames.sound.goldeneye': '"Pew Pew" - Susturucu Atış',
     'minigames.sound.mariokart': '"Here we go!" - Yarış Başlangıcı',
+    'minigames.opponentAnswering': 'cevaplıyor...',
 
 // EventLeaderboard
     'eventLeaderboard.title': 'Etkinlik Lider Tablosu',
@@ -8172,6 +8187,7 @@ const translations = {
     'minigames.sound.zelda': '"Hey! Listen!" - 娜薇声音',
     'minigames.sound.goldeneye': '"Pew Pew" - 消音器射击',
     'minigames.sound.mariokart': '"Here we go!" - 比赛开始',
+    'minigames.opponentAnswering': '正在回答...',
 
 // EventLeaderboard
     'eventLeaderboard.title': '活动排行榜',
@@ -9193,6 +9209,7 @@ const translations = {
     'minigames.sound.zelda': '"Hey! Listen!" - ナビの声',
     'minigames.sound.goldeneye': '"Pew Pew" - サイレンサー射撃',
     'minigames.sound.mariokart': '"Here we go!" - レース開始',
+    'minigames.opponentAnswering': '回答中...',
 
 // EventLeaderboard
     'eventLeaderboard.title': 'イベントリーダーボード',
@@ -10227,10 +10244,11 @@ const translations = {
     'label.required': 'Label Required',
 
 // Minigame sound descriptions
-    'minigames.sound.mario64': '"Wahoo!" - Mario Sprung Sound',
-    'minigames.sound.zelda': '"Hey! Listen!" - Navi Sound',
-    'minigames.sound.goldeneye': '"Pew Pew" - Silencer Schuss',
-    'minigames.sound.mariokart': '"Here we go!" - Rennstart',
+    'minigames.sound.mario64': '"Wahoo!" - Звук прыжка Марио',
+    'minigames.sound.zelda': '"Hey! Listen!" - Голос Нави',
+    'minigames.sound.goldeneye': '"Pew Pew" - Выстрел с глушителем',
+    'minigames.sound.mariokart': '"Here we go!" - Начало гонки',
+    'minigames.opponentAnswering': 'отвечает...',
 
 // EventLeaderboard
     'eventLeaderboard.title': 'Заголовок',
@@ -11265,10 +11283,11 @@ const translations = {
     'label.required': 'Label Required',
 
 // Minigame sound descriptions
-    'minigames.sound.mario64': '"Wahoo!" - Mario Sprung Sound',
-    'minigames.sound.zelda': '"Hey! Listen!" - Navi Sound',
-    'minigames.sound.goldeneye': '"Pew Pew" - Silencer Schuss',
-    'minigames.sound.mariokart': '"Here we go!" - Rennstart',
+    'minigames.sound.mario64': '"Wahoo!" - Som de pulo do Mario',
+    'minigames.sound.zelda': '"Hey! Listen!" - Voz da Navi',
+    'minigames.sound.goldeneye': '"Pew Pew" - Tiro silenciado',
+    'minigames.sound.mariokart': '"Here we go!" - Início da corrida',
+    'minigames.opponentAnswering': 'está respondendo...',
 
 // EventLeaderboard
     'eventLeaderboard.title': 'Título',
@@ -12303,10 +12322,11 @@ const translations = {
     'label.required': 'Label Required',
 
 // Minigame sound descriptions
-    'minigames.sound.mario64': '"Wahoo!" - Mario Sprung Sound',
-    'minigames.sound.zelda': '"Hey! Listen!" - Navi Sound',
-    'minigames.sound.goldeneye': '"Pew Pew" - Silencer Schuss',
-    'minigames.sound.mariokart': '"Here we go!" - Rennstart',
+    'minigames.sound.mario64': '"Wahoo!" - मारियो जंप साउंड',
+    'minigames.sound.zelda': '"Hey! Listen!" - नावी की आवाज़',
+    'minigames.sound.goldeneye': '"Pew Pew" - साइलेंसर शॉट',
+    'minigames.sound.mariokart': '"Here we go!" - रेस स्टार्ट',
+    'minigames.opponentAnswering': 'जवाब दे रहा है...',
 
 // EventLeaderboard
     'eventLeaderboard.title': 'शीर्षक',
@@ -13341,10 +13361,11 @@ const translations = {
     'label.required': 'Label Required',
 
 // Minigame sound descriptions
-    'minigames.sound.mario64': '"Wahoo!" - Mario Sprung Sound',
-    'minigames.sound.zelda': '"Hey! Listen!" - Navi Sound',
-    'minigames.sound.goldeneye': '"Pew Pew" - Silencer Schuss',
-    'minigames.sound.mariokart': '"Here we go!" - Rennstart',
+    'minigames.sound.mario64': '"Wahoo!" - صوت قفزة ماريو',
+    'minigames.sound.zelda': '"Hey! Listen!" - صوت نافي',
+    'minigames.sound.goldeneye': '"Pew Pew" - طلقة صامتة',
+    'minigames.sound.mariokart': '"Here we go!" - بداية السباق',
+    'minigames.opponentAnswering': 'يجيب...',
 
 // EventLeaderboard
     'eventLeaderboard.title': 'العنوان',

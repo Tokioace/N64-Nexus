@@ -191,7 +191,7 @@ const MinigamesPage: React.FC = () => {
     { key: 'puzzle', label: t('minigames.puzzle'), count: minigames.filter(g => g.category === 'puzzle').length },
     { key: 'skill', label: t('minigames.skill'), count: minigames.filter(g => g.category === 'skill').length },
     { key: 'quiz', label: t('minigames.quiz'), count: minigames.filter(g => g.category === 'quiz').length },
-    { key: 'multiplayer', label: 'Multiplayer', count: minigames.filter(g => g.category === 'multiplayer').length }
+    { key: 'multiplayer', label: t('minigames.multiplayer'), count: minigames.filter(g => g.category === 'multiplayer').length }
   ]
 
   const filteredGames = selectedCategory === 'all' 
@@ -703,7 +703,7 @@ const MinigamesPage: React.FC = () => {
                                   {t('minigames.you')}: {question.options[playerAnswer!]} {playerAnswer === question.correct ? '✓' : '✗'}
               </div>
               <div className="p-2 rounded bg-slate-700">
-                                  {t('minigames.opponent')} antwortet...
+                                  {t('minigames.opponent')} {t('minigames.opponentAnswering')}
               </div>
             </div>
           </div>
