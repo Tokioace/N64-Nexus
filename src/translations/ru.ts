@@ -132,6 +132,7 @@ const ru = {
   'language.portuguese': 'Португальский',
   'language.hindi': 'Хинди',
   'language.arabic': 'Арабский',
+  'language.korean': 'Корейский',
   'error.generic': 'Произошла ошибка',
   'error.networkError': 'Ошибка сети',
   'error.notFound': 'Страница не найдена',

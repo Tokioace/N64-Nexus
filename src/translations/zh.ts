@@ -147,6 +147,7 @@ const zh = {
   'language.portuguese': '葡萄牙语',
   'language.hindi': '印地语',
   'language.arabic': '阿拉伯语',
+  'language.korean': '韩语',
 
   // Error messages
   'error.generic': '发生错误',

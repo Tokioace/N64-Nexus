@@ -267,6 +267,7 @@ const es = {
   'language.portuguese': 'Portugués',
   'language.hindi': 'Hindi',
   'language.arabic': 'Árabe',
+  'language.korean': 'Coreano',
 
   // Error messages
   'error.generic': 'Ha ocurrido un error',

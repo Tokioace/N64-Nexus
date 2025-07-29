@@ -147,6 +147,7 @@ const it = {
   'language.portuguese': 'Portoghese',
   'language.hindi': 'Hindi',
   'language.arabic': 'Arabo',
+  'language.korean': 'Coreano',
 
 
 

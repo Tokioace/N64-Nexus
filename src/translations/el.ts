@@ -147,6 +147,7 @@ const el = {
   'language.portuguese': 'Πορτογαλικά',
   'language.hindi': 'Χίντι',
   'language.arabic': 'Αραβικά',
+  'language.korean': 'Κορεατικά',
 
   // Error messages
   'error.generic': 'Προέκυψε ένα σφάλμα',

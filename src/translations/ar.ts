@@ -147,6 +147,7 @@ const ar = {
   'language.portuguese': 'البرتغالية',
   'language.hindi': 'الهندية',
   'language.arabic': 'العربية',
+  'language.korean': 'الكورية',
 
   // Error messages - رسائل الخطأ
   'error.generic': 'حدث خطأ',

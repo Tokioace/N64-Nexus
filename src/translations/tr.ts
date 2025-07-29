@@ -147,6 +147,7 @@ const tr = {
   'language.portuguese': 'Portekizce',
   'language.hindi': 'Hintçe',
   'language.arabic': 'Arapça',
+  'language.korean': 'Korece',
 
   // Error messages
   'error.generic': 'Bir hata oluştu',

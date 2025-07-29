@@ -147,6 +147,7 @@ const hi = {
   'language.portuguese': 'पुर्तगाली',
   'language.hindi': 'हिंदी',
   'language.arabic': 'अरबी',
+  'language.korean': 'कोरियाई',
 
   // Error messages
   'error.generic': 'एक त्रुटि हुई',

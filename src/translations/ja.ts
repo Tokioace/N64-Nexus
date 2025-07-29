@@ -147,6 +147,7 @@ const ja = {
   'language.portuguese': 'ポルトガル語',
   'language.hindi': 'ヒンディー語',
   'language.arabic': 'アラビア語',
+  'language.korean': '韓国語',
 
   // Error messages
   'error.generic': 'エラーが発生しました',
