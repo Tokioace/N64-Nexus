@@ -1,4 +1,8 @@
-const en = {
+// This is a template file for creating new language translations
+// Copy this file and rename it to your language code (e.g., it.ts for Italian)
+// Then translate all the values while keeping the keys exactly the same
+
+const template = {
   // Navigation
   'nav.home': 'Home',
   'nav.quiz': 'Quiz',
@@ -161,4 +165,4 @@ const en = {
   'error.somethingWentWrong': 'Something went wrong',
 }
 
-export default en
+export default template

@@ -1,11 +1,10 @@
 import React, { createContext, useContext, useState, ReactNode } from 'react'
-import { translations, Language } from '../translations'
-import { safeLocalStorage } from '../utils/storage'
+import { Language, translations, TranslationKeys } from '../translations'
 
 interface LanguageContextType {
   currentLanguage: Language
   setLanguage: (language: Language) => void
-  t: (key: string, params?: Record<string, string>) => string
+  t: (key: TranslationKeys, params?: Record<string, string>) => string
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined)
@@ -42,60 +41,38 @@ interface LanguageProviderProps {
 }
 
 export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) => {
-  const [currentLanguage, setCurrentLanguage] = useState<Language>('de')
+  const [currentLanguage, setCurrentLanguage] = useState<Language>('en')
 
   const setLanguage = (language: Language) => {
     setCurrentLanguage(language)
-    // Store language preference in localStorage
-    safeLocalStorage.setItem('n64-nexus-language', language)
+    // Save to localStorage for persistence
+    localStorage.setItem('battle64-language', language)
   }
 
-  // Translation function with fallback to English and parameter interpolation
-  const t = (key: string, params?: Record<string, string>): string => {
-    const keys = key.split('.')
-    let value: any = translations[currentLanguage]
-    
-    // Navigate through nested keys
-    for (const k of keys) {
-      if (value && typeof value === 'object' && k in value) {
-        value = value[k]
-      } else {
-        // Fallback to English if key doesn't exist in current language
-        value = translations.en
-        for (const fallbackKey of keys) {
-          if (value && typeof value === 'object' && fallbackKey in value) {
-            value = value[fallbackKey]
-          } else {
-            return key // Return the key itself if not found in English either
-          }
-        }
-        break
-      }
-    }
-    
-    if (typeof value !== 'string') {
-      return key // Return the key itself if the final value is not a string
-    }
-    
-    // Handle parameter interpolation
+  // Translation function with parameter support
+  const t = (key: TranslationKeys, params?: Record<string, string>): string => {
+    const languageTranslations = translations[currentLanguage]
+    let translation = languageTranslations[key] || translations.en[key] || key
+
+    // Replace parameters in the translation
     if (params) {
-      return value.replace(/\{(\w+)\}/g, (match, paramKey) => {
-        return params[paramKey] || match
+      Object.entries(params).forEach(([paramKey, paramValue]) => {
+        translation = translation.replace(new RegExp(`{${paramKey}}`, 'g'), paramValue)
       })
     }
-    
-    return value
+
+    return translation
   }
 
-  // Load language preference from localStorage on component mount
+  // Load saved language on mount
   React.useEffect(() => {
-    const savedLanguage = safeLocalStorage.getItem('n64-nexus-language') as Language
-    if (savedLanguage && ['de', 'en', 'fr', 'it', 'es', 'el', 'tr', 'zh', 'ja', 'ru', 'pt', 'hi', 'ar'].includes(savedLanguage)) {
+    const savedLanguage = localStorage.getItem('battle64-language') as Language
+    if (savedLanguage && translations[savedLanguage]) {
       setCurrentLanguage(savedLanguage)
     }
   }, [])
 
-  const value: LanguageContextType = {
+  const value = {
     currentLanguage,
     setLanguage,
     t
@@ -108,4 +85,5 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
   )
 }
 
+// Export types for use in other files
 export type { Language }
