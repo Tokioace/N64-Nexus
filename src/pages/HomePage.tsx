@@ -262,8 +262,8 @@ const HomePage: React.FC = () => {
     const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24))
     const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
     
-    if (days > 0) return t('home.daysRemaining', { days, hours })
-    return t('home.hoursRemaining', { hours })
+    if (days > 0) return t('home.daysRemaining', { days: days.toString(), hours: hours.toString() })
+    return t('home.hoursRemaining', { hours: hours.toString() })
   }
 
   const activeEvent = getActiveEvent()
@@ -291,7 +291,7 @@ const HomePage: React.FC = () => {
         </div>
       </div>
       <div className="flex items-center justify-between text-xs text-slate-400">
-        <span>{t('home.replies', { count: thread.replies })}</span>
+        <span>{t('home.replies', { count: thread.replies.toString() })}</span>
         <span>{formatTime(thread.lastActivity)}</span>
       </div>
     </div>
