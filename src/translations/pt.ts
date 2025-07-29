@@ -147,6 +147,7 @@ const pt = {
   'language.portuguese': 'Português',
   'language.hindi': 'Hindi',
   'language.arabic': 'Árabe',
+  'language.korean': 'Coreano',
 
   // Error messages
   'error.generic': 'Ocorreu um erro',

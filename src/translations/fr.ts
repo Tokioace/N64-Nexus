@@ -147,6 +147,7 @@ const fr = {
   'language.portuguese': 'Portuguese',
   'language.hindi': 'Hindi',
   'language.arabic': 'Arabic',
+  'language.korean': 'Coréen',
 
   // Error messages
   'error.generic': 'An error occurred',

@@ -1,4 +1,4 @@
-export type Language = 'de' | 'en' | 'fr' | 'it' | 'es' | 'el' | 'tr' | 'zh' | 'ja' | 'ru' | 'pt' | 'hi' | 'ar'
+export type Language = 'de' | 'en' | 'fr' | 'it' | 'es' | 'el' | 'tr' | 'zh' | 'ja' | 'ru' | 'pt' | 'hi' | 'ar' | 'ko'
 
 // Import all language files
 import de from './de'
@@ -14,6 +14,7 @@ import ru from './ru'
 import pt from './pt'
 import hi from './hi'
 import ar from './ar'
+import ko from './ko'
 
 // Export translations object
 export const translations = {
@@ -29,7 +30,8 @@ export const translations = {
   ru,
   pt,
   hi,
-  ar
+  ar,
+  ko
 }
 
 export type TranslationKeys = keyof typeof de

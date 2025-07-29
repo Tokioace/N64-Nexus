@@ -151,6 +151,7 @@ const template = {
   'language.portuguese': 'Portuguese',
   'language.hindi': 'Hindi',
   'language.arabic': 'Arabic',
+  'language.korean': 'Korean',
 
   // Error messages
   'error.generic': 'An error occurred',
