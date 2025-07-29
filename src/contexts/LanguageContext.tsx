@@ -5,6 +5,7 @@ interface LanguageContextType {
   currentLanguage: Language
   setLanguage: (language: Language) => void
   t: (key: TranslationKeys, params?: Record<string, string>) => string
+  isRTL: boolean
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined)
@@ -36,6 +37,11 @@ export const getLocaleString = (language: Language): string => {
   }
 }
 
+// Helper function to check if language is RTL
+const isRTLLanguage = (language: Language): boolean => {
+  return language === 'ar'
+}
+
 interface LanguageProviderProps {
   children: ReactNode
 }
@@ -47,6 +53,18 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
     setCurrentLanguage(language)
     // Save to localStorage for persistence
     localStorage.setItem('battle64-language', language)
+    
+    // Apply RTL to document
+    const isRTL = isRTLLanguage(language)
+    document.documentElement.dir = isRTL ? 'rtl' : 'ltr'
+    document.documentElement.lang = language
+    
+    // Add RTL class to body for CSS styling
+    if (isRTL) {
+      document.body.classList.add('rtl-layout')
+    } else {
+      document.body.classList.remove('rtl-layout')
+    }
   }
 
   // Translation function with parameter support
@@ -69,13 +87,25 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
     const savedLanguage = localStorage.getItem('battle64-language') as Language
     if (savedLanguage && translations[savedLanguage]) {
       setCurrentLanguage(savedLanguage)
+      
+      // Apply RTL on initial load
+      const isRTL = isRTLLanguage(savedLanguage)
+      document.documentElement.dir = isRTL ? 'rtl' : 'ltr'
+      document.documentElement.lang = savedLanguage
+      
+      if (isRTL) {
+        document.body.classList.add('rtl-layout')
+      } else {
+        document.body.classList.remove('rtl-layout')
+      }
     }
   }, [])
 
   const value = {
     currentLanguage,
     setLanguage,
-    t
+    t,
+    isRTL: isRTLLanguage(currentLanguage)
   }
 
   return (
