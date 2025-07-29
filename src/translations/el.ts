@@ -449,6 +449,7 @@ const el = {
   'collection.cartOnly': 'Μόνο Κασέτα',
   'collection.boxOnly': 'Μόνο Κουτί',
   'collection.addToWishlist': 'Προσθήκη στη Λίστα Επιθυμιών',
+  'collection.cancel': 'Ακύρωση',
   'collection.condition': 'Κατάσταση',
   'collection.mint': 'Άριστη',
   'collection.used': 'Μεταχειρισμένο',
