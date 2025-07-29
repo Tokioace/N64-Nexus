@@ -799,7 +799,36 @@ const zh = {
   'accessibility.skipToContent': '跳转到主要内容',
   'accessibility.skipToNavigation': '跳转到导航',
   'accessibility.skippedToContent': '已跳转到主要内容',
-  'accessibility.skippedToNavigation': '已跳转到导航'
+  'accessibility.skippedToNavigation': '已跳转到导航',
+
+  // Homepage specific translations - 主页专用翻译
+  'home.noLiveEvent': '没有活跃的直播活动 - 下一个活动即将开始！',
+  'home.showAllEvents': '📅 显示所有活动',
+  'home.newsTitle': '📰 N64 & 应用新闻',
+  'home.daysRemaining': '剩余{days}天{hours}小时',
+  'home.hoursRemaining': '剩余{hours}小时',
+  'home.replies': '{count}条回复',
+  'home.verifiedStatus': '✓ 已验证',
+
+  // News items - 新闻项目
+  'news.mariokartRecord': '🏆 Mario Kart 64 竞速世界纪录被打破！',
+  'news.mariokartRecordContent': 'SpeedDemon64在瓦里奥体育场创造了1:42.33的新世界纪录！',
+  'news.controllerUpdate': '🎮 N64手柄更新可用',
+  'news.controllerUpdateContent': 'Battle64应用现在支持更精确的手柄输入，为更好的竞速录制。',
+  'news.goldeneyelive': '📺 直播活动：GoldenEye 007锦标赛',
+  'news.goldeneyeliveContent': 'GoldenEye 007设施锦标赛正在直播！观看最佳玩家竞争。',
+  'news.collectorFeature': '🎯 N64收藏家功能扩展',
+  'news.collectorFeatureContent': '我们扩展了稀有N64游戏的评级系统。现在带有价格比较！',
+  'news.mario120challenge': '🏁 Super Mario 64 120星挑战',
+  'news.mario120challengeContent': '120星挑战的获胜者已公布！ProGamer_MK以1:37:42获胜。',
+  'news.appUpdate': '🚀 Battle64应用更新2.1',
+  'news.appUpdateContent': '新功能：改进的排行榜、扩展的统计数据和优化的性能。',
+  'news.retroConvention': '🎪 复古游戏大会宣布',
+  'news.retroConventionContent': '今年最大的N64大会将在11月举行。门票现已发售！',
+  'news.speedrunCategory': '🔥 新竞速类别：Any%',
+  'news.speedrunCategoryContent': '我们为Banjo-Kazooie添加了新的Any%类别。现在加入！',
+  'news.monthlyChallenge': '🏆 月度挑战获胜者',
+  'news.monthlyChallengeContent': '恭喜N64Master赢得10月月度挑战！'
 }
 
 export default zh

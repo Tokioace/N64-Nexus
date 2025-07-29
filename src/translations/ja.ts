@@ -799,7 +799,36 @@ const ja = {
   'accessibility.skipToContent': 'メインコンテンツにスキップ',
   'accessibility.skipToNavigation': 'ナビゲーションにスキップ',
   'accessibility.skippedToContent': 'メインコンテンツにスキップしました',
-  'accessibility.skippedToNavigation': 'ナビゲーションにスキップしました'
+  'accessibility.skippedToNavigation': 'ナビゲーションにスキップしました',
+
+  // Homepage specific translations - ホームページ専用翻訳
+  'home.noLiveEvent': 'アクティブなライブイベントがありません - 次のイベントが間もなく開始します！',
+  'home.showAllEvents': '📅 すべてのイベントを表示',
+  'home.newsTitle': '📰 N64 & アプリニュース',
+  'home.daysRemaining': '{days}日{hours}時間残り',
+  'home.hoursRemaining': '{hours}時間残り',
+  'home.replies': '{count}件の返信',
+  'home.verifiedStatus': '✓ 認証済み',
+
+  // News items - ニュースアイテム
+  'news.mariokartRecord': '🏆 Mario Kart 64 スピードラン世界記録更新！',
+  'news.mariokartRecordContent': 'SpeedDemon64がワリオスタジアムで1:42.33の新世界記録を樹立しました！',
+  'news.controllerUpdate': '🎮 N64コントローラーアップデート利用可能',
+  'news.controllerUpdateContent': 'Battle64アプリがより精密なコントローラー入力をサポートし、より良いスピードラン記録が可能になりました。',
+  'news.goldeneyelive': '📺 ライブイベント: GoldenEye 007 トーナメント',
+  'news.goldeneyeliveContent': 'GoldenEye 007 Facility トーナメントがライブ開催中！最高のプレイヤーたちの競技をご覧ください。',
+  'news.collectorFeature': '🎯 N64コレクター機能拡張',
+  'news.collectorFeatureContent': 'レアなN64ゲームの評価システムを拡張しました。価格比較機能付き！',
+  'news.mario120challenge': '🏁 Super Mario 64 120スターチャレンジ',
+  'news.mario120challengeContent': '120スターチャレンジの勝者が発表されました！ProGamer_MKが1:37:42で優勝。',
+  'news.appUpdate': '🚀 Battle64アプリアップデート2.1',
+  'news.appUpdateContent': '新機能：改良されたリーダーボード、拡張統計、最適化されたパフォーマンス。',
+  'news.retroConvention': '🎪 レトロゲーミングコンベンション発表',
+  'news.retroConventionContent': '今年最大のN64コンベンションが11月に開催！チケット販売中！',
+  'news.speedrunCategory': '🔥 新スピードランカテゴリー: Any%',
+  'news.speedrunCategoryContent': 'Banjo-Kazooieの新しいAny%カテゴリーを追加しました。今すぐ参加！',
+  'news.monthlyChallenge': '🏆 月間チャレンジ優勝者',
+  'news.monthlyChallengeContent': '10月の月間チャレンジでN64Masterの優勝おめでとうございます！'
 }
 
 export default ja

@@ -112,64 +112,64 @@ const HomePage: React.FC = () => {
   const newsItems: NewsItem[] = [
     {
       id: '1',
-      title: '🏆 Mario Kart 64 Speedrun Weltrekord gebrochen!',
-      content: 'SpeedDemon64 hat einen neuen Weltrekord in Wario Stadium mit einer Zeit von 1:42.33 aufgestellt!',
+      title: t('news.mariokartRecord'),
+      content: t('news.mariokartRecordContent'),
       date: new Date(Date.now() - 3600000),
       type: 'event_winner'
     },
     {
       id: '2',
-      title: '🎮 N64 Controller Update verfügbar',
-      content: 'Die Battle64 App unterstützt jetzt präzisere Controller-Eingaben für bessere Speedrun-Aufzeichnungen.',
+      title: t('news.controllerUpdate'),
+      content: t('news.controllerUpdateContent'),
       date: new Date(Date.now() - 7200000),
       type: 'community_news'
     },
     {
       id: '3',
-      title: '📺 Live Event: GoldenEye 007 Tournament',
-      content: 'Das GoldenEye 007 Facility Tournament läuft gerade! Sieh dir die besten Spieler live an.',
+      title: t('news.goldeneyelive'),
+      content: t('news.goldeneyeliveContent'),
       date: new Date(Date.now() - 1800000),
       type: 'event_announcement'
     },
     {
       id: '4',
-      title: '🎯 N64 Sammler-Feature erweitert',
-      content: 'Wir haben unser Bewertungssystem für seltene N64-Spiele erweitert. Jetzt mit Preisvergleich!',
+      title: t('news.collectorFeature'),
+      content: t('news.collectorFeatureContent'),
       date: new Date(Date.now() - 86400000),
       type: 'n64_history'
     },
     {
       id: '5',
-      title: '🏁 Super Mario 64 120-Star Challenge',
-      content: 'Die Gewinner des 120-Star Challenge stehen fest! ProGamer_MK hat mit 1:37:42 gewonnen.',
+      title: t('news.mario120challenge'),
+      content: t('news.mario120challengeContent'),
       date: new Date(Date.now() - 172800000),
       type: 'event_winner'
     },
     {
       id: '6',
-      title: '🚀 Battle64 App Update 2.1',
-      content: 'Neue Features: Verbesserte Leaderboards, erweiterte Statistiken und optimierte Performance.',
+      title: t('news.appUpdate'),
+      content: t('news.appUpdateContent'),
       date: new Date(Date.now() - 259200000),
       type: 'community_news'
     },
     {
       id: '7',
-      title: '🎪 Retro Gaming Convention angekündigt',
-      content: 'Die größte N64 Convention des Jahres findet im November statt. Tickets ab sofort verfügbar!',
+      title: t('news.retroConvention'),
+      content: t('news.retroConventionContent'),
       date: new Date(Date.now() - 345600000),
       type: 'event_announcement'
     },
     {
       id: '8',
-      title: '🔥 Neue Speedrun Kategorie: Any%',
-      content: 'Wir haben eine neue Any% Kategorie für Banjo-Kazooie hinzugefügt. Jetzt mitmachen!',
+      title: t('news.speedrunCategory'),
+      content: t('news.speedrunCategoryContent'),
       date: new Date(Date.now() - 432000000),
       type: 'n64_history'
     },
     {
       id: '9',
-      title: '🏆 Monthly Challenge Gewinner',
-      content: 'Herzlichen Glückwunsch an N64Master für den Sieg im Oktober Monthly Challenge!',
+      title: t('news.monthlyChallenge'),
+      content: t('news.monthlyChallengeContent'),
       date: new Date(Date.now() - 518400000),
       type: 'event_winner'
     },
@@ -262,8 +262,8 @@ const HomePage: React.FC = () => {
     const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24))
     const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
     
-    if (days > 0) return `${days}d ${hours}h verbleibend`
-    return `${hours}h verbleibend`
+    if (days > 0) return t('home.daysRemaining', { days, hours })
+    return t('home.hoursRemaining', { hours })
   }
 
   const activeEvent = getActiveEvent()
@@ -291,7 +291,7 @@ const HomePage: React.FC = () => {
         </div>
       </div>
       <div className="flex items-center justify-between text-xs text-slate-400">
-        <span>{thread.replies} Antworten</span>
+        <span>{t('home.replies', { count: thread.replies })}</span>
         <span>{formatTime(thread.lastActivity)}</span>
       </div>
     </div>
@@ -352,7 +352,7 @@ const HomePage: React.FC = () => {
       </div>
       <div className="flex items-center justify-between text-xs text-slate-400">
         <span>{formatTime(record.date)}</span>
-        {record.verified && <span className="text-green-400">✓ Verifiziert</span>}
+        {record.verified && <span className="text-green-400">{t('home.verifiedStatus')}</span>}
       </div>
     </div>
   )
@@ -427,12 +427,12 @@ const HomePage: React.FC = () => {
             </div>
             <div className="text-center py-4 sm:py-8">
               <Gamepad2 className="w-8 h-8 sm:w-12 sm:h-12 text-slate-500 mx-auto mb-3" />
-              <p className="text-responsive-sm text-slate-400 mb-4 responsive-word-break">Kein Live-Event aktiv - Nächstes Event startet bald!</p>
+              <p className="text-responsive-sm text-slate-400 mb-4 responsive-word-break">{t('home.noLiveEvent')}</p>
               <Link 
                 to="/events" 
                 className="inline-block px-3 py-2 sm:px-4 sm:py-2 rounded-lg bg-red-500/20 text-red-400 hover:bg-red-500/30 transition-colors text-responsive-sm w-full sm:w-auto text-center"
               >
-                📅 Alle Events anzeigen
+                {t('home.showAllEvents')}
               </Link>
             </div>
           </div>
@@ -451,7 +451,7 @@ const HomePage: React.FC = () => {
         {/* Single News Card - One card at a time with dismiss functionality */}
         <div className="space-y-4">
           <h2 className="text-responsive-xl font-bold text-slate-100 text-center mb-6">
-            📰 N64 & App News
+            {t('home.newsTitle')}
           </h2>
           <SingleNewsCard 
             newsItems={newsItems.slice(0, 8)}

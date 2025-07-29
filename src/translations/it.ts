@@ -752,7 +752,36 @@ const it = {
   'accessibility.skipToContent': 'Vai al contenuto principale',
   'accessibility.skipToNavigation': 'Vai alla navigazione',
   'accessibility.skippedToContent': 'Saltato al contenuto principale',
-  'accessibility.skippedToNavigation': 'Saltato alla navigazione'
+  'accessibility.skippedToNavigation': 'Saltato alla navigazione',
+
+  // Homepage specific translations
+  'home.noLiveEvent': 'Nessun evento live attivo - Il prossimo evento inizia presto!',
+  'home.showAllEvents': '📅 Mostra tutti gli eventi',
+  'home.newsTitle': '📰 Notizie N64 & App',
+  'home.daysRemaining': '{days}g {hours}h rimanenti',
+  'home.hoursRemaining': '{hours}h rimanenti',
+  'home.replies': '{count} risposte',
+  'home.verifiedStatus': '✓ Verificato',
+
+  // News items
+  'news.mariokartRecord': '🏆 Record Mondiale Mario Kart 64 Speedrun Battuto!',
+  'news.mariokartRecordContent': 'SpeedDemon64 ha stabilito un nuovo record mondiale su Wario Stadium con un tempo di 1:42.33!',
+  'news.controllerUpdate': '🎮 Aggiornamento Controller N64 Disponibile',
+  'news.controllerUpdateContent': 'L\'app Battle64 ora supporta input del controller più precisi per migliori registrazioni speedrun.',
+  'news.goldeneyelive': '📺 Evento Live: Torneo GoldenEye 007',
+  'news.goldeneyeliveContent': 'Il Torneo GoldenEye 007 Facility è live! Guarda i migliori giocatori competere.',
+  'news.collectorFeature': '🎯 Funzione Collezionista N64 Ampliata',
+  'news.collectorFeatureContent': 'Abbiamo ampliato il nostro sistema di valutazione per i giochi N64 rari. Ora con confronto prezzi!',
+  'news.mario120challenge': '🏁 Sfida Super Mario 64 120-Star',
+  'news.mario120challengeContent': 'I vincitori della Sfida 120-Star sono stati annunciati! ProGamer_MK ha vinto con 1:37:42.',
+  'news.appUpdate': '🚀 Aggiornamento App Battle64 2.1',
+  'news.appUpdateContent': 'Nuove funzionalità: Classifiche migliorate, statistiche estese e prestazioni ottimizzate.',
+  'news.retroConvention': '🎪 Convention Giochi Retro Annunciata',
+  'news.retroConventionContent': 'La più grande convention N64 dell\'anno si svolge a novembre. Biglietti disponibili ora!',
+  'news.speedrunCategory': '🔥 Nuova Categoria Speedrun: Any%',
+  'news.speedrunCategoryContent': 'Abbiamo aggiunto una nuova categoria Any% per Banjo-Kazooie. Unisciti ora!',
+  'news.monthlyChallenge': '🏆 Vincitore Sfida Mensile',
+  'news.monthlyChallengeContent': 'Congratulazioni a N64Master per aver vinto la Sfida Mensile di Ottobre!'
 }
 
 export default it

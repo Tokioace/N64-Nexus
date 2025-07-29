@@ -882,7 +882,36 @@ const ar = {
   'accessibility.skipToContent': 'الانتقال إلى المحتوى الرئيسي',
   'accessibility.skipToNavigation': 'الانتقال إلى التنقل',
   'accessibility.skippedToContent': 'تم الانتقال إلى المحتوى الرئيسي',
-  'accessibility.skippedToNavigation': 'تم الانتقال إلى التنقل'
+  'accessibility.skippedToNavigation': 'تم الانتقال إلى التنقل',
+
+  // Homepage specific translations - ترجمات خاصة بالصفحة الرئيسية
+  'home.noLiveEvent': 'لا يوجد حدث مباشر نشط - الحدث التالي يبدأ قريباً!',
+  'home.showAllEvents': '📅 عرض جميع الأحداث',
+  'home.newsTitle': '📰 أخبار N64 والتطبيق',
+  'home.daysRemaining': '{days} يوم {hours} ساعة متبقية',
+  'home.hoursRemaining': '{hours} ساعة متبقية',
+  'home.replies': '{count} ردود',
+  'home.verifiedStatus': '✓ محقق',
+
+  // News items - عناصر الأخبار
+  'news.mariokartRecord': '🏆 تم كسر الرقم القياسي العالمي لـ Mario Kart 64 Speedrun!',
+  'news.mariokartRecordContent': 'سجل SpeedDemon64 رقماً قياسياً عالمياً جديداً في Wario Stadium بوقت 1:42.33!',
+  'news.controllerUpdate': '🎮 تحديث وحدة تحكم N64 متاح',
+  'news.controllerUpdateContent': 'يدعم تطبيق Battle64 الآن مدخلات وحدة تحكم أكثر دقة لتسجيلات سباق أفضل.',
+  'news.goldeneyelive': '📺 حدث مباشر: بطولة GoldenEye 007',
+  'news.goldeneyeliveContent': 'بطولة GoldenEye 007 Facility مباشرة الآن! شاهد أفضل اللاعبين يتنافسون.',
+  'news.collectorFeature': '🎯 تم توسيع ميزة جامع N64',
+  'news.collectorFeatureContent': 'لقد وسعنا نظام تقييم الألعاب النادرة N64. الآن مع مقارنة الأسعار!',
+  'news.mario120challenge': '🏁 تحدي Super Mario 64 120-Star',
+  'news.mario120challengeContent': 'تم الإعلان عن فائزي تحدي 120-Star! فاز ProGamer_MK بوقت 1:37:42.',
+  'news.appUpdate': '🚀 تحديث تطبيق Battle64 2.1',
+  'news.appUpdateContent': 'ميزات جديدة: لوحات متصدرين محسنة، إحصائيات موسعة وأداء محسن.',
+  'news.retroConvention': '🎪 تم الإعلان عن مؤتمر الألعاب الكلاسيكية',
+  'news.retroConventionContent': 'أكبر مؤتمر N64 لهذا العام يقام في نوفمبر. التذاكر متاحة الآن!',
+  'news.speedrunCategory': '🔥 فئة سباق جديدة: Any%',
+  'news.speedrunCategoryContent': 'لقد أضفنا فئة Any% جديدة لـ Banjo-Kazooie. انضم الآن!',
+  'news.monthlyChallenge': '🏆 فائز التحدي الشهري',
+  'news.monthlyChallengeContent': 'تهانينا لـ N64Master لفوزه بتحدي أكتوبر الشهري!'
 }
 
 export default ar
