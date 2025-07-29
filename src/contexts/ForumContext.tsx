@@ -28,7 +28,7 @@ interface ForumContextType {
 const ForumContext = createContext<ForumContextType | undefined>(undefined)
 
 // Function to create mock categories with translations
-const createMockCategories = (t: (key: string) => string): ForumCategory[] => [
+const createMockCategories = (t: (key: any) => string): ForumCategory[] => [
   {
     id: '1',
     name: t('forum.category.speedruns'),

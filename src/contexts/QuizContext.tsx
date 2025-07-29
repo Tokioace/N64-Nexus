@@ -6,7 +6,7 @@ import { usePoints } from './PointsContext'
 const QuizContext = createContext<QuizContextType | undefined>(undefined)
 
 // Quiz questions will be generated dynamically based on language
-const getQuizQuestions = (t: (key: string) => string): QuizQuestion[] => [
+const getQuizQuestions = (t: (key: any) => string): QuizQuestion[] => [
   {
     id: '1',
     question: t('quiz.question1'),
