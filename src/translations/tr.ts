@@ -750,7 +750,36 @@ const tr = {
   'accessibility.skipToContent': 'Ana içeriğe geç',
   'accessibility.skipToNavigation': 'Navigasyona geç',
   'accessibility.skippedToContent': 'Ana içeriğe geçildi',
-  'accessibility.skippedToNavigation': 'Navigasyona geçildi'
+  'accessibility.skippedToNavigation': 'Navigasyona geçildi',
+
+  // Homepage specific translations - Ana sayfa özel çevirileri
+  'home.noLiveEvent': 'Aktif canlı etkinlik yok - Bir sonraki etkinlik yakında başlıyor!',
+  'home.showAllEvents': '📅 Tüm etkinlikleri göster',
+  'home.newsTitle': '📰 N64 & Uygulama Haberleri',
+  'home.daysRemaining': '{days}g {hours}s kaldı',
+  'home.hoursRemaining': '{hours}s kaldı',
+  'home.replies': '{count} yanıt',
+  'home.verifiedStatus': '✓ Doğrulandı',
+
+  // News items - Haber öğeleri
+  'news.mariokartRecord': '🏆 Mario Kart 64 Speedrun Dünya Rekoru Kırıldı!',
+  'news.mariokartRecordContent': 'SpeedDemon64, Wario Stadium\'da 1:42.33 zamanıyla yeni dünya rekoru kırdı!',
+  'news.controllerUpdate': '🎮 N64 Kontrolcü Güncellemesi Mevcut',
+  'news.controllerUpdateContent': 'Battle64 uygulaması artık daha iyi speedrun kayıtları için daha hassas kontrolcü girişlerini destekliyor.',
+  'news.goldeneyelive': '📺 Canlı Etkinlik: GoldenEye 007 Turnuvası',
+  'news.goldeneyeliveContent': 'GoldenEye 007 Facility Turnuvası canlı yayında! En iyi oyuncuların yarıştığını izleyin.',
+  'news.collectorFeature': '🎯 N64 Koleksiyoncu Özelliği Genişletildi',
+  'news.collectorFeatureContent': 'Nadir N64 oyunları için değerlendirme sistemimizi genişlettik. Şimdi fiyat karşılaştırması ile!',
+  'news.mario120challenge': '🏁 Super Mario 64 120-Star Meydan Okuması',
+  'news.mario120challengeContent': '120-Star Meydan Okuması kazananları açıklandı! ProGamer_MK 1:37:42 ile kazandı.',
+  'news.appUpdate': '🚀 Battle64 Uygulama Güncellemesi 2.1',
+  'news.appUpdateContent': 'Yeni özellikler: Geliştirilmiş liderlik tabloları, genişletilmiş istatistikler ve optimize edilmiş performans.',
+  'news.retroConvention': '🎪 Retro Oyun Konvansiyonu Duyuruldu',
+  'news.retroConventionContent': 'Yılın en büyük N64 konvansiyonu Kasım ayında gerçekleşiyor. Biletler şimdi satışta!',
+  'news.speedrunCategory': '🔥 Yeni Speedrun Kategorisi: Any%',
+  'news.speedrunCategoryContent': 'Banjo-Kazooie için yeni bir Any% kategorisi ekledik. Şimdi katılın!',
+  'news.monthlyChallenge': '🏆 Aylık Meydan Okuma Kazananı',
+  'news.monthlyChallengeContent': 'Ekim Aylık Meydan Okumasını kazanan N64Master\'ı tebrik ederiz!'
 }
 
 export default tr

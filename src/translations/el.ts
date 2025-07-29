@@ -799,7 +799,36 @@ const el = {
   'accessibility.skipToContent': 'Μετάβαση στο κύριο περιεχόμενο',
   'accessibility.skipToNavigation': 'Μετάβαση στην πλοήγηση',
   'accessibility.skippedToContent': 'Μεταβήκατε στο κύριο περιεχόμενο',
-  'accessibility.skippedToNavigation': 'Μεταβήκατε στην πλοήγηση'
+  'accessibility.skippedToNavigation': 'Μεταβήκατε στην πλοήγηση',
+
+  // Homepage specific translations - Ειδικές μεταφράσεις αρχικής σελίδας
+  'home.noLiveEvent': 'Δεν υπάρχει ενεργή ζωντανή εκδήλωση - Η επόμενη εκδήλωση ξεκινά σύντομα!',
+  'home.showAllEvents': '📅 Εμφάνιση όλων των εκδηλώσεων',
+  'home.newsTitle': '📰 Νέα N64 & Εφαρμογής',
+  'home.daysRemaining': '{days}μ {hours}ω απομένουν',
+  'home.hoursRemaining': '{hours}ω απομένουν',
+  'home.replies': '{count} απαντήσεις',
+  'home.verifiedStatus': '✓ Επαληθευμένο',
+
+  // News items - Στοιχεία ειδήσεων
+  'news.mariokartRecord': '🏆 Κατερρίφθη το Παγκόσμιο Ρεκόρ Mario Kart 64 Speedrun!',
+  'news.mariokartRecordContent': 'Ο SpeedDemon64 έκανε νέο παγκόσμιο ρεκόρ στο Wario Stadium με χρόνο 1:42.33!',
+  'news.controllerUpdate': '🎮 Διαθέσιμη Ενημέρωση Χειριστηρίου N64',
+  'news.controllerUpdateContent': 'Η εφαρμογή Battle64 υποστηρίζει πλέον πιο ακριβείς εισαγωγές χειριστηρίου για καλύτερες καταγραφές speedrun.',
+  'news.goldeneyelive': '📺 Ζωντανή Εκδήλωση: Τουρνουά GoldenEye 007',
+  'news.goldeneyeliveContent': 'Το τουρνουά GoldenEye 007 Facility είναι ζωντανά! Παρακολουθήστε τους καλύτερους παίκτες να αγωνίζονται.',
+  'news.collectorFeature': '🎯 Επεκτάθηκε η Λειτουργία Συλλέκτη N64',
+  'news.collectorFeatureContent': 'Επεκτείναμε το σύστημα αξιολόγησης για σπάνια παιχνίδια N64. Τώρα με σύγκριση τιμών!',
+  'news.mario120challenge': '🏁 Πρόκληση Super Mario 64 120-Star',
+  'news.mario120challengeContent': 'Ανακοινώθηκαν οι νικητές της πρόκλησης 120-Star! Ο ProGamer_MK κέρδισε με 1:37:42.',
+  'news.appUpdate': '🚀 Ενημέρωση Εφαρμογής Battle64 2.1',
+  'news.appUpdateContent': 'Νέες λειτουργίες: Βελτιωμένοι πίνακες κατάταξης, εκτεταμένα στατιστικά και βελτιστοποιημένη απόδοση.',
+  'news.retroConvention': '🎪 Ανακοινώθηκε Συνέδριο Retro Gaming',
+  'news.retroConventionContent': 'Το μεγαλύτερο συνέδριο N64 του χρόνου διεξάγεται τον Νοέμβριο. Εισιτήρια διαθέσιμα τώρα!',
+  'news.speedrunCategory': '🔥 Νέα Κατηγορία Speedrun: Any%',
+  'news.speedrunCategoryContent': 'Προσθέσαμε μια νέα κατηγορία Any% για το Banjo-Kazooie. Συμμετέχετε τώρα!',
+  'news.monthlyChallenge': '🏆 Νικητής Μηνιαίας Πρόκλησης',
+  'news.monthlyChallengeContent': 'Συγχαρητήρια στον N64Master για τη νίκη στη Μηνιαία Πρόκληση Οκτωβρίου!'
 }
 
 export default el

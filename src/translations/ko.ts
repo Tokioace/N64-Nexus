@@ -749,7 +749,36 @@ const ko = {
   'accessibility.skipToContent': '메인 콘텐츠로 건너뛰기',
   'accessibility.skipToNavigation': '네비게이션으로 건너뛰기',
   'accessibility.skippedToContent': '메인 콘텐츠로 건너뛰었습니다',
-  'accessibility.skippedToNavigation': '네비게이션으로 건너뛰었습니다'
+  'accessibility.skippedToNavigation': '네비게이션으로 건너뛰었습니다',
+
+  // Homepage specific translations - 홈페이지 전용 번역
+  'home.noLiveEvent': '활성 라이브 이벤트가 없습니다 - 다음 이벤트가 곧 시작됩니다!',
+  'home.showAllEvents': '📅 모든 이벤트 보기',
+  'home.newsTitle': '📰 N64 & 앱 뉴스',
+  'home.daysRemaining': '{days}일 {hours}시간 남음',
+  'home.hoursRemaining': '{hours}시간 남음',
+  'home.replies': '{count}개의 답글',
+  'home.verifiedStatus': '✓ 인증됨',
+
+  // News items - 뉴스 항목
+  'news.mariokartRecord': '🏆 Mario Kart 64 스피드런 세계 기록 경신!',
+  'news.mariokartRecordContent': 'SpeedDemon64가 와리오 스타디움에서 1:42.33의 새로운 세계 기록을 세웠습니다!',
+  'news.controllerUpdate': '🎮 N64 컨트롤러 업데이트 사용 가능',
+  'news.controllerUpdateContent': 'Battle64 앱이 이제 더 정확한 컨트롤러 입력을 지원하여 더 나은 스피드런 기록이 가능합니다.',
+  'news.goldeneyelive': '📺 라이브 이벤트: GoldenEye 007 토너먼트',
+  'news.goldeneyeliveContent': 'GoldenEye 007 Facility 토너먼트가 라이브로 진행 중입니다! 최고의 플레이어들의 경쟁을 지켜보세요.',
+  'news.collectorFeature': '🎯 N64 컬렉터 기능 확장',
+  'news.collectorFeatureContent': '희귀한 N64 게임에 대한 평가 시스템을 확장했습니다. 이제 가격 비교 기능까지!',
+  'news.mario120challenge': '🏁 Super Mario 64 120-Star 챌린지',
+  'news.mario120challengeContent': '120-Star 챌린지 우승자가 발표되었습니다! ProGamer_MK가 1:37:42로 우승했습니다.',
+  'news.appUpdate': '🚀 Battle64 앱 업데이트 2.1',
+  'news.appUpdateContent': '새로운 기능: 개선된 리더보드, 확장된 통계 및 최적화된 성능.',
+  'news.retroConvention': '🎪 레트로 게임 컨벤션 발표',
+  'news.retroConventionContent': '올해 최대 규모의 N64 컨벤션이 11월에 개최됩니다. 티켓을 지금 구매하세요!',
+  'news.speedrunCategory': '🔥 새로운 스피드런 카테고리: Any%',
+  'news.speedrunCategoryContent': 'Banjo-Kazooie에 새로운 Any% 카테고리를 추가했습니다. 지금 참여하세요!',
+  'news.monthlyChallenge': '🏆 월간 챌린지 우승자',
+  'news.monthlyChallengeContent': '10월 월간 챌린지에서 우승한 N64Master에게 축하합니다!'
 }
 
 export default ko

@@ -750,7 +750,36 @@ const en = {
   'accessibility.skipToContent': 'Skip to main content',
   'accessibility.skipToNavigation': 'Skip to navigation',
   'accessibility.skippedToContent': 'Skipped to main content',
-  'accessibility.skippedToNavigation': 'Skipped to navigation'
+  'accessibility.skippedToNavigation': 'Skipped to navigation',
+
+  // Homepage specific translations
+  'home.noLiveEvent': 'No live event active - Next event starts soon!',
+  'home.showAllEvents': '📅 Show all events',
+  'home.newsTitle': '📰 N64 & App News',
+  'home.daysRemaining': '{days}d {hours}h remaining',
+  'home.hoursRemaining': '{hours}h remaining',
+  'home.replies': '{count} replies',
+  'home.verifiedStatus': '✓ Verified',
+
+  // News items
+  'news.mariokartRecord': '🏆 Mario Kart 64 Speedrun World Record Broken!',
+  'news.mariokartRecordContent': 'SpeedDemon64 set a new world record in Wario Stadium with a time of 1:42.33!',
+  'news.controllerUpdate': '🎮 N64 Controller Update Available',
+  'news.controllerUpdateContent': 'The Battle64 app now supports more precise controller inputs for better speedrun recordings.',
+  'news.goldeneyelive': '📺 Live Event: GoldenEye 007 Tournament',
+  'news.goldeneyeliveContent': 'The GoldenEye 007 Facility Tournament is live! Watch the best players compete.',
+  'news.collectorFeature': '🎯 N64 Collector Feature Expanded',
+  'news.collectorFeatureContent': 'We have expanded our rating system for rare N64 games. Now with price comparison!',
+  'news.mario120challenge': '🏁 Super Mario 64 120-Star Challenge',
+  'news.mario120challengeContent': 'The 120-Star Challenge winners are announced! ProGamer_MK won with 1:37:42.',
+  'news.appUpdate': '🚀 Battle64 App Update 2.1',
+  'news.appUpdateContent': 'New features: Improved leaderboards, extended statistics and optimized performance.',
+  'news.retroConvention': '🎪 Retro Gaming Convention Announced',
+  'news.retroConventionContent': 'The biggest N64 convention of the year takes place in November. Tickets available now!',
+  'news.speedrunCategory': '🔥 New Speedrun Category: Any%',
+  'news.speedrunCategoryContent': 'We have added a new Any% category for Banjo-Kazooie. Join now!',
+  'news.monthlyChallenge': '🏆 Monthly Challenge Winner',
+  'news.monthlyChallengeContent': 'Congratulations to N64Master for winning the October Monthly Challenge!'
 }
 
 export default en
