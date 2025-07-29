@@ -726,6 +726,13 @@ const ja = {
   'media.error': 'Media error',
   'error.invalidFile': 'Invalid file',
   'alt.uploadPreview': 'Upload preview',
+
+
+  // Accessibility keys
+  'accessibility.skipToContent': 'メインコンテンツにスキップ',
+  'accessibility.skipToNavigation': 'ナビゲーションにスキップ',
+  'accessibility.skippedToContent': 'メインコンテンツにスキップしました',
+  'accessibility.skippedToNavigation': 'ナビゲーションにスキップしました'
 }
 
 export default ja

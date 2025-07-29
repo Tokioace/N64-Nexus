@@ -745,6 +745,13 @@ const it = {
   'media.error': 'Errore media',
   'error.invalidFile': 'File non valido',
   'alt.uploadPreview': 'Anteprima caricamento',
+
+
+  // Accessibility keys
+  'accessibility.skipToContent': 'Vai al contenuto principale',
+  'accessibility.skipToNavigation': 'Vai alla navigazione',
+  'accessibility.skippedToContent': 'Saltato al contenuto principale',
+  'accessibility.skippedToNavigation': 'Saltato alla navigazione'
 }
 
 export default it

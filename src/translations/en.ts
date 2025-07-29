@@ -743,6 +743,13 @@ const en = {
   'media.error': 'Media error',
   'error.invalidFile': 'Invalid file',
   'alt.uploadPreview': 'Upload preview',
+
+
+  // Accessibility keys
+  'accessibility.skipToContent': 'Skip to main content',
+  'accessibility.skipToNavigation': 'Skip to navigation',
+  'accessibility.skippedToContent': 'Skipped to main content',
+  'accessibility.skippedToNavigation': 'Skipped to navigation'
 }
 
 export default en

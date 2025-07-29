@@ -726,6 +726,13 @@ const ar = {
   'media.error': 'Media error',
   'error.invalidFile': 'Invalid file',
   'alt.uploadPreview': 'Upload preview',
+
+
+  // Accessibility keys
+  'accessibility.skipToContent': 'الانتقال إلى المحتوى الرئيسي',
+  'accessibility.skipToNavigation': 'الانتقال إلى التنقل',
+  'accessibility.skippedToContent': 'تم الانتقال إلى المحتوى الرئيسي',
+  'accessibility.skippedToNavigation': 'تم الانتقال إلى التنقل'
 }
 
 export default ar

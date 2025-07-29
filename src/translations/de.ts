@@ -743,6 +743,12 @@ const de = {
   'media.error': 'Medien-Fehler',
   'error.invalidFile': 'Ungültige Datei',
   'alt.uploadPreview': 'Upload-Vorschau',
+
+  // Accessibility keys
+  'accessibility.skipToContent': 'Zum Hauptinhalt springen',
+  'accessibility.skipToNavigation': 'Zur Navigation springen',
+  'accessibility.skippedToContent': 'Zum Hauptinhalt gesprungen',
+  'accessibility.skippedToNavigation': 'Zur Navigation gesprungen'
 }
 
 export default de

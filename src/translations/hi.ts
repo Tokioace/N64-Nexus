@@ -726,6 +726,13 @@ const hi = {
   'media.error': 'Media error',
   'error.invalidFile': 'Invalid file',
   'alt.uploadPreview': 'Upload preview',
+
+
+  // Accessibility keys
+  'accessibility.skipToContent': 'मुख्य सामग्री पर जाएं',
+  'accessibility.skipToNavigation': 'नेवीगेशन पर जाएं',
+  'accessibility.skippedToContent': 'मुख्य सामग्री पर गए',
+  'accessibility.skippedToNavigation': 'नेवीगेशन पर गए'
 }
 
 export default hi

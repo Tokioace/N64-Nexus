@@ -726,6 +726,13 @@ const ru = {
   'media.error': 'Media error',
   'error.invalidFile': 'Invalid file',
   'alt.uploadPreview': 'Upload preview',
+
+
+  // Accessibility keys
+  'accessibility.skipToContent': 'Перейти к основному содержанию',
+  'accessibility.skipToNavigation': 'Перейти к навигации',
+  'accessibility.skippedToContent': 'Переход к основному содержанию',
+  'accessibility.skippedToNavigation': 'Переход к навигации'
 }
 
 export default ru

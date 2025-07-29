@@ -726,6 +726,13 @@ const pt = {
   'media.error': 'Media error',
   'error.invalidFile': 'Invalid file',
   'alt.uploadPreview': 'Upload preview',
+
+
+  // Accessibility keys
+  'accessibility.skipToContent': 'Pular para o conteúdo principal',
+  'accessibility.skipToNavigation': 'Pular para a navegação',
+  'accessibility.skippedToContent': 'Pulou para o conteúdo principal',
+  'accessibility.skippedToNavigation': 'Pulou para a navegação'
 }
 
 export default pt

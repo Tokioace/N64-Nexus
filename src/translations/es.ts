@@ -743,6 +743,13 @@ const es = {
   'media.error': 'Error de medios',
   'error.invalidFile': 'Archivo inválido',
   'alt.uploadPreview': 'Vista previa de carga',
+
+
+  // Accessibility keys
+  'accessibility.skipToContent': 'Ir al contenido principal',
+  'accessibility.skipToNavigation': 'Ir a la navegación',
+  'accessibility.skippedToContent': 'Saltado al contenido principal',
+  'accessibility.skippedToNavigation': 'Saltado a la navegación'
 }
 
 export default es

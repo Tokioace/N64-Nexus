@@ -743,6 +743,13 @@ const tr = {
   'media.error': 'Media error',
   'error.invalidFile': 'Invalid file',
   'alt.uploadPreview': 'Upload preview',
+
+
+  // Accessibility keys
+  'accessibility.skipToContent': 'Ana içeriğe geç',
+  'accessibility.skipToNavigation': 'Navigasyona geç',
+  'accessibility.skippedToContent': 'Ana içeriğe geçildi',
+  'accessibility.skippedToNavigation': 'Navigasyona geçildi'
 }
 
 export default tr

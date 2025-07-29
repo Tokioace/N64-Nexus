@@ -726,6 +726,13 @@ const zh = {
   'media.error': 'Media error',
   'error.invalidFile': 'Invalid file',
   'alt.uploadPreview': 'Upload preview',
+
+
+  // Accessibility keys
+  'accessibility.skipToContent': '跳转到主要内容',
+  'accessibility.skipToNavigation': '跳转到导航',
+  'accessibility.skippedToContent': '已跳转到主要内容',
+  'accessibility.skippedToNavigation': '已跳转到导航'
 }
 
 export default zh

@@ -743,6 +743,13 @@ const el = {
   'media.error': 'Media error',
   'error.invalidFile': 'Invalid file',
   'alt.uploadPreview': 'Upload preview',
+
+
+  // Accessibility keys
+  'accessibility.skipToContent': 'Μετάβαση στο κύριο περιεχόμενο',
+  'accessibility.skipToNavigation': 'Μετάβαση στην πλοήγηση',
+  'accessibility.skippedToContent': 'Μεταβήκατε στο κύριο περιεχόμενο',
+  'accessibility.skippedToNavigation': 'Μεταβήκατε στην πλοήγηση'
 }
 
 export default el

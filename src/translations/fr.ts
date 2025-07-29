@@ -743,6 +743,13 @@ const fr = {
   'media.error': 'Erreur média',
   'error.invalidFile': 'Fichier invalide',
   'alt.uploadPreview': 'Aperçu du téléchargement',
+
+
+  // Accessibility keys
+  'accessibility.skipToContent': 'Aller au contenu principal',
+  'accessibility.skipToNavigation': 'Aller à la navigation',
+  'accessibility.skippedToContent': 'Passé au contenu principal',
+  'accessibility.skippedToNavigation': 'Passé à la navigation'
 }
 
 export default fr
