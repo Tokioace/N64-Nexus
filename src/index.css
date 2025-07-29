@@ -30,6 +30,240 @@ body {
   position: relative;
 }
 
+/* RTL Layout Support */
+body.rtl-layout {
+  font-family: 'Inter', 'Noto Sans Arabic', 'Tahoma', 'Arial', sans-serif;
+  direction: rtl;
+  text-align: right;
+}
+
+/* RTL Typography */
+.rtl-layout h1,
+.rtl-layout h2,
+.rtl-layout h3,
+.rtl-layout h4,
+.rtl-layout h5,
+.rtl-layout h6 {
+  text-align: right;
+}
+
+.rtl-layout p,
+.rtl-layout div,
+.rtl-layout span {
+  text-align: right;
+}
+
+/* RTL Navigation */
+.rtl-layout nav ul {
+  direction: rtl;
+}
+
+.rtl-layout nav li {
+  text-align: right;
+}
+
+/* RTL Form Elements */
+.rtl-layout input,
+.rtl-layout textarea,
+.rtl-layout select {
+  text-align: right;
+  direction: rtl;
+}
+
+.rtl-layout input::placeholder,
+.rtl-layout textarea::placeholder {
+  text-align: right;
+  direction: rtl;
+}
+
+/* RTL Button Alignment */
+.rtl-layout .flex {
+  flex-direction: row-reverse;
+}
+
+.rtl-layout .flex-row {
+  flex-direction: row-reverse;
+}
+
+/* RTL Card Layouts */
+.rtl-layout .card-content {
+  text-align: right;
+}
+
+/* RTL Grid and List Views */
+.rtl-layout .grid-item {
+  text-align: right;
+}
+
+.rtl-layout .list-item {
+  text-align: right;
+}
+
+/* RTL Margins and Padding Adjustments */
+.rtl-layout .ml-auto {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+.rtl-layout .mr-auto {
+  margin-right: 0;
+  margin-left: auto;
+}
+
+.rtl-layout .pl-4 {
+  padding-left: 0;
+  padding-right: 1rem;
+}
+
+.rtl-layout .pr-4 {
+  padding-right: 0;
+  padding-left: 1rem;
+}
+
+/* RTL Icons and Arrows */
+.rtl-layout .arrow-right {
+  transform: scaleX(-1);
+}
+
+.rtl-layout .arrow-left {
+  transform: scaleX(-1);
+}
+
+/* RTL Chat and Messages */
+.rtl-layout .chat-message {
+  text-align: right;
+  direction: rtl;
+}
+
+.rtl-layout .message-content {
+  text-align: right;
+}
+
+/* RTL Forum Posts */
+.rtl-layout .forum-post {
+  text-align: right;
+}
+
+.rtl-layout .forum-title {
+  text-align: right;
+}
+
+/* RTL Tables */
+.rtl-layout table {
+  direction: rtl;
+}
+
+.rtl-layout th,
+.rtl-layout td {
+  text-align: right;
+}
+
+/* RTL Modals and Popups */
+.rtl-layout .modal-content {
+  text-align: right;
+}
+
+/* RTL Dropdowns */
+.rtl-layout .dropdown-menu {
+  text-align: right;
+  direction: rtl;
+}
+
+/* RTL Breadcrumbs */
+.rtl-layout .breadcrumb {
+  direction: rtl;
+}
+
+.rtl-layout .breadcrumb-item {
+  text-align: right;
+}
+
+/* RTL Search */
+.rtl-layout .search-input {
+  text-align: right;
+  direction: rtl;
+}
+
+/* RTL Tooltips */
+.rtl-layout .tooltip {
+  text-align: right;
+  direction: rtl;
+}
+
+/* RTL Specific Component Overrides */
+.rtl-layout .language-selector {
+  text-align: right;
+}
+
+.rtl-layout .user-menu {
+  text-align: right;
+}
+
+.rtl-layout .notification-item {
+  text-align: right;
+}
+
+/* RTL Media Queries for Responsive Design */
+@media (max-width: 768px) {
+  .rtl-layout .mobile-nav {
+    text-align: right;
+  }
+  
+  .rtl-layout .mobile-menu-item {
+    text-align: right;
+  }
+}
+
+/* RTL Flexbox Utilities */
+.rtl-layout .justify-start {
+  justify-content: flex-end;
+}
+
+.rtl-layout .justify-end {
+  justify-content: flex-start;
+}
+
+.rtl-layout .items-start {
+  align-items: flex-end;
+}
+
+.rtl-layout .items-end {
+  align-items: flex-start;
+}
+
+/* RTL Text Alignment Utilities */
+.rtl-layout .text-left {
+  text-align: right;
+}
+
+.rtl-layout .text-right {
+  text-align: left;
+}
+
+/* RTL Float Utilities */
+.rtl-layout .float-left {
+  float: right;
+}
+
+.rtl-layout .float-right {
+  float: left;
+}
+
+/* RTL Border Radius for Cards */
+.rtl-layout .rounded-l-lg {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-top-right-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+}
+
+.rtl-layout .rounded-r-lg {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-top-left-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+}
+
 * {
   box-sizing: border-box;
 }
