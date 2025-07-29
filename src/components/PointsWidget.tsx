@@ -49,7 +49,7 @@ const PointsWidget: React.FC = () => {
         </div>
         <div className="text-center">
           <div className="text-xl font-bold text-slate-100">
-            {t(currentRank.key)}
+            {t(currentRank.key as any)}
           </div>
           <div className="text-sm text-slate-400">{t('rank.current')}</div>
         </div>
@@ -58,7 +58,7 @@ const PointsWidget: React.FC = () => {
       {nextRank && (
         <div className="space-y-2">
           <div className="flex items-center justify-between text-sm">
-            <span className="text-slate-300">{t('rank.nextRank')}: {t(nextRank.key)}</span>
+            <span className="text-slate-300">{t('rank.nextRank')}: {t(nextRank.key as any)}</span>
             <span className="text-slate-400">{pointsToNext} {t('rank.pointsToNext')}</span>
           </div>
           <div className="w-full bg-slate-700 rounded-full h-2">

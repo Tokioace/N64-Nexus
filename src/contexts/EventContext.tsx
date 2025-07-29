@@ -21,7 +21,7 @@ const fileToBase64 = (file: File): Promise<string> => {
 }
 
 // Function to get event data with translations
-const getEventData = (t: (key: string) => string): GameEvent[] => [
+const getEventData = (t: (key: any) => string): GameEvent[] => [
   {
     id: '1',
     title: t('events.mk64Challenge'),

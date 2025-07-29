@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react'
 import { MessageCircle, X } from 'lucide-react'
-import { useLanguage } from '../contexts/LanguageContext'
+import { useLanguage, getLocaleString } from '../contexts/LanguageContext'
 
 interface ForumThread {
   id: string
@@ -17,7 +17,7 @@ interface SingleForumCardProps {
 }
 
 const SingleForumCard: React.FC<SingleForumCardProps> = ({ forumThreads, className = '' }) => {
-  const { t } = useLanguage()
+  const { t, currentLanguage } = useLanguage()
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isFlipping, setIsFlipping] = useState(false)
   const [flipDirection, setFlipDirection] = useState<'left' | 'right'>('left')
@@ -25,7 +25,7 @@ const SingleForumCard: React.FC<SingleForumCardProps> = ({ forumThreads, classNa
   const touchEndX = useRef<number>(0)
 
   const formatTime = (date: Date) => {
-    return date.toLocaleTimeString('de-DE', {
+    return date.toLocaleTimeString(getLocaleString(currentLanguage), {
       hour: '2-digit',
       minute: '2-digit'
     })
@@ -210,7 +210,7 @@ const SingleForumCard: React.FC<SingleForumCardProps> = ({ forumThreads, classNa
         
         {/* Card counter */}
         <div className="text-center mt-1 text-xs text-slate-400">
-          {currentIndex + 1} von {forumThreads.length}
+          {currentIndex + 1} {t('common.of')} {forumThreads.length}
         </div>
       </div>
     </div>

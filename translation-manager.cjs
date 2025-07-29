@@ -205,7 +205,7 @@ function validateTranslations() {
         
         if (inObject && line.trim() && !line.trim().startsWith('//')) {
           // Check for proper key-value format
-          if (!line.match(/^\s*'[^']+'\s*:\s*(.+),?\s*$/)) {
+          if (!line.match(/^\s*'[^']+'\s*:\s*'[^']*',?\s*$/)) {
             log('red', `${lang}:${lineNum}: Invalid format: ${line.trim()}`);
             hasErrors = true;
           }

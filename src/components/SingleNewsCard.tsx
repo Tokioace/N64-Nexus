@@ -85,7 +85,7 @@ const SingleNewsCard: React.FC<SingleNewsCardProps> = ({ newsItems, className = 
           </div>
           <div className="swipeable-card-content">
             <div className="flex items-center justify-center h-full text-slate-400 text-responsive-sm">
-              Keine News verfügbar
+              {t('news.noNewsAvailable')}
             </div>
           </div>
         </div>
@@ -184,7 +184,7 @@ const SingleNewsCard: React.FC<SingleNewsCardProps> = ({ newsItems, className = 
         
         {/* Card counter */}
         <div className="text-center mt-1 text-xs text-slate-400">
-          {currentIndex + 1} von {newsItems.length}
+          {currentIndex + 1} {t('common.of')} {newsItems.length}
         </div>
       </div>
     </div>

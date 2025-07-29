@@ -28,11 +28,11 @@ interface ForumContextType {
 const ForumContext = createContext<ForumContextType | undefined>(undefined)
 
 // Function to create mock categories with translations
-const createMockCategories = (t: (key: string) => string): ForumCategory[] => [
+const createMockCategories = (t: (key: any) => string): ForumCategory[] => [
   {
     id: '1',
-    name: 'Speedruns',
-    description: 'Diskutiere über Speedrun-Strategien, Rekorde und Techniken',
+    name: t('forum.category.speedruns'),
+    description: t('forum.category.speedrunsDesc'),
     threadCount: 23,
     lastPost: {
       id: '1',
@@ -69,37 +69,37 @@ const createMockCategories = (t: (key: string) => string): ForumCategory[] => [
       authorId: '3',
       authorName: 'Mario64Fan',
       createdAt: new Date('2024-01-14T14:20:00'),
-      threadTitle: 'Versteckte Easter Eggs in Mario Kart 64'
+      threadTitle: t('forum.thread.easterEggs')
     },
     icon: 'Brain',
     color: 'purple'
   },
   {
     id: '4',
-    name: 'Tauschbörse',
-    description: 'Tausche N64-Spiele, Module und Zubehör',
+    name: t('forum.category.trading'),
+    description: t('forum.category.tradingDesc'),
     threadCount: 8,
     lastPost: {
       id: '4',
       authorId: '4',
       authorName: 'Collector99',
       createdAt: new Date('2024-01-13T19:15:00'),
-      threadTitle: 'Suche: Goldene Ocarina of Time Edition'
+      threadTitle: t('forum.thread.goldenOcarina')
     },
     icon: 'Package',
     color: 'green'
   },
   {
     id: '5',
-    name: 'Hilfe & Support',
-    description: 'Fragen zur App, technische Probleme und Feedback',
+    name: t('forum.category.help'),
+    description: t('forum.category.helpDesc'),
     threadCount: 12,
     lastPost: {
       id: '5',
       authorId: '5',
       authorName: 'NewUser2024',
       createdAt: new Date('2024-01-13T11:30:00'),
-      threadTitle: 'Wie funktioniert das Levelsystem?'
+      threadTitle: t('forum.thread.levelSystem')
     },
     icon: 'Users',
     color: 'yellow'
@@ -329,7 +329,7 @@ export const ForumProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     
     // Validate input
     if (!content.trim() || !threadId.trim()) {
-      setError('Inhalt ist erforderlich')
+      setError(t('validation.contentRequired'))
       return false
     }
     

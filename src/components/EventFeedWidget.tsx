@@ -29,7 +29,7 @@ interface EventFeedWidgetProps {
 
 interface WinnerMediaDisplayProps {
   winner: EventParticipation
-  t: (key: string) => string
+  t: (key: any) => string  // Changed for TypeScript compatibility
 }
 
 const WinnerMediaDisplay: React.FC<WinnerMediaDisplayProps> = ({ winner, t }) => {
@@ -60,7 +60,7 @@ const WinnerMediaDisplay: React.FC<WinnerMediaDisplayProps> = ({ winner, t }) =>
         <div className="text-center">
           <img 
             src={winner.mediaUrl} 
-                            alt={`${t('home.winner')} Screenshot von ${winner.username}`}
+                            alt={`${t('home.winner')} ${t('media.screenshot')} ${t('common.of')} ${winner.username}`}
             className="w-full max-h-32 object-cover rounded-lg mb-2"
             onError={(e) => {
               const target = e.target as HTMLImageElement

@@ -15,7 +15,6 @@ import {
 import { useUser } from './UserContext'
 import { useLanguage } from './LanguageContext'
 import PointsNotification from '../components/PointsNotification'
-import { safeLocalStorage, safeJSONStorage } from '../utils/storage'
 
 const PointsContext = createContext<PointsContextType | undefined>(undefined)
 
@@ -230,7 +229,7 @@ export const PointsProvider: React.FC<{ children: ReactNode }> = ({ children }) 
 
   const loadLeaderboards = () => {
     try {
-      const savedGlobal = safeLocalStorage.getItem(STORAGE_KEY_GLOBAL_LEADERBOARD)
+      const savedGlobal = localStorage.getItem(STORAGE_KEY_GLOBAL_LEADERBOARD)
       if (savedGlobal) {
         setGlobalLeaderboard(JSON.parse(savedGlobal))
       }
@@ -282,7 +281,7 @@ export const PointsProvider: React.FC<{ children: ReactNode }> = ({ children }) 
         .sort((a, b) => b.totalPoints - a.totalPoints)
         .map((entry, index) => ({ ...entry, position: index + 1 }))
       
-      safeJSONStorage.set(STORAGE_KEY_GLOBAL_LEADERBOARD, updated)
+      localStorage.setItem(STORAGE_KEY_GLOBAL_LEADERBOARD, JSON.stringify(updated))
       return updated
     })
 
@@ -467,7 +466,7 @@ export const PointsProvider: React.FC<{ children: ReactNode }> = ({ children }) 
     await awardSeasonMedals()
     
     setCurrentSeason(newSeasonKey)
-    safeLocalStorage.setItem(STORAGE_KEY_CURRENT_SEASON, newSeasonKey)
+    localStorage.setItem(STORAGE_KEY_CURRENT_SEASON, newSeasonKey)
     
     // Reset season leaderboard
     setSeasonLeaderboard([])

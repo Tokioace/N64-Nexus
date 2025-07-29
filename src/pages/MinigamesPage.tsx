@@ -57,8 +57,8 @@ const MinigamesPage: React.FC = () => {
   const minigames: Minigame[] = [
     {
       id: 'memory-match',
-      title: 'N64 Memory Match',
-      description: 'Finde die passenden N64-Spiele-Cover in diesem Gedächtnisspiel.',
+      title: t('minigames.memoryMatch.title'),
+      description: t('minigames.memoryMatch.description'),
       difficulty: 'easy',
       category: 'puzzle',
       icon: Puzzle,
@@ -69,8 +69,8 @@ const MinigamesPage: React.FC = () => {
     },
     {
       id: 'reaction-test',
-      title: 'Controller Reaktionstest',
-      description: 'Wie schnell sind deine Reflexe? Teste deine Reaktionszeit!',
+      title: t('minigames.reactionTest.title'),
+      description: t('minigames.reactionTest.description'),
       difficulty: 'medium',
       category: 'skill',
       icon: Zap,
@@ -81,8 +81,8 @@ const MinigamesPage: React.FC = () => {
     },
     {
       id: 'trivia-rush',
-      title: 'N64 Trivia Rush',
-      description: 'Beantworte N64-Fragen so schnell wie möglich!',
+      title: t('minigames.triviaRush.title'),
+      description: t('minigames.triviaRush.description'),
       difficulty: 'medium',
       category: 'quiz',
       icon: Target,
@@ -93,8 +93,8 @@ const MinigamesPage: React.FC = () => {
     },
     {
       id: 'speed-typing',
-      title: 'Cheat Code Typing',
-      description: 'Tippe berühmte N64 Cheat Codes so schnell wie möglich!',
+      title: t('minigames.cheatCodeTyping.title'),
+      description: t('minigames.cheatCodeTyping.description'),
       difficulty: 'hard',
       category: 'skill',
       icon: Timer,
@@ -104,8 +104,8 @@ const MinigamesPage: React.FC = () => {
     },
     {
       id: 'sound-guess',
-      title: 'N64 Sound Quiz',
-      description: 'Erkenne N64-Spiele an ihren Soundeffekten und Musik.',
+      title: t('minigames.soundQuiz.title'),
+      description: t('minigames.soundQuiz.description'),
       difficulty: 'medium',
       category: 'quiz',
       icon: Music,
@@ -115,8 +115,8 @@ const MinigamesPage: React.FC = () => {
     },
     {
       id: 'multiplayer-duel',
-      title: 'Battle64 Duell',
-      description: 'Fordere andere Spieler zu einem schnellen Quiz-Duell heraus!',
+      title: t('minigames.battleDuel.title'),
+      description: t('minigames.battleDuel.description'),
       difficulty: 'hard',
       category: 'multiplayer',
       icon: Users,
@@ -126,8 +126,8 @@ const MinigamesPage: React.FC = () => {
     },
     {
       id: 'pixel-art-puzzle',
-      title: 'N64 Pixel Art Puzzle',
-      description: 'Setze pixelige N64-Charaktere aus Einzelteilen zusammen!',
+      title: t('minigames.pixelArtPuzzle.title'),
+      description: t('minigames.pixelArtPuzzle.description'),
       difficulty: 'medium',
       category: 'puzzle',
       icon: Star,
@@ -137,8 +137,8 @@ const MinigamesPage: React.FC = () => {
     },
     {
       id: 'speedrun-challenge',
-      title: 'Speedrun Challenge',
-      description: 'Schaffe Mini-Challenges so schnell wie möglich - wie ein echter Speedrunner!',
+      title: t('minigames.speedrunChallenge.title'),
+      description: t('minigames.speedrunChallenge.description'),
       difficulty: 'hard',
       category: 'skill',
       icon: Award,
@@ -191,7 +191,7 @@ const MinigamesPage: React.FC = () => {
     { key: 'puzzle', label: t('minigames.puzzle'), count: minigames.filter(g => g.category === 'puzzle').length },
     { key: 'skill', label: t('minigames.skill'), count: minigames.filter(g => g.category === 'skill').length },
     { key: 'quiz', label: t('minigames.quiz'), count: minigames.filter(g => g.category === 'quiz').length },
-    { key: 'multiplayer', label: 'Multiplayer', count: minigames.filter(g => g.category === 'multiplayer').length }
+    { key: 'multiplayer', label: t('minigames.multiplayer'), count: minigames.filter(g => g.category === 'multiplayer').length }
   ]
 
   const filteredGames = selectedCategory === 'all' 
@@ -703,7 +703,7 @@ const MinigamesPage: React.FC = () => {
                                   {t('minigames.you')}: {question.options[playerAnswer!]} {playerAnswer === question.correct ? '✓' : '✗'}
               </div>
               <div className="p-2 rounded bg-slate-700">
-                                  {t('minigames.opponent')} antwortet...
+                                  {t('minigames.opponent')} {t('minigames.opponentAnswering')}
               </div>
             </div>
           </div>

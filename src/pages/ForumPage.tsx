@@ -140,7 +140,7 @@ const ForumPage: React.FC = () => {
             <div className="simple-tile-content">
               <div className="flex items-center justify-between mb-3">
                 <div className="flex items-center space-x-2 sm:space-x-4 text-xs sm:text-sm text-slate-400">
-                  <span>{category.threadCount} Threads</span>
+                  <span>{category.threadCount} {t('forum.threads')}</span>
                 </div>
               </div>
               
@@ -152,7 +152,7 @@ const ForumPage: React.FC = () => {
                         {category.lastPost.threadTitle}
                       </div>
                       <div className="flex flex-wrap items-center gap-1 sm:gap-2 text-xs text-slate-400 mt-1">
-                        <span className="responsive-word-break">von {category.lastPost.authorName}</span>
+                        <span className="responsive-word-break">{t('forum.createdBy')} {category.lastPost.authorName}</span>
                         <span className="hidden sm:inline">•</span>
                         <div className="flex items-center space-x-1">
                           <Clock className="w-3 h-3 flex-shrink-0" />

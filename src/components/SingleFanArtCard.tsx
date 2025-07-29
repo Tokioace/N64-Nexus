@@ -212,7 +212,7 @@ const SingleFanArtCard: React.FC<SingleFanArtCardProps> = ({ fanArtItems, classN
         
         {/* Card counter */}
         <div className="text-center mt-1 text-xs text-slate-400">
-          {currentIndex + 1} von {fanArtItems.length}
+          {currentIndex + 1} {t('common.of')} {fanArtItems.length}
         </div>
       </div>
     </div>

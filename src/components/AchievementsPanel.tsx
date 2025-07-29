@@ -137,7 +137,7 @@ const AchievementsPanel: React.FC<AchievementsPanelProps> = ({
                   )}
                 </div>
                 <div className="text-xs font-medium text-slate-100 mb-1">
-                  {t(achievement.key)}
+                  {t(achievement.key as any)}
                 </div>
                 {!achievement.unlocked && showProgress && (
                   <div className="w-full bg-slate-700 rounded-full h-1">
@@ -238,7 +238,7 @@ const AchievementsPanel: React.FC<AchievementsPanelProps> = ({
                     <h3 className={`font-bold text-lg ${
                       achievement.unlocked ? 'text-yellow-400' : 'text-slate-300'
                     }`}>
-                      {t(achievement.key)}
+                      {t(achievement.key as any)}
                     </h3>
                     {achievement.unlocked && (
                       <CheckCircle className="w-5 h-5 text-green-400" />
@@ -260,7 +260,7 @@ const AchievementsPanel: React.FC<AchievementsPanelProps> = ({
                         <ul className="list-disc list-inside mt-1 space-y-1">
                           {achievement.requiredActions.map((requirement, index) => (
                             <li key={index}>
-                              {requirement.count}x {t(requirement.action)}
+                              {requirement.count}x {t(requirement.action as any)}
                             </li>
                           ))}
                         </ul>

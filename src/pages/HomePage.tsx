@@ -59,32 +59,38 @@ interface FanArtItem {
 interface MediaItem {
   id: string
   title: string
+  description: string
+  type: 'speedrun' | 'screenshot' | 'achievement' | 'stream'
   uploader: string
-  type: 'video' | 'screenshot' | 'stream'
-  thumbnailUrl: string
-  uploadDate: Date
+  date: Date
   views: number
+  likes: number
+  verified: boolean
+  game: string
+  thumbnailUrl?: string
 }
 
-interface RecordItem {
+interface PersonalRecord {
   id: string
   game: string
-  track: string
-  time: string
-  username: string
+  category: string
+  time?: string
+  score?: number
   date: Date
   verified: boolean
+  platform: string
 }
 
 interface MarketplaceItem {
   id: string
   title: string
+  description: string
   price: number
-  currency: string
-  seller: string
   condition: string
-  imageUrl: string
-  createdAt: Date
+  seller: string
+  date: Date
+  image?: string
+  category: string
 }
 
 const HomePage: React.FC = () => {
@@ -106,64 +112,64 @@ const HomePage: React.FC = () => {
   const newsItems: NewsItem[] = [
     {
       id: '1',
-      title: '🏆 Mario Kart 64 Speedrun Weltrekord gebrochen!',
-      content: 'SpeedDemon64 hat einen neuen Weltrekord in Wario Stadium mit einer Zeit von 1:42.33 aufgestellt!',
+      title: t('news.mariokartRecord'),
+      content: t('news.mariokartRecordContent'),
       date: new Date(Date.now() - 3600000),
       type: 'event_winner'
     },
     {
       id: '2',
-      title: '🎮 N64 Controller Update verfügbar',
-      content: 'Die Battle64 App unterstützt jetzt präzisere Controller-Eingaben für bessere Speedrun-Aufzeichnungen.',
+      title: t('news.controllerUpdate'),
+      content: t('news.controllerUpdateContent'),
       date: new Date(Date.now() - 7200000),
       type: 'community_news'
     },
     {
       id: '3',
-      title: '📺 Live Event: GoldenEye 007 Tournament',
-      content: 'Das GoldenEye 007 Facility Tournament läuft gerade! Sieh dir die besten Spieler live an.',
+      title: t('news.goldeneyelive'),
+      content: t('news.goldeneyeliveContent'),
       date: new Date(Date.now() - 1800000),
       type: 'event_announcement'
     },
     {
       id: '4',
-      title: '🎯 N64 Sammler-Feature erweitert',
-      content: 'Wir haben unser Bewertungssystem für seltene N64-Spiele erweitert. Jetzt mit Preisvergleich!',
+      title: t('news.collectorFeature'),
+      content: t('news.collectorFeatureContent'),
       date: new Date(Date.now() - 86400000),
       type: 'n64_history'
     },
     {
       id: '5',
-      title: '🏁 Super Mario 64 120-Star Challenge',
-      content: 'Die Gewinner des 120-Star Challenge stehen fest! ProGamer_MK hat mit 1:37:42 gewonnen.',
+      title: t('news.mario120challenge'),
+      content: t('news.mario120challengeContent'),
       date: new Date(Date.now() - 172800000),
       type: 'event_winner'
     },
     {
       id: '6',
-      title: '🚀 Battle64 App Update 2.1',
-      content: 'Neue Features: Verbesserte Leaderboards, erweiterte Statistiken und optimierte Performance.',
+      title: t('news.appUpdate'),
+      content: t('news.appUpdateContent'),
       date: new Date(Date.now() - 259200000),
       type: 'community_news'
     },
     {
       id: '7',
-      title: '🎪 Retro Gaming Convention angekündigt',
-      content: 'Die größte N64 Convention des Jahres findet im November statt. Tickets ab sofort verfügbar!',
+      title: t('news.retroConvention'),
+      content: t('news.retroConventionContent'),
       date: new Date(Date.now() - 345600000),
       type: 'event_announcement'
     },
     {
       id: '8',
-      title: '🔥 Neue Speedrun Kategorie: Any%',
-      content: 'Wir haben eine neue Any% Kategorie für Banjo-Kazooie hinzugefügt. Jetzt mitmachen!',
+      title: t('news.speedrunCategory'),
+      content: t('news.speedrunCategoryContent'),
       date: new Date(Date.now() - 432000000),
       type: 'n64_history'
     },
     {
       id: '9',
-      title: '🏆 Monthly Challenge Gewinner',
-      content: 'Herzlichen Glückwunsch an N64Master für den Sieg im Oktober Monthly Challenge!',
+      title: t('news.monthlyChallenge'),
+      content: t('news.monthlyChallengeContent'),
       date: new Date(Date.now() - 518400000),
       type: 'event_winner'
     },
@@ -190,55 +196,40 @@ const HomePage: React.FC = () => {
   ]
 
   const fanArtItems: FanArtItem[] = [
-    { id: '1', title: 'Mario in Peach\'s Castle', artist: 'PixelArtist64', imageUrl: '/api/placeholder/200/150', likes: 234, views: 1250, game: 'Super Mario 64' },
-    { id: '2', title: 'Link vs Ganondorf Epic Battle', artist: 'ZeldaDrawer', imageUrl: '/api/placeholder/200/150', likes: 189, views: 980, game: 'Ocarina of Time' },
-    { id: '3', title: 'Banjo & Kazooie Adventure', artist: 'RetroSketch', imageUrl: '/api/placeholder/200/150', likes: 156, views: 750, game: 'Banjo-Kazooie' },
-    { id: '4', title: 'Rainbow Road Nostalgia', artist: 'KartArtist', imageUrl: '/api/placeholder/200/150', likes: 298, views: 1400, game: 'Mario Kart 64' },
-    { id: '5', title: 'GoldenEye 007 Facility Map', artist: 'SpyArtist', imageUrl: '/api/placeholder/200/150', likes: 167, views: 890, game: 'GoldenEye 007' },
-    { id: '6', title: 'Diddy Kong Racing Team', artist: 'RareArtFan', imageUrl: '/api/placeholder/200/150', likes: 134, views: 620, game: 'Diddy Kong Racing' },
-    { id: '7', title: 'Star Fox 64 Arwing Squadron', artist: 'SpaceArtist', imageUrl: '/api/placeholder/200/150', likes: 201, views: 1100, game: 'Star Fox 64' },
-    { id: '8', title: 'Smash Bros N64 All Stars', artist: 'FighterArt', imageUrl: '/api/placeholder/200/150', likes: 345, views: 1800, game: 'Super Smash Bros' },
-    { id: '9', title: 'Yoshi\'s Story Cute Style', artist: 'YoshiLover', imageUrl: '/api/placeholder/200/150', likes: 123, views: 560, game: 'Yoshi\'s Story' },
-    { id: '10', title: 'F-Zero X Speed Demon', artist: 'RacingArt64', imageUrl: '/api/placeholder/200/150', likes: 178, views: 820, game: 'F-Zero X' }
+    { id: '1', title: 'Mario in Peach\'s Castle', artist: 'PixelArtist64', imageUrl: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRkY2QjZCIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIiBmaWxsPSIjRkZGRkZGIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiPk1hcmlvIEFydDwvdGV4dD48L3N2Zz4=', likes: 234, views: 1250, game: 'Super Mario 64' },
+    { id: '2', title: 'Link vs Ganondorf Epic Battle', artist: 'ZeldaDrawer', imageUrl: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjNEVDREMxIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIiBmaWxsPSIjRkZGRkZGIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiPlplbGRhIEFydDwvdGV4dD48L3N2Zz4=', likes: 189, views: 980, game: 'Ocarina of Time' },
+    { id: '3', title: 'Banjo & Kazooie Adventure', artist: 'RetroSketch', imageUrl: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjNDVCN0QxIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIiBmaWxsPSIjRkZGRkZGIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiPkJhbmpvIEFydDwvdGV4dD48L3N2Zz4=', likes: 156, views: 750, game: 'Banjo-Kazooie' },
+    { id: '4', title: 'Rainbow Road Nostalgia', artist: 'KartArtist', imageUrl: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjOTZDRUI0Ii8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIiBmaWxsPSIjRkZGRkZGIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiPkthcnQgQXJ0PC90ZXh0Pjwvc3ZnPg==', likes: 298, views: 1400, game: 'Mario Kart 64' },
+    { id: '5', title: 'GoldenEye 007 Facility Map', artist: 'SpyArtist', imageUrl: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRkZFQUE3Ii8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIiBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiPkdvbGRlbkV5ZSBBcnQ8L3RleHQ+PC9zdmc+', likes: 167, views: 890, game: 'GoldenEye 007' },
+    { id: '6', title: 'Diddy Kong Racing Team', artist: 'RareArtFan', imageUrl: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRERBMEREIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIiBmaWxsPSIjRkZGRkZGIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiPkRpZGR5IEFydDwvdGV4dD48L3N2Zz4=', likes: 134, views: 620, game: 'Diddy Kong Racing' },
+    { id: '7', title: 'Star Fox 64 Arwing Squadron', artist: 'SpaceArtist', imageUrl: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjNzRCOUZGIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIiBmaWxsPSIjRkZGRkZGIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiPlN0YXJGb3ggQXJ0PC90ZXh0Pjwvc3ZnPg==', likes: 201, views: 1100, game: 'Star Fox 64' },
+    { id: '8', title: 'Smash Bros N64 All Stars', artist: 'FighterArt', imageUrl: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRkQ3OUE4Ii8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIiBmaWxsPSIjRkZGRkZGIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiPlNtYXNoIEFydDwvdGV4dD48L3N2Zz4=', likes: 345, views: 1800, game: 'Super Smash Bros' },
+    { id: '9', title: 'Yoshi\'s Story Cute Style', artist: 'YoshiLover', imageUrl: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjMDBCODk0Ii8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIiBmaWxsPSIjRkZGRkZGIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiPllvc2hpIEFydDwvdGV4dD48L3N2Zz4=', likes: 123, views: 560, game: 'Yoshi\'s Story' },
+    { id: '10', title: 'F-Zero X Speed Demon', artist: 'RacingArt64', imageUrl: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRTE3MDU1Ii8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIiBmaWxsPSIjRkZGRkZGIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiPkYtWmVybyBBcnQ8L3RleHQ+PC9zdmc+', likes: 178, views: 820, game: 'F-Zero X' }
   ]
 
   const mediaItems: MediaItem[] = [
-    { id: '1', title: 'Mario 64 16 Star WR Run', uploader: 'SpeedDemon64', type: 'video', thumbnailUrl: '/api/placeholder/200/150', uploadDate: new Date(Date.now() - 3600000), views: 5430 },
-    { id: '2', title: 'OoT Any% New PB!', uploader: 'ZeldaRunner', type: 'video', thumbnailUrl: '/api/placeholder/200/150', uploadDate: new Date(Date.now() - 7200000), views: 3210 },
-    { id: '3', title: 'Perfect Dark Agent Speedrun', uploader: 'SecretRunner', type: 'video', thumbnailUrl: '/api/placeholder/200/150', uploadDate: new Date(Date.now() - 10800000), views: 2890 },
-    { id: '4', title: 'Mario Kart 64 Epic Comeback', uploader: 'KartMaster', type: 'screenshot', thumbnailUrl: '/api/placeholder/200/150', uploadDate: new Date(Date.now() - 14400000), views: 1560 },
-    { id: '5', title: 'Live: GoldenEye Tournament', uploader: 'EventStream', type: 'stream', thumbnailUrl: '/api/placeholder/200/150', uploadDate: new Date(Date.now() - 18000000), views: 8920 },
-    { id: '6', title: 'Banjo-Kazooie 100% Completion', uploader: 'BearRunner', type: 'video', thumbnailUrl: '/api/placeholder/200/150', uploadDate: new Date(Date.now() - 21600000), views: 4560 },
-    { id: '7', title: 'Smash Bros Combo Video', uploader: 'ComboKing', type: 'video', thumbnailUrl: '/api/placeholder/200/150', uploadDate: new Date(Date.now() - 25200000), views: 6780 },
-    { id: '8', title: 'Star Fox 64 Expert Mode', uploader: 'StarPilot', type: 'video', thumbnailUrl: '/api/placeholder/200/150', uploadDate: new Date(Date.now() - 28800000), views: 2340 },
-    { id: '9', title: 'Paper Mario Glitchless Run', uploader: 'PaperSpeedster', type: 'video', thumbnailUrl: '/api/placeholder/200/150', uploadDate: new Date(Date.now() - 32400000), views: 3450 },
-    { id: '10', title: 'Diddy Kong Racing Screenshot', uploader: 'RacingFan', type: 'screenshot', thumbnailUrl: '/api/placeholder/200/150', uploadDate: new Date(Date.now() - 36000000), views: 1230 }
+    { id: '1', title: 'Mario 64 16 Star WR Run', description: 'New world record attempt with frame-perfect BLJ execution', type: 'speedrun', uploader: 'SpeedDemon64', date: new Date(Date.now() - 3600000), views: 5430, likes: 234, verified: true, game: 'Super Mario 64', thumbnailUrl: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRkY2QjZCIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIiBmaWxsPSIjRkZGRkZGIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiPk1hcmlvIFZpZGVvPC90ZXh0Pjwvc3ZnPg==' },
+    { id: '2', title: 'OoT Any% New PB!', description: 'Personal best with improved routing and glitch execution', type: 'speedrun', uploader: 'ZeldaRunner', date: new Date(Date.now() - 7200000), views: 3210, likes: 156, verified: true, game: 'Ocarina of Time' },
+    { id: '3', title: 'Perfect Dark Agent Speedrun', description: 'Agent difficulty completion with stealth tactics', type: 'speedrun', uploader: 'SecretRunner', date: new Date(Date.now() - 10800000), views: 2890, likes: 89, verified: true, game: 'Perfect Dark' },
+    { id: '4', title: 'Mario Kart 64 Epic Comeback', description: 'Amazing last-lap comeback on Rainbow Road', type: 'screenshot', uploader: 'KartMaster', date: new Date(Date.now() - 14400000), views: 1560, likes: 78, verified: false, game: 'Mario Kart 64' },
+    { id: '5', title: 'Live: GoldenEye Tournament', description: 'Live tournament stream with community commentary', type: 'stream', uploader: 'EventStream', date: new Date(Date.now() - 18000000), views: 8920, likes: 445, verified: true, game: 'GoldenEye 007' }
   ]
 
-  const recordItems: RecordItem[] = [
-    { id: '1', game: 'Super Mario 64', track: '16 Star', time: '15:42.33', username: 'SpeedDemon64', date: new Date(Date.now() - 3600000), verified: true },
-    { id: '2', game: 'Mario Kart 64', track: 'Rainbow Road', time: '6:14.82', username: 'RainbowMaster', date: new Date(Date.now() - 7200000), verified: true },
-    { id: '3', game: 'GoldenEye 007', track: 'Facility Agent', time: '0:58.91', username: 'SecretAgent007', date: new Date(Date.now() - 10800000), verified: true },
-    { id: '4', game: 'Ocarina of Time', track: 'Any%', time: '16:58.12', username: 'ZeldaSpeedster', date: new Date(Date.now() - 14400000), verified: true },
-    { id: '5', game: 'Perfect Dark', track: 'DataDyne Central', time: '1:23.45', username: 'PerfectRunner', date: new Date(Date.now() - 18000000), verified: true },
-    { id: '6', game: 'Banjo-Kazooie', track: '100%', time: '2:03:45.67', username: 'BearBirdPro', date: new Date(Date.now() - 21600000), verified: true },
-    { id: '7', game: 'Star Fox 64', track: 'Expert Mode', time: '23:12.89', username: 'StarWingAce', date: new Date(Date.now() - 25200000), verified: true },
-    { id: '8', game: 'Super Smash Bros', track: '1P Mode Very Hard', time: '7:45.23', username: 'SmashChampion', date: new Date(Date.now() - 28800000), verified: true },
-    { id: '9', game: 'F-Zero X', track: 'Death Race', time: '1:34.56', username: 'SpeedRacer64', date: new Date(Date.now() - 32400000), verified: true },
-    { id: '10', game: 'Paper Mario', track: 'Any%', time: '3:12:34.78', username: 'PaperSpeedRun', date: new Date(Date.now() - 36000000), verified: true }
+  const personalRecords: PersonalRecord[] = [
+    { id: '1', game: 'Super Mario 64', category: '16 Star', time: '15:42.33', date: new Date(Date.now() - 3600000), verified: true, platform: 'N64' },
+    { id: '2', game: 'Mario Kart 64', category: 'Rainbow Road', time: '6:14.82', date: new Date(Date.now() - 7200000), verified: true, platform: 'N64' },
+    { id: '3', game: 'GoldenEye 007', category: 'Facility Agent', time: '0:58.91', date: new Date(Date.now() - 10800000), verified: true, platform: 'N64' },
+    { id: '4', game: 'Ocarina of Time', category: 'Any%', time: '16:58.12', date: new Date(Date.now() - 14400000), verified: true, platform: 'N64' },
+    { id: '5', game: 'Perfect Dark', category: 'DataDyne Central', time: '1:23.45', date: new Date(Date.now() - 18000000), verified: true, platform: 'N64' }
   ]
 
   const marketplaceItems: MarketplaceItem[] = [
-    { id: '1', title: 'Super Mario 64 - Mint Condition', price: 89.99, currency: 'EUR', seller: 'RetroCollector', condition: 'Mint', imageUrl: '/api/placeholder/200/150', createdAt: new Date(Date.now() - 3600000) },
-    { id: '2', title: 'N64 Controller - Original Nintendo', price: 34.50, currency: 'EUR', seller: 'ControllerKing', condition: 'Very Good', imageUrl: '/api/placeholder/200/150', createdAt: new Date(Date.now() - 7200000) },
-    { id: '3', title: 'GoldenEye 007 - Complete in Box', price: 125.00, currency: 'EUR', seller: 'GameVault', condition: 'Good', imageUrl: '/api/placeholder/200/150', createdAt: new Date(Date.now() - 10800000) },
-    { id: '4', title: 'Ocarina of Time - Gold Cartridge', price: 199.99, currency: 'EUR', seller: 'ZeldaFanatic', condition: 'Mint', imageUrl: '/api/placeholder/200/150', createdAt: new Date(Date.now() - 14400000) },
-    { id: '5', title: 'N64 Console - Jungle Green', price: 149.99, currency: 'EUR', seller: 'ConsoleDealer', condition: 'Very Good', imageUrl: '/api/placeholder/200/150', createdAt: new Date(Date.now() - 18000000) },
-    { id: '6', title: 'Mario Kart 64 - Player\'s Choice', price: 45.00, currency: 'EUR', seller: 'KartCollector', condition: 'Good', imageUrl: '/api/placeholder/200/150', createdAt: new Date(Date.now() - 21600000) },
-    { id: '7', title: 'Perfect Dark - Big Box Edition', price: 89.50, currency: 'EUR', seller: 'RareGameHunter', condition: 'Very Good', imageUrl: '/api/placeholder/200/150', createdAt: new Date(Date.now() - 25200000) },
-    { id: '8', title: 'Banjo-Kazooie - Manual included', price: 67.99, currency: 'EUR', seller: 'ManualMaster', condition: 'Good', imageUrl: '/api/placeholder/200/150', createdAt: new Date(Date.now() - 28800000) },
-    { id: '9', title: 'Star Fox 64 - Rumble Pak Bundle', price: 78.00, currency: 'EUR', seller: 'BundleBargains', condition: 'Very Good', imageUrl: '/api/placeholder/200/150', createdAt: new Date(Date.now() - 32400000) },
-    { id: '10', title: 'Super Smash Bros - Tournament Ed.', price: 156.99, currency: 'EUR', seller: 'TournamentGames', condition: 'Mint', imageUrl: '/api/placeholder/200/150', createdAt: new Date(Date.now() - 36000000) }
+    { id: '1', title: 'Super Mario 64 - Mint Condition', description: 'Original cartridge in mint condition with manual', price: 89.99, condition: 'Mint', seller: 'RetroCollector', date: new Date(Date.now() - 3600000), category: 'Games' },
+    { id: '2', title: 'N64 Controller - Original Nintendo', description: 'Official Nintendo controller in very good condition', price: 34.50, condition: 'Very Good', seller: 'ControllerKing', date: new Date(Date.now() - 7200000), category: 'Accessories' },
+    { id: '3', title: 'GoldenEye 007 - Complete in Box', description: 'Complete game with box, manual, and cartridge', price: 125.00, condition: 'Good', seller: 'GameVault', date: new Date(Date.now() - 10800000), category: 'Games' },
+    { id: '4', title: 'Ocarina of Time - Gold Cartridge', description: 'Rare gold cartridge edition in mint condition', price: 199.99, condition: 'Mint', seller: 'ZeldaFanatic', date: new Date(Date.now() - 14400000), category: 'Collectibles' },
+    { id: '5', title: 'N64 Console - Jungle Green', description: 'Special edition jungle green N64 console', price: 149.99, condition: 'Very Good', seller: 'ConsoleDealer', date: new Date(Date.now() - 18000000), category: 'Consoles' }
   ]
 
   const formatTime = (date: Date) => {
@@ -271,8 +262,8 @@ const HomePage: React.FC = () => {
     const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24))
     const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
     
-    if (days > 0) return `${days}d ${hours}h verbleibend`
-    return `${hours}h verbleibend`
+    if (days > 0) return t('home.daysRemaining', { days, hours })
+    return t('home.hoursRemaining', { hours })
   }
 
   const activeEvent = getActiveEvent()
@@ -300,7 +291,7 @@ const HomePage: React.FC = () => {
         </div>
       </div>
       <div className="flex items-center justify-between text-xs text-slate-400">
-        <span>{thread.replies} Antworten</span>
+        <span>{t('home.replies', { count: thread.replies })}</span>
         <span>{formatTime(thread.lastActivity)}</span>
       </div>
     </div>
@@ -343,12 +334,12 @@ const HomePage: React.FC = () => {
         <span className="flex items-center gap-1">
           <Eye className="w-3 h-3" /> {item.views}
         </span>
-        <span>{formatTime(item.uploadDate)}</span>
+        <span>{formatTime(item.date)}</span>
       </div>
     </div>
   )
 
-  const renderRecordItem = (record: RecordItem, index: number) => (
+  const renderRecordItem = (record: PersonalRecord, index: number) => (
     <div className="h-full flex flex-col">
       <div className="flex-1">
         <div className="flex items-center gap-1 mb-2">
@@ -356,12 +347,12 @@ const HomePage: React.FC = () => {
           <h4 className="leaderboard-time-compact text-slate-100 line-clamp-1">{record.time}</h4>
         </div>
         <p className="text-xs text-slate-300 mb-1 line-clamp-1">{record.game}</p>
-        <p className="text-xs text-slate-400 mb-2 line-clamp-1">{record.track}</p>
-        <p className="text-xs text-blue-400">{record.username}</p>
+        <p className="text-xs text-slate-400 mb-2 line-clamp-1">{record.category}</p>
+        <p className="text-xs text-blue-400">{record.platform}</p>
       </div>
       <div className="flex items-center justify-between text-xs text-slate-400">
         <span>{formatTime(record.date)}</span>
-        {record.verified && <span className="text-green-400">✓ Verifiziert</span>}
+        {record.verified && <span className="text-green-400">{t('home.verifiedStatus')}</span>}
       </div>
     </div>
   )
@@ -373,12 +364,12 @@ const HomePage: React.FC = () => {
           <ShoppingCart className="w-6 h-6 text-slate-400" />
         </div>
         <h4 className="text-sm font-semibold text-slate-100 mb-1 line-clamp-1">{item.title}</h4>
-        <p className="text-xs text-green-400 mb-1">{item.price} {item.currency}</p>
+        <p className="text-xs text-green-400 mb-1">€{item.price.toFixed(2)}</p>
         <p className="text-xs text-slate-400 mb-1">{item.condition}</p>
         <p className="text-xs text-blue-400">{item.seller}</p>
       </div>
       <div className="text-xs text-slate-400">
-        <span>{formatTime(item.createdAt)}</span>
+        <span>{formatTime(item.date)}</span>
       </div>
     </div>
   )
@@ -436,12 +427,12 @@ const HomePage: React.FC = () => {
             </div>
             <div className="text-center py-4 sm:py-8">
               <Gamepad2 className="w-8 h-8 sm:w-12 sm:h-12 text-slate-500 mx-auto mb-3" />
-              <p className="text-responsive-sm text-slate-400 mb-4 responsive-word-break">Kein Live-Event aktiv - Nächstes Event startet bald!</p>
+              <p className="text-responsive-sm text-slate-400 mb-4 responsive-word-break">{t('home.noLiveEvent')}</p>
               <Link 
                 to="/events" 
                 className="inline-block px-3 py-2 sm:px-4 sm:py-2 rounded-lg bg-red-500/20 text-red-400 hover:bg-red-500/30 transition-colors text-responsive-sm w-full sm:w-auto text-center"
               >
-                📅 Alle Events anzeigen
+                {t('home.showAllEvents')}
               </Link>
             </div>
           </div>
@@ -460,7 +451,7 @@ const HomePage: React.FC = () => {
         {/* Single News Card - One card at a time with dismiss functionality */}
         <div className="space-y-4">
           <h2 className="text-responsive-xl font-bold text-slate-100 text-center mb-6">
-            📰 N64 & App News
+            {t('home.newsTitle')}
           </h2>
           <SingleNewsCard 
             newsItems={newsItems.slice(0, 8)}
@@ -490,7 +481,7 @@ const HomePage: React.FC = () => {
         {/* Records and Marketplace */}
         <div className="responsive-grid-2">
           <SingleRecordCard 
-            recordItems={recordItems}
+            personalRecords={personalRecords}
             className="responsive-max-width"
           />
           
