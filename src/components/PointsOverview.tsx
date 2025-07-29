@@ -108,7 +108,7 @@ const PointsOverview: React.FC<PointsOverviewProps> = ({
 
         <div className="text-center">
           <div className="text-lg font-bold text-slate-100 mb-1">
-            {t(currentRank.key)}
+            {t(currentRank.key as any)}
           </div>
           {nextRank && (
             <div className="text-sm text-slate-400">
@@ -168,7 +168,7 @@ const PointsOverview: React.FC<PointsOverviewProps> = ({
           <div className="text-4xl">{getRankEmoji(currentRank.key)}</div>
           <div className="flex-1">
             <h3 className="text-xl font-bold text-slate-100 mb-1">
-              {t(currentRank.key)}
+              {t(currentRank.key as any)}
             </h3>
             <p className="text-slate-400">{t('rank.current')}</p>
           </div>
@@ -184,7 +184,7 @@ const PointsOverview: React.FC<PointsOverviewProps> = ({
           <div className="space-y-2">
             <div className="flex items-center justify-between text-sm">
               <span className="text-slate-300">
-                {t('rank.nextRank')}: {t(nextRank.key)}
+                {t('rank.nextRank')}: {t(nextRank.key as any)}
               </span>
               <span className="text-slate-400">
                 {pointsToNext.toLocaleString()} {t('rank.pointsToNext')}
@@ -226,7 +226,7 @@ const PointsOverview: React.FC<PointsOverviewProps> = ({
               >
                 <div className="text-3xl mb-2">{getMedalIcon(medal.medalKey)}</div>
                 <div className="font-bold text-slate-100 mb-1">
-                  {t(medal.medalKey)}
+                  {t(medal.medalKey as any)}
                 </div>
                 <div className="text-sm text-slate-400 mb-2">
                   {t('medal.season')} {medal.season}
@@ -269,7 +269,7 @@ const PointsOverview: React.FC<PointsOverviewProps> = ({
                     {getActionIcon(entry.action)}
                     <div>
                       <div className="text-sm font-medium text-slate-100">
-                        {t(`points.${entry.action.replace('.', '')}`)}
+                        {t(`points.${entry.action.replace('.', '')}` as any)}
                       </div>
                       {entry.description && (
                         <div className="text-xs text-slate-400">

@@ -312,7 +312,7 @@ const CollectorMode: React.FC = () => {
         <div className="simple-tile text-center">
           <Star className="w-6 h-6 sm:w-8 sm:h-8 text-purple-400 mx-auto mb-2" />
           <div className="text-responsive-sm font-bold text-slate-100">
-            {t(stats.collectorLevel.titleKey)}
+            {t(stats.collectorLevel.titleKey as any)}
           </div>
           <div className="text-responsive-xs text-slate-400 responsive-word-break">{t('collection.collectorLevel')}</div>
         </div>

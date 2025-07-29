@@ -292,7 +292,7 @@ const N64FanLeaderboard: React.FC<N64FanLeaderboardProps> = ({
                       <div className="flex items-center gap-2 text-xs text-slate-400 flex-wrap">
                         <span className="flex items-center gap-1 flex-shrink-0">
                           {getRankEmoji(entry.currentRank.key)}
-                          {t(entry.currentRank.key)}
+                          {t(entry.currentRank.key as any)}
                         </span>
                         <span>•</span>
                         <span className="flex items-center gap-1 flex-shrink-0">
@@ -327,7 +327,7 @@ const N64FanLeaderboard: React.FC<N64FanLeaderboardProps> = ({
                         <span
                           key={medal.id}
                           className="text-sm"
-                          title={`${t(medal.medalKey)} - ${medal.season}`}
+                          title={`${t(medal.medalKey as any)} - ${medal.season}`}
                         >
                           {getMedalIcon(medal.medalKey)}
                         </span>

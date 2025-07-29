@@ -447,7 +447,7 @@ const MarketplacePage: React.FC = () => {
               </div>
               <div className="absolute top-2 right-2">
                 <span className={`px-2 py-1 rounded-full text-xs font-medium ${getConditionColor(offer.condition)}`}>
-                  {t(`marketplace.condition${offer.condition.charAt(0).toUpperCase() + offer.condition.slice(1).replace('-', '')}`)}
+                  {t(`marketplace.condition${offer.condition.charAt(0).toUpperCase() + offer.condition.slice(1).replace('-', '')}` as any)}
                 </span>
               </div>
             </div>

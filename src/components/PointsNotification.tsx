@@ -57,7 +57,7 @@ const PointsNotification: React.FC<PointsNotificationProps> = ({
             </div>
             
             <p className="text-sm font-medium text-slate-800">
-              {t(action)}
+                             {t(action as any)}
             </p>
             
             {description && (

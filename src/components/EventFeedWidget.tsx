@@ -29,7 +29,7 @@ interface EventFeedWidgetProps {
 
 interface WinnerMediaDisplayProps {
   winner: EventParticipation
-  t: (key: string) => string
+  t: (key: any) => string  // Changed for TypeScript compatibility
 }
 
 const WinnerMediaDisplay: React.FC<WinnerMediaDisplayProps> = ({ winner, t }) => {
