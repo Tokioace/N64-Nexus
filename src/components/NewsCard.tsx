@@ -52,23 +52,6 @@ const NewsCard: React.FC<NewsCardProps> = ({ newsItem, index, onDismiss, isAnima
     }
   }
 
-  const getCardClass = (type: string) => {
-    switch (type) {
-      case 'event_winner':
-        return 'card-event-winner'
-      case 'n64_history':
-        return 'card-news-post'
-      case 'community_news':
-        return 'card-community-update'
-      case 'event_announcement':
-        return 'card-live-event'
-      default:
-        return 'card-news-post'
-    }
-  }
-
-
-
   const getTypeTranslation = (type: string) => {
     switch (type) {
       case 'event_winner':

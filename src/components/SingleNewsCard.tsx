@@ -1,6 +1,5 @@
 import React, { useState, useRef } from 'react'
 import { Newspaper } from 'lucide-react'
-import { useNavigate } from 'react-router-dom'
 import NewsCard from './NewsCard'
 import { useLanguage } from '../contexts/LanguageContext'
 
@@ -19,7 +18,6 @@ interface SingleNewsCardProps {
 
 const SingleNewsCard: React.FC<SingleNewsCardProps> = ({ newsItems, className = '' }) => {
   const { t } = useLanguage()
-  const navigate = useNavigate()
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isFlipping, setIsFlipping] = useState(false)
   const [flipDirection, setFlipDirection] = useState<'left' | 'right'>('left')

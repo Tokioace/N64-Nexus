@@ -22,19 +22,12 @@ interface SingleMediaCardProps {
 }
 
 const SingleMediaCard: React.FC<SingleMediaCardProps> = ({ mediaItems, className = '' }) => {
-  const { t, currentLanguage } = useLanguage()
+  const { t } = useLanguage()
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isFlipping, setIsFlipping] = useState(false)
   const [flipDirection, setFlipDirection] = useState<'left' | 'right'>('left')
   const touchStartX = useRef<number>(0)
   const touchEndX = useRef<number>(0)
-
-  const formatTime = (date: Date) => {
-    return date.toLocaleTimeString(getLocaleString(currentLanguage), {
-      hour: '2-digit',
-      minute: '2-digit'
-    })
-  }
 
   const goToNext = () => {
     if (isFlipping || currentIndex >= mediaItems.length - 1) return
@@ -83,51 +76,6 @@ const SingleMediaCard: React.FC<SingleMediaCardProps> = ({ mediaItems, className
 
     touchStartX.current = 0
     touchEndX.current = 0
-  }
-
-  const getTypeColor = (type: string) => {
-    switch (type) {
-      case 'speedrun':
-        return 'text-blue-400'
-      case 'screenshot':
-        return 'text-blue-300'
-      case 'achievement':
-        return 'text-blue-500'
-      case 'stream':
-        return 'text-blue-600'
-      default:
-        return 'text-slate-400'
-    }
-  }
-
-  const getTypeIcon = (type: string) => {
-    switch (type) {
-      case 'speedrun':
-        return '⚡'
-      case 'screenshot':
-        return '📸'
-      case 'achievement':
-        return '🏆'
-      case 'stream':
-        return '📺'
-      default:
-        return '🎮'
-    }
-  }
-
-  const getTypeTranslation = (type: string) => {
-    switch (type) {
-      case 'speedrun':
-        return t('media.speedruns')
-      case 'screenshot':
-        return t('media.screenshots')
-      case 'achievement':
-        return t('media.achievements')
-      case 'stream':
-        return t('media.livestream')
-      default:
-        return t('media.type')
-    }
   }
 
   if (mediaItems.length === 0) {

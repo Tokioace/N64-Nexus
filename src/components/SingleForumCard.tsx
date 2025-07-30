@@ -17,19 +17,12 @@ interface SingleForumCardProps {
 }
 
 const SingleForumCard: React.FC<SingleForumCardProps> = ({ forumThreads, className = '' }) => {
-  const { t, currentLanguage } = useLanguage()
+  const { t } = useLanguage()
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isFlipping, setIsFlipping] = useState(false)
   const [flipDirection, setFlipDirection] = useState<'left' | 'right'>('left')
   const touchStartX = useRef<number>(0)
   const touchEndX = useRef<number>(0)
-
-  const formatTime = (date: Date) => {
-    return date.toLocaleTimeString(getLocaleString(currentLanguage), {
-      hour: '2-digit',
-      minute: '2-digit'
-    })
-  }
 
   const goToNext = () => {
     if (isFlipping || currentIndex >= forumThreads.length - 1) return
