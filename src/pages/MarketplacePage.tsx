@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState, useEffect } from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
+import { useLocation } from 'react-router-dom';
 import { Search, Plus, Package, Clock, Star, Grid, List, Eye, MessageCircle, Heart, ShoppingCart } from 'lucide-react';
 
 interface MarketplaceOffer {
@@ -193,83 +194,126 @@ const CreateOfferModal: React.FC<CreateOfferModalProps> = ({ isOpen, onClose, on
 
 const MarketplacePage: React.FC = () => {
   const { t } = useLanguage();
+  const location = useLocation();
   const [offers, setOffers] = useState<MarketplaceOffer[]>([]);
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [priceRange] = useState({ min: '', max: '' });
   const [sortBy, setSortBy] = useState('newest');
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const [showCreateModal, setShowCreateModal] = useState(false);
+  const [highlightedItemId, setHighlightedItemId] = useState<string | null>(null);
 
-  // Mock data - in a real app, this would come from an API
+  // Load marketplace data from localStorage and handle highlighting
   useEffect(() => {
-    const mockOffers: MarketplaceOffer[] = [
-      {
-        id: '1',
-        title: 'Super Mario 64 - Mint Condition',
-        description: 'Original N64 Spiel in perfektem Zustand mit Originalverpackung und Anleitung.',
-        price: 45.99,
-        currency: 'EUR',
-        condition: 'mint',
-        images: ['data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRTVFN0VCIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIiBmaWxsPSIjNkI3MjgwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiPjMwMHgyMDA8L3RleHQ+PC9zdmc+'],
-        seller: {
-          id: 'user1',
-          name: 'RetroGamer92',
-          rating: 4.8,
-          verified: true
-        },
-        category: 'games',
-        createdAt: '2024-01-15T10:30:00Z',
-        views: 127,
-        likes: 23,
-        comments: 5,
-        isActive: true
-      },
-      {
-        id: '2',
-        title: 'N64 Controller - Original Nintendo',
-        description: 'Originaler N64 Controller in gutem Zustand. Alle Knöpfe funktionieren einwandfrei.',
-        price: 25.00,
-        currency: 'EUR',
-        condition: 'good',
-        images: ['data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRTVFN0VCIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIiBmaWxsPSIjNkI3MjgwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiPjMwMHgyMDA8L3RleHQ+PC9zdmc+'],
-        seller: {
-          id: 'user2',
-          name: 'N64Collector',
-          rating: 4.9,
-          verified: true
-        },
-        category: 'accessories',
-        createdAt: '2024-01-14T15:45:00Z',
-        views: 89,
-        likes: 12,
-        comments: 3,
-        isActive: true
-      },
-      {
-        id: '3',
-        title: 'The Legend of Zelda: Ocarina of Time',
-        description: 'Kultspiel für N64. Modul in sehr gutem Zustand, funktioniert perfekt.',
-        price: 35.50,
-        currency: 'EUR',
-        condition: 'very-good',
-        images: ['data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRTVFN0VCIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIiBmaWxsPSIjNkI3MjgwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiPjMwMHgyMDA8L3RleHQ+PC9zdmc+'],
-        seller: {
-          id: 'user3',
-          name: 'ZeldaFan2000',
-          rating: 4.7,
-          verified: false
-        },
-        category: 'games',
-        createdAt: '2024-01-13T09:20:00Z',
-        views: 156,
-        likes: 31,
-        comments: 8,
-        isActive: true
+    const loadMarketplaceData = () => {
+      try {
+        const savedMarketplace = localStorage.getItem('marketplace_items');
+        if (savedMarketplace) {
+          const parsedMarketplace = JSON.parse(savedMarketplace);
+          const sortedMarketplace = parsedMarketplace
+            .map((item: any) => ({
+              ...item,
+              createdAt: item.createdAt || new Date().toISOString()
+            }))
+            .sort((a: any, b: any) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+          setOffers(sortedMarketplace);
+        } else {
+          // Use mock data and save to localStorage
+          const mockOffers: MarketplaceOffer[] = [
+            {
+              id: '1',
+              title: 'Super Mario 64 - Mint Condition',
+              description: 'Original N64 Spiel in perfektem Zustand mit Originalverpackung und Anleitung.',
+              price: 45.99,
+              currency: 'EUR',
+              condition: 'mint',
+              images: ['data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRTVFN0VCIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIiBmaWxsPSIjNkI3MjgwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiPjMwMHgyMDA8L3RleHQ+PC9zdmc+'],
+              seller: {
+                id: 'user1',
+                name: 'RetroGamer92',
+                rating: 4.8,
+                verified: true
+              },
+              category: 'games',
+              createdAt: '2024-01-15T10:30:00Z',
+              views: 127,
+              likes: 23,
+              comments: 5,
+              isActive: true
+            },
+            {
+              id: '2',
+              title: 'N64 Controller - Original Nintendo',
+              description: 'Originaler N64 Controller in gutem Zustand. Alle Knöpfe funktionieren einwandfrei.',
+              price: 25.00,
+              currency: 'EUR',
+              condition: 'good',
+              images: ['data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRTVFN0VCIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIiBmaWxsPSIjNkI3MjgwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiPjMwMHgyMDA8L3RleHQ+PC9zdmc+'],
+              seller: {
+                id: 'user2',
+                name: 'N64Collector',
+                rating: 4.9,
+                verified: true
+              },
+              category: 'accessories',
+              createdAt: '2024-01-14T15:45:00Z',
+              views: 89,
+              likes: 12,
+              comments: 3,
+              isActive: true
+            },
+            {
+              id: '3',
+              title: 'The Legend of Zelda: Ocarina of Time',
+              description: 'Kultspiel für N64. Modul in sehr gutem Zustand, funktioniert perfekt.',
+              price: 35.50,
+              currency: 'EUR',
+              condition: 'very-good',
+              images: ['data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRTVFN0VCIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIiBmaWxsPSIjNkI3MjgwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiPjMwMHgyMDA8L3RleHQ+PC9zdmc+'],
+              seller: {
+                id: 'user3',
+                name: 'ZeldaFan2000',
+                rating: 4.7,
+                verified: false
+              },
+              category: 'games',
+              createdAt: '2024-01-13T09:20:00Z',
+              views: 156,
+              likes: 31,
+              comments: 8,
+              isActive: true
+            }
+          ];
+          setOffers(mockOffers);
+          // Save to localStorage for homepage
+          localStorage.setItem('marketplace_items', JSON.stringify(mockOffers));
+        }
+      } catch (error) {
+        console.error('Error loading marketplace data:', error);
+        setOffers([]);
       }
-    ];
-    setOffers(mockOffers);
-  }, []);
+    };
+
+    loadMarketplaceData();
+
+    // Check if we need to highlight a specific item
+    if (location.state?.highlightItemId) {
+      setHighlightedItemId(location.state.highlightItemId);
+      // Auto-scroll to the highlighted item after a short delay
+      setTimeout(() => {
+        const element = document.getElementById(`marketplace-${location.state.highlightItemId}`);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      }, 500);
+      
+      // Clear the highlight after a few seconds
+      setTimeout(() => {
+        setHighlightedItemId(null);
+      }, 3000);
+    }
+  }, [location.state]);
 
   const handleCreateOffer = (offerData: Omit<MarketplaceOffer, 'id' | 'createdAt' | 'views' | 'likes' | 'comments' | 'seller'>) => {
     const newOffer: MarketplaceOffer = {
@@ -286,7 +330,21 @@ const MarketplacePage: React.FC = () => {
         verified: true
       }
     };
-    setOffers(prev => [newOffer, ...prev]);
+    
+    const updatedOffers = [newOffer, ...offers];
+    setOffers(updatedOffers);
+    
+    // Save to localStorage for homepage
+    try {
+      localStorage.setItem('marketplace_items', JSON.stringify(updatedOffers));
+      // Trigger storage event for HomePage to update
+      window.dispatchEvent(new StorageEvent('storage', {
+        key: 'marketplace_items',
+        newValue: JSON.stringify(updatedOffers)
+      }));
+    } catch (error) {
+      console.error('Error saving marketplace data:', error);
+    }
   };
 
   const getConditionColor = (condition: string) => {
@@ -300,8 +358,8 @@ const MarketplacePage: React.FC = () => {
   };
 
   const filteredOffers = offers.filter(offer => {
-    const matchesSearch = offer.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         offer.description.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesSearch = offer.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         offer.description.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesCategory = selectedCategory === 'all' || offer.category === selectedCategory;
     const matchesPrice = (!priceRange.min || offer.price >= parseFloat(priceRange.min)) &&
                         (!priceRange.max || offer.price <= parseFloat(priceRange.max));
@@ -353,8 +411,8 @@ const MarketplacePage: React.FC = () => {
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400" size={16} />
               <input
                 type="text"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
                 className="w-full pl-9 pr-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-slate-100 focus:outline-none focus:ring-2 focus:ring-blue-500 text-responsive-sm"
                 placeholder={t('marketplace.searchPlaceholder')}
               />
@@ -438,9 +496,10 @@ const MarketplacePage: React.FC = () => {
         {filteredOffers.map(offer => (
           <div 
             key={offer.id} 
+            id={`marketplace-${offer.id}`}
             className={`simple-tile hover:border-slate-600 transition-all duration-200 overflow-hidden ${
               viewMode === 'list' ? 'flex flex-col sm:flex-row' : ''
-            }`}
+            } ${highlightedItemId === offer.id ? 'border-2 border-blue-500' : ''}`}
           >
             <div className={`${viewMode === 'list' ? 'w-full sm:w-40 lg:w-48 flex-shrink-0 aspect-video sm:aspect-square' : 'aspect-video'} bg-slate-700 relative`}>
               <div className="absolute inset-0 flex items-center justify-center">

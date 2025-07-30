@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useLanguage } from '../contexts/LanguageContext'
 import { useUser } from '../contexts/UserContext'
 import { usePoints } from '../contexts/PointsContext'
+import { useLocation } from 'react-router-dom'
 import { Palette, Heart, Eye, MessageSquare, Upload, Filter, Grid, List, Zap, X, Image as ImageIcon } from 'lucide-react'
 
 interface FanArtItem {
@@ -310,10 +311,12 @@ const FanArtPage: React.FC = () => {
   const { t } = useLanguage()
   const { user, isAuthenticated } = useUser()
   const { awardPoints } = usePoints()
+  const location = useLocation()
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid')
   const [selectedCategory, setSelectedCategory] = useState('all')
   const [showUploadModal, setShowUploadModal] = useState(false)
   const [fanArtItems, setFanArtItems] = useState<FanArtItem[]>([])
+  const [highlightedPostId, setHighlightedPostId] = useState<string | null>(null)
 
   // Load FanArt data from localStorage on component mount
   useEffect(() => {
@@ -321,14 +324,14 @@ const FanArtPage: React.FC = () => {
       try {
         const savedFanArt = localStorage.getItem('fanart_items')
         if (savedFanArt) {
-          const parsedFanArt = JSON.parse(savedFanArt)
+          const parsedFanArt = JSON.parse(savedFanArt) as FanArtItem[]
           // Convert date strings back to Date objects and sort by newest first
           const sortedFanArt = parsedFanArt
-            .map((item: any) => ({
+            .map((item: FanArtItem) => ({
               ...item,
               createdAt: item.createdAt ? new Date(item.createdAt) : new Date()
             }))
-            .sort((a: any, b: any) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+            .sort((a: FanArtItem, b: FanArtItem) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
           setFanArtItems(sortedFanArt)
         } else {
           // Use default mock data if no saved data exists
@@ -391,7 +394,24 @@ const FanArtPage: React.FC = () => {
     }
 
     loadFanArtData()
-  }, [])
+
+    // Check if we need to highlight a specific post
+    if (location.state?.highlightPostId) {
+      setHighlightedPostId(location.state.highlightPostId)
+      // Auto-scroll to the highlighted post after a short delay
+      setTimeout(() => {
+        const element = document.getElementById(`fanart-${location.state.highlightPostId}`)
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth', block: 'center' })
+        }
+      }, 500)
+      
+      // Clear the highlight after a few seconds
+      setTimeout(() => {
+        setHighlightedPostId(null)
+      }, 3000)
+    }
+  }, [location.state])
 
   const categories = [
     { id: 'all', name: t('fanart.allCategories') },
@@ -580,7 +600,13 @@ const FanArtPage: React.FC = () => {
       {viewMode === 'grid' ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredItems.map(item => (
-            <div key={item.id} className="n64-tile bg-slate-800/50 hover:bg-slate-800/70 transition-colors">
+            <div 
+              key={item.id} 
+              id={`fanart-${item.id}`}
+              className={`n64-tile bg-slate-800/50 hover:bg-slate-800/70 transition-colors ${
+                highlightedPostId === item.id ? 'ring-2 ring-rose-500' : ''
+              }`}
+            >
               <div className="aspect-video bg-slate-700 rounded-lg mb-4 overflow-hidden">
                 <img 
                   src={item.imageUrl} 
@@ -654,7 +680,13 @@ const FanArtPage: React.FC = () => {
       ) : (
         <div className="space-y-4">
           {filteredItems.map(item => (
-            <div key={item.id} className="n64-tile bg-slate-800/50 hover:bg-slate-800/70 transition-colors">
+            <div 
+              key={item.id} 
+              id={`fanart-${item.id}`}
+              className={`n64-tile bg-slate-800/50 hover:bg-slate-800/70 transition-colors ${
+                highlightedPostId === item.id ? 'ring-2 ring-rose-500' : ''
+              }`}
+            >
               <div className="flex gap-4">
                 <div className="w-32 h-20 bg-slate-700 rounded-lg overflow-hidden flex-shrink-0">
                   <img 
