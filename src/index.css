@@ -401,10 +401,10 @@ code {
   width: 100%;
   max-width: 100%;
   padding: clamp(1rem, 3vw, 1.5rem);
+  margin-bottom: 1.5rem;
   box-sizing: border-box;
   position: relative;
   overflow: hidden;
-  box-sizing: border-box;
 }
 
 /* Simple responsive tile for cleaner layouts */
@@ -413,6 +413,7 @@ code {
   border: 1px solid #2C2F4A;
   border-radius: 0.5rem;
   padding: clamp(1rem, 3vw, 1.5rem);
+  margin-bottom: 1rem;
   width: 100%;
   max-width: 100%;
   box-sizing: border-box;
@@ -655,9 +656,11 @@ code {
 
 /* Mobile Responsive Improvements */
 @media (max-width: 320px) {
-  .event-tile {
+  .event-tile, .n64-tile, .simple-tile {
     @apply p-3;
     min-height: auto;
+    margin-bottom: 1rem;
+    border-radius: 0.5rem;
   }
   
   .event-button-group button {
@@ -673,6 +676,19 @@ code {
   .event-icon {
     width: 18px !important;
     height: 18px !important;
+  }
+}
+
+/* Prevent border overlapping in horizontal mode */
+@media (orientation: landscape) and (max-height: 500px) {
+  .n64-tile, .simple-tile {
+    margin-bottom: 0.75rem;
+    padding: 0.75rem;
+  }
+  
+  .n64-tile-large {
+    min-height: 120px;
+    padding: 0.75rem;
   }
 }
 
