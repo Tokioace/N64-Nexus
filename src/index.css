@@ -419,6 +419,13 @@ code {
 }
 
 /* Compact card system for homepage */
+/* 
+ * HOMEPAGE COMPACT REDESIGN
+ * - Smaller fonts and reduced padding for better information density
+ * - Light blue professional color scheme replacing red/orange themes
+ * - Improved responsiveness and modern glassmorphism effects
+ * - All cards redesigned for compact, professional appearance
+ */
 .compact-card {
   background: rgba(24, 26, 44, 0.85);
   border: 1px solid rgba(96, 165, 250, 0.2);
