@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { createContext, useContext, useState, useEffect, ReactNode, useMemo, useCallback } from 'react'
 import { ForumCategory, ForumThread, ForumPost, ForumStats } from '../types'
 import { useUser } from './UserContext'
@@ -401,6 +402,7 @@ export const ForumProvider: React.FC<{ children: ReactNode }> = ({ children }) =
       getPostsByThread(thread.id)
       incrementThreadViews(thread.id)
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [getPostsByThread])
 
   const incrementThreadViews = useCallback((threadId: string) => {

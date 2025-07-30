@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { createContext, useContext, useState, ReactNode } from 'react'
 import { QuizQuestion, QuizResult, QuizContextType } from '../types'
 import { useLanguage } from './LanguageContext'

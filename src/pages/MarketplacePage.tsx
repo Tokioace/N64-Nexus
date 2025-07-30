@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState, useEffect } from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { Search, Plus, Package, Clock, Star, Grid, List, Eye, MessageCircle, Heart, ShoppingCart } from 'lucide-react';

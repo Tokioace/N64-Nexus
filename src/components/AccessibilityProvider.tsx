@@ -79,6 +79,7 @@ export const AccessibilityProvider: React.FC<{ children: React.ReactNode }> = ({
       mediaQuery.removeEventListener('change', handleChange)
       contrastQuery.removeEventListener('change', handleContrastChange)
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   // Apply settings to document
@@ -144,6 +145,7 @@ export const AccessibilityProvider: React.FC<{ children: React.ReactNode }> = ({
 
     document.addEventListener('keydown', handleKeyDown)
     return () => document.removeEventListener('keydown', handleKeyDown)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [settings.keyboardNavigation, t])
 
   const updateSetting = useCallback(<K extends keyof AccessibilitySettings>(

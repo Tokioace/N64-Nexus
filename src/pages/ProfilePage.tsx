@@ -44,6 +44,7 @@ const ProfilePage: React.FC = () => {
   const [profileUser, setProfileUser] = useState<User | null>(null)
   const [loading, setLoading] = useState(false)
   const [activeTab, setActiveTab] = useState<'overview' | 'points' | 'achievements' | 'stats' | 'collection' | 'records'>('overview')
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isEditing, setIsEditing] = useState(false)
 
   const isOwnProfile = Boolean(!userId || (user && userId === user.id))

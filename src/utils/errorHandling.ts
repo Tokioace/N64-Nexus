@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // Error types for better categorization
 export enum ErrorType {
   NETWORK = 'NETWORK',

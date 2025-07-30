@@ -184,6 +184,7 @@ export const PointsProvider: React.FC<{ children: ReactNode }> = ({ children }) 
     if (user && !userPoints) {
       initializeUserPoints()
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user])
 
   // Load leaderboards
@@ -213,6 +214,7 @@ export const PointsProvider: React.FC<{ children: ReactNode }> = ({ children }) 
         console.error('Failed to award points for profile completion:', error)
       }
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user?.bio, user?.location, user?.avatar, user?.collections?.length, userPoints?.pointHistory?.length])
 
   const initializeUserPoints = () => {

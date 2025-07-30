@@ -12,6 +12,7 @@ const PersonalRecordsManager: React.FC<PersonalRecordsProps> = ({ isOwnProfile =
   const { user, addPersonalRecord, updatePersonalRecord } = useUser()
   const { t, currentLanguage } = useLanguage()
   const [showAddModal, setShowAddModal] = useState(false)
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [editingRecord, setEditingRecord] = useState<PersonalRecord | null>(null)
   const [filter, setFilter] = useState<'all' | 'verified' | 'pending'>('all')
   

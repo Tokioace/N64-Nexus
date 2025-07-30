@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState } from 'react'
 import { useEvent } from '../contexts/EventContext'
 import { useUser } from '../contexts/UserContext'

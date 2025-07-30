@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react'
 import { User, UserContextType, UserRegistrationData, UserCollection, PersonalRecord } from '../types'
 

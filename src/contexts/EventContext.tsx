@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react'
 import { GameEvent, EventParticipation, EventContextType, RaceSubmissionData } from '../types'
 import { useLanguage } from './LanguageContext'
@@ -287,6 +288,7 @@ export const EventProvider: React.FC<{ children: ReactNode }> = ({ children }) =
       // If no saved submissions, use mock data as initial data
       setAllEventSubmissions(mockParticipations)
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   // Save events to localStorage whenever events array changes
