@@ -196,7 +196,6 @@ const MarketplacePage: React.FC = () => {
   const { t } = useLanguage();
   const location = useLocation();
   const [offers, setOffers] = useState<MarketplaceOffer[]>([]);
-  const [filteredOffers, setFilteredOffers] = useState<MarketplaceOffer[]>([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [priceRange] = useState({ min: '', max: '' });

@@ -324,14 +324,14 @@ const FanArtPage: React.FC = () => {
       try {
         const savedFanArt = localStorage.getItem('fanart_items')
         if (savedFanArt) {
-          const parsedFanArt = JSON.parse(savedFanArt)
+          const parsedFanArt = JSON.parse(savedFanArt) as FanArtItem[]
           // Convert date strings back to Date objects and sort by newest first
           const sortedFanArt = parsedFanArt
-            .map((item: any) => ({
+            .map((item: FanArtItem) => ({
               ...item,
               createdAt: item.createdAt ? new Date(item.createdAt) : new Date()
             }))
-            .sort((a: any, b: any) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+            .sort((a: FanArtItem, b: FanArtItem) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
           setFanArtItems(sortedFanArt)
         } else {
           // Use default mock data if no saved data exists

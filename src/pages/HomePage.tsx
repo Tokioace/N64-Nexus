@@ -12,14 +12,6 @@ import SingleMediaCard from '../components/SingleMediaCard'
 import SingleRecordCard from '../components/SingleRecordCard'
 import SingleMarketplaceCard from '../components/SingleMarketplaceCard'
 
-interface NewsItem {
-  id: string
-  title: string
-  content: string
-  date: Date
-  type: 'event_winner' | 'n64_history' | 'community_news' | 'event_announcement'
-}
-
 interface ForumThread {
   id: string
   title: string
@@ -40,6 +32,7 @@ interface FanArtItem {
   views: number
   game: string
   createdAt?: Date
+  date?: Date // Add date property for backward compatibility
 }
 
 interface MediaItem {
@@ -77,6 +70,7 @@ interface MarketplaceItem {
   category: string
   images?: string[]
   image?: string
+  createdAt?: string // Add createdAt property for backward compatibility
 }
 
 const HomePage: React.FC = () => {
@@ -113,15 +107,15 @@ const HomePage: React.FC = () => {
       try {
         const savedFanArt = localStorage.getItem('fanart_items')
         if (savedFanArt) {
-          const parsedFanArt = JSON.parse(savedFanArt)
+          const parsedFanArt = JSON.parse(savedFanArt) as FanArtItem[]
           // Sort by date (newest first) and convert date strings back to Date objects
           const sortedFanArt = parsedFanArt
-            .map((item: any) => ({
+            .map((item: FanArtItem) => ({
               ...item,
               createdAt: item.createdAt ? new Date(item.createdAt) : new Date(),
               date: item.date ? new Date(item.date) : new Date()
             }))
-            .sort((a: any, b: any) => {
+            .sort((a: FanArtItem, b: FanArtItem) => {
               const dateA = a.createdAt || a.date || new Date(0)
               const dateB = b.createdAt || b.date || new Date(0)
               return dateB.getTime() - dateA.getTime()
@@ -148,14 +142,14 @@ const HomePage: React.FC = () => {
       try {
         const savedMarketplace = localStorage.getItem('marketplace_items')
         if (savedMarketplace) {
-          const parsedMarketplace = JSON.parse(savedMarketplace)
+          const parsedMarketplace = JSON.parse(savedMarketplace) as MarketplaceItem[]
           // Sort by date (newest first) and convert date strings back to Date objects
           const sortedMarketplace = parsedMarketplace
-            .map((item: any) => ({
+            .map((item: MarketplaceItem) => ({
               ...item,
               date: item.date ? new Date(item.date) : (item.createdAt ? new Date(item.createdAt) : new Date())
             }))
-            .sort((a: any, b: any) => b.date.getTime() - a.date.getTime())
+            .sort((a: MarketplaceItem, b: MarketplaceItem) => b.date.getTime() - a.date.getTime())
           setMarketplaceItems(sortedMarketplace)
         } else {
           // Use fallback mock data if no saved data exists
