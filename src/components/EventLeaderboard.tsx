@@ -321,7 +321,7 @@ const EventLeaderboard: React.FC<EventLeaderboardProps> = ({
 
       {/* Current User Position (if participating) */}
       {currentUserEntry && (
-        <div className="simple-tile bg-gradient-to-r from-blue-600/20 to-purple-600/20 border-l-4 border-blue-400">
+        <div className={`simple-tile bg-gradient-to-r ${getRankColor(currentUserEntry.position)} border-l-4`}>
           <div className="flex items-center justify-between">
             <div>
               <h3 className="text-lg font-medium text-slate-100 mb-1">{t('eventLeaderboard.yourPosition')}</h3>
@@ -333,8 +333,8 @@ const EventLeaderboard: React.FC<EventLeaderboardProps> = ({
                   </span>
                 </div>
                 <div className="flex items-center space-x-2">
-                  <Clock className="w-4 h-4 text-blue-400" />
-                  <span className="leaderboard-time text-blue-400" aria-label={`Your race time: ${formatTime(currentUserEntry.time)}`}>
+                  <Clock className="w-4 h-4 text-slate-400" />
+                  <span className="leaderboard-time text-slate-100" aria-label={`Your race time: ${formatTime(currentUserEntry.time)}`}>
                     {formatTime(currentUserEntry.time)}
                   </span>
                 </div>
@@ -388,7 +388,7 @@ const EventLeaderboard: React.FC<EventLeaderboardProps> = ({
                 )}
               </div>
               {(entry.mediaUrl || entry.livestreamUrl) && (
-                <div className="mt-2 text-sm text-blue-400 font-medium">
+                <div className="mt-2 text-sm text-slate-300 font-medium">
                   {t('eventLeaderboard.clickToView')}
                 </div>
               )}
@@ -410,9 +410,9 @@ const EventLeaderboard: React.FC<EventLeaderboardProps> = ({
                 key={entry.id}
                 className={`leaderboard-entry cursor-pointer ${
                   entry.userId === currentUserId
-                    ? 'bg-blue-600/15 border-blue-400/40'
+                    ? 'bg-slate-600/15 border-slate-400/40'
                     : 'hover:border-slate-500'
-                } ${selectedEntry === entry.id ? 'ring-2 ring-blue-400' : ''}`}
+                } ${selectedEntry === entry.id ? 'ring-2 ring-slate-400' : ''}`}
                 onClick={() => setSelectedEntry(selectedEntry === entry.id ? null : entry.id)}
               >
                 <div className="leaderboard-user-info">
@@ -464,7 +464,7 @@ const EventLeaderboard: React.FC<EventLeaderboardProps> = ({
                            e.stopPropagation()
                            handleMediaClick(entry)
                          }}
-                         className="text-blue-400 hover:text-blue-300 underline font-medium"
+                         className="text-slate-300 hover:text-slate-100 underline font-medium"
                        >
                          {t('eventLeaderboard.view')}
                        </button>
@@ -487,7 +487,7 @@ const EventLeaderboard: React.FC<EventLeaderboardProps> = ({
                         {(entry.mediaUrl || entry.livestreamUrl) && (
                           <button
                             onClick={() => handleMediaClick(entry)}
-                            className="inline-flex items-center space-x-1 text-blue-400 hover:text-blue-300 text-sm mt-1"
+                            className="inline-flex items-center space-x-1 text-slate-300 hover:text-slate-100 text-sm mt-1"
                           >
                             <ExternalLink className="w-3 h-3" />
                             <span>{t('eventLeaderboard.viewMedia')}</span>
