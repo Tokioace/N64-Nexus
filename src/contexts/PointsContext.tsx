@@ -52,7 +52,13 @@ const POINTS_CONFIG: PointsConfig = {
   'event.position.7': 6,
   'event.position.8': 4,
   'event.position.9': 2,
-  'event.position.10': 1
+  'event.position.10': 1,
+  // Interaction points
+  'interaction.like': 1,
+  'interaction.likeReceived': 2,
+  'interaction.comment': 3,
+  'interaction.commentReceived': 5,
+  'interaction.view': 0.5
 }
 
 // Ranks configuration with i18n keys

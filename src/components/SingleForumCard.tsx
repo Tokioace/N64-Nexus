@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react'
 import { MessageCircle } from 'lucide-react'
 import { useLanguage, getLocaleString } from '../contexts/LanguageContext'
 import { useNavigate } from 'react-router-dom'
+import { InteractionBar } from './InteractionComponents'
 
 interface ForumThread {
   id: string
@@ -128,6 +129,16 @@ const SingleForumCard: React.FC<SingleForumCardProps> = ({ forumThreads, classNa
           <div className="flex items-center justify-between text-xs text-slate-400 mt-auto">
             <span>{thread.replies} Antworten</span>
             <span>{formatTime(thread.lastActivity)}</span>
+          </div>
+          
+          {/* Interaction Bar */}
+          <div className="mt-3 pt-3 border-t border-slate-600/30">
+            <InteractionBar 
+              contentType="forum"
+              contentId={thread.id}
+              showComments={false}
+              compact={true}
+            />
           </div>
         </div>
       </div>

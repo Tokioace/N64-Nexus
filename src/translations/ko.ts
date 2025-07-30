@@ -850,7 +850,19 @@ const ko = {
   'profile.rankingStats': '랭킹 통계',
 
   // FanArt Comments
-  'fanart.addComment': '댓글 추가...'
+  'fanart.addComment': '댓글 추가...',
+
+  // Interaction System
+  'interaction.like': '좋아요',
+  'interaction.unlike': '좋아요 취소',
+  'interaction.comments': '댓글',
+  'interaction.addComment': '댓글 추가',
+  'interaction.writeComment': '댓글을 작성하세요...',
+  'interaction.loginToLike': '좋아요를 위해 로그인',
+  'interaction.loginToComment': '댓글을 위해 로그인',
+
+  // Time
+  'time.justNow': '방금 전'
 }
 
 export default ko

@@ -125,6 +125,13 @@ const mockThreads: ForumThread[] = [
       authorId: '1',
       authorName: 'Oli',
       createdAt: new Date('2024-01-15T10:30:00')
+    },
+    interactions: {
+      likes: 0,
+      views: 0,
+      comments: [],
+      likedBy: [],
+      viewedBy: []
     }
   },
   {
@@ -144,6 +151,13 @@ const mockThreads: ForumThread[] = [
       authorId: '3',
       authorName: 'Mario64Fan',
       createdAt: new Date('2024-01-14T18:45:00')
+    },
+    interactions: {
+      likes: 0,
+      views: 0,
+      comments: [],
+      likedBy: [],
+      viewedBy: []
     }
   }
 ]
@@ -157,7 +171,14 @@ const mockPosts: ForumPost[] = [
     content: 'Hey Leute! Ich wollte meine aktuelle Strategie für Toad\'s Turnpike mit euch teilen. Der Schlüssel liegt in der perfekten Kurvenfahrt und dem Timing der Boosts...',
     createdAt: new Date('2024-01-10T14:30:00'),
     isEdited: false,
-    isDeleted: false
+    isDeleted: false,
+    interactions: {
+      likes: 0,
+      views: 0,
+      comments: [],
+      likedBy: [],
+      viewedBy: []
+    }
   },
   {
     id: '2',
@@ -167,7 +188,14 @@ const mockPosts: ForumPost[] = [
     content: 'Danke für den Tipp! Ich habe das mal ausprobiert und konnte meine Zeit um 3 Sekunden verbessern. Besonders der Boost am Ende hat geholfen.',
     createdAt: new Date('2024-01-11T16:20:00'),
     isEdited: false,
-    isDeleted: false
+    isDeleted: false,
+    interactions: {
+      likes: 0,
+      views: 0,
+      comments: [],
+      likedBy: [],
+      viewedBy: []
+    }
   },
   {
     id: '3',
@@ -177,7 +205,14 @@ const mockPosts: ForumPost[] = [
     content: 'Welche Charaktere eignen sich am besten für diese Strategie? Ich spiele meist mit Yoshi.',
     createdAt: new Date('2024-01-12T09:15:00'),
     isEdited: false,
-    isDeleted: false
+    isDeleted: false,
+    interactions: {
+      likes: 0,
+      views: 0,
+      comments: [],
+      likedBy: [],
+      viewedBy: []
+    }
   },
   {
     id: '4',
@@ -187,7 +222,14 @@ const mockPosts: ForumPost[] = [
     content: 'Hier ist mein Tutorial für den Rainbow Road Shortcut. Timing ist alles!',
     createdAt: new Date('2024-01-12T09:15:00'),
     isEdited: false,
-    isDeleted: false
+    isDeleted: false,
+    interactions: {
+      likes: 0,
+      views: 0,
+      comments: [],
+      likedBy: [],
+      viewedBy: []
+    }
   },
   {
     id: '5',
@@ -197,7 +239,14 @@ const mockPosts: ForumPost[] = [
     content: 'Super Tutorial! Ich schaffe den Sprung aber nur in 50% der Fälle. Habt ihr Tipps?',
     createdAt: new Date('2024-01-13T14:30:00'),
     isEdited: false,
-    isDeleted: false
+    isDeleted: false,
+    interactions: {
+      likes: 0,
+      views: 0,
+      comments: [],
+      likedBy: [],
+      viewedBy: []
+    }
   }
 ]
 
@@ -289,7 +338,14 @@ export const ForumProvider: React.FC<{ children: ReactNode }> = ({ children }) =
         postCount: 1,
         views: 0,
         isPinned: false,
-        isLocked: false
+        isLocked: false,
+        interactions: {
+          likes: 0,
+          views: 0,
+          comments: [],
+          likedBy: [],
+          viewedBy: []
+        }
       }
 
       const newPost: ForumPost = {
@@ -301,7 +357,14 @@ export const ForumProvider: React.FC<{ children: ReactNode }> = ({ children }) =
         imageUrl,
         createdAt: new Date(),
         isEdited: false,
-        isDeleted: false
+        isDeleted: false,
+        interactions: {
+          likes: 0,
+          views: 0,
+          comments: [],
+          likedBy: [],
+          viewedBy: []
+        }
       }
 
       // Reduced delay for better performance
@@ -350,7 +413,14 @@ export const ForumProvider: React.FC<{ children: ReactNode }> = ({ children }) =
         imageUrl,
         createdAt: new Date(),
         isEdited: false,
-        isDeleted: false
+        isDeleted: false,
+        interactions: {
+          likes: 0,
+          views: 0,
+          comments: [],
+          likedBy: [],
+          viewedBy: []
+        }
       }
 
       // Reduced delay for better performance

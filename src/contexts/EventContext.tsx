@@ -52,6 +52,13 @@ const getEventData = (t: (key: any) => string): GameEvent[] => [
     pointsSystem: {
       participation: 5,
       positions: [25, 18, 15, 12, 10, 8, 6, 4, 2, 1] // F1-style points for top 10
+    },
+    interactions: {
+      likes: 0,
+      views: 0,
+      comments: [],
+      likedBy: [],
+      viewedBy: []
     }
   },
   {
@@ -83,6 +90,13 @@ const getEventData = (t: (key: any) => string): GameEvent[] => [
     pointsSystem: {
       participation: 5,
       positions: [25, 18, 15, 12, 10, 8, 6, 4, 2, 1]
+    },
+    interactions: {
+      likes: 0,
+      views: 0,
+      comments: [],
+      likedBy: [],
+      viewedBy: []
     }
   },
   {
@@ -114,6 +128,13 @@ const getEventData = (t: (key: any) => string): GameEvent[] => [
     pointsSystem: {
       participation: 5,
       positions: [25, 18, 15, 12, 10, 8, 6, 4, 2, 1]
+    },
+    interactions: {
+      likes: 0,
+      views: 0,
+      comments: [],
+      likedBy: [],
+      viewedBy: []
     }
   }
 ]

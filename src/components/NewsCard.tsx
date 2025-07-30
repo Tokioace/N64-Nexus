@@ -2,6 +2,7 @@ import React from 'react'
 import { Newspaper, X } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 import { useLanguage, getLocaleString } from '../contexts/LanguageContext'
+import { InteractionBar } from './InteractionComponents'
 
 interface NewsItem {
   id: string
@@ -146,10 +147,18 @@ const NewsCard: React.FC<NewsCardProps> = ({ newsItem, index, onDismiss, isAnima
             </p>
           </div>
           <div className="border-t border-slate-600/30 pt-3 mt-4 flex-shrink-0">
-            <div className="flex items-center justify-between text-xs text-text-muted">
+            <div className="flex items-center justify-between text-xs text-text-muted mb-3">
               <span className="font-medium">{formatTime(newsItem.date)}</span>
               <span className="text-accent-blue font-medium">{t('ui.newsDetails')}</span>
             </div>
+            
+            {/* Interaction Bar */}
+            <InteractionBar 
+              contentType="news"
+              contentId={newsItem.id}
+              showComments={false}
+              compact={true}
+            />
           </div>
         </div>
       </div>

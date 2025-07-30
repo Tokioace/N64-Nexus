@@ -851,7 +851,19 @@ const en = {
   'profile.rankingStats': 'Ranking Statistics',
 
   // FanArt Comments
-  'fanart.addComment': 'Add a comment...'
+  'fanart.addComment': 'Add a comment...',
+
+  // Interaction System
+  'interaction.like': 'Like',
+  'interaction.unlike': 'Unlike',
+  'interaction.comments': 'comments',
+  'interaction.addComment': 'Add comment',
+  'interaction.writeComment': 'Write a comment...',
+  'interaction.loginToLike': 'Login to like',
+  'interaction.loginToComment': 'Login to comment',
+
+  // Time
+  'time.justNow': 'just now'
 }
 
 export default en

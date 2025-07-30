@@ -17,6 +17,7 @@ import {
   Timer
 } from 'lucide-react'
 import { EventParticipation, GameEvent } from '../types'
+import { InteractionBar } from './InteractionComponents'
 
 interface EventCardProps {
   event: GameEvent
@@ -241,6 +242,16 @@ const EventCard: React.FC<EventCardProps> = ({ event, leaderboard, timeRemaining
             </div>
           )}
         </div>
+      </div>
+
+      {/* Interaction Bar */}
+      <div className="mt-4 pt-4 border-t border-slate-600/30">
+        <InteractionBar 
+          contentType="event"
+          contentId={event.id}
+          showComments={true}
+          compact={false}
+        />
       </div>
     </div>
   )

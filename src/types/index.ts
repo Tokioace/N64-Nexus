@@ -110,6 +110,25 @@ export interface QuizContextType {
   resetQuiz: () => void
 }
 
+// Interaction System Types
+export interface InteractionData {
+  likes: number
+  views: number
+  comments: Comment[]
+  likedBy: string[] // User IDs who liked this content
+  viewedBy: string[] // User IDs who viewed this content
+}
+
+export interface Comment {
+  id: string
+  userId: string
+  username: string
+  content: string
+  createdAt: Date
+  likes: number
+  likedBy: string[]
+}
+
 // Event System Types
 export interface GameEvent {
   id: string
@@ -129,6 +148,7 @@ export interface GameEvent {
     participation: number
     positions: number[] // Points for positions 1-10, F1 style
   }
+  interactions: InteractionData
 }
 
 export interface EventParticipation {
@@ -232,6 +252,7 @@ export interface MediaMeta {
   likes: number
   views: number
   tags: string[]
+  interactions: InteractionData
 }
 
 export interface MediaContextType {
@@ -303,6 +324,7 @@ export interface ForumThread {
     authorName: string
     createdAt: Date
   }
+  interactions: InteractionData
 }
 
 export interface ForumPost {
@@ -316,6 +338,7 @@ export interface ForumPost {
   isEdited: boolean
   editedAt?: Date
   isDeleted: boolean
+  interactions: InteractionData
 }
 
 export interface ForumStats {
@@ -403,6 +426,12 @@ export interface PointsConfig {
   'event.position.8': number
   'event.position.9': number
   'event.position.10': number
+  // Interaction points
+  'interaction.like': number
+  'interaction.likeReceived': number
+  'interaction.comment': number
+  'interaction.commentReceived': number
+  'interaction.view': number
 }
 
 export interface RankConfig {
@@ -464,6 +493,30 @@ export interface PointsContextType {
   currentSeason: string
   startNewSeason: () => Promise<void>
   awardSeasonMedals: () => Promise<void>
+  
+  // Loading states
+  loading: boolean
+  error: string | null
+}
+
+// Interaction System Context Type
+export interface InteractionContextType {
+  // Actions for any content type
+  likeContent: (contentType: string, contentId: string, userId: string) => Promise<boolean>
+  unlikeContent: (contentType: string, contentId: string, userId: string) => Promise<boolean>
+  addComment: (contentType: string, contentId: string, userId: string, username: string, content: string) => Promise<boolean>
+  likeComment: (contentType: string, contentId: string, commentId: string, userId: string) => Promise<boolean>
+  viewContent: (contentType: string, contentId: string, userId: string) => Promise<boolean>
+  
+  // Getters for interaction data
+  getInteractionData: (contentType: string, contentId: string) => InteractionData
+  hasUserLiked: (contentType: string, contentId: string, userId: string) => boolean
+  hasUserViewed: (contentType: string, contentId: string, userId: string) => boolean
+  
+  // Statistics
+  getTotalLikesForUser: (userId: string) => number
+  getTotalCommentsForUser: (userId: string) => number
+  getMostLikedContent: (contentType?: string) => Array<{id: string, type: string, likes: number}>
   
   // Loading states
   loading: boolean

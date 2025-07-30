@@ -3,6 +3,7 @@ import { Newspaper } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 import NewsCard from './NewsCard'
 import { useLanguage } from '../contexts/LanguageContext'
+import { InteractionBar } from './InteractionComponents'
 
 interface NewsItem {
   id: string
