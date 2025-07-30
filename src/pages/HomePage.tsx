@@ -73,6 +73,22 @@ interface MarketplaceItem {
   createdAt?: string // Add createdAt property for backward compatibility
 }
 
+// Simple error boundary component
+const SafeComponent: React.FC<{ children: React.ReactNode; fallback?: React.ReactNode; name: string }> = ({ 
+  children, 
+  fallback = null, 
+  name 
+}) => {
+  try {
+    return <>{children}</>
+  } catch (error) {
+    console.error(`Error in ${name}:`, error)
+    return <div style={{ padding: '10px', backgroundColor: 'rgba(255, 0, 0, 0.1)', border: '1px solid red', borderRadius: '4px' }}>
+      <p style={{ color: 'red', fontSize: '14px' }}>Error loading {name}</p>
+    </div>
+  }
+}
+
 const HomePage: React.FC = () => {
   const { user } = useUser()
   const { t, currentLanguage } = useLanguage()
@@ -255,79 +271,97 @@ const HomePage: React.FC = () => {
       </div>
 
       {/* LIVE EVENTS SECTION - TOP PRIORITY */}
-      <div className="mb-responsive responsive-max-width">
-        <EventFeedWidget />
-      </div>
+      <SafeComponent name="EventFeedWidget">
+        <div className="mb-responsive responsive-max-width">
+          <EventFeedWidget />
+        </div>
+      </SafeComponent>
 
       {/* POINTS WIDGET SECTION */}
       {user && (
-        <div className="mb-responsive responsive-max-width">
-          <PointsWidget />
-        </div>
+        <SafeComponent name="PointsWidget">
+          <div className="mb-responsive responsive-max-width">
+            <PointsWidget />
+          </div>
+        </SafeComponent>
       )}
 
       {/* NEWS CARDS SECTION */}
       <div className="space-y-6">
         {/* Single News Card - One card at a time with dismiss functionality */}
-        <div className="space-y-4">
-          <h2 className="text-responsive-lg font-bold text-slate-100 mb-responsive">
-            {t('home.newsTitle')}
-          </h2>
-          <SingleNewsCard 
-            newsItems={posts.slice(0, 8).map(post => ({
-              id: post.id,
-              title: post.content.substring(0, 50) + '...', // Use first 50 chars of content as title
-              content: post.content,
-              date: new Date(post.createdAt),
-              type: 'community_news' as const
-            }))}
-            className="w-full"
-          />
-        </div>
+        <SafeComponent name="SingleNewsCard">
+          <div className="space-y-4">
+            <h2 className="text-responsive-lg font-bold text-slate-100 mb-responsive">
+              {t('home.newsTitle')}
+            </h2>
+            <SingleNewsCard 
+              newsItems={posts.slice(0, 8).map(post => ({
+                id: post.id,
+                title: post.content.substring(0, 50) + '...', // Use first 50 chars of content as title
+                content: post.content,
+                date: new Date(post.createdAt),
+                type: 'community_news' as const
+              }))}
+              className="w-full"
+            />
+          </div>
+        </SafeComponent>
 
         {/* Forum Posts - Single card interface */}
-        <SingleForumCard 
-          forumThreads={forumThreads}
-          className="w-full"
-        />
+        <SafeComponent name="SingleForumCard">
+          <SingleForumCard 
+            forumThreads={forumThreads}
+            className="w-full"
+          />
+        </SafeComponent>
 
         {/* Other Content - FanArts and Media */}
         <div className="responsive-grid-2">
-          <SingleFanArtCard 
-            fanArtItems={fanArtItems}
-            className="responsive-max-width"
-          />
+          <SafeComponent name="SingleFanArtCard">
+            <SingleFanArtCard 
+              fanArtItems={fanArtItems}
+              className="responsive-max-width"
+            />
+          </SafeComponent>
           
-          <SingleMediaCard 
-            mediaItems={mediaItems}
-            className="responsive-max-width"
-          />
+          <SafeComponent name="SingleMediaCard">
+            <SingleMediaCard 
+              mediaItems={mediaItems}
+              className="responsive-max-width"
+            />
+          </SafeComponent>
         </div>
 
         {/* Records and Marketplace */}
         <div className="responsive-grid-2">
-          <SingleRecordCard 
-            personalRecords={personalRecords}
-            className="responsive-max-width"
-          />
+          <SafeComponent name="SingleRecordCard">
+            <SingleRecordCard 
+              personalRecords={personalRecords}
+              className="responsive-max-width"
+            />
+          </SafeComponent>
           
-          <SingleMarketplaceCard 
-            marketplaceItems={marketplaceItems}
-            className="responsive-max-width"
-          />
+          <SafeComponent name="SingleMarketplaceCard">
+            <SingleMarketplaceCard 
+              marketplaceItems={marketplaceItems}
+              className="responsive-max-width"
+            />
+          </SafeComponent>
         </div>
 
         {/* N64Fan Leaderboard - Compact */}
         {user && (
-          <div className="responsive-max-width">
-            <div className="simple-tile">
-              <N64FanLeaderboard 
-                maxEntries={5}
-                showFilters={false}
-                compact={true}
-              />
+          <SafeComponent name="N64FanLeaderboard">
+            <div className="responsive-max-width">
+              <div className="simple-tile">
+                <N64FanLeaderboard 
+                  maxEntries={5}
+                  showFilters={false}
+                  compact={true}
+                />
+              </div>
             </div>
-          </div>
+          </SafeComponent>
         )}
       </div>
 
