@@ -30,13 +30,13 @@ const EventCard: React.FC<EventCardProps> = ({ event, leaderboard, timeRemaining
   const getRankIcon = (position: number) => {
     switch (position) {
       case 1:
-        return <Crown className="w-4 h-4 text-yellow-400" />
+        return <Crown className="w-3 h-3 sm:w-4 sm:h-4 text-yellow-400" />
       case 2:
-        return <Medal className="w-4 h-4 text-gray-400" />
+        return <Medal className="w-3 h-3 sm:w-4 sm:h-4 text-gray-400" />
       case 3:
-        return <Medal className="w-4 h-4 text-amber-600" />
+        return <Medal className="w-3 h-3 sm:w-4 sm:h-4 text-amber-600" />
       default:
-        return <div className="w-4 h-4 flex items-center justify-center text-slate-400 font-bold text-xs">#{position}</div>
+        return <div className="w-3 h-3 sm:w-4 sm:h-4 flex items-center justify-center text-slate-400 font-bold text-xs">#{position}</div>
     }
   }
 
@@ -91,43 +91,61 @@ const EventCard: React.FC<EventCardProps> = ({ event, leaderboard, timeRemaining
 
   return (
     <div className={`n64-tile n64-tile-large bg-gradient-to-br ${getEventGradient(event.id)} mb-6`}>
-      <div className="flex items-center justify-between mb-4">
-        <div className="flex items-center gap-3">
-          <div className="text-2xl">{getGameIcon(event.game)}</div>
-          <div>
-            <h3 className="text-lg font-bold text-slate-100 line-clamp-1">{event.title}</h3>
-            <p className="text-sm text-slate-400">{event.game} • {event.category}</p>
+      {/* Mobile-optimized header with single line layout */}
+      <div className="flex items-center justify-between mb-3 sm:mb-4 gap-2">
+        <div className="flex items-center gap-2 sm:gap-3 min-w-0 flex-1">
+          <div className="text-lg sm:text-2xl flex-shrink-0">{getGameIcon(event.game)}</div>
+          <div className="min-w-0 flex-1">
+            <h3 className="text-sm sm:text-lg font-bold text-slate-100 truncate leading-tight">{event.title}</h3>
+            <p className="text-xs sm:text-sm text-slate-400 truncate">{event.game} • {event.category}</p>
           </div>
         </div>
-        <div className="text-right">
-          <div className="flex items-center gap-2 mb-1">
+        <div className="text-right flex-shrink-0">
+          <div className="flex items-center gap-1 sm:gap-2 mb-1">
             <div className="w-1 h-1 bg-green-400 rounded-full"></div>
-            <span className="text-sm font-medium text-green-400">{t('events.status.live')}</span>
+            <span className="text-xs sm:text-sm font-medium text-green-400">{t('events.status.live')}</span>
           </div>
-          <div className="flex items-center gap-1 text-sm text-slate-300">
-            <Timer className="w-4 h-4" />
-            <span className="font-mono">{timeRemaining}</span>
+          <div className="flex items-center gap-1 text-xs sm:text-sm text-slate-300">
+            <Timer className="w-3 h-3 sm:w-4 sm:h-4" />
+            <span className="font-mono whitespace-nowrap">{timeRemaining}</span>
           </div>
         </div>
       </div>
 
-      {/* Always visible Top 3 Times - Full width on mobile */}
-      <div className="mb-4">
-        <h4 className="text-sm font-semibold text-slate-200 mb-3 flex items-center gap-2">
-          <Trophy className="w-4 h-4 text-yellow-400" />
+      {/* Compact Top 3 Times - Always show all 3 positions */}
+      <div className="mb-3 sm:mb-4">
+        <h4 className="text-xs sm:text-sm font-semibold text-slate-200 mb-2 sm:mb-3 flex items-center gap-1 sm:gap-2">
+          <Trophy className="w-3 h-3 sm:w-4 sm:h-4 text-yellow-400" />
           {t('home.topLeaderboard')}
         </h4>
         {sortedLeaderboard.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
-            {sortedLeaderboard.map((entry, index) => {
+          <div className="grid grid-cols-3 gap-1 sm:gap-2">
+            {/* Always render 3 positions, show placeholder if no data */}
+            {[0, 1, 2].map((index) => {
+              const entry = sortedLeaderboard[index]
               const position = index + 1
+              
+              if (!entry) {
+                // Show placeholder for missing positions
+                return (
+                  <div key={`placeholder-${position}`} className="bg-slate-800/20 rounded-lg p-2 sm:p-3 text-center">
+                    <div className="flex justify-center mb-1 sm:mb-2">
+                      {getRankIcon(position)}
+                    </div>
+                    <div className="text-xs text-slate-500 font-medium mb-1 truncate">-</div>
+                    <div className="text-xs font-mono font-bold text-slate-600 mb-1">-:--</div>
+                    <div className="h-3 sm:h-4"></div>
+                  </div>
+                )
+              }
+              
               return (
-                <div key={entry.id} className="bg-slate-800/30 rounded-lg p-3 text-center">
-                  <div className="flex justify-center mb-2">
+                <div key={entry.id} className="bg-slate-800/30 rounded-lg p-2 sm:p-3 text-center">
+                  <div className="flex justify-center mb-1 sm:mb-2">
                     {getRankIcon(position)}
                   </div>
-                  <div className="text-sm text-slate-200 font-medium mb-1 truncate">{entry.username}</div>
-                  <div className={`text-sm font-mono font-bold ${getRankColor(position)} mb-1`}>
+                  <div className="text-xs text-slate-200 font-medium mb-1 truncate" title={entry.username}>{entry.username}</div>
+                  <div className={`text-xs font-mono font-bold ${getRankColor(position)} mb-1`}>
                     {entry.time}
                   </div>
                   <div className="flex items-center justify-center gap-1">
@@ -136,9 +154,9 @@ const EventCard: React.FC<EventCardProps> = ({ event, leaderboard, timeRemaining
                     )}
                     {entry.mediaUrl && (
                       <div className="flex items-center">
-                        {entry.documentationType === 'photo' && <Camera className="w-3 h-3 text-slate-400" />}
-                        {entry.documentationType === 'video' && <Video className="w-3 h-3 text-slate-400" />}
-                        {entry.documentationType === 'livestream' && <Radio className="w-3 h-3 text-slate-400" />}
+                        {entry.documentationType === 'photo' && <Camera className="w-2 h-2 sm:w-3 sm:h-3 text-slate-400" />}
+                        {entry.documentationType === 'video' && <Video className="w-2 h-2 sm:w-3 sm:h-3 text-slate-400" />}
+                        {entry.documentationType === 'livestream' && <Radio className="w-2 h-2 sm:w-3 sm:h-3 text-slate-400" />}
                       </div>
                     )}
                   </div>
@@ -147,20 +165,20 @@ const EventCard: React.FC<EventCardProps> = ({ event, leaderboard, timeRemaining
             })}
           </div>
         ) : (
-          <div className="text-center py-6 bg-slate-800/30 rounded-lg">
-            <Trophy className="w-6 h-6 text-slate-500 mx-auto mb-2" />
-            <p className="text-sm text-slate-400 mb-1">{t('home.noTimesSubmitted')}</p>
+          <div className="text-center py-4 sm:py-6 bg-slate-800/30 rounded-lg">
+            <Trophy className="w-4 h-4 sm:w-6 sm:h-6 text-slate-500 mx-auto mb-2" />
+            <p className="text-xs sm:text-sm text-slate-400 mb-1">{t('home.noTimesSubmitted')}</p>
             <p className="text-xs text-slate-500">{t('home.beTheFirst')}</p>
           </div>
         )}
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 sm:gap-4">
         {/* Event Stats */}
-        <div className="space-y-3">
-          <div className="flex items-center justify-between text-sm">
-            <div className="flex items-center gap-2">
-              <Users className="w-4 h-4 text-cyan-400" />
+        <div className="space-y-2 sm:space-y-3">
+          <div className="flex items-center justify-between text-xs sm:text-sm">
+            <div className="flex items-center gap-1 sm:gap-2">
+              <Users className="w-3 h-3 sm:w-4 sm:h-4 text-cyan-400" />
               <span className="text-slate-300">{event.participants} {t('events.participants')}</span>
             </div>
             <Link 
@@ -168,25 +186,25 @@ const EventCard: React.FC<EventCardProps> = ({ event, leaderboard, timeRemaining
               className="flex items-center gap-1 text-green-400 hover:text-green-300 transition-colors"
             >
               <span>{t('events.join')}</span>
-              <ChevronRight className="w-4 h-4" />
+              <ChevronRight className="w-3 h-3 sm:w-4 sm:h-4" />
             </Link>
           </div>
         </div>
 
-        {/* Winner's Media Preview */}
+        {/* Winner's Media Preview - Compact on mobile */}
         <div>
           {sortedLeaderboard.length > 0 && sortedLeaderboard[0].mediaUrl && (
             <div>
-              <h4 className="text-sm font-semibold text-slate-200 mb-2 flex items-center gap-2">
-                <Crown className="w-4 h-4 text-yellow-400" />
-                {t('home.winner')} - {sortedLeaderboard[0].username}
+              <h4 className="text-xs sm:text-sm font-semibold text-slate-200 mb-2 flex items-center gap-1 sm:gap-2">
+                <Crown className="w-3 h-3 sm:w-4 sm:h-4 text-yellow-400" />
+                <span className="truncate">{t('home.winner')} - {sortedLeaderboard[0].username}</span>
               </h4>
               <div className="relative bg-slate-800/30 rounded-lg overflow-hidden">
                 {sortedLeaderboard[0].documentationType === 'photo' && (
                   <img 
                     src={sortedLeaderboard[0].mediaUrl!} 
                     alt={`Winner screenshot by ${sortedLeaderboard[0].username}`}
-                    className="w-full h-24 object-cover"
+                    className="w-full h-16 sm:h-24 object-cover"
                     onError={(e) => {
                       const target = e.target as HTMLImageElement
                       target.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iIzMzNCI+PC9yZWN0Pjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTIiIGZpbGw9IiM5OTkiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5TY3JlZW5zaG90PC90ZXh0Pjwvc3ZnPg=='
@@ -197,26 +215,26 @@ const EventCard: React.FC<EventCardProps> = ({ event, leaderboard, timeRemaining
                   <div className="relative">
                     <video 
                       src={sortedLeaderboard[0].mediaUrl!}
-                      className="w-full h-24 object-cover"
+                      className="w-full h-16 sm:h-24 object-cover"
                       autoPlay
                       loop
                       muted
                       playsInline
                     />
                     <div className="absolute top-1 right-1 bg-black bg-opacity-50 rounded px-1 py-0.5">
-                      <Video className="w-3 h-3 text-white" />
+                      <Video className="w-2 h-2 sm:w-3 sm:h-3 text-white" />
                     </div>
                   </div>
                 )}
                 {sortedLeaderboard[0].documentationType === 'livestream' && (
-                  <div className="h-24 flex items-center justify-center bg-gradient-to-r from-purple-600/20 to-purple-700/20">
+                  <div className="h-16 sm:h-24 flex items-center justify-center bg-gradient-to-r from-purple-600/20 to-purple-700/20">
                     <div className="text-center">
-                      <Radio className="w-6 h-6 text-purple-400 mx-auto mb-1" />
+                      <Radio className="w-4 h-4 sm:w-6 sm:h-6 text-purple-400 mx-auto mb-1" />
                       <p className="text-xs text-purple-400">{t('media.livestream')}</p>
                     </div>
                   </div>
                 )}
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-2">
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-1 sm:p-2">
                   <div className="text-xs text-white font-bold">{sortedLeaderboard[0].time}</div>
                 </div>
               </div>
@@ -299,11 +317,11 @@ const EventFeedWidget: React.FC = () => {
 
   if (activeEvents.length === 0) {
     return (
-      <div className="n64-tile n64-tile-large bg-gradient-to-br from-red-600/20 to-pink-600/20 border-l-4 border-red-400">
+      <div className="n64-tile n64-tile-large bg-gradient-to-br from-sky-600/20 to-blue-600/20 border-l-4 border-sky-400">
         <div className="flex items-center gap-2 sm:gap-3 mb-4">
-          <Trophy className="w-5 h-5 sm:w-6 sm:h-6 text-yellow-400 flex-shrink-0" />
-          <h2 className="text-responsive-lg font-bold text-red-400">
-            🔴 LIVE EVENT
+          <Trophy className="w-5 h-5 sm:w-6 sm:h-6 text-sky-400 flex-shrink-0" />
+          <h2 className="text-responsive-lg font-bold text-sky-400">
+            Live Event
           </h2>
         </div>
         <div className="text-center py-4 sm:py-8">
@@ -313,9 +331,9 @@ const EventFeedWidget: React.FC = () => {
           <p className="text-responsive-sm text-slate-400 mb-4">{t('home.noLiveEvent')}</p>
           <Link 
             to="/events" 
-            className="inline-block px-3 py-2 sm:px-4 sm:py-2 rounded-lg bg-gradient-to-r from-red-500/20 to-yellow-500/20 text-red-400 hover:from-red-500/30 hover:to-yellow-500/30 transition-all duration-300 text-responsive-sm w-full sm:w-auto text-center border border-red-500/30 font-bold"
+            className="inline-block px-3 py-2 sm:px-4 sm:py-2 rounded-lg bg-gradient-to-r from-sky-500/20 to-blue-500/20 text-sky-400 hover:from-sky-500/30 hover:to-blue-500/30 transition-all duration-300 text-responsive-sm w-full sm:w-auto text-center border border-sky-500/30 font-bold"
           >
-            {t('home.showAllEvents')}
+            Join now!!!
           </Link>
         </div>
       </div>
@@ -325,40 +343,40 @@ const EventFeedWidget: React.FC = () => {
   return (
     <div className="space-y-6">
       <div className="text-center mb-8">
-        <div className="bg-gradient-to-r from-slate-800/90 via-slate-700/90 to-slate-800/90 rounded-xl p-6 border border-red-500/30">
-          <div className="flex items-center justify-center gap-4 mb-3">
-            <Trophy className="w-8 h-8 text-yellow-400" />
+        <div className="bg-gradient-to-r from-slate-800/90 via-slate-700/90 to-slate-800/90 rounded-xl p-4 sm:p-6 border border-sky-500/30">
+          <div className="flex items-center justify-center gap-2 sm:gap-4 mb-3">
+            <Trophy className="w-6 h-6 sm:w-8 sm:h-8 text-sky-400" />
             
             <div className="text-center">
               <div className="flex items-center justify-center gap-2 mb-1">
-                <div className="w-1 h-1 bg-red-500 rounded-full"></div>
-                <h2 className="text-3xl font-bold text-red-400">
-                  LIVE EVENT
+                <div className="w-1 h-1 bg-sky-500 rounded-full"></div>
+                <h2 className="text-xl sm:text-3xl font-bold text-sky-400">
+                  Live Event
                 </h2>
-                <div className="w-1 h-1 bg-red-500 rounded-full"></div>
+                <div className="w-1 h-1 bg-sky-500 rounded-full"></div>
               </div>
-              <div className="text-xs text-red-400 font-semibold tracking-wider uppercase">
-                🔥 JETZT LIVE • NOW LIVE • EN VIVO 🔥
+              <div className="text-xs text-sky-400 font-semibold tracking-wider uppercase">
+                Join now!!!
               </div>
             </div>
             
-            <Trophy className="w-8 h-8 text-yellow-400" />
+            <Trophy className="w-6 h-6 sm:w-8 sm:h-8 text-sky-400" />
           </div>
           
           <div className="bg-gradient-to-r from-purple-600/20 via-indigo-600/20 to-purple-600/20 rounded-lg p-3 border border-purple-500/30">
-            <p className="text-lg font-bold text-purple-300 tracking-wide">
+            <p className="text-sm sm:text-lg font-bold text-purple-300 tracking-wide">
               {t('events.practiceChampionshipSubtitle')}
             </p>
             <div className="flex items-center justify-center gap-2 mt-2">
               <div className="w-1 h-1 bg-green-400 rounded-full"></div>
-              <span className="text-sm text-green-400 font-medium">30 Tage Championship • 30 Days Championship</span>
+              <span className="text-xs sm:text-sm text-green-400 font-medium">30 Tage Championship • 30 Days Championship</span>
               <div className="w-1 h-1 bg-green-400 rounded-full"></div>
             </div>
           </div>
           
           {/* Motivational call to action */}
           <div className="mt-4 bg-gradient-to-r from-yellow-600/20 via-orange-600/20 to-yellow-600/20 rounded-lg p-3 border border-yellow-500/30">
-            <p className="text-yellow-300 font-bold text-sm">
+            <p className="text-yellow-300 font-bold text-xs sm:text-sm">
               🏆 ZEIGE DEINE SKILLS • SHOW YOUR SKILLS • MUESTRA TUS HABILIDADES 🏆
             </p>
           </div>
@@ -377,7 +395,7 @@ const EventFeedWidget: React.FC = () => {
       <div className="text-center">
         <Link 
           to="/events" 
-          className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-gradient-to-r from-purple-600/20 to-pink-600/20 border border-purple-400/30 text-purple-400 hover:bg-gradient-to-r hover:from-purple-600/30 hover:to-pink-600/30 transition-all"
+          className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-gradient-to-r from-sky-600/20 to-blue-600/20 border border-sky-400/30 text-sky-400 hover:bg-gradient-to-r hover:from-sky-600/30 hover:to-blue-600/30 transition-all"
         >
           <Trophy className="w-5 h-5" />
           <span>{t('home.showAllEvents')}</span>
