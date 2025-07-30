@@ -983,7 +983,19 @@ const ar = {
   'profile.rankingStats': 'إحصائيات الترتيب',
 
   // FanArt Comments
-  'fanart.addComment': 'إضافة تعليق...'
+  'fanart.addComment': 'إضافة تعليق...',
+
+  // Interaction System
+  'interaction.like': 'إعجاب',
+  'interaction.unlike': 'إلغاء الإعجاب',
+  'interaction.comments': 'تعليقات',
+  'interaction.addComment': 'إضافة تعليق',
+  'interaction.writeComment': 'اكتب تعليقاً...',
+  'interaction.loginToLike': 'تسجيل الدخول للإعجاب',
+  'interaction.loginToComment': 'تسجيل الدخول للتعليق',
+
+  // Time
+  'time.justNow': 'الآن'
 }
 
 export default ar

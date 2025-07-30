@@ -850,7 +850,19 @@ const hi = {
   'profile.rankingStats': 'रैंकिंग आंकड़े',
 
   // FanArt Comments
-  'fanart.addComment': 'टिप्पणी जोड़ें...'
+  'fanart.addComment': 'टिप्पणी जोड़ें...',
+
+  // Interaction System
+  'interaction.like': 'पसंद',
+  'interaction.unlike': 'पसंद हटाएं',
+  'interaction.comments': 'टिप्पणियां',
+  'interaction.addComment': 'टिप्पणी जोड़ें',
+  'interaction.writeComment': 'टिप्पणी लिखें...',
+  'interaction.loginToLike': 'पसंद के लिए लॉगिन करें',
+  'interaction.loginToComment': 'टिप्पणी के लिए लॉगिन करें',
+
+  // Time
+  'time.justNow': 'अभी'
 }
 
 export default hi

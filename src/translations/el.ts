@@ -900,7 +900,19 @@ const el = {
   'profile.rankingStats': 'Στατιστικά Κατάταξης',
 
   // FanArt Comments
-  'fanart.addComment': 'Προσθήκη σχολίου...'
+  'fanart.addComment': 'Προσθήκη σχολίου...',
+
+  // Interaction System
+  'interaction.like': 'Μου αρέσει',
+  'interaction.unlike': 'Αφαίρεση like',
+  'interaction.comments': 'σχόλια',
+  'interaction.addComment': 'Προσθήκη σχολίου',
+  'interaction.writeComment': 'Γράψτε ένα σχόλιο...',
+  'interaction.loginToLike': 'Συνδεθείτε για like',
+  'interaction.loginToComment': 'Συνδεθείτε για σχόλιο',
+
+  // Time
+  'time.justNow': 'τώρα'
 }
 
 export default el

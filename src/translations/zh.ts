@@ -900,7 +900,19 @@ const zh = {
   'profile.rankingStats': '排名统计',
 
   // FanArt Comments
-  'fanart.addComment': '添加评论...'
+  'fanart.addComment': '添加评论...',
+
+  // Interaction System
+  'interaction.like': '点赞',
+  'interaction.unlike': '取消点赞',
+  'interaction.comments': '评论',
+  'interaction.addComment': '添加评论',
+  'interaction.writeComment': '写评论...',
+  'interaction.loginToLike': '登录以点赞',
+  'interaction.loginToComment': '登录以评论',
+
+  // Time
+  'time.justNow': '刚刚'
 }
 
 export default zh

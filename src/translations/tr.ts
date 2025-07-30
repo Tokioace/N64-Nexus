@@ -851,7 +851,19 @@ const tr = {
   'profile.rankingStats': 'Sıralama İstatistikleri',
 
   // FanArt Comments
-  'fanart.addComment': 'Yorum ekle...'
+  'fanart.addComment': 'Yorum ekle...',
+
+  // Interaction System
+  'interaction.like': 'Beğen',
+  'interaction.unlike': 'Beğeniyi kaldır',
+  'interaction.comments': 'yorumlar',
+  'interaction.addComment': 'Yorum ekle',
+  'interaction.writeComment': 'Yorum yazın...',
+  'interaction.loginToLike': 'Beğenmek için giriş yapın',
+  'interaction.loginToComment': 'Yorum yapmak için giriş yapın',
+
+  // Time
+  'time.justNow': 'şimdi'
 }
 
 export default tr

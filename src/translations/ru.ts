@@ -834,7 +834,19 @@ const ru = {
   'profile.rankingStats': 'Статистика Рейтинга',
 
   // FanArt Comments
-  'fanart.addComment': 'Добавить комментарий...'
+  'fanart.addComment': 'Добавить комментарий...',
+
+  // Interaction System
+  'interaction.like': 'Нравится',
+  'interaction.unlike': 'Убрать лайк',
+  'interaction.comments': 'комментарии',
+  'interaction.addComment': 'Добавить комментарий',
+  'interaction.writeComment': 'Написать комментарий...',
+  'interaction.loginToLike': 'Войдите, чтобы лайкнуть',
+  'interaction.loginToComment': 'Войдите, чтобы комментировать',
+
+  // Time
+  'time.justNow': 'только что'
 }
 
 export default ru

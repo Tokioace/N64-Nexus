@@ -900,7 +900,19 @@ const ja = {
   'profile.rankingStats': 'ランキング統計',
 
   // FanArt Comments
-  'fanart.addComment': 'コメントを追加...'
+  'fanart.addComment': 'コメントを追加...',
+
+  // Interaction System
+  'interaction.like': 'いいね',
+  'interaction.unlike': 'いいねを取り消す',
+  'interaction.comments': 'コメント',
+  'interaction.addComment': 'コメントを追加',
+  'interaction.writeComment': 'コメントを書く...',
+  'interaction.loginToLike': 'いいねするにはログイン',
+  'interaction.loginToComment': 'コメントするにはログイン',
+
+  // Time
+  'time.justNow': 'たった今'
 }
 
 export default ja
