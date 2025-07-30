@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
 import { useUser } from '../contexts/UserContext'
-import { useEvent } from '../contexts/EventContext'
 import { useLanguage } from '../contexts/LanguageContext'
 import EventFeedWidget from '../components/EventFeedWidget'
 import PointsWidget from '../components/PointsWidget'
@@ -12,22 +10,6 @@ import SingleFanArtCard from '../components/SingleFanArtCard'
 import SingleMediaCard from '../components/SingleMediaCard'
 import SingleRecordCard from '../components/SingleRecordCard'
 import SingleMarketplaceCard from '../components/SingleMarketplaceCard'
-import { GameEvent } from '../types'
-import {
-  Trophy,
-  TrendingUp,
-  MessageSquare,
-  Palette,
-  Camera,
-  Award,
-  ShoppingCart,
-  Clock,
-  User,
-  Eye,
-  Heart,
-  Star,
-  Gamepad2
-} from 'lucide-react'
 
 interface NewsItem {
   id: string

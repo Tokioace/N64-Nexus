@@ -204,14 +204,20 @@ const mockParticipations: EventParticipation[] = [
 
 export const EventProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const { t } = useLanguage()
-  const mockEvents = getEventData(t)
-  const [events, setEvents] = useState<GameEvent[]>(mockEvents)
-  const [activeEvents, setActiveEvents] = useState<GameEvent[]>(mockEvents.filter(e => e.isActive))
+  const [events, setEvents] = useState<GameEvent[]>([])
+  const [activeEvents, setActiveEvents] = useState<GameEvent[]>([])
   const [userParticipations, setUserParticipations] = useState<EventParticipation[]>([])
   const [allEventSubmissions, setAllEventSubmissions] = useState<EventParticipation[]>([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [eventPointsAwarded, setEventPointsAwarded] = useState<Record<string, boolean>>({})
+
+  // Initialize events with translations
+  useEffect(() => {
+    const mockEvents = getEventData(t)
+    setEvents(mockEvents)
+    setActiveEvents(mockEvents.filter(e => e.isActive))
+  }, [t])
 
   // Load points awarded tracking
   useEffect(() => {
@@ -352,7 +358,7 @@ export const EventProvider: React.FC<{ children: ReactNode }> = ({ children }) =
       setUserParticipations(prev => [...prev, newParticipation])
       setLoading(false)
       return true
-    } catch (err) {
+    } catch (_err) {
               setError(t('error.generic'))
       setLoading(false)
       return false
@@ -400,7 +406,7 @@ export const EventProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     }
   }
 
-  const submitScore = async (eventId: string, score: number, time?: string, mediaUrl?: string): Promise<boolean> => {
+  const submitScore = async (_eventId: string, _score: number, _time?: string, _mediaUrl?: string): Promise<boolean> => {
     setLoading(true)
     try {
       await new Promise(resolve => setTimeout(resolve, 500))

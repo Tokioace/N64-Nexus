@@ -8,14 +8,12 @@ import {
   Trophy, 
   Medal, 
   Crown, 
-  Clock, 
   Camera, 
   Video, 
   Radio,
   Users,
   Gamepad2,
   ChevronRight,
-  Play,
   Timer
 } from 'lucide-react'
 import { EventParticipation, GameEvent } from '../types'
@@ -230,7 +228,7 @@ const EventCard: React.FC<EventCardProps> = ({ event, leaderboard, timeRemaining
 }
 
 const EventFeedWidget: React.FC = () => {
-  const { events, activeEvents, getLeaderboard, shouldAwardParticipationPoints, markParticipationPointsAwarded, getEventPositionPoints, markPositionPointsAwarded } = useEvent()
+  const { activeEvents, getLeaderboard, shouldAwardParticipationPoints, markParticipationPointsAwarded, getEventPositionPoints, markPositionPointsAwarded } = useEvent()
   const { t } = useLanguage()
   const { awardPoints } = usePoints()
   const { user } = useUser()
