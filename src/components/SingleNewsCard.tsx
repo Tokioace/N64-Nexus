@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react'
 import { Newspaper } from 'lucide-react'
+import { useNavigate } from 'react-router-dom'
 import NewsCard from './NewsCard'
 import { useLanguage } from '../contexts/LanguageContext'
 
@@ -18,6 +19,7 @@ interface SingleNewsCardProps {
 
 const SingleNewsCard: React.FC<SingleNewsCardProps> = ({ newsItems, className = '' }) => {
   const { t } = useLanguage()
+  const navigate = useNavigate()
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isFlipping, setIsFlipping] = useState(false)
   const [flipDirection, setFlipDirection] = useState<'left' | 'right'>('left')
@@ -185,6 +187,16 @@ const SingleNewsCard: React.FC<SingleNewsCardProps> = ({ newsItems, className = 
         {/* Card counter */}
         <div className="text-center mt-1 text-xs text-slate-400">
           {currentIndex + 1} {t('common.of')} {newsItems.length}
+        </div>
+        
+        {/* View All News Button */}
+        <div className="text-center mt-3">
+          <button
+            onClick={() => navigate('/newsfeed')}
+            className="text-xs text-accent-blue hover:text-blue-300 transition-colors duration-200 font-medium"
+          >
+View All News →
+          </button>
         </div>
       </div>
     </div>
