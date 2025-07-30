@@ -101,6 +101,7 @@ const tr = {
   // Events
   'events.title': 'Etkinlikler',
   'events.subtitle': 'Turnuvalar, Meydan Okumalar ve Topluluk Etkinlikleri',
+  'events.practiceChampionshipSubtitle': 'Practice Beta Championship #1',
   'events.upcoming': 'Yaklaşan Etkinlikler',
   'events.active': 'Aktif Etkinlikler',
   'events.completed': 'Tamamlanan Etkinlikler',

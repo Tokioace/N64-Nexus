@@ -1,10 +1,11 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component, ErrorInfo, ReactNode } from 'react'
 import { AlertCircle, RefreshCw } from 'lucide-react'
 import { useLanguage } from '../contexts/LanguageContext'
 
 interface Props {
   children: ReactNode
-  t?: (key: any) => string  // Changed from (key: string) to (key: any) for compatibility
+  t?: (key: any) => string
 }
 
 interface State {

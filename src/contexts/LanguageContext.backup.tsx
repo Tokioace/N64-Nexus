@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { createContext, useContext, useState, ReactNode } from 'react'
 
 export type Language = 'de' | 'en' | 'fr' | 'it' | 'es' | 'el' | 'tr' | 'zh' | 'ja' | 'ru' | 'pt' | 'hi' | 'ar'
@@ -10,6 +11,7 @@ interface LanguageContextType {
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined)
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useLanguage = () => {
   const context = useContext(LanguageContext)
   if (!context) {
@@ -19,6 +21,7 @@ export const useLanguage = () => {
 }
 
 // Helper function to get the correct locale for date formatting
+// eslint-disable-next-line react-refresh/only-export-components
 export const getLocaleString = (language: Language): string => {
   switch (language) {
     case 'de': return 'de-DE'

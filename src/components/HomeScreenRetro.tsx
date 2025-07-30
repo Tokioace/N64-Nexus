@@ -6,7 +6,6 @@ import {
   Trophy,
   Target,
   Camera,
-  Star,
   Users as UsersIcon,
   User,
   Package,
@@ -19,7 +18,7 @@ import {
 } from 'lucide-react'
 
 const HomeScreenRetro: React.FC = () => {
-  const { user, isAuthenticated } = useUser()
+  const { user } = useUser()
   const { t } = useLanguage()
 
   return (

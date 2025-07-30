@@ -8,14 +8,12 @@ import {
   Trophy, 
   Medal, 
   Crown, 
-  Clock, 
   Camera, 
   Video, 
   Radio,
   Users,
   Gamepad2,
   ChevronRight,
-  Play,
   Timer
 } from 'lucide-react'
 import { EventParticipation, GameEvent } from '../types'
@@ -230,7 +228,7 @@ const EventCard: React.FC<EventCardProps> = ({ event, leaderboard, timeRemaining
 }
 
 const EventFeedWidget: React.FC = () => {
-  const { events, activeEvents, getLeaderboard, shouldAwardParticipationPoints, markParticipationPointsAwarded, getEventPositionPoints, markPositionPointsAwarded } = useEvent()
+  const { activeEvents, getLeaderboard, shouldAwardParticipationPoints, markParticipationPointsAwarded, getEventPositionPoints, markPositionPointsAwarded } = useEvent()
   const { t } = useLanguage()
   const { awardPoints } = usePoints()
   const { user } = useUser()
@@ -300,20 +298,33 @@ const EventFeedWidget: React.FC = () => {
 
   if (activeEvents.length === 0) {
     return (
-      <div className="n64-tile n64-tile-large bg-gradient-to-br from-red-600/20 to-pink-600/20 border-l-4 border-red-400">
-        <div className="flex items-center gap-2 sm:gap-3 mb-4">
-          <Trophy className="w-5 h-5 sm:w-6 sm:h-6 text-yellow-400 flex-shrink-0" />
-          <h2 className="text-responsive-lg font-bold text-slate-100">🔴 {t('home.liveEvents')}</h2>
-        </div>
-        <div className="text-center py-4 sm:py-8">
-          <Gamepad2 className="w-8 h-8 sm:w-12 sm:h-12 text-slate-500 mx-auto mb-3" />
-          <p className="text-responsive-sm text-slate-400 mb-4">{t('home.noLiveEvent')}</p>
-          <Link 
-            to="/events" 
-            className="inline-block px-3 py-2 sm:px-4 sm:py-2 rounded-lg bg-red-500/20 text-red-400 hover:bg-red-500/30 transition-colors text-responsive-sm w-full sm:w-auto text-center"
-          >
-            {t('home.showAllEvents')}
-          </Link>
+      <div className="relative">
+        {/* Animated background glow */}
+        <div className="absolute inset-0 bg-gradient-to-r from-red-500/20 via-yellow-500/20 to-red-500/20 rounded-lg blur-xl animate-pulse"></div>
+        
+        <div className="relative n64-tile n64-tile-large bg-gradient-to-br from-red-600/20 to-pink-600/20 border-l-4 border-red-400">
+          <div className="flex items-center gap-2 sm:gap-3 mb-4">
+            <div className="relative">
+              <Trophy className="w-5 h-5 sm:w-6 sm:h-6 text-yellow-400 flex-shrink-0 animate-bounce" />
+              <div className="absolute -top-1 -right-1 w-2 h-2 bg-red-500 rounded-full animate-ping"></div>
+            </div>
+            <h2 className="text-responsive-lg font-bold bg-gradient-to-r from-red-400 via-yellow-400 to-red-400 bg-clip-text text-transparent">
+              🔴 LIVE EVENT
+            </h2>
+          </div>
+          <div className="text-center py-4 sm:py-8">
+            <div className="relative mb-4">
+              <Gamepad2 className="w-8 h-8 sm:w-12 sm:h-12 text-slate-500 mx-auto animate-pulse" />
+              <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-16 h-16 bg-red-500/20 rounded-full animate-ping"></div>
+            </div>
+            <p className="text-responsive-sm text-slate-400 mb-4">{t('home.noLiveEvent')}</p>
+            <Link 
+              to="/events" 
+              className="inline-block px-3 py-2 sm:px-4 sm:py-2 rounded-lg bg-gradient-to-r from-red-500/20 to-yellow-500/20 text-red-400 hover:from-red-500/30 hover:to-yellow-500/30 transition-all duration-300 text-responsive-sm w-full sm:w-auto text-center border border-red-500/30 font-bold animate-pulse"
+            >
+              {t('home.showAllEvents')}
+            </Link>
+          </div>
         </div>
       </div>
     )
@@ -321,15 +332,57 @@ const EventFeedWidget: React.FC = () => {
 
   return (
     <div className="space-y-6">
-      <div className="text-center mb-6">
-        <div className="flex items-center justify-center gap-3 mb-2">
-          <Trophy className="w-6 h-6 text-yellow-400" />
-          <h2 className="text-2xl font-bold text-slate-100">🔴 {t('home.liveEvents')}</h2>
-          <Trophy className="w-6 h-6 text-yellow-400" />
+      <div className="text-center mb-8">
+        <div className="relative">
+          {/* Animated background glow */}
+          <div className="absolute inset-0 bg-gradient-to-r from-red-500/20 via-yellow-500/20 to-red-500/20 rounded-lg blur-xl animate-pulse"></div>
+          
+          {/* Main header container */}
+          <div className="relative bg-gradient-to-r from-slate-800/90 via-slate-700/90 to-slate-800/90 rounded-xl p-6 border border-red-500/30 shadow-2xl">
+            <div className="flex items-center justify-center gap-4 mb-3">
+              <div className="relative">
+                <Trophy className="w-8 h-8 text-yellow-400 animate-bounce" />
+                <div className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full animate-ping"></div>
+              </div>
+              
+              <div className="text-center">
+                <div className="flex items-center justify-center gap-2 mb-1">
+                  <div className="w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>
+                  <h2 className="text-3xl font-bold bg-gradient-to-r from-red-400 via-yellow-400 to-red-400 bg-clip-text text-transparent animate-pulse">
+                    LIVE EVENT
+                  </h2>
+                  <div className="w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>
+                </div>
+                <div className="text-xs text-red-400 font-semibold tracking-wider uppercase animate-pulse">
+                  🔥 JETZT LIVE • NOW LIVE • EN VIVO 🔥
+                </div>
+              </div>
+              
+              <div className="relative">
+                <Trophy className="w-8 h-8 text-yellow-400 animate-bounce" style={{ animationDelay: '0.2s' }} />
+                <div className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full animate-ping" style={{ animationDelay: '0.2s' }}></div>
+              </div>
+            </div>
+            
+            <div className="bg-gradient-to-r from-blue-600/20 via-purple-600/20 to-blue-600/20 rounded-lg p-3 border border-blue-500/30">
+              <p className="text-lg font-bold text-blue-300 tracking-wide">
+                {t('events.practiceChampionshipSubtitle')}
+              </p>
+              <div className="flex items-center justify-center gap-2 mt-2">
+                <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                <span className="text-sm text-green-400 font-medium">30 Tage Championship • 30 Days Championship</span>
+                <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+              </div>
+            </div>
+            
+            {/* Motivational call to action */}
+            <div className="mt-4 bg-gradient-to-r from-yellow-600/20 via-orange-600/20 to-yellow-600/20 rounded-lg p-3 border border-yellow-500/30">
+              <p className="text-yellow-300 font-bold text-sm animate-pulse">
+                🏆 ZEIGE DEINE SKILLS • SHOW YOUR SKILLS • MUESTRA TUS HABILIDADES 🏆
+              </p>
+            </div>
+          </div>
         </div>
-        <p className="text-slate-400 text-sm">
-          {t('events.subtitle')} - Gran Turismo 7 Style
-        </p>
       </div>
 
       {activeEvents.map((event) => (

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo, useCallback } from 'react'
-import { useParams, Link, useNavigate } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import { useForum } from '../contexts/ForumContext'
 import { useUser } from '../contexts/UserContext'
 import { useLanguage } from '../contexts/LanguageContext'
@@ -30,11 +30,11 @@ const ForumThreadPage: React.FC = () => {
   } = useForum()
   const { user, isAuthenticated } = useUser()
   const { t } = useLanguage()
-  const navigate = useNavigate()
+  // const navigate = useNavigate() // Reserved for future navigation features
   
   const [replyContent, setReplyContent] = useState('')
   const [replyImageUrl, setReplyImageUrl] = useState<string>('')
-  const [replyImageFile, setReplyImageFile] = useState<File | null>(null)
+  const [, setReplyImageFile] = useState<File | null>(null)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [showReplyForm, setShowReplyForm] = useState(false)
 

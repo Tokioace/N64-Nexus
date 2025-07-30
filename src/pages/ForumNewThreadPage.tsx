@@ -7,8 +7,7 @@ import ImageUpload from '../components/ImageUpload'
 import { 
   ArrowLeft,
   Send,
-  AlertCircle,
-  User
+  AlertCircle
 } from 'lucide-react'
 
 const ForumNewThreadPage: React.FC = () => {
@@ -28,7 +27,7 @@ const ForumNewThreadPage: React.FC = () => {
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
   const [imageUrl, setImageUrl] = useState<string>('')
-  const [imageFile, setImageFile] = useState<File | null>(null)
+  const [, setImageFile] = useState<File | null>(null)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [formError, setFormError] = useState('')
 
@@ -75,7 +74,7 @@ const ForumNewThreadPage: React.FC = () => {
       } else {
         setFormError(t('error.threadCreationFailed'))
       }
-    } catch (err) {
+    } catch {
       setFormError(t('error.generic'))
     } finally {
       setIsSubmitting(false)

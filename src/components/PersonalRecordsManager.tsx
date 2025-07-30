@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useUser } from '../contexts/UserContext'
 import { useLanguage, getLocaleString } from '../contexts/LanguageContext'
 import { PersonalRecord } from '../types'
-import { Plus, Trophy, Clock, Target, Gamepad2, Calendar, CheckCircle, AlertCircle, Edit, Trash2 } from 'lucide-react'
+import { Plus, Trophy, Clock, Target, Gamepad2, Calendar, CheckCircle, AlertCircle, Edit } from 'lucide-react'
 
 interface PersonalRecordsProps {
   isOwnProfile?: boolean
@@ -12,6 +12,7 @@ const PersonalRecordsManager: React.FC<PersonalRecordsProps> = ({ isOwnProfile =
   const { user, addPersonalRecord, updatePersonalRecord } = useUser()
   const { t, currentLanguage } = useLanguage()
   const [showAddModal, setShowAddModal] = useState(false)
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [editingRecord, setEditingRecord] = useState<PersonalRecord | null>(null)
   const [filter, setFilter] = useState<'all' | 'verified' | 'pending'>('all')
   

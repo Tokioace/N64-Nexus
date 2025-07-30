@@ -101,6 +101,7 @@ const ja = {
   // Events
   'events.title': 'イベント',
   'events.subtitle': 'トーナメント、チャレンジ、コミュニティイベント',
+  'events.practiceChampionshipSubtitle': 'Practice Beta Championship #1',
   'events.upcoming': '今後のイベント',
   'events.active': 'アクティブなイベント',
   'events.completed': '完了したイベント',

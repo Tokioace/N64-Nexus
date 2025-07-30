@@ -101,6 +101,7 @@ const ar = {
   // Events - الأحداث
   'events.title': 'الأحداث',
   'events.subtitle': 'البطولات والتحديات وأحداث المجتمع',
+  'events.practiceChampionshipSubtitle': 'Practice Beta Championship #1',
   'events.upcoming': 'الأحداث القادمة',
   'events.active': 'الأحداث النشطة',
   'events.completed': 'الأحداث المكتملة',

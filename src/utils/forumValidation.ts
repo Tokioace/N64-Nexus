@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // Forum validation utilities
 
 export const validateThreadTitle = (title: string, t: (key: string) => string): { isValid: boolean; error?: string } => {

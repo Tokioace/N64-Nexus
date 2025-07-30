@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { createContext, useContext, useState, ReactNode, useEffect, useCallback, useMemo } from 'react'
 import { MediaMeta, MediaContextType } from '../types'
 import { useLanguage } from './LanguageContext'
@@ -314,6 +315,7 @@ export const MediaProvider: React.FC<{ children: ReactNode }> = ({ children }) =
       setLoading(false)
       return false
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user, loading, t])
 
   const uploadMediaFromUrl = useCallback(async (url: string, metadata: Partial<MediaMeta>): Promise<boolean> => {
@@ -389,6 +391,7 @@ export const MediaProvider: React.FC<{ children: ReactNode }> = ({ children }) =
       setLoading(false)
       return false
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user, loading, t])
 
   // Helper function to generate thumbnail from file
@@ -424,6 +427,7 @@ export const MediaProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     
     // Default thumbnail
     return 'https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?w=400&h=300&fit=crop'
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   // Helper function to extract YouTube video ID
@@ -573,7 +577,7 @@ export const MediaProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     ))
   }, [])
 
-  const isCapturingAllowed = useCallback((eventId?: string): boolean => {
+  const isCapturingAllowed = useCallback((_eventId?: string): boolean => {
     // In a real app, this would check event rules or user permissions
     return true
   }, [])
@@ -641,6 +645,7 @@ export const MediaProvider: React.FC<{ children: ReactNode }> = ({ children }) =
   )
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useMedia = () => {
   const context = useContext(MediaContext)
   if (context === undefined) {

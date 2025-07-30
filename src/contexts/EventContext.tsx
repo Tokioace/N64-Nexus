@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react'
 import { GameEvent, EventParticipation, EventContextType, RaceSubmissionData } from '../types'
 import { useLanguage } from './LanguageContext'
@@ -28,8 +29,8 @@ const getEventData = (t: (key: any) => string): GameEvent[] => [
     description: t('events.mk64LuigisRaceway.description'),
     game: 'Mario Kart 64',
     category: t('events.mk64LuigisRaceway.category'),
-    startDate: new Date('2025-01-20'),
-    endDate: new Date('2025-02-20'),
+    startDate: new Date('2025-07-30'),
+    endDate: new Date('2025-08-29'),
     isActive: true,
     participants: 0,
     maxParticipants: 200,
@@ -59,8 +60,8 @@ const getEventData = (t: (key: any) => string): GameEvent[] => [
     description: t('events.sfrDowntown.description'),
     game: 'San Francisco Rush: Extreme Racing',
     category: t('events.sfrDowntown.category'),
-    startDate: new Date('2025-01-20'),
-    endDate: new Date('2025-02-20'),
+    startDate: new Date('2025-07-30'),
+    endDate: new Date('2025-08-29'),
     isActive: true,
     participants: 0,
     maxParticipants: 200,
@@ -90,8 +91,8 @@ const getEventData = (t: (key: any) => string): GameEvent[] => [
     description: t('events.dkrAncientLake.description'),
     game: 'Diddy Kong Racing',
     category: t('events.dkrAncientLake.category'),
-    startDate: new Date('2025-01-20'),
-    endDate: new Date('2025-02-20'),
+    startDate: new Date('2025-07-30'),
+    endDate: new Date('2025-08-29'),
     isActive: true,
     participants: 0,
     maxParticipants: 200,
@@ -204,14 +205,20 @@ const mockParticipations: EventParticipation[] = [
 
 export const EventProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const { t } = useLanguage()
-  const mockEvents = getEventData(t)
-  const [events, setEvents] = useState<GameEvent[]>(mockEvents)
-  const [activeEvents, setActiveEvents] = useState<GameEvent[]>(mockEvents.filter(e => e.isActive))
+  const [events, setEvents] = useState<GameEvent[]>([])
+  const [activeEvents, setActiveEvents] = useState<GameEvent[]>([])
   const [userParticipations, setUserParticipations] = useState<EventParticipation[]>([])
   const [allEventSubmissions, setAllEventSubmissions] = useState<EventParticipation[]>([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [eventPointsAwarded, setEventPointsAwarded] = useState<Record<string, boolean>>({})
+
+  // Initialize events with translations
+  useEffect(() => {
+    const mockEvents = getEventData(t)
+    setEvents(mockEvents)
+    setActiveEvents(mockEvents.filter(e => e.isActive))
+  }, [t])
 
   // Load points awarded tracking
   useEffect(() => {
@@ -281,6 +288,7 @@ export const EventProvider: React.FC<{ children: ReactNode }> = ({ children }) =
       // If no saved submissions, use mock data as initial data
       setAllEventSubmissions(mockParticipations)
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   // Save events to localStorage whenever events array changes
@@ -352,7 +360,7 @@ export const EventProvider: React.FC<{ children: ReactNode }> = ({ children }) =
       setUserParticipations(prev => [...prev, newParticipation])
       setLoading(false)
       return true
-    } catch (err) {
+    } catch {
               setError(t('error.generic'))
       setLoading(false)
       return false
@@ -393,20 +401,20 @@ export const EventProvider: React.FC<{ children: ReactNode }> = ({ children }) =
       
       setLoading(false)
       return true
-    } catch (err) {
+    } catch {
               setError(t('error.generic'))
       setLoading(false)
       return false
     }
   }
 
-  const submitScore = async (eventId: string, score: number, time?: string, mediaUrl?: string): Promise<boolean> => {
+  const submitScore = async (_eventId: string, _score: number, _time?: string, _mediaUrl?: string): Promise<boolean> => {
     setLoading(true)
     try {
       await new Promise(resolve => setTimeout(resolve, 500))
       setLoading(false)
       return true
-    } catch (err) {
+    } catch {
               setError(t('error.generic'))
       setLoading(false)
       return false
@@ -585,6 +593,7 @@ export const EventProvider: React.FC<{ children: ReactNode }> = ({ children }) =
   )
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useEvent = () => {
   const context = useContext(EventContext)
   if (context === undefined) {

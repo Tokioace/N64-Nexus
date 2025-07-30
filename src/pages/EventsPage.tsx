@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState } from 'react'
 import { useEvent } from '../contexts/EventContext'
 import { useUser } from '../contexts/UserContext'
@@ -12,7 +13,6 @@ import {
   Target,
   Award,
   Gamepad2,
-  MapPin,
   Star,
   Bell,
   BellOff,
@@ -23,7 +23,7 @@ import {
 } from 'lucide-react'
 
 const EventsPage: React.FC = () => {
-  const { events, activeEvents, joinEvent, leaveEvent, loading, userParticipations, submitRaceTime, getLeaderboard } = useEvent()
+  const { events, joinEvent, loading, userParticipations, submitRaceTime, getLeaderboard } = useEvent()
   const { user } = useUser()
   const { t } = useLanguage()
   const [selectedTab, setSelectedTab] = useState<'active' | 'upcoming' | 'completed'>('active')
@@ -136,7 +136,7 @@ const EventsPage: React.FC = () => {
         setNotificationsEnabled(false)
         alert(t('notifications.disabled'))
       }
-    } catch (error) {
+    } catch {
       alert(t('notifications.error'))
     }
   }

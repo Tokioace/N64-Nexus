@@ -138,6 +138,7 @@ const es = {
   // Events
   'events.title': 'Eventos',
   'events.subtitle': 'Torneos, Desafíos y Eventos de la Comunidad',
+  'events.practiceChampionshipSubtitle': 'Practice Beta Championship #1',
   'events.upcoming': 'Eventos Próximos',
   'events.active': 'Eventos Activos',
   'events.completed': 'Eventos Completados',

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState } from 'react'
 import { useEvent } from '../contexts/EventContext'
 import { useUser } from '../contexts/UserContext'
@@ -5,9 +6,7 @@ import { useLanguage } from '../contexts/LanguageContext'
 import EventLeaderboard from '../components/EventLeaderboard'
 import N64FanLeaderboard from '../components/N64FanLeaderboard'
 import { 
-  Trophy, 
   Calendar, 
-  Target,
   Users,
   Medal,
   Star,

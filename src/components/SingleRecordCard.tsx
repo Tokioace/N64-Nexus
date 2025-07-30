@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react'
-import { Trophy, X } from 'lucide-react'
+import { Trophy } from 'lucide-react'
 import { useLanguage, getLocaleString } from '../contexts/LanguageContext'
 
 interface PersonalRecord {

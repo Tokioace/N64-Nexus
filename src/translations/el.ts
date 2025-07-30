@@ -101,6 +101,7 @@ const el = {
   // Events
   'events.title': 'Εκδηλώσεις',
   'events.subtitle': 'Τουρνουά, Προκλήσεις και Εκδηλώσεις Κοινότητας',
+  'events.practiceChampionshipSubtitle': 'Practice Beta Championship #1',
   'events.upcoming': 'Επερχόμενες Εκδηλώσεις',
   'events.active': 'Ενεργές Εκδηλώσεις',
   'events.completed': 'Ολοκληρωμένες Εκδηλώσεις',

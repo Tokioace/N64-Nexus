@@ -101,6 +101,7 @@ const zh = {
   // Events
   'events.title': '活动',
   'events.subtitle': '锦标赛、挑战和社区活动',
+  'events.practiceChampionshipSubtitle': 'Practice Beta Championship #1',
   'events.upcoming': '即将到来的活动',
   'events.active': '活跃活动',
   'events.completed': '已完成活动',

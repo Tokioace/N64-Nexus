@@ -1,22 +1,18 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState, useEffect } from 'react'
 import { useLanguage, getLocaleString } from '../contexts/LanguageContext'
 import { usePoints } from '../contexts/PointsContext'
-import { useUser } from '../contexts/UserContext'
 import { 
   Award, 
-  Trophy, 
-  Star,
   Lock,
   CheckCircle,
-  Target,
   Zap,
   Brain,
   Palette,
   Users,
   ShoppingCart,
   Calendar,
-  BookOpen,
-  BarChart3
+  BookOpen
 } from 'lucide-react'
 import { Achievement } from '../types'
 
@@ -31,7 +27,7 @@ const AchievementsPanel: React.FC<AchievementsPanelProps> = ({
 }) => {
   const { t, currentLanguage } = useLanguage()
   const { achievementsConfig, userPoints } = usePoints()
-  const { user } = useUser()
+
   
   const [achievements, setAchievements] = useState<Achievement[]>([])
   const [filter, setFilter] = useState<'all' | 'unlocked' | 'locked'>('all')

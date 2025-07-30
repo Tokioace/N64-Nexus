@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState, useEffect, useCallback, useMemo } from 'react'
 import { useLanguage } from '../contexts/LanguageContext'
 import { useUser } from '../contexts/UserContext'
@@ -10,24 +11,15 @@ import {
   Camera, 
   Video, 
   Upload, 
-  Play, 
   Pause, 
   Eye, 
   Heart, 
-  Share2, 
   Filter, 
   Search,
   Trophy,
-  Star,
-  Clock,
-  Users,
-  Zap,
-  Award,
   CheckCircle,
   AlertCircle,
   X,
-  Plus,
-  Download,
   ExternalLink,
   Tv,
   Radio
@@ -97,7 +89,7 @@ class MediaErrorBoundary extends React.Component<
 const SpeedrunMediaPage: React.FC = () => {
   const { t } = useLanguage()
   const { user, isAuthenticated } = useUser()
-  const { media, userMedia, loading, error, uploadMedia, uploadMediaFromUrl, likeMedia, getMediaByGame, getMediaByUser, getMediaStats } = useMedia()
+  const { media, loading, error, uploadMedia, uploadMediaFromUrl, likeMedia, getMediaStats } = useMedia()
   const { awardPoints } = usePoints()
   const { events, activeEvents } = useEvent()
   

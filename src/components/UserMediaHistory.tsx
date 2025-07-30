@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState, useMemo, useCallback } from 'react'
 import { useLanguage } from '../contexts/LanguageContext'
 import { useUser } from '../contexts/UserContext'
@@ -13,8 +14,7 @@ import {
   Award,
   CheckCircle,
   Clock,
-  Filter,
-  Download
+  Filter
 } from 'lucide-react'
 
 interface UserMediaHistoryProps {

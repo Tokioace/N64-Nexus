@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react'
-import { ShoppingBag, X } from 'lucide-react'
+import { ShoppingBag } from 'lucide-react'
 import { useLanguage, getLocaleString } from '../contexts/LanguageContext'
 
 interface MarketplaceItem {

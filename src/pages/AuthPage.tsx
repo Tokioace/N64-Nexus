@@ -50,7 +50,7 @@ const AuthPage: React.FC = () => {
       } else {
         setError(t('auth.invalidCredentials'))
       }
-    } catch (err) {
+    } catch {
       setError(t('auth.errorOccurred'))
     } finally {
       setLoading(false)
@@ -88,7 +88,7 @@ const AuthPage: React.FC = () => {
       } else {
         setError(t('auth.registrationFailed'))
       }
-    } catch (err) {
+    } catch {
       setError(t('auth.errorOccurred'))
     } finally {
       setLoading(false)

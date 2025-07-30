@@ -101,6 +101,7 @@ const ko = {
   // Events
   'events.title': '이벤트',
   'events.subtitle': '토너먼트, 챌린지 및 커뮤니티 이벤트',
+  'events.practiceChampionshipSubtitle': 'Practice Beta Championship #1',
   'events.upcoming': '예정된 이벤트',
   'events.active': '진행 중인 이벤트',
   'events.completed': '완료된 이벤트',

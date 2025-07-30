@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { createContext, useContext, useState, useEffect, ReactNode, useMemo, useCallback } from 'react'
 import { ForumCategory, ForumThread, ForumPost, ForumStats } from '../types'
 import { useUser } from './UserContext'
@@ -317,12 +318,12 @@ export const ForumProvider: React.FC<{ children: ReactNode }> = ({ children }) =
       
       setLoading(false)
       return true
-    } catch (err) {
+    } catch {
       setError(t('error.generic'))
       setLoading(false)
       return false
     }
-  }, [user, t])
+  }, [user, t, awardPoints])
 
   const createPost = useCallback(async (threadId: string, content: string, imageUrl?: string): Promise<boolean> => {
     if (!user) return false
@@ -381,12 +382,12 @@ export const ForumProvider: React.FC<{ children: ReactNode }> = ({ children }) =
       
       setLoading(false)
       return true
-    } catch (err) {
+    } catch {
       setError(t('error.generic'))
       setLoading(false)
       return false
     }
-  }, [user, t])
+  }, [user, t, awardPoints])
 
   const selectCategory = useCallback((category: ForumCategory | null) => {
     setSelectedCategory(category)
@@ -401,6 +402,7 @@ export const ForumProvider: React.FC<{ children: ReactNode }> = ({ children }) =
       getPostsByThread(thread.id)
       incrementThreadViews(thread.id)
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [getPostsByThread])
 
   const incrementThreadViews = useCallback((threadId: string) => {
@@ -459,6 +461,7 @@ export const ForumProvider: React.FC<{ children: ReactNode }> = ({ children }) =
   )
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useForum = () => {
   const context = useContext(ForumContext)
   if (context === undefined) {

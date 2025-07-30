@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useCallback } from 'react'
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import React, { useState, useEffect } from 'react'
 import { useLanguage } from '../contexts/LanguageContext'
 import { usePoints } from '../contexts/PointsContext'
 import { 
@@ -484,7 +485,7 @@ const MinigamesPage: React.FC = () => {
       
       if (value.toUpperCase() === cheat.code) {
         const timeTaken = startTime ? Date.now() - startTime : 0
-        const wpm = Math.round((cheat.code.length / 5) / (timeTaken / 60000))
+        // const wpm = Math.round((cheat.code.length / 5) / (timeTaken / 60000)) // For future WPM tracking
         const points = Math.max(50, 300 - timeTaken / 10)
         
         setGameState(prev => ({ ...prev, score: prev.score + Math.round(points) }))

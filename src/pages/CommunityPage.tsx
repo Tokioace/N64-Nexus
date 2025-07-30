@@ -1,9 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useUser } from '../contexts/UserContext'
 import { useLanguage, getLocaleString } from '../contexts/LanguageContext'
 import { User } from '../types'
-import { Users, Trophy, Package, Star, Gamepad2, Globe, Search, Filter } from 'lucide-react'
+import { Users, Trophy, Package, Star, Search } from 'lucide-react'
 import AuthGuard from '../components/AuthGuard'
 
 const CommunityPage: React.FC = () => {
