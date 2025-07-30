@@ -135,7 +135,7 @@ const EventsPage: React.FC = () => {
         setNotificationsEnabled(false)
         alert(t('notifications.disabled'))
       }
-    } catch (error) {
+    } catch {
       alert(t('notifications.error'))
     }
   }

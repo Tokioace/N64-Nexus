@@ -172,7 +172,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       
       if (foundUser) {
         // Remove password from user object before setting state
-        const { password, ...userWithoutPassword } = foundUser
+        const { password: _password, ...userWithoutPassword } = foundUser
         setUser(userWithoutPassword as User)
         setIsAuthenticated(true)
         return true

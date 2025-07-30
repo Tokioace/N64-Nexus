@@ -74,7 +74,7 @@ const ForumNewThreadPage: React.FC = () => {
       } else {
         setFormError(t('error.threadCreationFailed'))
       }
-    } catch (err) {
+    } catch {
       setFormError(t('error.generic'))
     } finally {
       setIsSubmitting(false)

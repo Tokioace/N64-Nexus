@@ -195,7 +195,7 @@ const MarketplacePage: React.FC = () => {
   const [offers, setOffers] = useState<MarketplaceOffer[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
-  const [priceRange, _setPriceRange] = useState({ min: '', max: '' });
+  const [priceRange] = useState({ min: '', max: '' });
   const [sortBy, setSortBy] = useState('newest');
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const [showCreateModal, setShowCreateModal] = useState(false);

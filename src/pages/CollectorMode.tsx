@@ -232,7 +232,7 @@ const CollectorMode: React.FC = () => {
       totalValue,
       collectorLevel
     };
-  }, [collection]);
+  }, [collection, t]);
 
   const handleAddToCollection = (gameId: string, gameData: Omit<CollectedGame, 'gameId' | 'addedDate'>) => {
     const newCollectedGame: CollectedGame = {

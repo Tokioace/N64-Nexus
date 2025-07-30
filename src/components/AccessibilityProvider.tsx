@@ -300,6 +300,7 @@ export const useFocusManagement = () => {
 }
 
 // Accessibility testing helper
+// eslint-disable-next-line react-refresh/only-export-components
 export const useAccessibilityTesting = () => {
   const checkColorContrast = useCallback((foreground: string, background: string): number => {
     // Simplified contrast ratio calculation
