@@ -851,7 +851,19 @@ const fr = {
   'profile.rankingStats': 'Statistiques de Classement',
 
   // FanArt Comments
-  'fanart.addComment': 'Ajouter un commentaire...'
+  'fanart.addComment': 'Ajouter un commentaire...',
+
+  // Interaction System
+  'interaction.like': 'J\'aime',
+  'interaction.unlike': 'Ne plus aimer',
+  'interaction.comments': 'commentaires',
+  'interaction.addComment': 'Ajouter un commentaire',
+  'interaction.writeComment': 'Écrivez un commentaire...',
+  'interaction.loginToLike': 'Connectez-vous pour aimer',
+  'interaction.loginToComment': 'Connectez-vous pour commenter',
+
+  // Time
+  'time.justNow': 'à l\'instant'
 }
 
 export default fr

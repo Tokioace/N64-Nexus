@@ -301,7 +301,14 @@ export const MediaProvider: React.FC<{ children: ReactNode }> = ({ children }) =
         verified: false,
         likes: 0,
         views: 0,
-        tags: metadata.tags || []
+        tags: metadata.tags || [],
+        interactions: {
+          likes: 0,
+          views: 0,
+          comments: [],
+          likedBy: [],
+          viewedBy: []
+        }
       }
       
       // Add to media collection (newest first)
@@ -377,7 +384,14 @@ export const MediaProvider: React.FC<{ children: ReactNode }> = ({ children }) =
         verified: false,
         likes: 0,
         views: 0,
-        tags: metadata.tags || []
+        tags: metadata.tags || [],
+        interactions: {
+          likes: 0,
+          views: 0,
+          comments: [],
+          likedBy: [],
+          viewedBy: []
+        }
       }
       
       // Add to media collection (newest first)

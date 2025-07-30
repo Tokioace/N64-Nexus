@@ -890,7 +890,19 @@ const es = {
   'profile.rankingStats': 'Estadísticas de Clasificación',
 
   // FanArt Comments
-  'fanart.addComment': 'Añadir un comentario...'
+  'fanart.addComment': 'Añadir un comentario...',
+
+  // Interaction System
+  'interaction.like': 'Me gusta',
+  'interaction.unlike': 'Quitar me gusta',
+  'interaction.comments': 'comentarios',
+  'interaction.addComment': 'Añadir comentario',
+  'interaction.writeComment': 'Escribe un comentario...',
+  'interaction.loginToLike': 'Inicia sesión para dar me gusta',
+  'interaction.loginToComment': 'Inicia sesión para comentar',
+
+  // Time
+  'time.justNow': 'ahora mismo'
 }
 
 export default es
