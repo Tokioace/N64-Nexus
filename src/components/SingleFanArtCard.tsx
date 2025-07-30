@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react'
-import { Palette, Heart, Eye, X } from 'lucide-react'
+import { Palette, Heart, Eye } from 'lucide-react'
 import { useLanguage } from '../contexts/LanguageContext'
 
 interface FanArtItem {

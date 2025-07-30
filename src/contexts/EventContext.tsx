@@ -412,7 +412,7 @@ export const EventProvider: React.FC<{ children: ReactNode }> = ({ children }) =
       await new Promise(resolve => setTimeout(resolve, 500))
       setLoading(false)
       return true
-    } catch (err) {
+    } catch (_err) {
               setError(t('error.generic'))
       setLoading(false)
       return false

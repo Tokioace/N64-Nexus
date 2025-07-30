@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react'
-import { MessageCircle, X } from 'lucide-react'
+import { MessageCircle } from 'lucide-react'
 import { useLanguage, getLocaleString } from '../contexts/LanguageContext'
 
 interface ForumThread {
