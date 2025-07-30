@@ -488,6 +488,7 @@ const de = {
   'events.participating': 'Teilnehmend',
   'events.join': 'Beitreten',
   'events.leaderboard': 'Rangliste',
+  'events.currentEvent': 'Aktuelles Event',
   'notifications.enabled': 'Benachrichtigungen aktiviert',
   'notifications.denied': 'Benachrichtigungen verweigert',
   'notifications.notSupported': 'Benachrichtigungen nicht unterstützt',
@@ -778,7 +779,52 @@ const de = {
   'news.speedrunCategory': '🔥 Neue Speedrun Kategorie: Any%',
   'news.speedrunCategoryContent': 'Wir haben eine neue Any% Kategorie für Banjo-Kazooie hinzugefügt. Jetzt mitmachen!',
   'news.monthlyChallenge': '🏆 Monthly Challenge Gewinner',
-  'news.monthlyChallengeContent': 'Herzlichen Glückwunsch an N64Master für den Sieg im Oktober Monthly Challenge!'
+  'news.monthlyChallengeContent': 'Herzlichen Glückwunsch an N64Master für den Sieg im Oktober Monthly Challenge!',
+
+  // Live Events - Mario Kart 64 Luigi's Raceway
+  'events.mk64LuigisRaceway.title': '🏁 Mario Kart 64: Luigi\'s Raceway Speedrun Challenge',
+  'events.mk64LuigisRaceway.description': 'Zeige deine Geschwindigkeit auf der ikonischen Luigi\'s Raceway Strecke! Ein Monat intensiver Wettkampf mit Gran Turismo 7 Style.',
+  'events.mk64LuigisRaceway.category': 'Zeitfahren',
+  'events.mk64LuigisRaceway.rule1': '🎮 Luigi\'s Raceway - Nur diese Strecke erlaubt',
+  'events.mk64LuigisRaceway.rule2': '🌍 PAL & NTSC Versionen zugelassen',
+  'events.mk64LuigisRaceway.rule3': '🚫 Keine Glitches oder Shortcuts erlaubt',
+  'events.mk64LuigisRaceway.rule4': '📹 Video oder Screenshot als Nachweis erforderlich',
+  'events.mk64LuigisRaceway.rule5': '⏱️ Beste Zeit pro Spieler zählt',
+  'events.mk64LuigisRaceway.prize1': '🥇 1. Platz: 500 Battle64 Punkte + Goldmedaille + Exklusiver Titel',
+  'events.mk64LuigisRaceway.prize2': '🥈 2. Platz: 300 Battle64 Punkte + Silbermedaille',
+  'events.mk64LuigisRaceway.prize3': '🥉 3. Platz: 200 Battle64 Punkte + Bronzemedaille',
+  'events.mk64LuigisRaceway.prizeTop10': '🏆 Top 10: F1-Style Punkte (25-18-15-12-10-8-6-4-2-1)',
+  'events.mk64LuigisRaceway.prizeParticipation': '🎯 Teilnahme: 5 Battle64 Punkte für jeden Teilnehmer',
+
+  // Live Events - San Francisco Rush Downtown
+  'events.sfrDowntown.title': '🏙️ San Francisco Rush: Downtown Racing Championship',
+  'events.sfrDowntown.description': 'Rase durch die Straßen von Downtown San Francisco! Extreme Racing Action für einen ganzen Monat.',
+  'events.sfrDowntown.category': 'Streckenrennen',
+  'events.sfrDowntown.rule1': '🏙️ Downtown Strecke - Nur diese Strecke zugelassen',
+  'events.sfrDowntown.rule2': '🎮 Originale N64 Hardware bevorzugt',
+  'events.sfrDowntown.rule3': '🚗 Alle Fahrzeuge erlaubt',
+  'events.sfrDowntown.rule4': '📱 Video oder Screenshot Nachweis erforderlich',
+  'events.sfrDowntown.rule5': '🏁 Schnellste Rundenzeit gewinnt',
+  'events.sfrDowntown.prize1': '🥇 1. Platz: 500 Battle64 Punkte + Rush Champion Titel',
+  'events.sfrDowntown.prize2': '🥈 2. Platz: 300 Battle64 Punkte + Downtown Master',
+  'events.sfrDowntown.prize3': '🥉 3. Platz: 200 Battle64 Punkte + Street Racer',
+  'events.sfrDowntown.prizeTop10': '🏆 Top 10: F1-Style Punkte (25-18-15-12-10-8-6-4-2-1)',
+  'events.sfrDowntown.prizeParticipation': '🎯 Teilnahme: 5 Battle64 Punkte für jeden Teilnehmer',
+
+  // Live Events - Diddy Kong Racing Ancient Lake
+  'events.dkrAncientLake.title': '🦍 Diddy Kong Racing: Ancient Lake Time Trial',
+  'events.dkrAncientLake.description': 'Erobere den mystischen Ancient Lake! Ein legendärer Wettkampf im Rare-Klassiker für wahre N64-Fans.',
+  'events.dkrAncientLake.category': 'Zeitfahren',
+  'events.dkrAncientLake.rule1': '🏞️ Ancient Lake - Nur diese Strecke erlaubt',
+  'events.dkrAncientLake.rule2': '🏎️ Alle Fahrzeuge zugelassen (Auto, Hovercraft, Flugzeug)',
+  'events.dkrAncientLake.rule3': '🎮 PAL & NTSC Versionen akzeptiert',
+  'events.dkrAncientLake.rule4': '📹 Video oder Screenshot als Beweis nötig',
+  'events.dkrAncientLake.rule5': '⚡ Beste Einzelrunde zählt',
+  'events.dkrAncientLake.prize1': '🥇 1. Platz: 500 Battle64 Punkte + Kong Champion Titel',
+  'events.dkrAncientLake.prize2': '🥈 2. Platz: 300 Battle64 Punkte + Lake Master',
+  'events.dkrAncientLake.prize3': '🥉 3. Platz: 200 Battle64 Punkte + Ancient Racer',
+  'events.dkrAncientLake.prizeTop10': '🏆 Top 10: F1-Style Punkte (25-18-15-12-10-8-6-4-2-1)',
+  'events.dkrAncientLake.prizeParticipation': '🎯 Teilnahme: 5 Battle64 Punkte für jeden Teilnehmer'
 }
 
 export default de

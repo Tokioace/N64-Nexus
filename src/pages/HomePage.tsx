@@ -95,10 +95,8 @@ interface MarketplaceItem {
 
 const HomePage: React.FC = () => {
   const { user } = useUser()
-  const { events, activeEvents, getLeaderboard } = useEvent()
   const { t, currentLanguage } = useLanguage()
   const [currentTime, setCurrentTime] = useState(new Date())
-  const [isEventExpanded, setIsEventExpanded] = useState(false)
 
   // Update current time every minute
   useEffect(() => {
@@ -248,132 +246,6 @@ const HomePage: React.FC = () => {
     })
   }
 
-  const getActiveEvent = () => {
-    return activeEvents.length > 0 ? activeEvents[0] : null
-  }
-
-  const getEventTimeRemaining = (event: GameEvent) => {
-    const now = new Date()
-    const endTime = new Date(event.endDate)
-    const timeLeft = endTime.getTime() - now.getTime()
-    
-    if (timeLeft <= 0) return t('home.ended')
-    
-    const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24))
-    const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
-    
-    if (days > 0) return t('home.daysRemaining', { days: days.toString(), hours: hours.toString() })
-    return t('home.hoursRemaining', { hours: hours.toString() })
-  }
-
-  const activeEvent = getActiveEvent()
-
-  // Render functions for each card type
-  const renderNewsItem = (item: NewsItem, index: number) => (
-    <div className="h-full flex flex-col">
-      <div className="flex-1">
-        <h4 className="text-sm font-semibold text-slate-100 mb-2 line-clamp-2">{item.title}</h4>
-        <p className="text-xs text-slate-300 mb-3 line-clamp-3">{item.content}</p>
-      </div>
-      <div className="flex items-center justify-between text-xs text-slate-400">
-        <span>{formatTime(item.date)}</span>
-        <span className="capitalize">{item.type.replace('_', ' ')}</span>
-      </div>
-    </div>
-  )
-
-  const renderForumThread = (thread: ForumThread, index: number) => (
-    <div className="h-full flex flex-col">
-      <div className="flex-1">
-        <h4 className="text-sm font-semibold text-slate-100 mb-2 line-clamp-2">{thread.title}</h4>
-        <div className="text-xs text-slate-300 mb-2">
-          <span className="text-blue-400">{thread.author}</span> • {thread.category}
-        </div>
-      </div>
-      <div className="flex items-center justify-between text-xs text-slate-400">
-        <span>{t('home.replies', { count: thread.replies.toString() })}</span>
-        <span>{formatTime(thread.lastActivity)}</span>
-      </div>
-    </div>
-  )
-
-  const renderFanArtItem = (item: FanArtItem, index: number) => (
-    <div className="h-full flex flex-col">
-      <div className="flex-1 mb-2">
-        <div className="w-full h-16 bg-slate-700 rounded mb-2 flex items-center justify-center">
-          <Palette className="w-6 h-6 text-slate-400" />
-        </div>
-        <h4 className="text-sm font-semibold text-slate-100 mb-1 line-clamp-1">{item.title}</h4>
-        <p className="text-xs text-blue-400 mb-1">{item.artist}</p>
-        <p className="text-xs text-slate-400">{item.game}</p>
-      </div>
-      <div className="flex items-center justify-between text-xs text-slate-400">
-        <div className="flex items-center gap-2">
-          <span className="flex items-center gap-1">
-            <Heart className="w-3 h-3" /> {item.likes}
-          </span>
-          <span className="flex items-center gap-1">
-            <Eye className="w-3 h-3" /> {item.views}
-          </span>
-        </div>
-      </div>
-    </div>
-  )
-
-  const renderMediaItem = (item: MediaItem, index: number) => (
-    <div className="h-full flex flex-col">
-      <div className="flex-1 mb-2">
-        <div className="w-full h-16 bg-slate-700 rounded mb-2 flex items-center justify-center">
-          <Camera className="w-6 h-6 text-slate-400" />
-        </div>
-        <h4 className="text-sm font-semibold text-slate-100 mb-1 line-clamp-1">{item.title}</h4>
-        <p className="text-xs text-green-400 mb-1">{item.uploader}</p>
-        <p className="text-xs text-slate-400 capitalize">{item.type}</p>
-      </div>
-      <div className="flex items-center justify-between text-xs text-slate-400">
-        <span className="flex items-center gap-1">
-          <Eye className="w-3 h-3" /> {item.views}
-        </span>
-        <span>{formatTime(item.date)}</span>
-      </div>
-    </div>
-  )
-
-  const renderRecordItem = (record: PersonalRecord, index: number) => (
-    <div className="h-full flex flex-col">
-      <div className="flex-1">
-        <div className="flex items-center gap-1 mb-2">
-          <Trophy className="w-4 h-4 text-yellow-400" />
-          <h4 className="leaderboard-time-compact text-slate-100 line-clamp-1">{record.time}</h4>
-        </div>
-        <p className="text-xs text-slate-300 mb-1 line-clamp-1">{record.game}</p>
-        <p className="text-xs text-slate-400 mb-2 line-clamp-1">{record.category}</p>
-        <p className="text-xs text-blue-400">{record.platform}</p>
-      </div>
-      <div className="flex items-center justify-between text-xs text-slate-400">
-        <span>{formatTime(record.date)}</span>
-        {record.verified && <span className="text-green-400">{t('home.verifiedStatus')}</span>}
-      </div>
-    </div>
-  )
-
-  const renderMarketplaceItem = (item: MarketplaceItem, index: number) => (
-    <div className="h-full flex flex-col">
-      <div className="flex-1 mb-2">
-        <div className="w-full h-16 bg-slate-700 rounded mb-2 flex items-center justify-center">
-          <ShoppingCart className="w-6 h-6 text-slate-400" />
-        </div>
-        <h4 className="text-sm font-semibold text-slate-100 mb-1 line-clamp-1">{item.title}</h4>
-        <p className="text-xs text-green-400 mb-1">€{item.price.toFixed(2)}</p>
-        <p className="text-xs text-slate-400 mb-1">{item.condition}</p>
-        <p className="text-xs text-blue-400">{item.seller}</p>
-      </div>
-      <div className="text-xs text-slate-400">
-        <span>{formatTime(item.date)}</span>
-      </div>
-    </div>
-  )
-
   return (
     <div className="container-lg space-responsive responsive-max-width responsive-overflow-hidden">
       {/* Welcome Section with Mascot */}
@@ -409,34 +281,7 @@ const HomePage: React.FC = () => {
 
       {/* LIVE EVENTS SECTION - TOP PRIORITY */}
       <div className="mb-responsive responsive-max-width">
-        {activeEvents.length > 0 ? (
-          <EventFeedWidget
-            eventTitle={activeEvents[0].title}
-            eventGame={activeEvents[0].game || 'N64'}
-            participants={activeEvents[0].participants || 0}
-            timeRemaining={getEventTimeRemaining(activeEvents[0])}
-            leaderboard={getLeaderboard(activeEvents[0].id)}
-            isExpanded={isEventExpanded}
-            onToggleExpanded={() => setIsEventExpanded(!isEventExpanded)}
-          />
-        ) : (
-          <div className="n64-tile n64-tile-large bg-gradient-to-br from-red-600/20 to-pink-600/20 border-l-4 border-red-400 responsive-max-width">
-            <div className="flex items-center gap-2 sm:gap-3 mb-4">
-              <Trophy className="w-5 h-5 sm:w-6 sm:h-6 text-yellow-400 flex-shrink-0" />
-              <h2 className="text-responsive-lg font-bold text-slate-100 responsive-word-break">🔴 {t('home.liveEvents')}</h2>
-            </div>
-            <div className="text-center py-4 sm:py-8">
-              <Gamepad2 className="w-8 h-8 sm:w-12 sm:h-12 text-slate-500 mx-auto mb-3" />
-              <p className="text-responsive-sm text-slate-400 mb-4 responsive-word-break">{t('home.noLiveEvent')}</p>
-              <Link 
-                to="/events" 
-                className="inline-block px-3 py-2 sm:px-4 sm:py-2 rounded-lg bg-red-500/20 text-red-400 hover:bg-red-500/30 transition-colors text-responsive-sm w-full sm:w-auto text-center"
-              >
-                {t('home.showAllEvents')}
-              </Link>
-            </div>
-          </div>
-        )}
+        <EventFeedWidget />
       </div>
 
       {/* POINTS WIDGET SECTION */}

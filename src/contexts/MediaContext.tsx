@@ -428,8 +428,7 @@ export const MediaProvider: React.FC<{ children: ReactNode }> = ({ children }) =
 
   // Helper function to extract YouTube video ID
   const extractYouTubeVideoId = useCallback((url: string): string | null => {
-    const regex = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/
-    const match = url.match(regex)
+    const match = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\n?#]+)/)
     return match ? match[1] : null
   }, [])
 

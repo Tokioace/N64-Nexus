@@ -550,8 +550,9 @@ const ar = {
   'events.notificationsActive': 'الإشعارات نشطة',
   'events.enableNotifications': 'تفعيل الإشعارات',
   'events.participating': 'مشارك',
-  'events.join': 'انضمام',
+  'events.join': 'انضم',
   'events.leaderboard': 'لوحة المتصدرين',
+  'events.currentEvent': 'الحدث الحالي',
 
   'notifications.enabled': 'تم تفعيل الإشعارات',
   'notifications.denied': 'تم رفض الإشعارات',
@@ -911,7 +912,52 @@ const ar = {
   'news.speedrunCategory': '🔥 فئة سباق جديدة: Any%',
   'news.speedrunCategoryContent': 'لقد أضفنا فئة Any% جديدة لـ Banjo-Kazooie. انضم الآن!',
   'news.monthlyChallenge': '🏆 فائز التحدي الشهري',
-  'news.monthlyChallengeContent': 'تهانينا لـ N64Master لفوزه بتحدي أكتوبر الشهري!'
+  'news.monthlyChallengeContent': 'تهانينا لـ N64Master لفوزه بتحدي أكتوبر الشهري!',
+
+  // Live Events - Mario Kart 64 Luigi's Raceway
+  'events.mk64LuigisRaceway.title': '🏁 ماريو كارت 64: تحدي السرعة في حلبة لويجي',
+  'events.mk64LuigisRaceway.description': 'أظهر سرعتك في حلبة لويجي الأسطورية! شهر من المنافسة الشديدة بأسلوب جران توريزمو 7.',
+  'events.mk64LuigisRaceway.category': 'سباق ضد الوقت',
+  'events.mk64LuigisRaceway.rule1': '🎮 حلبة لويجي - هذه الحلبة فقط مسموحة',
+  'events.mk64LuigisRaceway.rule2': '🌍 إصدارات PAL و NTSC مسموحة',
+  'events.mk64LuigisRaceway.rule3': '🚫 لا يُسمح بالأخطاء أو الطرق المختصرة',
+  'events.mk64LuigisRaceway.rule4': '📹 مطلوب إثبات بالفيديو أو لقطة الشاشة',
+  'events.mk64LuigisRaceway.rule5': '⏱️ أفضل وقت لكل لاعب يُحتسب',
+  'events.mk64LuigisRaceway.prize1': '🥇 المركز الأول: 500 نقطة Battle64 + ميدالية ذهبية + لقب حصري',
+  'events.mk64LuigisRaceway.prize2': '🥈 المركز الثاني: 300 نقطة Battle64 + ميدالية فضية',
+  'events.mk64LuigisRaceway.prize3': '🥉 المركز الثالث: 200 نقطة Battle64 + ميدالية برونزية',
+  'events.mk64LuigisRaceway.prizeTop10': '🏆 أفضل 10: نقاط بأسلوب F1 (25-18-15-12-10-8-6-4-2-1)',
+  'events.mk64LuigisRaceway.prizeParticipation': '🎯 جائزة المشاركة: 5 نقاط Battle64 لكل مشارك',
+
+  // Live Events - San Francisco Rush Downtown
+  'events.sfrDowntown.title': '🏙️ سان فرانسيسكو راش: بطولة سباق وسط المدينة',
+  'events.sfrDowntown.description': 'اسرع في شوارع وسط مدينة سان فرانسيسكو! حدث سباق متطرف لمدة شهر كامل.',
+  'events.sfrDowntown.category': 'سباق الحلبة',
+  'events.sfrDowntown.rule1': '🏙️ حلبة وسط المدينة - هذه الحلبة فقط مسموحة',
+  'events.sfrDowntown.rule2': '🎮 يُفضل جهاز N64 الأصلي',
+  'events.sfrDowntown.rule3': '🚗 جميع المركبات مسموحة',
+  'events.sfrDowntown.rule4': '📱 مطلوب إثبات بالفيديو أو لقطة الشاشة',
+  'events.sfrDowntown.rule5': '🏁 أسرع وقت لفة يفوز',
+  'events.sfrDowntown.prize1': '🥇 المركز الأول: 500 نقطة Battle64 + لقب بطل راش',
+  'events.sfrDowntown.prize2': '🥈 المركز الثاني: 300 نقطة Battle64 + سيد وسط المدينة',
+  'events.sfrDowntown.prize3': '🥉 المركز الثالث: 200 نقطة Battle64 + متسابق الشارع',
+  'events.sfrDowntown.prizeTop10': '🏆 أفضل 10: نقاط بأسلوب F1 (25-18-15-12-10-8-6-4-2-1)',
+  'events.sfrDowntown.prizeParticipation': '🎯 جائزة المشاركة: 5 نقاط Battle64 لكل مشارك',
+
+  // Live Events - Diddy Kong Racing Ancient Lake
+  'events.dkrAncientLake.title': '🦍 ديدي كونغ ريسنغ: سباق ضد الوقت في البحيرة القديمة',
+  'events.dkrAncientLake.description': 'اغزُ البحيرة القديمة الغامضة! منافسة أسطورية في كلاسيكية Rare لعشاق N64 الحقيقيين.',
+  'events.dkrAncientLake.category': 'سباق ضد الوقت',
+  'events.dkrAncientLake.rule1': '🏞️ البحيرة القديمة - هذه الحلبة فقط مسموحة',
+  'events.dkrAncientLake.rule2': '🏎️ جميع المركبات مسموحة (سيارة، زورق هوائي، طائرة)',
+  'events.dkrAncientLake.rule3': '🎮 إصدارات PAL و NTSC مقبولة',
+  'events.dkrAncientLake.rule4': '📹 مطلوب إثبات بالفيديو أو لقطة الشاشة',
+  'events.dkrAncientLake.rule5': '⚡ أفضل لفة مفردة تُحتسب',
+  'events.dkrAncientLake.prize1': '🥇 المركز الأول: 500 نقطة Battle64 + لقب بطل كونغ',
+  'events.dkrAncientLake.prize2': '🥈 المركز الثاني: 300 نقطة Battle64 + سيد البحيرة',
+  'events.dkrAncientLake.prize3': '🥉 المركز الثالث: 200 نقطة Battle64 + متسابق قديم',
+  'events.dkrAncientLake.prizeTop10': '🏆 أفضل 10: نقاط بأسلوب F1 (25-18-15-12-10-8-6-4-2-1)',
+  'events.dkrAncientLake.prizeParticipation': '🎯 جائزة المشاركة: 5 نقاط Battle64 لكل مشارك'
 }
 
 export default ar

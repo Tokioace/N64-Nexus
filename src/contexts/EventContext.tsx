@@ -8,6 +8,7 @@ const EventContext = createContext<EventContextType | undefined>(undefined)
 const STORAGE_KEY_USER_PARTICIPATIONS = 'battle64_user_participations'
 const STORAGE_KEY_ALL_SUBMISSIONS = 'battle64_all_event_submissions'
 const STORAGE_KEY_EVENTS = 'battle64_events'
+const STORAGE_KEY_EVENT_POINTS_AWARDED = 'battle64_event_points_awarded'
 
 // Helper function to convert file to base64 for persistent storage
 const fileToBase64 = (file: File): Promise<string> => {
@@ -22,97 +23,182 @@ const fileToBase64 = (file: File): Promise<string> => {
 // Function to get event data with translations
 const getEventData = (t: (key: any) => string): GameEvent[] => [
   {
-    id: '1',
-    title: t('events.mk64Challenge'),
-    description: t('events.mk64ChallengeDesc'),
+    id: 'mk64-luigis-raceway',
+    title: t('events.mk64LuigisRaceway.title'),
+    description: t('events.mk64LuigisRaceway.description'),
     game: 'Mario Kart 64',
-    category: 'Speedrun',
-    startDate: new Date('2024-02-01'),
-    endDate: new Date('2024-02-15'),
-    isActive: false,
-    participants: 42,
-    maxParticipants: 100,
-    rules: [t('events.rule.palVersion'), t('events.rule.noGlitches'), t('events.rule.videoRequired')],
-    prizes: [t('events.prize.gold'), t('events.prize.silver'), t('events.prize.bronze')],
-    region: 'PAL'
-  },
-  {
-    id: '2',
-    title: t('events.luigiEvent'),
-    description: t('events.luigiEventDesc'),
-    game: 'Mario Kart 64',
-    category: t('events.category.timeTrial'),
-    startDate: new Date('2025-07-20'),
-    endDate: new Date('2025-07-27'),
+    category: t('events.mk64LuigisRaceway.category'),
+    startDate: new Date('2025-01-20'),
+    endDate: new Date('2025-02-20'),
     isActive: true,
     participants: 0,
-    maxParticipants: 150,
+    maxParticipants: 200,
     rules: [
-      t('events.rule.luigiRaceway'),
-      t('events.rule.palNtscAllowed'),
-      t('events.rule.noGlitchesShortcuts'),
-      t('events.rule.screenshotVideoRequired'),
-      t('events.rule.bestTimePerPlayer'),
-      t('events.rule.startTime'),
-      t('events.rule.endTime')
+      t('events.mk64LuigisRaceway.rule1'),
+      t('events.mk64LuigisRaceway.rule2'),
+      t('events.mk64LuigisRaceway.rule3'),
+      t('events.mk64LuigisRaceway.rule4'),
+      t('events.mk64LuigisRaceway.rule5')
     ],
     prizes: [
-      t('events.prize.luigiFirst'),
-      t('events.prize.luigiSecond'),
-      t('events.prize.luigiThird'),
-      t('events.prize.luigiTop10'),
-      t('events.prize.luigiParticipant')
+      t('events.mk64LuigisRaceway.prize1'),
+      t('events.mk64LuigisRaceway.prize2'),
+      t('events.mk64LuigisRaceway.prize3'),
+      t('events.mk64LuigisRaceway.prizeTop10'),
+      t('events.mk64LuigisRaceway.prizeParticipation')
     ],
-    region: 'BOTH'
+    region: 'BOTH',
+    pointsSystem: {
+      participation: 5,
+      positions: [25, 18, 15, 12, 10, 8, 6, 4, 2, 1] // F1-style points for top 10
+    }
+  },
+  {
+    id: 'sfr-downtown',
+    title: t('events.sfrDowntown.title'),
+    description: t('events.sfrDowntown.description'),
+    game: 'San Francisco Rush: Extreme Racing',
+    category: t('events.sfrDowntown.category'),
+    startDate: new Date('2025-01-20'),
+    endDate: new Date('2025-02-20'),
+    isActive: true,
+    participants: 0,
+    maxParticipants: 200,
+    rules: [
+      t('events.sfrDowntown.rule1'),
+      t('events.sfrDowntown.rule2'),
+      t('events.sfrDowntown.rule3'),
+      t('events.sfrDowntown.rule4'),
+      t('events.sfrDowntown.rule5')
+    ],
+    prizes: [
+      t('events.sfrDowntown.prize1'),
+      t('events.sfrDowntown.prize2'),
+      t('events.sfrDowntown.prize3'),
+      t('events.sfrDowntown.prizeTop10'),
+      t('events.sfrDowntown.prizeParticipation')
+    ],
+    region: 'BOTH',
+    pointsSystem: {
+      participation: 5,
+      positions: [25, 18, 15, 12, 10, 8, 6, 4, 2, 1]
+    }
+  },
+  {
+    id: 'dkr-ancient-lake',
+    title: t('events.dkrAncientLake.title'),
+    description: t('events.dkrAncientLake.description'),
+    game: 'Diddy Kong Racing',
+    category: t('events.dkrAncientLake.category'),
+    startDate: new Date('2025-01-20'),
+    endDate: new Date('2025-02-20'),
+    isActive: true,
+    participants: 0,
+    maxParticipants: 200,
+    rules: [
+      t('events.dkrAncientLake.rule1'),
+      t('events.dkrAncientLake.rule2'),
+      t('events.dkrAncientLake.rule3'),
+      t('events.dkrAncientLake.rule4'),
+      t('events.dkrAncientLake.rule5')
+    ],
+    prizes: [
+      t('events.dkrAncientLake.prize1'),
+      t('events.dkrAncientLake.prize2'),
+      t('events.dkrAncientLake.prize3'),
+      t('events.dkrAncientLake.prizeTop10'),
+      t('events.dkrAncientLake.prizeParticipation')
+    ],
+    region: 'BOTH',
+    pointsSystem: {
+      participation: 5,
+      positions: [25, 18, 15, 12, 10, 8, 6, 4, 2, 1]
+    }
   }
 ]
 
 const mockParticipations: EventParticipation[] = [
+  // Mario Kart 64 Luigi's Raceway
   {
     id: 'p1',
-    eventId: '2',
+    eventId: 'mk64-luigis-raceway',
     userId: 'user1',
     username: 'SpeedDemon64',
     time: '1:32.456',
-    submissionDate: new Date('2025-07-21T10:30:00'),
+    submissionDate: new Date('2025-01-21T10:30:00'),
     documentationType: 'video',
     mediaUrl: 'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4',
     verified: true
   },
   {
     id: 'p2',
-    eventId: '2',
+    eventId: 'mk64-luigis-raceway',
     userId: 'user2', 
     username: 'KartMaster',
     time: '1:34.123',
-    submissionDate: new Date('2025-07-21T14:15:00'),
+    submissionDate: new Date('2025-01-21T14:15:00'),
     documentationType: 'photo',
     mediaUrl: 'https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?w=800&h=600&fit=crop&crop=center',
     verified: true
   },
   {
     id: 'p3',
-    eventId: '2',
+    eventId: 'mk64-luigis-raceway',
     userId: 'user3',
     username: 'RetroRacer',
     time: '1:29.789',
-    submissionDate: new Date('2025-07-22T09:45:00'),
+    submissionDate: new Date('2025-01-22T09:45:00'),
     documentationType: 'livestream',
     livestreamUrl: 'https://twitch.tv/retroracer',
     notes: 'Controller: Original N64 Controller, Setup: CRT TV',
     verified: false
   },
+  
+  // San Francisco Rush Downtown
   {
     id: 'p4',
-    eventId: '2',
+    eventId: 'sfr-downtown',
     userId: 'user4',
-    username: 'Luigi_Fan_2025',
-    time: '1:35.678',
-    submissionDate: new Date('2025-07-22T16:20:00'),
+    username: 'RushExpert',
+    time: '2:15.678',
+    submissionDate: new Date('2025-01-22T16:20:00'),
     documentationType: 'video',
     mediaUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-    notes: 'First time trying time trials!',
+    notes: 'First time on Downtown track!',
     verified: true
+  },
+  {
+    id: 'p5',
+    eventId: 'sfr-downtown',
+    userId: 'user5',
+    username: 'SFRushFan',
+    time: '2:08.234',
+    submissionDate: new Date('2025-01-23T11:30:00'),
+    documentationType: 'photo',
+    verified: true
+  },
+  
+  // Diddy Kong Racing Ancient Lake
+  {
+    id: 'p6',
+    eventId: 'dkr-ancient-lake',
+    userId: 'user6',
+    username: 'DiddyDriver',
+    time: '1:45.567',
+    submissionDate: new Date('2025-01-23T18:45:00'),
+    documentationType: 'video',
+    verified: true
+  },
+  {
+    id: 'p7',
+    eventId: 'dkr-ancient-lake',
+    userId: 'user7',
+    username: 'AncientLakeKing',
+    time: '1:42.123',
+    submissionDate: new Date('2025-01-24T08:20:00'),
+    documentationType: 'livestream',
+    livestreamUrl: 'https://twitch.tv/ancientlakeking',
+    verified: false
   }
 ]
 
@@ -125,6 +211,24 @@ export const EventProvider: React.FC<{ children: ReactNode }> = ({ children }) =
   const [allEventSubmissions, setAllEventSubmissions] = useState<EventParticipation[]>([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [eventPointsAwarded, setEventPointsAwarded] = useState<Record<string, boolean>>({})
+
+  // Load points awarded tracking
+  useEffect(() => {
+    const savedPointsAwarded = localStorage.getItem(STORAGE_KEY_EVENT_POINTS_AWARDED)
+    if (savedPointsAwarded) {
+      try {
+        setEventPointsAwarded(JSON.parse(savedPointsAwarded))
+      } catch (error) {
+        console.error('Error loading event points awarded:', error)
+      }
+    }
+  }, [])
+
+  // Save points awarded tracking
+  useEffect(() => {
+    localStorage.setItem(STORAGE_KEY_EVENT_POINTS_AWARDED, JSON.stringify(eventPointsAwarded))
+  }, [eventPointsAwarded])
 
   // Load data from localStorage on mount
   useEffect(() => {
@@ -414,6 +518,45 @@ export const EventProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     return allEventSubmissions.filter(p => p.userId === userId)
   }
 
+  // Function to check if participation points should be awarded
+  const shouldAwardParticipationPoints = (eventId: string, userId: string): boolean => {
+    const key = `participation_${eventId}_${userId}`
+    return !eventPointsAwarded[key]
+  }
+
+  // Function to mark participation points as awarded
+  const markParticipationPointsAwarded = (eventId: string, userId: string) => {
+    const key = `participation_${eventId}_${userId}`
+    setEventPointsAwarded(prev => ({ ...prev, [key]: true }))
+  }
+
+  // Function to get event positions and points that should be awarded
+  const getEventPositionPoints = (eventId: string): Array<{userId: string, position: number, points: number}> => {
+    const leaderboard = getLeaderboard(eventId)
+    const positionPoints = [25, 18, 15, 12, 10, 8, 6, 4, 2, 1] // F1 style points
+    
+    return leaderboard.slice(0, 10).map((entry, index) => {
+      const position = index + 1
+      const key = `position_${eventId}_${entry.userId}_${position}`
+      
+      // Only return if points haven't been awarded yet
+      if (!eventPointsAwarded[key]) {
+        return {
+          userId: entry.userId,
+          position,
+          points: positionPoints[index] || 0
+        }
+      }
+      return null
+    }).filter(Boolean) as Array<{userId: string, position: number, points: number}>
+  }
+
+  // Function to mark position points as awarded
+  const markPositionPointsAwarded = (eventId: string, userId: string, position: number) => {
+    const key = `position_${eventId}_${userId}_${position}`
+    setEventPointsAwarded(prev => ({ ...prev, [key]: true }))
+  }
+
   const value: EventContextType = {
     events,
     activeEvents,
@@ -428,7 +571,11 @@ export const EventProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     submitRaceTime,
     getLeaderboard,
     getAllSubmissions,
-    getSubmissionsByUser
+    getSubmissionsByUser,
+    shouldAwardParticipationPoints,
+    markParticipationPointsAwarded,
+    getEventPositionPoints,
+    markPositionPointsAwarded
   }
 
   return (

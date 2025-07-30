@@ -308,7 +308,7 @@ class ErrorHandler {
 
   // Get logs for debugging
   getLogs(level?: LogLevel, limit?: number): LogEntry[] {
-    let filteredLogs = level 
+    const filteredLogs = level 
       ? this.logs.filter(log => log.level === level)
       : this.logs
 

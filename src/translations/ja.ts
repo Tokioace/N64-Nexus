@@ -596,6 +596,7 @@ const ja = {
   'events.participating': '参加中',
   'events.join': '参加',
   'events.leaderboard': 'リーダーボード',
+  'events.currentEvent': '現在のイベント',
   'events.timeFormat': 'フォーマット：時:分:秒',
   'events.selectDocumentation': 'ドキュメントを選択',
   'events.photo': '写真',
@@ -828,7 +829,52 @@ const ja = {
   'news.speedrunCategory': '🔥 新スピードランカテゴリー: Any%',
   'news.speedrunCategoryContent': 'Banjo-Kazooieの新しいAny%カテゴリーを追加しました。今すぐ参加！',
   'news.monthlyChallenge': '🏆 月間チャレンジ優勝者',
-  'news.monthlyChallengeContent': '10月の月間チャレンジでN64Masterの優勝おめでとうございます！'
+  'news.monthlyChallengeContent': 'N64Masterさん、10月の月間チャレンジ優勝おめでとうございます！',
+
+  // Live Events - Mario Kart 64 Luigi's Raceway
+  'events.mk64LuigisRaceway.title': '🏁 マリオカート64：ルイージサーキット スピードランチャレンジ',
+  'events.mk64LuigisRaceway.description': '伝説的なルイージサーキットであなたのスピードを見せつけよう！グランツーリスモ7スタイルの1ヶ月間の激しい競争。',
+  'events.mk64LuigisRaceway.category': 'タイムアタック',
+  'events.mk64LuigisRaceway.rule1': '🎮 ルイージサーキット - このコースのみ許可',
+  'events.mk64LuigisRaceway.rule2': '🌍 PAL・NTSC版両方許可',
+  'events.mk64LuigisRaceway.rule3': '🚫 グリッチやショートカット禁止',
+  'events.mk64LuigisRaceway.rule4': '📹 動画またはスクリーンショットの証明が必要',
+  'events.mk64LuigisRaceway.rule5': '⏱️ プレイヤーごとのベストタイムが有効',
+  'events.mk64LuigisRaceway.prize1': '🥇 1位：Battle64ポイント500 + 金メダル + 専用称号',
+  'events.mk64LuigisRaceway.prize2': '🥈 2位：Battle64ポイント300 + 銀メダル',
+  'events.mk64LuigisRaceway.prize3': '🥉 3位：Battle64ポイント200 + 銅メダル',
+  'events.mk64LuigisRaceway.prizeTop10': '🏆 トップ10：F1スタイルポイント (25-18-15-12-10-8-6-4-2-1)',
+  'events.mk64LuigisRaceway.prizeParticipation': '🎯 参加賞：全参加者にBattle64ポイント5',
+
+  // Live Events - San Francisco Rush Downtown
+  'events.sfrDowntown.title': '🏙️ サンフランシスコラッシュ：ダウンタウンレーシングチャンピオンシップ',
+  'events.sfrDowntown.description': 'サンフランシスコのダウンタウンの街を駆け抜けろ！1ヶ月間のエクストリームレーシングアクション。',
+  'events.sfrDowntown.category': 'サーキットレース',
+  'events.sfrDowntown.rule1': '🏙️ ダウンタウンコース - このコースのみ許可',
+  'events.sfrDowntown.rule2': '🎮 オリジナルN64ハードウェア推奨',
+  'events.sfrDowntown.rule3': '🚗 全車両許可',
+  'events.sfrDowntown.rule4': '📱 動画またはスクリーンショットの証明が必要',
+  'events.sfrDowntown.rule5': '🏁 最速ラップタイムが勝利',
+  'events.sfrDowntown.prize1': '🥇 1位：Battle64ポイント500 + ラッシュチャンピオン称号',
+  'events.sfrDowntown.prize2': '🥈 2位：Battle64ポイント300 + ダウンタウンマスター',
+  'events.sfrDowntown.prize3': '🥉 3位：Battle64ポイント200 + ストリートレーサー',
+  'events.sfrDowntown.prizeTop10': '🏆 トップ10：F1スタイルポイント (25-18-15-12-10-8-6-4-2-1)',
+  'events.sfrDowntown.prizeParticipation': '🎯 参加賞：全参加者にBattle64ポイント5',
+
+  // Live Events - Diddy Kong Racing Ancient Lake
+  'events.dkrAncientLake.title': '🦍 ディディーコングレーシング：エンシェントレイク タイムアタック',
+  'events.dkrAncientLake.description': '神秘的なエンシェントレイクを征服せよ！真のN64ファンのためのレア社クラシックでの伝説的な競争。',
+  'events.dkrAncientLake.category': 'タイムアタック',
+  'events.dkrAncientLake.rule1': '🏞️ エンシェントレイク - このコースのみ許可',
+  'events.dkrAncientLake.rule2': '🏎️ 全車両許可（車、ホバークラフト、飛行機）',
+  'events.dkrAncientLake.rule3': '🎮 PAL・NTSC版受け入れ',
+  'events.dkrAncientLake.rule4': '📹 動画またはスクリーンショットの証明が必要',
+  'events.dkrAncientLake.rule5': '⚡ ベスト単独ラップが有効',
+  'events.dkrAncientLake.prize1': '🥇 1位：Battle64ポイント500 + コングチャンピオン称号',
+  'events.dkrAncientLake.prize2': '🥈 2位：Battle64ポイント300 + レイクマスター',
+  'events.dkrAncientLake.prize3': '🥉 3位：Battle64ポイント200 + エンシェントレーサー',
+  'events.dkrAncientLake.prizeTop10': '🏆 トップ10：F1スタイルポイント (25-18-15-12-10-8-6-4-2-1)',
+  'events.dkrAncientLake.prizeParticipation': '🎯 参加賞：全参加者にBattle64ポイント5'
 }
 
 export default ja

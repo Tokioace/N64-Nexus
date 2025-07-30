@@ -488,6 +488,7 @@ const ko = {
   'events.participating': '참가 중',
   'events.join': '참가',
   'events.leaderboard': '리더보드',
+  'events.currentEvent': '현재 이벤트',
   'notifications.enabled': '알림 활성화됨',
   'notifications.denied': '알림 거부됨',
   'notifications.notSupported': '알림이 지원되지 않습니다',
@@ -778,7 +779,52 @@ const ko = {
   'news.speedrunCategory': '🔥 새로운 스피드런 카테고리: Any%',
   'news.speedrunCategoryContent': 'Banjo-Kazooie에 새로운 Any% 카테고리를 추가했습니다. 지금 참여하세요!',
   'news.monthlyChallenge': '🏆 월간 챌린지 우승자',
-  'news.monthlyChallengeContent': '10월 월간 챌린지에서 우승한 N64Master에게 축하합니다!'
+  'news.monthlyChallengeContent': 'N64Master님, 10월 월간 챌린지 우승을 축하드립니다!',
+
+  // Live Events - Mario Kart 64 Luigi's Raceway
+  'events.mk64LuigisRaceway.title': '🏁 마리오 카트 64: 루이지 레이스웨이 스피드런 챌린지',
+  'events.mk64LuigisRaceway.description': '전설적인 루이지 레이스웨이에서 당신의 속도를 보여주세요! 그란 투리스모 7 스타일의 한 달간 치열한 경쟁.',
+  'events.mk64LuigisRaceway.category': '타임 어택',
+  'events.mk64LuigisRaceway.rule1': '🎮 루이지 레이스웨이 - 이 트랙만 허용',
+  'events.mk64LuigisRaceway.rule2': '🌍 PAL 및 NTSC 버전 허용',
+  'events.mk64LuigisRaceway.rule3': '🚫 글리치나 지름길 금지',
+  'events.mk64LuigisRaceway.rule4': '📹 비디오 또는 스크린샷 증명 필요',
+  'events.mk64LuigisRaceway.rule5': '⏱️ 플레이어당 최고 기록이 유효',
+  'events.mk64LuigisRaceway.prize1': '🥇 1위: Battle64 포인트 500 + 금메달 + 전용 칭호',
+  'events.mk64LuigisRaceway.prize2': '🥈 2위: Battle64 포인트 300 + 은메달',
+  'events.mk64LuigisRaceway.prize3': '🥉 3위: Battle64 포인트 200 + 동메달',
+  'events.mk64LuigisRaceway.prizeTop10': '🏆 상위 10위: F1 스타일 포인트 (25-18-15-12-10-8-6-4-2-1)',
+  'events.mk64LuigisRaceway.prizeParticipation': '🎯 참가상: 모든 참가자에게 Battle64 포인트 5',
+
+  // Live Events - San Francisco Rush Downtown
+  'events.sfrDowntown.title': '🏙️ 샌프란시스코 러시: 다운타운 레이싱 챔피언십',
+  'events.sfrDowntown.description': '샌프란시스코 다운타운 거리를 질주하세요! 한 달간의 익스트림 레이싱 액션.',
+  'events.sfrDowntown.category': '서킷 레이싱',
+  'events.sfrDowntown.rule1': '🏙️ 다운타운 트랙 - 이 트랙만 허용',
+  'events.sfrDowntown.rule2': '🎮 오리지널 N64 하드웨어 선호',
+  'events.sfrDowntown.rule3': '🚗 모든 차량 허용',
+  'events.sfrDowntown.rule4': '📱 비디오 또는 스크린샷 증명 필요',
+  'events.sfrDowntown.rule5': '🏁 가장 빠른 랩 타임이 승리',
+  'events.sfrDowntown.prize1': '🥇 1위: Battle64 포인트 500 + 러시 챔피언 칭호',
+  'events.sfrDowntown.prize2': '🥈 2위: Battle64 포인트 300 + 다운타운 마스터',
+  'events.sfrDowntown.prize3': '🥉 3위: Battle64 포인트 200 + 스트리트 레이서',
+  'events.sfrDowntown.prizeTop10': '🏆 상위 10위: F1 스타일 포인트 (25-18-15-12-10-8-6-4-2-1)',
+  'events.sfrDowntown.prizeParticipation': '🎯 참가상: 모든 참가자에게 Battle64 포인트 5',
+
+  // Live Events - Diddy Kong Racing Ancient Lake
+  'events.dkrAncientLake.title': '🦍 디디 콩 레이싱: 고대 호수 타임 어택',
+  'events.dkrAncientLake.description': '신비로운 고대 호수를 정복하세요! 진정한 N64 팬을 위한 레어 클래식의 전설적인 경쟁.',
+  'events.dkrAncientLake.category': '타임 어택',
+  'events.dkrAncientLake.rule1': '🏞️ 고대 호수 - 이 트랙만 허용',
+  'events.dkrAncientLake.rule2': '🏎️ 모든 차량 허용 (자동차, 호버크래프트, 비행기)',
+  'events.dkrAncientLake.rule3': '🎮 PAL 및 NTSC 버전 허용',
+  'events.dkrAncientLake.rule4': '📹 비디오 또는 스크린샷 증명 필요',
+  'events.dkrAncientLake.rule5': '⚡ 최고 단일 랩이 유효',
+  'events.dkrAncientLake.prize1': '🥇 1위: Battle64 포인트 500 + 콩 챔피언 칭호',
+  'events.dkrAncientLake.prize2': '🥈 2위: Battle64 포인트 300 + 레이크 마스터',
+  'events.dkrAncientLake.prize3': '🥉 3위: Battle64 포인트 200 + 고대 레이서',
+  'events.dkrAncientLake.prizeTop10': '🏆 상위 10위: F1 스타일 포인트 (25-18-15-12-10-8-6-4-2-1)',
+  'events.dkrAncientLake.prizeParticipation': '🎯 참가상: 모든 참가자에게 Battle64 포인트 5'
 }
 
 export default ko

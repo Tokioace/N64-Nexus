@@ -591,6 +591,7 @@ const zh = {
   'events.participating': '参与中',
   'events.join': '加入',
   'events.leaderboard': '排行榜',
+  'events.currentEvent': '当前活动',
   'events.timeFormat': '格式：小时:分钟:秒',
   'events.selectDocumentation': '选择文档',
   'events.photo': '照片',
@@ -828,7 +829,52 @@ const zh = {
   'news.speedrunCategory': '🔥 新竞速类别：Any%',
   'news.speedrunCategoryContent': '我们为Banjo-Kazooie添加了新的Any%类别。现在加入！',
   'news.monthlyChallenge': '🏆 月度挑战获胜者',
-  'news.monthlyChallengeContent': '恭喜N64Master赢得10月月度挑战！'
+  'news.monthlyChallengeContent': '祝贺N64Master赢得10月月度挑战！',
+
+  // Live Events - Mario Kart 64 Luigi's Raceway
+  'events.mk64LuigisRaceway.title': '🏁 马里奥赛车64：路易吉赛道速通挑战',
+  'events.mk64LuigisRaceway.description': '在标志性的路易吉赛道上展示你的速度！为期一个月的激烈竞争，Gran Turismo 7风格。',
+  'events.mk64LuigisRaceway.category': '计时赛',
+  'events.mk64LuigisRaceway.rule1': '🎮 路易吉赛道 - 仅允许此赛道',
+  'events.mk64LuigisRaceway.rule2': '🌍 允许PAL和NTSC版本',
+  'events.mk64LuigisRaceway.rule3': '🚫 不允许故障或捷径',
+  'events.mk64LuigisRaceway.rule4': '📹 需要视频或截图证明',
+  'events.mk64LuigisRaceway.rule5': '⏱️ 每位玩家的最佳时间有效',
+  'events.mk64LuigisRaceway.prize1': '🥇 第1名：500 Battle64积分 + 金牌 + 专属称号',
+  'events.mk64LuigisRaceway.prize2': '🥈 第2名：300 Battle64积分 + 银牌',
+  'events.mk64LuigisRaceway.prize3': '🥉 第3名：200 Battle64积分 + 铜牌',
+  'events.mk64LuigisRaceway.prizeTop10': '🏆 前10名：F1风格积分 (25-18-15-12-10-8-6-4-2-1)',
+  'events.mk64LuigisRaceway.prizeParticipation': '🎯 参与奖：每位参与者5 Battle64积分',
+
+  // Live Events - San Francisco Rush Downtown
+  'events.sfrDowntown.title': '🏙️ 旧金山极速：市中心赛车锦标赛',
+  'events.sfrDowntown.description': '在旧金山市中心的街道上飞驰！为期一个月的极限赛车行动。',
+  'events.sfrDowntown.category': '赛道竞速',
+  'events.sfrDowntown.rule1': '🏙️ 市中心赛道 - 仅允许此赛道',
+  'events.sfrDowntown.rule2': '🎮 优先使用原版N64硬件',
+  'events.sfrDowntown.rule3': '🚗 允许所有车辆',
+  'events.sfrDowntown.rule4': '📱 需要视频或截图证明',
+  'events.sfrDowntown.rule5': '🏁 最快单圈时间获胜',
+  'events.sfrDowntown.prize1': '🥇 第1名：500 Battle64积分 + 极速冠军称号',
+  'events.sfrDowntown.prize2': '🥈 第2名：300 Battle64积分 + 市中心大师',
+  'events.sfrDowntown.prize3': '🥉 第3名：200 Battle64积分 + 街头车手',
+  'events.sfrDowntown.prizeTop10': '🏆 前10名：F1风格积分 (25-18-15-12-10-8-6-4-2-1)',
+  'events.sfrDowntown.prizeParticipation': '🎯 参与奖：每位参与者5 Battle64积分',
+
+  // Live Events - Diddy Kong Racing Ancient Lake
+  'events.dkrAncientLake.title': '🦍 迪迪刚赛车：古老湖泊计时赛',
+  'events.dkrAncientLake.description': '征服神秘的古老湖泊！在Rare经典游戏中为真正的N64粉丝举办的传奇竞赛。',
+  'events.dkrAncientLake.category': '计时赛',
+  'events.dkrAncientLake.rule1': '🏞️ 古老湖泊 - 仅允许此赛道',
+  'events.dkrAncientLake.rule2': '🏎️ 允许所有车辆（汽车、气垫船、飞机）',
+  'events.dkrAncientLake.rule3': '🎮 接受PAL和NTSC版本',
+  'events.dkrAncientLake.rule4': '📹 需要视频或截图证明',
+  'events.dkrAncientLake.rule5': '⚡ 最佳单圈有效',
+  'events.dkrAncientLake.prize1': '🥇 第1名：500 Battle64积分 + 刚冠军称号',
+  'events.dkrAncientLake.prize2': '🥈 第2名：300 Battle64积分 + 湖泊大师',
+  'events.dkrAncientLake.prize3': '🥉 第3名：200 Battle64积分 + 古代车手',
+  'events.dkrAncientLake.prizeTop10': '🏆 前10名：F1风格积分 (25-18-15-12-10-8-6-4-2-1)',
+  'events.dkrAncientLake.prizeParticipation': '🎯 参与奖：每位参与者5 Battle64积分'
 }
 
 export default zh
