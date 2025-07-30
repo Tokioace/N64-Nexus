@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useLanguage } from '../contexts/LanguageContext'
 import { useUser } from '../contexts/UserContext'
 import { usePoints } from '../contexts/PointsContext'
@@ -313,98 +313,85 @@ const FanArtPage: React.FC = () => {
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid')
   const [selectedCategory, setSelectedCategory] = useState('all')
   const [showUploadModal, setShowUploadModal] = useState(false)
-  const [fanArtItems, setFanArtItems] = useState<FanArtItem[]>([
-    {
-      id: '1',
-      title: 'Mario 64 Castle Reimagined',
-      artist: 'PixelMaster64',
-      imageUrl: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRkY2QjZCIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIiBmaWxsPSIjRkZGRkZGIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiPk1hcmlvIENhc3RsZTwvdGV4dD48L3N2Zz4=',
-      likes: 142,
-      views: 1205,
-      comments: 23,
-      rating: 4.7,
-      ratingCount: 89,
-      userRating: undefined,
-      tags: ['Mario', 'Castle', 'Digital Art'],
-      createdAt: new Date('2024-01-15'),
-      game: 'Super Mario 64'
-    },
-    {
-      id: '2',
-      title: 'Link in Hyrule Field',
-      artist: 'ZeldaFan98',
-      imageUrl: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjNEVDREMxIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIiBmaWxsPSIjRkZGRkZGIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiPlplbGRhIEFydDwvdGV4dD48L3N2Zz4=',
-      likes: 89,
-      views: 756,
-      comments: 15,
-      rating: 4.2,
-      ratingCount: 54,
-      userRating: undefined,
-      tags: ['Zelda', 'Link', 'Landscape'],
-      createdAt: new Date('2024-01-14'),
-      game: 'The Legend of Zelda: Ocarina of Time'
-    },
-    {
-      id: '3',
-      title: 'GoldenEye Facility',
-      artist: 'SpyArtist',
-      imageUrl: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRTVFN0VCIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIiBmaWxsPSIjNkI3MjgwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiPjMwMHgyMDA8L3RleHQ+PC9zdmc+',
-      likes: 67,
-      views: 432,
-      comments: 8,
-      rating: 3.8,
-      ratingCount: 32,
-      userRating: undefined,
-      tags: ['GoldenEye', 'Facility', '3D'],
-      createdAt: new Date('2024-01-13'),
-      game: 'GoldenEye 007'
-    },
-    {
-      id: '4',
-      title: 'Donkey Kong Country Jungle',
-      artist: 'JungleDrawer',
-      imageUrl: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRTVFN0VCIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIiBmaWxsPSIjNkI3MjgwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiPjMwMHgyMDA8L3RleHQ+PC9zdmc+',
-      likes: 156,
-      views: 923,
-      comments: 31,
-      rating: 4.9,
-      ratingCount: 127,
-      userRating: undefined,
-      tags: ['DK', 'Jungle', 'Nature'],
-      createdAt: new Date('2024-01-12'),
-      game: 'Donkey Kong 64'
-    },
-    {
-      id: '5',
-      title: 'Star Fox Arwing Squadron',
-      artist: 'SpacePilot',
-      imageUrl: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRTVFN0VCIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIiBmaWxsPSIjNkI3MjgwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiPjMwMHgyMDA8L3RleHQ+PC9zdmc+',
-      likes: 98,
-      views: 645,
-      comments: 19,
-      rating: 4.1,
-      ratingCount: 73,
-      userRating: undefined,
-      tags: ['Star Fox', 'Arwing', 'Space'],
-      createdAt: new Date('2024-01-11'),
-      game: 'Star Fox 64'
-    },
-    {
-      id: '6',
-      title: 'Mario Kart 64 Rainbow Road',
-      artist: 'RainbowRacer',
-      imageUrl: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRTVFN0VCIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIiBmaWxsPSIjNkI3MjgwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiPjMwMHgyMDA8L3RleHQ+PC9zdmc+',
-      likes: 203,
-      views: 1456,
-      comments: 42,
-      rating: 4.6,
-      ratingCount: 156,
-      userRating: undefined,
-      tags: ['Mario Kart', 'Rainbow Road', 'Racing'],
-      createdAt: new Date('2024-01-10'),
-      game: 'Mario Kart 64'
+  const [fanArtItems, setFanArtItems] = useState<FanArtItem[]>([])
+
+  // Load FanArt data from localStorage on component mount
+  useEffect(() => {
+    const loadFanArtData = () => {
+      try {
+        const savedFanArt = localStorage.getItem('fanart_items')
+        if (savedFanArt) {
+          const parsedFanArt = JSON.parse(savedFanArt)
+          // Convert date strings back to Date objects and sort by newest first
+          const sortedFanArt = parsedFanArt
+            .map((item: any) => ({
+              ...item,
+              createdAt: item.createdAt ? new Date(item.createdAt) : new Date()
+            }))
+            .sort((a: any, b: any) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+          setFanArtItems(sortedFanArt)
+        } else {
+          // Use default mock data if no saved data exists
+          const defaultFanArt = [
+            {
+              id: '1',
+              title: 'Mario 64 Castle Reimagined',
+              artist: 'PixelMaster64',
+              imageUrl: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRkY2QjZCIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIiBmaWxsPSIjRkZGRkZGIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiPk1hcmlvIENhc3RsZTwvdGV4dD48L3N2Zz4=',
+              likes: 142,
+              views: 1205,
+              comments: 23,
+              rating: 4.7,
+              ratingCount: 89,
+              userRating: undefined,
+              tags: ['Mario', 'Castle', 'Digital Art'],
+              createdAt: new Date('2024-01-15'),
+              game: 'Super Mario 64'
+            },
+            {
+              id: '2',
+              title: 'Link in Hyrule Field',
+              artist: 'ZeldaFan98',
+              imageUrl: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjNEVDREMxIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIiBmaWxsPSIjRkZGRkZGIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiPlplbGRhIEFydDwvdGV4dD48L3N2Zz4=',
+              likes: 89,
+              views: 756,
+              comments: 15,
+              rating: 4.2,
+              ratingCount: 54,
+              userRating: undefined,
+              tags: ['Zelda', 'Link', 'Landscape'],
+              createdAt: new Date('2024-01-14'),
+              game: 'The Legend of Zelda: Ocarina of Time'
+            },
+            {
+              id: '3',
+              title: 'GoldenEye Facility',
+              artist: 'SpyArtist',
+              imageUrl: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRkZFQUE3Ii8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIiBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiPkdvbGRlbkV5ZSBBcnQ8L3RleHQ+PC9zdmc+',
+              likes: 67,
+              views: 543,
+              comments: 8,
+              rating: 4.0,
+              ratingCount: 32,
+              userRating: undefined,
+              tags: ['GoldenEye', 'Facility', 'Map'],
+              createdAt: new Date('2024-01-13'),
+              game: 'GoldenEye 007'
+            }
+          ]
+          setFanArtItems(defaultFanArt)
+          // Save default data to localStorage
+          localStorage.setItem('fanart_items', JSON.stringify(defaultFanArt))
+        }
+      } catch (error) {
+        console.error('Error loading fanart data:', error)
+        // Use minimal fallback on error
+        setFanArtItems([])
+      }
     }
-  ])
+
+    loadFanArtData()
+  }, [])
 
   const categories = [
     { id: 'all', name: t('fanart.allCategories') },
@@ -486,6 +473,24 @@ const FanArtPage: React.FC = () => {
       }
       return item
     }))
+  }
+
+  const handleNewArtwork = (newArtwork: FanArtItem) => {
+    setFanArtItems(prev => {
+      const updated = [newArtwork, ...prev]
+      // Save to localStorage so it appears on HomePage
+      try {
+        localStorage.setItem('fanart_items', JSON.stringify(updated))
+        // Trigger storage event for HomePage to update
+        window.dispatchEvent(new StorageEvent('storage', {
+          key: 'fanart_items',
+          newValue: JSON.stringify(updated)
+        }))
+      } catch (error) {
+        console.error('Error saving fanart to localStorage:', error)
+      }
+      return updated
+    })
   }
 
   return (
@@ -739,7 +744,7 @@ const FanArtPage: React.FC = () => {
         <UploadModal
           onClose={() => setShowUploadModal(false)}
           onUpload={(newArtwork) => {
-            setFanArtItems(prev => [newArtwork, ...prev])
+            handleNewArtwork(newArtwork)
             setShowUploadModal(false)
           }}
           awardPoints={awardPoints}
