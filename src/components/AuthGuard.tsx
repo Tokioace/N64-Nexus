@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react'
 import { useUser } from '../contexts/UserContext'
 import { useLanguage } from '../contexts/LanguageContext'
 import { Link } from 'react-router-dom'
-import { Lock, LogIn, UserPlus } from 'lucide-react'
+import { Lock, LogIn } from 'lucide-react'
 
 interface AuthGuardProps {
   children: ReactNode

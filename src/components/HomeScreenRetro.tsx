@@ -6,7 +6,6 @@ import {
   Trophy,
   Target,
   Camera,
-  Star,
   Users as UsersIcon,
   User,
   Package,
