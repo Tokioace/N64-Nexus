@@ -1,6 +1,7 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { Palette, Heart, Eye } from 'lucide-react'
 import { useLanguage } from '../contexts/LanguageContext'
+import { useUser } from '../contexts/UserContext'
 import { useNavigate } from 'react-router-dom'
 
 interface FanArtItem {
@@ -12,6 +13,7 @@ interface FanArtItem {
   views: number
   game: string
   createdAt?: Date
+  likedBy?: string[] // Array of user IDs who liked this artwork
 }
 
 interface SingleFanArtCardProps {
@@ -21,17 +23,88 @@ interface SingleFanArtCardProps {
 
 const SingleFanArtCard: React.FC<SingleFanArtCardProps> = ({ fanArtItems, className = '' }) => {
   const { t } = useLanguage()
+  const { user, isAuthenticated } = useUser()
   const navigate = useNavigate()
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isFlipping, setIsFlipping] = useState(false)
   const [flipDirection, setFlipDirection] = useState<'left' | 'right'>('left')
+  const [userLikes, setUserLikes] = useState<Set<string>>(new Set()) // Track user's likes
   const touchStartX = useRef<number>(0)
   const touchEndX = useRef<number>(0)
+
+  // Load user likes from localStorage
+  useEffect(() => {
+    if (user) {
+      const savedUserLikes = localStorage.getItem('user_fanart_likes')
+      if (savedUserLikes) {
+        setUserLikes(new Set(JSON.parse(savedUserLikes)))
+      }
+    }
+  }, [user])
+
+  const handleLikeArtwork = async (artworkId: string, event: React.MouseEvent) => {
+    event.stopPropagation() // Prevent card click navigation
+    
+    if (!isAuthenticated || !user) return
+
+    const artwork = fanArtItems.find(item => item.id === artworkId)
+    if (!artwork) return
+
+    // Prevent self-liking
+    if (artwork.artist === user.username) {
+      console.log('Cannot like your own artwork')
+      return
+    }
+
+    const isCurrentlyLiked = userLikes.has(artworkId)
+    const newUserLikes = new Set(userLikes)
+    
+    if (isCurrentlyLiked) {
+      newUserLikes.delete(artworkId)
+    } else {
+      newUserLikes.add(artworkId)
+    }
+    
+    setUserLikes(newUserLikes)
+    
+    // Save user likes to localStorage
+    localStorage.setItem('user_fanart_likes', JSON.stringify(Array.from(newUserLikes)))
+
+    // Update localStorage fanart data
+    try {
+      const savedFanArt = localStorage.getItem('fanart_items')
+      if (savedFanArt) {
+        const fanArtData = JSON.parse(savedFanArt)
+        const updatedFanArt = fanArtData.map((item: FanArtItem) => {
+          if (item.id === artworkId) {
+            return {
+              ...item,
+              likes: isCurrentlyLiked ? item.likes - 1 : item.likes + 1,
+              likedBy: isCurrentlyLiked 
+                ? (item.likedBy || []).filter(id => id !== user.id)
+                : [...(item.likedBy || []), user.id]
+            }
+          }
+          return item
+        })
+        
+        localStorage.setItem('fanart_items', JSON.stringify(updatedFanArt))
+        
+        // Trigger storage event for other components to update
+        window.dispatchEvent(new StorageEvent('storage', {
+          key: 'fanart_items',
+          newValue: JSON.stringify(updatedFanArt)
+        }))
+      }
+    } catch (error) {
+      console.error('Error updating fanart likes:', error)
+    }
+  }
 
   const goToNext = () => {
     if (isFlipping || currentIndex >= fanArtItems.length - 1) return
     
-    setFlipDirection('left')
+    setFlipDirection('right') // Changed from 'left' to 'right' for forward navigation
     setIsFlipping(true)
     
     setTimeout(() => {
@@ -43,7 +116,7 @@ const SingleFanArtCard: React.FC<SingleFanArtCardProps> = ({ fanArtItems, classN
   const goToPrevious = () => {
     if (isFlipping || currentIndex <= 0) return
     
-    setFlipDirection('right')
+    setFlipDirection('left') // Changed from 'right' to 'left' for backward navigation
     setIsFlipping(true)
     
     setTimeout(() => {
@@ -147,9 +220,26 @@ const SingleFanArtCard: React.FC<SingleFanArtCardProps> = ({ fanArtItems, classN
           </div>
           <div className="flex items-center justify-between text-xs text-slate-400 mt-auto">
             <div className="flex items-center gap-2">
-              <span className="flex items-center gap-1">
-                <Heart className="w-3 h-3" /> {item.likes}
-              </span>
+              <button
+                onClick={(e) => handleLikeArtwork(item.id, e)}
+                className={`flex items-center gap-1 transition-colors ${
+                  !isAuthenticated 
+                    ? 'cursor-not-allowed opacity-50' 
+                    : userLikes.has(item.id)
+                    ? 'text-pink-400 hover:text-pink-300'
+                    : 'text-slate-400 hover:text-pink-400'
+                }`}
+                disabled={!isAuthenticated}
+              >
+                <Heart 
+                  className={`w-3 h-3 transition-all ${
+                    userLikes.has(item.id) 
+                      ? 'fill-pink-400 text-pink-400 scale-110' 
+                      : 'text-slate-400'
+                  }`} 
+                />
+                <span>{item.likes}</span>
+              </button>
               <span className="flex items-center gap-1">
                 <Eye className="w-3 h-3" /> {item.views}
               </span>
@@ -178,10 +268,10 @@ const SingleFanArtCard: React.FC<SingleFanArtCardProps> = ({ fanArtItems, classN
           {/* Background card for smooth transition */}
           {isFlipping && (
             <div className="absolute inset-0 z-10">
-              {flipDirection === 'left' && currentIndex < fanArtItems.length - 1 && 
+              {flipDirection === 'right' && currentIndex < fanArtItems.length - 1 && 
                 renderFanArtCard(fanArtItems[currentIndex + 1], currentIndex + 1, false)
               }
-              {flipDirection === 'right' && currentIndex > 0 && 
+              {flipDirection === 'left' && currentIndex > 0 && 
                 renderFanArtCard(fanArtItems[currentIndex - 1], currentIndex - 1, false)
               }
             </div>
@@ -191,9 +281,9 @@ const SingleFanArtCard: React.FC<SingleFanArtCardProps> = ({ fanArtItems, classN
           <div 
             className={`relative z-20 transition-transform duration-200 ease-out ${
               isFlipping 
-                ? flipDirection === 'left' 
-                  ? 'transform -translate-x-full opacity-0' 
-                  : 'transform translate-x-full opacity-0'
+                ? flipDirection === 'right' 
+                  ? 'transform translate-x-full opacity-0' // Move right when going forward
+                  : 'transform -translate-x-full opacity-0' // Move left when going backward
                 : 'transform translate-x-0 opacity-100'
             }`}
           >
