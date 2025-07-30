@@ -749,7 +749,7 @@ export const getUniqueGenres = (games: N64Game[]): string[] => {
   return Array.from(new Set(genres)).sort();
 };
 
-export const getCollectorLevel = (collectedCount: number, t?: (key: any) => string): { level: number; titleKey: string; nextLevel?: { count: number; titleKey: string } } => {
+export const getCollectorLevel = (collectedCount: number, _t?: (key: any) => string): { level: number; titleKey: string; nextLevel?: { count: number; titleKey: string } } => {
   const levels = [
     { min: 0, max: 4, level: 1, titleKey: 'collector.level.rookie' },
     { min: 5, max: 9, level: 2, titleKey: 'collector.level.beginner' },

@@ -13,7 +13,7 @@ import {
   LeaderboardFilter
 } from '../types'
 import { useUser } from './UserContext'
-import { useLanguage } from './LanguageContext'
+
 import PointsNotification from '../components/PointsNotification'
 
 const PointsContext = createContext<PointsContextType | undefined>(undefined)
@@ -129,13 +129,12 @@ const MEDALS_CONFIG: MedalConfig[] = [
 ]
 
 // Local storage keys
-const STORAGE_KEY_USER_POINTS = 'battle64_user_points'
+// const STORAGE_KEY_USER_POINTS = 'battle64_user_points' // Reserved for future use
 const STORAGE_KEY_GLOBAL_LEADERBOARD = 'battle64_global_leaderboard'
 const STORAGE_KEY_CURRENT_SEASON = 'battle64_current_season'
 
 export const PointsProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const { user, updateProfile } = useUser()
-  const { t } = useLanguage()
   
   const [userPoints, setUserPoints] = useState<UserPoints | null>(null)
   const [globalLeaderboard, setGlobalLeaderboard] = useState<N64FanLeaderboardEntry[]>([])
@@ -553,6 +552,7 @@ export const PointsProvider: React.FC<{ children: ReactNode }> = ({ children }) 
   )
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const usePoints = () => {
   const context = useContext(PointsContext)
   if (!context) {

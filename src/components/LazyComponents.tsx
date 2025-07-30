@@ -27,6 +27,7 @@ export const LazyPersonalRecordsManager = lazy(() => import('./PersonalRecordsMa
 export const LazyAchievementsPanel = lazy(() => import('./AchievementsPanel'))
 
 // HOC for wrapping lazy components with Suspense
+// eslint-disable-next-line react-refresh/only-export-components
 export const withSuspense = <P extends object>(
   Component: React.ComponentType<P>,
   fallback?: React.ReactNode

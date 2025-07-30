@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useUser } from '../contexts/UserContext'
 import { useLanguage, getLocaleString } from '../contexts/LanguageContext'
 import { UserCollection } from '../types'
-import { Plus, Edit, Trash2, Package, Star, Calendar, MapPin, Gamepad2 } from 'lucide-react'
+import { Plus, Edit, Trash2, Package, Star, Calendar, Gamepad2 } from 'lucide-react'
 
 interface CollectionManagerProps {
   isOwnProfile?: boolean

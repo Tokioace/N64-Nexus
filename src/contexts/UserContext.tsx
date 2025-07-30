@@ -165,14 +165,14 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     }
   }, [user])
 
-  const login = async (email: string, password: string): Promise<boolean> => {
+  const login = async (email: string, _password: string): Promise<boolean> => {
     try {
       // In a real app, this would call an API
       const foundUser = users.find(u => u.email === email)
       
       if (foundUser) {
         // Remove password from user object before setting state
-        const { password: _, ...userWithoutPassword } = foundUser
+        const { password, ...userWithoutPassword } = foundUser
         setUser(userWithoutPassword as User)
         setIsAuthenticated(true)
         return true
@@ -378,6 +378,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   )
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useUser = () => {
   const context = useContext(UserContext)
   if (context === undefined) {

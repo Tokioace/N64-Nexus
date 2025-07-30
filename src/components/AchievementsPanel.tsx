@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useLanguage, getLocaleString } from '../contexts/LanguageContext'
 import { usePoints } from '../contexts/PointsContext'
-import { useUser } from '../contexts/UserContext'
 import { 
   Award, 
   Lock,

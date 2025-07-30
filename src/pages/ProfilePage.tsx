@@ -14,12 +14,10 @@ import {
   Calendar,
   MapPin,
   Edit,
-  Medal,
   Star,
   LogIn,
   ArrowLeft,
-  Award,
-  Crown
+  Award
 } from 'lucide-react'
 
 interface Achievement {

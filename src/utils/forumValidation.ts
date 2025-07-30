@@ -32,7 +32,7 @@ export const validatePostContent = (content: string, t: (key: string) => string)
   return { isValid: true }
 }
 
-export const validateImageFile = (file: File, t: (key: any) => string): { isValid: boolean; error?: string } => {
+export const validateImageFile = (file: File, t: (key: string) => string): { isValid: boolean; error?: string } => {
   // Check file size (max 5MB)
   if (file.size > 5 * 1024 * 1024) {
     return { isValid: false, error: t('validation.imageTooLarge') }

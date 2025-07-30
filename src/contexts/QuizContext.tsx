@@ -38,7 +38,7 @@ export const QuizProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const [isQuizActive, setIsQuizActive] = useState(false)
   const [quizResult, setQuizResult] = useState<QuizResult | null>(null)
 
-  const startQuiz = (difficulty?: string, category?: string) => {
+  const startQuiz = (_difficulty?: string, _category?: string) => {
     const questions = getQuizQuestions(t)
     setCurrentQuestion(questions[0])
     setCurrentQuestionIndex(0)
@@ -127,6 +127,7 @@ export const QuizProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   )
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useQuiz = () => {
   const context = useContext(QuizContext)
   if (context === undefined) {

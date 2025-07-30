@@ -358,7 +358,7 @@ export const EventProvider: React.FC<{ children: ReactNode }> = ({ children }) =
       setUserParticipations(prev => [...prev, newParticipation])
       setLoading(false)
       return true
-    } catch (_err) {
+    } catch {
               setError(t('error.generic'))
       setLoading(false)
       return false
@@ -399,7 +399,7 @@ export const EventProvider: React.FC<{ children: ReactNode }> = ({ children }) =
       
       setLoading(false)
       return true
-    } catch (err) {
+    } catch {
               setError(t('error.generic'))
       setLoading(false)
       return false
@@ -412,7 +412,7 @@ export const EventProvider: React.FC<{ children: ReactNode }> = ({ children }) =
       await new Promise(resolve => setTimeout(resolve, 500))
       setLoading(false)
       return true
-    } catch (_err) {
+    } catch {
               setError(t('error.generic'))
       setLoading(false)
       return false
@@ -591,6 +591,7 @@ export const EventProvider: React.FC<{ children: ReactNode }> = ({ children }) =
   )
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useEvent = () => {
   const context = useContext(EventContext)
   if (context === undefined) {

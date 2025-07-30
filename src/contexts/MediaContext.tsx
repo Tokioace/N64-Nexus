@@ -573,7 +573,7 @@ export const MediaProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     ))
   }, [])
 
-  const isCapturingAllowed = useCallback((eventId?: string): boolean => {
+  const isCapturingAllowed = useCallback((_eventId?: string): boolean => {
     // In a real app, this would check event rules or user permissions
     return true
   }, [])
@@ -641,6 +641,7 @@ export const MediaProvider: React.FC<{ children: ReactNode }> = ({ children }) =
   )
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useMedia = () => {
   const context = useContext(MediaContext)
   if (context === undefined) {

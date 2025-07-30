@@ -317,7 +317,7 @@ export const ForumProvider: React.FC<{ children: ReactNode }> = ({ children }) =
       
       setLoading(false)
       return true
-    } catch (_err) {
+    } catch {
       setError(t('error.generic'))
       setLoading(false)
       return false
@@ -381,7 +381,7 @@ export const ForumProvider: React.FC<{ children: ReactNode }> = ({ children }) =
       
       setLoading(false)
       return true
-    } catch (err) {
+    } catch {
       setError(t('error.generic'))
       setLoading(false)
       return false
@@ -459,6 +459,7 @@ export const ForumProvider: React.FC<{ children: ReactNode }> = ({ children }) =
   )
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useForum = () => {
   const context = useContext(ForumContext)
   if (context === undefined) {

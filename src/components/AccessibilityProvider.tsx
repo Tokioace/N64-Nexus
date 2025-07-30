@@ -249,6 +249,7 @@ export const AccessibilityProvider: React.FC<{ children: React.ReactNode }> = ({
   )
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useAccessibility = (): AccessibilityContextType => {
   const context = useContext(AccessibilityContext)
   if (!context) {
@@ -258,12 +259,14 @@ export const useAccessibility = (): AccessibilityContextType => {
 }
 
 // Hook for components to announce changes
+// eslint-disable-next-line react-refresh/only-export-components
 export const useAnnouncement = () => {
   const { announceToScreenReader } = useAccessibility()
   return announceToScreenReader
 }
 
 // Hook for focus management
+// eslint-disable-next-line react-refresh/only-export-components
 export const useFocusManagement = () => {
   const { setFocusToElement, skipToContent } = useAccessibility()
   

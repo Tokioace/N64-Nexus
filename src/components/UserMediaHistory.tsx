@@ -13,8 +13,7 @@ import {
   Award,
   CheckCircle,
   Clock,
-  Filter,
-  Download
+  Filter
 } from 'lucide-react'
 
 interface UserMediaHistoryProps {
