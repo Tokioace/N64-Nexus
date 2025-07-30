@@ -27,6 +27,8 @@ interface ForumThread {
   replies: number
   lastActivity: Date
   category: string
+  lastPostContent?: string
+  lastPostAuthor?: string
 }
 
 interface FanArtItem {
@@ -37,6 +39,7 @@ interface FanArtItem {
   likes: number
   views: number
   game: string
+  createdAt?: Date
 }
 
 interface MediaItem {
@@ -72,6 +75,8 @@ interface MarketplaceItem {
   seller: string
   date: Date
   category: string
+  images?: string[]
+  image?: string
 }
 
 const HomePage: React.FC = () => {
@@ -81,6 +86,9 @@ const HomePage: React.FC = () => {
 
   // Load FanArt data from localStorage or use mock data
   const [fanArtItems, setFanArtItems] = useState<FanArtItem[]>([])
+  
+  // Load Marketplace data from localStorage
+  const [marketplaceItems, setMarketplaceItems] = useState<MarketplaceItem[]>([])
   
   // Load other data from localStorage or use mock data
   const [mediaItems] = useState<MediaItem[]>([
@@ -99,14 +107,6 @@ const HomePage: React.FC = () => {
     { id: '5', game: 'Perfect Dark', category: 'DataDyne Central', time: '1:23.45', date: new Date(Date.now() - 18000000), verified: true, platform: 'N64' }
   ])
 
-  const [marketplaceItems] = useState<MarketplaceItem[]>([
-    { id: '1', title: 'Super Mario 64 - Mint Condition', description: 'Original cartridge in mint condition with manual', price: 89.99, condition: 'Mint', seller: 'RetroCollector', date: new Date(Date.now() - 3600000), category: 'Games' },
-    { id: '2', title: 'N64 Controller - Original Nintendo', description: 'Official Nintendo controller in very good condition', price: 34.50, condition: 'Very Good', seller: 'ControllerKing', date: new Date(Date.now() - 7200000), category: 'Accessories' },
-    { id: '3', title: 'GoldenEye 007 - Complete in Box', description: 'Complete game with box, manual, and cartridge', price: 125.00, condition: 'Good', seller: 'GameVault', date: new Date(Date.now() - 10800000), category: 'Games' },
-    { id: '4', title: 'Ocarina of Time - Gold Cartridge', description: 'Rare gold cartridge edition in mint condition', price: 199.99, condition: 'Mint', seller: 'ZeldaFanatic', date: new Date(Date.now() - 14400000), category: 'Collectibles' },
-    { id: '5', title: 'N64 Console - Jungle Green', description: 'Special edition jungle green N64 console', price: 149.99, condition: 'Very Good', seller: 'ConsoleDealer', date: new Date(Date.now() - 18000000), category: 'Consoles' }
-  ])
-
   // Load FanArt data from localStorage on component mount
   useEffect(() => {
     const loadFanArtData = () => {
@@ -118,33 +118,71 @@ const HomePage: React.FC = () => {
           const sortedFanArt = parsedFanArt
             .map((item: any) => ({
               ...item,
+              createdAt: item.createdAt ? new Date(item.createdAt) : new Date(),
               date: item.date ? new Date(item.date) : new Date()
             }))
-            .sort((a: any, b: any) => b.date.getTime() - a.date.getTime())
+            .sort((a: any, b: any) => {
+              const dateA = a.createdAt || a.date || new Date(0)
+              const dateB = b.createdAt || b.date || new Date(0)
+              return dateB.getTime() - dateA.getTime()
+            })
           setFanArtItems(sortedFanArt)
         } else {
           // Use fallback mock data if no saved data exists
           setFanArtItems([
-            { id: '1', title: 'Mario in Peach\'s Castle', artist: 'PixelArtist64', imageUrl: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRkY2QjZCIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIiBmaWxsPSIjRkZGRkZGIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiPk1hcmlvIEFydDwvdGV4dD48L3N2Zz4=', likes: 234, views: 1250, game: 'Super Mario 64' },
-            { id: '2', title: 'Link vs Ganondorf Epic Battle', artist: 'ZeldaDrawer', imageUrl: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjNEVDREMxIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIiBmaWxsPSIjRkZGRkZGIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiPlplbGRhIEFydDwvdGV4dD48L3N2Zz4=', likes: 189, views: 980, game: 'Ocarina of Time' },
-            { id: '3', title: 'Banjo & Kazooie Adventure', artist: 'RetroSketch', imageUrl: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjNDVCN0QxIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIiBmaWxsPSIjRkZGRkZGIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiPkJhbmpvIEFydDwvdGV4dD48L3N2Zz4=', likes: 156, views: 750, game: 'Banjo-Kazooie' }
+            { id: '1', title: 'Mario in Peach\'s Castle', artist: 'PixelArtist64', imageUrl: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRkY2QjZCIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIiBmaWxsPSIjRkZGRkZGIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiPk1hcmlvIEFydDwvdGV4dD48L3N2Zz4=', likes: 234, views: 1250, game: 'Super Mario 64', createdAt: new Date() },
+            { id: '2', title: 'Link vs Ganondorf Epic Battle', artist: 'ZeldaDrawer', imageUrl: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjNEVDREMxIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIiBmaWxsPSIjRkZGRkZGIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiPlplbGRhIEFydDwvdGV4dD48L3N2Zz4=', likes: 189, views: 980, game: 'Ocarina of Time', createdAt: new Date(Date.now() - 86400000) },
+            { id: '3', title: 'Banjo & Kazooie Adventure', artist: 'RetroSketch', imageUrl: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjNDVCN0QxIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIiBmaWxsPSIjRkZGRkZGIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiPkJhbmpvIEFydDwvdGV4dD48L3N2Zz4=', likes: 156, views: 750, game: 'Banjo-Kazooie', createdAt: new Date(Date.now() - 172800000) }
           ])
         }
       } catch (error) {
         console.error('Error loading fanart data:', error)
         // Use fallback data on error
         setFanArtItems([
-          { id: '1', title: 'Mario in Peach\'s Castle', artist: 'PixelArtist64', imageUrl: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRkY2QjZCIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIiBmaWxsPSIjRkZGRkZGIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiPk1hcmlvIEFydDwvdGV4dD48L3N2Zz4=', likes: 234, views: 1250, game: 'Super Mario 64' }
+          { id: '1', title: 'Mario in Peach\'s Castle', artist: 'PixelArtist64', imageUrl: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRkY2QjZCIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIiBmaWxsPSIjRkZGRkZGIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiPk1hcmlvIEFydDwvdGV4dD48L3N2Zz4=', likes: 234, views: 1250, game: 'Super Mario 64', createdAt: new Date() }
+        ])
+      }
+    }
+
+    const loadMarketplaceData = () => {
+      try {
+        const savedMarketplace = localStorage.getItem('marketplace_items')
+        if (savedMarketplace) {
+          const parsedMarketplace = JSON.parse(savedMarketplace)
+          // Sort by date (newest first) and convert date strings back to Date objects
+          const sortedMarketplace = parsedMarketplace
+            .map((item: any) => ({
+              ...item,
+              date: item.date ? new Date(item.date) : (item.createdAt ? new Date(item.createdAt) : new Date())
+            }))
+            .sort((a: any, b: any) => b.date.getTime() - a.date.getTime())
+          setMarketplaceItems(sortedMarketplace)
+        } else {
+          // Use fallback mock data if no saved data exists
+          setMarketplaceItems([
+            { id: '1', title: 'Super Mario 64 - Mint Condition', description: 'Original cartridge in mint condition with manual', price: 89.99, condition: 'Mint', seller: 'RetroCollector', date: new Date(Date.now() - 3600000), category: 'Games', images: ['data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRTVFN0VCIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIiBmaWxsPSIjNkI3MjgwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiPk1hcmlvIDY0PC90ZXh0Pjwvc3ZnPg=='] },
+            { id: '2', title: 'N64 Controller - Original Nintendo', description: 'Official Nintendo controller in very good condition', price: 34.50, condition: 'Very Good', seller: 'ControllerKing', date: new Date(Date.now() - 7200000), category: 'Accessories', images: ['data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRTVFN0VCIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIiBmaWxsPSIjNkI3MjgwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiPkNvbnRyb2xsZXI8L3RleHQ+PC9zdmc+'] },
+            { id: '3', title: 'GoldenEye 007 - Complete in Box', description: 'Complete game with box, manual, and cartridge', price: 125.00, condition: 'Good', seller: 'GameVault', date: new Date(Date.now() - 10800000), category: 'Games', images: ['data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRTVFN0VCIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIiBmaWxsPSIjNkI3MjgwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiPkdvbGRlbkV5ZTwvdGV4dD48L3N2Zz4='] }
+          ])
+        }
+      } catch (error) {
+        console.error('Error loading marketplace data:', error)
+        // Use fallback data on error
+        setMarketplaceItems([
+          { id: '1', title: 'Super Mario 64 - Mint Condition', description: 'Original cartridge in mint condition with manual', price: 89.99, condition: 'Mint', seller: 'RetroCollector', date: new Date(Date.now() - 3600000), category: 'Games' }
         ])
       }
     }
 
     loadFanArtData()
+    loadMarketplaceData()
 
-    // Listen for fanart updates
+    // Listen for data updates
     const handleStorageChange = (e: StorageEvent) => {
       if (e.key === 'fanart_items') {
         loadFanArtData()
+      } else if (e.key === 'marketplace_items') {
+        loadMarketplaceData()
       }
     }
 
@@ -152,18 +190,26 @@ const HomePage: React.FC = () => {
     return () => window.removeEventListener('storage', handleStorageChange)
   }, [])
 
-  // Convert forum threads to the format expected by SingleForumCard
+  // Convert forum threads to the format expected by SingleForumCard with enhanced data
   const forumThreads: ForumThread[] = threads
-    .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+    .sort((a, b) => new Date(b.lastUpdated).getTime() - new Date(a.lastUpdated).getTime())
     .slice(0, 10) // Take top 10 most recent
-    .map(thread => ({
-      id: thread.id,
-      title: thread.title,
-      author: thread.authorName, // Use authorName instead of authorId
-      replies: thread.postCount, // Use postCount for replies
-      lastActivity: new Date(thread.lastUpdated), // Use lastUpdated
-      category: thread.categoryId // Use categoryId instead of category
-    }))
+    .map(thread => {
+      // Find the latest post for this thread
+      const threadPosts = posts.filter(post => post.threadId === thread.id)
+      const latestPost = threadPosts.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())[0]
+      
+      return {
+        id: thread.id,
+        title: thread.title,
+        author: thread.authorName, // Use authorName instead of authorId
+        replies: thread.postCount, // Use postCount for replies
+        lastActivity: new Date(thread.lastUpdated), // Use lastUpdated
+        category: thread.categoryId, // Use categoryId instead of category
+        lastPostContent: latestPost?.content,
+        lastPostAuthor: latestPost?.authorName
+      }
+    })
 
   const formatTime = (date: Date) => {
     return date.toLocaleTimeString(currentLanguage === 'de' ? 'de-DE' : 'en-US', {
