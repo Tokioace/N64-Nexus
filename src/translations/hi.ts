@@ -825,7 +825,32 @@ const hi = {
   'events.dkrAncientLake.prize2': '🥈 दूसरा स्थान: 300 Battle64 अंक + लेक मास्टर',
   'events.dkrAncientLake.prize3': '🥉 तीसरा स्थान: 200 Battle64 अंक + प्राचीन रेसर',
   'events.dkrAncientLake.prizeTop10': '🏆 शीर्ष 10: F1 स्टाइल अंक (25-18-15-12-10-8-6-4-2-1)',
-  'events.dkrAncientLake.prizeParticipation': '🎯 भागीदारी: हर प्रतिभागी के लिए 5 Battle64 अंक'
+  'events.dkrAncientLake.prizeParticipation': '🎯 भागीदारी: हर प्रतिभागी के लिए 5 Battle64 अंक',
+
+  // Home Ranking Section
+  'home.yourRanking': 'आपकी रैंकिंग',
+
+  // Ranking System
+  'ranking.globalRank': 'वैश्विक रैंक',
+  'ranking.totalPoints': 'कुल अंक',
+  'ranking.currentLevel': 'वर्तमान स्तर',
+  'ranking.rankProgress': 'रैंक प्रगति',
+  'ranking.allTime': 'सभी समय',
+  'ranking.seasonRank': 'सीज़न रैंक',
+  'ranking.currentSeason': 'वर्तमान सीज़न',
+  'ranking.levelProgress': 'स्तर प्रगति',
+  'ranking.totalXP': 'कुल अनुभव',
+  'ranking.achievements': 'उपलब्धियां',
+  'ranking.verifiedRecords': 'सत्यापित रिकॉर्ड',
+  'ranking.gamesOwned': 'स्वामित्व वाले गेम',
+
+  // Profile Ranking
+  'profile.ranking': 'रैंकिंग',
+  'profile.globalRanking': 'वैश्विक रैंकिंग',
+  'profile.rankingStats': 'रैंकिंग आंकड़े',
+
+  // FanArt Comments
+  'fanart.addComment': 'टिप्पणी जोड़ें...'
 }
 
 export default hi

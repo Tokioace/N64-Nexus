@@ -875,7 +875,32 @@ const ja = {
   'events.dkrAncientLake.prize2': '🥈 2位：Battle64ポイント300 + レイクマスター',
   'events.dkrAncientLake.prize3': '🥉 3位：Battle64ポイント200 + エンシェントレーサー',
   'events.dkrAncientLake.prizeTop10': '🏆 トップ10：F1スタイルポイント (25-18-15-12-10-8-6-4-2-1)',
-  'events.dkrAncientLake.prizeParticipation': '🎯 参加賞：全参加者にBattle64ポイント5'
+  'events.dkrAncientLake.prizeParticipation': '🎯 参加賞：全参加者にBattle64ポイント5',
+
+  // Home Ranking Section
+  'home.yourRanking': 'あなたのランキング',
+
+  // Ranking System
+  'ranking.globalRank': 'グローバルランク',
+  'ranking.totalPoints': '総ポイント',
+  'ranking.currentLevel': '現在のレベル',
+  'ranking.rankProgress': 'ランク進行度',
+  'ranking.allTime': '全期間',
+  'ranking.seasonRank': 'シーズンランク',
+  'ranking.currentSeason': '現在のシーズン',
+  'ranking.levelProgress': 'レベル進行度',
+  'ranking.totalXP': '総経験値',
+  'ranking.achievements': '実績',
+  'ranking.verifiedRecords': '認証済み記録',
+  'ranking.gamesOwned': '所有ゲーム',
+
+  // Profile Ranking
+  'profile.ranking': 'ランキング',
+  'profile.globalRanking': 'グローバルランキング',
+  'profile.rankingStats': 'ランキング統計',
+
+  // FanArt Comments
+  'fanart.addComment': 'コメントを追加...'
 }
 
 export default ja
