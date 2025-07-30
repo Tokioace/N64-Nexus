@@ -828,7 +828,52 @@ const el = {
   'news.speedrunCategory': '🔥 Νέα Κατηγορία Speedrun: Any%',
   'news.speedrunCategoryContent': 'Προσθέσαμε μια νέα κατηγορία Any% για το Banjo-Kazooie. Συμμετέχετε τώρα!',
   'news.monthlyChallenge': '🏆 Νικητής Μηνιαίας Πρόκλησης',
-  'news.monthlyChallengeContent': 'Συγχαρητήρια στον N64Master για τη νίκη στη Μηνιαία Πρόκληση Οκτωβρίου!'
+  'news.monthlyChallengeContent': 'Συγχαρητήρια στον N64Master που κέρδισε τη Μηνιαία Πρόκληση Οκτωβρίου!',
+
+  // Live Events - Mario Kart 64 Luigi's Raceway
+  'events.mk64LuigisRaceway.title': '🏁 Mario Kart 64: Πρόκληση Ταχύτητας στο Luigi\'s Raceway',
+  'events.mk64LuigisRaceway.description': 'Δείξτε την ταχύτητά σας στην εμβληματική πίστα Luigi\'s Raceway! Ένας μήνας έντονου ανταγωνισμού με στυλ Gran Turismo 7.',
+  'events.mk64LuigisRaceway.category': 'Δοκιμή Χρόνου',
+  'events.mk64LuigisRaceway.rule1': '🎮 Luigi\'s Raceway - Μόνο αυτή η πίστα επιτρέπεται',
+  'events.mk64LuigisRaceway.rule2': '🌍 Εκδόσεις PAL και NTSC επιτρέπονται',
+  'events.mk64LuigisRaceway.rule3': '🚫 Δεν επιτρέπονται σφάλματα ή συντομεύσεις',
+  'events.mk64LuigisRaceway.rule4': '📹 Απαιτείται απόδειξη βίντεο ή στιγμιότυπο',
+  'events.mk64LuigisRaceway.rule5': '⏱️ Μετράει ο καλύτερος χρόνος ανά παίκτη',
+  'events.mk64LuigisRaceway.prize1': '🥇 1η Θέση: 500 Πόντοι Battle64 + Χρυσό Μετάλλιο + Αποκλειστικός Τίτλος',
+  'events.mk64LuigisRaceway.prize2': '🥈 2η Θέση: 300 Πόντοι Battle64 + Ασημένιο Μετάλλιο',
+  'events.mk64LuigisRaceway.prize3': '🥉 3η Θέση: 200 Πόντοι Battle64 + Χάλκινο Μετάλλιο',
+  'events.mk64LuigisRaceway.prizeTop10': '🏆 Τοπ 10: Πόντοι στυλ F1 (25-18-15-12-10-8-6-4-2-1)',
+  'events.mk64LuigisRaceway.prizeParticipation': '🎯 Συμμετοχή: 5 Πόντοι Battle64 για κάθε συμμετέχοντα',
+
+  // Live Events - San Francisco Rush Downtown
+  'events.sfrDowntown.title': '🏙️ San Francisco Rush: Πρωτάθλημα Αγώνων Downtown',
+  'events.sfrDowntown.description': 'Αγωνιστείτε στους δρόμους του Downtown San Francisco! Δράση extreme racing για έναν ολόκληρο μήνα.',
+  'events.sfrDowntown.category': 'Αγώνας Πίστας',
+  'events.sfrDowntown.rule1': '🏙️ Πίστα Downtown - Μόνο αυτή η πίστα επιτρέπεται',
+  'events.sfrDowntown.rule2': '🎮 Προτιμάται το αυθεντικό hardware N64',
+  'events.sfrDowntown.rule3': '🚗 Επιτρέπονται όλα τα οχήματα',
+  'events.sfrDowntown.rule4': '📱 Απαιτείται απόδειξη βίντεο ή στιγμιότυπο',
+  'events.sfrDowntown.rule5': '🏁 Κερδίζει ο ταχύτερος χρόνος γύρου',
+  'events.sfrDowntown.prize1': '🥇 1η Θέση: 500 Πόντοι Battle64 + Τίτλος Πρωταθλητή Rush',
+  'events.sfrDowntown.prize2': '🥈 2η Θέση: 300 Πόντοι Battle64 + Κυρίαρχος Downtown',
+  'events.sfrDowntown.prize3': '🥉 3η Θέση: 200 Πόντοι Battle64 + Αγωνιστής Δρόμου',
+  'events.sfrDowntown.prizeTop10': '🏆 Τοπ 10: Πόντοι στυλ F1 (25-18-15-12-10-8-6-4-2-1)',
+  'events.sfrDowntown.prizeParticipation': '🎯 Συμμετοχή: 5 Πόντοι Battle64 για κάθε συμμετέχοντα',
+
+  // Live Events - Diddy Kong Racing Ancient Lake
+  'events.dkrAncientLake.title': '🦍 Diddy Kong Racing: Δοκιμή Χρόνου στο Ancient Lake',
+  'events.dkrAncientLake.description': 'Κατακτήστε το μυστηριώδες Ancient Lake! Μια θρυλική διοργάνωση στο κλασικό της Rare για αληθινούς φανς του N64.',
+  'events.dkrAncientLake.category': 'Δοκιμή Χρόνου',
+  'events.dkrAncientLake.rule1': '🏞️ Ancient Lake - Μόνο αυτή η πίστα επιτρέπεται',
+  'events.dkrAncientLake.rule2': '🏎️ Επιτρέπονται όλα τα οχήματα (Αυτοκίνητο, Hovercraft, Αεροπλάνο)',
+  'events.dkrAncientLake.rule3': '🎮 Γίνονται δεκτές εκδόσεις PAL και NTSC',
+  'events.dkrAncientLake.rule4': '📹 Απαιτείται απόδειξη βίντεο ή στιγμιότυπο',
+  'events.dkrAncientLake.rule5': '⚡ Μετράει ο καλύτερος μεμονωμένος γύρος',
+  'events.dkrAncientLake.prize1': '🥇 1η Θέση: 500 Πόντοι Battle64 + Τίτλος Πρωταθλητή Kong',
+  'events.dkrAncientLake.prize2': '🥈 2η Θέση: 300 Πόντοι Battle64 + Κυρίαρχος Λίμνης',
+  'events.dkrAncientLake.prize3': '🥉 3η Θέση: 200 Πόντοι Battle64 + Αρχαίος Αγωνιστής',
+  'events.dkrAncientLake.prizeTop10': '🏆 Τοπ 10: Πόντοι στυλ F1 (25-18-15-12-10-8-6-4-2-1)',
+  'events.dkrAncientLake.prizeParticipation': '🎯 Συμμετοχή: 5 Πόντοι Battle64 για κάθε συμμετέχοντα'
 }
 
 export default el

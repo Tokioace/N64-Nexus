@@ -125,6 +125,10 @@ export interface GameEvent {
   rules: string[]
   prizes: string[]
   region: 'PAL' | 'NTSC' | 'BOTH'
+  pointsSystem?: {
+    participation: number
+    positions: number[] // Points for positions 1-10, F1 style
+  }
 }
 
 export interface EventParticipation {
