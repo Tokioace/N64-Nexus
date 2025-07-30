@@ -101,6 +101,7 @@ const fr = {
   // Events
   'events.title': 'Events',
   'events.subtitle': 'Tournaments, Challenges and Community Events',
+  'events.practiceChampionshipSubtitle': 'Practice Beta Championship #1',
   'events.upcoming': 'Upcoming Events',
   'events.active': 'Active Events',
   'events.completed': 'Completed Events',

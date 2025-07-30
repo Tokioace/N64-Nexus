@@ -328,7 +328,7 @@ const EventFeedWidget: React.FC = () => {
           <Trophy className="w-6 h-6 text-yellow-400" />
         </div>
         <p className="text-slate-400 text-sm">
-          {t('events.subtitle')} - Gran Turismo 7 Style
+          {t('events.practiceChampionshipSubtitle')}
         </p>
       </div>
 

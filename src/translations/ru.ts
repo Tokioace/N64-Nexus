@@ -90,6 +90,7 @@ const ru = {
   'quiz.wrong': 'Неправильно!',
   'events.title': 'События',
   'events.subtitle': 'Турниры, вызовы и общественные события',
+  'events.practiceChampionshipSubtitle': 'Practice Beta Championship #1',
   'events.upcoming': 'Предстоящие события',
   'events.active': 'Активные события',
   'events.completed': 'Завершенные события',
