@@ -91,9 +91,9 @@ const EventCard: React.FC<EventCardProps> = ({ event, leaderboard, timeRemaining
   }
 
   return (
-    <div className={`n64-tile n64-tile-large bg-gradient-to-br ${getEventGradient(event.id)} mb-6`}>
+    <div className={`simple-tile bg-gradient-to-br ${getEventGradient(event.id)} mb-4`}>
       {/* Mobile-optimized header with single line layout */}
-      <div className="flex items-center justify-between mb-3 sm:mb-4 gap-2">
+      <div className="flex items-center justify-between mb-2 sm:mb-3 gap-2">
         <div className="flex items-center gap-2 sm:gap-3 min-w-0 flex-1">
           <div className="text-lg sm:text-2xl flex-shrink-0">{getGameIcon(event.game)}</div>
           <div className="min-w-0 flex-1">
@@ -114,8 +114,8 @@ const EventCard: React.FC<EventCardProps> = ({ event, leaderboard, timeRemaining
       </div>
 
       {/* Compact Top 3 Times - Always show all 3 positions */}
-      <div className="mb-3 sm:mb-4">
-        <h4 className="text-xs sm:text-sm font-semibold text-slate-200 mb-2 sm:mb-3 flex items-center gap-1 sm:gap-2">
+      <div className="mb-2 sm:mb-3">
+        <h4 className="text-xs sm:text-sm font-semibold text-slate-200 mb-1 sm:mb-2 flex items-center gap-1 sm:gap-2">
           <Trophy className="w-3 h-3 sm:w-4 sm:h-4 text-yellow-400" />
           {t('home.topLeaderboard')}
         </h4>
@@ -174,9 +174,9 @@ const EventCard: React.FC<EventCardProps> = ({ event, leaderboard, timeRemaining
         )}
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 sm:gap-4">
-        {/* Event Stats */}
-        <div className="space-y-2 sm:space-y-3">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 sm:gap-3">
+                  {/* Event Stats */}
+          <div className="space-y-1 sm:space-y-2">
           <div className="flex items-center justify-between text-xs sm:text-sm">
             <div className="flex items-center gap-1 sm:gap-2">
               <Users className="w-3 h-3 sm:w-4 sm:h-4 text-cyan-400" />
@@ -244,13 +244,13 @@ const EventCard: React.FC<EventCardProps> = ({ event, leaderboard, timeRemaining
         </div>
       </div>
 
-      {/* Interaction Bar */}
-      <div className="mt-4 pt-4 border-t border-slate-600/30">
+      {/* Interaction Bar - Compact like FanArt cards */}
+      <div className="mt-2 pt-2 border-t border-slate-600/30">
         <InteractionBar 
           contentType="event"
           contentId={event.id}
-          showComments={true}
-          compact={false}
+          showComments={false}
+          compact={true}
         />
       </div>
     </div>
@@ -328,7 +328,7 @@ const EventFeedWidget: React.FC = () => {
 
   if (activeEvents.length === 0) {
     return (
-      <div className="n64-tile n64-tile-large bg-gradient-to-br from-sky-600/20 to-blue-600/20 border-l-4 border-sky-400">
+      <div className="simple-tile bg-gradient-to-br from-sky-600/20 to-blue-600/20 border-l-4 border-sky-400">
         <div className="flex items-center gap-2 sm:gap-3 mb-4">
           <Trophy className="w-5 h-5 sm:w-6 sm:h-6 text-sky-400 flex-shrink-0" />
           <h2 className="text-responsive-lg font-bold text-sky-400">
@@ -352,9 +352,9 @@ const EventFeedWidget: React.FC = () => {
   }
 
   return (
-    <div className="space-y-6">
-      <div className="text-center mb-8">
-        <div className="bg-gradient-to-r from-slate-800/90 via-slate-700/90 to-slate-800/90 rounded-xl p-4 sm:p-6 border border-sky-500/30">
+    <div className="space-y-4">
+      <div className="text-center mb-4">
+        <div className="bg-gradient-to-r from-slate-800/90 via-slate-700/90 to-slate-800/90 rounded-xl p-3 sm:p-4 border border-sky-500/30">
           <div className="flex items-center justify-center gap-2 sm:gap-4 mb-3">
             <Trophy className="w-6 h-6 sm:w-8 sm:h-8 text-sky-400" />
             
@@ -374,7 +374,7 @@ const EventFeedWidget: React.FC = () => {
             <Trophy className="w-6 h-6 sm:w-8 sm:h-8 text-sky-400" />
           </div>
           
-          <div className="bg-gradient-to-r from-purple-600/20 via-indigo-600/20 to-purple-600/20 rounded-lg p-3 border border-purple-500/30">
+          <div className="bg-gradient-to-r from-purple-600/20 via-indigo-600/20 to-purple-600/20 rounded-lg p-2 border border-purple-500/30">
             <p className="text-sm sm:text-lg font-bold text-purple-300 tracking-wide">
               {t('events.practiceChampionshipSubtitle')}
             </p>
@@ -386,7 +386,7 @@ const EventFeedWidget: React.FC = () => {
           </div>
           
           {/* Motivational call to action */}
-          <div className="mt-4 bg-gradient-to-r from-yellow-600/20 via-orange-600/20 to-yellow-600/20 rounded-lg p-3 border border-yellow-500/30">
+          <div className="mt-3 bg-gradient-to-r from-yellow-600/20 via-orange-600/20 to-yellow-600/20 rounded-lg p-2 border border-yellow-500/30">
             <p className="text-yellow-300 font-bold text-xs sm:text-sm">
               🏆 ZEIGE DEINE SKILLS • SHOW YOUR SKILLS • MUESTRA TUS HABILIDADES 🏆
             </p>
