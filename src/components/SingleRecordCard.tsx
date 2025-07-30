@@ -85,16 +85,16 @@ const SingleRecordCard: React.FC<SingleRecordCardProps> = ({ personalRecords, cl
   if (personalRecords.length === 0) {
     return (
       <div className={`${className} flex justify-center`}>
-        <div className="swipeable-card bg-gradient-to-br from-slate-600/20 to-slate-800/20 border-l-4 border-accent-yellow">
-          <div className="swipeable-card-header">
+        <div className="compact-card">
+          <div className="compact-card-header">
             <div className="flex items-center gap-2">
-              <Trophy className="w-5 h-5 text-accent-yellow" />
-              <h3 className="text-responsive-base font-bold text-slate-100">{t('card.records')}</h3>
+              <Trophy className="w-4 h-4 text-blue-400" />
+              <h3 className="compact-card-title">{t('card.records')}</h3>
             </div>
           </div>
-          <div className="swipeable-card-content">
-            <div className="flex items-center justify-center h-full text-slate-400 text-responsive-sm">
-              {t('card.noRecords')}
+          <div className="compact-card-content">
+            <div className="flex items-center justify-center h-16 text-slate-400 compact-text-sm">
+              {t('records.noRecordsAvailable')}
             </div>
           </div>
         </div>
@@ -102,94 +102,37 @@ const SingleRecordCard: React.FC<SingleRecordCardProps> = ({ personalRecords, cl
     )
   }
 
-  const currentRecord = personalRecords[currentIndex]
-
   return (
     <div className={`${className} flex justify-center`}>
       <div 
-        className="relative book-container"
+        className="relative w-full max-w-md"
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
       >
+        {/* Direct slide transition */}
         <div className="relative overflow-hidden">
+          {/* Background card for smooth transition */}
           {isFlipping && (
             <div className="absolute inset-0 z-10">
               {flipDirection === 'left' && currentIndex < personalRecords.length - 1 && 
-                <div className="swipeable-card bg-gradient-to-br from-yellow-600/20 to-yellow-800/20 border-l-4 border-accent-yellow">
-                  <div className="swipeable-card-header">
-                    <div className="flex items-center gap-2">
-                      <Trophy className="w-5 h-5 text-accent-yellow" />
-                      <h3 className="text-responsive-base font-bold text-text-primary">{t('card.records')}</h3>
-                    </div>
-                    <div className="text-xs text-text-muted flex items-center gap-1">
-                      {personalRecords[currentIndex + 1].verified && (
-                        <span className="text-accent-green">✓ {t('card.verified')}</span>
-                      )}
-                    </div>
-                  </div>
-                  <div className="swipeable-card-content">
-                    <div className="p-4 h-full flex flex-col">
-                      <div className="flex-1">
-                        <h4 className="text-base sm:text-lg font-semibold text-text-primary mb-2 leading-tight">
-                          {personalRecords[currentIndex + 1].game}
-                        </h4>
-                        <p className="text-sm text-text-secondary mb-3">
-                          {personalRecords[currentIndex + 1].category}
-                        </p>
-                        <div className="text-2xl font-bold text-accent-yellow mb-2">
-                          {personalRecords[currentIndex + 1].time || personalRecords[currentIndex + 1].score?.toLocaleString()}
-                        </div>
-                      </div>
-                      <div className="border-t border-slate-600/30 pt-3 mt-auto">
-                        <div className="flex items-center justify-between text-sm text-text-muted">
-                          <span>{personalRecords[currentIndex + 1].platform}</span>
-                          <span className="font-medium">{formatTime(personalRecords[currentIndex + 1].date)}</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <RecordCard
+                  record={personalRecords[currentIndex + 1]}
+                  index={currentIndex + 1}
+                  isAnimating={false}
+                />
               }
               {flipDirection === 'right' && currentIndex > 0 && 
-                <div className="swipeable-card bg-gradient-to-br from-yellow-600/20 to-yellow-800/20 border-l-4 border-accent-yellow">
-                  <div className="swipeable-card-header">
-                    <div className="flex items-center gap-2">
-                      <Trophy className="w-5 h-5 text-accent-yellow" />
-                      <h3 className="text-responsive-base font-bold text-text-primary">{t('card.records')}</h3>
-                    </div>
-                    <div className="text-xs text-text-muted flex items-center gap-1">
-                      {personalRecords[currentIndex - 1].verified && (
-                        <span className="text-accent-green">✓ {t('card.verified')}</span>
-                      )}
-                    </div>
-                  </div>
-                  <div className="swipeable-card-content">
-                    <div className="p-4 h-full flex flex-col">
-                      <div className="flex-1">
-                        <h4 className="text-base sm:text-lg font-semibold text-text-primary mb-2 leading-tight">
-                          {personalRecords[currentIndex - 1].game}
-                        </h4>
-                        <p className="text-sm text-text-secondary mb-3">
-                          {personalRecords[currentIndex - 1].category}
-                        </p>
-                        <div className="text-2xl font-bold text-accent-yellow mb-2">
-                          {personalRecords[currentIndex - 1].time || personalRecords[currentIndex - 1].score?.toLocaleString()}
-                        </div>
-                      </div>
-                      <div className="border-t border-slate-600/30 pt-3 mt-auto">
-                        <div className="flex items-center justify-between text-sm text-text-muted">
-                          <span>{personalRecords[currentIndex - 1].platform}</span>
-                          <span className="font-medium">{formatTime(personalRecords[currentIndex - 1].date)}</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <RecordCard
+                  record={personalRecords[currentIndex - 1]}
+                  index={currentIndex - 1}
+                  isAnimating={false}
+                />
               }
             </div>
           )}
           
+          {/* Current card with slide animation */}
           <div 
             className={`relative z-20 transition-transform duration-200 ease-out ${
               isFlipping 
@@ -199,84 +142,74 @@ const SingleRecordCard: React.FC<SingleRecordCardProps> = ({ personalRecords, cl
                 : 'transform translate-x-0 opacity-100'
             }`}
           >
-            <div className="swipeable-card bg-gradient-to-br from-yellow-600/20 to-yellow-800/20 border-l-4 border-accent-yellow">
-              <div className="swipeable-card-header">
-                <div className="flex items-center gap-2">
-                  <Trophy className="w-5 h-5 text-accent-yellow" />
-                  <h3 className="text-responsive-base font-bold text-text-primary">{t('card.records')}</h3>
-                </div>
-                <div className="text-xs text-text-muted flex items-center gap-1">
-                  {currentRecord.verified && (
-                    <span className="text-accent-green">✓ {t('card.verified')}</span>
-                  )}
-                </div>
-              </div>
-              <div className="swipeable-card-content">
-                <div className="p-4 h-full flex flex-col">
-                  <div className="flex-1">
-                    <h4 className="text-base sm:text-lg font-semibold text-text-primary mb-2 leading-tight">
-                      {currentRecord.game}
-                    </h4>
-                    <p className="text-sm text-text-secondary mb-3">
-                      {currentRecord.category}
-                    </p>
-                    <div className="text-2xl font-bold text-accent-yellow mb-2">
-                      {currentRecord.time || currentRecord.score?.toLocaleString()}
-                    </div>
-                  </div>
-                  <div className="border-t border-slate-600/30 pt-3 mt-auto">
-                    <div className="flex items-center justify-between text-sm text-text-muted">
-                      <span>{currentRecord.platform}</span>
-                      <span className="font-medium">{formatTime(currentRecord.date)}</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <RecordCard
+              record={personalRecords[currentIndex]}
+              index={currentIndex}
+              isAnimating={false}
+            />
           </div>
         </div>
         
+        {/* Navigation buttons */}
         <div className="absolute top-1/2 -translate-y-1/2 left-2 right-2 flex justify-between pointer-events-none z-30">
           <button
             onClick={goToPrevious}
             disabled={isFlipping || currentIndex <= 0}
-            className={`pointer-events-auto p-2 rounded-full bg-slate-700/80 hover:bg-slate-600/80 text-slate-300 hover:text-white transition-all duration-200 ${
-              currentIndex <= 0 ? 'opacity-30 cursor-not-allowed' : 'opacity-70 hover:opacity-100'
+            className={`pointer-events-auto w-6 h-6 rounded-full bg-black/50 backdrop-blur-sm flex items-center justify-center transition-all duration-200 ${
+              currentIndex <= 0 || isFlipping 
+                ? 'opacity-30 cursor-not-allowed' 
+                : 'opacity-70 hover:opacity-100 hover:bg-blue-500/30'
             }`}
-            aria-label={t('aria.previousCard')}
           >
-            <span className="text-lg">‹</span>
+            <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            </svg>
           </button>
-          
+
           <button
             onClick={goToNext}
             disabled={isFlipping || currentIndex >= personalRecords.length - 1}
-            className={`pointer-events-auto p-2 rounded-full bg-slate-700/80 hover:bg-slate-600/80 text-slate-300 hover:text-white transition-all duration-200 ${
-              currentIndex >= personalRecords.length - 1 ? 'opacity-30 cursor-not-allowed' : 'opacity-70 hover:opacity-100'
+            className={`pointer-events-auto w-6 h-6 rounded-full bg-black/50 backdrop-blur-sm flex items-center justify-center transition-all duration-200 ${
+              currentIndex >= personalRecords.length - 1 || isFlipping 
+                ? 'opacity-30 cursor-not-allowed' 
+                : 'opacity-70 hover:opacity-100 hover:bg-blue-500/30'
             }`}
-            aria-label={t('aria.nextCard')}
           >
-            <span className="text-lg">›</span>
+            <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
           </button>
         </div>
-        
-        <div className="flex justify-center mt-2 gap-1">
+
+        {/* Pagination dots */}
+        <div className="flex justify-center gap-1 mt-2">
           {personalRecords.map((_, index) => (
-            <div
+            <button
               key={index}
-              className={`w-2 h-2 rounded-full transition-colors duration-200 ${
+              onClick={() => {
+                if (!isFlipping && index !== currentIndex) {
+                  setFlipDirection(index > currentIndex ? 'left' : 'right')
+                  setIsFlipping(true)
+                  setTimeout(() => {
+                    setCurrentIndex(index)
+                    setIsFlipping(false)
+                  }, 200)
+                }
+              }}
+              className={`w-1.5 h-1.5 rounded-full transition-all duration-200 ${
                 index === currentIndex 
-                  ? 'bg-yellow-400' 
-                  : index < currentIndex
-                  ? 'bg-slate-500'
-                  : 'bg-slate-600'
+                  ? 'bg-blue-400' 
+                  : 'bg-slate-600 hover:bg-slate-500'
               }`}
             />
           ))}
         </div>
-        
-        <div className="text-center mt-1 text-xs text-slate-400">
-          {currentIndex + 1} {t('common.of')} {personalRecords.length}
+
+        {/* Card counter */}
+        <div className="text-center mt-1">
+          <span className="compact-text-xs text-slate-500">
+            {currentIndex + 1} / {personalRecords.length}
+          </span>
         </div>
       </div>
     </div>
@@ -284,3 +217,72 @@ const SingleRecordCard: React.FC<SingleRecordCardProps> = ({ personalRecords, cl
 }
 
 export default SingleRecordCard
+
+const RecordCard: React.FC<{ record: PersonalRecord; index: number; isAnimating?: boolean }> = ({ 
+  record, 
+  index, 
+  isAnimating = false 
+}) => {
+  const { t, currentLanguage } = useLanguage()
+  
+  const formatTime = (date: Date) => {
+    return date.toLocaleTimeString(getLocaleString(currentLanguage), {
+      hour: '2-digit',
+      minute: '2-digit'
+    })
+  }
+
+  return (
+    <div className={`compact-card transition-all duration-300 cursor-pointer ${isAnimating ? 'scale-95 opacity-80' : 'scale-100 opacity-100'}`}>
+      <div className="compact-card-header">
+        <div className="flex items-center gap-2">
+          <Trophy className="w-3 h-3 text-blue-400" />
+          <h3 className="compact-card-title">
+            {t('records.record')} #{index + 1}
+          </h3>
+        </div>
+        <div className="compact-text-xs flex items-center gap-1">
+          <span className="text-blue-400">{record.platform}</span>
+          {record.verified && (
+            <div className="w-1.5 h-1.5 bg-blue-400 rounded-full" title={t('records.verified')}></div>
+          )}
+        </div>
+      </div>
+      
+      <div className="compact-card-content">
+        <div className="space-y-2">
+          <h4 className="compact-text-sm font-semibold text-slate-100 leading-tight line-clamp-1">
+            {record.game}
+          </h4>
+          
+          <div className="compact-text-xs text-slate-300">
+            {record.category}
+          </div>
+          
+          <div className="flex items-center justify-center bg-slate-800/30 rounded-lg p-2">
+            {record.time ? (
+              <div className="text-center">
+                <div className="compact-text-sm font-mono font-bold text-blue-400">
+                  {record.time}
+                </div>
+                <div className="compact-text-xs text-slate-400">Time</div>
+              </div>
+            ) : record.score ? (
+              <div className="text-center">
+                <div className="compact-text-sm font-mono font-bold text-blue-400">
+                  {record.score.toLocaleString()}
+                </div>
+                <div className="compact-text-xs text-slate-400">Score</div>
+              </div>
+            ) : null}
+          </div>
+          
+          <div className="flex items-center justify-between compact-text-xs text-slate-400">
+            <span className="font-medium">{formatTime(record.date)}</span>
+            <span className="text-blue-400 font-medium">{t('records.viewRecord')}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}

@@ -78,15 +78,15 @@ const SingleNewsCard: React.FC<SingleNewsCardProps> = ({ newsItems, className = 
   if (newsItems.length === 0) {
     return (
       <div className={`${className} flex justify-center`}>
-        <div className="swipeable-card bg-gradient-to-br from-slate-600/20 to-slate-800/20 border-l-4 border-slate-400">
-          <div className="swipeable-card-header">
+        <div className="compact-card">
+          <div className="compact-card-header">
             <div className="flex items-center gap-2">
-              <Newspaper className="w-5 h-5 text-blue-400" />
-              <h3 className="text-responsive-base font-bold text-slate-100">{t('card.news')}</h3>
+              <Newspaper className="w-4 h-4 text-blue-400" />
+              <h3 className="compact-card-title">{t('card.news')}</h3>
             </div>
           </div>
-          <div className="swipeable-card-content">
-            <div className="flex items-center justify-center h-full text-slate-400 text-responsive-sm">
+          <div className="compact-card-content">
+            <div className="flex items-center justify-center h-16 text-slate-400 compact-text-sm">
               {t('news.noNewsAvailable')}
             </div>
           </div>
@@ -98,7 +98,7 @@ const SingleNewsCard: React.FC<SingleNewsCardProps> = ({ newsItems, className = 
   return (
     <div className={`${className} flex justify-center`}>
       <div 
-        className="relative book-container"
+        className="relative w-full max-w-md"
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
@@ -148,55 +148,61 @@ const SingleNewsCard: React.FC<SingleNewsCardProps> = ({ newsItems, className = 
           <button
             onClick={goToPrevious}
             disabled={isFlipping || currentIndex <= 0}
-            className={`pointer-events-auto p-2 rounded-full bg-slate-700/80 hover:bg-slate-600/80 text-slate-300 hover:text-white transition-all duration-200 ${
-              currentIndex <= 0 ? 'opacity-30 cursor-not-allowed' : 'opacity-70 hover:opacity-100'
+            className={`pointer-events-auto w-6 h-6 rounded-full bg-black/50 backdrop-blur-sm flex items-center justify-center transition-all duration-200 ${
+              currentIndex <= 0 || isFlipping 
+                ? 'opacity-30 cursor-not-allowed' 
+                : 'opacity-70 hover:opacity-100 hover:bg-blue-500/30'
             }`}
-            aria-label={t('aria.previousCard')}
           >
-            <span className="text-lg">‹</span>
+            <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            </svg>
           </button>
-          
+
           <button
             onClick={goToNext}
             disabled={isFlipping || currentIndex >= newsItems.length - 1}
-            className={`pointer-events-auto p-2 rounded-full bg-slate-700/80 hover:bg-slate-600/80 text-slate-300 hover:text-white transition-all duration-200 ${
-              currentIndex >= newsItems.length - 1 ? 'opacity-30 cursor-not-allowed' : 'opacity-70 hover:opacity-100'
+            className={`pointer-events-auto w-6 h-6 rounded-full bg-black/50 backdrop-blur-sm flex items-center justify-center transition-all duration-200 ${
+              currentIndex >= newsItems.length - 1 || isFlipping 
+                ? 'opacity-30 cursor-not-allowed' 
+                : 'opacity-70 hover:opacity-100 hover:bg-blue-500/30'
             }`}
-            aria-label={t('aria.nextCard')}
           >
-            <span className="text-lg">›</span>
+            <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
           </button>
         </div>
-        
-        {/* Progress indicator */}
-        <div className="flex justify-center mt-2 gap-1">
+
+        {/* Pagination dots */}
+        <div className="flex justify-center gap-1 mt-2">
           {newsItems.map((_, index) => (
-            <div
+            <button
               key={index}
-              className={`w-2 h-2 rounded-full transition-colors duration-200 ${
+              onClick={() => {
+                if (!isFlipping && index !== currentIndex) {
+                  setFlipDirection(index > currentIndex ? 'left' : 'right')
+                  setIsFlipping(true)
+                  setTimeout(() => {
+                    setCurrentIndex(index)
+                    setIsFlipping(false)
+                  }, 200)
+                }
+              }}
+              className={`w-1.5 h-1.5 rounded-full transition-all duration-200 ${
                 index === currentIndex 
                   ? 'bg-blue-400' 
-                  : index < currentIndex
-                  ? 'bg-slate-500'
-                  : 'bg-slate-600'
+                  : 'bg-slate-600 hover:bg-slate-500'
               }`}
             />
           ))}
         </div>
-        
+
         {/* Card counter */}
-        <div className="text-center mt-1 text-xs text-slate-400">
-          {currentIndex + 1} {t('common.of')} {newsItems.length}
-        </div>
-        
-        {/* View All News Button */}
-        <div className="text-center mt-3">
-          <button
-            onClick={() => navigate('/newsfeed')}
-            className="text-xs text-accent-blue hover:text-blue-300 transition-colors duration-200 font-medium"
-          >
-View All News →
-          </button>
+        <div className="text-center mt-1">
+          <span className="compact-text-xs text-slate-500">
+            {currentIndex + 1} / {newsItems.length}
+          </span>
         </div>
       </div>
     </div>

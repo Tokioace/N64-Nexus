@@ -231,8 +231,8 @@ const HomePage: React.FC = () => {
   return (
     <div className="container-lg space-responsive responsive-max-width responsive-overflow-hidden">
       {/* Welcome Section with Mascot */}
-      <div className="text-center mb-responsive responsive-max-width">
-        <div className="battle64-header-container mb-responsive">
+      <div className="text-center mb-4 responsive-max-width">
+        <div className="battle64-header-container mb-3">
           {/* Mascot Image */}
           <img 
             src="/mascot.png" 
@@ -242,19 +242,18 @@ const HomePage: React.FC = () => {
         </div>
         
         {/* Welcome Back Text */}
-        <p className="battle64-welcome-text">
+        <p className="text-lg font-semibold text-slate-100 mb-2">
           {user ? `${t('home.welcome')}, ${user.username}!` : t('home.welcome')}
         </p>
         
-        <p className="text-responsive-base text-slate-400 responsive-word-break" style={{ 
+        <p className="compact-text-sm text-slate-400 responsive-word-break" style={{ 
           maxWidth: 'min(42rem, 90vw)', 
           margin: '0 auto', 
-          marginTop: 'clamp(1rem, 2vw, 1.5rem)',
           padding: '0 clamp(0.5rem, 2vw, 1rem)'
         }}>
           {t('home.subtitle')}
         </p>
-        <div className="text-responsive-sm text-slate-500 responsive-flex-center" style={{ marginTop: 'clamp(1rem, 2vw, 1.5rem)' }}>
+        <div className="compact-text-xs text-slate-500 responsive-flex-center mt-2">
           <span>{formatDate(currentTime)}</span>
           <span className="hidden sm:inline">•</span>
           <span>{formatTime(currentTime)}</span>
@@ -262,22 +261,22 @@ const HomePage: React.FC = () => {
       </div>
 
       {/* LIVE EVENTS SECTION - TOP PRIORITY */}
-      <div className="mb-responsive responsive-max-width">
+      <div className="mb-4 responsive-max-width">
         <EventFeedWidget />
       </div>
 
       {/* POINTS WIDGET SECTION */}
       {user && (
-        <div className="mb-responsive responsive-max-width">
+        <div className="mb-4 responsive-max-width">
           <PointsWidget />
         </div>
       )}
 
-      {/* NEWS CARDS SECTION */}
-      <div className="space-y-6">
-        {/* Single News Card - One card at a time with dismiss functionality */}
-        <div className="space-y-4">
-          <h2 className="text-responsive-xl font-bold text-slate-100 text-center mb-6">
+      {/* CONTENT CARDS SECTION */}
+      <div className="space-y-4">
+        {/* Single News Card */}
+        <div className="space-y-3">
+          <h2 className="compact-card-title text-center mb-3">
             {t('home.newsTitle')}
           </h2>
           <SingleNewsCard 
@@ -286,14 +285,14 @@ const HomePage: React.FC = () => {
           />
         </div>
 
-        {/* Forum Posts - Single card interface */}
+        {/* Forum Posts */}
         <SingleForumCard 
           forumThreads={forumThreads}
           className="w-full"
         />
 
         {/* Other Content - FanArts and Media */}
-        <div className="responsive-grid-2">
+        <div className="responsive-grid-2 gap-4">
           <SingleFanArtCard 
             fanArtItems={fanArtItems}
             className="responsive-max-width"
@@ -306,7 +305,7 @@ const HomePage: React.FC = () => {
         </div>
 
         {/* Records and Marketplace */}
-        <div className="responsive-grid-2">
+        <div className="responsive-grid-2 gap-4">
           <SingleRecordCard 
             personalRecords={personalRecords}
             className="responsive-max-width"
@@ -321,7 +320,7 @@ const HomePage: React.FC = () => {
         {/* N64Fan Leaderboard - Compact */}
         {user && (
           <div className="responsive-max-width">
-            <div className="simple-tile">
+            <div className="compact-card">
               <N64FanLeaderboard 
                 maxEntries={5}
                 showFilters={false}
@@ -333,8 +332,8 @@ const HomePage: React.FC = () => {
       </div>
 
       {/* Footer */}
-      <div className="text-center mt-responsive responsive-max-width">
-        <p className="text-responsive-sm text-slate-400 responsive-word-break">
+      <div className="text-center mt-6 responsive-max-width">
+        <p className="compact-text-xs text-slate-400 responsive-word-break">
           {t('home.footer.tagline')}
         </p>
       </div>
