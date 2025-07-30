@@ -38,7 +38,20 @@ const POINTS_CONFIG: PointsConfig = {
   'chat.likeReceived': 1,
   'profile.setupComplete': 10,
   'marketplace.saleConfirmed': 20,
-  'news.shared': 10
+  'news.shared': 10,
+  // Event participation points
+  'event.participation': 5,
+  // F1-style position points for events
+  'event.position.1': 25,
+  'event.position.2': 18,
+  'event.position.3': 15,
+  'event.position.4': 12,
+  'event.position.5': 10,
+  'event.position.6': 8,
+  'event.position.7': 6,
+  'event.position.8': 4,
+  'event.position.9': 2,
+  'event.position.10': 1
 }
 
 // Ranks configuration with i18n keys

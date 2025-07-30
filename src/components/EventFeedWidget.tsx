@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { useEvent } from '../contexts/EventContext'
 import { useLanguage } from '../contexts/LanguageContext'
+import { usePoints } from '../contexts/PointsContext'
+import { useUser } from '../contexts/UserContext'
 import { Link } from 'react-router-dom'
 import { 
   Trophy, 
@@ -228,8 +230,10 @@ const EventCard: React.FC<EventCardProps> = ({ event, leaderboard, timeRemaining
 }
 
 const EventFeedWidget: React.FC = () => {
-  const { events, activeEvents, getLeaderboard } = useEvent()
+  const { events, activeEvents, getLeaderboard, shouldAwardParticipationPoints, markParticipationPointsAwarded, getEventPositionPoints, markPositionPointsAwarded } = useEvent()
   const { t } = useLanguage()
+  const { awardPoints } = usePoints()
+  const { user } = useUser()
   const [currentTime, setCurrentTime] = useState(new Date())
 
   useEffect(() => {
@@ -238,6 +242,44 @@ const EventFeedWidget: React.FC = () => {
     }, 1000) // Update every second for countdown
     return () => clearInterval(timer)
   }, [])
+
+  // Award points for event participation and positions
+  useEffect(() => {
+    if (!user) return
+
+    // Award participation points
+    activeEvents.forEach(event => {
+      if (shouldAwardParticipationPoints(event.id, user.id)) {
+        const leaderboard = getLeaderboard(event.id)
+        const userParticipation = leaderboard.find(p => p.userId === user.id)
+        
+        if (userParticipation) {
+          awardPoints('event.participation', `Participated in ${event.title}`)
+            .then(success => {
+              if (success) {
+                markParticipationPointsAwarded(event.id, user.id)
+              }
+            })
+        }
+      }
+    })
+
+    // Award position points for completed events or current standings
+    activeEvents.forEach(event => {
+      const positionPoints = getEventPositionPoints(event.id)
+      const userPositionPoint = positionPoints.find(p => p.userId === user.id)
+      
+      if (userPositionPoint) {
+        const positionKey = `event.position.${userPositionPoint.position}` as keyof import('../types').PointsConfig
+        awardPoints(positionKey, `${userPositionPoint.position}${userPositionPoint.position === 1 ? 'st' : userPositionPoint.position === 2 ? 'nd' : userPositionPoint.position === 3 ? 'rd' : 'th'} place in ${event.title}`)
+          .then(success => {
+            if (success) {
+              markPositionPointsAwarded(event.id, user.id, userPositionPoint.position)
+            }
+          })
+      }
+    })
+  }, [user, activeEvents, awardPoints, shouldAwardParticipationPoints, markParticipationPointsAwarded, getEventPositionPoints, markPositionPointsAwarded, getLeaderboard])
 
   const getEventTimeRemaining = (event: GameEvent) => {
     const now = currentTime

@@ -488,6 +488,7 @@ const en = {
   'events.participating': 'Participating',
   'events.join': 'Join',
   'events.leaderboard': 'Leaderboard',
+  'events.currentEvent': 'Current Event',
   'notifications.enabled': 'Notifications enabled',
   'notifications.denied': 'Notifications denied',
   'notifications.notSupported': 'Notifications not supported',

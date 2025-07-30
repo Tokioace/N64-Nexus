@@ -8,6 +8,7 @@ const EventContext = createContext<EventContextType | undefined>(undefined)
 const STORAGE_KEY_USER_PARTICIPATIONS = 'battle64_user_participations'
 const STORAGE_KEY_ALL_SUBMISSIONS = 'battle64_all_event_submissions'
 const STORAGE_KEY_EVENTS = 'battle64_events'
+const STORAGE_KEY_EVENT_POINTS_AWARDED = 'battle64_event_points_awarded'
 
 // Helper function to convert file to base64 for persistent storage
 const fileToBase64 = (file: File): Promise<string> => {
@@ -210,6 +211,24 @@ export const EventProvider: React.FC<{ children: ReactNode }> = ({ children }) =
   const [allEventSubmissions, setAllEventSubmissions] = useState<EventParticipation[]>([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [eventPointsAwarded, setEventPointsAwarded] = useState<Record<string, boolean>>({})
+
+  // Load points awarded tracking
+  useEffect(() => {
+    const savedPointsAwarded = localStorage.getItem(STORAGE_KEY_EVENT_POINTS_AWARDED)
+    if (savedPointsAwarded) {
+      try {
+        setEventPointsAwarded(JSON.parse(savedPointsAwarded))
+      } catch (error) {
+        console.error('Error loading event points awarded:', error)
+      }
+    }
+  }, [])
+
+  // Save points awarded tracking
+  useEffect(() => {
+    localStorage.setItem(STORAGE_KEY_EVENT_POINTS_AWARDED, JSON.stringify(eventPointsAwarded))
+  }, [eventPointsAwarded])
 
   // Load data from localStorage on mount
   useEffect(() => {
@@ -499,6 +518,45 @@ export const EventProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     return allEventSubmissions.filter(p => p.userId === userId)
   }
 
+  // Function to check if participation points should be awarded
+  const shouldAwardParticipationPoints = (eventId: string, userId: string): boolean => {
+    const key = `participation_${eventId}_${userId}`
+    return !eventPointsAwarded[key]
+  }
+
+  // Function to mark participation points as awarded
+  const markParticipationPointsAwarded = (eventId: string, userId: string) => {
+    const key = `participation_${eventId}_${userId}`
+    setEventPointsAwarded(prev => ({ ...prev, [key]: true }))
+  }
+
+  // Function to get event positions and points that should be awarded
+  const getEventPositionPoints = (eventId: string): Array<{userId: string, position: number, points: number}> => {
+    const leaderboard = getLeaderboard(eventId)
+    const positionPoints = [25, 18, 15, 12, 10, 8, 6, 4, 2, 1] // F1 style points
+    
+    return leaderboard.slice(0, 10).map((entry, index) => {
+      const position = index + 1
+      const key = `position_${eventId}_${entry.userId}_${position}`
+      
+      // Only return if points haven't been awarded yet
+      if (!eventPointsAwarded[key]) {
+        return {
+          userId: entry.userId,
+          position,
+          points: positionPoints[index] || 0
+        }
+      }
+      return null
+    }).filter(Boolean) as Array<{userId: string, position: number, points: number}>
+  }
+
+  // Function to mark position points as awarded
+  const markPositionPointsAwarded = (eventId: string, userId: string, position: number) => {
+    const key = `position_${eventId}_${userId}_${position}`
+    setEventPointsAwarded(prev => ({ ...prev, [key]: true }))
+  }
+
   const value: EventContextType = {
     events,
     activeEvents,
@@ -513,7 +571,11 @@ export const EventProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     submitRaceTime,
     getLeaderboard,
     getAllSubmissions,
-    getSubmissionsByUser
+    getSubmissionsByUser,
+    shouldAwardParticipationPoints,
+    markParticipationPointsAwarded,
+    getEventPositionPoints,
+    markPositionPointsAwarded
   }
 
   return (

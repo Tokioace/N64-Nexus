@@ -488,6 +488,7 @@ const de = {
   'events.participating': 'Teilnehmend',
   'events.join': 'Beitreten',
   'events.leaderboard': 'Rangliste',
+  'events.currentEvent': 'Aktuelles Event',
   'notifications.enabled': 'Benachrichtigungen aktiviert',
   'notifications.denied': 'Benachrichtigungen verweigert',
   'notifications.notSupported': 'Benachrichtigungen nicht unterstützt',

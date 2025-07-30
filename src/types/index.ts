@@ -172,6 +172,11 @@ export interface EventContextType {
   getLeaderboard: (eventId: string) => EventParticipation[]
   getAllSubmissions: () => EventParticipation[]
   getSubmissionsByUser: (userId: string) => EventParticipation[]
+  // Points system integration
+  shouldAwardParticipationPoints: (eventId: string, userId: string) => boolean
+  markParticipationPointsAwarded: (eventId: string, userId: string) => void
+  getEventPositionPoints: (eventId: string) => Array<{userId: string, position: number, points: number}>
+  markPositionPointsAwarded: (eventId: string, userId: string, position: number) => void
 }
 
 // Global Leaderboard Types
@@ -385,6 +390,18 @@ export interface PointsConfig {
   'profile.setupComplete': number
   'marketplace.saleConfirmed': number
   'news.shared': number
+  // Event participation and position points
+  'event.participation': number
+  'event.position.1': number
+  'event.position.2': number
+  'event.position.3': number
+  'event.position.4': number
+  'event.position.5': number
+  'event.position.6': number
+  'event.position.7': number
+  'event.position.8': number
+  'event.position.9': number
+  'event.position.10': number
 }
 
 export interface RankConfig {
