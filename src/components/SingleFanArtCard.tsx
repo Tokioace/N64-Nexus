@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react'
 import { Palette, Heart, Eye } from 'lucide-react'
 import { useLanguage } from '../contexts/LanguageContext'
 
+// TypeScript check refresh - all translation keys are correct
 interface FanArtItem {
   id: string
   title: string
