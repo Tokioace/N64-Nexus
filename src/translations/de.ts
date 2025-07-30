@@ -825,7 +825,32 @@ const de = {
   'events.dkrAncientLake.prize2': '🥈 2. Platz: 300 Battle64 Punkte + Lake Master',
   'events.dkrAncientLake.prize3': '🥉 3. Platz: 200 Battle64 Punkte + Ancient Racer',
   'events.dkrAncientLake.prizeTop10': '🏆 Top 10: F1-Style Punkte (25-18-15-12-10-8-6-4-2-1)',
-  'events.dkrAncientLake.prizeParticipation': '🎯 Teilnahme: 5 Battle64 Punkte für jeden Teilnehmer'
+  'events.dkrAncientLake.prizeParticipation': '🎯 Teilnahme: 5 Battle64 Punkte für jeden Teilnehmer',
+
+  // Home Ranking Section
+  'home.yourRanking': 'Dein Ranking',
+
+  // Ranking System
+  'ranking.globalRank': 'Globaler Rang',
+  'ranking.totalPoints': 'Gesamtpunkte',
+  'ranking.currentLevel': 'Aktuelles Level',
+  'ranking.rankProgress': 'Rang-Fortschritt',
+  'ranking.allTime': 'Alle Zeiten',
+  'ranking.seasonRank': 'Saison-Rang',
+  'ranking.currentSeason': 'Aktuelle Saison',
+  'ranking.levelProgress': 'Level-Fortschritt',
+  'ranking.totalXP': 'Gesamt-XP',
+  'ranking.achievements': 'Errungenschaften',
+  'ranking.verifiedRecords': 'Verifizierte Rekorde',
+  'ranking.gamesOwned': 'Spiele im Besitz',
+
+  // Profile Ranking
+  'profile.ranking': 'Ranking',
+  'profile.globalRanking': 'Globales Ranking',
+  'profile.rankingStats': 'Ranking-Statistiken',
+
+  // FanArt Comments
+  'fanart.addComment': 'Kommentar hinzufügen...'
 }
 
 export default de

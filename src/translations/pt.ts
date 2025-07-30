@@ -826,7 +826,32 @@ const pt = {
   'events.dkrAncientLake.prize2': '🥈 2º Lugar: 300 Pontos Battle64 + Mestre do Lago',
   'events.dkrAncientLake.prize3': '🥉 3º Lugar: 200 Pontos Battle64 + Corredor Ancestral',
   'events.dkrAncientLake.prizeTop10': '🏆 Top 10: Pontos estilo F1 (25-18-15-12-10-8-6-4-2-1)',
-  'events.dkrAncientLake.prizeParticipation': '🎯 Participação: 5 Pontos Battle64 para cada participante'
+  'events.dkrAncientLake.prizeParticipation': '🎯 Participação: 5 Pontos Battle64 para cada participante',
+
+  // Home Ranking Section
+  'home.yourRanking': 'Sua Classificação',
+
+  // Ranking System
+  'ranking.globalRank': 'Classificação Global',
+  'ranking.totalPoints': 'Pontos Totais',
+  'ranking.currentLevel': 'Nível Atual',
+  'ranking.rankProgress': 'Progresso da Classificação',
+  'ranking.allTime': 'Todos os Tempos',
+  'ranking.seasonRank': 'Classificação da Temporada',
+  'ranking.currentSeason': 'Temporada Atual',
+  'ranking.levelProgress': 'Progresso do Nível',
+  'ranking.totalXP': 'XP Total',
+  'ranking.achievements': 'Conquistas',
+  'ranking.verifiedRecords': 'Recordes Verificados',
+  'ranking.gamesOwned': 'Jogos Possuídos',
+
+  // Profile Ranking
+  'profile.ranking': 'Classificação',
+  'profile.globalRanking': 'Classificação Global',
+  'profile.rankingStats': 'Estatísticas de Classificação',
+
+  // FanArt Comments
+  'fanart.addComment': 'Adicionar um comentário...'
 }
 
 export default pt

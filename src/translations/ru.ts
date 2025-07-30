@@ -809,7 +809,32 @@ const ru = {
   'events.dkrAncientLake.prize2': '🥈 2-е место: 300 очков Battle64 + Мастер озера',
   'events.dkrAncientLake.prize3': '🥉 3-е место: 200 очков Battle64 + Древний гонщик',
   'events.dkrAncientLake.prizeTop10': '🏆 Топ-10: очки в стиле F1 (25-18-15-12-10-8-6-4-2-1)',
-  'events.dkrAncientLake.prizeParticipation': '🎯 Участие: 5 очков Battle64 каждому участнику'
+  'events.dkrAncientLake.prizeParticipation': '🎯 Участие: 5 очков Battle64 для каждого участника',
+
+  // Home Ranking Section
+  'home.yourRanking': 'Ваш Рейтинг',
+
+  // Ranking System
+  'ranking.globalRank': 'Глобальный Рейтинг',
+  'ranking.totalPoints': 'Общие Очки',
+  'ranking.currentLevel': 'Текущий Уровень',
+  'ranking.rankProgress': 'Прогресс Рейтинга',
+  'ranking.allTime': 'За Все Время',
+  'ranking.seasonRank': 'Рейтинг Сезона',
+  'ranking.currentSeason': 'Текущий Сезон',
+  'ranking.levelProgress': 'Прогресс Уровня',
+  'ranking.totalXP': 'Общий Опыт',
+  'ranking.achievements': 'Достижения',
+  'ranking.verifiedRecords': 'Проверенные Рекорды',
+  'ranking.gamesOwned': 'Игры в Собственности',
+
+  // Profile Ranking
+  'profile.ranking': 'Рейтинг',
+  'profile.globalRanking': 'Глобальный Рейтинг',
+  'profile.rankingStats': 'Статистика Рейтинга',
+
+  // FanArt Comments
+  'fanart.addComment': 'Добавить комментарий...'
 }
 
 export default ru

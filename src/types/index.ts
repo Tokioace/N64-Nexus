@@ -379,6 +379,7 @@ export interface PointsConfig {
   'media.stream': number
   'fanart.upload': number
   'fanart.likeReceived': number
+  'fanart.comment': number
   'quiz.answerCorrect': number
   'quiz.fullPerfect': number
   'minigame.success': number

@@ -875,7 +875,32 @@ const el = {
   'events.dkrAncientLake.prize2': '🥈 2η Θέση: 300 Πόντοι Battle64 + Κυρίαρχος Λίμνης',
   'events.dkrAncientLake.prize3': '🥉 3η Θέση: 200 Πόντοι Battle64 + Αρχαίος Αγωνιστής',
   'events.dkrAncientLake.prizeTop10': '🏆 Τοπ 10: Πόντοι στυλ F1 (25-18-15-12-10-8-6-4-2-1)',
-  'events.dkrAncientLake.prizeParticipation': '🎯 Συμμετοχή: 5 Πόντοι Battle64 για κάθε συμμετέχοντα'
+  'events.dkrAncientLake.prizeParticipation': '🎯 Συμμετοχή: 5 πόντοι Battle64 για κάθε συμμετέχοντα',
+
+  // Home Ranking Section
+  'home.yourRanking': 'Η Κατάταξή σας',
+
+  // Ranking System
+  'ranking.globalRank': 'Παγκόσμια Κατάταξη',
+  'ranking.totalPoints': 'Συνολικοί Πόντοι',
+  'ranking.currentLevel': 'Τρέχον Επίπεδο',
+  'ranking.rankProgress': 'Πρόοδος Κατάταξης',
+  'ranking.allTime': 'Όλων των Εποχών',
+  'ranking.seasonRank': 'Κατάταξη Σεζόν',
+  'ranking.currentSeason': 'Τρέχουσα Σεζόν',
+  'ranking.levelProgress': 'Πρόοδος Επιπέδου',
+  'ranking.totalXP': 'Συνολική Εμπειρία',
+  'ranking.achievements': 'Επιτεύγματα',
+  'ranking.verifiedRecords': 'Επαληθευμένα Ρεκόρ',
+  'ranking.gamesOwned': 'Παιχνίδια σε Κατοχή',
+
+  // Profile Ranking
+  'profile.ranking': 'Κατάταξη',
+  'profile.globalRanking': 'Παγκόσμια Κατάταξη',
+  'profile.rankingStats': 'Στατιστικά Κατάταξης',
+
+  // FanArt Comments
+  'fanart.addComment': 'Προσθήκη σχολίου...'
 }
 
 export default el

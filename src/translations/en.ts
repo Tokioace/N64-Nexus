@@ -825,8 +825,33 @@ const en = {
   'events.dkrAncientLake.prize1': '🥇 1st Place: 500 Battle64 Points + Kong Champion Title',
   'events.dkrAncientLake.prize2': '🥈 2nd Place: 300 Battle64 Points + Lake Master',
   'events.dkrAncientLake.prize3': '🥉 3rd Place: 200 Battle64 Points + Ancient Racer',
-  'events.dkrAncientLake.prizeTop10': '🏆 Top 10: F1-Style Points (25-18-15-12-10-8-6-4-2-1)',
-  'events.dkrAncientLake.prizeParticipation': '🎯 Participation: 5 Battle64 Points for every participant'
+  'events.dkrAncientLake.prizeTop10': '🏆 Top 10: F1-Style Points (25-18-15-15-10-8-6-4-2-1)',
+  'events.dkrAncientLake.prizeParticipation': '🎯 Participation: 5 Battle64 Points for every participant',
+
+  // Home Ranking Section
+  'home.yourRanking': 'Your Ranking',
+
+  // Ranking System
+  'ranking.globalRank': 'Global Rank',
+  'ranking.totalPoints': 'Total Points',
+  'ranking.currentLevel': 'Current Level',
+  'ranking.rankProgress': 'Rank Progress',
+  'ranking.allTime': 'All Time',
+  'ranking.seasonRank': 'Season Rank',
+  'ranking.currentSeason': 'Current Season',
+  'ranking.levelProgress': 'Level Progress',
+  'ranking.totalXP': 'Total XP',
+  'ranking.achievements': 'Achievements',
+  'ranking.verifiedRecords': 'Verified Records',
+  'ranking.gamesOwned': 'Games Owned',
+
+  // Profile Ranking
+  'profile.ranking': 'Ranking',
+  'profile.globalRanking': 'Global Ranking',
+  'profile.rankingStats': 'Ranking Statistics',
+
+  // FanArt Comments
+  'fanart.addComment': 'Add a comment...'
 }
 
 export default en

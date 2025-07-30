@@ -958,7 +958,32 @@ const ar = {
   'events.dkrAncientLake.prize2': '🥈 المركز الثاني: 300 نقطة Battle64 + سيد البحيرة',
   'events.dkrAncientLake.prize3': '🥉 المركز الثالث: 200 نقطة Battle64 + متسابق قديم',
   'events.dkrAncientLake.prizeTop10': '🏆 أفضل 10: نقاط بأسلوب F1 (25-18-15-12-10-8-6-4-2-1)',
-  'events.dkrAncientLake.prizeParticipation': '🎯 جائزة المشاركة: 5 نقاط Battle64 لكل مشارك'
+  'events.dkrAncientLake.prizeParticipation': '🎯 المشاركة: 5 نقاط Battle64 لكل مشارك',
+
+  // Home Ranking Section
+  'home.yourRanking': 'ترتيبك',
+
+  // Ranking System
+  'ranking.globalRank': 'الترتيب العالمي',
+  'ranking.totalPoints': 'إجمالي النقاط',
+  'ranking.currentLevel': 'المستوى الحالي',
+  'ranking.rankProgress': 'تقدم الترتيب',
+  'ranking.allTime': 'كل الأوقات',
+  'ranking.seasonRank': 'ترتيب الموسم',
+  'ranking.currentSeason': 'الموسم الحالي',
+  'ranking.levelProgress': 'تقدم المستوى',
+  'ranking.totalXP': 'إجمالي الخبرة',
+  'ranking.achievements': 'الإنجازات',
+  'ranking.verifiedRecords': 'الأرقام القياسية المؤكدة',
+  'ranking.gamesOwned': 'الألعاب المملوكة',
+
+  // Profile Ranking
+  'profile.ranking': 'الترتيب',
+  'profile.globalRanking': 'الترتيب العالمي',
+  'profile.rankingStats': 'إحصائيات الترتيب',
+
+  // FanArt Comments
+  'fanart.addComment': 'إضافة تعليق...'
 }
 
 export default ar

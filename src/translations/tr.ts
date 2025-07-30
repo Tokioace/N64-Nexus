@@ -826,7 +826,32 @@ const tr = {
   'events.dkrAncientLake.prize2': '🥈 2. Yer: 300 Battle64 Puanı + Göl Ustası',
   'events.dkrAncientLake.prize3': '🥉 3. Yer: 200 Battle64 Puanı + Antik Yarışçı',
   'events.dkrAncientLake.prizeTop10': '🏆 İlk 10: F1 Tarzı Puanlar (25-18-15-12-10-8-6-4-2-1)',
-  'events.dkrAncientLake.prizeParticipation': '🎯 Katılım: Her katılımcı için 5 Battle64 Puanı'
+  'events.dkrAncientLake.prizeParticipation': '🎯 Katılım: Her katılımcıya 5 Battle64 Puanı',
+
+  // Home Ranking Section
+  'home.yourRanking': 'Sıralamanız',
+
+  // Ranking System
+  'ranking.globalRank': 'Küresel Sıralama',
+  'ranking.totalPoints': 'Toplam Puan',
+  'ranking.currentLevel': 'Mevcut Seviye',
+  'ranking.rankProgress': 'Sıralama İlerlemesi',
+  'ranking.allTime': 'Tüm Zamanlar',
+  'ranking.seasonRank': 'Sezon Sıralaması',
+  'ranking.currentSeason': 'Mevcut Sezon',
+  'ranking.levelProgress': 'Seviye İlerlemesi',
+  'ranking.totalXP': 'Toplam Deneyim',
+  'ranking.achievements': 'Başarımlar',
+  'ranking.verifiedRecords': 'Doğrulanmış Kayıtlar',
+  'ranking.gamesOwned': 'Sahip Olunan Oyunlar',
+
+  // Profile Ranking
+  'profile.ranking': 'Sıralama',
+  'profile.globalRanking': 'Küresel Sıralama',
+  'profile.rankingStats': 'Sıralama İstatistikleri',
+
+  // FanArt Comments
+  'fanart.addComment': 'Yorum ekle...'
 }
 
 export default tr

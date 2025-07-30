@@ -875,7 +875,32 @@ const zh = {
   'events.dkrAncientLake.prize2': '🥈 第2名：300 Battle64积分 + 湖泊大师',
   'events.dkrAncientLake.prize3': '🥉 第3名：200 Battle64积分 + 古代车手',
   'events.dkrAncientLake.prizeTop10': '🏆 前10名：F1风格积分 (25-18-15-12-10-8-6-4-2-1)',
-  'events.dkrAncientLake.prizeParticipation': '🎯 参与奖：每位参与者5 Battle64积分'
+  'events.dkrAncientLake.prizeParticipation': '🎯 参与奖：每位参与者5 Battle64积分',
+
+  // Home Ranking Section
+  'home.yourRanking': '您的排名',
+
+  // Ranking System
+  'ranking.globalRank': '全球排名',
+  'ranking.totalPoints': '总积分',
+  'ranking.currentLevel': '当前等级',
+  'ranking.rankProgress': '排名进度',
+  'ranking.allTime': '全时期',
+  'ranking.seasonRank': '赛季排名',
+  'ranking.currentSeason': '当前赛季',
+  'ranking.levelProgress': '等级进度',
+  'ranking.totalXP': '总经验值',
+  'ranking.achievements': '成就',
+  'ranking.verifiedRecords': '已验证记录',
+  'ranking.gamesOwned': '拥有游戏',
+
+  // Profile Ranking
+  'profile.ranking': '排名',
+  'profile.globalRanking': '全球排名',
+  'profile.rankingStats': '排名统计',
+
+  // FanArt Comments
+  'fanart.addComment': '添加评论...'
 }
 
 export default zh

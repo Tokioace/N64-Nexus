@@ -28,6 +28,7 @@ const POINTS_CONFIG: PointsConfig = {
   'media.stream': 50,
   'fanart.upload': 40,
   'fanart.likeReceived': 5,
+  'fanart.comment': 3,
   'quiz.answerCorrect': 10,
   'quiz.fullPerfect': 50,
   'minigame.success': 15,

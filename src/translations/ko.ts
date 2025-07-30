@@ -825,7 +825,32 @@ const ko = {
   'events.dkrAncientLake.prize2': '🥈 2위: Battle64 포인트 300 + 레이크 마스터',
   'events.dkrAncientLake.prize3': '🥉 3위: Battle64 포인트 200 + 고대 레이서',
   'events.dkrAncientLake.prizeTop10': '🏆 상위 10위: F1 스타일 포인트 (25-18-15-12-10-8-6-4-2-1)',
-  'events.dkrAncientLake.prizeParticipation': '🎯 참가상: 모든 참가자에게 Battle64 포인트 5'
+  'events.dkrAncientLake.prizeParticipation': '🎯 참가상: 모든 참가자에게 Battle64 포인트 5점',
+
+  // Home Ranking Section
+  'home.yourRanking': '당신의 랭킹',
+
+  // Ranking System
+  'ranking.globalRank': '글로벌 순위',
+  'ranking.totalPoints': '총 포인트',
+  'ranking.currentLevel': '현재 레벨',
+  'ranking.rankProgress': '순위 진행도',
+  'ranking.allTime': '전체 기간',
+  'ranking.seasonRank': '시즌 순위',
+  'ranking.currentSeason': '현재 시즌',
+  'ranking.levelProgress': '레벨 진행도',
+  'ranking.totalXP': '총 경험치',
+  'ranking.achievements': '업적',
+  'ranking.verifiedRecords': '검증된 기록',
+  'ranking.gamesOwned': '보유 게임',
+
+  // Profile Ranking
+  'profile.ranking': '랭킹',
+  'profile.globalRanking': '글로벌 랭킹',
+  'profile.rankingStats': '랭킹 통계',
+
+  // FanArt Comments
+  'fanart.addComment': '댓글 추가...'
 }
 
 export default ko

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useParams, useNavigate, Link } from 'react-router-dom'
 import { useUser } from '../contexts/UserContext'
 import { useLanguage } from '../contexts/LanguageContext'
+import { usePoints } from '../contexts/PointsContext'
 import { User } from '../types'
 import UserCollectionManager from '../components/UserCollectionManager'
 import PersonalRecordsManager from '../components/PersonalRecordsManager'
@@ -17,7 +18,9 @@ import {
   Star,
   LogIn,
   ArrowLeft,
-  Award
+  Award,
+  Crown,
+  TrendingUp
 } from 'lucide-react'
 
 interface Achievement {
@@ -40,10 +43,11 @@ const ProfilePage: React.FC = () => {
   const { userId } = useParams<{ userId: string }>()
   const { user, isAuthenticated, getUserProfile } = useUser()
   const { t } = useLanguage()
+  const { getUserPosition, userPoints } = usePoints()
   const navigate = useNavigate()
   const [profileUser, setProfileUser] = useState<User | null>(null)
   const [loading, setLoading] = useState(false)
-  const [activeTab, setActiveTab] = useState<'overview' | 'points' | 'achievements' | 'stats' | 'collection' | 'records'>('overview')
+  const [activeTab, setActiveTab] = useState<'overview' | 'points' | 'achievements' | 'stats' | 'collection' | 'records' | 'ranking'>('overview')
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isEditing, setIsEditing] = useState(false)
 
@@ -329,6 +333,20 @@ const ProfilePage: React.FC = () => {
             {t('profile.overview')}
           </button>
           <button
+            onClick={() => setActiveTab('ranking')}
+            className={`py-2 px-3 sm:px-4 rounded-md text-xs sm:text-sm font-medium transition-all whitespace-nowrap ${
+              activeTab === 'ranking'
+                ? 'bg-yellow-500 text-slate-900 shadow-lg'
+                : 'text-slate-400 hover:text-slate-200'
+            }`}
+          >
+            <div className="flex items-center justify-center gap-1">
+              <Crown className="w-3 h-3 sm:w-4 sm:h-4" />
+              <span className="hidden sm:inline">{t('profile.ranking')}</span>
+              <span className="sm:hidden">Rank</span>
+            </div>
+          </button>
+          <button
             onClick={() => setActiveTab('points')}
             className={`py-2 px-3 sm:px-4 rounded-md text-xs sm:text-sm font-medium transition-all whitespace-nowrap ${
               activeTab === 'points'
@@ -462,6 +480,107 @@ const ProfilePage: React.FC = () => {
                     )}
                   </div>
                 ))}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {activeTab === 'ranking' && (
+          <div className="space-y-6">
+            {/* Global Ranking */}
+            <div className="simple-tile p-6">
+              <h3 className="text-xl font-bold text-slate-100 mb-6 flex items-center gap-2">
+                <Crown className="w-6 h-6 text-yellow-400" />
+                {t('profile.globalRanking')}
+              </h3>
+              
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {/* Current Global Rank */}
+                <div className="text-center p-6 bg-gradient-to-br from-yellow-500/20 to-amber-500/20 rounded-lg border border-yellow-400/30">
+                  <div className="text-4xl font-bold text-yellow-400 mb-2">
+                    #{getUserPosition(profileUser?.id || '', { type: 'global', timeframe: 'allTime' }) || 'N/A'}
+                  </div>
+                  <div className="text-sm text-slate-300 mb-1">{t('ranking.globalRank')}</div>
+                  <div className="text-xs text-slate-400">{t('ranking.allTime')}</div>
+                </div>
+                
+                {/* Season Rank */}
+                <div className="text-center p-6 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-lg border border-purple-400/30">
+                  <div className="text-4xl font-bold text-purple-400 mb-2">
+                    #{getUserPosition(profileUser?.id || '', { type: 'global', timeframe: 'season' }) || 'N/A'}
+                  </div>
+                  <div className="text-sm text-slate-300 mb-1">{t('ranking.seasonRank')}</div>
+                  <div className="text-xs text-slate-400">{t('ranking.currentSeason')}</div>
+                </div>
+                
+                {/* Level Progress */}
+                <div className="text-center p-6 bg-gradient-to-br from-blue-500/20 to-cyan-500/20 rounded-lg border border-blue-400/30">
+                  <div className="text-4xl font-bold text-blue-400 mb-2">
+                    {profileUser?.level || 1}
+                  </div>
+                  <div className="text-sm text-slate-300 mb-1">{t('ranking.currentLevel')}</div>
+                  <div className="text-xs text-slate-400">
+                    {((profileUser?.xp || 0) % 1000)}/1000 XP
+                  </div>
+                </div>
+              </div>
+              
+              {/* Rank Progress Bar */}
+              <div className="mt-6 p-4 bg-slate-700/30 rounded-lg">
+                <div className="flex items-center justify-between mb-3">
+                  <span className="text-sm font-medium text-slate-300">{t('ranking.levelProgress')}</span>
+                  <span className="text-sm text-slate-400">
+                    {Math.min(((profileUser?.xp || 0) % 1000), 1000)}/1000 XP
+                  </span>
+                </div>
+                <div className="w-full bg-slate-600 rounded-full h-3">
+                  <div 
+                    className="bg-gradient-to-r from-blue-500 to-purple-500 h-3 rounded-full transition-all duration-500"
+                    style={{ width: `${Math.min(((profileUser?.xp || 0) % 1000) / 10, 100)}%` }}
+                  />
+                </div>
+                <div className="flex justify-between mt-2 text-xs text-slate-400">
+                  <span>Level {profileUser?.level || 1}</span>
+                  <span>Level {(profileUser?.level || 1) + 1}</span>
+                </div>
+              </div>
+            </div>
+            
+            {/* Ranking Statistics */}
+            <div className="simple-tile p-6">
+              <h3 className="text-xl font-bold text-slate-100 mb-6 flex items-center gap-2">
+                <TrendingUp className="w-6 h-6 text-green-400" />
+                {t('profile.rankingStats')}
+              </h3>
+              
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div className="text-center p-4 bg-slate-700/30 rounded-lg">
+                  <div className="text-2xl font-bold text-green-400 mb-1">
+                    {profileUser?.xp?.toLocaleString() || '0'}
+                  </div>
+                  <div className="text-sm text-slate-300">{t('ranking.totalXP')}</div>
+                </div>
+                
+                <div className="text-center p-4 bg-slate-700/30 rounded-lg">
+                  <div className="text-2xl font-bold text-blue-400 mb-1">
+                    {achievements.filter(a => a.earned).length}
+                  </div>
+                  <div className="text-sm text-slate-300">{t('ranking.achievements')}</div>
+                </div>
+                
+                <div className="text-center p-4 bg-slate-700/30 rounded-lg">
+                  <div className="text-2xl font-bold text-purple-400 mb-1">
+                    {profileUser?.personalRecords?.filter(r => r.verified).length || 0}
+                  </div>
+                  <div className="text-sm text-slate-300">{t('ranking.verifiedRecords')}</div>
+                </div>
+                
+                <div className="text-center p-4 bg-slate-700/30 rounded-lg">
+                  <div className="text-2xl font-bold text-orange-400 mb-1">
+                    {profileUser?.collections?.filter(c => !c.isWishlist).length || 0}
+                  </div>
+                  <div className="text-sm text-slate-300">{t('ranking.gamesOwned')}</div>
+                </div>
               </div>
             </div>
           </div>
