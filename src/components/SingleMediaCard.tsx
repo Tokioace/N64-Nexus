@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react'
 import { Play } from 'lucide-react'
 import { useLanguage, getLocaleString } from '../contexts/LanguageContext'
+import { InteractionBar } from './InteractionComponents'
 
 interface MediaItem {
   id: string
@@ -288,10 +289,12 @@ const SingleMediaCard: React.FC<SingleMediaCardProps> = ({ mediaItems, className
                     <div className="text-sm text-text-muted mb-2">
                       {currentItem.game}
                     </div>
-                    <div className="flex items-center gap-4 text-sm text-text-muted">
-                      <span>👁 {currentItem.views.toLocaleString()}</span>
-                      <span>❤ {currentItem.likes.toLocaleString()}</span>
-                    </div>
+                    <InteractionBar 
+                      contentType="media"
+                      contentId={currentItem.id}
+                      showComments={false}
+                      compact={true}
+                    />
                   </div>
                   <div className="border-t border-slate-600/30 pt-3 mt-auto">
                     <div className="flex items-center justify-between text-sm text-text-muted">

@@ -3,6 +3,7 @@ import { Palette, Heart, Eye } from 'lucide-react'
 import { useLanguage } from '../contexts/LanguageContext'
 import { useUser } from '../contexts/UserContext'
 import { useNavigate } from 'react-router-dom'
+import { InteractionBar } from './InteractionComponents'
 
 interface FanArtItem {
   id: string
@@ -28,78 +29,8 @@ const SingleFanArtCard: React.FC<SingleFanArtCardProps> = ({ fanArtItems, classN
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isFlipping, setIsFlipping] = useState(false)
   const [flipDirection, setFlipDirection] = useState<'left' | 'right'>('left')
-  const [userLikes, setUserLikes] = useState<Set<string>>(new Set()) // Track user's likes
   const touchStartX = useRef<number>(0)
   const touchEndX = useRef<number>(0)
-
-  // Load user likes from localStorage
-  useEffect(() => {
-    if (user) {
-      const savedUserLikes = localStorage.getItem('user_fanart_likes')
-      if (savedUserLikes) {
-        setUserLikes(new Set(JSON.parse(savedUserLikes)))
-      }
-    }
-  }, [user])
-
-  const handleLikeArtwork = async (artworkId: string, event: React.MouseEvent) => {
-    event.stopPropagation() // Prevent card click navigation
-    
-    if (!isAuthenticated || !user) return
-
-    const artwork = fanArtItems.find(item => item.id === artworkId)
-    if (!artwork) return
-
-    // Prevent self-liking
-    if (artwork.artist === user.username) {
-      console.log('Cannot like your own artwork')
-      return
-    }
-
-    const isCurrentlyLiked = userLikes.has(artworkId)
-    const newUserLikes = new Set(userLikes)
-    
-    if (isCurrentlyLiked) {
-      newUserLikes.delete(artworkId)
-    } else {
-      newUserLikes.add(artworkId)
-    }
-    
-    setUserLikes(newUserLikes)
-    
-    // Save user likes to localStorage
-    localStorage.setItem('user_fanart_likes', JSON.stringify(Array.from(newUserLikes)))
-
-    // Update localStorage fanart data
-    try {
-      const savedFanArt = localStorage.getItem('fanart_items')
-      if (savedFanArt) {
-        const fanArtData = JSON.parse(savedFanArt)
-        const updatedFanArt = fanArtData.map((item: FanArtItem) => {
-          if (item.id === artworkId) {
-            return {
-              ...item,
-              likes: isCurrentlyLiked ? item.likes - 1 : item.likes + 1,
-              likedBy: isCurrentlyLiked 
-                ? (item.likedBy || []).filter(id => id !== user.id)
-                : [...(item.likedBy || []), user.id]
-            }
-          }
-          return item
-        })
-        
-        localStorage.setItem('fanart_items', JSON.stringify(updatedFanArt))
-        
-        // Trigger storage event for other components to update
-        window.dispatchEvent(new StorageEvent('storage', {
-          key: 'fanart_items',
-          newValue: JSON.stringify(updatedFanArt)
-        }))
-      }
-    } catch (error) {
-      console.error('Error updating fanart likes:', error)
-    }
-  }
 
   const goToNext = () => {
     if (isFlipping || currentIndex >= fanArtItems.length - 1) return
@@ -219,30 +150,13 @@ const SingleFanArtCard: React.FC<SingleFanArtCardProps> = ({ fanArtItems, classN
             <p className="text-xs text-slate-400">{item.game}</p>
           </div>
           <div className="flex items-center justify-between text-xs text-slate-400 mt-auto">
-            <div className="flex items-center gap-2">
-              <button
-                onClick={(e) => handleLikeArtwork(item.id, e)}
-                className={`flex items-center gap-1 transition-colors ${
-                  !isAuthenticated 
-                    ? 'cursor-not-allowed opacity-50' 
-                    : userLikes.has(item.id)
-                    ? 'text-pink-400 hover:text-pink-300'
-                    : 'text-slate-400 hover:text-pink-400'
-                }`}
-                disabled={!isAuthenticated}
-              >
-                <Heart 
-                  className={`w-3 h-3 transition-all ${
-                    userLikes.has(item.id) 
-                      ? 'fill-pink-400 text-pink-400 scale-110' 
-                      : 'text-slate-400'
-                  }`} 
-                />
-                <span>{item.likes}</span>
-              </button>
-              <span className="flex items-center gap-1">
-                <Eye className="w-3 h-3" /> {item.views}
-              </span>
+            <div className="flex-1">
+              <InteractionBar 
+                contentType="fanart"
+                contentId={item.id}
+                showComments={false}
+                compact={true}
+              />
             </div>
             {item.createdAt && (
               <span className="text-xs">

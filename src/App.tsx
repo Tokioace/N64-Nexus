@@ -6,6 +6,7 @@ import { MediaProvider } from './contexts/MediaContext'
 import { ForumProvider } from './contexts/ForumContext'
 import { LanguageProvider } from './contexts/LanguageContext'
 import { PointsProvider } from './contexts/PointsContext'
+import { InteractionProvider } from './contexts/InteractionContext'
 import HomePage from './pages/HomePage'
 import HomeScreenRetro from './components/HomeScreenRetro'
 import AuthPage from './pages/AuthPage'
@@ -35,11 +36,12 @@ function App() {
     <LanguageProvider>
       <UserProvider>
         <PointsProvider>
-          <QuizProvider>
-            <EventProvider>
-              <MediaProvider>
-                <ForumProvider>
-                  <Layout>
+          <InteractionProvider>
+            <QuizProvider>
+              <EventProvider>
+                <MediaProvider>
+                  <ForumProvider>
+                    <Layout>
                     <Routes>
                       <Route path="/" element={<HomePage />} />
                       <Route path="/auth" element={<AuthPage />} />
@@ -63,12 +65,13 @@ function App() {
                       <Route path="/newsfeed" element={<NewsFeedPage />} />
                       <Route path="/fanart" element={<FanArtPage />} />
                       <Route path="/typography-showcase" element={<TypographyShowcase />} />
-                    </Routes>
-                  </Layout>
-                </ForumProvider>
-              </MediaProvider>
-            </EventProvider>
-          </QuizProvider>
+                      </Routes>
+                    </Layout>
+                  </ForumProvider>
+                </MediaProvider>
+              </EventProvider>
+            </QuizProvider>
+          </InteractionProvider>
         </PointsProvider>
       </UserProvider>
     </LanguageProvider>
