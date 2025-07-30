@@ -296,7 +296,7 @@ const HomePage: React.FC = () => {
             <div className="simple-tile p-4 sm:p-6">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-responsive-lg font-bold text-slate-100">
-                  Your Ranking
+                  {t('home.yourRanking')}
                 </h3>
                 <Trophy className="w-6 h-6 text-yellow-400" />
               </div>
@@ -307,7 +307,7 @@ const HomePage: React.FC = () => {
                   <div className="text-2xl font-bold text-yellow-400 mb-1">
                     #{getUserPosition(user.id, { type: 'global', timeframe: 'allTime' }) || 'N/A'}
                   </div>
-                  <div className="text-sm text-slate-300">Global Rank</div>
+                  <div className="text-sm text-slate-300">{t('ranking.globalRank')}</div>
                 </div>
                 
                 {/* Total Points */}
@@ -315,7 +315,7 @@ const HomePage: React.FC = () => {
                   <div className="text-2xl font-bold text-blue-400 mb-1">
                     {user.xp?.toLocaleString() || '0'}
                   </div>
-                  <div className="text-sm text-slate-300">Total Points</div>
+                  <div className="text-sm text-slate-300">{t('ranking.totalPoints')}</div>
                 </div>
                 
                 {/* Current Level */}
@@ -323,14 +323,14 @@ const HomePage: React.FC = () => {
                   <div className="text-2xl font-bold text-green-400 mb-1">
                     {user.level || 1}
                   </div>
-                  <div className="text-sm text-slate-300">Current Level</div>
+                  <div className="text-sm text-slate-300">{t('ranking.currentLevel')}</div>
                 </div>
               </div>
               
               {/* Rank Progress */}
               <div className="mt-4 p-4 bg-slate-700/30 rounded-lg">
                 <div className="flex items-center justify-between mb-2">
-                  <span className="text-sm text-slate-300">Rank Progress</span>
+                  <span className="text-sm text-slate-300">{t('ranking.rankProgress')}</span>
                   <span className="text-sm text-slate-400">
                     {Math.min(((user.xp || 0) % 1000), 1000)}/1000 XP
                   </span>

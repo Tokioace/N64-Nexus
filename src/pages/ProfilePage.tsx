@@ -342,7 +342,7 @@ const ProfilePage: React.FC = () => {
           >
             <div className="flex items-center justify-center gap-1">
               <Crown className="w-3 h-3 sm:w-4 sm:h-4" />
-              <span className="hidden sm:inline">Ranking</span>
+              <span className="hidden sm:inline">{t('profile.ranking')}</span>
               <span className="sm:hidden">Rank</span>
             </div>
           </button>
@@ -491,7 +491,7 @@ const ProfilePage: React.FC = () => {
             <div className="simple-tile p-6">
               <h3 className="text-xl font-bold text-slate-100 mb-6 flex items-center gap-2">
                 <Crown className="w-6 h-6 text-yellow-400" />
-                Global Ranking
+                {t('profile.globalRanking')}
               </h3>
               
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -500,8 +500,8 @@ const ProfilePage: React.FC = () => {
                   <div className="text-4xl font-bold text-yellow-400 mb-2">
                     #{getUserPosition(profileUser?.id || '', { type: 'global', timeframe: 'allTime' }) || 'N/A'}
                   </div>
-                  <div className="text-sm text-slate-300 mb-1">Global Rank</div>
-                  <div className="text-xs text-slate-400">All Time</div>
+                  <div className="text-sm text-slate-300 mb-1">{t('ranking.globalRank')}</div>
+                  <div className="text-xs text-slate-400">{t('ranking.allTime')}</div>
                 </div>
                 
                 {/* Season Rank */}
@@ -509,8 +509,8 @@ const ProfilePage: React.FC = () => {
                   <div className="text-4xl font-bold text-purple-400 mb-2">
                     #{getUserPosition(profileUser?.id || '', { type: 'global', timeframe: 'season' }) || 'N/A'}
                   </div>
-                  <div className="text-sm text-slate-300 mb-1">Season Rank</div>
-                  <div className="text-xs text-slate-400">Current Season</div>
+                  <div className="text-sm text-slate-300 mb-1">{t('ranking.seasonRank')}</div>
+                  <div className="text-xs text-slate-400">{t('ranking.currentSeason')}</div>
                 </div>
                 
                 {/* Level Progress */}
@@ -518,7 +518,7 @@ const ProfilePage: React.FC = () => {
                   <div className="text-4xl font-bold text-blue-400 mb-2">
                     {profileUser?.level || 1}
                   </div>
-                  <div className="text-sm text-slate-300 mb-1">Current Level</div>
+                  <div className="text-sm text-slate-300 mb-1">{t('ranking.currentLevel')}</div>
                   <div className="text-xs text-slate-400">
                     {((profileUser?.xp || 0) % 1000)}/1000 XP
                   </div>
@@ -528,7 +528,7 @@ const ProfilePage: React.FC = () => {
               {/* Rank Progress Bar */}
               <div className="mt-6 p-4 bg-slate-700/30 rounded-lg">
                 <div className="flex items-center justify-between mb-3">
-                  <span className="text-sm font-medium text-slate-300">Level Progress</span>
+                  <span className="text-sm font-medium text-slate-300">{t('ranking.levelProgress')}</span>
                   <span className="text-sm text-slate-400">
                     {Math.min(((profileUser?.xp || 0) % 1000), 1000)}/1000 XP
                   </span>
@@ -550,7 +550,7 @@ const ProfilePage: React.FC = () => {
             <div className="simple-tile p-6">
               <h3 className="text-xl font-bold text-slate-100 mb-6 flex items-center gap-2">
                 <TrendingUp className="w-6 h-6 text-green-400" />
-                Ranking Statistics
+                {t('profile.rankingStats')}
               </h3>
               
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -558,28 +558,28 @@ const ProfilePage: React.FC = () => {
                   <div className="text-2xl font-bold text-green-400 mb-1">
                     {profileUser?.xp?.toLocaleString() || '0'}
                   </div>
-                  <div className="text-sm text-slate-300">Total XP</div>
+                  <div className="text-sm text-slate-300">{t('ranking.totalXP')}</div>
                 </div>
                 
                 <div className="text-center p-4 bg-slate-700/30 rounded-lg">
                   <div className="text-2xl font-bold text-blue-400 mb-1">
                     {achievements.filter(a => a.earned).length}
                   </div>
-                  <div className="text-sm text-slate-300">{t('profile.achievements')}</div>
+                  <div className="text-sm text-slate-300">{t('ranking.achievements')}</div>
                 </div>
                 
                 <div className="text-center p-4 bg-slate-700/30 rounded-lg">
                   <div className="text-2xl font-bold text-purple-400 mb-1">
                     {profileUser?.personalRecords?.filter(r => r.verified).length || 0}
                   </div>
-                  <div className="text-sm text-slate-300">Verified Records</div>
+                  <div className="text-sm text-slate-300">{t('ranking.verifiedRecords')}</div>
                 </div>
                 
                 <div className="text-center p-4 bg-slate-700/30 rounded-lg">
                   <div className="text-2xl font-bold text-orange-400 mb-1">
                     {profileUser?.collections?.filter(c => !c.isWishlist).length || 0}
                   </div>
-                  <div className="text-sm text-slate-300">Games Owned</div>
+                  <div className="text-sm text-slate-300">{t('ranking.gamesOwned')}</div>
                 </div>
               </div>
             </div>

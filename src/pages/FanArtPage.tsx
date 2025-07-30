@@ -872,7 +872,7 @@ const FanArtPage: React.FC = () => {
                           type="text"
                           value={newComment}
                           onChange={(e) => setNewComment(e.target.value)}
-                          placeholder={t('fanart.addComment') || 'Add a comment...'}
+                          placeholder={t('fanart.addComment')}
                           className="flex-1 px-3 py-2 bg-slate-700 text-slate-100 rounded text-sm border border-slate-600 focus:border-blue-500 focus:outline-none"
                           onKeyPress={(e) => {
                             if (e.key === 'Enter') {
@@ -1017,7 +1017,7 @@ const FanArtPage: React.FC = () => {
                             type="text"
                             value={newComment}
                             onChange={(e) => setNewComment(e.target.value)}
-                            placeholder={t('fanart.addComment') || 'Add a comment...'}
+                            placeholder={t('fanart.addComment')}
                             className="flex-1 px-3 py-2 bg-slate-700 text-slate-100 rounded text-sm border border-slate-600 focus:border-blue-500 focus:outline-none"
                             onKeyPress={(e) => {
                               if (e.key === 'Enter') {
