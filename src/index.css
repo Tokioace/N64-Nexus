@@ -1745,19 +1745,19 @@ code {
 
 /* Responsive Swipeable Card Styles - N64 Theme */
 .swipeable-card {
-  @apply rounded-lg shadow-lg transition-all duration-300 hover:shadow-xl backdrop-blur-sm;
+  @apply rounded-lg shadow-lg transition-all duration-300 hover:shadow-xl backdrop-blur-sm cursor-pointer;
   background: rgba(24, 26, 44, 0.8);
   border: 1px solid rgba(44, 47, 74, 0.8);
   width: 100%;
   max-width: min(400px, 90vw);
   height: auto;
-  min-height: clamp(200px, 25vh, 300px);
+  min-height: clamp(280px, 35vh, 380px);
   position: relative;
   overflow: hidden;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  aspect-ratio: 16/10;
+  aspect-ratio: 16/11;
 }
 
 /* Responsive card container */
@@ -1839,21 +1839,35 @@ input[type="submit"] {
 }
 
 .swipeable-card-header {
-  @apply p-2 sm:p-3 flex-shrink-0;
+  @apply p-3 flex-shrink-0;
   border-bottom: 1px solid rgba(44, 47, 74, 0.5);
   display: flex;
   justify-content: space-between;
   align-items: center;
+  min-height: 50px;
 }
 
 .swipeable-card-content {
-  @apply flex-1 overflow-hidden relative;
-  min-height: 120px;
+  @apply flex-1 relative;
+  min-height: 160px;
+  overflow: visible;
+  display: flex;
+  flex-direction: column;
 }
 
 @media (max-width: 768px) {
   .swipeable-card-content {
-    min-height: 100px;
+    min-height: 140px;
+  }
+  
+  .swipeable-card {
+    min-height: clamp(260px, 32vh, 340px);
+    aspect-ratio: 16/10.5;
+  }
+  
+  .swipeable-card-header {
+    padding: 0.75rem;
+    min-height: 45px;
   }
 }
 
@@ -1898,6 +1912,30 @@ input[type="submit"] {
   max-width: 100%;
   overflow-x: auto;
   padding: 0 1rem;
+}
+
+/* Improved text clamping for consistent card heights */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Enhanced hover effect for news cards */
+.swipeable-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  border-color: rgba(59, 130, 246, 0.5);
 }
 
 @media (max-width: 768px) {
