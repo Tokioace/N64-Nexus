@@ -550,8 +550,9 @@ const ar = {
   'events.notificationsActive': 'الإشعارات نشطة',
   'events.enableNotifications': 'تفعيل الإشعارات',
   'events.participating': 'مشارك',
-  'events.join': 'انضمام',
+  'events.join': 'انضم',
   'events.leaderboard': 'لوحة المتصدرين',
+  'events.currentEvent': 'الحدث الحالي',
 
   'notifications.enabled': 'تم تفعيل الإشعارات',
   'notifications.denied': 'تم رفض الإشعارات',

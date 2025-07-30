@@ -188,6 +188,7 @@ const es = {
   'events.participating': 'Participando',
   'events.join': 'Unirse',
   'events.leaderboard': 'Clasificación',
+  'events.currentEvent': 'Evento Actual',
   'events.timeFormat': 'Formato: Horas:Minutos:Segundos',
   'events.selectDocumentation': 'Seleccionar Documentación',
   'events.photo': 'Foto',

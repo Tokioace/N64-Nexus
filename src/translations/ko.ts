@@ -488,6 +488,7 @@ const ko = {
   'events.participating': '참가 중',
   'events.join': '참가',
   'events.leaderboard': '리더보드',
+  'events.currentEvent': '현재 이벤트',
   'notifications.enabled': '알림 활성화됨',
   'notifications.denied': '알림 거부됨',
   'notifications.notSupported': '알림이 지원되지 않습니다',

@@ -488,6 +488,7 @@ const fr = {
   'events.participating': 'Participant',
   'events.join': 'Rejoindre',
   'events.leaderboard': 'Classement',
+  'events.currentEvent': 'Événement Actuel',
   'notifications.enabled': 'Notifications activées',
   'notifications.denied': 'Notifications refusées',
   'notifications.notSupported': 'Notifications non supportées',

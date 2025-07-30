@@ -596,6 +596,7 @@ const ja = {
   'events.participating': '参加中',
   'events.join': '参加',
   'events.leaderboard': 'リーダーボード',
+  'events.currentEvent': '現在のイベント',
   'events.timeFormat': 'フォーマット：時:分:秒',
   'events.selectDocumentation': 'ドキュメントを選択',
   'events.photo': '写真',

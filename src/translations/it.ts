@@ -490,6 +490,7 @@ const it = {
   'events.participating': 'Partecipando',
   'events.join': 'Unisciti',
   'events.leaderboard': 'Classifica',
+  'events.currentEvent': 'Evento Attuale',
   'notifications.enabled': 'Notifiche abilitate',
   'notifications.denied': 'Notifiche rifiutate',
   'notifications.notSupported': 'Notifiche non supportate',

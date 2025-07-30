@@ -557,6 +557,7 @@ const el = {
   'events.livestreamSubmissionDesc': 'Υποβολή livestream',
   'events.raceSubmission': 'Υποβολή Αγώνα',
   'events.raceTime': 'Χρόνος Αγώνα',
+  'events.currentEvent': 'Τρέχον Γεγονός',
 
   // Notifications
   'notifications.enabled': 'Ειδοποιήσεις ενεργοποιημένες',

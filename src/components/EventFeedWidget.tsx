@@ -213,7 +213,7 @@ const EventCard: React.FC<EventCardProps> = ({ event, leaderboard, timeRemaining
                   <div className="h-24 flex items-center justify-center bg-gradient-to-r from-purple-600/20 to-purple-700/20">
                     <div className="text-center">
                       <Radio className="w-6 h-6 text-purple-400 mx-auto mb-1" />
-                      <p className="text-xs text-purple-400">{t('home.livestream')}</p>
+                      <p className="text-xs text-purple-400">{t('media.livestream')}</p>
                     </div>
                   </div>
                 )}

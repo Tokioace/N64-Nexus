@@ -591,6 +591,7 @@ const zh = {
   'events.participating': '参与中',
   'events.join': '加入',
   'events.leaderboard': '排行榜',
+  'events.currentEvent': '当前活动',
   'events.timeFormat': '格式：小时:分钟:秒',
   'events.selectDocumentation': '选择文档',
   'events.photo': '照片',
