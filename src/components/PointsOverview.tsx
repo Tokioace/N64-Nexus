@@ -5,12 +5,10 @@ import { useUser } from '../contexts/UserContext'
 import { 
   Trophy, 
   Star, 
-  TrendingUp, 
   Award, 
   Calendar,
   Clock,
   Zap,
-  Target,
   Medal,
   Crown
 } from 'lucide-react'

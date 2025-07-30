@@ -15,12 +15,8 @@ import {
   MapPin,
   Edit,
   Medal,
-  Target,
-  Clock,
-  Package,
   Star,
   LogIn,
-  Globe,
   ArrowLeft,
   Award,
   Crown

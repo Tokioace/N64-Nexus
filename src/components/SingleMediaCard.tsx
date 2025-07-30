@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react'
-import { Play, X } from 'lucide-react'
+import { Play } from 'lucide-react'
 import { useLanguage, getLocaleString } from '../contexts/LanguageContext'
 
 interface MediaItem {

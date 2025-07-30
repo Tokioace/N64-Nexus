@@ -2,7 +2,7 @@ import React from 'react'
 import { useLanguage } from '../contexts/LanguageContext'
 import { usePoints } from '../contexts/PointsContext'
 import { useUser } from '../contexts/UserContext'
-import { Trophy, Star, TrendingUp, Award } from 'lucide-react'
+import { Trophy, TrendingUp, Award } from 'lucide-react'
 
 const PointsWidget: React.FC = () => {
   const { t } = useLanguage()

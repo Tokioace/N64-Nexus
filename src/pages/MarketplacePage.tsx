@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
-import { Search, Plus, Package, DollarSign, Clock, Star, Filter, Grid, List, Eye, MessageCircle, Heart, ShoppingCart } from 'lucide-react';
+import { Search, Plus, Package, Clock, Star, Grid, List, Eye, MessageCircle, Heart, ShoppingCart } from 'lucide-react';
 
 interface MarketplaceOffer {
   id: string;
@@ -195,7 +195,7 @@ const MarketplacePage: React.FC = () => {
   const [offers, setOffers] = useState<MarketplaceOffer[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
-  const [priceRange, setPriceRange] = useState({ min: '', max: '' });
+  const [priceRange, _setPriceRange] = useState({ min: '', max: '' });
   const [sortBy, setSortBy] = useState('newest');
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const [showCreateModal, setShowCreateModal] = useState(false);

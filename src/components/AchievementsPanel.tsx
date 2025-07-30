@@ -27,7 +27,7 @@ const AchievementsPanel: React.FC<AchievementsPanelProps> = ({
 }) => {
   const { t, currentLanguage } = useLanguage()
   const { achievementsConfig, userPoints } = usePoints()
-  const { user: _user } = useUser()
+
   
   const [achievements, setAchievements] = useState<Achievement[]>([])
   const [filter, setFilter] = useState<'all' | 'unlocked' | 'locked'>('all')

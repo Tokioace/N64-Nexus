@@ -10,24 +10,15 @@ import {
   Camera, 
   Video, 
   Upload, 
-  Play, 
   Pause, 
   Eye, 
   Heart, 
-  Share2, 
   Filter, 
   Search,
   Trophy,
-  Star,
-  Clock,
-  Users,
-  Zap,
-  Award,
   CheckCircle,
   AlertCircle,
   X,
-  Plus,
-  Download,
   ExternalLink,
   Tv,
   Radio
@@ -97,7 +88,7 @@ class MediaErrorBoundary extends React.Component<
 const SpeedrunMediaPage: React.FC = () => {
   const { t } = useLanguage()
   const { user, isAuthenticated } = useUser()
-  const { media, userMedia, loading, error, uploadMedia, uploadMediaFromUrl, likeMedia, getMediaByGame, getMediaByUser, getMediaStats } = useMedia()
+  const { media, userMedia: _userMedia, loading, error, uploadMedia, uploadMediaFromUrl, likeMedia, getMediaByGame: _getMediaByGame, getMediaByUser: _getMediaByUser, getMediaStats } = useMedia()
   const { awardPoints } = usePoints()
   const { events, activeEvents } = useEvent()
   

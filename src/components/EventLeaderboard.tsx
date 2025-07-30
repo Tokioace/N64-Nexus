@@ -49,7 +49,7 @@ interface MediaViewerProps {
 }
 
 const MediaViewer: React.FC<MediaViewerProps> = ({ entry, isOpen, onClose }) => {
-  const { t, currentLanguage: _currentLanguage } = useLanguage()
+  const { t } = useLanguage()
   const [isVideoPlaying, setIsVideoPlaying] = useState(true)
 
   if (!isOpen) return null

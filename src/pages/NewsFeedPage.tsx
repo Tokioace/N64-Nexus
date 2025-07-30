@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { useLanguage } from '../contexts/LanguageContext'
 import { 
   Award, 
@@ -8,7 +8,6 @@ import {
   Trophy,
   Star,
   Gamepad2,
-  Camera,
   MessageSquare,
   ChevronLeft,
   ChevronRight,

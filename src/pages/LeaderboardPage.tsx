@@ -5,9 +5,7 @@ import { useLanguage } from '../contexts/LanguageContext'
 import EventLeaderboard from '../components/EventLeaderboard'
 import N64FanLeaderboard from '../components/N64FanLeaderboard'
 import { 
-  Trophy, 
   Calendar, 
-  Target,
   Users,
   Medal,
   Star,

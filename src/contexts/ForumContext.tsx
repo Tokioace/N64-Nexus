@@ -317,12 +317,12 @@ export const ForumProvider: React.FC<{ children: ReactNode }> = ({ children }) =
       
       setLoading(false)
       return true
-    } catch (err) {
+    } catch (_err) {
       setError(t('error.generic'))
       setLoading(false)
       return false
     }
-  }, [user, t])
+  }, [user, t, awardPoints])
 
   const createPost = useCallback(async (threadId: string, content: string, imageUrl?: string): Promise<boolean> => {
     if (!user) return false
@@ -386,7 +386,7 @@ export const ForumProvider: React.FC<{ children: ReactNode }> = ({ children }) =
       setLoading(false)
       return false
     }
-  }, [user, t])
+  }, [user, t, awardPoints])
 
   const selectCategory = useCallback((category: ForumCategory | null) => {
     setSelectedCategory(category)

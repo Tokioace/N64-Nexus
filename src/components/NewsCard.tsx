@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { Newspaper, X, Calendar, User, MessageCircle } from 'lucide-react'
+import React from 'react'
+import { Newspaper, X } from 'lucide-react'
 import { useLanguage, getLocaleString } from '../contexts/LanguageContext'
 
 interface NewsItem {
@@ -57,20 +57,7 @@ const NewsCard: React.FC<NewsCardProps> = ({ newsItem, index, onDismiss, isAnima
     }
   }
 
-  const getTypeIcon = (type: string) => {
-    switch (type) {
-      case 'event_winner':
-        return '🏆'
-      case 'n64_history':
-        return '🎮'
-      case 'community_news':
-        return '📢'
-      case 'event_announcement':
-        return '📅'
-      default:
-        return '📰'
-    }
-  }
+
 
   const getTypeTranslation = (type: string) => {
     switch (type) {

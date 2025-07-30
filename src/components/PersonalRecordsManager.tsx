@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useUser } from '../contexts/UserContext'
 import { useLanguage, getLocaleString } from '../contexts/LanguageContext'
 import { PersonalRecord } from '../types'
-import { Plus, Trophy, Clock, Target, Gamepad2, Calendar, CheckCircle, AlertCircle, Edit, Trash2 } from 'lucide-react'
+import { Plus, Trophy, Clock, Target, Gamepad2, Calendar, CheckCircle, AlertCircle, Edit } from 'lucide-react'
 
 interface PersonalRecordsProps {
   isOwnProfile?: boolean

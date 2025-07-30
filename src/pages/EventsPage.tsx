@@ -12,7 +12,6 @@ import {
   Target,
   Award,
   Gamepad2,
-  MapPin,
   Star,
   Bell,
   BellOff,
@@ -23,7 +22,7 @@ import {
 } from 'lucide-react'
 
 const EventsPage: React.FC = () => {
-  const { events, activeEvents, joinEvent, leaveEvent, loading, userParticipations, submitRaceTime, getLeaderboard } = useEvent()
+  const { events, activeEvents: _activeEvents, joinEvent, leaveEvent: _leaveEvent, loading, userParticipations, submitRaceTime, getLeaderboard } = useEvent()
   const { user } = useUser()
   const { t } = useLanguage()
   const [selectedTab, setSelectedTab] = useState<'active' | 'upcoming' | 'completed'>('active')
