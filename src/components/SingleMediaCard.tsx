@@ -118,15 +118,15 @@ const SingleMediaCard: React.FC<SingleMediaCardProps> = ({ mediaItems, className
   const getTypeTranslation = (type: string) => {
     switch (type) {
       case 'speedrun':
-        return t('media.type.speedrun')
+        return t('media.speedruns')
       case 'screenshot':
-        return t('media.type.screenshot')
+        return t('media.screenshots')
       case 'achievement':
-        return t('media.type.achievement')
+        return t('media.achievements')
       case 'stream':
-        return t('media.type.stream')
+        return t('media.livestream')
       default:
-        return t('media.type.general')
+        return t('media.type')
     }
   }
 
@@ -142,7 +142,7 @@ const SingleMediaCard: React.FC<SingleMediaCardProps> = ({ mediaItems, className
           </div>
           <div className="compact-card-content">
             <div className="flex items-center justify-center h-16 text-slate-400 compact-text-sm">
-              {t('media.noMediaAvailable')}
+              {t('card.noRecords')}
             </div>
           </div>
         </div>
@@ -311,15 +311,15 @@ const MediaCard: React.FC<{ item: MediaItem; index: number; isAnimating?: boolea
   const getTypeTranslation = (type: string) => {
     switch (type) {
       case 'speedrun':
-        return t('media.type.speedrun')
+        return t('media.speedruns')
       case 'screenshot':
-        return t('media.type.screenshot')
+        return t('media.screenshots')
       case 'achievement':
-        return t('media.type.achievement')
+        return t('media.achievements')
       case 'stream':
-        return t('media.type.stream')
+        return t('media.livestream')
       default:
-        return t('media.type.general')
+        return t('media.type')
     }
   }
 
@@ -329,7 +329,7 @@ const MediaCard: React.FC<{ item: MediaItem; index: number; isAnimating?: boolea
         <div className="flex items-center gap-2">
           <Play className="w-3 h-3 text-blue-400" />
           <h3 className="compact-card-title">
-            {t('media.content')} #{index + 1}
+            {t('card.media')} #{index + 1}
           </h3>
         </div>
         <div className="compact-text-xs flex items-center gap-1">

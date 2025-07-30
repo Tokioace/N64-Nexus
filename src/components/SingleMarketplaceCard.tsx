@@ -95,7 +95,7 @@ const SingleMarketplaceCard: React.FC<SingleMarketplaceCardProps> = ({ marketpla
           </div>
           <div className="compact-card-content">
             <div className="flex items-center justify-center h-16 text-slate-400 compact-text-sm">
-              {t('marketplace.noItemsAvailable')}
+              {t('card.noRecords')}
             </div>
           </div>
         </div>
@@ -252,7 +252,7 @@ const MarketplaceCard: React.FC<{ item: MarketplaceItem; index: number; isAnimat
         <div className="flex items-center gap-2">
           <ShoppingBag className="w-3 h-3 text-blue-400" />
           <h3 className="compact-card-title">
-            {t('marketplace.item')} #{index + 1}
+            {t('card.marketplace')} #{index + 1}
           </h3>
         </div>
         <div className="compact-text-xs text-blue-400">
@@ -285,7 +285,7 @@ const MarketplaceCard: React.FC<{ item: MarketplaceItem; index: number; isAnimat
           
           <div className="flex items-center justify-between compact-text-xs text-slate-400">
             <span className="font-medium">{formatTime(item.date)}</span>
-            <span className="text-blue-400 font-medium">{t('marketplace.viewItem')}</span>
+            <span className="text-blue-400 font-medium">{t('common.details')}</span>
           </div>
         </div>
       </div>

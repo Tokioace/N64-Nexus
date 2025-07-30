@@ -94,7 +94,7 @@ const SingleRecordCard: React.FC<SingleRecordCardProps> = ({ personalRecords, cl
           </div>
           <div className="compact-card-content">
             <div className="flex items-center justify-center h-16 text-slate-400 compact-text-sm">
-              {t('records.noRecordsAvailable')}
+              {t('card.noRecords')}
             </div>
           </div>
         </div>
@@ -238,13 +238,13 @@ const RecordCard: React.FC<{ record: PersonalRecord; index: number; isAnimating?
         <div className="flex items-center gap-2">
           <Trophy className="w-3 h-3 text-blue-400" />
           <h3 className="compact-card-title">
-            {t('records.record')} #{index + 1}
+            {t('card.records')} #{index + 1}
           </h3>
         </div>
         <div className="compact-text-xs flex items-center gap-1">
           <span className="text-blue-400">{record.platform}</span>
           {record.verified && (
-            <div className="w-1.5 h-1.5 bg-blue-400 rounded-full" title={t('records.verified')}></div>
+            <div className="w-1.5 h-1.5 bg-blue-400 rounded-full" title={t('card.verified')}></div>
           )}
         </div>
       </div>
@@ -279,7 +279,7 @@ const RecordCard: React.FC<{ record: PersonalRecord; index: number; isAnimating?
           
           <div className="flex items-center justify-between compact-text-xs text-slate-400">
             <span className="font-medium">{formatTime(record.date)}</span>
-            <span className="text-blue-400 font-medium">{t('records.viewRecord')}</span>
+            <span className="text-blue-400 font-medium">{t('common.details')}</span>
           </div>
         </div>
       </div>

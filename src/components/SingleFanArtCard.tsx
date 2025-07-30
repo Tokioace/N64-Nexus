@@ -86,7 +86,7 @@ const SingleFanArtCard: React.FC<SingleFanArtCardProps> = ({ fanArtItems, classN
           </div>
           <div className="compact-card-content">
             <div className="flex items-center justify-center h-16 text-slate-400 compact-text-sm">
-              {t('fanart.noFanArtAvailable')}
+              {t('card.noRecords')}
             </div>
           </div>
         </div>
@@ -223,7 +223,7 @@ const FanArtCard: React.FC<{ item: FanArtItem; index: number; isAnimating?: bool
         <div className="flex items-center gap-2">
           <Palette className="w-3 h-3 text-blue-400" />
           <h3 className="compact-card-title">
-            {t('fanart.artwork')} #{index + 1}
+            {t('card.fanarts')} #{index + 1}
           </h3>
         </div>
         <div className="compact-text-xs text-blue-400">
@@ -265,7 +265,7 @@ const FanArtCard: React.FC<{ item: FanArtItem; index: number; isAnimating?: bool
                 <span>{item.views}</span>
               </div>
             </div>
-            <span className="text-blue-400 font-medium">{t('fanart.viewArt')}</span>
+            <span className="text-blue-400 font-medium">{t('common.details')}</span>
           </div>
         </div>
       </div>

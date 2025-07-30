@@ -89,12 +89,12 @@ const SingleForumCard: React.FC<SingleForumCardProps> = ({ forumThreads, classNa
           <div className="compact-card-header">
             <div className="flex items-center gap-2">
               <MessageCircle className="w-4 h-4 text-blue-400" />
-              <h3 className="compact-card-title">{t('card.forum')}</h3>
+              <h3 className="compact-card-title">{t('card.forumPosts')}</h3>
             </div>
           </div>
           <div className="compact-card-content">
             <div className="flex items-center justify-center h-16 text-slate-400 compact-text-sm">
-              {t('forum.noThreadsAvailable')}
+              {t('card.noRecords')}
             </div>
           </div>
         </div>
@@ -238,7 +238,7 @@ const ForumThreadCard: React.FC<{ thread: ForumThread; index: number; isAnimatin
         <div className="flex items-center gap-2">
           <MessageCircle className="w-3 h-3 text-blue-400" />
           <h3 className="compact-card-title">
-            {t('forum.thread')} #{index + 1}
+            {t('card.forumPosts')} #{index + 1}
           </h3>
         </div>
         <div className="compact-text-xs text-blue-400">
@@ -258,7 +258,7 @@ const ForumThreadCard: React.FC<{ thread: ForumThread; index: number; isAnimatin
           <div className="border-t border-slate-600/20 pt-2 mt-3">
             <div className="flex items-center justify-between compact-text-xs text-slate-400">
               <span className="font-medium">{formatTime(thread.lastActivity)}</span>
-              <span className="text-blue-400 font-medium">{t('forum.viewThread')}</span>
+              <span className="text-blue-400 font-medium">{t('common.details')}</span>
             </div>
           </div>
         </div>
