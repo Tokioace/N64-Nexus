@@ -101,6 +101,7 @@ const hi = {
   // Events
   'events.title': 'इवेंट्स',
   'events.subtitle': 'टूर्नामेंट, चुनौतियाँ और कम्युनिटी इवेंट्स',
+  'events.practiceChampionshipSubtitle': 'Practice Beta Championship #1',
   'events.upcoming': 'आगामी इवेंट्स',
   'events.active': 'सक्रिय इवेंट्स',
   'events.completed': 'पूर्ण इवेंट्स',

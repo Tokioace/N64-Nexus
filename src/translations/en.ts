@@ -826,7 +826,50 @@ const en = {
   'events.dkrAncientLake.prize2': '🥈 2nd Place: 300 Battle64 Points + Lake Master',
   'events.dkrAncientLake.prize3': '🥉 3rd Place: 200 Battle64 Points + Ancient Racer',
   'events.dkrAncientLake.prizeTop10': '🏆 Top 10: F1-Style Points (25-18-15-12-10-8-6-4-2-1)',
-  'events.dkrAncientLake.prizeParticipation': '🎯 Participation: 5 Battle64 Points for every participant'
+  'events.dkrAncientLake.prizeParticipation': '🎯 Participation: 5 Battle64 Points for every participant',
+
+  // Fan Art Translations
+  'fanart.marioInCastle': 'Mario in Peach\'s Castle',
+  'fanart.linkVsGanondorf': 'Link vs Ganondorf Epic Battle',
+  'fanart.banjoKazooieAdventure': 'Banjo & Kazooie Adventure',
+  'fanart.rainbowRoadNostalgia': 'Rainbow Road Nostalgia',
+  'fanart.goldeneye007FacilityMap': 'GoldenEye 007 Facility Map',
+  'fanart.diddyKongRacingTeam': 'Diddy Kong Racing Team',
+  'fanart.starFox64ArwingSquadron': 'Star Fox 64 Arwing Squadron',
+  'fanart.smashBrosN64AllStars': 'Smash Bros N64 All Stars',
+  'fanart.yoshiStoryCuteStyle': 'Yoshi\'s Story Cute Style',
+  'fanart.fZeroXSpeedDemon': 'F-Zero X Speed Demon',
+
+  // Fan Art Artists
+  'fanart.artist.pixelArtist64': 'PixelArtist64',
+  'fanart.artist.zeldaDrawer': 'ZeldaDrawer',
+  'fanart.artist.retroSketch': 'RetroSketch',
+  'fanart.artist.kartArtist': 'KartArtist',
+  'fanart.artist.spyArtist': 'SpyArtist',
+  'fanart.artist.rareArtFan': 'RareArtFan',
+  'fanart.artist.spaceArtist': 'SpaceArtist',
+  'fanart.artist.fighterArt': 'FighterArt',
+  'fanart.artist.yoshiLover': 'YoshiLover',
+  'fanart.artist.racingArt64': 'RacingArt64',
+
+  // Media Translations
+  'media.mario64WRRun': 'Mario 64 16 Star WR Run',
+  'media.mario64WRRunDesc': 'New world record attempt with frame-perfect BLJ execution',
+  'media.ootAnyPercent': 'OoT Any% New PB!',
+  'media.ootAnyPercentDesc': 'Personal best with improved routing and glitch execution',
+  'media.perfectDarkAgent': 'Perfect Dark Agent Speedrun',
+  'media.perfectDarkAgentDesc': 'Agent difficulty completion with stealth tactics',
+  'media.marioKart64Comeback': 'Mario Kart 64 Epic Comeback',
+  'media.marioKart64ComebackDesc': 'Amazing last-lap comeback on Rainbow Road',
+  'media.goldeneye007Tournament': 'Live: GoldenEye Tournament',
+  'media.goldeneye007TournamentDesc': 'Live tournament stream with community commentary',
+
+  // Media Uploaders
+  'media.uploader.speedDemon64': 'SpeedDemon64',
+  'media.uploader.zeldaRunner': 'ZeldaRunner',
+  'media.uploader.secretRunner': 'SecretRunner',
+  'media.uploader.kartMaster': 'KartMaster',
+  'media.uploader.eventStream': 'EventStream'
 }
 
 export default en
