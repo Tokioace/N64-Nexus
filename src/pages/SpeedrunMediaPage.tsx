@@ -88,7 +88,7 @@ class MediaErrorBoundary extends React.Component<
 const SpeedrunMediaPage: React.FC = () => {
   const { t } = useLanguage()
   const { user, isAuthenticated } = useUser()
-  const { media, userMedia: _userMedia, loading, error, uploadMedia, uploadMediaFromUrl, likeMedia, getMediaByGame: _getMediaByGame, getMediaByUser: _getMediaByUser, getMediaStats } = useMedia()
+  const { media, loading, error, uploadMedia, uploadMediaFromUrl, likeMedia, getMediaStats } = useMedia()
   const { awardPoints } = usePoints()
   const { events, activeEvents } = useEvent()
   
