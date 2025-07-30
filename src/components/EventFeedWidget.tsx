@@ -30,24 +30,24 @@ const EventCard: React.FC<EventCardProps> = ({ event, leaderboard, timeRemaining
   const getRankIcon = (position: number) => {
     switch (position) {
       case 1:
-        return <Crown className="w-4 h-4 text-yellow-400" />
+        return <Crown className="w-3 h-3 text-blue-400" />
       case 2:
-        return <Medal className="w-4 h-4 text-gray-400" />
+        return <Medal className="w-3 h-3 text-slate-400" />
       case 3:
-        return <Medal className="w-4 h-4 text-amber-600" />
+        return <Medal className="w-3 h-3 text-blue-300" />
       default:
-        return <div className="w-4 h-4 flex items-center justify-center text-slate-400 font-bold text-xs">#{position}</div>
+        return <div className="w-3 h-3 flex items-center justify-center text-slate-400 font-bold text-xs">#{position}</div>
     }
   }
 
   const getRankColor = (position: number) => {
     switch (position) {
       case 1:
-        return 'text-yellow-400'
+        return 'text-blue-400'
       case 2:
-        return 'text-gray-400'
+        return 'text-slate-400'
       case 3:
-        return 'text-amber-500'
+        return 'text-blue-300'
       default:
         return 'text-slate-400'
     }
@@ -68,19 +68,6 @@ const EventCard: React.FC<EventCardProps> = ({ event, leaderboard, timeRemaining
     })
     .slice(0, 3)
 
-  const getEventGradient = (eventId: string) => {
-    switch (eventId) {
-      case 'mk64-luigis-raceway':
-        return 'from-green-600/20 to-emerald-600/20 border-l-4 border-green-400'
-      case 'sfr-downtown':
-        return 'from-orange-600/20 to-red-600/20 border-l-4 border-orange-400'
-      case 'dkr-ancient-lake':
-        return 'from-blue-600/20 to-cyan-600/20 border-l-4 border-blue-400'
-      default:
-        return 'from-purple-600/20 to-pink-600/20 border-l-4 border-purple-400'
-    }
-  }
-
   const getGameIcon = (gameTitle: string) => {
     if (gameTitle.includes('Mario Kart')) return '🏎️'
     if (gameTitle.includes('San Francisco')) return '🏙️'
@@ -89,138 +76,142 @@ const EventCard: React.FC<EventCardProps> = ({ event, leaderboard, timeRemaining
   }
 
   return (
-    <div className={`n64-tile n64-tile-large bg-gradient-to-br ${getEventGradient(event.id)} mb-6`}>
-      <div className="flex items-center justify-between mb-4">
-        <div className="flex items-center gap-3">
-          <div className="text-2xl">{getGameIcon(event.game)}</div>
-          <div>
-            <h3 className="text-lg font-bold text-slate-100 line-clamp-1">{event.title}</h3>
-            <p className="text-sm text-slate-400">{event.game} • {event.category}</p>
+    <div className="compact-card">
+      <div className="compact-card-header">
+        <div className="flex items-center gap-2 flex-1">
+          <div className="text-lg">{getGameIcon(event.game)}</div>
+          <div className="min-w-0 flex-1">
+            <h3 className="compact-card-title truncate">{event.title}</h3>
+            <p className="compact-text-xs text-slate-400 truncate">{event.game} • {event.category}</p>
           </div>
         </div>
-        <div className="text-right">
-          <div className="flex items-center gap-2 mb-1">
-            <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-            <span className="text-sm font-medium text-green-400">{t('events.status.live')}</span>
+        <div className="text-right flex-shrink-0">
+          <div className="flex items-center gap-1 mb-1">
+            <div className="w-1.5 h-1.5 bg-blue-400 rounded-full animate-pulse"></div>
+            <span className="compact-text-xs font-medium text-blue-400">{t('events.status.live')}</span>
           </div>
-          <div className="flex items-center gap-1 text-sm text-slate-300">
-            <Timer className="w-4 h-4" />
+          <div className="flex items-center gap-1 compact-text-xs text-slate-300">
+            <Timer className="w-3 h-3" />
             <span className="font-mono">{timeRemaining}</span>
           </div>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-        {/* Event Stats */}
-        <div className="space-y-3">
-          <div className="flex items-center justify-between text-sm">
-            <div className="flex items-center gap-2">
-              <Users className="w-4 h-4 text-blue-400" />
-              <span className="text-slate-300">{event.participants} {t('events.participants')}</span>
+      <div className="compact-card-content">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+          {/* Event Stats */}
+          <div className="space-y-2">
+            <div className="flex items-center justify-between compact-text-sm">
+              <div className="flex items-center gap-1">
+                <Users className="w-3 h-3 text-blue-400" />
+                <span className="text-slate-300">{event.participants} {t('events.participants')}</span>
+              </div>
+              <Link 
+                to="/events" 
+                className="flex items-center gap-1 text-blue-400 hover:text-blue-300 transition-colors"
+              >
+                <span className="compact-text-xs">{t('events.join')}</span>
+                <ChevronRight className="w-3 h-3" />
+              </Link>
             </div>
-            <Link 
-              to="/events" 
-              className="flex items-center gap-1 text-blue-400 hover:text-blue-300 transition-colors"
-            >
-              <span>{t('events.join')}</span>
-              <ChevronRight className="w-4 h-4" />
-            </Link>
+
+            {/* Top 3 Times */}
+            <div>
+              <h4 className="compact-text-sm font-semibold text-slate-200 mb-1 flex items-center gap-1">
+                <Trophy className="w-3 h-3 text-blue-400" />
+                {t('home.topLeaderboard')}
+              </h4>
+              {sortedLeaderboard.length > 0 ? (
+                <div className="space-y-1">
+                  {sortedLeaderboard.map((entry, index) => {
+                    const position = index + 1
+                    return (
+                      <div key={entry.id} className="compact-card-item">
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center gap-1 min-w-0 flex-1">
+                            {getRankIcon(position)}
+                            <span className="compact-text-sm text-slate-200 font-medium truncate">{entry.username}</span>
+                            {entry.verified && (
+                              <div className="w-1.5 h-1.5 bg-blue-400 rounded-full flex-shrink-0" title={t('home.verified')}></div>
+                            )}
+                          </div>
+                          <div className="flex items-center gap-1 flex-shrink-0">
+                            <span className={`compact-text-sm font-mono font-bold ${getRankColor(position)}`}>
+                              {entry.time}
+                            </span>
+                            {entry.mediaUrl && (
+                              <div className="flex items-center">
+                                {entry.documentationType === 'photo' && <Camera className="w-2.5 h-2.5 text-slate-400" />}
+                                {entry.documentationType === 'video' && <Video className="w-2.5 h-2.5 text-slate-400" />}
+                                {entry.documentationType === 'livestream' && <Radio className="w-2.5 h-2.5 text-slate-400" />}
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    )
+                  })}
+                </div>
+              ) : (
+                <div className="text-center py-2 bg-slate-800/20 rounded-lg">
+                  <Trophy className="w-4 h-4 text-slate-500 mx-auto mb-1" />
+                  <p className="compact-text-xs text-slate-400">{t('home.noTimesSubmitted')}</p>
+                  <p className="compact-text-xs text-slate-500">{t('home.beTheFirst')}</p>
+                </div>
+              )}
+            </div>
           </div>
 
-          {/* Top 3 Times */}
+          {/* Winner's Media Preview */}
           <div>
-            <h4 className="text-sm font-semibold text-slate-200 mb-2 flex items-center gap-2">
-              <Trophy className="w-4 h-4 text-yellow-400" />
-              {t('home.topLeaderboard')}
-            </h4>
-            {sortedLeaderboard.length > 0 ? (
-              <div className="space-y-2">
-                {sortedLeaderboard.map((entry, index) => {
-                  const position = index + 1
-                  return (
-                    <div key={entry.id} className="flex items-center justify-between bg-slate-800/30 rounded-lg p-2">
-                      <div className="flex items-center gap-2">
-                        {getRankIcon(position)}
-                        <span className="text-sm text-slate-200 font-medium">{entry.username}</span>
-                        {entry.verified && (
-                          <div className="w-2 h-2 bg-green-400 rounded-full" title={t('home.verified')}></div>
-                        )}
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <span className={`text-sm font-mono font-bold ${getRankColor(position)}`}>
-                          {entry.time}
-                        </span>
-                        {entry.mediaUrl && (
-                          <div className="flex items-center">
-                            {entry.documentationType === 'photo' && <Camera className="w-3 h-3 text-slate-400" />}
-                            {entry.documentationType === 'video' && <Video className="w-3 h-3 text-slate-400" />}
-                            {entry.documentationType === 'livestream' && <Radio className="w-3 h-3 text-slate-400" />}
-                          </div>
-                        )}
+            {sortedLeaderboard.length > 0 && sortedLeaderboard[0].mediaUrl && (
+              <div>
+                <h4 className="compact-text-sm font-semibold text-slate-200 mb-1 flex items-center gap-1">
+                  <Crown className="w-3 h-3 text-blue-400" />
+                  {t('home.winner')} - {sortedLeaderboard[0].username}
+                </h4>
+                <div className="relative bg-slate-800/20 rounded-lg overflow-hidden">
+                  {sortedLeaderboard[0].documentationType === 'photo' && (
+                    <img 
+                      src={sortedLeaderboard[0].mediaUrl!} 
+                      alt={`Winner screenshot by ${sortedLeaderboard[0].username}`}
+                      className="w-full h-16 object-cover"
+                      onError={(e) => {
+                        const target = e.target as HTMLImageElement
+                        target.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iIzMzNCI+PC9yZWN0Pjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTIiIGZpbGw9IiM5OTkiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5TY3JlZW5zaG90PC90ZXh0Pjwvc3ZnPg=='
+                      }}
+                    />
+                  )}
+                  {sortedLeaderboard[0].documentationType === 'video' && (
+                    <div className="relative">
+                      <video 
+                        src={sortedLeaderboard[0].mediaUrl!}
+                        className="w-full h-16 object-cover"
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                      />
+                      <div className="absolute top-1 right-1 bg-black bg-opacity-50 rounded px-1 py-0.5">
+                        <Video className="w-2.5 h-2.5 text-white" />
                       </div>
                     </div>
-                  )
-                })}
-              </div>
-            ) : (
-              <div className="text-center py-4 bg-slate-800/30 rounded-lg">
-                <Trophy className="w-6 h-6 text-slate-500 mx-auto mb-1" />
-                <p className="text-xs text-slate-400">{t('home.noTimesSubmitted')}</p>
-                <p className="text-xs text-slate-500">{t('home.beTheFirst')}</p>
+                  )}
+                  {sortedLeaderboard[0].documentationType === 'livestream' && (
+                    <div className="h-16 flex items-center justify-center bg-gradient-to-r from-blue-600/20 to-blue-700/20">
+                      <div className="text-center">
+                        <Radio className="w-4 h-4 text-blue-400 mx-auto mb-1" />
+                        <p className="compact-text-xs text-blue-400">{t('media.livestream')}</p>
+                      </div>
+                    </div>
+                  )}
+                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-1">
+                    <div className="compact-text-xs text-white font-bold">{sortedLeaderboard[0].time}</div>
+                  </div>
+                </div>
               </div>
             )}
           </div>
-        </div>
-
-        {/* Winner's Media Preview */}
-        <div>
-          {sortedLeaderboard.length > 0 && sortedLeaderboard[0].mediaUrl && (
-            <div>
-              <h4 className="text-sm font-semibold text-slate-200 mb-2 flex items-center gap-2">
-                <Crown className="w-4 h-4 text-yellow-400" />
-                {t('home.winner')} - {sortedLeaderboard[0].username}
-              </h4>
-              <div className="relative bg-slate-800/30 rounded-lg overflow-hidden">
-                {sortedLeaderboard[0].documentationType === 'photo' && (
-                  <img 
-                    src={sortedLeaderboard[0].mediaUrl!} 
-                    alt={`Winner screenshot by ${sortedLeaderboard[0].username}`}
-                    className="w-full h-24 object-cover"
-                    onError={(e) => {
-                      const target = e.target as HTMLImageElement
-                      target.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iIzMzNCI+PC9yZWN0Pjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTIiIGZpbGw9IiM5OTkiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5TY3JlZW5zaG90PC90ZXh0Pjwvc3ZnPg=='
-                    }}
-                  />
-                )}
-                {sortedLeaderboard[0].documentationType === 'video' && (
-                  <div className="relative">
-                    <video 
-                      src={sortedLeaderboard[0].mediaUrl!}
-                      className="w-full h-24 object-cover"
-                      autoPlay
-                      loop
-                      muted
-                      playsInline
-                    />
-                    <div className="absolute top-1 right-1 bg-black bg-opacity-50 rounded px-1 py-0.5">
-                      <Video className="w-3 h-3 text-white" />
-                    </div>
-                  </div>
-                )}
-                {sortedLeaderboard[0].documentationType === 'livestream' && (
-                  <div className="h-24 flex items-center justify-center bg-gradient-to-r from-purple-600/20 to-purple-700/20">
-                    <div className="text-center">
-                      <Radio className="w-6 h-6 text-purple-400 mx-auto mb-1" />
-                      <p className="text-xs text-purple-400">{t('media.livestream')}</p>
-                    </div>
-                  </div>
-                )}
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-2">
-                  <div className="text-xs text-white font-bold">{sortedLeaderboard[0].time}</div>
-                </div>
-              </div>
-            </div>
-          )}
         </div>
       </div>
     </div>

@@ -88,22 +88,22 @@ const SingleMediaCard: React.FC<SingleMediaCardProps> = ({ mediaItems, className
   const getTypeColor = (type: string) => {
     switch (type) {
       case 'speedrun':
-        return 'text-accent-green'
+        return 'text-blue-400'
       case 'screenshot':
-        return 'text-accent-blue'
+        return 'text-blue-300'
       case 'achievement':
-        return 'text-accent-yellow'
+        return 'text-blue-500'
       case 'stream':
-        return 'text-accent-purple'
+        return 'text-blue-600'
       default:
-        return 'text-text-muted'
+        return 'text-slate-400'
     }
   }
 
   const getTypeIcon = (type: string) => {
     switch (type) {
       case 'speedrun':
-        return '🏃'
+        return '⚡'
       case 'screenshot':
         return '📸'
       case 'achievement':
@@ -118,31 +118,31 @@ const SingleMediaCard: React.FC<SingleMediaCardProps> = ({ mediaItems, className
   const getTypeTranslation = (type: string) => {
     switch (type) {
       case 'speedrun':
-        return t('media.speedruns')
+        return t('media.type.speedrun')
       case 'screenshot':
-        return t('media.screenshots')
+        return t('media.type.screenshot')
       case 'achievement':
-        return t('media.achievements')
+        return t('media.type.achievement')
       case 'stream':
-        return t('media.livestream')
+        return t('media.type.stream')
       default:
-        return t('media.type')
+        return t('media.type.general')
     }
   }
 
   if (mediaItems.length === 0) {
     return (
       <div className={`${className} flex justify-center`}>
-        <div className="swipeable-card bg-gradient-to-br from-slate-600/20 to-slate-800/20 border-l-4 border-accent-green">
-          <div className="swipeable-card-header">
+        <div className="compact-card">
+          <div className="compact-card-header">
             <div className="flex items-center gap-2">
-              <Play className="w-5 h-5 text-accent-green" />
-              <h3 className="text-responsive-base font-bold text-slate-100">{t('card.media')}</h3>
+              <Play className="w-4 h-4 text-blue-400" />
+              <h3 className="compact-card-title">{t('card.media')}</h3>
             </div>
           </div>
-          <div className="swipeable-card-content">
-            <div className="flex items-center justify-center h-full text-slate-400 text-responsive-sm">
-              {t('media.noMediaFound')}
+          <div className="compact-card-content">
+            <div className="flex items-center justify-center h-16 text-slate-400 compact-text-sm">
+              {t('media.noMediaAvailable')}
             </div>
           </div>
         </div>
@@ -150,108 +150,37 @@ const SingleMediaCard: React.FC<SingleMediaCardProps> = ({ mediaItems, className
     )
   }
 
-  const currentItem = mediaItems[currentIndex]
-
   return (
     <div className={`${className} flex justify-center`}>
       <div 
-        className="relative book-container"
+        className="relative w-full max-w-md"
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
       >
+        {/* Direct slide transition */}
         <div className="relative overflow-hidden">
+          {/* Background card for smooth transition */}
           {isFlipping && (
             <div className="absolute inset-0 z-10">
               {flipDirection === 'left' && currentIndex < mediaItems.length - 1 && 
-                <div className="swipeable-card bg-gradient-to-br from-green-600/20 to-green-800/20 border-l-4 border-accent-green">
-                  <div className="swipeable-card-header">
-                    <div className="flex items-center gap-2">
-                      <Play className="w-5 h-5 text-accent-green" />
-                      <h3 className="text-responsive-base font-bold text-text-primary">{t('card.media')}</h3>
-                    </div>
-                    <div className="text-xs text-text-muted flex items-center gap-1">
-                      <span className={getTypeColor(mediaItems[currentIndex + 1].type)}>
-                        {getTypeIcon(mediaItems[currentIndex + 1].type)} {getTypeTranslation(mediaItems[currentIndex + 1].type)}
-                      </span>
-                      {mediaItems[currentIndex + 1].verified && (
-                        <span className="text-accent-green">✓ {t('card.verified')}</span>
-                      )}
-                    </div>
-                  </div>
-                  <div className="swipeable-card-content">
-                    <div className="p-4 h-full flex flex-col">
-                      <div className="flex-1">
-                        <h4 className="text-base sm:text-lg font-semibold text-text-primary mb-2 leading-tight">
-                          {mediaItems[currentIndex + 1].title}
-                        </h4>
-                        <p className="text-sm text-text-secondary mb-3 line-clamp-2">
-                          {mediaItems[currentIndex + 1].description}
-                        </p>
-                        <div className="text-sm text-text-muted mb-2">
-                          {mediaItems[currentIndex + 1].game}
-                        </div>
-                        <div className="flex items-center gap-4 text-sm text-text-muted">
-                          <span>👁 {mediaItems[currentIndex + 1].views.toLocaleString()}</span>
-                          <span>❤ {mediaItems[currentIndex + 1].likes.toLocaleString()}</span>
-                        </div>
-                      </div>
-                      <div className="border-t border-slate-600/30 pt-3 mt-auto">
-                        <div className="flex items-center justify-between text-sm text-text-muted">
-                          <span>{mediaItems[currentIndex + 1].uploader}</span>
-                          <span className="font-medium">{formatTime(mediaItems[currentIndex + 1].date)}</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <MediaCard
+                  item={mediaItems[currentIndex + 1]}
+                  index={currentIndex + 1}
+                  isAnimating={false}
+                />
               }
               {flipDirection === 'right' && currentIndex > 0 && 
-                <div className="swipeable-card bg-gradient-to-br from-green-600/20 to-green-800/20 border-l-4 border-accent-green">
-                  <div className="swipeable-card-header">
-                    <div className="flex items-center gap-2">
-                      <Play className="w-5 h-5 text-accent-green" />
-                      <h3 className="text-responsive-base font-bold text-text-primary">{t('card.media')}</h3>
-                    </div>
-                    <div className="text-xs text-text-muted flex items-center gap-1">
-                      <span className={getTypeColor(mediaItems[currentIndex - 1].type)}>
-                        {getTypeIcon(mediaItems[currentIndex - 1].type)} {getTypeTranslation(mediaItems[currentIndex - 1].type)}
-                      </span>
-                      {mediaItems[currentIndex - 1].verified && (
-                        <span className="text-accent-green">✓ {t('card.verified')}</span>
-                      )}
-                    </div>
-                  </div>
-                  <div className="swipeable-card-content">
-                    <div className="p-4 h-full flex flex-col">
-                      <div className="flex-1">
-                        <h4 className="text-base sm:text-lg font-semibold text-text-primary mb-2 leading-tight">
-                          {mediaItems[currentIndex - 1].title}
-                        </h4>
-                        <p className="text-sm text-text-secondary mb-3 line-clamp-2">
-                          {mediaItems[currentIndex - 1].description}
-                        </p>
-                        <div className="text-sm text-text-muted mb-2">
-                          {mediaItems[currentIndex - 1].game}
-                        </div>
-                        <div className="flex items-center gap-4 text-sm text-text-muted">
-                          <span>👁 {mediaItems[currentIndex - 1].views.toLocaleString()}</span>
-                          <span>❤ {mediaItems[currentIndex - 1].likes.toLocaleString()}</span>
-                        </div>
-                      </div>
-                      <div className="border-t border-slate-600/30 pt-3 mt-auto">
-                        <div className="flex items-center justify-between text-sm text-text-muted">
-                          <span>{mediaItems[currentIndex - 1].uploader}</span>
-                          <span className="font-medium">{formatTime(mediaItems[currentIndex - 1].date)}</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <MediaCard
+                  item={mediaItems[currentIndex - 1]}
+                  index={currentIndex - 1}
+                  isAnimating={false}
+                />
               }
             </div>
           )}
           
+          {/* Current card with slide animation */}
           <div 
             className={`relative z-20 transition-transform duration-200 ease-out ${
               isFlipping 
@@ -261,91 +190,197 @@ const SingleMediaCard: React.FC<SingleMediaCardProps> = ({ mediaItems, className
                 : 'transform translate-x-0 opacity-100'
             }`}
           >
-            <div className="swipeable-card bg-gradient-to-br from-green-600/20 to-green-800/20 border-l-4 border-accent-green">
-              <div className="swipeable-card-header">
-                <div className="flex items-center gap-2">
-                  <Play className="w-5 h-5 text-accent-green" />
-                  <h3 className="text-responsive-base font-bold text-text-primary">{t('card.media')}</h3>
-                </div>
-                <div className="text-xs text-text-muted flex items-center gap-1">
-                  <span className={getTypeColor(currentItem.type)}>
-                    {getTypeIcon(currentItem.type)} {getTypeTranslation(currentItem.type)}
-                  </span>
-                  {currentItem.verified && (
-                    <span className="text-accent-green">✓ {t('card.verified')}</span>
-                  )}
-                </div>
-              </div>
-              <div className="swipeable-card-content">
-                <div className="p-4 h-full flex flex-col">
-                  <div className="flex-1">
-                    <h4 className="text-base sm:text-lg font-semibold text-text-primary mb-2 leading-tight">
-                      {currentItem.title}
-                    </h4>
-                    <p className="text-sm text-text-secondary mb-3 line-clamp-2">
-                      {currentItem.description}
-                    </p>
-                    <div className="text-sm text-text-muted mb-2">
-                      {currentItem.game}
-                    </div>
-                    <div className="flex items-center gap-4 text-sm text-text-muted">
-                      <span>👁 {currentItem.views.toLocaleString()}</span>
-                      <span>❤ {currentItem.likes.toLocaleString()}</span>
-                    </div>
-                  </div>
-                  <div className="border-t border-slate-600/30 pt-3 mt-auto">
-                    <div className="flex items-center justify-between text-sm text-text-muted">
-                      <span>{currentItem.uploader}</span>
-                      <span className="font-medium">{formatTime(currentItem.date)}</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <MediaCard
+              item={mediaItems[currentIndex]}
+              index={currentIndex}
+              isAnimating={false}
+            />
           </div>
         </div>
         
+        {/* Navigation buttons */}
         <div className="absolute top-1/2 -translate-y-1/2 left-2 right-2 flex justify-between pointer-events-none z-30">
           <button
             onClick={goToPrevious}
             disabled={isFlipping || currentIndex <= 0}
-            className={`pointer-events-auto p-2 rounded-full bg-slate-700/80 hover:bg-slate-600/80 text-slate-300 hover:text-white transition-all duration-200 ${
-              currentIndex <= 0 ? 'opacity-30 cursor-not-allowed' : 'opacity-70 hover:opacity-100'
+            className={`pointer-events-auto w-6 h-6 rounded-full bg-black/50 backdrop-blur-sm flex items-center justify-center transition-all duration-200 ${
+              currentIndex <= 0 || isFlipping 
+                ? 'opacity-30 cursor-not-allowed' 
+                : 'opacity-70 hover:opacity-100 hover:bg-blue-500/30'
             }`}
-            aria-label={t('aria.previousCard')}
           >
-            <span className="text-lg">‹</span>
+            <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            </svg>
           </button>
-          
+
           <button
             onClick={goToNext}
             disabled={isFlipping || currentIndex >= mediaItems.length - 1}
-            className={`pointer-events-auto p-2 rounded-full bg-slate-700/80 hover:bg-slate-600/80 text-slate-300 hover:text-white transition-all duration-200 ${
-              currentIndex >= mediaItems.length - 1 ? 'opacity-30 cursor-not-allowed' : 'opacity-70 hover:opacity-100'
+            className={`pointer-events-auto w-6 h-6 rounded-full bg-black/50 backdrop-blur-sm flex items-center justify-center transition-all duration-200 ${
+              currentIndex >= mediaItems.length - 1 || isFlipping 
+                ? 'opacity-30 cursor-not-allowed' 
+                : 'opacity-70 hover:opacity-100 hover:bg-blue-500/30'
             }`}
-            aria-label={t('aria.nextCard')}
           >
-            <span className="text-lg">›</span>
+            <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
           </button>
         </div>
-        
-        <div className="flex justify-center mt-2 gap-1">
+
+        {/* Pagination dots */}
+        <div className="flex justify-center gap-1 mt-2">
           {mediaItems.map((_, index) => (
-            <div
+            <button
               key={index}
-              className={`w-2 h-2 rounded-full transition-colors duration-200 ${
+              onClick={() => {
+                if (!isFlipping && index !== currentIndex) {
+                  setFlipDirection(index > currentIndex ? 'left' : 'right')
+                  setIsFlipping(true)
+                  setTimeout(() => {
+                    setCurrentIndex(index)
+                    setIsFlipping(false)
+                  }, 200)
+                }
+              }}
+              className={`w-1.5 h-1.5 rounded-full transition-all duration-200 ${
                 index === currentIndex 
-                  ? 'bg-green-400' 
-                  : index < currentIndex
-                  ? 'bg-slate-500'
-                  : 'bg-slate-600'
+                  ? 'bg-blue-400' 
+                  : 'bg-slate-600 hover:bg-slate-500'
               }`}
             />
           ))}
         </div>
-        
-        <div className="text-center mt-1 text-xs text-slate-400">
-          {currentIndex + 1} {t('common.of')} {mediaItems.length}
+
+        {/* Card counter */}
+        <div className="text-center mt-1">
+          <span className="compact-text-xs text-slate-500">
+            {currentIndex + 1} / {mediaItems.length}
+          </span>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+const MediaCard: React.FC<{ item: MediaItem; index: number; isAnimating?: boolean }> = ({ 
+  item, 
+  index, 
+  isAnimating = false 
+}) => {
+  const { t, currentLanguage } = useLanguage()
+  
+  const formatTime = (date: Date) => {
+    return date.toLocaleTimeString(getLocaleString(currentLanguage), {
+      hour: '2-digit',
+      minute: '2-digit'
+    })
+  }
+
+  const getTypeColor = (type: string) => {
+    switch (type) {
+      case 'speedrun':
+        return 'text-blue-400'
+      case 'screenshot':
+        return 'text-blue-300'
+      case 'achievement':
+        return 'text-blue-500'
+      case 'stream':
+        return 'text-blue-600'
+      default:
+        return 'text-slate-400'
+    }
+  }
+
+  const getTypeIcon = (type: string) => {
+    switch (type) {
+      case 'speedrun':
+        return '⚡'
+      case 'screenshot':
+        return '📸'
+      case 'achievement':
+        return '🏆'
+      case 'stream':
+        return '📺'
+      default:
+        return '🎮'
+    }
+  }
+
+  const getTypeTranslation = (type: string) => {
+    switch (type) {
+      case 'speedrun':
+        return t('media.type.speedrun')
+      case 'screenshot':
+        return t('media.type.screenshot')
+      case 'achievement':
+        return t('media.type.achievement')
+      case 'stream':
+        return t('media.type.stream')
+      default:
+        return t('media.type.general')
+    }
+  }
+
+  return (
+    <div className={`compact-card transition-all duration-300 cursor-pointer ${isAnimating ? 'scale-95 opacity-80' : 'scale-100 opacity-100'}`}>
+      <div className="compact-card-header">
+        <div className="flex items-center gap-2">
+          <Play className="w-3 h-3 text-blue-400" />
+          <h3 className="compact-card-title">
+            {t('media.content')} #{index + 1}
+          </h3>
+        </div>
+        <div className="compact-text-xs flex items-center gap-1">
+          <span>{getTypeIcon(item.type)}</span>
+          <span className={getTypeColor(item.type)}>{getTypeTranslation(item.type)}</span>
+        </div>
+      </div>
+      
+      <div className="compact-card-content">
+        <div className="space-y-2">
+          {/* Thumbnail */}
+          <div className="relative rounded-lg overflow-hidden bg-slate-800/30">
+            {item.thumbnailUrl ? (
+              <img 
+                src={item.thumbnailUrl} 
+                alt={item.title}
+                className="w-full h-20 object-cover"
+                onError={(e) => {
+                  const target = e.target as HTMLImageElement
+                  target.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iIzMzNCI+PC9yZWN0Pjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTIiIGZpbGw9IiM5OTkiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5NZWRpYTwvdGV4dD48L3N2Zz4='
+                }}
+              />
+            ) : (
+              <div className="w-full h-20 flex items-center justify-center">
+                <Play className="w-6 h-6 text-slate-400" />
+              </div>
+            )}
+            {item.verified && (
+              <div className="absolute top-1 right-1 w-2 h-2 bg-blue-400 rounded-full"></div>
+            )}
+          </div>
+          
+          <h4 className="compact-text-sm font-semibold text-slate-100 leading-tight line-clamp-1">
+            {item.title}
+          </h4>
+          
+          <p className="compact-text-xs text-slate-300 leading-relaxed line-clamp-2">
+            {item.description}
+          </p>
+          
+          <div className="compact-text-xs text-slate-400">
+            by {item.uploader} • {item.game}
+          </div>
+          
+          <div className="flex items-center justify-between compact-text-xs text-slate-400">
+            <div className="flex items-center gap-2">
+              <span>👁 {item.views}</span>
+              <span>❤️ {item.likes}</span>
+            </div>
+            <span className="text-blue-400 font-medium">{formatTime(item.date)}</span>
+          </div>
         </div>
       </div>
     </div>

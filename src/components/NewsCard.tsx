@@ -40,15 +40,15 @@ const NewsCard: React.FC<NewsCardProps> = ({ newsItem, index, onDismiss, isAnima
   const getTypeColor = (type: string) => {
     switch (type) {
       case 'event_winner':
-        return 'text-accent-yellow'
+        return 'text-blue-400'
       case 'n64_history':
-        return 'text-accent-purple'
+        return 'text-blue-300'
       case 'community_news':
-        return 'text-accent-blue'
+        return 'text-blue-400'
       case 'event_announcement':
-        return 'text-accent-green'
+        return 'text-blue-500'
       default:
-        return 'text-text-muted'
+        return 'text-slate-400'
     }
   }
 
@@ -86,69 +86,55 @@ const NewsCard: React.FC<NewsCardProps> = ({ newsItem, index, onDismiss, isAnima
 
   return (
     <div 
-      className={`swipeable-card ${getCardClass(newsItem.type)} relative transition-all duration-300 ${isAnimating ? 'scale-95 opacity-80' : 'scale-100 opacity-100'}`}
+      className={`compact-card relative transition-all duration-300 cursor-pointer ${isAnimating ? 'scale-95 opacity-80' : 'scale-100 opacity-100'}`}
       onClick={handleCardClick}
     >
-      {/* Event Winner Label */}
+      {/* Event Winner Label - Compact */}
       {newsItem.type === 'event_winner' && (
-        <div className="news-event-winner-label">
+        <div className="absolute top-0 left-0 bg-blue-500 text-white compact-text-xs px-2 py-1 rounded-tl-lg rounded-br-lg font-medium">
           {t('news.eventWinnerLabel')}
         </div>
       )}
       
-      {/* Dismiss Button */}
+      {/* Dismiss Button - Compact */}
       {onDismiss && (
         <button
           onClick={onDismiss}
-          className={`absolute top-2 z-10 p-1 rounded-full transition-colors ${
+          className={`absolute top-2 z-10 p-1 rounded-full bg-black/50 text-slate-300 hover:bg-black/70 hover:text-white transition-colors ${
             newsItem.type === 'event_winner' ? 'left-2' : 'right-2'
           }`}
-          style={{
-            backgroundColor: 'rgba(46, 47, 64, 0.8)',
-            color: '#CCCCCC'
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.backgroundColor = 'rgba(58, 60, 85, 0.8)'
-            e.currentTarget.style.color = '#FFFFFF'
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.backgroundColor = 'rgba(46, 47, 64, 0.8)'
-            e.currentTarget.style.color = '#CCCCCC'
-          }}
           aria-label={t('aria.dismissNews')}
         >
-          <X className="w-4 h-4" />
+          <X className="w-3 h-3" />
         </button>
       )}
       
-      <div className="swipeable-card-header">
+      <div className="compact-card-header">
         <div className="flex items-center gap-2">
-          <Newspaper className="w-4 h-4 text-accent-blue" />
-          <h3 className="text-sm font-bold text-text-primary">
+          <Newspaper className="w-3 h-3 text-blue-400" />
+          <h3 className="compact-card-title">
             {t('news.title')} #{index + 1}
           </h3>
         </div>
-        <div className="text-xs text-text-muted">
+        <div className="compact-text-xs text-slate-400">
           <span className={`capitalize ${getTypeColor(newsItem.type)}`}>
             {getTypeTranslation(newsItem.type)}
           </span>
         </div>
       </div>
       
-      <div className="swipeable-card-content">
-        <div className="p-4 h-full flex flex-col justify-between">
-          <div className="flex-1 space-y-3">
-            <h4 className="text-base font-semibold text-text-primary leading-tight line-clamp-2">
-              {newsItem.title}
-            </h4>
-            <p className="text-sm text-text-secondary leading-relaxed line-clamp-3">
-              {newsItem.content}
-            </p>
-          </div>
-          <div className="border-t border-slate-600/30 pt-3 mt-4 flex-shrink-0">
-            <div className="flex items-center justify-between text-xs text-text-muted">
+      <div className="compact-card-content">
+        <div className="space-y-2">
+          <h4 className="compact-text-sm font-semibold text-slate-100 leading-tight line-clamp-2">
+            {newsItem.title}
+          </h4>
+          <p className="compact-text-xs text-slate-300 leading-relaxed line-clamp-3">
+            {newsItem.content}
+          </p>
+          <div className="border-t border-slate-600/20 pt-2 mt-3">
+            <div className="flex items-center justify-between compact-text-xs text-slate-400">
               <span className="font-medium">{formatTime(newsItem.date)}</span>
-              <span className="text-accent-blue font-medium">{t('ui.newsDetails')}</span>
+              <span className="text-blue-400 font-medium">{t('ui.newsDetails')}</span>
             </div>
           </div>
         </div>
