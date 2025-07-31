@@ -830,6 +830,10 @@ const es = {
   'home.hoursRemaining': '{hours}h restantes',
   'home.replies': '{count} respuestas',
   'home.verifiedStatus': '✓ Verificado',
+  'home.watchStream': 'Ver Stream',
+  'home.clickToViewFull': 'Haz clic para ver a tamaño completo',
+  'home.clickToWatch': 'Haz clic para ver',
+  'home.noMediaSubmitted': 'No se han enviado medios',
 
   // News items
   'news.mariokartRecord': '¡🏆 Récord Mundial de Mario Kart 64 Speedrun Roto!',

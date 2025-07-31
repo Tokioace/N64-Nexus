@@ -840,6 +840,10 @@ const zh = {
   'home.hoursRemaining': '剩余{hours}小时',
   'home.replies': '{count}条回复',
   'home.verifiedStatus': '✓ 已验证',
+  'home.watchStream': '观看直播',
+  'home.clickToViewFull': '点击查看完整尺寸',
+  'home.clickToWatch': '点击观看',
+  'home.noMediaSubmitted': '未提交媒体',
 
   // News items - 新闻项目
   'news.mariokartRecord': '🏆 Mario Kart 64 竞速世界纪录被打破！',

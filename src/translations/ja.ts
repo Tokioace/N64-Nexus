@@ -840,6 +840,10 @@ const ja = {
   'home.hoursRemaining': '{hours}時間残り',
   'home.replies': '{count}件の返信',
   'home.verifiedStatus': '✓ 認証済み',
+  'home.watchStream': 'ストリームを見る',
+  'home.clickToViewFull': 'クリックしてフルサイズで表示',
+  'home.clickToWatch': 'クリックして視聴',
+  'home.noMediaSubmitted': 'メディアが投稿されていません',
 
   // News items - ニュースアイテム
   'news.mariokartRecord': '🏆 Mario Kart 64 スピードラン世界記録更新！',

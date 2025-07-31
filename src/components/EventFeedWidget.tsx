@@ -282,7 +282,7 @@ const EventCard: React.FC<EventCardProps> = ({ event, leaderboard, timeRemaining
                       className="flex items-center gap-1 text-purple-400 hover:text-purple-300 transition-colors"
                     >
                       <Radio className="w-3 h-3" />
-                      <span>Watch Stream</span>
+                      <span>{t('home.watchStream')}</span>
                     </a>
                   )}
                   {sortedLeaderboard[0].documentationType !== 'livestream' && (
