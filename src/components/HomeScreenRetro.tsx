@@ -2,7 +2,6 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { useUser } from '../contexts/UserContext'
 import { useLanguage } from '../contexts/LanguageContext'
-import RankingBar from './RankingBar'
 import {
   Trophy,
   Target,
@@ -24,21 +23,16 @@ const HomeScreenRetro: React.FC = () => {
 
   return (
     <div className="retro-page container mx-auto px-4 py-6">
-      {/* Ranking Bar at the top */}
-      <div className="text-center mb-4">
-        <RankingBar />
-      </div>
-      
       {/* Header with Mascot */}
       <div className="text-center mb-6">
         <div className="battle64-header-container mb-2">
-          {/* Mascot Image - Positioned lower to avoid antenna overlap */}
+          {/* Mascot Image - Positioned so antennas are just below ranking card */}
           <img 
             src="/mascot.png" 
             alt={t('alt.battle64Mascot')} 
             className="battle64-mascot h-48 sm:h-56 md:h-64 lg:h-80 w-auto object-contain"
             style={{
-              marginTop: 'clamp(1rem, 3vw, 2rem)' // Added margin to show antennas
+              marginTop: 'clamp(0.5rem, 1vw, 1rem)' // Reduced margin so antennas show under ranking card
             }}
           />
         </div>
