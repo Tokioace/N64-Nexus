@@ -70,16 +70,16 @@ export const LikeButton: React.FC<LikeButtonProps> = ({
     <button
       onClick={handleLike}
       disabled={!user || isLiking}
-      className={`flex items-center ${!compact ? 'gap-1 sm:gap-2' : ''} transition-all duration-200 ${
+      className={`flex items-center ${!compact ? 'gap-1.5 sm:gap-2' : ''} transition-all duration-200 ${
         isLiked 
           ? 'text-pink-400 hover:text-pink-300' 
           : 'text-slate-400 hover:text-pink-400'
       } ${!user ? 'opacity-50 cursor-not-allowed' : 'hover:scale-105'} ${className}`}
       title={user ? (isLiked ? t('interaction.unlike') : t('interaction.like')) : t('interaction.loginToLike')}
     >
-      <Heart className={`${compact ? 'w-4 h-4' : 'w-4 h-4'} ${isLiked ? 'fill-pink-400 text-pink-400 scale-110' : ''} transition-all`} />
+      <Heart className={`${compact ? 'w-4 h-4' : 'w-4 h-4'} flex-shrink-0 ${isLiked ? 'fill-pink-400 text-pink-400 scale-110' : ''} transition-all`} />
       {!compact && (
-        <span className="text-xs sm:text-sm font-medium">
+        <span className="text-xs sm:text-sm font-medium min-w-[1ch]">
           {interactionData.likes > 0 ? interactionData.likes : ''}
         </span>
       )}
@@ -108,10 +108,10 @@ export const ViewCounter: React.FC<ViewCounterProps> = ({
 
   // Always show the view counter, even without authentication
   return (
-    <div className={`flex items-center ${!compact ? 'gap-1 sm:gap-2' : ''} text-slate-400 ${className}`}>
-      <Eye className={`${compact ? 'w-4 h-4' : 'w-4 h-4'} transition-all`} />
+    <div className={`flex items-center ${!compact ? 'gap-1.5 sm:gap-2' : ''} text-slate-400 ${className}`}>
+      <Eye className={`${compact ? 'w-4 h-4' : 'w-4 h-4'} flex-shrink-0 transition-all`} />
       {!compact && (
-        <span className="text-xs sm:text-sm">
+        <span className="text-xs sm:text-sm min-w-[1ch]">
           {interactionData.views > 0 ? interactionData.views : '0'}
         </span>
       )}
@@ -286,7 +286,7 @@ export const InteractionBar: React.FC<InteractionBarProps> = ({
     return (
       <div className={`flex items-center gap-4 ${className}`}>
         {/* Like Button with count */}
-        <div className="flex items-center gap-1">
+        <div className="flex items-center gap-1.5">
           <button
             onClick={async () => {
               const { likeContent, unlikeContent, hasUserLiked } = useInteraction()
@@ -304,33 +304,33 @@ export const InteractionBar: React.FC<InteractionBarProps> = ({
                 console.error('Error toggling like:', error)
               }
             }}
-            className="text-slate-400 hover:text-pink-400 transition-colors"
+            className="text-slate-400 hover:text-pink-400 transition-colors flex-shrink-0"
           >
             <Heart className="w-4 h-4" />
           </button>
-          <span className="text-xs text-slate-400 font-medium">
+          <span className="text-xs text-slate-400 font-medium min-w-[1ch]">
             {interactionData.likes > 0 ? interactionData.likes : '0'}
           </span>
         </div>
         
         {/* View Counter with count */}
-        <div className="flex items-center gap-1">
-          <Eye className="w-4 h-4 text-slate-400" />
-          <span className="text-xs text-slate-400 font-medium">
+        <div className="flex items-center gap-1.5">
+          <Eye className="w-4 h-4 text-slate-400 flex-shrink-0" />
+          <span className="text-xs text-slate-400 font-medium min-w-[1ch]">
             {interactionData.views > 0 ? interactionData.views : '0'}
           </span>
         </div>
         
         {/* Comment Button with count */}
         {showComments && (
-          <div className="flex items-center gap-1">
+          <div className="flex items-center gap-1.5">
             <button
               onClick={() => setShowCommentsSection(!showCommentsSection)}
-              className="text-slate-400 hover:text-blue-400 transition-colors"
+              className="text-slate-400 hover:text-blue-400 transition-colors flex-shrink-0"
             >
               <MessageSquare className="w-4 h-4" />
             </button>
-            <span className="text-xs text-slate-400 font-medium">
+            <span className="text-xs text-slate-400 font-medium min-w-[1ch]">
               {interactionData.comments.length > 0 ? interactionData.comments.length : '0'}
             </span>
           </div>
