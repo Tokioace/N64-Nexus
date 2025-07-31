@@ -896,7 +896,7 @@ const es = {
   'ranking.globalRank': 'Rango Global',
   'ranking.totalPoints': 'Puntos Totales',
   'ranking.currentLevel': 'Nivel Actual',
-  'ranking.rankProgress': 'Nivel',
+  'ranking.rankProgress': 'RankPR',
   'ranking.allTime': 'Todos los Tiempos',
   'ranking.seasonRank': 'Rango de Temporada',
   'ranking.currentSeason': 'Temporada Actual',

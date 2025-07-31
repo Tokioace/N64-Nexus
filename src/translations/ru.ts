@@ -840,7 +840,7 @@ const ru = {
   'ranking.globalRank': 'Глобальный Рейтинг',
   'ranking.totalPoints': 'Общие Очки',
   'ranking.currentLevel': 'Текущий Уровень',
-  'ranking.rankProgress': 'Уровень',
+  'ranking.rankProgress': 'RankPR',
   'ranking.allTime': 'За Все Время',
   'ranking.seasonRank': 'Рейтинг Сезона',
   'ranking.currentSeason': 'Текущий Сезон',

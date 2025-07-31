@@ -856,7 +856,7 @@ const hi = {
   'ranking.globalRank': 'वैश्विक रैंक',
   'ranking.totalPoints': 'कुल अंक',
   'ranking.currentLevel': 'वर्तमान स्तर',
-  'ranking.rankProgress': 'स्तर',
+  'ranking.rankProgress': 'RankPR',
   'ranking.allTime': 'सभी समय',
   'ranking.seasonRank': 'सीज़न रैंक',
   'ranking.currentSeason': 'वर्तमान सीज़न',

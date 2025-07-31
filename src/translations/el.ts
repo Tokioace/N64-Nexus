@@ -906,7 +906,7 @@ const el = {
   'ranking.globalRank': 'Παγκόσμια Κατάταξη',
   'ranking.totalPoints': 'Συνολικοί Πόντοι',
   'ranking.currentLevel': 'Τρέχον Επίπεδο',
-  'ranking.rankProgress': 'Επίπεδο',
+  'ranking.rankProgress': 'RankPR',
   'ranking.allTime': 'Όλων των Εποχών',
   'ranking.seasonRank': 'Κατάταξη Σεζόν',
   'ranking.currentSeason': 'Τρέχουσα Σεζόν',
