@@ -17,14 +17,15 @@ const RankingBar: React.FC = () => {
   const progressPercentage = Math.min(((user.xp || 0) % 1000) / 10, 100)
 
   return (
-    <div className="fixed z-40 flex items-center gap-1 bg-slate-800/90 backdrop-blur-sm rounded-lg border border-slate-600 shadow-lg"
+    <div className="fixed z-40 flex items-center gap-2 bg-slate-800/90 backdrop-blur-sm rounded-lg border border-slate-600 shadow-lg"
          style={{
            top: 'clamp(0.5rem, 2vw, 1rem)',
            left: '50%',
-           transform: 'translateX(-50%)',
-           padding: 'clamp(0.2rem, 0.8vw, 0.3rem)',
-           minWidth: 'clamp(90px, 15vw, 140px)',
-           maxWidth: 'clamp(140px, 20vw, 175px)'
+           transform: 'translateX(-50%) scaleY(0.5)',
+           transformOrigin: 'top center',
+           padding: 'clamp(0.4rem, 1.6vw, 0.6rem) clamp(0.6rem, 2.4vw, 0.9rem)',
+           minWidth: 'clamp(180px, 30vw, 280px)',
+           maxWidth: 'clamp(280px, 40vw, 350px)'
          }}>
       
       {/* Rank Badge */}
