@@ -287,11 +287,27 @@ export const InteractionBar: React.FC<InteractionBarProps> = ({
       <div className={`flex items-center gap-4 ${className}`}>
         {/* Like Button with count */}
         <div className="flex items-center gap-1">
-          <LikeButton 
-            contentType={contentType} 
-            contentId={contentId} 
-            compact={true}
-          />
+          <button
+            onClick={async () => {
+              const { likeContent, unlikeContent, hasUserLiked } = useInteraction()
+              const { user } = useUser()
+              if (!user) return
+              
+              const isLiked = hasUserLiked(contentType, contentId, user.id)
+              try {
+                if (isLiked) {
+                  await unlikeContent(contentType, contentId, user.id)
+                } else {
+                  await likeContent(contentType, contentId, user.id)
+                }
+              } catch (error) {
+                console.error('Error toggling like:', error)
+              }
+            }}
+            className="text-slate-400 hover:text-pink-400 transition-colors"
+          >
+            <Heart className="w-4 h-4" />
+          </button>
           <span className="text-xs text-slate-400 font-medium">
             {interactionData.likes > 0 ? interactionData.likes : '0'}
           </span>
@@ -299,11 +315,7 @@ export const InteractionBar: React.FC<InteractionBarProps> = ({
         
         {/* View Counter with count */}
         <div className="flex items-center gap-1">
-          <ViewCounter 
-            contentType={contentType} 
-            contentId={contentId} 
-            compact={true}
-          />
+          <Eye className="w-4 h-4 text-slate-400" />
           <span className="text-xs text-slate-400 font-medium">
             {interactionData.views > 0 ? interactionData.views : '0'}
           </span>
