@@ -26,19 +26,33 @@ const RankingBar: React.FC = () => {
            transform: 'translateX(-50%)',
          }}>
       
-      <div className="flex items-center justify-between w-full px-2 py-1.5 bg-[#0e0e1a] rounded-md shadow-md text-white text-xs">
+      <div className="flex flex-col items-center w-full px-2 py-1.5 rounded-md text-white text-xs">
 
-        {/* Rank Display - Yellow Badge */}
-        <div className="flex items-center gap-1 px-1.5 py-0.5 bg-yellow-400 text-black font-bold rounded text-xs shadow flex-shrink-0">
-          <Trophy className="w-3 h-3" />
-          <span className="leading-none">#{currentRank || '1'}</span>
+        {/* Top Section with Badges and RangEXP */}
+        <div className="flex items-center justify-center gap-1 w-full mb-1">
+          {/* Rank Display - Yellow Badge */}
+          <div className="flex items-center gap-1 px-1.5 py-0.5 bg-yellow-400 text-black font-bold rounded text-xs shadow flex-shrink-0">
+            <Trophy className="w-3 h-3" />
+            <span className="leading-none">#{currentRank || '1'}</span>
+          </div>
+
+          {/* RangEXP Text */}
+          <span className="uppercase tracking-wider text-[10px] font-semibold text-slate-300 leading-none">
+            RangEXP
+          </span>
+
+          {/* CP Value - Purple Badge */}
+          <div className="flex items-center justify-center px-1.5 py-0.5 bg-purple-600 text-white font-semibold rounded shadow text-xs flex-shrink-0">
+            <span className="leading-none">
+              {userPoints.totalPoints > 999 
+                ? `${Math.floor(userPoints.totalPoints / 1000)}k` 
+                : userPoints.totalPoints} CP
+            </span>
+          </div>
         </div>
 
-        {/* XP / Level Center Section */}
-        <div className="flex flex-col items-center justify-center gap-[1px] px-2 min-w-[100px] flex-1">
-          <span className="uppercase tracking-wider text-[10px] font-semibold text-slate-300 leading-none">
-            {t('profile.level')}
-          </span>
+        {/* XP Display and Progress Bar */}
+        <div className="flex flex-col items-center justify-center gap-[1px] w-full">
           <span className="text-xs font-medium leading-none text-white">
             {currentXP} / {maxXP}
           </span>
@@ -48,15 +62,6 @@ const RankingBar: React.FC = () => {
               style={{ width: `${progressPercentage}%` }}
             />
           </div>
-        </div>
-
-        {/* CP Value - Purple Badge */}
-        <div className="flex items-center justify-center px-1.5 py-0.5 bg-purple-600 text-white font-semibold rounded shadow text-xs flex-shrink-0">
-          <span className="leading-none">
-            {userPoints.totalPoints > 999 
-              ? `${Math.floor(userPoints.totalPoints / 1000)}k` 
-              : userPoints.totalPoints} CP
-          </span>
         </div>
       </div>
     </div>
