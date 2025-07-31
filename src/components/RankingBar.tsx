@@ -23,13 +23,12 @@ const RankingBar: React.FC = () => {
 
   return (
     <div 
-      className="fixed z-40 transition-all duration-500 ease-out"
+      className="relative z-40 transition-all duration-500 ease-out mx-auto"
       style={{
-        top: 'clamp(0.5rem, 2vw, 1rem)',
-        left: '50%',
-        transform: 'translateX(-50%)',
         width: 'clamp(200px, 40vw, 280px)', // More compact width
         maxWidth: 'calc(100vw - 120px)', // Leave space for user icon and sidebar
+        marginTop: 'clamp(0.5rem, 2vw, 1rem)',
+        marginBottom: 'clamp(1rem, 3vw, 2rem)'
       }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
