@@ -17,12 +17,12 @@ const RankingBar: React.FC = () => {
   const progressPercentage = Math.min(((user.xp || 0) % 1000) / 10, 100)
 
   return (
-    <div className="fixed z-40 flex items-center gap-1 sm:gap-3 bg-slate-800/90 backdrop-blur-sm rounded-lg border border-slate-600 shadow-lg"
+    <div className="fixed z-40 flex items-center gap-1 sm:gap-2 bg-slate-800/90 backdrop-blur-sm rounded-lg border border-slate-600 shadow-lg"
          style={{
            top: 'clamp(0.5rem, 2vw, 1rem)',
            left: '50%',
            transform: 'translateX(-50%)',
-           padding: 'clamp(0.375rem, 1.5vw, 0.75rem)',
+           padding: 'clamp(0.25rem, 1vw, 0.5rem)',
            minWidth: 'clamp(180px, 30vw, 280px)',
            maxWidth: 'clamp(280px, 40vw, 350px)'
          }}>
@@ -36,16 +36,16 @@ const RankingBar: React.FC = () => {
       </div>
 
       {/* Progress Bar Container */}
-      <div className="flex-1 min-w-0 mx-1 sm:mx-2">
+      <div className="flex-1 min-w-0 mx-0.5 sm:mx-1">
         {/* Level label centered at top */}
-        <div className="text-center mb-1">
+        <div className="text-center mb-0.5">
           <span className="text-slate-300" style={{ fontSize: 'clamp(0.6rem, 1.5vw, 0.75rem)' }}>
             {t('ranking.rankProgress')}
           </span>
         </div>
         
         {/* Score centered below level */}
-        <div className="text-center mb-1">
+        <div className="text-center mb-0.5">
           <span className="text-slate-400" style={{ fontSize: 'clamp(0.6rem, 1.5vw, 0.75rem)' }}>
             {Math.min(((user.xp || 0) % 1000), 1000)}/1000 XP
           </span>
