@@ -12,7 +12,6 @@ import SingleFanArtCard from '../components/SingleFanArtCard'
 import SingleMediaCard from '../components/SingleMediaCard'
 import SingleRecordCard from '../components/SingleRecordCard'
 import SingleMarketplaceCard from '../components/SingleMarketplaceCard'
-import { Trophy } from 'lucide-react'
 
 interface ForumThread {
   id: string
@@ -95,7 +94,6 @@ const HomePage: React.FC = () => {
   const { user } = useUser()
   const { t, currentLanguage } = useLanguage()
   const { threads, posts } = useForum()
-  const { getUserPosition } = usePoints()
 
   // Load FanArt data from localStorage or use mock data
   const [fanArtItems, setFanArtItems] = useState<FanArtItem[]>([])
@@ -289,63 +287,7 @@ const HomePage: React.FC = () => {
         </SafeComponent>
       )}
 
-      {/* USER RANKING SECTION */}
-      {user && (
-        <SafeComponent name="UserRanking">
-          <div className="mb-responsive responsive-max-width">
-            <div className="simple-tile p-4 sm:p-6">
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="text-responsive-lg font-bold text-slate-100">
-                  {t('home.yourRanking')}
-                </h3>
-                <Trophy className="w-6 h-6 text-yellow-400" />
-              </div>
-              
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                {/* Current Rank */}
-                <div className="text-center p-4 bg-gradient-to-br from-yellow-500/20 to-amber-500/20 rounded-lg border border-yellow-400/30">
-                  <div className="text-2xl font-bold text-yellow-400 mb-1">
-                    #{getUserPosition(user.id, { type: 'global', timeframe: 'allTime' }) || 'N/A'}
-                  </div>
-                  <div className="text-sm text-slate-300">{t('ranking.globalRank')}</div>
-                </div>
-                
-                {/* Total Points */}
-                <div className="text-center p-4 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-lg border border-blue-400/30">
-                  <div className="text-2xl font-bold text-blue-400 mb-1">
-                    {user.xp?.toLocaleString() || '0'}
-                  </div>
-                  <div className="text-sm text-slate-300">{t('ranking.totalPoints')}</div>
-                </div>
-                
-                {/* Current Level */}
-                <div className="text-center p-4 bg-gradient-to-br from-green-500/20 to-emerald-500/20 rounded-lg border border-green-400/30">
-                  <div className="text-2xl font-bold text-green-400 mb-1">
-                    {user.level || 1}
-                  </div>
-                  <div className="text-sm text-slate-300">{t('ranking.currentLevel')}</div>
-                </div>
-              </div>
-              
-              {/* Rank Progress */}
-              <div className="mt-4 p-4 bg-slate-700/30 rounded-lg">
-                <div className="flex items-center justify-between mb-2">
-                  <span className="text-sm text-slate-300">{t('ranking.rankProgress')}</span>
-                  <span className="text-sm text-slate-400">
-                    {Math.min(((user.xp || 0) % 1000), 1000)}/1000 XP
-                  </span>
-                </div>
-                <div className="w-full bg-slate-600 rounded-full h-2">
-                  <div 
-                    className="bg-gradient-to-r from-blue-500 to-purple-500 h-2 rounded-full transition-all duration-300"
-                    style={{ width: `${Math.min(((user.xp || 0) % 1000) / 10, 100)}%` }}
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </SafeComponent>
-      )}
+
 
       {/* NEWS CARDS SECTION */}
       <div className="space-y-6">

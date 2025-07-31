@@ -1,5 +1,6 @@
 import React, { ReactNode, useState, useEffect } from 'react'
 import Sidebar from './Sidebar'
+import RankingBar from './RankingBar'
 import { useUser } from '../contexts/UserContext'
 import { usePoints } from '../contexts/PointsContext'
 import { useLanguage } from '../contexts/LanguageContext'
@@ -148,6 +149,9 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
           </div>
         </Link>
       )}
+
+      {/* Ranking Bar - Fixed between sidebar and user icons */}
+      <RankingBar />
 
       <Sidebar isOpen={isMobileSidebarOpen} onClose={closeMobileSidebar} />
       
