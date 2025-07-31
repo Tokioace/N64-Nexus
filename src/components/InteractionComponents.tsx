@@ -77,7 +77,7 @@ export const LikeButton: React.FC<LikeButtonProps> = ({
       } ${!user ? 'opacity-50 cursor-not-allowed' : 'hover:scale-105'} ${className}`}
       title={user ? (isLiked ? t('interaction.unlike') : t('interaction.like')) : t('interaction.loginToLike')}
     >
-      <Heart className={`${compact ? 'w-3 h-3 sm:w-4 sm:h-4' : 'w-4 h-4'} ${isLiked ? 'fill-current scale-110' : ''} transition-all`} />
+      <Heart className={`${compact ? 'w-4 h-4 sm:w-5 sm:h-5' : 'w-4 h-4'} ${isLiked ? 'fill-current scale-110' : ''} transition-all`} />
       {!compact && (
         <span className="text-xs sm:text-sm font-medium">
           {interactionData.likes > 0 ? interactionData.likes : ''}
@@ -109,7 +109,7 @@ export const ViewCounter: React.FC<ViewCounterProps> = ({
   // Always show the view counter, even without authentication
   return (
     <div className={`flex items-center gap-1 sm:gap-2 text-slate-400 ${className}`}>
-      <Eye className={`${compact ? 'w-3 h-3 sm:w-4 sm:h-4' : 'w-4 h-4'} transition-all`} />
+      <Eye className={`${compact ? 'w-4 h-4 sm:w-5 sm:h-5' : 'w-4 h-4'} transition-all`} />
       {!compact && (
         <span className="text-xs sm:text-sm">
           {interactionData.views > 0 ? interactionData.views : '0'}
@@ -286,38 +286,38 @@ export const InteractionBar: React.FC<InteractionBarProps> = ({
     return (
       <div className={`flex items-center justify-between w-full max-w-[200px] ${className}`}>
         {/* Like Button with count */}
-        <div className="flex items-center gap-1 min-w-0 flex-1 justify-center">
+        <div className="flex items-center gap-0.5 min-w-0 flex-1 justify-center">
           <LikeButton 
             contentType={contentType} 
             contentId={contentId} 
             compact={true}
           />
-          <span className="text-xs text-slate-400 font-medium">
+          <span className="text-xs text-slate-400 font-medium ml-0.5">
             {interactionData.likes > 0 ? interactionData.likes : '0'}
           </span>
         </div>
         
         {/* View Counter with count */}
-        <div className="flex items-center gap-1 min-w-0 flex-1 justify-center">
+        <div className="flex items-center gap-0.5 min-w-0 flex-1 justify-center">
           <ViewCounter 
             contentType={contentType} 
             contentId={contentId} 
             compact={true}
           />
-          <span className="text-xs text-slate-400 font-medium">
+          <span className="text-xs text-slate-400 font-medium ml-0.5">
             {interactionData.views > 0 ? interactionData.views : '0'}
           </span>
         </div>
         
         {/* Comment Button with count */}
         {showComments && (
-          <div className="flex items-center gap-1 min-w-0 flex-1 justify-center">
+          <div className="flex items-center gap-0.5 min-w-0 flex-1 justify-center">
             <button
               onClick={() => setShowCommentsSection(!showCommentsSection)}
-              className="flex items-center gap-1 text-slate-400 hover:text-blue-400 transition-colors"
+              className="flex items-center gap-0.5 text-slate-400 hover:text-blue-400 transition-colors"
             >
-              <MessageCircle className="w-3 h-3 sm:w-4 sm:h-4" />
-              <span className="text-xs text-slate-400 font-medium">
+              <MessageCircle className="w-4 h-4 sm:w-5 sm:h-5" />
+              <span className="text-xs text-slate-400 font-medium ml-0.5">
                 {interactionData.comments.length > 0 ? interactionData.comments.length : '0'}
               </span>
             </button>
