@@ -59,6 +59,13 @@ const getEventData = (t: (key: any) => string): GameEvent[] => [
       comments: [],
       likedBy: [],
       viewedBy: []
+    },
+    bestLap: {
+      time: '1:29.789',
+      username: 'RetroRacer',
+      mediaUrl: 'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4',
+      mediaType: 'video',
+      verified: true
     }
   },
   {
@@ -97,6 +104,13 @@ const getEventData = (t: (key: any) => string): GameEvent[] => [
       comments: [],
       likedBy: [],
       viewedBy: []
+    },
+    bestLap: {
+      time: '2:08.234',
+      username: 'SFRushFan',
+      mediaUrl: 'https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?w=800&h=600&fit=crop&crop=center',
+      mediaType: 'photo',
+      verified: true
     }
   },
   {
@@ -135,6 +149,13 @@ const getEventData = (t: (key: any) => string): GameEvent[] => [
       comments: [],
       likedBy: [],
       viewedBy: []
+    },
+    bestLap: {
+      time: '1:42.123',
+      username: 'AncientLakeKing',
+      livestreamUrl: 'https://twitch.tv/ancientlakeking',
+      mediaType: 'livestream',
+      verified: false
     }
   }
 ]

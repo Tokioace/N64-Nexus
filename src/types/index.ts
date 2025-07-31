@@ -149,6 +149,15 @@ export interface GameEvent {
     positions: number[] // Points for positions 1-10, F1 style
   }
   interactions: InteractionData
+  // Best lap media for showcasing
+  bestLap?: {
+    time: string
+    username: string
+    mediaUrl?: string
+    mediaType: 'photo' | 'video' | 'livestream'
+    livestreamUrl?: string
+    verified: boolean
+  }
 }
 
 export interface EventParticipation {

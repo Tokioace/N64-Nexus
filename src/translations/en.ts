@@ -764,6 +764,13 @@ const en = {
   'eventLeaderboard.documentation': 'Documentation',
   'eventLeaderboard.viewMedia': 'View Media',
   'events.mobile.winner': 'Winner',
+  
+  // Best Lap Showcase
+  'events.bestLap.title': 'Best Lap',
+  'events.bestLap.photoAlt': 'Best lap screenshot by {username} with time {time}',
+  'events.bestLap.livestreamTitle': 'Best Lap Livestream',
+  'events.bestLap.livestreamDesc': 'Watch the record holder\'s livestream',
+  'events.bestLap.watchStream': 'Watch Stream',
   'ui.liveChat': 'Live Chat',
   'media.error': 'Media error',
   'error.invalidFile': 'Invalid file',
