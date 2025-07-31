@@ -764,6 +764,13 @@ const ko = {
   'eventLeaderboard.documentation': '문서',
   'eventLeaderboard.viewMedia': '미디어 보기',
   'events.mobile.winner': '우승자',
+  
+  // Best Lap Showcase
+  'events.bestLap.title': '베스트 랩',
+  'events.bestLap.photoAlt': '{username}의 {time} 기록으로 달성한 베스트 랩 스크린샷',
+  'events.bestLap.livestreamTitle': '베스트 랩 라이브스트림',
+  'events.bestLap.livestreamDesc': '기록 보유자의 라이브스트림 시청',
+  'events.bestLap.watchStream': '스트림 보기',
   'ui.liveChat': '라이브 채팅',
   'media.error': '미디어 오류',
   'error.invalidFile': '잘못된 파일',

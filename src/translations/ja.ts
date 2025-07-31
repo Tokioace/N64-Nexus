@@ -587,6 +587,13 @@ const ja = {
   'events.mobile.join': '参加',
   'events.mobile.board': 'ボード',
   'events.mobile.winner': '勝者',
+  
+  // Best Lap Showcase
+  'events.bestLap.title': 'ベストラップ',
+  'events.bestLap.photoAlt': '{username}による{time}のベストラップのスクリーンショット',
+  'events.bestLap.livestreamTitle': 'ベストラップライブストリーム',
+  'events.bestLap.livestreamDesc': 'レコードホルダーのライブストリームを視聴',
+  'events.bestLap.watchStream': 'ストリームを見る',
   'events.details.startDate': '開始日',
   'events.details.endDate': '終了日',
   'events.details.rules': 'ルール',

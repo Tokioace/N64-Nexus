@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useLanguage, getLocaleString } from '../contexts/LanguageContext'
 import { safeFormatTime } from '../utils/timeUtils'
+import BestLapShowcase from './BestLapShowcase'
 import { 
   Trophy, 
   Medal, 
@@ -40,6 +41,15 @@ interface EventLeaderboardProps {
   currentUserId?: string
   onRefresh?: () => void
   isLoading?: boolean
+  eventGame?: string
+  bestLap?: {
+    time: string
+    username: string
+    mediaUrl?: string
+    mediaType: 'photo' | 'video' | 'livestream'
+    livestreamUrl?: string
+    verified: boolean
+  }
 }
 
 interface MediaViewerProps {
@@ -184,7 +194,9 @@ const EventLeaderboard: React.FC<EventLeaderboardProps> = ({
   entries,
   currentUserId,
   onRefresh,
-  isLoading = false
+  isLoading = false,
+  eventGame,
+  bestLap
 }) => {
   const { t, currentLanguage } = useLanguage()
   const [selectedEntry, setSelectedEntry] = useState<string | null>(null)
@@ -285,6 +297,16 @@ const EventLeaderboard: React.FC<EventLeaderboardProps> = ({
 
   return (
     <div className="space-y-6">
+      {/* Best Lap Showcase */}
+      {bestLap && eventGame && (
+        <BestLapShowcase
+          eventTitle={eventTitle}
+          eventGame={eventGame}
+          bestLap={bestLap}
+          className="w-full"
+        />
+      )}
+
       {/* Header */}
       <div className="simple-tile">
         <div className="flex items-center justify-between mb-4">

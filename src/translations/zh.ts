@@ -582,6 +582,13 @@ const zh = {
   'events.mobile.join': '加入',
   'events.mobile.board': '排行榜',
   'events.mobile.winner': '获胜者',
+  
+  // Best Lap Showcase
+  'events.bestLap.title': '最佳圈速',
+  'events.bestLap.photoAlt': '{username}以{time}成绩创造的最佳圈速截图',
+  'events.bestLap.livestreamTitle': '最佳圈速直播',
+  'events.bestLap.livestreamDesc': '观看记录保持者的直播',
+  'events.bestLap.watchStream': '观看直播',
   'events.details.startDate': '开始日期',
   'events.details.endDate': '结束日期',
   'events.details.rules': '规则',

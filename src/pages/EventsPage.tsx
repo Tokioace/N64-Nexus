@@ -5,6 +5,7 @@ import { useUser } from '../contexts/UserContext'
 import { useLanguage } from '../contexts/LanguageContext'
 import RaceSubmissionModal, { RaceSubmissionData } from '../components/RaceSubmissionModal'
 import EventLeaderboard from '../components/EventLeaderboard'
+import BestLapShowcase from '../components/BestLapShowcase'
 import { 
   Trophy, 
   Calendar, 
@@ -338,6 +339,18 @@ const EventsPage: React.FC = () => {
                   </div>
                 </div>
                 
+                {/* Best Lap Showcase - Always visible for active events */}
+                {status === 'active' && event.bestLap && (
+                  <div className="mt-6">
+                    <BestLapShowcase
+                      eventTitle={event.title}
+                      eventGame={event.game}
+                      bestLap={event.bestLap}
+                      className="w-full"
+                    />
+                  </div>
+                )}
+
                 {/* Event Details */}
                 {showDetails && (
                   <div className="event-tile-separator mt-6 pt-6 responsive-max-width">
@@ -454,6 +467,8 @@ const EventsPage: React.FC = () => {
               <EventLeaderboard 
                 eventId={showLeaderboard}
                 eventTitle={events.find(e => e.id === showLeaderboard)?.title || 'Event'}
+                eventGame={events.find(e => e.id === showLeaderboard)?.game}
+                bestLap={events.find(e => e.id === showLeaderboard)?.bestLap}
                 entries={getLeaderboard(showLeaderboard).map(participation => ({
                   id: participation.id,
                   userId: participation.userId,

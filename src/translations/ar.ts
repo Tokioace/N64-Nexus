@@ -891,6 +891,13 @@ const ar = {
 
   // Mobile event winner - فائز الحدث للهاتف المحمول
   'events.mobile.winner': 'الفائز',
+  
+  // Best Lap Showcase
+  'events.bestLap.title': 'أفضل لفة',
+  'events.bestLap.photoAlt': 'لقطة شاشة لأفضل لفة بواسطة {username} بوقت {time}',
+  'events.bestLap.livestreamTitle': 'البث المباشر لأفضل لفة',
+  'events.bestLap.livestreamDesc': 'شاهد البث المباشر لحامل الرقم القياسي',
+  'events.bestLap.watchStream': 'مشاهدة البث',
 
   // Live chat - الدردشة المباشرة
   'ui.liveChat': 'الدردشة المباشرة',

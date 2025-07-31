@@ -764,6 +764,13 @@ const de = {
   'eventLeaderboard.documentation': 'Dokumentation',
   'eventLeaderboard.viewMedia': 'Medien anzeigen',
   'events.mobile.winner': 'Gewinner',
+  
+  // Best Lap Showcase
+  'events.bestLap.title': 'Beste Runde',
+  'events.bestLap.photoAlt': 'Beste Runde Screenshot von {username} mit Zeit {time}',
+  'events.bestLap.livestreamTitle': 'Beste Runde Livestream',
+  'events.bestLap.livestreamDesc': 'Schaue den Livestream des Rekordhalters',
+  'events.bestLap.watchStream': 'Stream ansehen',
   'ui.liveChat': 'Live-Chat',
   'media.error': 'Medien-Fehler',
   'error.invalidFile': 'Ungültige Datei',
