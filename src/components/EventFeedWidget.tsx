@@ -203,51 +203,118 @@ const EventCard: React.FC<EventCardProps> = ({ event, leaderboard, timeRemaining
           </div>
         </div>
 
-        {/* Winner's Media Preview - Compact on mobile */}
+        {/* Winner's Media Preview - Enhanced with better visibility */}
         <div>
           {sortedLeaderboard.length > 0 && sortedLeaderboard[0].mediaUrl && (
             <div>
               <h4 className="text-xs sm:text-sm font-semibold text-slate-200 mb-2 flex items-center gap-1 sm:gap-2">
                 <Crown className="w-3 h-3 sm:w-4 sm:h-4 text-yellow-400" />
                 <span className="truncate">{t('home.winner')} - {sortedLeaderboard[0].username}</span>
+                {sortedLeaderboard[0].verified && (
+                  <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" title={t('home.verified')}></div>
+                )}
               </h4>
-              <div className="relative bg-slate-800/30 rounded-lg overflow-hidden">
+              <div className="relative bg-slate-800/30 rounded-lg overflow-hidden border border-yellow-400/20">
                 {sortedLeaderboard[0].documentationType === 'photo' && (
-                  <img 
-                    src={sortedLeaderboard[0].mediaUrl!} 
-                    alt={`Winner screenshot by ${sortedLeaderboard[0].username}`}
-                    className="w-full h-16 sm:h-24 object-cover"
-                    onError={(e) => {
-                      const target = e.target as HTMLImageElement
-                      target.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iIzMzNCI+PC9yZWN0Pjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTIiIGZpbGw9IiM5OTkiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5TY3JlZW5zaG90PC90ZXh0Pjwvc3ZnPg=='
-                    }}
-                  />
+                  <div className="relative">
+                    <img 
+                      src={sortedLeaderboard[0].mediaUrl!} 
+                      alt={`Winner screenshot by ${sortedLeaderboard[0].username}`}
+                      className="w-full h-20 sm:h-28 object-cover cursor-pointer hover:scale-105 transition-transform duration-200"
+                      onError={(e) => {
+                        const target = e.target as HTMLImageElement
+                        target.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iIzMzNCI+PC9yZWN0Pjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTIiIGZpbGw9IiM5OTkiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5TY3JlZW5zaG90PC90ZXh0Pjwvc3ZnPg=='
+                      }}
+                      onClick={() => window.open(sortedLeaderboard[0].mediaUrl!, '_blank')}
+                    />
+                    <div className="absolute top-1 right-1 bg-black bg-opacity-60 rounded px-1.5 py-0.5">
+                      <Camera className="w-2 h-2 sm:w-3 sm:h-3 text-white" />
+                    </div>
+                  </div>
                 )}
                 {sortedLeaderboard[0].documentationType === 'video' && (
                   <div className="relative">
                     <video 
                       src={sortedLeaderboard[0].mediaUrl!}
-                      className="w-full h-16 sm:h-24 object-cover"
+                      className="w-full h-20 sm:h-28 object-cover cursor-pointer"
                       autoPlay
                       loop
                       muted
                       playsInline
+                      onClick={() => window.open(sortedLeaderboard[0].mediaUrl!, '_blank')}
                     />
-                    <div className="absolute top-1 right-1 bg-black bg-opacity-50 rounded px-1 py-0.5">
+                    <div className="absolute top-1 right-1 bg-black bg-opacity-60 rounded px-1.5 py-0.5">
                       <Video className="w-2 h-2 sm:w-3 sm:h-3 text-white" />
                     </div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none"></div>
                   </div>
                 )}
                 {sortedLeaderboard[0].documentationType === 'livestream' && (
-                  <div className="h-16 sm:h-24 flex items-center justify-center bg-gradient-to-r from-purple-600/20 to-purple-700/20">
+                  <div className="h-20 sm:h-28 flex items-center justify-center bg-gradient-to-r from-purple-600/30 to-red-600/30 cursor-pointer hover:from-purple-600/40 hover:to-red-600/40 transition-all duration-200"
+                       onClick={() => {
+                         if (sortedLeaderboard[0].livestreamUrl) {
+                           window.open(sortedLeaderboard[0].livestreamUrl, '_blank')
+                         }
+                       }}>
                     <div className="text-center">
-                      <Radio className="w-4 h-4 sm:w-6 sm:h-6 text-purple-400 mx-auto mb-1" />
-                      <p className="text-xs text-purple-400">{t('media.livestream')}</p>
+                      <Radio className="w-4 h-4 sm:w-6 sm:h-6 text-red-400 mx-auto mb-1 animate-pulse" />
+                      <p className="text-xs text-red-400 font-medium">🔴 {t('media.livestream')}</p>
+                      <p className="text-xs text-purple-300 mt-1">Click to watch</p>
                     </div>
                   </div>
                 )}
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-1 sm:p-2">
-                  <div className="text-xs text-white font-bold">{sortedLeaderboard[0].time}</div>
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-1 sm:p-2">
+                  <div className="flex items-center justify-between">
+                    <div className="text-xs sm:text-sm text-yellow-400 font-bold font-mono">{sortedLeaderboard[0].time}</div>
+                    <div className="text-xs text-white/80">{t('events.bestTime')}</div>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Additional media info */}
+              <div className="mt-2 flex items-center justify-between text-xs text-slate-400">
+                <div className="flex items-center gap-2">
+                  {sortedLeaderboard[0].documentationType === 'livestream' && sortedLeaderboard[0].livestreamUrl && (
+                    <a 
+                      href={sortedLeaderboard[0].livestreamUrl} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-1 text-purple-400 hover:text-purple-300 transition-colors"
+                    >
+                      <Radio className="w-3 h-3" />
+                      <span>Watch Stream</span>
+                    </a>
+                  )}
+                  {sortedLeaderboard[0].documentationType !== 'livestream' && (
+                    <span className="flex items-center gap-1">
+                      {sortedLeaderboard[0].documentationType === 'photo' ? (
+                        <Camera className="w-3 h-3" />
+                      ) : (
+                        <Video className="w-3 h-3" />
+                      )}
+                      <span>Click to view full size</span>
+                    </span>
+                  )}
+                </div>
+                {sortedLeaderboard[0].verified && (
+                  <span className="text-green-400 text-xs font-medium">✓ Verified</span>
+                )}
+              </div>
+            </div>
+          )}
+          
+          {/* Show placeholder when no media available */}
+          {sortedLeaderboard.length > 0 && !sortedLeaderboard[0].mediaUrl && (
+            <div>
+              <h4 className="text-xs sm:text-sm font-semibold text-slate-200 mb-2 flex items-center gap-1 sm:gap-2">
+                <Crown className="w-3 h-3 sm:w-4 sm:h-4 text-yellow-400" />
+                <span className="truncate">{t('home.winner')} - {sortedLeaderboard[0].username}</span>
+              </h4>
+              <div className="h-20 sm:h-28 flex items-center justify-center bg-slate-800/30 rounded-lg border border-slate-600/50">
+                <div className="text-center">
+                  <Trophy className="w-4 h-4 sm:w-6 sm:h-6 text-slate-500 mx-auto mb-1" />
+                  <p className="text-xs text-slate-400">No media submitted</p>
+                  <div className="text-xs sm:text-sm text-yellow-400 font-bold font-mono mt-1">{sortedLeaderboard[0].time}</div>
                 </div>
               </div>
             </div>
