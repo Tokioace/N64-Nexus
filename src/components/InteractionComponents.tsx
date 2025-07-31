@@ -286,7 +286,7 @@ export const InteractionBar: React.FC<InteractionBarProps> = ({
     return (
       <div className={`flex items-center gap-4 ${className}`}>
         {/* Like Button with count */}
-        <div className="flex items-center gap-1">
+        <div className="flex items-center gap-1.5">
           <button
             onClick={async () => {
               const { likeContent, unlikeContent, hasUserLiked } = useInteraction()
@@ -304,33 +304,33 @@ export const InteractionBar: React.FC<InteractionBarProps> = ({
                 console.error('Error toggling like:', error)
               }
             }}
-            className="text-slate-400 hover:text-pink-400 transition-colors"
+            className="text-slate-400 hover:text-pink-400 transition-colors flex-shrink-0"
           >
             <Heart className="w-4 h-4" />
           </button>
-          <span className="text-xs text-slate-400 font-medium">
+          <span className="text-xs text-slate-400 font-medium min-w-[1ch]">
             {interactionData.likes > 0 ? interactionData.likes : '0'}
           </span>
         </div>
         
         {/* View Counter with count */}
-        <div className="flex items-center gap-1">
-          <Eye className="w-4 h-4 text-slate-400" />
-          <span className="text-xs text-slate-400 font-medium">
+        <div className="flex items-center gap-1.5">
+          <Eye className="w-4 h-4 text-slate-400 flex-shrink-0" />
+          <span className="text-xs text-slate-400 font-medium min-w-[1ch]">
             {interactionData.views > 0 ? interactionData.views : '0'}
           </span>
         </div>
         
         {/* Comment Button with count */}
         {showComments && (
-          <div className="flex items-center gap-1">
+          <div className="flex items-center gap-1.5">
             <button
               onClick={() => setShowCommentsSection(!showCommentsSection)}
-              className="text-slate-400 hover:text-blue-400 transition-colors"
+              className="text-slate-400 hover:text-blue-400 transition-colors flex-shrink-0"
             >
               <MessageSquare className="w-4 h-4" />
             </button>
-            <span className="text-xs text-slate-400 font-medium">
+            <span className="text-xs text-slate-400 font-medium min-w-[1ch]">
               {interactionData.comments.length > 0 ? interactionData.comments.length : '0'}
             </span>
           </div>
