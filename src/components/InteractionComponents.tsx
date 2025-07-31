@@ -284,9 +284,9 @@ export const InteractionBar: React.FC<InteractionBarProps> = ({
   if (compact) {
     // Compact mode for events - show like, saw, comment with numbers close together
     return (
-      <div className={`flex items-center justify-center gap-6 w-full ${className}`}>
+      <div className={`flex items-center justify-center gap-1 w-full ${className}`}>
         {/* Like Button with count */}
-        <div className="flex items-center gap-1">
+        <div className="flex items-center">
           <LikeButton 
             contentType={contentType} 
             contentId={contentId} 
@@ -298,7 +298,7 @@ export const InteractionBar: React.FC<InteractionBarProps> = ({
         </div>
         
         {/* View Counter with count */}
-        <div className="flex items-center gap-1">
+        <div className="flex items-center">
           <ViewCounter 
             contentType={contentType} 
             contentId={contentId} 
@@ -311,7 +311,7 @@ export const InteractionBar: React.FC<InteractionBarProps> = ({
         
         {/* Comment Button with count */}
         {showComments && (
-          <div className="flex items-center gap-1">
+          <div className="flex items-center">
             <button
               onClick={() => setShowCommentsSection(!showCommentsSection)}
               className="text-slate-400 hover:text-blue-400 transition-colors"
