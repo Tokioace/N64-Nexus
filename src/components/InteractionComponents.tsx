@@ -70,7 +70,7 @@ export const LikeButton: React.FC<LikeButtonProps> = ({
     <button
       onClick={handleLike}
       disabled={!user || isLiking}
-      className={`flex items-center gap-1 sm:gap-2 transition-all duration-200 ${
+      className={`flex items-center ${!compact ? 'gap-1 sm:gap-2' : ''} transition-all duration-200 ${
         isLiked 
           ? 'text-red-400 hover:text-red-300' 
           : 'text-slate-400 hover:text-red-400'
@@ -108,7 +108,7 @@ export const ViewCounter: React.FC<ViewCounterProps> = ({
 
   // Always show the view counter, even without authentication
   return (
-    <div className={`flex items-center gap-1 sm:gap-2 text-slate-400 ${className}`}>
+    <div className={`flex items-center ${!compact ? 'gap-1 sm:gap-2' : ''} text-slate-400 ${className}`}>
       <Eye className={`${compact ? 'w-4 h-4 sm:w-5 sm:h-5' : 'w-4 h-4'} transition-all`} />
       {!compact && (
         <span className="text-xs sm:text-sm">
@@ -314,13 +314,13 @@ export const InteractionBar: React.FC<InteractionBarProps> = ({
           <div className="flex items-center gap-1">
             <button
               onClick={() => setShowCommentsSection(!showCommentsSection)}
-              className="flex items-center gap-1 text-slate-400 hover:text-blue-400 transition-colors"
+              className="text-slate-400 hover:text-blue-400 transition-colors"
             >
               <MessageCircle className="w-4 h-4 sm:w-5 sm:h-5" />
-              <span className="text-xs text-slate-400 font-medium">
-                {interactionData.comments.length > 0 ? interactionData.comments.length : '0'}
-              </span>
             </button>
+            <span className="text-xs text-slate-400 font-medium">
+              {interactionData.comments.length > 0 ? interactionData.comments.length : '0'}
+            </span>
           </div>
         )}
         
