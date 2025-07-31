@@ -150,7 +150,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         </Link>
       )}
 
-      {/* Ranking Bar - Fixed between sidebar and user icons */}
+      {/* Ranking Bar - Floating centered element */}
       <RankingBar />
 
       <Sidebar isOpen={isMobileSidebarOpen} onClose={closeMobileSidebar} />
