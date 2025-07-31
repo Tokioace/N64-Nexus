@@ -774,6 +774,10 @@ const ru = {
   'home.hoursRemaining': '{hours}ч осталось',
   'home.replies': '{count} ответов',
   'home.verifiedStatus': '✓ Проверено',
+  'home.watchStream': 'Смотреть стрим',
+  'home.clickToViewFull': 'Нажмите для просмотра в полном размере',
+  'home.clickToWatch': 'Нажмите для просмотра',
+  'home.noMediaSubmitted': 'Медиа не отправлено',
 
   // News items - Новости
   'news.mariokartRecord': '🏆 Мировой рекорд Mario Kart 64 Speedrun побит!',

@@ -790,6 +790,10 @@ const de = {
   'home.hoursRemaining': '{hours}h verbleibend',
   'home.replies': '{count} Antworten',
   'home.verifiedStatus': '✓ Verifiziert',
+  'home.watchStream': 'Stream ansehen',
+  'home.clickToViewFull': 'Klicken für Vollansicht',
+  'home.clickToWatch': 'Klicken zum Ansehen',
+  'home.noMediaSubmitted': 'Keine Medien eingereicht',
 
   // News items
   'news.mariokartRecord': '🏆 Mario Kart 64 Speedrun Weltrekord gebrochen!',

@@ -840,6 +840,10 @@ const el = {
   'home.hoursRemaining': '{hours}ω απομένουν',
   'home.replies': '{count} απαντήσεις',
   'home.verifiedStatus': '✓ Επαληθευμένο',
+  'home.watchStream': 'Παρακολούθηση Stream',
+  'home.clickToViewFull': 'Κάντε κλικ για προβολή σε πλήρες μέγεθος',
+  'home.clickToWatch': 'Κάντε κλικ για παρακολούθηση',
+  'home.noMediaSubmitted': 'Δεν υπεβλήθησαν μέσα',
 
   // News items - Στοιχεία ειδήσεων
   'news.mariokartRecord': '🏆 Κατερρίφθη το Παγκόσμιο Ρεκόρ Mario Kart 64 Speedrun!',

@@ -791,6 +791,10 @@ const tr = {
   'home.hoursRemaining': '{hours}s kaldı',
   'home.replies': '{count} yanıt',
   'home.verifiedStatus': '✓ Doğrulandı',
+  'home.watchStream': 'Yayını İzle',
+  'home.clickToViewFull': 'Tam boyut görmek için tıklayın',
+  'home.clickToWatch': 'İzlemek için tıklayın',
+  'home.noMediaSubmitted': 'Medya gönderilmedi',
 
   // News items - Haber öğeleri
   'news.mariokartRecord': '🏆 Mario Kart 64 Speedrun Dünya Rekoru Kırıldı!',

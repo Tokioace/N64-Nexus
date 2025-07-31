@@ -790,6 +790,10 @@ const ko = {
   'home.hoursRemaining': '{hours}시간 남음',
   'home.replies': '{count}개의 답글',
   'home.verifiedStatus': '✓ 인증됨',
+  'home.watchStream': '스트림 보기',
+  'home.clickToViewFull': '클릭하여 전체 크기로 보기',
+  'home.clickToWatch': '클릭하여 시청',
+  'home.noMediaSubmitted': '제출된 미디어 없음',
 
   // News items - 뉴스 항목
   'news.mariokartRecord': '🏆 Mario Kart 64 스피드런 세계 기록 경신!',

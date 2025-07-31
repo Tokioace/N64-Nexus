@@ -923,6 +923,10 @@ const ar = {
   'home.hoursRemaining': '{hours} ساعة متبقية',
   'home.replies': '{count} ردود',
   'home.verifiedStatus': '✓ محقق',
+  'home.watchStream': 'مشاهدة البث',
+  'home.clickToViewFull': 'انقر للعرض بالحجم الكامل',
+  'home.clickToWatch': 'انقر للمشاهدة',
+  'home.noMediaSubmitted': 'لم يتم إرسال وسائط',
 
   // News items - عناصر الأخبار
   'news.mariokartRecord': '🏆 تم كسر الرقم القياسي العالمي لـ Mario Kart 64 Speedrun!',

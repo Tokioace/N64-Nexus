@@ -4,7 +4,7 @@ import RankingBar from './RankingBar'
 import { useUser } from '../contexts/UserContext'
 import { usePoints } from '../contexts/PointsContext'
 import { useLanguage } from '../contexts/LanguageContext'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { Trophy, Zap } from 'lucide-react'
 
 interface LayoutProps {
@@ -17,6 +17,10 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   const { user, isAuthenticated } = useUser()
   const { userPoints } = usePoints()
   const { t } = useLanguage()
+  const location = useLocation()
+
+  // Check if we should show the ranking bar (only on homepage and retro homepage)
+  const shouldShowRankingBar = location.pathname === '/' || location.pathname === '/retro'
 
   const toggleMobileSidebar = () => {
     setIsMobileSidebarOpen(!isMobileSidebarOpen)
@@ -150,8 +154,8 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         </Link>
       )}
 
-      {/* Ranking Bar - Positioned at top level between sidebar and user icons */}
-      {isAuthenticated && user && (
+      {/* Ranking Bar - Only shown on homepage and retro homepage */}
+      {shouldShowRankingBar && isAuthenticated && user && (
         <div 
           className="absolute z-40"
           style={{
