@@ -241,7 +241,7 @@ const HomePage: React.FC = () => {
   return (
     <div className="container-lg space-responsive responsive-max-width responsive-overflow-hidden">
       {/* Mascot Section - Positioned higher since ranking bar is now at top level */}
-      <div className="text-center mb-8 responsive-max-width">
+      <div className="text-center mb-4 responsive-max-width">
         <div className="battle64-header-container">
                       {/* Mascot Image - Positioned so antennas are just below ranking card */}
             <img 
@@ -250,14 +250,14 @@ const HomePage: React.FC = () => {
               className="battle64-mascot mx-auto block"
               style={{
                 marginTop: 'clamp(0.5rem, 1vw, 1rem)', // Reduced top margin so antennas show under ranking card
-                marginBottom: 'clamp(1rem, 3vw, 2rem)'
+                marginBottom: 'clamp(0.5rem, 1.5vw, 1rem)' // Reduced bottom margin for more compact layout
               }}
             />
         </div>
       </div>
 
       {/* Welcome Section */}
-      <div className="text-center mb-responsive responsive-max-width">
+      <div className="text-center mb-6 responsive-max-width">
         {/* Welcome Back Text */}
         <p className="battle64-welcome-text">
           {user ? `${t('home.welcome')}, ${user.username}!` : t('home.welcome')}
@@ -266,12 +266,12 @@ const HomePage: React.FC = () => {
         <p className="text-responsive-base text-slate-400 responsive-word-break" style={{ 
           maxWidth: 'min(42rem, 90vw)', 
           margin: '0 auto', 
-          marginTop: 'clamp(1rem, 2vw, 1.5rem)',
+          marginTop: 'clamp(0.5rem, 1.5vw, 1rem)',
           padding: '0 clamp(0.5rem, 2vw, 1rem)'
         }}>
           {t('home.subtitle')}
         </p>
-        <div className="text-responsive-sm text-slate-500 responsive-flex-center" style={{ marginTop: 'clamp(1rem, 2vw, 1.5rem)' }}>
+        <div className="text-responsive-sm text-slate-500 responsive-flex-center" style={{ marginTop: 'clamp(0.5rem, 1.5vw, 1rem)' }}>
           <span>{formatDate(new Date())}</span>
           <span className="hidden sm:inline">•</span>
           <span>{formatTime(new Date())}</span>
