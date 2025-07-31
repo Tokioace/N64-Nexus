@@ -25,10 +25,7 @@ const RankingBar: React.FC = () => {
     <div 
       className="relative z-40 transition-all duration-500 ease-out mx-auto"
       style={{
-        width: 'clamp(200px, 40vw, 280px)', // More compact width
-        maxWidth: 'calc(100vw - 120px)', // Leave space for user icon and sidebar
-        marginTop: 'clamp(0.5rem, 2vw, 1rem)',
-        marginBottom: 'clamp(1rem, 3vw, 2rem)'
+        width: '100%' // Use full width of parent container
       }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}

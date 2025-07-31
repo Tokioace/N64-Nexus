@@ -12,7 +12,6 @@ import SingleFanArtCard from '../components/SingleFanArtCard'
 import SingleMediaCard from '../components/SingleMediaCard'
 import SingleRecordCard from '../components/SingleRecordCard'
 import SingleMarketplaceCard from '../components/SingleMarketplaceCard'
-import RankingBar from '../components/RankingBar'
 
 interface ForumThread {
   id: string
@@ -241,24 +240,19 @@ const HomePage: React.FC = () => {
 
   return (
     <div className="container-lg space-responsive responsive-max-width responsive-overflow-hidden">
-      {/* Ranking Bar at the top */}
-      <div className="text-center mb-4">
-        <RankingBar />
-      </div>
-      
-      {/* Mascot Section - Positioned lower to avoid antenna overlap */}
+      {/* Mascot Section - Positioned higher since ranking bar is now at top level */}
       <div className="text-center mb-8 responsive-max-width">
         <div className="battle64-header-container">
-          {/* Mascot Image - Positioned lower to show antennas */}
-          <img 
-            src="/mascot.png" 
-            alt={t('alt.battle64Mascot')} 
-            className="battle64-mascot mx-auto block"
-            style={{
-              marginTop: 'clamp(2rem, 4vw, 3rem)', // Increased top margin
-              marginBottom: 'clamp(1rem, 3vw, 2rem)'
-            }}
-          />
+                      {/* Mascot Image - Positioned so antennas are just below ranking card */}
+            <img 
+              src="/mascot.png" 
+              alt={t('alt.battle64Mascot')} 
+              className="battle64-mascot mx-auto block"
+              style={{
+                marginTop: 'clamp(0.5rem, 1vw, 1rem)', // Reduced top margin so antennas show under ranking card
+                marginBottom: 'clamp(1rem, 3vw, 2rem)'
+              }}
+            />
         </div>
       </div>
 

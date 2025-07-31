@@ -1,5 +1,6 @@
 import React, { ReactNode, useState, useEffect } from 'react'
 import Sidebar from './Sidebar'
+import RankingBar from './RankingBar'
 import { useUser } from '../contexts/UserContext'
 import { usePoints } from '../contexts/PointsContext'
 import { useLanguage } from '../contexts/LanguageContext'
@@ -149,7 +150,21 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         </Link>
       )}
 
-
+      {/* Ranking Bar - Positioned at top level between sidebar and user icons */}
+      {isAuthenticated && user && (
+        <div 
+          className="absolute z-40"
+          style={{
+            top: 'clamp(0.5rem, 2vw, 1rem)',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            width: 'clamp(200px, 40vw, 280px)',
+            maxWidth: 'calc(100vw - 120px)' // Leave space for user icon and sidebar
+          }}
+        >
+          <RankingBar />
+        </div>
+      )}
 
       <Sidebar isOpen={isMobileSidebarOpen} onClose={closeMobileSidebar} />
       
