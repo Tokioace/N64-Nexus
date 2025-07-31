@@ -259,7 +259,7 @@ const EventCard: React.FC<EventCardProps> = ({ event, leaderboard, timeRemaining
                     <div className="text-center">
                       <Radio className="w-4 h-4 sm:w-6 sm:h-6 text-red-400 mx-auto mb-1 animate-pulse" />
                       <p className="text-xs text-red-400 font-medium">🔴 {t('media.livestream')}</p>
-                      <p className="text-xs text-purple-300 mt-1">Click to watch</p>
+                      <p className="text-xs text-purple-300 mt-1">{t('home.clickToWatch')}</p>
                     </div>
                   </div>
                 )}
@@ -292,12 +292,12 @@ const EventCard: React.FC<EventCardProps> = ({ event, leaderboard, timeRemaining
                       ) : (
                         <Video className="w-3 h-3" />
                       )}
-                      <span>Click to view full size</span>
+                      <span>{t('home.clickToViewFull')}</span>
                     </span>
                   )}
                 </div>
                 {sortedLeaderboard[0].verified && (
-                  <span className="text-green-400 text-xs font-medium">✓ Verified</span>
+                  <span className="text-green-400 text-xs font-medium">{t('home.verifiedStatus')}</span>
                 )}
               </div>
             </div>
@@ -313,7 +313,7 @@ const EventCard: React.FC<EventCardProps> = ({ event, leaderboard, timeRemaining
               <div className="h-20 sm:h-28 flex items-center justify-center bg-slate-800/30 rounded-lg border border-slate-600/50">
                 <div className="text-center">
                   <Trophy className="w-4 h-4 sm:w-6 sm:h-6 text-slate-500 mx-auto mb-1" />
-                  <p className="text-xs text-slate-400">No media submitted</p>
+                  <p className="text-xs text-slate-400">{t('home.noMediaSubmitted')}</p>
                   <div className="text-xs sm:text-sm text-yellow-400 font-bold font-mono mt-1">{sortedLeaderboard[0].time}</div>
                 </div>
               </div>
