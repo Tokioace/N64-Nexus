@@ -276,8 +276,78 @@ export const InteractionBar: React.FC<InteractionBarProps> = ({
   showComments = true,
   compact = false
 }) => {
-  const interactionData = useInteraction().getInteractionData(contentType, contentId)
+  const { getInteractionData } = useInteraction()
+  const { t } = useLanguage()
+  const [showCommentsSection, setShowCommentsSection] = useState(false)
+  
+  const interactionData = getInteractionData(contentType, contentId)
 
+  if (compact) {
+    // Compact mode for events - show like, saw, comment with numbers
+    return (
+      <div className={`flex items-center gap-2 sm:gap-3 ${className}`}>
+        {/* Like Button with count */}
+        <div className="flex items-center gap-1">
+          <LikeButton 
+            contentType={contentType} 
+            contentId={contentId} 
+            compact={true} // Don't show number in button, we add it separately
+          />
+          <span className="text-xs text-slate-400">
+            {interactionData.likes > 0 ? interactionData.likes : '0'}
+          </span>
+        </div>
+        
+        {/* View Counter with count */}
+        <div className="flex items-center gap-1">
+          <ViewCounter 
+            contentType={contentType} 
+            contentId={contentId} 
+            compact={true} // Don't show number in component, we add it separately
+          />
+          <span className="text-xs text-slate-400">
+            {interactionData.views > 0 ? interactionData.views : '0'}
+          </span>
+        </div>
+        
+        {/* Comment Button with count */}
+        {showComments && (
+          <button
+            onClick={() => setShowCommentsSection(!showCommentsSection)}
+            className="flex items-center gap-1 text-slate-400 hover:text-slate-300 transition-colors"
+          >
+            <MessageCircle className="w-3 h-3" />
+            <span className="text-xs text-slate-400">
+              {interactionData.comments.length > 0 ? interactionData.comments.length : '0'}
+            </span>
+          </button>
+        )}
+        
+        {/* Comments Section - Positioned below the interaction bar */}
+        {showComments && showCommentsSection && (
+          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4" onClick={() => setShowCommentsSection(false)}>
+            <div className="bg-slate-800 rounded-lg p-4 border border-slate-600 max-w-md w-full max-h-96 overflow-y-auto" onClick={(e) => e.stopPropagation()}>
+              <div className="flex items-center justify-between mb-3">
+                <h3 className="text-sm font-semibold text-slate-200">{t('interaction.comments')}</h3>
+                <button 
+                  onClick={() => setShowCommentsSection(false)}
+                  className="text-slate-400 hover:text-slate-300 text-xl"
+                >
+                  ×
+                </button>
+              </div>
+              <CommentSection 
+                contentType={contentType} 
+                contentId={contentId}
+              />
+            </div>
+          </div>
+        )}
+      </div>
+    )
+  }
+
+  // Full mode for other components
   return (
     <div className={`space-y-3 ${className}`}>
       {/* Action Buttons */}
