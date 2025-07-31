@@ -37,10 +37,15 @@ const RankingBar: React.FC = () => {
 
       {/* Progress Bar Container */}
       <div className="flex-1 min-w-0 mx-1 sm:mx-2">
-        <div className="flex items-center justify-between mb-1">
+        {/* Level label centered at top */}
+        <div className="text-center mb-1">
           <span className="text-slate-300" style={{ fontSize: 'clamp(0.6rem, 1.5vw, 0.75rem)' }}>
             {t('ranking.rankProgress')}
           </span>
+        </div>
+        
+        {/* Score centered below level */}
+        <div className="text-center mb-1">
           <span className="text-slate-400" style={{ fontSize: 'clamp(0.6rem, 1.5vw, 0.75rem)' }}>
             {Math.min(((user.xp || 0) % 1000), 1000)}/1000 XP
           </span>
