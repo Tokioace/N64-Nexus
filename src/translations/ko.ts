@@ -856,7 +856,7 @@ const ko = {
   'ranking.globalRank': '글로벌 순위',
   'ranking.totalPoints': '총 포인트',
   'ranking.currentLevel': '현재 레벨',
-  'ranking.rankProgress': '레벨',
+  'ranking.rankProgress': 'RankPR',
   'ranking.allTime': '전체 기간',
   'ranking.seasonRank': '시즌 순위',
   'ranking.currentSeason': '현재 시즌',

@@ -989,7 +989,7 @@ const ar = {
   'ranking.globalRank': 'الترتيب العالمي',
   'ranking.totalPoints': 'إجمالي النقاط',
   'ranking.currentLevel': 'المستوى الحالي',
-  'ranking.rankProgress': 'المستوى',
+  'ranking.rankProgress': 'RankPR',
   'ranking.allTime': 'كل الأوقات',
   'ranking.seasonRank': 'ترتيب الموسم',
   'ranking.currentSeason': 'الموسم الحالي',

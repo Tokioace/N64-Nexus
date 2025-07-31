@@ -906,7 +906,7 @@ const ja = {
   'ranking.globalRank': 'グローバルランク',
   'ranking.totalPoints': '総ポイント',
   'ranking.currentLevel': '現在のレベル',
-  'ranking.rankProgress': 'レベル',
+  'ranking.rankProgress': 'RankPR',
   'ranking.allTime': '全期間',
   'ranking.seasonRank': 'シーズンランク',
   'ranking.currentSeason': '現在のシーズン',
