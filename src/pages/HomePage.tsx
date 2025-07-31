@@ -240,7 +240,10 @@ const HomePage: React.FC = () => {
 
   return (
     <div className="container-lg space-responsive responsive-max-width responsive-overflow-hidden">
-      {/* Welcome Section with Mascot */}
+      {/* Space for ranking bar at the top */}
+      <div style={{ height: 'clamp(80px, 12vw, 120px)' }}></div>
+      
+      {/* Mascot Section - Positioned between ranking and welcome text */}
       <div className="text-center mb-responsive responsive-max-width">
         <div className="battle64-header-container mb-responsive">
           {/* Mascot Image */}
@@ -250,7 +253,10 @@ const HomePage: React.FC = () => {
             className="battle64-mascot"
           />
         </div>
-        
+      </div>
+
+      {/* Welcome Section */}
+      <div className="text-center mb-responsive responsive-max-width">
         {/* Welcome Back Text */}
         <p className="battle64-welcome-text">
           {user ? `${t('home.welcome')}, ${user.username}!` : t('home.welcome')}
