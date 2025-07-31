@@ -25,43 +25,43 @@ const RankingBar: React.FC = () => {
     <div 
       className="fixed z-40 transition-all duration-500 ease-out"
       style={{
-        top: 'clamp(4rem, 12vh, 6rem)', // Moved down to avoid collision
+        top: 'clamp(0.5rem, 2vw, 1rem)',
         left: '50%',
         transform: 'translateX(-50%)',
-        width: 'clamp(260px, 90vw, 420px)', // More responsive width
-        maxWidth: 'calc(100vw - 2rem)', // Ensure it never exceeds viewport
+        width: 'clamp(200px, 40vw, 280px)', // More compact width
+        maxWidth: 'calc(100vw - 120px)', // Leave space for user icon and sidebar
       }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       <div className={`
         relative backdrop-blur-md bg-gradient-to-r from-slate-800/80 via-slate-700/80 to-slate-800/80 
-        border border-slate-600/50 rounded-2xl shadow-2xl transition-all duration-300 ease-out
+        border border-slate-600/50 rounded-xl shadow-2xl transition-all duration-300 ease-out
         ${isHovered ? 'shadow-blue-500/20 border-blue-500/30 scale-105' : ''}
-        ${isExpanded ? 'pb-4' : 'pb-2'}
+        ${isExpanded ? 'pb-3' : 'pb-1'}
       `}>
         {/* Glasmorphism overlay */}
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 via-purple-600/10 to-blue-600/10 rounded-2xl" />
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 via-purple-600/10 to-blue-600/10 rounded-xl" />
         
         {/* Main content */}
-        <div className="relative px-4 py-3">
-          {/* Top row - Compact layout */}
-          <div className="flex items-center justify-between gap-2 mb-2">
+        <div className="relative px-3 py-2">
+          {/* Top row - Ultra compact layout */}
+          <div className="flex items-center justify-between gap-1.5 mb-1.5">
             {/* Rank Badge */}
-            <div className="flex items-center gap-1.5 px-2.5 py-1.5 bg-gradient-to-r from-yellow-500 to-yellow-600 text-black font-bold rounded-xl shadow-lg transform hover:scale-105 transition-transform flex-shrink-0">
-              <Trophy className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-              <span className="text-xs sm:text-sm">#{currentRank || '1'}</span>
+            <div className="flex items-center gap-1 px-2 py-1 bg-gradient-to-r from-yellow-500 to-yellow-600 text-black font-bold rounded-lg shadow-lg transform hover:scale-105 transition-transform flex-shrink-0">
+              <Trophy className="w-3 h-3" />
+              <span className="text-xs">#{currentRank || '1'}</span>
             </div>
 
             {/* Level Badge */}
-            <div className="flex items-center gap-1.5 px-2.5 py-1.5 bg-gradient-to-r from-emerald-500 to-emerald-600 text-white font-bold rounded-xl shadow-lg flex-shrink-0">
-              <Zap className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-              <span className="text-xs sm:text-sm">Lv.{level}</span>
+            <div className="flex items-center gap-1 px-2 py-1 bg-gradient-to-r from-emerald-500 to-emerald-600 text-white font-bold rounded-lg shadow-lg flex-shrink-0">
+              <Zap className="w-3 h-3" />
+              <span className="text-xs">Lv.{level}</span>
             </div>
 
             {/* CP Badge */}
-            <div className="flex items-center gap-1.5 px-2.5 py-1.5 bg-gradient-to-r from-purple-600 to-purple-700 text-white font-bold rounded-xl shadow-lg flex-shrink-0">
-              <span className="text-xs sm:text-sm">
+            <div className="flex items-center gap-1 px-2 py-1 bg-gradient-to-r from-purple-600 to-purple-700 text-white font-bold rounded-lg shadow-lg flex-shrink-0">
+              <span className="text-xs">
                 {userPoints.totalPoints > 999 
                   ? `${Math.floor(userPoints.totalPoints / 1000)}k` 
                   : userPoints.totalPoints} CP
@@ -69,15 +69,15 @@ const RankingBar: React.FC = () => {
             </div>
           </div>
 
-          {/* XP Progress Section */}
-          <div className="space-y-2">
+          {/* XP Progress Section - Compact */}
+          <div className="space-y-1">
             <div className="flex items-center justify-between text-xs text-slate-300">
-              <span className="font-medium">RangEXP</span>
-              <span className="font-mono">{currentXP} / {maxXP}</span>
+              <span className="font-medium text-xs">RangEXP</span>
+              <span className="font-mono text-xs">{currentXP} / {maxXP}</span>
             </div>
             
-            {/* Enhanced Progress Bar */}
-            <div className="relative h-2 bg-slate-700/50 rounded-full overflow-hidden border border-slate-600/30">
+            {/* Enhanced Progress Bar - Thinner */}
+            <div className="relative h-1.5 bg-slate-700/50 rounded-full overflow-hidden border border-slate-600/30">
               <div
                 className="absolute top-0 left-0 h-full bg-gradient-to-r from-green-400 via-emerald-500 to-green-600 transition-all duration-700 ease-out rounded-full shadow-lg"
                 style={{ width: `${progressPercentage}%` }}
@@ -93,31 +93,31 @@ const RankingBar: React.FC = () => {
             </div>
           </div>
 
-          {/* Expand/Collapse Button */}
+          {/* Expand/Collapse Button - Smaller */}
           <button
             onClick={() => setIsExpanded(!isExpanded)}
-            className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-6 h-6 bg-slate-700/80 hover:bg-slate-600/80 border border-slate-500/50 rounded-full flex items-center justify-center transition-all duration-200 hover:scale-110"
+            className="absolute -bottom-1.5 left-1/2 transform -translate-x-1/2 w-5 h-5 bg-slate-700/80 hover:bg-slate-600/80 border border-slate-500/50 rounded-full flex items-center justify-center transition-all duration-200 hover:scale-110"
           >
             {isExpanded ? (
-              <ChevronUp className="w-3 h-3 text-slate-300" />
+              <ChevronUp className="w-2.5 h-2.5 text-slate-300" />
             ) : (
-              <ChevronDown className="w-3 h-3 text-slate-300" />
+              <ChevronDown className="w-2.5 h-2.5 text-slate-300" />
             )}
           </button>
 
-          {/* Expanded Content */}
+          {/* Expanded Content - Compact */}
           <div className={`
             overflow-hidden transition-all duration-300 ease-out
-            ${isExpanded ? 'max-h-20 opacity-100 mt-4' : 'max-h-0 opacity-0'}
+            ${isExpanded ? 'max-h-16 opacity-100 mt-3' : 'max-h-0 opacity-0'}
           `}>
-            <div className="grid grid-cols-2 gap-3 text-xs">
-              <div className="bg-slate-800/50 rounded-lg p-2 border border-slate-600/30">
-                <div className="text-slate-400 mb-1">Season Rank</div>
-                <div className="text-white font-semibold">#{currentRank || '1'}</div>
+            <div className="grid grid-cols-2 gap-2 text-xs">
+              <div className="bg-slate-800/50 rounded-md p-1.5 border border-slate-600/30">
+                <div className="text-slate-400 mb-0.5 text-xs">Season Rank</div>
+                <div className="text-white font-semibold text-xs">#{currentRank || '1'}</div>
               </div>
-              <div className="bg-slate-800/50 rounded-lg p-2 border border-slate-600/30">
-                <div className="text-slate-400 mb-1">Next Level</div>
-                <div className="text-white font-semibold">{maxXP - currentXP} XP</div>
+              <div className="bg-slate-800/50 rounded-md p-1.5 border border-slate-600/30">
+                <div className="text-slate-400 mb-0.5 text-xs">Next Level</div>
+                <div className="text-white font-semibold text-xs">{maxXP - currentXP} XP</div>
               </div>
             </div>
           </div>
