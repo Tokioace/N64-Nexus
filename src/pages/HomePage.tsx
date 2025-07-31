@@ -241,16 +241,20 @@ const HomePage: React.FC = () => {
   return (
     <div className="container-lg space-responsive responsive-max-width responsive-overflow-hidden">
       {/* Space for ranking bar at the top */}
-      <div style={{ height: 'clamp(80px, 12vw, 120px)' }}></div>
+      <div style={{ height: 'clamp(90px, 14vw, 130px)' }}></div>
       
-      {/* Mascot Section - Positioned between ranking and welcome text */}
-      <div className="text-center mb-responsive responsive-max-width">
-        <div className="battle64-header-container mb-responsive">
-          {/* Mascot Image */}
+      {/* Mascot Section - Prominently positioned like in mobile interface */}
+      <div className="text-center mb-8 responsive-max-width">
+        <div className="battle64-header-container">
+          {/* Mascot Image - More prominent positioning like in photo */}
           <img 
             src="/mascot.png" 
             alt={t('alt.battle64Mascot')} 
-            className="battle64-mascot"
+            className="battle64-mascot mx-auto block"
+            style={{
+              marginTop: 'clamp(0.5rem, 2vw, 1rem)',
+              marginBottom: 'clamp(1rem, 3vw, 2rem)'
+            }}
           />
         </div>
       </div>
