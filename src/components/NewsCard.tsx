@@ -138,7 +138,7 @@ const NewsCard: React.FC<NewsCardProps> = ({ newsItem, index, onDismiss, isAnima
       
       <div className="swipeable-card-content">
         <div className="p-4 h-full flex flex-col justify-between">
-          <div className="flex-1 space-y-3">
+          <div className="flex-1 space-y-3 pb-2">
             <h4 className="text-base font-semibold text-text-primary leading-tight line-clamp-2">
               {newsItem.title}
             </h4>
@@ -146,19 +146,21 @@ const NewsCard: React.FC<NewsCardProps> = ({ newsItem, index, onDismiss, isAnima
               {newsItem.content}
             </p>
           </div>
-          <div className="border-t border-slate-600/30 pt-3 mt-4 flex-shrink-0">
-            <div className="flex items-center justify-between text-xs text-text-muted mb-3">
+          <div className="border-t border-slate-600/30 pt-4 mt-3 flex-shrink-0 min-h-[60px]">
+            <div className="flex items-center justify-between text-xs text-text-muted mb-4">
               <span className="font-medium">{formatTime(newsItem.date)}</span>
               <span className="text-accent-blue font-medium">{t('ui.newsDetails')}</span>
             </div>
             
             {/* Interaction Bar */}
-            <InteractionBar 
-              contentType="news"
-              contentId={newsItem.id}
-              showComments={false}
-              compact={true}
-            />
+            <div className="pb-1">
+              <InteractionBar 
+                contentType="news"
+                contentId={newsItem.id}
+                showComments={false}
+                compact={true}
+              />
+            </div>
           </div>
         </div>
       </div>
