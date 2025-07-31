@@ -169,7 +169,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
               <div className="flex items-center gap-2 bg-gradient-to-r from-blue-500/20 to-blue-600/20 border border-blue-500/30 rounded-lg" style={{ padding: 'clamp(0.5rem, 1.5vw, 0.75rem)' }}>
                 <Zap className="text-blue-400" style={{ width: 'clamp(16px, 3vw, 20px)', height: 'clamp(16px, 3vw, 20px)' }} />
                 <span className="text-blue-200" style={{ fontSize: 'clamp(0.75rem, 1.8vw, 0.875rem)' }}>
-                  {userPoints.currentRank.key.split('.')[1] || 'Beginner'}
+                  {t(userPoints.currentRank.key as any)}
                 </span>
               </div>
             </div>

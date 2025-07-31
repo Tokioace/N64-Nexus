@@ -717,6 +717,28 @@ const es = {
   'rank.nextRank': 'Siguiente Rango',
   'rank.maxRank': 'Rango máximo alcanzado',
 
+  // Cool Rank Titles (20 Levels)
+  'Pixel Rookie': 'Novato Pixel',
+  'Button Masher': 'Machacabotones',
+  'Cartridge Hunter': 'Cazador de Cartuchos',
+  'Console Explorer': 'Explorador de Consola',
+  'Retro Enthusiast': 'Entusiasta Retro',
+  'Speed Demon': 'Demonio de Velocidad',
+  'High Score Hero': 'Héroe de Puntuación',
+  'Gem Collector': 'Coleccionista de Gemas',
+  'Fortress Conqueror': 'Conquistador de Fortaleza',
+  'Retro Kingdom Elite': 'Elite del Reino Retro',
+  'Galaxy Guardian': 'Guardián de Galaxia',
+  'Time Trial Master': 'Maestro Contrarreloj',
+  'Portal Zone Warrior': 'Guerrero de Zona Portal',
+  'Boss Battle Champion': 'Campeón de Batalla de Jefe',
+  'Secret Level Sage': 'Sabio del Nivel Secreto',
+  'Golden Controller God': 'Dios del Mando Dorado',
+  'Dimension Destroyer': 'Destructor de Dimensiones',
+  'Reality Bender': 'Doblador de Realidad',
+  'Retro Overlord': 'Señor Supremo Retro',
+  'Ultimate Gaming Legend': 'Leyenda Gaming Definitiva',
+
   // Medal
   'medal.season': 'Temporada',
   'medal.bonusXP': 'XP Bonus',

@@ -667,6 +667,28 @@ const ja = {
   'rank.nextRank': '次のランク',
   'rank.maxRank': '最高ランクに到達',
 
+  // Cool Rank Titles (20 Levels)
+  'Pixel Rookie': 'ピクセルルーキー',
+  'Button Masher': 'ボタン連打マスター',
+  'Cartridge Hunter': 'カートリッジハンター',
+  'Console Explorer': 'コンソール探検家',
+  'Retro Enthusiast': 'レトロ愛好家',
+  'Speed Demon': 'スピードデーモン',
+  'High Score Hero': 'ハイスコアヒーロー',
+  'Gem Collector': 'ジェム収集家',
+  'Fortress Conqueror': '要塞征服者',
+  'Retro Kingdom Elite': 'レトロ王国エリート',
+  'Galaxy Guardian': '銀河の守護者',
+  'Time Trial Master': 'タイムトライアルマスター',
+  'Portal Zone Warrior': 'ポータルゾーンウォリアー',
+  'Boss Battle Champion': 'ボス戦チャンピオン',
+  'Secret Level Sage': '隠しレベル賢者',
+  'Golden Controller God': '黄金コントローラーの神',
+  'Dimension Destroyer': '次元破壊者',
+  'Reality Bender': '現実改変者',
+  'Retro Overlord': 'レトロオーバーロード',
+  'Ultimate Gaming Legend': '究極ゲーミング伝説',
+
   // Medal system
   'medal.season': 'シーズン',
   'medal.bonusXP': 'ボーナスXP',

@@ -780,6 +780,28 @@ const ar = {
   'rank.nextRank': 'الترتيب التالي',
   'rank.maxRank': 'تم الوصول للترتيب الأقصى',
 
+  // Cool Rank Titles (20 Levels) - ألقاب الترتيب الرائعة
+  'Pixel Rookie': 'مبتدئ البكسل',
+  'Button Masher': 'محطم الأزرار',
+  'Cartridge Hunter': 'صياد الخراطيش',
+  'Console Explorer': 'مستكشف الكونسول',
+  'Retro Enthusiast': 'عاشق الألعاب القديمة',
+  'Speed Demon': 'شيطان السرعة',
+  'High Score Hero': 'بطل النقاط العالية',
+  'Gem Collector': 'جامع الأحجار الكريمة',
+  'Fortress Conqueror': 'فاتح الحصون',
+  'Retro Kingdom Elite': 'نخبة المملكة الكلاسيكية',
+  'Galaxy Guardian': 'حارس المجرة',
+  'Time Trial Master': 'سيد التجارب الزمنية',
+  'Portal Zone Warrior': 'محارب منطقة البوابات',
+  'Boss Battle Champion': 'بطل معارك الزعماء',
+  'Secret Level Sage': 'حكيم المستويات السرية',
+  'Golden Controller God': 'إله الكونترولر الذهبي',
+  'Dimension Destroyer': 'مدمر الأبعاد',
+  'Reality Bender': 'ثاني الواقع',
+  'Retro Overlord': 'السيد الكلاسيكي الأعظم',
+  'Ultimate Gaming Legend': 'أسطورة الألعاب النهائية',
+
   // Profile activity - نشاط الملف الشخصي
   'profile.activityHistory': 'تاريخ النشاط',
   'profile.achievedOn': 'تم تحقيقه في',

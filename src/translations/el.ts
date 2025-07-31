@@ -730,6 +730,28 @@ const el = {
   'rank.nextRank': 'Επόμενη Κατάταξη',
   'rank.maxRank': 'Μέγιστη κατάταξη επιτεύχθηκε',
 
+  // Cool Rank Titles (20 Levels)
+  'Pixel Rookie': 'Pixel Αρχάριος',
+  'Button Masher': 'Καταστροφέας Κουμπιών',
+  'Cartridge Hunter': 'Κυνηγός Κασετών',
+  'Console Explorer': 'Εξερευνητής Κονσόλας',
+  'Retro Enthusiast': 'Λάτρης Ρετρό',
+  'Speed Demon': 'Δαίμονας Ταχύτητας',
+  'High Score Hero': 'Ήρωας Υψηλών Σκορ',
+  'Gem Collector': 'Συλλέκτης Πολύτιμων Λίθων',
+  'Fortress Conqueror': 'Κατακτητής Φρουρίων',
+  'Retro Kingdom Elite': 'Ελίτ του Ρετρό Βασιλείου',
+  'Galaxy Guardian': 'Φύλακας Γαλαξία',
+  'Time Trial Master': 'Δάσκαλος Χρονικών Δοκιμών',
+  'Portal Zone Warrior': 'Πολεμιστής Ζώνης Πυλών',
+  'Boss Battle Champion': 'Πρωταθλητής Μαχών με Αφεντικά',
+  'Secret Level Sage': 'Σοφός Μυστικών Επιπέδων',
+  'Golden Controller God': 'Θεός Χρυσού Χειριστηρίου',
+  'Dimension Destroyer': 'Καταστροφέας Διαστάσεων',
+  'Reality Bender': 'Λυγιστής Πραγματικότητας',
+  'Retro Overlord': 'Ρετρό Άρχοντας',
+  'Ultimate Gaming Legend': 'Απόλυτος Θρύλος Gaming',
+
   // Medals
   'medal.season': 'Σεζόν',
   'medal.bonusXP': 'Bonus XP',

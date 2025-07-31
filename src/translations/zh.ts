@@ -743,6 +743,28 @@ const zh = {
   'rank.nextRank': '下一级别',
   'rank.maxRank': '已达到最高级别',
 
+  // Cool Rank Titles (20 Levels)
+  'Pixel Rookie': '像素新手',
+  'Button Masher': '按键狂魔',
+  'Cartridge Hunter': '卡带猎人',
+  'Console Explorer': '主机探索者',
+  'Retro Enthusiast': '复古爱好者',
+  'Speed Demon': '速度恶魔',
+  'High Score Hero': '高分英雄',
+  'Gem Collector': '宝石收集者',
+  'Fortress Conqueror': '要塞征服者',
+  'Retro Kingdom Elite': '复古王国精英',
+  'Galaxy Guardian': '银河守护者',
+  'Time Trial Master': '计时赛大师',
+  'Portal Zone Warrior': '传送门区战士',
+  'Boss Battle Champion': '首领战冠军',
+  'Secret Level Sage': '隐藏关卡贤者',
+  'Golden Controller God': '黄金手柄之神',
+  'Dimension Destroyer': '次元毁灭者',
+  'Reality Bender': '现实扭曲者',
+  'Retro Overlord': '复古霸主',
+  'Ultimate Gaming Legend': '终极游戏传奇',
+
   // Medal
   'medal.season': '赛季',
   'medal.bonusXP': '奖励经验',
