@@ -856,7 +856,7 @@ const de = {
   'ranking.globalRank': 'Globaler Rang',
   'ranking.totalPoints': 'Gesamtpunkte',
   'ranking.currentLevel': 'Aktuelles Level',
-  'ranking.rankProgress': 'Rang-Fortschritt',
+  'ranking.rankProgress': 'Level',
   'ranking.allTime': 'Alle Zeiten',
   'ranking.seasonRank': 'Saison-Rang',
   'ranking.currentSeason': 'Aktuelle Saison',

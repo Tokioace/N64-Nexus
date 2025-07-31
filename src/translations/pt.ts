@@ -857,7 +857,7 @@ const pt = {
   'ranking.globalRank': 'Classificação Global',
   'ranking.totalPoints': 'Pontos Totais',
   'ranking.currentLevel': 'Nível Atual',
-  'ranking.rankProgress': 'Progresso da Classificação',
+  'ranking.rankProgress': 'Nível',
   'ranking.allTime': 'Todos os Tempos',
   'ranking.seasonRank': 'Classificação da Temporada',
   'ranking.currentSeason': 'Temporada Atual',

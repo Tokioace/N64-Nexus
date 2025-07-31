@@ -857,7 +857,7 @@ const tr = {
   'ranking.globalRank': 'Küresel Sıralama',
   'ranking.totalPoints': 'Toplam Puan',
   'ranking.currentLevel': 'Mevcut Seviye',
-  'ranking.rankProgress': 'Sıralama İlerlemesi',
+  'ranking.rankProgress': 'Seviye',
   'ranking.allTime': 'Tüm Zamanlar',
   'ranking.seasonRank': 'Sezon Sıralaması',
   'ranking.currentSeason': 'Mevcut Sezon',

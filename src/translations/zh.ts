@@ -906,7 +906,7 @@ const zh = {
   'ranking.globalRank': '全球排名',
   'ranking.totalPoints': '总积分',
   'ranking.currentLevel': '当前等级',
-  'ranking.rankProgress': '排名进度',
+  'ranking.rankProgress': '等级',
   'ranking.allTime': '全时期',
   'ranking.seasonRank': '赛季排名',
   'ranking.currentSeason': '当前赛季',

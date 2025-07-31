@@ -857,7 +857,7 @@ const en = {
   'ranking.globalRank': 'Global Rank',
   'ranking.totalPoints': 'Total Points',
   'ranking.currentLevel': 'Current Level',
-  'ranking.rankProgress': 'Rank Progress',
+  'ranking.rankProgress': 'Level',
   'ranking.allTime': 'All Time',
   'ranking.seasonRank': 'Season Rank',
   'ranking.currentSeason': 'Current Season',
