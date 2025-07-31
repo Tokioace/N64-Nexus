@@ -99,7 +99,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       {/* Mobile menu button */}
       <button
         onClick={toggleMobileSidebar}
-        className="mobile-menu-button fixed z-50 lg:hidden bg-slate-800/90 backdrop-blur-sm text-white rounded-lg shadow-lg hover:bg-slate-700 transition-all duration-200 border border-slate-600 flex items-center justify-center"
+        className="mobile-menu-button fixed z-45 lg:hidden bg-slate-800/90 backdrop-blur-sm text-white rounded-lg shadow-lg hover:bg-slate-700 transition-all duration-200 border border-slate-600 flex items-center justify-center"
         style={{
           top: 'clamp(0.5rem, 2vw, 1rem)',
           left: 'clamp(0.5rem, 2vw, 1rem)',
@@ -128,7 +128,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       {isAuthenticated && user && (
         <Link 
           to="/profile" 
-          className="fixed z-50 flex items-center justify-center rounded-full bg-slate-800/90 backdrop-blur-sm hover:bg-slate-700/90 transition-all duration-200 border border-slate-600 shadow-lg group"
+          className="fixed z-45 flex items-center justify-center rounded-full bg-slate-800/90 backdrop-blur-sm hover:bg-slate-700/90 transition-all duration-200 border border-slate-600 shadow-lg group"
           style={{
             top: 'clamp(0.5rem, 2vw, 1rem)',
             right: 'clamp(0.5rem, 2vw, 1rem)',
