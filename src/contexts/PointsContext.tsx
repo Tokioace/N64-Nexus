@@ -63,25 +63,25 @@ const POINTS_CONFIG: PointsConfig = {
 
 // Ranks configuration with i18n keys
 const RANKS_CONFIG: RankConfig[] = [
-  { key: 'Pixel Rookie', minPoints: 0, iconKey: 'icon.n64Controller' },
+  { key: 'Pixel Rookie', minPoints: 0, iconKey: 'icon.controller' },
   { key: 'Button Masher', minPoints: 50, iconKey: 'icon.gamepad' },
   { key: 'Cartridge Hunter', minPoints: 150, iconKey: 'icon.cartridge' },
   { key: 'Console Explorer', minPoints: 300, iconKey: 'icon.console' },
   { key: 'Retro Enthusiast', minPoints: 500, iconKey: 'icon.retrogamer' },
   { key: 'Speed Demon', minPoints: 750, iconKey: 'icon.stopwatch' },
   { key: 'High Score Hero', minPoints: 1100, iconKey: 'icon.score' },
-  { key: 'Power Star Collector', minPoints: 1500, iconKey: 'icon.star' },
-  { key: 'Castle Conqueror', minPoints: 2000, iconKey: 'icon.castle' },
-  { key: 'Mushroom Kingdom Elite', minPoints: 2600, iconKey: 'icon.mushroom' },
+  { key: 'Gem Collector', minPoints: 1500, iconKey: 'icon.gem' },
+  { key: 'Fortress Conqueror', minPoints: 2000, iconKey: 'icon.fortress' },
+  { key: 'Retro Kingdom Elite', minPoints: 2600, iconKey: 'icon.crown' },
   { key: 'Galaxy Guardian', minPoints: 3300, iconKey: 'icon.galaxy' },
   { key: 'Time Trial Master', minPoints: 4100, iconKey: 'icon.timer' },
-  { key: 'Warp Zone Warrior', minPoints: 5000, iconKey: 'icon.warp' },
+  { key: 'Portal Zone Warrior', minPoints: 5000, iconKey: 'icon.portal' },
   { key: 'Boss Battle Champion', minPoints: 6000, iconKey: 'icon.boss' },
   { key: 'Secret Level Sage', minPoints: 7200, iconKey: 'icon.secret' },
   { key: 'Golden Controller God', minPoints: 8500, iconKey: 'icon.goldController' },
   { key: 'Dimension Destroyer', minPoints: 10000, iconKey: 'icon.dimension' },
   { key: 'Reality Bender', minPoints: 12000, iconKey: 'icon.reality' },
-  { key: 'N64 Overlord', minPoints: 15000, iconKey: 'icon.overlord' },
+  { key: 'Retro Overlord', minPoints: 15000, iconKey: 'icon.overlord' },
   { key: 'Ultimate Gaming Legend', minPoints: 20000, iconKey: 'icon.legend' }
 ]
 
