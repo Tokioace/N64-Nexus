@@ -2378,3 +2378,22 @@ input[type="submit"] {
   padding: 1rem;
   box-sizing: border-box;
 }
+
+/* RankingBar Shimmer Animation */
+@keyframes shimmer {
+  0% { 
+    transform: translateX(-100%) skewX(-12deg); 
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% { 
+    transform: translateX(400%) skewX(-12deg); 
+    opacity: 0;
+  }
+}
+
+.shimmer-effect {
+  animation: shimmer 2s ease-in-out infinite;
+}
