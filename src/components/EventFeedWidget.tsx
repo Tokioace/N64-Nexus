@@ -188,7 +188,7 @@ const EventCard: React.FC<EventCardProps> = ({ event, leaderboard, timeRemaining
               <InteractionBar 
                 contentType="event"
                 contentId={event.id}
-                showComments={false}
+                showComments={true}
                 compact={true}
               />
               <Link 
