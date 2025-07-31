@@ -976,25 +976,7 @@ code {
   @apply text-center text-xs sm:text-sm lg:text-base;
 }
 
-/* Z-index utilities */
-.z-45 {
-  z-index: 45;
-}
 
-/* Extra small screen utility */
-@media (min-width: 475px) {
-  .xs\:block {
-    display: block;
-  }
-}
-
-/* Very small screen adjustments */
-@media (max-width: 360px) {
-  /* Hide ranking bar on very small screens to prevent overlaps */
-  .ranking-bar-container {
-    display: none !important;
-  }
-}
 
 /* Navigation Styles - Fully Responsive */
 .sidebar {
