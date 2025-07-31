@@ -12,6 +12,7 @@ import SingleFanArtCard from '../components/SingleFanArtCard'
 import SingleMediaCard from '../components/SingleMediaCard'
 import SingleRecordCard from '../components/SingleRecordCard'
 import SingleMarketplaceCard from '../components/SingleMarketplaceCard'
+import RankingBar from '../components/RankingBar'
 
 interface ForumThread {
   id: string
@@ -240,19 +241,21 @@ const HomePage: React.FC = () => {
 
   return (
     <div className="container-lg space-responsive responsive-max-width responsive-overflow-hidden">
-      {/* Space for ranking bar at the top */}
-      <div style={{ height: 'clamp(90px, 14vw, 130px)' }}></div>
+      {/* Ranking Bar at the top */}
+      <div className="text-center mb-4">
+        <RankingBar />
+      </div>
       
-      {/* Mascot Section - Prominently positioned like in mobile interface */}
+      {/* Mascot Section - Positioned lower to avoid antenna overlap */}
       <div className="text-center mb-8 responsive-max-width">
         <div className="battle64-header-container">
-          {/* Mascot Image - More prominent positioning like in photo */}
+          {/* Mascot Image - Positioned lower to show antennas */}
           <img 
             src="/mascot.png" 
             alt={t('alt.battle64Mascot')} 
             className="battle64-mascot mx-auto block"
             style={{
-              marginTop: 'clamp(0.5rem, 2vw, 1rem)',
+              marginTop: 'clamp(2rem, 4vw, 3rem)', // Increased top margin
               marginBottom: 'clamp(1rem, 3vw, 2rem)'
             }}
           />
