@@ -26,7 +26,7 @@ const RankingBar: React.FC = () => {
            transform: 'translateX(-50%)',
          }}>
       
-      <div className="flex flex-col items-center w-full px-2 py-1.5 bg-[#0e0e1a] rounded-md shadow-md text-white text-xs">
+      <div className="flex flex-col items-center w-full px-2 py-1.5 rounded-md text-white text-xs">
 
         {/* Top Section with Badges and RangEXP */}
         <div className="flex items-center justify-center gap-1 w-full mb-1">
