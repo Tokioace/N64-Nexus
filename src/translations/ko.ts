@@ -672,6 +672,15 @@ const ko = {
   'rank.current': '현재',
   'rank.nextRank': '다음 랭크',
   'rank.maxRank': '최대 랭크 달성',
+
+  // Rank Titles
+  'rank.n64Beginner': 'N64 초보자',
+  'rank.moduleCollector': '모듈 수집가',
+  'rank.retroGeek': '레트로 긱',
+  'rank.speedrunner': '스피드러너',
+  'rank.fanartMaster': '팬아트 마스터',
+  'rank.retroChampion': '레트로 챔피언',
+  'rank.n64Legend': 'N64 전설',
   'profile.activityHistory': '활동 히스토리',
   'profile.achievedOn': '달성일',
   'profile.medals.title': '메달',

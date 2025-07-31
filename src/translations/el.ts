@@ -730,6 +730,15 @@ const el = {
   'rank.nextRank': 'Επόμενη Κατάταξη',
   'rank.maxRank': 'Μέγιστη κατάταξη επιτεύχθηκε',
 
+  // Rank Titles
+  'rank.n64Beginner': 'N64 Αρχάριος',
+  'rank.moduleCollector': 'Συλλέκτης Μονάδων',
+  'rank.retroGeek': 'Ρετρό Geek',
+  'rank.speedrunner': 'Speedrunner',
+  'rank.fanartMaster': 'Δάσκαλος Fanart',
+  'rank.retroChampion': 'Ρετρό Πρωταθλητής',
+  'rank.n64Legend': 'N64 Θρύλος',
+
   // Medals
   'medal.season': 'Σεζόν',
   'medal.bonusXP': 'Bonus XP',

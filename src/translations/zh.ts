@@ -743,6 +743,15 @@ const zh = {
   'rank.nextRank': '下一级别',
   'rank.maxRank': '已达到最高级别',
 
+  // Rank Titles
+  'rank.n64Beginner': 'N64初学者',
+  'rank.moduleCollector': '模块收集者',
+  'rank.retroGeek': '复古极客',
+  'rank.speedrunner': '速通玩家',
+  'rank.fanartMaster': '同人艺术大师',
+  'rank.retroChampion': '复古冠军',
+  'rank.n64Legend': 'N64传奇',
+
   // Medal
   'medal.season': '赛季',
   'medal.bonusXP': '奖励经验',

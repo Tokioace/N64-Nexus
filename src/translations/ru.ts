@@ -655,6 +655,15 @@ const ru = {
   'rank.current': 'Current',
   'rank.nextRank': 'Next Rank',
   'rank.maxRank': 'Maximum rank reached',
+
+  // Rank Titles
+  'rank.n64Beginner': 'N64 Новичок',
+  'rank.moduleCollector': 'Коллекционер Модулей',
+  'rank.retroGeek': 'Ретро Гик',
+  'rank.speedrunner': 'Спидраннер',
+  'rank.fanartMaster': 'Мастер Фанарта',
+  'rank.retroChampion': 'Ретро Чемпион',
+  'rank.n64Legend': 'N64 Легенда',
   'profile.activityHistory': 'Activity History',
   'profile.achievedOn': 'Achieved on',
   'profile.medals.title': 'Medals',

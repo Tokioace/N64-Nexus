@@ -672,6 +672,15 @@ const pt = {
   'rank.current': 'Atual',
   'rank.nextRank': 'Próxima Classificação',
   'rank.maxRank': 'Classificação máxima alcançada',
+
+  // Rank Titles
+  'rank.n64Beginner': 'Iniciante N64',
+  'rank.moduleCollector': 'Colecionador de Módulos',
+  'rank.retroGeek': 'Geek Retrô',
+  'rank.speedrunner': 'Speedrunner',
+  'rank.fanartMaster': 'Mestre Fanart',
+  'rank.retroChampion': 'Campeão Retrô',
+  'rank.n64Legend': 'Lenda N64',
   'profile.activityHistory': 'Histórico de Atividades',
   'profile.achievedOn': 'Conquistado em',
   'profile.medals.title': 'Medalhas',

@@ -667,6 +667,15 @@ const ja = {
   'rank.nextRank': '次のランク',
   'rank.maxRank': '最高ランクに到達',
 
+  // Rank Titles
+  'rank.n64Beginner': 'N64初心者',
+  'rank.moduleCollector': 'モジュールコレクター',
+  'rank.retroGeek': 'レトロギーク',
+  'rank.speedrunner': 'スピードランナー',
+  'rank.fanartMaster': 'ファンアートマスター',
+  'rank.retroChampion': 'レトロチャンピオン',
+  'rank.n64Legend': 'N64レジェンド',
+
   // Medal system
   'medal.season': 'シーズン',
   'medal.bonusXP': 'ボーナスXP',

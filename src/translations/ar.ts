@@ -780,6 +780,15 @@ const ar = {
   'rank.nextRank': 'الترتيب التالي',
   'rank.maxRank': 'تم الوصول للترتيب الأقصى',
 
+  // Rank Titles - ألقاب الترتيب
+  'rank.n64Beginner': 'مبتدئ N64',
+  'rank.moduleCollector': 'جامع الوحدات',
+  'rank.retroGeek': 'مهووس الألعاب القديمة',
+  'rank.speedrunner': 'عداء السرعة',
+  'rank.fanartMaster': 'سيد الفن الجماهيري',
+  'rank.retroChampion': 'بطل الألعاب القديمة',
+  'rank.n64Legend': 'أسطورة N64',
+
   // Profile activity - نشاط الملف الشخصي
   'profile.activityHistory': 'تاريخ النشاط',
   'profile.achievedOn': 'تم تحقيقه في',

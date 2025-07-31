@@ -717,6 +717,15 @@ const es = {
   'rank.nextRank': 'Siguiente Rango',
   'rank.maxRank': 'Rango máximo alcanzado',
 
+  // Rank Titles
+  'rank.n64Beginner': 'Principiante N64',
+  'rank.moduleCollector': 'Coleccionista de Módulos',
+  'rank.retroGeek': 'Geek Retro',
+  'rank.speedrunner': 'Speedrunner',
+  'rank.fanartMaster': 'Maestro Fanart',
+  'rank.retroChampion': 'Campeón Retro',
+  'rank.n64Legend': 'Leyenda N64',
+
   // Medal
   'medal.season': 'Temporada',
   'medal.bonusXP': 'XP Bonus',

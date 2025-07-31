@@ -672,6 +672,15 @@ const hi = {
   'rank.current': 'वर्तमान',
   'rank.nextRank': 'अगली रैंक',
   'rank.maxRank': 'अधिकतम रैंक पहुंच गई',
+
+  // Rank Titles
+  'rank.n64Beginner': 'N64 शुरुआती',
+  'rank.moduleCollector': 'मॉड्यूल कलेक्टर',
+  'rank.retroGeek': 'रेट्रो गीक',
+  'rank.speedrunner': 'स्पीडरनर',
+  'rank.fanartMaster': 'फैनआर्ट मास्टर',
+  'rank.retroChampion': 'रेट्रो चैंपियन',
+  'rank.n64Legend': 'N64 लीजेंड',
   'profile.activityHistory': 'गतिविधि इतिहास',
   'profile.achievedOn': 'पर हासिल किया',
   'profile.medals.title': 'मेडल',
