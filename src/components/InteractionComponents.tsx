@@ -267,6 +267,122 @@ export const CommentSection: React.FC<CommentSectionProps> = ({
   )
 }
 
+// Compact Interaction Bar Component for Events
+interface CompactInteractionBarProps {
+  contentType: string
+  contentId: string
+  className?: string
+  showComments?: boolean
+  showCommentsSection: boolean
+  setShowCommentsSection: (show: boolean) => void
+}
+
+const CompactInteractionBar: React.FC<CompactInteractionBarProps> = ({
+  contentType,
+  contentId,
+  className = '',
+  showComments = true,
+  showCommentsSection,
+  setShowCommentsSection
+}) => {
+  const { likeContent, unlikeContent, hasUserLiked, getInteractionData, viewContent } = useInteraction()
+  const { user } = useUser()
+  const [isLiking, setIsLiking] = useState(false)
+
+  const interactionData = getInteractionData(contentType, contentId)
+  const isLiked = user ? hasUserLiked(contentType, contentId, user.id) : false
+
+  // Record view when component mounts (only if user is logged in)
+  useEffect(() => {
+    if (user) {
+      viewContent(contentType, contentId, user.id)
+    }
+  }, [user, contentType, contentId, viewContent])
+
+  const handleLike = async () => {
+    if (!user || isLiking) return
+
+    setIsLiking(true)
+    try {
+      if (isLiked) {
+        await unlikeContent(contentType, contentId, user.id)
+      } else {
+        await likeContent(contentType, contentId, user.id)
+      }
+    } catch (error) {
+      console.error('Error toggling like:', error)
+    } finally {
+      setIsLiking(false)
+    }
+  }
+
+  return (
+    <div className={`flex items-center gap-4 ${className}`}>
+      {/* Like Button with count */}
+      <div className="flex items-center gap-1.5">
+        <button
+          onClick={handleLike}
+          disabled={!user || isLiking}
+          className={`transition-all duration-200 flex-shrink-0 ${
+            isLiked 
+              ? 'text-pink-400 hover:text-pink-300' 
+              : 'text-slate-400 hover:text-pink-400'
+          } ${!user ? 'opacity-50 cursor-not-allowed' : 'hover:scale-105'}`}
+        >
+          <Heart className={`w-4 h-4 ${isLiked ? 'fill-pink-400 text-pink-400 scale-110' : ''} transition-all`} />
+        </button>
+        <span className="text-xs text-slate-400 font-medium min-w-[1ch]">
+          {interactionData.likes > 0 ? interactionData.likes : '0'}
+        </span>
+      </div>
+      
+      {/* View Counter with count - increased gap for better spacing */}
+      <div className="flex items-center gap-2">
+        <Eye className="w-4 h-4 text-slate-400 flex-shrink-0" />
+        <span className="text-xs text-slate-400 font-medium min-w-[1ch]">
+          {interactionData.views > 0 ? interactionData.views : '0'}
+        </span>
+      </div>
+      
+      {/* Comment Button with count */}
+      {showComments && (
+        <div className="flex items-center gap-1.5">
+          <button
+            onClick={() => setShowCommentsSection(!showCommentsSection)}
+            className="text-slate-400 hover:text-blue-400 transition-colors flex-shrink-0"
+          >
+            <MessageSquare className="w-4 h-4" />
+          </button>
+          <span className="text-xs text-slate-400 font-medium min-w-[1ch]">
+            {interactionData.comments.length > 0 ? interactionData.comments.length : '0'}
+          </span>
+        </div>
+      )}
+      
+      {/* Comments Section - Positioned below the interaction bar */}
+      {showComments && showCommentsSection && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4" onClick={() => setShowCommentsSection(false)}>
+          <div className="bg-slate-800 rounded-lg p-4 border border-slate-600 max-w-md w-full max-h-96 overflow-y-auto" onClick={(e) => e.stopPropagation()}>
+            <div className="flex items-center justify-between mb-3">
+              <h3 className="text-sm font-semibold text-slate-200">Comments</h3>
+              <button 
+                onClick={() => setShowCommentsSection(false)}
+                className="text-slate-400 hover:text-slate-300 text-xl"
+              >
+                ×
+              </button>
+            </div>
+            <CommentSection 
+              contentType={contentType} 
+              contentId={contentId}
+            />
+          </div>
+        </div>
+      )}
+    </div>
+  )
+}
+
 // Complete Interaction Bar Component
 export const InteractionBar: React.FC<InteractionBarProps> = ({ 
   contentType, 
@@ -284,79 +400,14 @@ export const InteractionBar: React.FC<InteractionBarProps> = ({
   if (compact) {
     // Compact mode for events - show like, saw, comment with proper spacing like FanArt
     return (
-      <div className={`flex items-center gap-4 ${className}`}>
-        {/* Like Button with count */}
-        <div className="flex items-center gap-1.5">
-          <button
-            onClick={async () => {
-              const { likeContent, unlikeContent, hasUserLiked } = useInteraction()
-              const { user } = useUser()
-              if (!user) return
-              
-              const isLiked = hasUserLiked(contentType, contentId, user.id)
-              try {
-                if (isLiked) {
-                  await unlikeContent(contentType, contentId, user.id)
-                } else {
-                  await likeContent(contentType, contentId, user.id)
-                }
-              } catch (error) {
-                console.error('Error toggling like:', error)
-              }
-            }}
-            className="text-slate-400 hover:text-pink-400 transition-colors flex-shrink-0"
-          >
-            <Heart className="w-4 h-4" />
-          </button>
-          <span className="text-xs text-slate-400 font-medium min-w-[1ch]">
-            {interactionData.likes > 0 ? interactionData.likes : '0'}
-          </span>
-        </div>
-        
-        {/* View Counter with count */}
-        <div className="flex items-center gap-1.5">
-          <Eye className="w-4 h-4 text-slate-400 flex-shrink-0" />
-          <span className="text-xs text-slate-400 font-medium min-w-[1ch]">
-            {interactionData.views > 0 ? interactionData.views : '0'}
-          </span>
-        </div>
-        
-        {/* Comment Button with count */}
-        {showComments && (
-          <div className="flex items-center gap-1.5">
-            <button
-              onClick={() => setShowCommentsSection(!showCommentsSection)}
-              className="text-slate-400 hover:text-blue-400 transition-colors flex-shrink-0"
-            >
-              <MessageSquare className="w-4 h-4" />
-            </button>
-            <span className="text-xs text-slate-400 font-medium min-w-[1ch]">
-              {interactionData.comments.length > 0 ? interactionData.comments.length : '0'}
-            </span>
-          </div>
-        )}
-        
-        {/* Comments Section - Positioned below the interaction bar */}
-        {showComments && showCommentsSection && (
-          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4" onClick={() => setShowCommentsSection(false)}>
-            <div className="bg-slate-800 rounded-lg p-4 border border-slate-600 max-w-md w-full max-h-96 overflow-y-auto" onClick={(e) => e.stopPropagation()}>
-              <div className="flex items-center justify-between mb-3">
-                <h3 className="text-sm font-semibold text-slate-200">{t('interaction.comments')}</h3>
-                <button 
-                  onClick={() => setShowCommentsSection(false)}
-                  className="text-slate-400 hover:text-slate-300 text-xl"
-                >
-                  ×
-                </button>
-              </div>
-              <CommentSection 
-                contentType={contentType} 
-                contentId={contentId}
-              />
-            </div>
-          </div>
-        )}
-      </div>
+      <CompactInteractionBar 
+        contentType={contentType}
+        contentId={contentId}
+        className={className}
+        showComments={showComments}
+        showCommentsSection={showCommentsSection}
+        setShowCommentsSection={setShowCommentsSection}
+      />
     )
   }
 
