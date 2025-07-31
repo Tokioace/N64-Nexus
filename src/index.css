@@ -2013,8 +2013,8 @@ input[type="submit"] {
   }
   
   .battle64-mascot {
-    height: clamp(6rem, 20vw, 8rem);
-    max-width: 95vw;
+    height: clamp(8rem, 22vw, 12rem);
+    max-width: 90vw;
   }
 }
 
@@ -2332,30 +2332,33 @@ input[type="submit"] {
   margin: 0 auto;
 }
 
-/* Fully responsive mascot image */
+/* Fully responsive mascot image - Prominent positioning like in mobile photo */
 .battle64-mascot {
   flex-shrink: 0;
   image-rendering: pixelated;
   image-rendering: -moz-crisp-edges;
   image-rendering: crisp-edges;
-  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
-  transition: transform 0.3s ease;
+  filter: drop-shadow(3px 3px 6px rgba(0, 0, 0, 0.4));
+  transition: transform 0.3s ease, filter 0.3s ease;
   object-fit: contain;
   width: auto;
-  height: clamp(8rem, 15vw, 20rem);
-  max-width: min(90vw, 400px);
-  transform: scaleX(1.2);
+  height: clamp(10rem, 18vw, 24rem);
+  max-width: min(85vw, 450px);
+  transform: scaleX(1.1);
+  display: block;
+  margin: 0 auto;
 }
 
 .battle64-mascot:hover {
-  transform: scaleX(1.25) scaleY(1.03) rotate(0.5deg);
+  transform: scaleX(1.15) scaleY(1.05) rotate(0.8deg);
+  filter: drop-shadow(4px 4px 8px rgba(0, 0, 0, 0.5)) brightness(1.05);
 }
 
 
 /* Special rules for the retro page - consistent with main mascot */
 .retro-page .battle64-mascot {
-  height: clamp(8rem, 15vw, 20rem);
-  max-width: min(90vw, 400px);
+  height: clamp(10rem, 18vw, 24rem);
+  max-width: min(85vw, 450px);
 }
 
 /* Welcome text styling - fully responsive */
