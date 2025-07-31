@@ -747,6 +747,13 @@ const ru = {
   'eventLeaderboard.documentation': 'Documentation',
   'eventLeaderboard.viewMedia': 'View Media',
   'events.mobile.winner': 'Winner',
+  
+  // Best Lap Showcase
+  'events.bestLap.title': 'Лучший Круг',
+  'events.bestLap.photoAlt': 'Скриншот лучшего круга от {username} со временем {time}',
+  'events.bestLap.livestreamTitle': 'Стрим Лучшего Круга',
+  'events.bestLap.livestreamDesc': 'Смотрите стрим рекордсмена',
+  'events.bestLap.watchStream': 'Смотреть Стрим',
   'ui.liveChat': 'Live Chat',
   'media.error': 'Media error',
   'error.invalidFile': 'Invalid file',

@@ -179,6 +179,13 @@ const es = {
   'events.mobile.join': 'Unirse',
   'events.mobile.board': 'Tabla',
   'events.mobile.winner': 'Ganador',
+  
+  // Best Lap Showcase
+  'events.bestLap.title': 'Mejor Vuelta',
+  'events.bestLap.photoAlt': 'Captura de pantalla de la mejor vuelta por {username} con tiempo {time}',
+  'events.bestLap.livestreamTitle': 'Livestream de la Mejor Vuelta',
+  'events.bestLap.livestreamDesc': 'Mira el livestream del poseedor del récord',
+  'events.bestLap.watchStream': 'Ver Stream',
   'events.details.startDate': 'Fecha de Inicio',
   'events.details.endDate': 'Fecha de Fin',
   'events.details.rules': 'Reglas',

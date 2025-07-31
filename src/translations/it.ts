@@ -766,6 +766,13 @@ const it = {
   'eventLeaderboard.documentation': 'Documentazione',
   'eventLeaderboard.viewMedia': 'Visualizza Media',
   'events.mobile.winner': 'Vincitore',
+  
+  // Best Lap Showcase
+  'events.bestLap.title': 'Miglior Giro',
+  'events.bestLap.photoAlt': 'Screenshot del miglior giro di {username} con tempo {time}',
+  'events.bestLap.livestreamTitle': 'Livestream del Miglior Giro',
+  'events.bestLap.livestreamDesc': 'Guarda il livestream del detentore del record',
+  'events.bestLap.watchStream': 'Guarda Stream',
   'ui.liveChat': 'Chat dal Vivo',
   'media.error': 'Errore media',
   'error.invalidFile': 'File non valido',

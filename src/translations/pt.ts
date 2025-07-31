@@ -764,6 +764,13 @@ const pt = {
   'eventLeaderboard.documentation': 'Documentação',
   'eventLeaderboard.viewMedia': 'Visualizar Mídia',
   'events.mobile.winner': 'Vencedor',
+  
+  // Best Lap Showcase
+  'events.bestLap.title': 'Melhor Volta',
+  'events.bestLap.photoAlt': 'Screenshot da melhor volta por {username} com tempo {time}',
+  'events.bestLap.livestreamTitle': 'Livestream da Melhor Volta',
+  'events.bestLap.livestreamDesc': 'Assista ao livestream do detentor do recorde',
+  'events.bestLap.watchStream': 'Assistir Stream',
   'ui.liveChat': 'Chat ao Vivo',
   'media.error': 'Erro de mídia',
   'error.invalidFile': 'Arquivo inválido',
