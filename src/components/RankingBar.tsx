@@ -39,14 +39,14 @@ const RankingBar: React.FC = () => {
       {/* Progress Bar Container */}
       <div className="flex-1 min-w-0 mx-1 h-full flex flex-col justify-center">
         {/* Level label */}
-        <div className="text-center mb-1">
+        <div className="text-center">
           <span className="text-slate-200 font-medium" style={{ fontSize: 'clamp(0.75rem, 1.8vw, 0.875rem)' }}>
             {t('ranking.rankProgress')}
           </span>
         </div>
         
         {/* Score */}
-        <div className="text-center mb-1.5">
+        <div className="text-center">
           <span className="text-slate-300 font-semibold" style={{ fontSize: 'clamp(0.7rem, 1.7vw, 0.8rem)' }}>
             {Math.min(((user.xp || 0) % 1000), 1000)}/1000
           </span>
