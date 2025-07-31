@@ -186,13 +186,13 @@ const RaceSubmissionModal: React.FC<RaceSubmissionModalProps> = ({
               type="text"
               value={raceTime}
               onChange={(e) => setRaceTime(e.target.value)}
-              placeholder={t('placeholder.raceTime')}
+              placeholder="12:34.567"
               className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg 
                        text-slate-100 placeholder-slate-400 focus:outline-none focus:border-blue-400
-                       focus:ring-1 focus:ring-blue-400"
+                       focus:ring-1 focus:ring-blue-400 font-mono"
             />
             <p className="text-xs text-slate-400 mt-1">
-              {t('events.timeFormat')}
+              Format: xx:xx:xxx (MM:SS.mmm) - Example: 1:23.456 or 12:34.567
             </p>
           </div>
 
