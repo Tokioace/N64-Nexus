@@ -19,6 +19,7 @@ interface ForumContextType {
   getCategories: () => void
   getThreadsByCategory: (categoryId: string) => void
   getPostsByThread: (threadId: string) => void
+  getThreadById: (threadId: string) => ForumThread | null
   createThread: (categoryId: string, title: string, content: string, imageUrl?: string) => Promise<boolean>
   createPost: (threadId: string, content: string, imageUrl?: string) => Promise<boolean>
   selectCategory: (category: ForumCategory | null) => void
@@ -159,6 +160,110 @@ const mockThreads: ForumThread[] = [
       likedBy: [],
       viewedBy: []
     }
+  },
+  {
+    id: '3',
+    title: 'Banjo-Kazooie: Optimized 100% Route',
+    categoryId: '1',
+    authorId: '4',
+    authorName: 'SpeedrunMaster',
+    createdAt: new Date('2024-01-13T11:20:00'),
+    lastUpdated: new Date('2024-01-15T16:30:00'),
+    postCount: 8,
+    views: 67,
+    isPinned: false,
+    isLocked: false,
+    lastPost: {
+      id: '8',
+      authorId: '2',
+      authorName: 'Delia',
+      createdAt: new Date('2024-01-15T16:30:00')
+    },
+    interactions: {
+      likes: 0,
+      views: 0,
+      comments: [],
+      likedBy: [],
+      viewedBy: []
+    }
+  },
+  {
+    id: '4',
+    title: 'Tata Tuga Volcano Event - Tipps und Tricks',
+    categoryId: '2',
+    authorId: '5',
+    authorName: 'EventHunter',
+    createdAt: new Date('2024-01-14T08:45:00'),
+    lastUpdated: new Date('2024-01-15T14:20:00'),
+    postCount: 15,
+    views: 203,
+    isPinned: false,
+    isLocked: false,
+    lastPost: {
+      id: '12',
+      authorId: '3',
+      authorName: 'Mario64Fan',
+      createdAt: new Date('2024-01-15T14:20:00')
+    },
+    interactions: {
+      likes: 0,
+      views: 0,
+      comments: [],
+      likedBy: [],
+      viewedBy: []
+    }
+  },
+  {
+    id: '5',
+    title: 'Super Mario 64 Easter Eggs Diskussion',
+    categoryId: '3',
+    authorId: '3',
+    authorName: 'Mario64Fan',
+    createdAt: new Date('2024-01-11T19:30:00'),
+    lastUpdated: new Date('2024-01-14T21:15:00'),
+    postCount: 23,
+    views: 156,
+    isPinned: false,
+    isLocked: false,
+    lastPost: {
+      id: '15',
+      authorId: '6',
+      authorName: 'RetroGamer',
+      createdAt: new Date('2024-01-14T21:15:00')
+    },
+    interactions: {
+      likes: 0,
+      views: 0,
+      comments: [],
+      likedBy: [],
+      viewedBy: []
+    }
+  },
+  {
+    id: '6',
+    title: 'Goldene Ocarina - Suche Tauschpartner',
+    categoryId: '4',
+    authorId: '4',
+    authorName: 'Collector99',
+    createdAt: new Date('2024-01-12T16:00:00'),
+    lastUpdated: new Date('2024-01-13T19:15:00'),
+    postCount: 5,
+    views: 89,
+    isPinned: false,
+    isLocked: false,
+    lastPost: {
+      id: '18',
+      authorId: '7',
+      authorName: 'TradeMaster',
+      createdAt: new Date('2024-01-13T19:15:00')
+    },
+    interactions: {
+      likes: 0,
+      views: 0,
+      comments: [],
+      likedBy: [],
+      viewedBy: []
+    }
   }
 ]
 
@@ -247,6 +352,159 @@ const mockPosts: ForumPost[] = [
       likedBy: [],
       viewedBy: []
     }
+  },
+  {
+    id: '6',
+    threadId: '3',
+    authorId: '4',
+    authorName: 'SpeedrunMaster',
+    content: 'Nach monatelanger Optimierung habe ich endlich die perfekte 100% Route für Banjo-Kazooie gefunden. Hier sind die wichtigsten Punkte...',
+    createdAt: new Date('2024-01-13T11:20:00'),
+    isEdited: false,
+    isDeleted: false,
+    interactions: {
+      likes: 0,
+      views: 0,
+      comments: [],
+      likedBy: [],
+      viewedBy: []
+    }
+  },
+  {
+    id: '7',
+    threadId: '3',
+    authorId: '1',
+    authorName: 'Oli',
+    content: 'Interessante Route! Wie viel Zeit sparst du mit der neuen Strategie in Bubblegloop Swamp?',
+    createdAt: new Date('2024-01-14T15:45:00'),
+    isEdited: false,
+    isDeleted: false,
+    interactions: {
+      likes: 0,
+      views: 0,
+      comments: [],
+      likedBy: [],
+      viewedBy: []
+    }
+  },
+  {
+    id: '8',
+    threadId: '3',
+    authorId: '2',
+    authorName: 'Delia',
+    content: 'Etwa 2-3 Minuten! Der Trick mit dem Talon Trot über die Brücke ist genial.',
+    createdAt: new Date('2024-01-15T16:30:00'),
+    isEdited: false,
+    isDeleted: false,
+    interactions: {
+      likes: 0,
+      views: 0,
+      comments: [],
+      likedBy: [],
+      viewedBy: []
+    }
+  },
+  {
+    id: '9',
+    threadId: '4',
+    authorId: '5',
+    authorName: 'EventHunter',
+    content: 'Das Tata Tuga Volcano Event ist live! Hier sind meine besten Tipps für maximale Punkte...',
+    createdAt: new Date('2024-01-14T08:45:00'),
+    isEdited: false,
+    isDeleted: false,
+    interactions: {
+      likes: 0,
+      views: 0,
+      comments: [],
+      likedBy: [],
+      viewedBy: []
+    }
+  },
+  {
+    id: '10',
+    threadId: '4',
+    authorId: '2',
+    authorName: 'Delia',
+    content: 'Danke für die Tipps! Welche Charaktere sind am besten für die Lava-Sprünge geeignet?',
+    createdAt: new Date('2024-01-14T12:30:00'),
+    isEdited: false,
+    isDeleted: false,
+    interactions: {
+      likes: 0,
+      views: 0,
+      comments: [],
+      likedBy: [],
+      viewedBy: []
+    }
+  },
+  {
+    id: '11',
+    threadId: '5',
+    authorId: '3',
+    authorName: 'Mario64Fan',
+    content: 'Ich habe kürzlich ein interessantes Easter Egg in Super Mario 64 entdeckt. Hat schon mal jemand die geheime Nachricht in der Schlossmauer gesehen?',
+    createdAt: new Date('2024-01-11T19:30:00'),
+    isEdited: false,
+    isDeleted: false,
+    interactions: {
+      likes: 0,
+      views: 0,
+      comments: [],
+      likedBy: [],
+      viewedBy: []
+    }
+  },
+  {
+    id: '12',
+    threadId: '5',
+    authorId: '6',
+    authorName: 'RetroGamer',
+    content: 'Oh ja! Das ist das "L is Real 2401" Easter Egg. Es gibt so viele Theorien dazu...',
+    createdAt: new Date('2024-01-14T21:15:00'),
+    isEdited: false,
+    isDeleted: false,
+    interactions: {
+      likes: 0,
+      views: 0,
+      comments: [],
+      likedBy: [],
+      viewedBy: []
+    }
+  },
+  {
+    id: '13',
+    threadId: '6',
+    authorId: '4',
+    authorName: 'Collector99',
+    content: 'Ich suche jemanden, der eine goldene Ocarina gegen seltene Mario Kart Items tauschen möchte. Habe mehrere Power-Ups anzubieten!',
+    createdAt: new Date('2024-01-12T16:00:00'),
+    isEdited: false,
+    isDeleted: false,
+    interactions: {
+      likes: 0,
+      views: 0,
+      comments: [],
+      likedBy: [],
+      viewedBy: []
+    }
+  },
+  {
+    id: '14',
+    threadId: '6',
+    authorId: '7',
+    authorName: 'TradeMaster',
+    content: 'Ich hätte Interesse! Welche Power-Ups hast du denn? Schick mir eine PM.',
+    createdAt: new Date('2024-01-13T19:15:00'),
+    isEdited: false,
+    isDeleted: false,
+    interactions: {
+      likes: 0,
+      views: 0,
+      comments: [],
+      likedBy: [],
+      viewedBy: []
+    }
   }
 ]
 
@@ -304,6 +562,10 @@ export const ForumProvider: React.FC<{ children: ReactNode }> = ({ children }) =
       setPosts(filteredPosts)
       setLoading(false)
     }, 50) // Reduced delay
+  }, [])
+
+  const getThreadById = useCallback((threadId: string) => {
+    return mockThreads.find(thread => thread.id === threadId) || null
   }, [])
 
   const createThread = useCallback(async (categoryId: string, title: string, content: string, imageUrl?: string): Promise<boolean> => {
@@ -500,6 +762,7 @@ export const ForumProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     getCategories,
     getThreadsByCategory,
     getPostsByThread,
+    getThreadById,
     createThread,
     createPost,
     selectCategory,
@@ -517,6 +780,7 @@ export const ForumProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     getCategories,
     getThreadsByCategory,
     getPostsByThread,
+    getThreadById,
     createThread,
     createPost,
     selectCategory,

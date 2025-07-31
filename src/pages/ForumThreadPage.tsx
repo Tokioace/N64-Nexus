@@ -26,7 +26,7 @@ const ForumThreadPage: React.FC = () => {
     error,
     selectThread,
     createPost,
-    threads
+    getThreadById
   } = useForum()
   const { user, isAuthenticated } = useUser()
   const { t } = useLanguage()
@@ -41,12 +41,12 @@ const ForumThreadPage: React.FC = () => {
   useEffect(() => {
     if (threadId) {
       // Find the thread in the threads array
-      const thread = threads.find(t => t.id === threadId)
+      const thread = getThreadById(threadId)
       if (thread) {
         selectThread(thread)
       }
     }
-  }, [threadId, threads, selectThread])
+  }, [threadId, getThreadById, selectThread])
 
   const handleSubmitReply = useCallback(async (e: React.FormEvent) => {
     e.preventDefault()
