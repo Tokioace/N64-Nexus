@@ -175,30 +175,31 @@ const EventCard: React.FC<EventCardProps> = ({ event, leaderboard, timeRemaining
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 sm:gap-3">
-                  {/* Event Stats */}
-          <div className="space-y-1 sm:space-y-2">
+        {/* Event Stats */}
+        <div className="space-y-1 sm:space-y-2">
           <div className="flex items-center justify-between text-xs sm:text-sm">
             <div className="flex items-center gap-1 sm:gap-2">
               <Users className="w-3 h-3 sm:w-4 sm:h-4 text-cyan-400" />
               <span className="text-slate-300">{event.participants} {t('events.participants')}</span>
             </div>
             
-            {/* Interaction Bar - Compact between participants and join */}
-            <div className="flex items-center gap-2">
-              <InteractionBar 
-                contentType="event"
-                contentId={event.id}
-                showComments={true}
-                compact={true}
-              />
-              <Link 
-                to="/events" 
-                className="flex items-center gap-1 text-green-400 hover:text-green-300 transition-colors ml-2"
-              >
-                <span>{t('events.join')}</span>
-                <ChevronRight className="w-3 h-3 sm:w-4 sm:h-4" />
-              </Link>
-            </div>
+            <Link 
+              to="/events" 
+              className="flex items-center gap-1 text-green-400 hover:text-green-300 transition-colors"
+            >
+              <span>{t('events.join')}</span>
+              <ChevronRight className="w-3 h-3 sm:w-4 sm:h-4" />
+            </Link>
+          </div>
+          
+          {/* Interaction Bar - Now positioned below participants */}
+          <div className="flex items-center justify-between pt-1">
+            <InteractionBar 
+              contentType="event"
+              contentId={event.id}
+              showComments={true}
+              compact={true}
+            />
           </div>
         </div>
 
