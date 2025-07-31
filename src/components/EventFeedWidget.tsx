@@ -182,13 +182,23 @@ const EventCard: React.FC<EventCardProps> = ({ event, leaderboard, timeRemaining
               <Users className="w-3 h-3 sm:w-4 sm:h-4 text-cyan-400" />
               <span className="text-slate-300">{event.participants} {t('events.participants')}</span>
             </div>
-            <Link 
-              to="/events" 
-              className="flex items-center gap-1 text-green-400 hover:text-green-300 transition-colors"
-            >
-              <span>{t('events.join')}</span>
-              <ChevronRight className="w-3 h-3 sm:w-4 sm:h-4" />
-            </Link>
+            
+            {/* Interaction Bar - Compact between participants and join */}
+            <div className="flex items-center gap-2">
+              <InteractionBar 
+                contentType="event"
+                contentId={event.id}
+                showComments={false}
+                compact={true}
+              />
+              <Link 
+                to="/events" 
+                className="flex items-center gap-1 text-green-400 hover:text-green-300 transition-colors ml-2"
+              >
+                <span>{t('events.join')}</span>
+                <ChevronRight className="w-3 h-3 sm:w-4 sm:h-4" />
+              </Link>
+            </div>
           </div>
         </div>
 
@@ -242,16 +252,6 @@ const EventCard: React.FC<EventCardProps> = ({ event, leaderboard, timeRemaining
             </div>
           )}
         </div>
-      </div>
-
-      {/* Interaction Bar - Compact like FanArt cards */}
-      <div className="mt-2 pt-2 border-t border-slate-600/30">
-        <InteractionBar 
-          contentType="event"
-          contentId={event.id}
-          showComments={false}
-          compact={true}
-        />
       </div>
     </div>
   )
