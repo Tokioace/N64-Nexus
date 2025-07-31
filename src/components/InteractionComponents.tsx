@@ -99,21 +99,20 @@ export const ViewCounter: React.FC<ViewCounterProps> = ({
 
   const interactionData = getInteractionData(contentType, contentId)
 
-  // Record view when component mounts (only once per user)
+  // Record view when component mounts (only if user is logged in)
   useEffect(() => {
     if (user) {
       viewContent(contentType, contentId, user.id)
     }
   }, [user, contentType, contentId, viewContent])
 
-  if (interactionData.views === 0 && compact) return null
-
+  // Always show the view counter, even without authentication
   return (
     <div className={`flex items-center gap-1 sm:gap-2 text-slate-400 ${className}`}>
       <Eye className={`${compact ? 'w-3 h-3 sm:w-4 sm:h-4' : 'w-4 h-4'} transition-all`} />
       {!compact && (
         <span className="text-xs sm:text-sm">
-          {interactionData.views > 0 ? interactionData.views : ''}
+          {interactionData.views > 0 ? interactionData.views : '0'}
         </span>
       )}
     </div>
@@ -173,7 +172,7 @@ export const CommentSection: React.FC<CommentSectionProps> = ({
   }
 
   return (
-    <div className={`space-y-3 ${className}`}>
+    <div className={`space-y-2 ${className}`}>
       {/* Comment Toggle Button */}
       <button
         onClick={() => setShowComments(!showComments)}
@@ -190,7 +189,7 @@ export const CommentSection: React.FC<CommentSectionProps> = ({
 
       {/* Comments Section */}
       {showComments && (
-        <div className="space-y-3">
+        <div className="space-y-2">
           {/* Comment Input */}
           {user && (
             <form onSubmit={handleSubmitComment} className="space-y-2">
@@ -283,15 +282,15 @@ export const InteractionBar: React.FC<InteractionBarProps> = ({
   const interactionData = getInteractionData(contentType, contentId)
 
   if (compact) {
-    // Compact mode for events - show like, saw, comment with numbers
+    // Compact mode for events - show like, saw, comment with numbers evenly spaced
     return (
-      <div className={`flex items-center gap-3 sm:gap-4 ${className}`}>
+      <div className={`flex items-center justify-between w-full max-w-[200px] ${className}`}>
         {/* Like Button with count */}
-        <div className="flex items-center gap-1">
+        <div className="flex items-center gap-1 min-w-0 flex-1 justify-center">
           <LikeButton 
             contentType={contentType} 
             contentId={contentId} 
-            compact={true} // Don't show number in button, we add it separately
+            compact={true}
           />
           <span className="text-xs text-slate-400 font-medium">
             {interactionData.likes > 0 ? interactionData.likes : '0'}
@@ -299,11 +298,11 @@ export const InteractionBar: React.FC<InteractionBarProps> = ({
         </div>
         
         {/* View Counter with count */}
-        <div className="flex items-center gap-1">
+        <div className="flex items-center gap-1 min-w-0 flex-1 justify-center">
           <ViewCounter 
             contentType={contentType} 
             contentId={contentId} 
-            compact={true} // Don't show number in component, we add it separately
+            compact={true}
           />
           <span className="text-xs text-slate-400 font-medium">
             {interactionData.views > 0 ? interactionData.views : '0'}
@@ -312,15 +311,17 @@ export const InteractionBar: React.FC<InteractionBarProps> = ({
         
         {/* Comment Button with count */}
         {showComments && (
-          <button
-            onClick={() => setShowCommentsSection(!showCommentsSection)}
-            className="flex items-center gap-1 text-slate-400 hover:text-blue-400 transition-colors"
-          >
-            <MessageCircle className="w-3 h-3 sm:w-4 sm:h-4" />
-            <span className="text-xs text-slate-400 font-medium">
-              {interactionData.comments.length > 0 ? interactionData.comments.length : '0'}
-            </span>
-          </button>
+          <div className="flex items-center gap-1 min-w-0 flex-1 justify-center">
+            <button
+              onClick={() => setShowCommentsSection(!showCommentsSection)}
+              className="flex items-center gap-1 text-slate-400 hover:text-blue-400 transition-colors"
+            >
+              <MessageCircle className="w-3 h-3 sm:w-4 sm:h-4" />
+              <span className="text-xs text-slate-400 font-medium">
+                {interactionData.comments.length > 0 ? interactionData.comments.length : '0'}
+              </span>
+            </button>
+          </div>
         )}
         
         {/* Comments Section - Positioned below the interaction bar */}
@@ -349,7 +350,7 @@ export const InteractionBar: React.FC<InteractionBarProps> = ({
 
   // Full mode for other components
   return (
-    <div className={`space-y-3 ${className}`}>
+    <div className={`space-y-2 ${className}`}>
       {/* Action Buttons */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3 sm:gap-4">
