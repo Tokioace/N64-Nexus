@@ -763,7 +763,14 @@ const tr = {
   'eventLeaderboard.view': 'View',
   'eventLeaderboard.documentation': 'Documentation',
   'eventLeaderboard.viewMedia': 'View Media',
-  'events.mobile.winner': 'Winner',
+  'events.mobile.winner': 'Kazanan',
+  
+  // Best Lap Showcase
+  'events.bestLap.title': 'En İyi Tur',
+  'events.bestLap.photoAlt': '{username} tarafından {time} zamanıyla yapılan en iyi tur ekran görüntüsü',
+  'events.bestLap.livestreamTitle': 'En İyi Tur Canlı Yayını',
+  'events.bestLap.livestreamDesc': 'Rekor sahibinin canlı yayınını izleyin',
+  'events.bestLap.watchStream': 'Yayını İzle',
   'ui.liveChat': 'Live Chat',
   'media.error': 'Media error',
   'error.invalidFile': 'Invalid file',

@@ -529,6 +529,13 @@ const el = {
   'events.mobile.join': 'Συμμετοχή',
   'events.mobile.board': 'Πίνακας',
   'events.mobile.winner': 'Νικητής',
+  
+  // Best Lap Showcase
+  'events.bestLap.title': 'Καλύτερος Γύρος',
+  'events.bestLap.photoAlt': 'Στιγμιότυπο οθόνης καλύτερου γύρου από {username} με χρόνο {time}',
+  'events.bestLap.livestreamTitle': 'Ζωντανή Μετάδοση Καλύτερου Γύρου',
+  'events.bestLap.livestreamDesc': 'Παρακολουθήστε τη ζωντανή μετάδοση του κατόχου του ρεκόρ',
+  'events.bestLap.watchStream': 'Παρακολούθηση Μετάδοσης',
   'events.details.startDate': 'Ημερομηνία Έναρξης',
   'events.details.endDate': 'Ημερομηνία Λήξης',
   'events.details.rules': 'Κανόνες',

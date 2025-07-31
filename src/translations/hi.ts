@@ -764,6 +764,13 @@ const hi = {
   'eventLeaderboard.documentation': 'दस्तावेज़ीकरण',
   'eventLeaderboard.viewMedia': 'मीडिया देखें',
   'events.mobile.winner': 'विजेता',
+  
+  // Best Lap Showcase
+  'events.bestLap.title': 'सर्वश्रेष्ठ लैप',
+  'events.bestLap.photoAlt': '{username} द्वारा {time} समय के साथ सर्वश्रेष्ठ लैप का स्क्रीनशॉट',
+  'events.bestLap.livestreamTitle': 'सर्वश्रेष्ठ लैप लाइवस्ट्रीम',
+  'events.bestLap.livestreamDesc': 'रिकॉर्ड होल्डर की लाइवस्ट्रीम देखें',
+  'events.bestLap.watchStream': 'स्ट्रीम देखें',
   'ui.liveChat': 'लाइव चैट',
   'media.error': 'मीडिया त्रुटि',
   'error.invalidFile': 'अमान्य फ़ाइल',
