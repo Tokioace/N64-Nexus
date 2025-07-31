@@ -266,7 +266,7 @@ const EventCard: React.FC<EventCardProps> = ({ event, leaderboard, timeRemaining
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-1 sm:p-2">
                   <div className="flex items-center justify-between">
                     <div className="text-xs sm:text-sm text-yellow-400 font-bold font-mono">{sortedLeaderboard[0].time}</div>
-                    <div className="text-xs text-white/80">{t('events.bestTime')}</div>
+                    <div className="text-xs text-white/80">{t('events.bestLap.title')}</div>
                   </div>
                 </div>
               </div>
