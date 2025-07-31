@@ -282,42 +282,42 @@ export const InteractionBar: React.FC<InteractionBarProps> = ({
   const interactionData = getInteractionData(contentType, contentId)
 
   if (compact) {
-    // Compact mode for events - show like, saw, comment with numbers evenly spaced
+    // Compact mode for events - show like, saw, comment with numbers close together
     return (
-      <div className={`flex items-center justify-between w-full max-w-[200px] ${className}`}>
+      <div className={`flex items-center justify-center gap-6 w-full ${className}`}>
         {/* Like Button with count */}
-        <div className="flex items-center gap-0.5 min-w-0 flex-1 justify-center">
+        <div className="flex items-center gap-1">
           <LikeButton 
             contentType={contentType} 
             contentId={contentId} 
             compact={true}
           />
-          <span className="text-xs text-slate-400 font-medium ml-0.5">
+          <span className="text-xs text-slate-400 font-medium">
             {interactionData.likes > 0 ? interactionData.likes : '0'}
           </span>
         </div>
         
         {/* View Counter with count */}
-        <div className="flex items-center gap-0.5 min-w-0 flex-1 justify-center">
+        <div className="flex items-center gap-1">
           <ViewCounter 
             contentType={contentType} 
             contentId={contentId} 
             compact={true}
           />
-          <span className="text-xs text-slate-400 font-medium ml-0.5">
+          <span className="text-xs text-slate-400 font-medium">
             {interactionData.views > 0 ? interactionData.views : '0'}
           </span>
         </div>
         
         {/* Comment Button with count */}
         {showComments && (
-          <div className="flex items-center gap-0.5 min-w-0 flex-1 justify-center">
+          <div className="flex items-center gap-1">
             <button
               onClick={() => setShowCommentsSection(!showCommentsSection)}
-              className="flex items-center gap-0.5 text-slate-400 hover:text-blue-400 transition-colors"
+              className="flex items-center gap-1 text-slate-400 hover:text-blue-400 transition-colors"
             >
               <MessageCircle className="w-4 h-4 sm:w-5 sm:h-5" />
-              <span className="text-xs text-slate-400 font-medium ml-0.5">
+              <span className="text-xs text-slate-400 font-medium">
                 {interactionData.comments.length > 0 ? interactionData.comments.length : '0'}
               </span>
             </button>
