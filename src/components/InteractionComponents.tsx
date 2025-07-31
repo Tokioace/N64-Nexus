@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Heart, MessageCircle, Eye, Send, ThumbsUp } from 'lucide-react'
+import { Heart, MessageCircle, MessageSquare, Eye, Send, ThumbsUp } from 'lucide-react'
 import { useInteraction } from '../contexts/InteractionContext'
 import { useUser } from '../contexts/UserContext'
 import { useLanguage } from '../contexts/LanguageContext'
@@ -72,12 +72,12 @@ export const LikeButton: React.FC<LikeButtonProps> = ({
       disabled={!user || isLiking}
       className={`flex items-center ${!compact ? 'gap-1 sm:gap-2' : ''} transition-all duration-200 ${
         isLiked 
-          ? 'text-red-400 hover:text-red-300' 
-          : 'text-slate-400 hover:text-red-400'
+          ? 'text-pink-400 hover:text-pink-300' 
+          : 'text-slate-400 hover:text-pink-400'
       } ${!user ? 'opacity-50 cursor-not-allowed' : 'hover:scale-105'} ${className}`}
       title={user ? (isLiked ? t('interaction.unlike') : t('interaction.like')) : t('interaction.loginToLike')}
     >
-      <Heart className={`${compact ? 'w-4 h-4 sm:w-5 sm:h-5' : 'w-4 h-4'} ${isLiked ? 'fill-current scale-110' : ''} transition-all`} />
+      <Heart className={`${compact ? 'w-4 h-4' : 'w-4 h-4'} ${isLiked ? 'fill-pink-400 text-pink-400 scale-110' : ''} transition-all`} />
       {!compact && (
         <span className="text-xs sm:text-sm font-medium">
           {interactionData.likes > 0 ? interactionData.likes : ''}
@@ -109,7 +109,7 @@ export const ViewCounter: React.FC<ViewCounterProps> = ({
   // Always show the view counter, even without authentication
   return (
     <div className={`flex items-center ${!compact ? 'gap-1 sm:gap-2' : ''} text-slate-400 ${className}`}>
-      <Eye className={`${compact ? 'w-4 h-4 sm:w-5 sm:h-5' : 'w-4 h-4'} transition-all`} />
+      <Eye className={`${compact ? 'w-4 h-4' : 'w-4 h-4'} transition-all`} />
       {!compact && (
         <span className="text-xs sm:text-sm">
           {interactionData.views > 0 ? interactionData.views : '0'}
@@ -282,11 +282,11 @@ export const InteractionBar: React.FC<InteractionBarProps> = ({
   const interactionData = getInteractionData(contentType, contentId)
 
   if (compact) {
-    // Compact mode for events - show like, saw, comment with numbers close together
+    // Compact mode for events - show like, saw, comment with proper spacing like FanArt
     return (
-      <div className={`flex items-center justify-center gap-1 w-full ${className}`}>
+      <div className={`flex items-center gap-4 ${className}`}>
         {/* Like Button with count */}
-        <div className="flex items-center">
+        <div className="flex items-center gap-1">
           <LikeButton 
             contentType={contentType} 
             contentId={contentId} 
@@ -298,7 +298,7 @@ export const InteractionBar: React.FC<InteractionBarProps> = ({
         </div>
         
         {/* View Counter with count */}
-        <div className="flex items-center">
+        <div className="flex items-center gap-1">
           <ViewCounter 
             contentType={contentType} 
             contentId={contentId} 
@@ -311,12 +311,12 @@ export const InteractionBar: React.FC<InteractionBarProps> = ({
         
         {/* Comment Button with count */}
         {showComments && (
-          <div className="flex items-center">
+          <div className="flex items-center gap-1">
             <button
               onClick={() => setShowCommentsSection(!showCommentsSection)}
               className="text-slate-400 hover:text-blue-400 transition-colors"
             >
-              <MessageCircle className="w-4 h-4 sm:w-5 sm:h-5" />
+              <MessageSquare className="w-4 h-4" />
             </button>
             <span className="text-xs text-slate-400 font-medium">
               {interactionData.comments.length > 0 ? interactionData.comments.length : '0'}
