@@ -72,14 +72,14 @@ export const LikeButton: React.FC<LikeButtonProps> = ({
       disabled={!user || isLiking}
       className={`flex items-center ${!compact ? 'gap-1.5 sm:gap-2' : ''} transition-all duration-200 ${
         isLiked 
-          ? 'text-pink-400 hover:text-pink-300' 
-          : 'text-slate-400 hover:text-pink-400'
+          ? 'text-white hover:text-gray-200' 
+          : 'text-white hover:text-gray-200'
       } ${!user ? 'opacity-50 cursor-not-allowed' : 'hover:scale-105'} ${className}`}
       title={user ? (isLiked ? t('interaction.unlike') : t('interaction.like')) : t('interaction.loginToLike')}
     >
-      <Heart className={`${compact ? 'w-4 h-4' : 'w-4 h-4'} flex-shrink-0 ${isLiked ? 'fill-pink-400 text-pink-400 scale-110' : ''} transition-all`} />
+      <Heart className={`${compact ? 'w-4 h-4' : 'w-4 h-4'} flex-shrink-0 ${isLiked ? 'fill-white text-white scale-110' : ''} transition-all`} />
       {!compact && (
-        <span className="text-xs sm:text-sm font-medium min-w-[1ch]">
+        <span className="text-xs sm:text-sm font-medium min-w-[1ch] text-white">
           {interactionData.likes > 0 ? interactionData.likes : ''}
         </span>
       )}
@@ -108,10 +108,10 @@ export const ViewCounter: React.FC<ViewCounterProps> = ({
 
   // Always show the view counter, even without authentication
   return (
-    <div className={`flex items-center ${!compact ? 'gap-1.5 sm:gap-2' : ''} text-slate-400 ${className}`}>
+    <div className={`flex items-center ${!compact ? 'gap-1.5 sm:gap-2' : ''} text-white ${className}`}>
       <Eye className={`${compact ? 'w-4 h-4' : 'w-4 h-4'} flex-shrink-0 transition-all`} />
       {!compact && (
-        <span className="text-xs sm:text-sm min-w-[1ch]">
+        <span className="text-xs sm:text-sm min-w-[1ch] text-white">
           {interactionData.views > 0 ? interactionData.views : '0'}
         </span>
       )}
@@ -176,10 +176,10 @@ export const CommentSection: React.FC<CommentSectionProps> = ({
       {/* Comment Toggle Button */}
       <button
         onClick={() => setShowComments(!showComments)}
-        className="flex items-center gap-2 text-slate-400 hover:text-slate-300 transition-colors"
+        className="flex items-center gap-2 text-white hover:text-gray-200 transition-colors"
       >
         <MessageCircle className="w-4 h-4" />
-        <span className="text-xs sm:text-sm font-medium">
+        <span className="text-xs sm:text-sm font-medium text-white">
           {interactionData.comments.length > 0 
             ? `${interactionData.comments.length} ${t('interaction.comments')}`
             : t('interaction.addComment')
@@ -317,13 +317,13 @@ const CompactInteractionBar: React.FC<CompactInteractionBarProps> = ({
     }
   }
 
-  // Custom compact SVG icons for better spacing control
+  // Custom compact SVG icons for better spacing control - all white
   const CompactHeartIcon = ({ filled }: { filled: boolean }) => (
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" className="flex-shrink-0">
       <path 
         d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" 
-        fill={filled ? "currentColor" : "none"} 
-        stroke="currentColor" 
+        fill={filled ? "#FFFFFF" : "none"} 
+        stroke="#FFFFFF" 
         strokeWidth="2"
       />
     </svg>
@@ -331,68 +331,66 @@ const CompactInteractionBar: React.FC<CompactInteractionBarProps> = ({
 
   const CompactEyeIcon = () => (
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" className="flex-shrink-0">
-      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" stroke="currentColor" strokeWidth="2"/>
-      <circle cx="12" cy="12" r="3" stroke="currentColor" strokeWidth="2"/>
+      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" stroke="#FFFFFF" strokeWidth="2"/>
+      <circle cx="12" cy="12" r="3" stroke="#FFFFFF" strokeWidth="2"/>
     </svg>
   )
 
   const CompactCommentIcon = () => (
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" className="flex-shrink-0">
-      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="currentColor" strokeWidth="2"/>
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="#FFFFFF" strokeWidth="2"/>
     </svg>
   )
 
   return (
     <div className={`flex items-center ${className}`} style={{ 
-      gap: '10px',
+      gap: '8px',
       fontSize: '12px', 
       lineHeight: 1,
       height: '20px',
       justifyContent: 'flex-start',
       paddingLeft: '0px'
     }}>
-      {/* Like Button with count - Ultra-compact */}
-      <div className="flex items-center" style={{ gap: '3px' }}>
+      {/* Like Button with count - Ultra-compact, all white */}
+      <div className="flex items-center" style={{ gap: '4px' }}>
         <button
           onClick={handleLike}
           disabled={!user || isLiking}
           title={user ? (isLiked ? t('interaction.unlike') : t('interaction.like')) : t('interaction.loginToLike')}
           aria-label={user ? (isLiked ? t('interaction.unlike') : t('interaction.like')) : t('interaction.loginToLike')}
-          className={`transition-all duration-200 flex-shrink-0 ${
-            isLiked 
-              ? 'text-pink-400 hover:text-pink-300' 
-              : 'text-slate-400 hover:text-pink-400'
-          } ${!user ? 'opacity-50 cursor-not-allowed' : 'hover:scale-105'}`}
+          className={`transition-all duration-200 flex-shrink-0 text-white hover:scale-105 ${
+            !user ? 'opacity-50 cursor-not-allowed' : ''
+          }`}
           style={{ padding: '0', margin: '0', border: 'none', background: 'transparent' }}
         >
           <CompactHeartIcon filled={isLiked} />
         </button>
-        <span className="text-slate-400 font-medium min-w-[1ch]" style={{ fontSize: '11px' }}>
+        <span className="text-white font-medium min-w-[1ch]" style={{ fontSize: '11px' }}>
           {interactionData.likes > 0 ? interactionData.likes : '0'}
         </span>
       </div>
       
-      {/* View Counter with count - Ultra-compact */}
-      <div className="flex items-center" style={{ gap: '3px' }} title={t('interaction.viewCount')} aria-label={t('interaction.viewCount')}>
+      {/* View Counter with count - Ultra-compact, all white */}
+      <div className="flex items-center" style={{ gap: '4px' }} title={t('interaction.viewCount')} aria-label={t('interaction.viewCount')}>
         <CompactEyeIcon />
-        <span className="text-slate-400 font-medium min-w-[1ch]" style={{ fontSize: '11px' }}>
+        <span className="text-white font-medium min-w-[1ch]" style={{ fontSize: '11px' }}>
           {interactionData.views > 0 ? interactionData.views : '0'}
         </span>
       </div>
       
-      {/* Comment Button with count - Ultra-compact */}
+      {/* Comment Button with count - Ultra-compact, all white */}
       {showComments && (
-        <div className="flex items-center" style={{ gap: '3px' }}>
+        <div className="flex items-center" style={{ gap: '4px' }}>
           <button
             onClick={() => setShowCommentsSection(!showCommentsSection)}
             title={t('interaction.showComments')}
             aria-label={t('interaction.showComments')}
-            className="text-slate-400 hover:text-blue-400 transition-colors flex-shrink-0 hover:scale-105"
+            className="text-white hover:scale-105 transition-all duration-200 flex-shrink-0"
             style={{ padding: '0', margin: '0', border: 'none', background: 'transparent' }}
           >
             <CompactCommentIcon />
           </button>
-          <span className="text-slate-400 font-medium min-w-[1ch]" style={{ fontSize: '11px' }}>
+          <span className="text-white font-medium min-w-[1ch]" style={{ fontSize: '11px' }}>
             {interactionData.comments.length > 0 ? interactionData.comments.length : '0'}
           </span>
         </div>
