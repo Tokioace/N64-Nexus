@@ -894,21 +894,43 @@ code {
 
 /* Event card specific optimization for compact layout */
 .simple-tile:has(.event-card-content) {
-  padding-bottom: 1rem !important;
+  padding-bottom: 0.5rem !important; /* Reduced from 1rem */
+  padding-top: 0.75rem !important; /* Slightly reduced top padding */
   min-height: unset !important; /* Remove any inherited min-height */
   height: auto !important; /* Ensure dynamic height based on content */
   border-radius: 0.75rem; /* Slightly more rounded for elegant look */
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* Subtle shadow */
+  margin-bottom: 0.75rem !important; /* Reduced from default */
 }
 
 @media (max-width: 640px) {
   .simple-tile:has(.event-card-content) {
-    padding-bottom: 0.75rem !important;
-    padding-top: 0.75rem !important; /* Reduce top padding on mobile */
+    padding-bottom: 0.5rem !important; /* Further reduced on mobile */
+    padding-top: 0.625rem !important; /* Reduce top padding on mobile */
     padding-left: 0.75rem !important;
     padding-right: 0.75rem !important;
-    margin-bottom: 12px !important; /* Slightly tighter spacing on mobile */
+    margin-bottom: 0.625rem !important; /* Tighter spacing on mobile */
   }
+}
+
+/* Interaction Bar Optimization for Event Cards */
+.event-card-content .interaction-bar {
+  margin-top: 0.25rem !important;
+  padding-top: 0.25rem !important;
+}
+
+/* Remove any unwanted spacing from interaction icons */
+.event-card-content .interaction-bar button {
+  padding: 0 !important;
+  margin: 0 !important;
+  border: none !important;
+  background: transparent !important;
+  line-height: 1 !important;
+}
+
+.event-card-content .interaction-bar svg {
+  display: block !important;
+  flex-shrink: 0 !important;
 }
 
 /* Enhanced Event Tile Styles for Better Readability */
