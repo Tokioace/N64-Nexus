@@ -811,31 +811,31 @@ const FanArtPage: React.FC = () => {
                           !isAuthenticated 
                             ? 'cursor-not-allowed opacity-50' 
                             : userLikes.has(item.id)
-                            ? 'text-pink-400 hover:text-pink-300'
-                            : 'text-slate-400 hover:text-pink-400'
+                            ? 'text-white hover:text-gray-200'
+                            : 'text-white hover:text-gray-200'
                         }`}
                         disabled={!isAuthenticated}
                       >
                         <Heart 
                           className={`w-4 h-4 transition-all ${
                             userLikes.has(item.id) 
-                              ? 'fill-pink-400 text-pink-400 scale-110' 
-                              : 'text-slate-400'
+                              ? 'fill-white text-white scale-110' 
+                              : 'text-white'
                           }`} 
                         />
-                        <span>{item.likes}</span>
+                        <span className="text-white">{item.likes}</span>
                       </button>
                     </div>
                     <div className="flex items-center gap-1">
-                      <Eye className="w-4 h-4" />
-                      <span>{item.views}</span>
+                      <Eye className="w-4 h-4 text-white" />
+                      <span className="text-white">{item.views}</span>
                     </div>
                     <button
                       onClick={() => setShowComments(showComments === item.id ? null : item.id)}
-                      className="flex items-center gap-1 text-slate-400 hover:text-blue-400 transition-colors"
+                      className="flex items-center gap-1 text-white hover:text-gray-200 transition-colors"
                     >
-                      <MessageSquare className="w-4 h-4" />
-                      <span>{item.comments}</span>
+                      <MessageSquare className="w-4 h-4 text-white" />
+                      <span className="text-white">{item.comments}</span>
                     </button>
                   </div>
                   <span className="text-xs">
@@ -956,31 +956,31 @@ const FanArtPage: React.FC = () => {
                             !isAuthenticated 
                               ? 'cursor-not-allowed opacity-50' 
                               : userLikes.has(item.id)
-                              ? 'text-pink-400 hover:text-pink-300'
-                              : 'text-slate-400 hover:text-pink-400'
+                              ? 'text-white hover:text-gray-200'
+                              : 'text-white hover:text-gray-200'
                           }`}
                           disabled={!isAuthenticated}
                         >
                           <Heart 
                             className={`w-4 h-4 transition-all ${
                               userLikes.has(item.id) 
-                                ? 'fill-pink-400 text-pink-400 scale-110' 
-                                : 'text-slate-400'
+                                ? 'fill-white text-white scale-110' 
+                                : 'text-white'
                             }`} 
                           />
-                          <span>{item.likes}</span>
+                          <span className="text-white">{item.likes}</span>
                         </button>
                       </div>
                       <div className="flex items-center gap-1">
-                        <Eye className="w-4 h-4" />
-                        <span>{item.views}</span>
+                        <Eye className="w-4 h-4 text-white" />
+                        <span className="text-white">{item.views}</span>
                       </div>
                       <button
                         onClick={() => setShowComments(showComments === item.id ? null : item.id)}
-                        className="flex items-center gap-1 text-slate-400 hover:text-blue-400 transition-colors"
+                        className="flex items-center gap-1 text-white hover:text-gray-200 transition-colors"
                       >
-                        <MessageSquare className="w-4 h-4" />
-                        <span>{item.comments}</span>
+                        <MessageSquare className="w-4 h-4 text-white" />
+                        <span className="text-white">{item.comments}</span>
                       </button>
                     </div>
                     <span className="text-xs">
