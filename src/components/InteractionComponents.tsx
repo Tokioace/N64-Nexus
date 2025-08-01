@@ -318,10 +318,12 @@ const CompactInteractionBar: React.FC<CompactInteractionBarProps> = ({
   }
 
   return (
-    <div className={`flex items-center justify-center gap-3 sm:gap-4 ${className}`} style={{ 
-      fontSize: '14px', 
+    <div className={`flex items-center gap-2 sm:gap-3 ${className}`} style={{ 
+      fontSize: '13px', 
       lineHeight: 1,
-      height: '24px'
+      height: '20px',
+      justifyContent: 'flex-start',
+      paddingLeft: '4px'
     }}>
       {/* Like Button with count */}
       <div className="flex items-center gap-1" style={{ padding: 0 }}>
@@ -336,17 +338,17 @@ const CompactInteractionBar: React.FC<CompactInteractionBarProps> = ({
               : 'text-slate-400 hover:text-pink-400'
           } ${!user ? 'opacity-50 cursor-not-allowed' : 'hover:scale-105'}`}
         >
-          <Heart className={`w-4 h-4 ${isLiked ? 'fill-pink-400 text-pink-400 scale-110' : ''} transition-all`} style={{ fontSize: '16px' }} />
+          <Heart className={`w-4 h-4 ${isLiked ? 'fill-pink-400 text-pink-400 scale-110' : ''} transition-all`} style={{ fontSize: '18px' }} />
         </button>
-        <span className="text-xs text-slate-400 font-medium min-w-[1ch]" style={{ fontSize: '12px' }}>
+        <span className="text-xs text-slate-400 font-medium min-w-[1ch]" style={{ fontSize: '13px' }}>
           {interactionData.likes > 0 ? interactionData.likes : '0'}
         </span>
       </div>
       
       {/* View Counter with count */}
       <div className="flex items-center gap-1" title={t('interaction.viewCount')} aria-label={t('interaction.viewCount')} style={{ padding: 0 }}>
-        <Eye className="w-4 h-4 text-slate-400 flex-shrink-0" style={{ fontSize: '16px' }} />
-        <span className="text-xs text-slate-400 font-medium min-w-[1ch]" style={{ fontSize: '12px' }}>
+        <Eye className="w-4 h-4 text-slate-400 flex-shrink-0" style={{ fontSize: '18px' }} />
+        <span className="text-xs text-slate-400 font-medium min-w-[1ch]" style={{ fontSize: '13px' }}>
           {interactionData.views > 0 ? interactionData.views : '0'}
         </span>
       </div>
@@ -360,9 +362,9 @@ const CompactInteractionBar: React.FC<CompactInteractionBarProps> = ({
             aria-label={t('interaction.showComments')}
             className="text-slate-400 hover:text-blue-400 transition-colors flex-shrink-0 hover:scale-105"
           >
-            <MessageSquare className="w-4 h-4" style={{ fontSize: '16px' }} />
+            <MessageSquare className="w-4 h-4" style={{ fontSize: '18px' }} />
           </button>
-          <span className="text-xs text-slate-400 font-medium min-w-[1ch]" style={{ fontSize: '12px' }}>
+          <span className="text-xs text-slate-400 font-medium min-w-[1ch]" style={{ fontSize: '13px' }}>
             {interactionData.comments.length > 0 ? interactionData.comments.length : '0'}
           </span>
         </div>
