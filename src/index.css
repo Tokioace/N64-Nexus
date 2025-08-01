@@ -894,7 +894,7 @@ code {
 
 /* Event card specific optimization for ultra-compact layout */
 .simple-tile:has(.event-card-content) {
-  padding-bottom: 0.375rem !important; /* Ultra-compact bottom padding */
+  padding-bottom: 0.25rem !important; /* Ultra-compact bottom padding */
   padding-top: 0.75rem !important; /* Slightly reduced top padding */
   min-height: unset !important; /* Remove any inherited min-height */
   height: auto !important; /* Ensure dynamic height based on content */
@@ -905,7 +905,7 @@ code {
 
 @media (max-width: 640px) {
   .simple-tile:has(.event-card-content) {
-    padding-bottom: 0.25rem !important; /* Ultra-compact on mobile */
+    padding-bottom: 0.125rem !important; /* Ultra-compact on mobile */
     padding-top: 0.5rem !important; /* Reduce top padding on mobile */
     padding-left: 0.75rem !important;
     padding-right: 0.75rem !important;
@@ -917,7 +917,8 @@ code {
 .event-card-content .interaction-bar {
   margin-top: 0.125rem !important; /* Minimal top margin */
   padding-top: 0 !important; /* Remove padding */
-  margin-bottom: 0.125rem !important; /* Minimal bottom margin */
+  margin-bottom: 0 !important; /* No bottom margin */
+  padding-bottom: 0 !important; /* No bottom padding */
 }
 
 /* Remove any unwanted spacing from interaction icons */
