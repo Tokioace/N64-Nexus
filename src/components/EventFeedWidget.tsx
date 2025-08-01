@@ -114,7 +114,7 @@ const EventCard: React.FC<EventCardProps> = ({ event, leaderboard, timeRemaining
   }
 
   return (
-    <div className={`simple-tile bg-gradient-to-br ${getEventGradient(event.id)} mb-4 shadow-lg hover:shadow-xl transition-shadow duration-300`} style={{ marginBottom: '16px' }}>
+    <div className={`simple-tile bg-gradient-to-br ${getEventGradient(event.id)} mb-4 shadow-lg hover:shadow-xl transition-shadow duration-300`} style={{ marginBottom: '16px', paddingBottom: '8px' }}>
       <div className="event-card-content">
       {/* Section 1: Event Title & Status */}
       <div className="border-b border-slate-600/30 pb-4 mb-4">
@@ -122,7 +122,16 @@ const EventCard: React.FC<EventCardProps> = ({ event, leaderboard, timeRemaining
           <div className="flex items-center gap-2 sm:gap-3 min-w-0 flex-1">
             <div className="text-lg sm:text-2xl flex-shrink-0">{getGameIcon(event.game)}</div>
             <div className="min-w-0 flex-1">
-              <h3 className="text-sm sm:text-lg font-bold text-slate-100 truncate leading-tight">{event.title}</h3>
+              <h3 className="text-sm sm:text-base font-bold text-slate-100 leading-tight" 
+                  style={{ 
+                    fontSize: '15px',
+                    whiteSpace: 'normal',
+                    wordBreak: 'break-word',
+                    display: '-webkit-box',
+                    WebkitLineClamp: 2,
+                    WebkitBoxOrient: 'vertical',
+                    overflow: 'hidden'
+                  }}>{event.title}</h3>
               <p className="text-xs sm:text-sm text-slate-400 truncate">{event.game} • {event.category}</p>
             </div>
           </div>
@@ -211,7 +220,10 @@ const EventCard: React.FC<EventCardProps> = ({ event, leaderboard, timeRemaining
                 )}
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 to-transparent p-2 sm:p-3">
                   <div className="flex items-center justify-center">
-                    <div className="text-lg sm:text-xl text-yellow-400 font-bold" style={{ fontFamily: '"Roboto Mono", "Courier New", monospace' }}>{formatTime(sortedLeaderboard[0].time!)}</div>
+                    <div className="text-lg sm:text-xl text-yellow-400 font-bold" style={{ 
+                    fontFamily: '"Roboto Mono", "Courier New", monospace',
+                    fontSize: 'clamp(14px, 4vw, 18px)'
+                  }}>{formatTime(sortedLeaderboard[0].time!)}</div>
                   </div>
                 </div>
               </div>
@@ -220,7 +232,10 @@ const EventCard: React.FC<EventCardProps> = ({ event, leaderboard, timeRemaining
                 <div className="text-center">
                   <Trophy className="w-6 h-6 sm:w-8 sm:h-8 text-slate-500 mx-auto mb-2" />
                   <p className="text-sm text-slate-300 font-medium">{t('home.noMediaSubmitted')}</p>
-                  <div className="text-lg sm:text-xl text-yellow-400 font-bold mt-2" style={{ fontFamily: '"Roboto Mono", "Courier New", monospace' }}>{formatTime(sortedLeaderboard[0].time!)}</div>
+                  <div className="text-lg sm:text-xl text-yellow-400 font-bold mt-2" style={{ 
+                    fontFamily: '"Roboto Mono", "Courier New", monospace',
+                    fontSize: 'clamp(14px, 4vw, 18px)'
+                  }}>{formatTime(sortedLeaderboard[0].time!)}</div>
                 </div>
               </div>
             )}
@@ -247,7 +262,10 @@ const EventCard: React.FC<EventCardProps> = ({ event, leaderboard, timeRemaining
                       {getRankIcon(position)}
                     </div>
                     <div className="text-xs text-slate-500 font-medium mb-2 truncate">-</div>
-                    <div className="text-xs font-bold text-slate-600 mb-2 text-right" style={{ fontFamily: '"Roboto Mono", "Courier New", monospace' }}>-:--.---</div>
+                    <div className="text-xs font-bold text-slate-600 mb-2 text-right" style={{ 
+                      fontFamily: '"Roboto Mono", "Courier New", monospace',
+                      fontSize: 'clamp(11px, 3vw, 13px)'
+                    }}>-:--.---</div>
                     <div className="h-4"></div>
                   </div>
                 )
@@ -265,7 +283,10 @@ const EventCard: React.FC<EventCardProps> = ({ event, leaderboard, timeRemaining
                   >
                     {entry.username}
                   </div>
-                  <div className={`text-sm font-bold ${getRankColor(position)} mb-2 text-right flex justify-end items-center`} style={{ fontFamily: '"Roboto Mono", "Courier New", monospace' }}>
+                  <div className={`text-sm font-bold ${getRankColor(position)} mb-2 text-right flex justify-end items-center`} style={{ 
+                    fontFamily: '"Roboto Mono", "Courier New", monospace',
+                    fontSize: 'clamp(12px, 3.5vw, 14px)'
+                  }}>
                     {formatTime(entry.time!)}
                   </div>
                   <div className="flex items-center justify-center gap-1">
@@ -294,7 +315,7 @@ const EventCard: React.FC<EventCardProps> = ({ event, leaderboard, timeRemaining
       </div>
 
       {/* Section 4: Participants & Join - Reduced bottom margin */}
-      <div className="pb-2 mb-2">
+      <div className="pb-1 mb-1">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Users className="w-4 h-4 text-cyan-400" />
@@ -312,7 +333,7 @@ const EventCard: React.FC<EventCardProps> = ({ event, leaderboard, timeRemaining
       </div>
       
       {/* Section 5: Interaction Bar - Perfectly integrated final element */}
-      <div className="mt-1 pt-1 border-t border-slate-600/20">
+      <div className="mt-2 pt-1">
         <InteractionBar 
           contentType="event"
           contentId={event.id}
