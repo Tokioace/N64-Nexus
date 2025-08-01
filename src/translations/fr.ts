@@ -896,7 +896,16 @@ const fr = {
   'interaction.loginToComment': 'Connectez-vous pour commenter',
 
   // Time
-  'time.justNow': 'à l\'instant'
+  'time.justNow': 'à l\'instant',
+
+  // Media types
+  'media.photo': 'Photo',
+  'media.video': 'Vidéo',
+
+  // Event Card specific translations
+  'events.likes': 'J\'aime',
+  'events.views': 'Vues', 
+  'events.comments': 'Commentaires'
 }
 
 export default fr

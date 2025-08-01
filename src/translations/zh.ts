@@ -945,7 +945,16 @@ const zh = {
   'interaction.loginToComment': '登录以评论',
 
   // Time
-  'time.justNow': '刚刚'
+  'time.justNow': '刚刚',
+
+  // Media types
+  'media.photo': '照片',
+  'media.video': '视频',
+
+  // Event Card specific translations
+  'events.likes': '点赞',
+  'events.views': '浏览量', 
+  'events.comments': '评论'
 }
 
 export default zh

@@ -945,7 +945,16 @@ const el = {
   'interaction.loginToComment': 'Συνδεθείτε για σχόλιο',
 
   // Time
-  'time.justNow': 'τώρα'
+  'time.justNow': 'τώρα',
+
+  // Media types
+  'media.photo': 'Φωτογραφία',
+  'media.video': 'Βίντεο',
+
+  // Event Card specific translations
+  'events.likes': 'Μου αρέσει',
+  'events.views': 'Προβολές', 
+  'events.comments': 'Σχόλια'
 }
 
 export default el

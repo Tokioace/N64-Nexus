@@ -896,7 +896,16 @@ const tr = {
   'interaction.loginToComment': 'Yorum yapmak için giriş yapın',
 
   // Time
-  'time.justNow': 'şimdi'
+  'time.justNow': 'şimdi',
+
+  // Media types
+  'media.photo': 'Fotoğraf',
+  'media.video': 'Video',
+
+  // Event Card specific translations
+  'events.likes': 'Beğeniler',
+  'events.views': 'Görüntülemeler', 
+  'events.comments': 'Yorumlar'
 }
 
 export default tr

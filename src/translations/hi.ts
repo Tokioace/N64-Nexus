@@ -895,7 +895,16 @@ const hi = {
   'interaction.loginToComment': 'टिप्पणी के लिए लॉगिन करें',
 
   // Time
-  'time.justNow': 'अभी'
+  'time.justNow': 'अभी',
+
+  // Media types
+  'media.photo': 'फोटो',
+  'media.video': 'वीडियो',
+
+  // Event Card specific translations
+  'events.likes': 'लाइक्स',
+  'events.views': 'व्यूज', 
+  'events.comments': 'टिप्पणियाँ'
 }
 
 export default hi

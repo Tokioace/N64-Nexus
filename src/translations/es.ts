@@ -935,7 +935,16 @@ const es = {
   'interaction.loginToComment': 'Inicia sesión para comentar',
 
   // Time
-  'time.justNow': 'ahora mismo'
+  'time.justNow': 'ahora mismo',
+
+  // Media types
+  'media.photo': 'Foto',
+  'media.video': 'Video',
+
+  // Event Card specific translations
+  'events.likes': 'Me gusta',
+  'events.views': 'Vistas', 
+  'events.comments': 'Comentarios'
 }
 
 export default es

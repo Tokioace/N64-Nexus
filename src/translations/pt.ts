@@ -896,7 +896,16 @@ const pt = {
   'interaction.loginToComment': 'Faça login para comentar',
 
   // Time
-  'time.justNow': 'agora mesmo'
+  'time.justNow': 'agora mesmo',
+
+  // Media types
+  'media.photo': 'Foto',
+  'media.video': 'Vídeo',
+
+  // Event Card specific translations
+  'events.likes': 'Curtidas',
+  'events.views': 'Visualizações', 
+  'events.comments': 'Comentários'
 }
 
 export default pt

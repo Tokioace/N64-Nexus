@@ -895,7 +895,16 @@ const de = {
   'interaction.loginToComment': 'Anmelden zum Kommentieren',
 
   // Time
-  'time.justNow': 'gerade eben'
+  'time.justNow': 'gerade eben',
+
+  // Media types
+  'media.photo': 'Foto',
+  'media.video': 'Video',
+
+  // Event Card specific translations
+  'events.likes': 'Gefällt mir',
+  'events.views': 'Aufrufe', 
+  'events.comments': 'Kommentare'
 }
 
 export default de

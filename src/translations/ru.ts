@@ -879,7 +879,16 @@ const ru = {
   'interaction.loginToComment': 'Войдите, чтобы комментировать',
 
   // Time
-  'time.justNow': 'только что'
+  'time.justNow': 'только что',
+
+  // Media types
+  'media.photo': 'Фото',
+  'media.video': 'Видео',
+
+  // Event Card specific translations
+  'events.likes': 'Лайки',
+  'events.views': 'Просмотры', 
+  'events.comments': 'Комментарии'
 }
 
 export default ru

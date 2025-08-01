@@ -945,7 +945,16 @@ const ja = {
   'interaction.loginToComment': 'コメントするにはログイン',
 
   // Time
-  'time.justNow': 'たった今'
+  'time.justNow': 'たった今',
+
+  // Media types
+  'media.photo': '写真',
+  'media.video': '動画',
+
+  // Event Card specific translations
+  'events.likes': 'いいね',
+  'events.views': '閲覧数', 
+  'events.comments': 'コメント'
 }
 
 export default ja
