@@ -114,35 +114,35 @@ const EventCard: React.FC<EventCardProps> = ({ event, leaderboard, timeRemaining
   }
 
   return (
-    <div className={`simple-tile bg-gradient-to-br ${getEventGradient(event.id)} mb-4 shadow-lg hover:shadow-xl transition-shadow duration-300`} style={{ marginBottom: '16px', paddingBottom: '8px' }}>
+    <div className={`simple-tile bg-gradient-to-br ${getEventGradient(event.id)} mb-4 shadow-lg hover:shadow-xl transition-shadow duration-300`} style={{ marginBottom: '12px', paddingBottom: '4px' }}>
       <div className="event-card-content">
-      {/* Section 1: Event Title & Status */}
-      <div className="border-b border-slate-600/30 pb-4 mb-4">
-        <div className="flex items-center justify-between gap-2">
-          <div className="flex items-center gap-2 sm:gap-3 min-w-0 flex-1">
-            <div className="text-lg sm:text-2xl flex-shrink-0">{getGameIcon(event.game)}</div>
-            <div className="min-w-0 flex-1">
-              <h3 className="text-sm sm:text-base font-bold text-slate-100 leading-tight" 
-                  style={{ 
-                    fontSize: '15px',
-                    whiteSpace: 'normal',
-                    wordBreak: 'break-word',
-                    display: '-webkit-box',
-                    WebkitLineClamp: 2,
-                    WebkitBoxOrient: 'vertical',
-                    overflow: 'hidden'
-                  }}>{event.title}</h3>
-              <p className="text-xs sm:text-sm text-slate-400 truncate">{event.game} • {event.category}</p>
-            </div>
-          </div>
-          <div className="text-right flex-shrink-0">
-            <div className="flex items-center gap-1 sm:gap-2 mb-1">
-              <div className="w-1 h-1 bg-green-400 rounded-full animate-pulse"></div>
-              <span className="text-xs sm:text-sm font-medium text-green-400">{t('events.status.live')}</span>
-            </div>
-            <div className="flex items-center gap-1 text-xs text-slate-400">
-              <Timer className="w-3 h-3 sm:w-4 sm:h-4" />
-              <span className="font-mono whitespace-nowrap">{timeRemaining}</span>
+      {/* Section 1: Event Title & Status - Mobile Optimized */}
+      <div className="border-b border-slate-600/30 pb-3 mb-3">
+        <div className="flex items-start gap-2 sm:gap-3">
+          <div className="text-lg sm:text-2xl flex-shrink-0 mt-0.5">{getGameIcon(event.game)}</div>
+          <div className="min-w-0 flex-1">
+            {/* Event Title - Always visible in single line */}
+            <h3 className="text-sm sm:text-base font-bold text-slate-100 leading-tight mb-1" 
+                style={{ 
+                  fontSize: '14px',
+                  whiteSpace: 'nowrap',
+                  textOverflow: 'clip',
+                  overflow: 'visible'
+                }}>{event.title}</h3>
+            
+            {/* Game info */}
+            <p className="text-xs sm:text-sm text-slate-400 truncate mb-2">{event.game} • {event.category}</p>
+            
+            {/* Live Status and Time - Positioned below title */}
+            <div className="flex items-center gap-3 text-xs">
+              <div className="flex items-center gap-1">
+                <div className="w-1 h-1 bg-green-400 rounded-full animate-pulse"></div>
+                <span className="font-medium text-green-400">{t('events.status.live')}</span>
+              </div>
+              <div className="flex items-center gap-1 text-slate-400">
+                <Timer className="w-3 h-3" />
+                <span className="font-mono">{timeRemaining}</span>
+              </div>
             </div>
           </div>
         </div>
@@ -314,8 +314,8 @@ const EventCard: React.FC<EventCardProps> = ({ event, leaderboard, timeRemaining
         )}
       </div>
 
-      {/* Section 4: Participants & Join - Reduced bottom margin */}
-      <div className="pb-1 mb-1">
+      {/* Section 4: Participants & Join - Reduced spacing */}
+      <div className="pb-2 mb-2">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Users className="w-4 h-4 text-cyan-400" />
@@ -332,8 +332,8 @@ const EventCard: React.FC<EventCardProps> = ({ event, leaderboard, timeRemaining
         </div>
       </div>
       
-      {/* Section 5: Interaction Bar - Perfectly integrated final element */}
-      <div className="mt-2 pt-1">
+      {/* Section 5: Interaction Bar - Left-aligned and compact */}
+      <div className="mt-1 pt-1">
         <InteractionBar 
           contentType="event"
           contentId={event.id}
