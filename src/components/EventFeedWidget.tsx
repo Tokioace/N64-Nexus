@@ -106,62 +106,64 @@ const EventCard: React.FC<EventCardProps> = ({ event, leaderboard, timeRemaining
     }
   }
 
-  const getGameIcon = (gameTitle: string) => {
-    if (gameTitle.includes('Mario Kart')) return '🏎️'
-    if (gameTitle.includes('San Francisco')) return '🏙️'
-    if (gameTitle.includes('Diddy Kong')) return '🦍'
-    return '🎮'
-  }
+  // Removed game icons for cleaner, more professional appearance
 
-  // Extract game name and track name from title
+  // Extract game name and track name from title - optimized without emojis
   const parseEventTitle = (title: string) => {
     // For titles like "Mario Kart 64: Luigi's Raceway"
     const parts = title.split(':')
     if (parts.length >= 2) {
       return {
-        gameAndTrack: `🏁 ${parts[0].trim()}: ${parts[1].trim()}`,
-        seriesAndMode: `${event.game} • ${event.category}`
+        gameName: parts[0].trim(),
+        trackName: parts[1].trim()
       }
     }
+    // If no colon separator, use the full title as game name
     return {
-      gameAndTrack: `🏁 ${title}`,
-      seriesAndMode: `${event.game} • ${event.category}`
+      gameName: title,
+      trackName: `${event.category}`
     }
   }
 
-  const { gameAndTrack, seriesAndMode } = parseEventTitle(event.title)
+  const { gameName, trackName } = parseEventTitle(event.title)
 
   return (
     <div className={`simple-tile bg-gradient-to-br ${getEventGradient(event.id)} mb-3 shadow-lg hover:shadow-xl transition-shadow duration-300`} 
-         style={{ marginBottom: '12px', paddingBottom: '8px' }}>
-      <div className="event-card-content">
-        {/* Section 1: Event Title & Status - Restructured */}
+         style={{ marginBottom: '10px', paddingBottom: '4px' }}>
+      <div className="event-card-content" style={{ paddingBottom: '4px' }}>
+        {/* Section 1: Event Title & Status - Optimized Layout */}
         <div className="border-b border-slate-600/30 pb-3 mb-3">
-          <div className="flex items-start gap-2 sm:gap-3">
-            <div className="text-lg sm:text-2xl flex-shrink-0 mt-0.5">{getGameIcon(event.game)}</div>
+          <div className="flex items-start justify-between gap-3">
+            {/* Title Section - Two Line Layout */}
             <div className="min-w-0 flex-1">
-              {/* First line: Game + Track - Fully visible */}
+              {/* First line: Game Name */}
               <h3 className="text-sm sm:text-base font-bold text-slate-100 leading-tight mb-1" 
                   style={{ 
-                    fontSize: '13px',
-                    lineHeight: '1.2',
+                    fontSize: '14px',
+                    lineHeight: '1.3',
                     wordBreak: 'break-word',
                     whiteSpace: 'normal'
-                  }}>{gameAndTrack}</h3>
+                  }}>{gameName}</h3>
               
-              {/* Second line: Series + Mode - No duplicate game name */}
-              <p className="text-xs sm:text-sm text-slate-400 mb-2 leading-tight">{seriesAndMode}</p>
+              {/* Second line: Track/Mode Name */}
+              <p className="text-xs sm:text-sm text-slate-400 leading-tight" 
+                 style={{ 
+                   fontSize: '12px',
+                   lineHeight: '1.2',
+                   wordBreak: 'break-word',
+                   whiteSpace: 'normal'
+                 }}>{trackName}</p>
             </div>
             
-            {/* Live Status and Time - Positioned on the right */}
-            <div className="flex flex-col items-end gap-1 text-xs flex-shrink-0">
+            {/* Live Status and Time - Right-aligned, not overlapping */}
+            <div className="flex flex-col items-end gap-1 text-xs flex-shrink-0 ml-2">
               <div className="flex items-center gap-1">
-                <div className="w-1 h-1 bg-green-400 rounded-full animate-pulse"></div>
-                <span className="font-medium text-green-400">{t('events.status.live')}</span>
+                <div className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse"></div>
+                <span className="font-medium text-green-400 text-xs">{t('events.status.live')}</span>
               </div>
               <div className="flex items-center gap-1 text-slate-400">
                 <Timer className="w-3 h-3" />
-                <span className="font-mono">{timeRemaining}</span>
+                <span className="font-mono text-xs">{timeRemaining}</span>
               </div>
             </div>
           </div>
@@ -334,7 +336,7 @@ const EventCard: React.FC<EventCardProps> = ({ event, leaderboard, timeRemaining
         </div>
 
         {/* Section 4: Participants & Join - Compact layout */}
-        <div className="flex items-center justify-between mb-2">
+        <div className="flex items-center justify-between mb-1">
           <div className="flex items-center gap-2">
             <Users className="w-4 h-4 text-cyan-400" />
             <span className="text-sm text-slate-300">{event.participants} {t('events.participants')}</span>
@@ -342,7 +344,7 @@ const EventCard: React.FC<EventCardProps> = ({ event, leaderboard, timeRemaining
           
           <Link 
             to="/events" 
-            className="flex items-center gap-2 px-3 py-2 rounded-lg bg-gradient-to-r from-green-600/20 to-green-500/20 border border-green-500/40 text-green-400 hover:from-green-600/30 hover:to-green-500/30 hover:border-green-400/60 hover:scale-105 transition-all duration-200 text-sm font-medium shadow-lg hover:shadow-xl"
+            className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-gradient-to-r from-green-600/20 to-green-500/20 border border-green-500/40 text-green-400 hover:from-green-600/30 hover:to-green-500/30 hover:border-green-400/60 hover:scale-105 transition-all duration-200 text-sm font-medium shadow-lg hover:shadow-xl"
           >
             <span>{t('events.join')}</span>
             <ChevronRight className="w-4 h-4" />
@@ -350,7 +352,7 @@ const EventCard: React.FC<EventCardProps> = ({ event, leaderboard, timeRemaining
         </div>
         
         {/* Section 5: Interaction Bar - Left-aligned and compact */}
-        <div className="pt-1 interaction-bar">
+        <div className="interaction-bar" style={{ marginTop: '6px', marginBottom: '2px' }}>
           <InteractionBar 
             contentType="event"
             contentId={event.id}
