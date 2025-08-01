@@ -895,7 +895,16 @@ const ko = {
   'interaction.loginToComment': '댓글을 위해 로그인',
 
   // Time
-  'time.justNow': '방금 전'
+  'time.justNow': '방금 전',
+
+  // Media types
+  'media.photo': '사진',
+  'media.video': '동영상',
+
+  // Event Card specific translations
+  'events.likes': '좋아요',
+  'events.views': '조회수', 
+  'events.comments': '댓글'
 }
 
 export default ko

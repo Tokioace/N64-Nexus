@@ -1028,7 +1028,16 @@ const ar = {
   'interaction.loginToComment': 'تسجيل الدخول للتعليق',
 
   // Time
-  'time.justNow': 'الآن'
+  'time.justNow': 'الآن',
+
+  // Media types
+  'media.photo': 'صورة',
+  'media.video': 'فيديو',
+
+  // Event Card specific translations
+  'events.likes': 'إعجابات',
+  'events.views': 'مشاهدات', 
+  'events.comments': 'تعليقات'
 }
 
 export default ar

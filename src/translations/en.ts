@@ -896,7 +896,16 @@ const en = {
   'interaction.loginToComment': 'Login to comment',
 
   // Time
-  'time.justNow': 'just now'
+  'time.justNow': 'just now',
+
+  // Media types
+  'media.photo': 'Photo',
+  'media.video': 'Video',
+
+  // Event Card specific translations
+  'events.likes': 'Likes',
+  'events.views': 'Views', 
+  'events.comments': 'Comments'
 }
 
 export default en

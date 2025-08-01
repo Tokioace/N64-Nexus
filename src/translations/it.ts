@@ -898,7 +898,16 @@ const it = {
   'interaction.loginToComment': 'Accedi per commentare',
 
   // Time
-  'time.justNow': 'proprio ora'
+  'time.justNow': 'proprio ora',
+
+  // Media types
+  'media.photo': 'Foto',
+  'media.video': 'Video',
+
+  // Event Card specific translations
+  'events.likes': 'Mi piace',
+  'events.views': 'Visualizzazioni', 
+  'events.comments': 'Commenti'
 }
 
 export default it
