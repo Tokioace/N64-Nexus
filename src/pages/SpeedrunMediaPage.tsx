@@ -361,13 +361,13 @@ const SpeedrunMediaPage: React.FC = () => {
         </div>
         
         <div className="flex items-center justify-between mt-3">
-          <div className="flex items-center gap-4 text-xs text-slate-400">
+          <div className="flex items-center gap-4 text-xs text-white">
             <span className="flex items-center gap-1">
-              <Eye className="w-3 h-3" />
+              <Eye className="w-3 h-3 text-white" />
               {media.views}
             </span>
             <span className="flex items-center gap-1">
-              <Heart className="w-3 h-3" />
+              <Heart className="w-3 h-3 text-white" />
               {media.likes}
             </span>
           </div>
@@ -958,12 +958,12 @@ const SpeedrunMediaPage: React.FC = () => {
 
                       <div className="flex items-center gap-4">
                         <div className="flex items-center gap-1">
-                          <Eye className="w-4 h-4 text-slate-400" />
-                          <span className="text-slate-300">{selectedMedia.views}</span>
+                          <Eye className="w-4 h-4 text-white" />
+                          <span className="text-white">{selectedMedia.views}</span>
                         </div>
                         <div className="flex items-center gap-1">
-                          <Heart className="w-4 h-4 text-slate-400" />
-                          <span className="text-slate-300">{selectedMedia.likes}</span>
+                          <Heart className="w-4 h-4 text-white" />
+                          <span className="text-white">{selectedMedia.likes}</span>
                         </div>
                         {selectedMedia.verified && (
                           <div className="flex items-center gap-1">

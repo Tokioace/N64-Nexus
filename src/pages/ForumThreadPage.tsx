@@ -168,21 +168,21 @@ const ForumThreadPage: React.FC = () => {
                 {selectedThread.title}
               </h1>
             </div>
-            <div className="flex items-center gap-4 text-sm text-slate-400">
+            <div className="flex items-center gap-4 text-sm text-white">
               <div className="flex items-center gap-1">
-                <User className="w-4 h-4" />
+                <User className="w-4 h-4 text-white" />
                 <span>{t('forum.createdBy')} {selectedThread.authorName}</span>
               </div>
               <div className="flex items-center gap-1">
-                <Clock className="w-4 h-4" />
+                <Clock className="w-4 h-4 text-white" />
                 <span>{formatDate(selectedThread.createdAt)}</span>
               </div>
               <div className="flex items-center gap-1">
-                <Eye className="w-4 h-4" />
+                <Eye className="w-4 h-4 text-white" />
                 <span>{selectedThread.views} Aufrufe</span>
               </div>
               <div className="flex items-center gap-1">
-                <MessageSquare className="w-4 h-4" />
+                <MessageSquare className="w-4 h-4 text-white" />
                 <span>{selectedThread.postCount} Beiträge</span>
               </div>
             </div>

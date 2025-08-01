@@ -231,12 +231,12 @@ const ForumCategoryPage: React.FC = () => {
 
                 {/* Thread Stats */}
                 <div className="flex items-center gap-6 text-sm">
-                  <div className="flex items-center gap-1 text-slate-400">
-                    <MessageSquare className="w-4 h-4" />
+                  <div className="flex items-center gap-1 text-white">
+                    <MessageSquare className="w-4 h-4 text-white" />
                     <span>{thread.postCount}</span>
                   </div>
-                  <div className="flex items-center gap-1 text-slate-400">
-                    <Eye className="w-4 h-4" />
+                  <div className="flex items-center gap-1 text-white">
+                    <Eye className="w-4 h-4 text-white" />
                     <span>{thread.views}</span>
                   </div>
                 </div>

@@ -70,17 +70,13 @@ export const LikeButton: React.FC<LikeButtonProps> = ({
     <button
       onClick={handleLike}
       disabled={!user || isLiking}
-      className={`flex items-center ${!compact ? 'gap-1.5 sm:gap-2' : ''} transition-all duration-200 ${
-        isLiked 
-          ? 'text-white hover:text-gray-200' 
-          : 'text-white hover:text-gray-200'
-      } ${!user ? 'opacity-50 cursor-not-allowed' : 'hover:scale-105'} ${className}`}
+      className={`flex items-center ${!compact ? 'gap-1.5 sm:gap-2' : ''} transition-all duration-200 text-white hover:text-white ${!user ? 'opacity-50 cursor-not-allowed' : 'hover:scale-105'} ${className}`}
       title={user ? (isLiked ? t('interaction.unlike') : t('interaction.like')) : t('interaction.loginToLike')}
     >
-      <Heart className={`${compact ? 'w-4 h-4' : 'w-4 h-4'} flex-shrink-0 ${isLiked ? 'fill-white text-white scale-110' : ''} transition-all`} />
+      <Heart className={`${compact ? 'w-4 h-4' : 'w-4 h-4'} flex-shrink-0 ${isLiked ? 'fill-white text-white scale-110' : 'text-white'} transition-all`} />
       {!compact && (
         <span className="text-xs sm:text-sm font-medium min-w-[1ch] text-white">
-          {interactionData.likes > 0 ? interactionData.likes : ''}
+          {interactionData.likes}
         </span>
       )}
     </button>
@@ -109,10 +105,10 @@ export const ViewCounter: React.FC<ViewCounterProps> = ({
   // Always show the view counter, even without authentication
   return (
     <div className={`flex items-center ${!compact ? 'gap-1.5 sm:gap-2' : ''} text-white ${className}`}>
-      <Eye className={`${compact ? 'w-4 h-4' : 'w-4 h-4'} flex-shrink-0 transition-all`} />
+      <Eye className={`${compact ? 'w-4 h-4' : 'w-4 h-4'} flex-shrink-0 text-white transition-all`} />
       {!compact && (
         <span className="text-xs sm:text-sm min-w-[1ch] text-white">
-          {interactionData.views > 0 ? interactionData.views : '0'}
+          {interactionData.views}
         </span>
       )}
     </div>
@@ -176,9 +172,9 @@ export const CommentSection: React.FC<CommentSectionProps> = ({
       {/* Comment Toggle Button */}
       <button
         onClick={() => setShowComments(!showComments)}
-        className="flex items-center gap-2 text-white hover:text-gray-200 transition-colors"
+        className="flex items-center gap-2 text-white hover:text-white transition-colors"
       >
-        <MessageCircle className="w-4 h-4" />
+        <MessageCircle className="w-4 h-4 text-white" />
         <span className="text-xs sm:text-sm font-medium text-white">
           {interactionData.comments.length > 0 
             ? `${interactionData.comments.length} ${t('interaction.comments')}`
@@ -366,7 +362,7 @@ const CompactInteractionBar: React.FC<CompactInteractionBarProps> = ({
           <CompactHeartIcon filled={isLiked} />
         </button>
         <span className="text-white font-medium min-w-[1ch]" style={{ fontSize: '11px' }}>
-          {interactionData.likes > 0 ? interactionData.likes : '0'}
+          {interactionData.likes}
         </span>
       </div>
       
@@ -374,7 +370,7 @@ const CompactInteractionBar: React.FC<CompactInteractionBarProps> = ({
       <div className="flex items-center" style={{ gap: '4px' }} title={t('interaction.viewCount')} aria-label={t('interaction.viewCount')}>
         <CompactEyeIcon />
         <span className="text-white font-medium min-w-[1ch]" style={{ fontSize: '11px' }}>
-          {interactionData.views > 0 ? interactionData.views : '0'}
+          {interactionData.views}
         </span>
       </div>
       
@@ -391,7 +387,7 @@ const CompactInteractionBar: React.FC<CompactInteractionBarProps> = ({
             <CompactCommentIcon />
           </button>
           <span className="text-white font-medium min-w-[1ch]" style={{ fontSize: '11px' }}>
-            {interactionData.comments.length > 0 ? interactionData.comments.length : '0'}
+            {interactionData.comments.length}
           </span>
         </div>
       )}
@@ -452,7 +448,7 @@ export const InteractionBar: React.FC<InteractionBarProps> = ({
   return (
     <div className={`space-y-2 ${className}`}>
       {/* Action Buttons */}
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-start">
         <div className="flex items-center gap-3 sm:gap-4">
           <LikeButton 
             contentType={contentType} 
@@ -465,12 +461,6 @@ export const InteractionBar: React.FC<InteractionBarProps> = ({
             compact={compact}
           />
         </div>
-        
-        {!compact && interactionData.likes > 0 && (
-          <div className="text-xs text-slate-400">
-            {interactionData.likes} {interactionData.likes === 1 ? 'like' : 'likes'}
-          </div>
-        )}
       </div>
 
       {/* Comments Section */}

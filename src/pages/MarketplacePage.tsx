@@ -537,18 +537,18 @@ const MarketplacePage: React.FC = () => {
                 </div>
               </div>
               
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between text-responsive-xs text-slate-400 gap-2">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between text-responsive-xs text-white gap-2">
                 <div className="flex items-center gap-3 flex-wrap">
                   <div className="flex items-center gap-1">
-                    <Eye size={12} />
+                    <Eye size={12} className="text-white" />
                     <span>{offer.views}</span>
                   </div>
                   <div className="flex items-center gap-1">
-                    <Heart size={12} />
+                    <Heart size={12} className="text-white" />
                     <span>{offer.likes}</span>
                   </div>
                   <div className="flex items-center gap-1">
-                    <MessageCircle size={12} />
+                    <MessageCircle size={12} className="text-white" />
                     <span>{offer.comments}</span>
                   </div>
                 </div>
