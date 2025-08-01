@@ -114,7 +114,8 @@ const EventCard: React.FC<EventCardProps> = ({ event, leaderboard, timeRemaining
   }
 
   return (
-    <div className={`simple-tile bg-gradient-to-br ${getEventGradient(event.id)} mb-4 shadow-lg hover:shadow-xl transition-shadow duration-300`}>
+    <div className={`simple-tile bg-gradient-to-br ${getEventGradient(event.id)} mb-4 shadow-lg hover:shadow-xl transition-shadow duration-300`} style={{ marginBottom: '16px' }}>
+      <div className="event-card-content">
       {/* Section 1: Event Title & Status */}
       <div className="border-b border-slate-600/30 pb-4 mb-4">
         <div className="flex items-center justify-between gap-2">
@@ -292,8 +293,8 @@ const EventCard: React.FC<EventCardProps> = ({ event, leaderboard, timeRemaining
         )}
       </div>
 
-      {/* Section 4: Participants & Join */}
-      <div className="pb-3 mb-3">
+      {/* Section 4: Participants & Join - Reduced bottom margin */}
+      <div className="pb-2 mb-2">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Users className="w-4 h-4 text-cyan-400" />
@@ -310,14 +311,15 @@ const EventCard: React.FC<EventCardProps> = ({ event, leaderboard, timeRemaining
         </div>
       </div>
       
-      {/* Section 5: Interaction Bar (Likes, Views, Comments) - Kompakter Abschluss */}
-      <div className="flex items-center justify-center">
+      {/* Section 5: Interaction Bar - Perfectly integrated final element */}
+      <div className="mt-1 pt-1 border-t border-slate-600/20">
         <InteractionBar 
           contentType="event"
           contentId={event.id}
           showComments={true}
           compact={true}
         />
+      </div>
       </div>
     </div>
   )

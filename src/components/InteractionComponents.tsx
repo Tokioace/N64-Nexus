@@ -318,7 +318,7 @@ const CompactInteractionBar: React.FC<CompactInteractionBarProps> = ({
   }
 
   return (
-    <div className={`flex items-center justify-center gap-6 ${className}`}>
+    <div className={`flex items-center justify-center gap-4 sm:gap-6 ${className}`}>
       {/* Like Button with count */}
       <div className="flex items-center gap-1.5">
         <button
