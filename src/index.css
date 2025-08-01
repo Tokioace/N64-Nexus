@@ -917,13 +917,15 @@ code {
   }
 }
 
+/* Ensure parent container has relative positioning for absolute interaction bar */
+.event-card-content {
+  position: relative !important;
+  min-height: 120px !important; /* Ensure adequate height for absolutely positioned meta bar */
+}
+
 /* Interaction Bar Optimization for Event Cards - Ultra-compact, bottom-left positioned */
 .event-card-content .interaction-bar {
-  margin-top: 0.125rem !important; /* Minimal top margin */
-  padding-top: 0 !important; /* Remove padding */
   margin-bottom: 0 !important; /* No bottom margin */
-  padding-bottom: 0 !important; /* No bottom padding */
-  padding-left: 0 !important; /* No left padding */
   justify-content: flex-start !important; /* Left align */
 }
 
@@ -2755,16 +2757,21 @@ input[type="submit"] {
   white-space: nowrap !important;
 }
 
-/* Ultra-compact interaction bar for all screen sizes - all white */
+/* Ultra-compact interaction bar for all screen sizes - all white, optimized icon sizes */
 .event-card-content .interaction-bar {
   font-size: clamp(10px, 2.5vw, 12px) !important;
   line-height: 1 !important;
   color: #FFFFFF !important; /* Force white color */
+  position: absolute !important;
+  bottom: 12px !important; /* 12px from bottom edge */
+  left: 12px !important; /* 12px from left edge */
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 .event-card-content .interaction-bar svg {
-  width: clamp(12px, 3vw, 14px) !important;
-  height: clamp(12px, 3vw, 14px) !important;
+  width: clamp(14px, 3.5vw, 16px) !important; /* 15-20% larger icons */
+  height: clamp(14px, 3.5vw, 16px) !important; /* 15-20% larger icons */
   color: #FFFFFF !important; /* Force white color */
   stroke: #FFFFFF !important; /* Force white stroke */
   fill: #FFFFFF !important; /* Force white fill where applicable */
@@ -2773,6 +2780,22 @@ input[type="submit"] {
 /* Additional white color enforcement for interaction bar elements */
 .event-card-content .interaction-bar * {
   color: #FFFFFF !important;
+}
+
+/* Ensure Heart icon is always white in event cards, even when filled */
+.event-card-content .interaction-bar svg path {
+  stroke: #FFFFFF !important;
+  fill: #FFFFFF !important;
+}
+
+/* Override any fill colors for heart icon specifically */
+.event-card-content .interaction-bar button svg path[fill="#FFFFFF"] {
+  fill: #FFFFFF !important;
+}
+
+.event-card-content .interaction-bar button svg path[fill="none"] {
+  fill: none !important;
+  stroke: #FFFFFF !important;
 }
 
 
@@ -2887,9 +2910,30 @@ input[type="submit"] {
   overflow: hidden !important;
 }
 
-/* Ensure interaction bar doesn't overflow */
+/* Ensure interaction bar doesn't overflow and is responsive */
 .event-card-content .interaction-bar {
   overflow: hidden !important;
-  max-width: 100% !important;
-  flex-wrap: wrap !important;
+  max-width: calc(100% - 24px) !important; /* Account for left padding */
+  flex-wrap: nowrap !important; /* Prevent wrapping */
+  white-space: nowrap !important;
+}
+
+/* Responsive adjustments for very small screens */
+@media (max-width: 320px) {
+  .event-card-content .interaction-bar {
+    bottom: 8px !important; /* Slightly less padding on very small screens */
+    left: 8px !important;
+  }
+  
+  .event-card-content .interaction-bar svg {
+    width: 12px !important; /* Smaller icons on very small screens */
+    height: 12px !important;
+  }
+}
+
+/* Responsive adjustments for small screens */
+@media (max-width: 480px) {
+  .event-card-content .interaction-bar {
+    gap: 4px !important; /* Tighter spacing on small screens */
+  }
 }

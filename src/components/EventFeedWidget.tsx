@@ -132,8 +132,8 @@ const EventCard: React.FC<EventCardProps> = ({ event, leaderboard, timeRemaining
 
   return (
     <div className={`simple-tile bg-gradient-to-br ${getEventGradient(event.id)} mb-3 shadow-lg hover:shadow-xl transition-shadow duration-300`} 
-         style={{ marginBottom: '10px', paddingBottom: '2px' }}>
-      <div className="event-card-content" style={{ paddingBottom: '2px' }}>
+         style={{ marginBottom: '10px', paddingBottom: '16px' }}>
+      <div className="event-card-content" style={{ paddingBottom: '0px' }}>
         {/* Section 1: Event Title & Status - Optimized Layout */}
         <div className="border-b border-slate-600/30 pb-3 mb-3">
           <div className="flex items-start justify-between gap-3">
@@ -359,8 +359,8 @@ const EventCard: React.FC<EventCardProps> = ({ event, leaderboard, timeRemaining
           )}
         </div>
 
-        {/* Section 4: Participants & Join - Compact layout */}
-        <div className="flex items-center justify-between mb-1">
+        {/* Section 4: Participants & Join - Compact layout with optimized spacing */}
+        <div className="flex items-center justify-between mb-8">
           <div className="flex items-center gap-2">
             <Users className="w-4 h-4 text-cyan-400" />
             <span className="text-sm text-slate-300">{event.participants} {t('events.participants')}</span>
@@ -375,16 +375,8 @@ const EventCard: React.FC<EventCardProps> = ({ event, leaderboard, timeRemaining
           </Link>
         </div>
         
-        {/* Section 5: Interaction Bar - Bottom left positioned, compact and flush */}
-        <div className="interaction-bar" style={{ 
-          marginTop: '6px', 
-          marginBottom: '0px',
-          display: 'flex',
-          justifyContent: 'flex-start',
-          alignItems: 'center',
-          paddingLeft: '0px',
-          position: 'relative'
-        }}>
+        {/* Section 5: Interaction Bar - Bottom left positioned, optimized spacing */}
+        <div className="interaction-bar">
           <InteractionBar 
             contentType="event"
             contentId={event.id}
