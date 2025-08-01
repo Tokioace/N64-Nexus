@@ -894,6 +894,8 @@ const fr = {
   'interaction.writeComment': 'Écrivez un commentaire...',
   'interaction.loginToLike': 'Connectez-vous pour aimer',
   'interaction.loginToComment': 'Connectez-vous pour commenter',
+  'interaction.viewCount': 'Nombre de vues',
+  'interaction.showComments': 'Afficher les commentaires',
 
   // Time
   'time.justNow': 'à l\'instant',
@@ -901,6 +903,7 @@ const fr = {
   // Media types
   'media.photo': 'Photo',
   'media.video': 'Vidéo',
+  'media.noMediaTooltip': 'Aucun média pour le moment – téléchargez votre vidéo ou capture d\'écran pour vérifier la course',
 
   // Event Card specific translations
   'events.likes': 'J\'aime',

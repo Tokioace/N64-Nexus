@@ -1026,6 +1026,8 @@ const ar = {
   'interaction.writeComment': 'اكتب تعليقاً...',
   'interaction.loginToLike': 'تسجيل الدخول للإعجاب',
   'interaction.loginToComment': 'تسجيل الدخول للتعليق',
+  'interaction.viewCount': 'View count',
+  'interaction.showComments': 'Show comments',
 
   // Time
   'time.justNow': 'الآن',
@@ -1033,6 +1035,7 @@ const ar = {
   // Media types
   'media.photo': 'صورة',
   'media.video': 'فيديو',
+  'media.noMediaTooltip': 'No media yet – upload your video or screenshot to verify run',
 
   // Event Card specific translations
   'events.likes': 'إعجابات',

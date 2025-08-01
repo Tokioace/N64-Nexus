@@ -943,6 +943,8 @@ const el = {
   'interaction.writeComment': 'Γράψτε ένα σχόλιο...',
   'interaction.loginToLike': 'Συνδεθείτε για like',
   'interaction.loginToComment': 'Συνδεθείτε για σχόλιο',
+  'interaction.viewCount': 'View count',
+  'interaction.showComments': 'Show comments',
 
   // Time
   'time.justNow': 'τώρα',
@@ -950,6 +952,7 @@ const el = {
   // Media types
   'media.photo': 'Φωτογραφία',
   'media.video': 'Βίντεο',
+  'media.noMediaTooltip': 'No media yet – upload your video or screenshot to verify run',
 
   // Event Card specific translations
   'events.likes': 'Μου αρέσει',

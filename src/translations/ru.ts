@@ -877,6 +877,8 @@ const ru = {
   'interaction.writeComment': 'Написать комментарий...',
   'interaction.loginToLike': 'Войдите, чтобы лайкнуть',
   'interaction.loginToComment': 'Войдите, чтобы комментировать',
+  'interaction.viewCount': 'View count',
+  'interaction.showComments': 'Show comments',
 
   // Time
   'time.justNow': 'только что',
@@ -884,6 +886,7 @@ const ru = {
   // Media types
   'media.photo': 'Фото',
   'media.video': 'Видео',
+  'media.noMediaTooltip': 'No media yet – upload your video or screenshot to verify run',
 
   // Event Card specific translations
   'events.likes': 'Лайки',

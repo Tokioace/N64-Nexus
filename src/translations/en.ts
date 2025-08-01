@@ -894,6 +894,8 @@ const en = {
   'interaction.writeComment': 'Write a comment...',
   'interaction.loginToLike': 'Login to like',
   'interaction.loginToComment': 'Login to comment',
+  'interaction.viewCount': 'View count',
+  'interaction.showComments': 'Show comments',
 
   // Time
   'time.justNow': 'just now',
@@ -901,6 +903,7 @@ const en = {
   // Media types
   'media.photo': 'Photo',
   'media.video': 'Video',
+  'media.noMediaTooltip': 'No media yet – upload your video or screenshot to verify run',
 
   // Event Card specific translations
   'events.likes': 'Likes',

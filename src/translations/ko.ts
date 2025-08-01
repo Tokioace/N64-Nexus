@@ -893,6 +893,8 @@ const ko = {
   'interaction.writeComment': '댓글을 작성하세요...',
   'interaction.loginToLike': '좋아요를 위해 로그인',
   'interaction.loginToComment': '댓글을 위해 로그인',
+  'interaction.viewCount': 'View count',
+  'interaction.showComments': 'Show comments',
 
   // Time
   'time.justNow': '방금 전',
@@ -900,6 +902,7 @@ const ko = {
   // Media types
   'media.photo': '사진',
   'media.video': '동영상',
+  'media.noMediaTooltip': 'No media yet – upload your video or screenshot to verify run',
 
   // Event Card specific translations
   'events.likes': '좋아요',

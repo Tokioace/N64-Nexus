@@ -894,6 +894,8 @@ const pt = {
   'interaction.writeComment': 'Escreva um comentário...',
   'interaction.loginToLike': 'Faça login para curtir',
   'interaction.loginToComment': 'Faça login para comentar',
+  'interaction.viewCount': 'View count',
+  'interaction.showComments': 'Show comments',
 
   // Time
   'time.justNow': 'agora mesmo',
@@ -901,6 +903,7 @@ const pt = {
   // Media types
   'media.photo': 'Foto',
   'media.video': 'Vídeo',
+  'media.noMediaTooltip': 'No media yet – upload your video or screenshot to verify run',
 
   // Event Card specific translations
   'events.likes': 'Curtidas',

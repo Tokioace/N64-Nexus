@@ -933,6 +933,8 @@ const es = {
   'interaction.writeComment': 'Escribe un comentario...',
   'interaction.loginToLike': 'Inicia sesión para dar me gusta',
   'interaction.loginToComment': 'Inicia sesión para comentar',
+  'interaction.viewCount': 'Número de visualizaciones',
+  'interaction.showComments': 'Mostrar comentarios',
 
   // Time
   'time.justNow': 'ahora mismo',
@@ -940,6 +942,7 @@ const es = {
   // Media types
   'media.photo': 'Foto',
   'media.video': 'Video',
+  'media.noMediaTooltip': 'Aún no hay medios – sube tu video o captura de pantalla para verificar la carrera',
 
   // Event Card specific translations
   'events.likes': 'Me gusta',

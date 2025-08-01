@@ -893,6 +893,8 @@ const de = {
   'interaction.writeComment': 'Schreib einen Kommentar...',
   'interaction.loginToLike': 'Anmelden zum Liken',
   'interaction.loginToComment': 'Anmelden zum Kommentieren',
+  'interaction.viewCount': 'Anzahl Aufrufe',
+  'interaction.showComments': 'Kommentare anzeigen',
 
   // Time
   'time.justNow': 'gerade eben',
@@ -900,6 +902,7 @@ const de = {
   // Media types
   'media.photo': 'Foto',
   'media.video': 'Video',
+  'media.noMediaTooltip': 'Noch keine Medien – lade dein Video oder Screenshot hoch, um den Run zu verifizieren',
 
   // Event Card specific translations
   'events.likes': 'Gefällt mir',

@@ -943,6 +943,8 @@ const ja = {
   'interaction.writeComment': 'コメントを書く...',
   'interaction.loginToLike': 'いいねするにはログイン',
   'interaction.loginToComment': 'コメントするにはログイン',
+  'interaction.viewCount': 'View count',
+  'interaction.showComments': 'Show comments',
 
   // Time
   'time.justNow': 'たった今',
@@ -950,6 +952,7 @@ const ja = {
   // Media types
   'media.photo': '写真',
   'media.video': '動画',
+  'media.noMediaTooltip': 'No media yet – upload your video or screenshot to verify run',
 
   // Event Card specific translations
   'events.likes': 'いいね',
