@@ -113,28 +113,48 @@ const EventCard: React.FC<EventCardProps> = ({ event, leaderboard, timeRemaining
     return '🎮'
   }
 
+  // Extract game name and track name from title
+  const parseEventTitle = (title: string) => {
+    // For titles like "Mario Kart 64: Luigi's Raceway"
+    const parts = title.split(':')
+    if (parts.length >= 2) {
+      return {
+        gameAndTrack: `🏁 ${parts[0].trim()}: ${parts[1].trim()}`,
+        seriesAndMode: `${event.game} • ${event.category}`
+      }
+    }
+    return {
+      gameAndTrack: `🏁 ${title}`,
+      seriesAndMode: `${event.game} • ${event.category}`
+    }
+  }
+
+  const { gameAndTrack, seriesAndMode } = parseEventTitle(event.title)
+
   return (
-    <div className={`simple-tile bg-gradient-to-br ${getEventGradient(event.id)} mb-4 shadow-lg hover:shadow-xl transition-shadow duration-300`} style={{ marginBottom: '12px', paddingBottom: '4px' }}>
+    <div className={`simple-tile bg-gradient-to-br ${getEventGradient(event.id)} mb-3 shadow-lg hover:shadow-xl transition-shadow duration-300`} 
+         style={{ marginBottom: '12px', paddingBottom: '8px' }}>
       <div className="event-card-content">
-      {/* Section 1: Event Title & Status - Mobile Optimized */}
-      <div className="border-b border-slate-600/30 pb-3 mb-3">
-        <div className="flex items-start gap-2 sm:gap-3">
-          <div className="text-lg sm:text-2xl flex-shrink-0 mt-0.5">{getGameIcon(event.game)}</div>
-          <div className="min-w-0 flex-1">
-            {/* Event Title - Always visible in single line */}
-            <h3 className="text-sm sm:text-base font-bold text-slate-100 leading-tight mb-1" 
-                style={{ 
-                  fontSize: '14px',
-                  whiteSpace: 'nowrap',
-                  textOverflow: 'clip',
-                  overflow: 'visible'
-                }}>{event.title}</h3>
+        {/* Section 1: Event Title & Status - Restructured */}
+        <div className="border-b border-slate-600/30 pb-3 mb-3">
+          <div className="flex items-start gap-2 sm:gap-3">
+            <div className="text-lg sm:text-2xl flex-shrink-0 mt-0.5">{getGameIcon(event.game)}</div>
+            <div className="min-w-0 flex-1">
+              {/* First line: Game + Track - Fully visible */}
+              <h3 className="text-sm sm:text-base font-bold text-slate-100 leading-tight mb-1" 
+                  style={{ 
+                    fontSize: '13px',
+                    lineHeight: '1.2',
+                    wordBreak: 'break-word',
+                    whiteSpace: 'normal'
+                  }}>{gameAndTrack}</h3>
+              
+              {/* Second line: Series + Mode - No duplicate game name */}
+              <p className="text-xs sm:text-sm text-slate-400 mb-2 leading-tight">{seriesAndMode}</p>
+            </div>
             
-            {/* Game info */}
-            <p className="text-xs sm:text-sm text-slate-400 truncate mb-2">{event.game} • {event.category}</p>
-            
-            {/* Live Status and Time - Positioned below title */}
-            <div className="flex items-center gap-3 text-xs">
+            {/* Live Status and Time - Positioned on the right */}
+            <div className="flex flex-col items-end gap-1 text-xs flex-shrink-0">
               <div className="flex items-center gap-1">
                 <div className="w-1 h-1 bg-green-400 rounded-full animate-pulse"></div>
                 <span className="font-medium text-green-400">{t('events.status.live')}</span>
@@ -146,177 +166,175 @@ const EventCard: React.FC<EventCardProps> = ({ event, leaderboard, timeRemaining
             </div>
           </div>
         </div>
-      </div>
 
-      {/* Section 2: Winner with Media */}
-      <div className="border-b border-slate-600/30 pb-4 mb-4">
-        {sortedLeaderboard.length > 0 && (
-          <div>
-            <h4 className="text-xs sm:text-sm font-semibold text-slate-200 mb-3 flex items-center gap-1 sm:gap-2">
-              <Crown className="w-3 h-3 sm:w-4 sm:h-4 text-yellow-400" />
-              <span className="truncate" title={sortedLeaderboard[0].username}>{t('home.winner')} - {sortedLeaderboard[0].username}</span>
-              {sortedLeaderboard[0].verified && (
-                <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" title={t('home.verified')}></div>
-              )}
-            </h4>
-            
-            {sortedLeaderboard[0].mediaUrl ? (
-              <div className="relative bg-slate-800/30 rounded-lg overflow-hidden border border-yellow-400/20 group">
-                {sortedLeaderboard[0].documentationType === 'photo' && (
-                  <div className="relative">
-                    <img 
-                      src={sortedLeaderboard[0].mediaUrl!} 
-                      alt={`Winner screenshot by ${sortedLeaderboard[0].username}`}
-                      className="w-full h-24 sm:h-32 object-cover cursor-pointer hover:scale-105 transition-transform duration-200"
-                      onError={(e) => {
-                        const target = e.target as HTMLImageElement
-                        target.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iIzMzNCI+PC9yZWN0Pjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTIiIGZpbGw9IiM5OTkiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5TY3JlZW5zaG90PC90ZXh0Pjwvc3ZnPg=='
-                      }}
-                      onClick={() => window.open(sortedLeaderboard[0].mediaUrl!, '_blank')}
-                    />
-                    <div className="absolute top-2 right-2 bg-black/70 rounded-full p-1.5 opacity-0 group-hover:opacity-100 transition-opacity">
-                      <ZoomIn className="w-3 h-3 sm:w-4 sm:h-4 text-white" />
-                    </div>
-                    <div className="absolute top-2 left-2 bg-black/60 rounded px-2 py-1">
-                      <Camera className="w-3 h-3 sm:w-4 sm:h-4 text-white inline mr-1" />
-                      <span className="text-white text-xs">{t('media.photo')}</span>
-                    </div>
-                  </div>
+        {/* Section 2: Winner with Media */}
+        <div className="border-b border-slate-600/30 pb-4 mb-4">
+          {sortedLeaderboard.length > 0 && (
+            <div>
+              <h4 className="text-xs sm:text-sm font-semibold text-slate-200 mb-3 flex items-center gap-1 sm:gap-2">
+                <Crown className="w-3 h-3 sm:w-4 sm:h-4 text-yellow-400" />
+                <span className="truncate" title={sortedLeaderboard[0].username}>{t('home.winner')} - {sortedLeaderboard[0].username}</span>
+                {sortedLeaderboard[0].verified && (
+                  <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" title={t('home.verified')}></div>
                 )}
-                {sortedLeaderboard[0].documentationType === 'video' && (
-                  <div className="relative">
-                    <video 
-                      src={sortedLeaderboard[0].mediaUrl!}
-                      className="w-full h-24 sm:h-32 object-cover cursor-pointer"
-                      autoPlay
-                      loop
-                      muted
-                      playsInline
-                      onClick={() => window.open(sortedLeaderboard[0].mediaUrl!, '_blank')}
-                    />
-                    <div className="absolute top-2 right-2 bg-black/70 rounded-full p-1.5 opacity-0 group-hover:opacity-100 transition-opacity">
-                      <Play className="w-3 h-3 sm:w-4 sm:h-4 text-white" />
-                    </div>
-                    <div className="absolute top-2 left-2 bg-black/60 rounded px-2 py-1">
-                      <Video className="w-3 h-3 sm:w-4 sm:h-4 text-white inline mr-1" />
-                      <span className="text-white text-xs">{t('media.video')}</span>
-                    </div>
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none"></div>
-                  </div>
-                )}
-                {sortedLeaderboard[0].documentationType === 'livestream' && (
-                  <div className="h-24 sm:h-32 flex items-center justify-center bg-gradient-to-r from-purple-600/30 to-red-600/30 cursor-pointer hover:from-purple-600/40 hover:to-red-600/40 transition-all duration-200"
-                       onClick={() => {
-                         if (sortedLeaderboard[0].livestreamUrl) {
-                           window.open(sortedLeaderboard[0].livestreamUrl, '_blank')
-                         }
-                       }}>
-                    <div className="text-center">
-                      <Radio className="w-5 h-5 sm:w-7 sm:h-7 text-red-400 mx-auto mb-2 animate-pulse" />
-                      <p className="text-sm text-red-400 font-medium">🔴 {t('media.livestream')}</p>
-                      <p className="text-xs text-purple-300 mt-1">{t('home.clickToWatch')}</p>
-                    </div>
-                  </div>
-                )}
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 to-transparent p-2 sm:p-3">
-                  <div className="flex items-center justify-center">
-                    <div className="text-lg sm:text-xl text-yellow-400 font-bold" style={{ 
-                    fontFamily: '"Roboto Mono", "Courier New", monospace',
-                    fontSize: 'clamp(14px, 4vw, 18px)'
-                  }}>{formatTime(sortedLeaderboard[0].time!)}</div>
-                  </div>
-                </div>
-              </div>
-            ) : (
-              <div className="h-24 sm:h-32 flex items-center justify-center bg-slate-800/30 rounded-lg border-2 border-dashed border-slate-600/50" title={t('media.noMediaTooltip')}>
-                <div className="text-center">
-                  <Trophy className="w-6 h-6 sm:w-8 sm:h-8 text-slate-500 mx-auto mb-2" />
-                  <p className="text-sm text-slate-300 font-medium">{t('home.noMediaSubmitted')}</p>
-                  <div className="text-lg sm:text-xl text-yellow-400 font-bold mt-2" style={{ 
-                    fontFamily: '"Roboto Mono", "Courier New", monospace',
-                    fontSize: 'clamp(14px, 4vw, 18px)'
-                  }}>{formatTime(sortedLeaderboard[0].time!)}</div>
-                </div>
-              </div>
-            )}
-          </div>
-        )}
-      </div>
-
-      {/* Section 3: Top 3 Leaderboard */}
-      <div className="border-b border-slate-600/30 pb-4 mb-4">
-        <h4 className="text-xs sm:text-sm font-semibold text-slate-200 mb-3 flex items-center gap-1 sm:gap-2">
-          <Trophy className="w-3 h-3 sm:w-4 sm:h-4 text-yellow-400" />
-          {t('home.topLeaderboard')}
-        </h4>
-        {sortedLeaderboard.length > 0 ? (
-          <div className="grid grid-cols-3 gap-2 sm:gap-3">
-            {[0, 1, 2].map((index) => {
-              const entry = sortedLeaderboard[index]
-              const position = index + 1
+              </h4>
               
-              if (!entry) {
+              {sortedLeaderboard[0].mediaUrl ? (
+                <div className="relative bg-slate-800/30 rounded-lg overflow-hidden border border-yellow-400/20 group">
+                  {sortedLeaderboard[0].documentationType === 'photo' && (
+                    <div className="relative">
+                      <img 
+                        src={sortedLeaderboard[0].mediaUrl!} 
+                        alt={`Winner screenshot by ${sortedLeaderboard[0].username}`}
+                        className="w-full h-24 sm:h-32 object-cover cursor-pointer hover:scale-105 transition-transform duration-200"
+                        onError={(e) => {
+                          const target = e.target as HTMLImageElement
+                          target.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iIzMzNCI+PC9yZWN0Pjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTIiIGZpbGw9IiM5OTkiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5TY3JlZW5zaG90PC90ZXh0Pjwvc3ZnPg=='
+                        }}
+                        onClick={() => window.open(sortedLeaderboard[0].mediaUrl!, '_blank')}
+                      />
+                      <div className="absolute top-2 right-2 bg-black/70 rounded-full p-1.5 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <ZoomIn className="w-3 h-3 sm:w-4 sm:h-4 text-white" />
+                      </div>
+                      <div className="absolute top-2 left-2 bg-black/60 rounded px-2 py-1">
+                        <Camera className="w-3 h-3 sm:w-4 sm:h-4 text-white inline mr-1" />
+                        <span className="text-white text-xs">{t('media.photo')}</span>
+                      </div>
+                    </div>
+                  )}
+                  {sortedLeaderboard[0].documentationType === 'video' && (
+                    <div className="relative">
+                      <video 
+                        src={sortedLeaderboard[0].mediaUrl!}
+                        className="w-full h-24 sm:h-32 object-cover cursor-pointer"
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        onClick={() => window.open(sortedLeaderboard[0].mediaUrl!, '_blank')}
+                      />
+                      <div className="absolute top-2 right-2 bg-black/70 rounded-full p-1.5 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <Play className="w-3 h-3 sm:w-4 sm:h-4 text-white" />
+                      </div>
+                      <div className="absolute top-2 left-2 bg-black/60 rounded px-2 py-1">
+                        <Video className="w-3 h-3 sm:w-4 sm:h-4 text-white inline mr-1" />
+                        <span className="text-white text-xs">{t('media.video')}</span>
+                      </div>
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none"></div>
+                    </div>
+                  )}
+                  {sortedLeaderboard[0].documentationType === 'livestream' && (
+                    <div className="h-24 sm:h-32 flex items-center justify-center bg-gradient-to-r from-purple-600/30 to-red-600/30 cursor-pointer hover:from-purple-600/40 hover:to-red-600/40 transition-all duration-200"
+                         onClick={() => {
+                           if (sortedLeaderboard[0].livestreamUrl) {
+                             window.open(sortedLeaderboard[0].livestreamUrl, '_blank')
+                           }
+                         }}>
+                      <div className="text-center">
+                        <Radio className="w-5 h-5 sm:w-7 sm:h-7 text-red-400 mx-auto mb-2 animate-pulse" />
+                        <p className="text-sm text-red-400 font-medium">🔴 {t('media.livestream')}</p>
+                        <p className="text-xs text-purple-300 mt-1">{t('home.clickToWatch')}</p>
+                      </div>
+                    </div>
+                  )}
+                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 to-transparent p-2 sm:p-3">
+                    <div className="flex items-center justify-center">
+                      <div className="text-lg sm:text-xl text-yellow-400 font-bold" style={{ 
+                      fontFamily: '"Roboto Mono", "Courier New", monospace',
+                      fontSize: 'clamp(14px, 4vw, 18px)'
+                    }}>{formatTime(sortedLeaderboard[0].time!)}</div>
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <div className="h-24 sm:h-32 flex items-center justify-center bg-slate-800/30 rounded-lg border-2 border-dashed border-slate-600/50" title={t('media.noMediaTooltip')}>
+                  <div className="text-center">
+                    <Trophy className="w-6 h-6 sm:w-8 sm:h-8 text-slate-500 mx-auto mb-2" />
+                    <p className="text-sm text-slate-300 font-medium">{t('home.noMediaSubmitted')}</p>
+                    <div className="text-lg sm:text-xl text-yellow-400 font-bold mt-2" style={{ 
+                      fontFamily: '"Roboto Mono", "Courier New", monospace',
+                      fontSize: 'clamp(14px, 4vw, 18px)'
+                    }}>{formatTime(sortedLeaderboard[0].time!)}</div>
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+
+        {/* Section 3: Top 3 Leaderboard */}
+        <div className="border-b border-slate-600/30 pb-4 mb-3">
+          <h4 className="text-xs sm:text-sm font-semibold text-slate-200 mb-3 flex items-center gap-1 sm:gap-2">
+            <Trophy className="w-3 h-3 sm:w-4 sm:h-4 text-yellow-400" />
+            {t('home.topLeaderboard')}
+          </h4>
+          {sortedLeaderboard.length > 0 ? (
+            <div className="grid grid-cols-3 gap-2 sm:gap-3">
+              {[0, 1, 2].map((index) => {
+                const entry = sortedLeaderboard[index]
+                const position = index + 1
+                
+                if (!entry) {
+                  return (
+                    <div key={`placeholder-${position}`} className="bg-slate-800/20 rounded-lg p-2 sm:p-3 text-center border border-slate-700/30">
+                      <div className="flex justify-center mb-2">
+                        {getRankIcon(position)}
+                      </div>
+                      <div className="text-xs text-slate-500 font-medium mb-2 truncate">-</div>
+                      <div className="text-xs font-bold text-slate-600 mb-2 text-right" style={{ 
+                        fontFamily: '"Roboto Mono", "Courier New", monospace',
+                        fontSize: 'clamp(11px, 3vw, 13px)'
+                      }}>-:--.---</div>
+                      <div className="h-4"></div>
+                    </div>
+                  )
+                }
+                
                 return (
-                  <div key={`placeholder-${position}`} className="bg-slate-800/20 rounded-lg p-2 sm:p-3 text-center border border-slate-700/30">
+                  <div key={entry.id} className="bg-slate-800/30 rounded-lg p-2 sm:p-3 text-center border border-slate-600/30 hover:border-slate-500/50 transition-colors">
                     <div className="flex justify-center mb-2">
                       {getRankIcon(position)}
                     </div>
-                    <div className="text-xs text-slate-500 font-medium mb-2 truncate">-</div>
-                    <div className="text-xs font-bold text-slate-600 mb-2 text-right" style={{ 
+                    <div 
+                      className="text-xs text-slate-200 font-medium mb-2 truncate cursor-help overflow-hidden" 
+                      title={entry.username}
+                      style={{ textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}
+                    >
+                      {entry.username}
+                    </div>
+                    <div className={`text-sm font-bold ${getRankColor(position)} mb-2 text-right flex justify-end items-center`} style={{ 
                       fontFamily: '"Roboto Mono", "Courier New", monospace',
-                      fontSize: 'clamp(11px, 3vw, 13px)'
-                    }}>-:--.---</div>
-                    <div className="h-4"></div>
+                      fontSize: 'clamp(12px, 3.5vw, 14px)'
+                    }}>
+                      {formatTime(entry.time!)}
+                    </div>
+                    <div className="flex items-center justify-center gap-1">
+                      {entry.verified && (
+                        <div className="w-2 h-2 bg-green-400 rounded-full" title={t('home.verified')}></div>
+                      )}
+                      {entry.mediaUrl && (
+                        <div className="flex items-center" title={`${entry.documentationType === 'photo' ? 'Photo' : entry.documentationType === 'video' ? 'Video' : 'Livestream'} available`}>
+                          {entry.documentationType === 'photo' && <Camera className="w-3 h-3 text-slate-400" />}
+                          {entry.documentationType === 'video' && <Video className="w-3 h-3 text-slate-400" />}
+                          {entry.documentationType === 'livestream' && <Radio className="w-3 h-3 text-slate-400" />}
+                        </div>
+                      )}
+                    </div>
                   </div>
                 )
-              }
-              
-              return (
-                <div key={entry.id} className="bg-slate-800/30 rounded-lg p-2 sm:p-3 text-center border border-slate-600/30 hover:border-slate-500/50 transition-colors">
-                  <div className="flex justify-center mb-2">
-                    {getRankIcon(position)}
-                  </div>
-                  <div 
-                    className="text-xs text-slate-200 font-medium mb-2 truncate cursor-help overflow-hidden" 
-                    title={entry.username}
-                    style={{ textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}
-                  >
-                    {entry.username}
-                  </div>
-                  <div className={`text-sm font-bold ${getRankColor(position)} mb-2 text-right flex justify-end items-center`} style={{ 
-                    fontFamily: '"Roboto Mono", "Courier New", monospace',
-                    fontSize: 'clamp(12px, 3.5vw, 14px)'
-                  }}>
-                    {formatTime(entry.time!)}
-                  </div>
-                  <div className="flex items-center justify-center gap-1">
-                    {entry.verified && (
-                      <div className="w-2 h-2 bg-green-400 rounded-full" title={t('home.verified')}></div>
-                    )}
-                    {entry.mediaUrl && (
-                      <div className="flex items-center" title={`${entry.documentationType === 'photo' ? 'Photo' : entry.documentationType === 'video' ? 'Video' : 'Livestream'} available`}>
-                        {entry.documentationType === 'photo' && <Camera className="w-3 h-3 text-slate-400" />}
-                        {entry.documentationType === 'video' && <Video className="w-3 h-3 text-slate-400" />}
-                        {entry.documentationType === 'livestream' && <Radio className="w-3 h-3 text-slate-400" />}
-                      </div>
-                    )}
-                  </div>
-                </div>
-              )
-            })}
-          </div>
-        ) : (
-          <div className="text-center py-6 bg-slate-800/30 rounded-lg border-2 border-dashed border-slate-600/50">
-            <Trophy className="w-6 h-6 sm:w-8 sm:h-8 text-slate-500 mx-auto mb-3" />
-            <p className="text-sm text-slate-400 mb-1 font-medium">{t('home.noTimesSubmitted')}</p>
-            <p className="text-xs text-slate-500">{t('home.beTheFirst')}</p>
-          </div>
-        )}
-      </div>
+              })}
+            </div>
+          ) : (
+            <div className="text-center py-6 bg-slate-800/30 rounded-lg border-2 border-dashed border-slate-600/50">
+              <Trophy className="w-6 h-6 sm:w-8 sm:h-8 text-slate-500 mx-auto mb-3" />
+              <p className="text-sm text-slate-400 mb-1 font-medium">{t('home.noTimesSubmitted')}</p>
+              <p className="text-xs text-slate-500">{t('home.beTheFirst')}</p>
+            </div>
+          )}
+        </div>
 
-      {/* Section 4: Participants & Join - Reduced spacing */}
-      <div className="pb-2 mb-2">
-        <div className="flex items-center justify-between">
+        {/* Section 4: Participants & Join - Compact layout */}
+        <div className="flex items-center justify-between mb-2">
           <div className="flex items-center gap-2">
             <Users className="w-4 h-4 text-cyan-400" />
             <span className="text-sm text-slate-300">{event.participants} {t('events.participants')}</span>
@@ -330,17 +348,16 @@ const EventCard: React.FC<EventCardProps> = ({ event, leaderboard, timeRemaining
             <ChevronRight className="w-4 h-4" />
           </Link>
         </div>
-      </div>
-      
-      {/* Section 5: Interaction Bar - Left-aligned and compact */}
-      <div className="mt-1 pt-1">
-        <InteractionBar 
-          contentType="event"
-          contentId={event.id}
-          showComments={true}
-          compact={true}
-        />
-      </div>
+        
+        {/* Section 5: Interaction Bar - Left-aligned and compact */}
+        <div className="pt-1 interaction-bar">
+          <InteractionBar 
+            contentType="event"
+            contentId={event.id}
+            showComments={true}
+            compact={true}
+          />
+        </div>
       </div>
     </div>
   )
