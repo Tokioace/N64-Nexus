@@ -110,8 +110,11 @@ const EventCard: React.FC<EventCardProps> = ({ event, leaderboard, timeRemaining
 
   // Extract game name and track name from title - optimized without emojis
   const parseEventTitle = (title: string) => {
+    // Remove emojis from the title first
+    const cleanTitle = title.replace(/[\u{1F600}-\u{1F64F}]|[\u{1F300}-\u{1F5FF}]|[\u{1F680}-\u{1F6FF}]|[\u{1F1E0}-\u{1F1FF}]|[\u{2600}-\u{26FF}]|[\u{2700}-\u{27BF}]/gu, '').trim()
+    
     // For titles like "Mario Kart 64: Luigi's Raceway"
-    const parts = title.split(':')
+    const parts = cleanTitle.split(':')
     if (parts.length >= 2) {
       return {
         gameName: parts[0].trim(),
@@ -120,7 +123,7 @@ const EventCard: React.FC<EventCardProps> = ({ event, leaderboard, timeRemaining
     }
     // If no colon separator, use the full title as game name
     return {
-      gameName: title,
+      gameName: cleanTitle,
       trackName: `${event.category}`
     }
   }
@@ -129,29 +132,33 @@ const EventCard: React.FC<EventCardProps> = ({ event, leaderboard, timeRemaining
 
   return (
     <div className={`simple-tile bg-gradient-to-br ${getEventGradient(event.id)} mb-3 shadow-lg hover:shadow-xl transition-shadow duration-300`} 
-         style={{ marginBottom: '10px', paddingBottom: '4px' }}>
-      <div className="event-card-content" style={{ paddingBottom: '4px' }}>
+         style={{ marginBottom: '10px', paddingBottom: '2px' }}>
+      <div className="event-card-content" style={{ paddingBottom: '2px' }}>
         {/* Section 1: Event Title & Status - Optimized Layout */}
         <div className="border-b border-slate-600/30 pb-3 mb-3">
           <div className="flex items-start justify-between gap-3">
             {/* Title Section - Two Line Layout */}
             <div className="min-w-0 flex-1">
               {/* First line: Game Name */}
-              <h3 className="text-sm sm:text-base font-bold text-slate-100 leading-tight mb-1" 
+              <h3 className="text-sm font-bold text-slate-100 leading-tight mb-1" 
                   style={{ 
-                    fontSize: '14px',
-                    lineHeight: '1.3',
+                    fontSize: '13px',
+                    lineHeight: '1.2',
                     wordBreak: 'break-word',
-                    whiteSpace: 'normal'
+                    whiteSpace: 'normal',
+                    overflow: 'visible',
+                    textOverflow: 'unset'
                   }}>{gameName}</h3>
               
               {/* Second line: Track/Mode Name */}
-              <p className="text-xs sm:text-sm text-slate-400 leading-tight" 
+              <p className="text-xs text-slate-400 leading-tight" 
                  style={{ 
-                   fontSize: '12px',
+                   fontSize: '11px',
                    lineHeight: '1.2',
                    wordBreak: 'break-word',
-                   whiteSpace: 'normal'
+                   whiteSpace: 'normal',
+                   overflow: 'visible',
+                   textOverflow: 'unset'
                  }}>{trackName}</p>
             </div>
             
@@ -352,7 +359,13 @@ const EventCard: React.FC<EventCardProps> = ({ event, leaderboard, timeRemaining
         </div>
         
         {/* Section 5: Interaction Bar - Left-aligned and compact */}
-        <div className="interaction-bar" style={{ marginTop: '6px', marginBottom: '2px' }}>
+        <div className="interaction-bar" style={{ 
+          marginTop: '4px', 
+          marginBottom: '0px',
+          display: 'flex',
+          justifyContent: 'flex-start',
+          alignItems: 'center'
+        }}>
           <InteractionBar 
             contentType="event"
             contentId={event.id}
