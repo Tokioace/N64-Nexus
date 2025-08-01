@@ -287,6 +287,7 @@ const CompactInteractionBar: React.FC<CompactInteractionBarProps> = ({
 }) => {
   const { likeContent, unlikeContent, hasUserLiked, getInteractionData, viewContent } = useInteraction()
   const { user } = useUser()
+  const { t } = useLanguage()
   const [isLiking, setIsLiking] = useState(false)
 
   const interactionData = getInteractionData(contentType, contentId)
@@ -323,6 +324,8 @@ const CompactInteractionBar: React.FC<CompactInteractionBarProps> = ({
         <button
           onClick={handleLike}
           disabled={!user || isLiking}
+          title={user ? (isLiked ? t('interaction.unlike') : t('interaction.like')) : t('interaction.loginToLike')}
+          aria-label={user ? (isLiked ? t('interaction.unlike') : t('interaction.like')) : t('interaction.loginToLike')}
           className={`transition-all duration-200 flex-shrink-0 ${
             isLiked 
               ? 'text-pink-400 hover:text-pink-300' 
@@ -337,7 +340,7 @@ const CompactInteractionBar: React.FC<CompactInteractionBarProps> = ({
       </div>
       
       {/* View Counter with count - increased gap for better spacing */}
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-2" title={t('interaction.viewCount')} aria-label={t('interaction.viewCount')}>
         <Eye className="w-4 h-4 text-slate-400 flex-shrink-0" />
         <span className="text-xs text-slate-400 font-medium min-w-[1ch]">
           {interactionData.views > 0 ? interactionData.views : '0'}
@@ -349,6 +352,8 @@ const CompactInteractionBar: React.FC<CompactInteractionBarProps> = ({
         <div className="flex items-center gap-1.5">
           <button
             onClick={() => setShowCommentsSection(!showCommentsSection)}
+            title={t('interaction.showComments')}
+            aria-label={t('interaction.showComments')}
             className="text-slate-400 hover:text-blue-400 transition-colors flex-shrink-0"
           >
             <MessageSquare className="w-4 h-4" />

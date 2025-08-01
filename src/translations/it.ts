@@ -896,6 +896,8 @@ const it = {
   'interaction.writeComment': 'Scrivi un commento...',
   'interaction.loginToLike': 'Accedi per mettere mi piace',
   'interaction.loginToComment': 'Accedi per commentare',
+  'interaction.viewCount': 'Numero di visualizzazioni',
+  'interaction.showComments': 'Mostra commenti',
 
   // Time
   'time.justNow': 'proprio ora',
@@ -903,6 +905,7 @@ const it = {
   // Media types
   'media.photo': 'Foto',
   'media.video': 'Video',
+  'media.noMediaTooltip': 'Nessun media ancora – carica il tuo video o screenshot per verificare la corsa',
 
   // Event Card specific translations
   'events.likes': 'Mi piace',

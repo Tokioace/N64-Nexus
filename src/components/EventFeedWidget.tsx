@@ -15,9 +15,6 @@ import {
   Gamepad2,
   ChevronRight,
   Timer,
-  Heart,
-  Eye,
-  MessageCircle,
   Play,
   ZoomIn
 } from 'lucide-react'
@@ -115,7 +112,7 @@ const EventCard: React.FC<EventCardProps> = ({ event, leaderboard, timeRemaining
   }
 
   return (
-    <div className={`simple-tile bg-gradient-to-br ${getEventGradient(event.id)} mb-6 shadow-lg hover:shadow-xl transition-shadow duration-300`}>
+    <div className={`simple-tile bg-gradient-to-br ${getEventGradient(event.id)} mb-8 shadow-lg hover:shadow-xl transition-shadow duration-300`}>
       {/* Section 1: Event Title & Status */}
       <div className="border-b border-slate-600/30 pb-3 mb-4">
         <div className="flex items-center justify-between gap-2">
@@ -216,10 +213,10 @@ const EventCard: React.FC<EventCardProps> = ({ event, leaderboard, timeRemaining
                 </div>
               </div>
             ) : (
-              <div className="h-24 sm:h-32 flex items-center justify-center bg-slate-800/30 rounded-lg border-2 border-dashed border-slate-600/50">
+              <div className="h-24 sm:h-32 flex items-center justify-center bg-slate-800/30 rounded-lg border-2 border-dashed border-slate-600/50" title={t('media.noMediaTooltip')}>
                 <div className="text-center">
                   <Trophy className="w-6 h-6 sm:w-8 sm:h-8 text-slate-500 mx-auto mb-2" />
-                  <p className="text-sm text-slate-400 font-medium">{t('home.noMediaSubmitted')}</p>
+                  <p className="text-sm text-slate-300 font-medium">{t('home.noMediaSubmitted')}</p>
                   <div className="text-lg sm:text-xl text-yellow-400 font-bold font-mono mt-2">{formatTime(sortedLeaderboard[0].time!)}</div>
                 </div>
               </div>
@@ -259,13 +256,13 @@ const EventCard: React.FC<EventCardProps> = ({ event, leaderboard, timeRemaining
                     {getRankIcon(position)}
                   </div>
                   <div 
-                    className="text-xs text-slate-200 font-medium mb-2 truncate cursor-help" 
+                    className="text-xs text-slate-200 font-medium mb-2 truncate cursor-help overflow-hidden" 
                     title={entry.username}
-                    style={{ textOverflow: 'ellipsis' }}
+                    style={{ textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}
                   >
                     {entry.username}
                   </div>
-                  <div className={`text-sm font-mono font-bold ${getRankColor(position)} mb-2`}>
+                  <div className={`text-sm font-mono font-bold ${getRankColor(position)} mb-2 text-right`}>
                     {formatTime(entry.time!)}
                   </div>
                   <div className="flex items-center justify-center gap-1">
@@ -312,28 +309,14 @@ const EventCard: React.FC<EventCardProps> = ({ event, leaderboard, timeRemaining
       </div>
       
       {/* Section 5: Interaction Bar (Likes, Views, Comments) */}
-      <div className="pt-1">
-        <div className="flex items-center justify-between">
+      <div className="pt-3">
+        <div className="flex items-center justify-center">
           <InteractionBar 
             contentType="event"
             contentId={event.id}
             showComments={true}
             compact={true}
           />
-          <div className="flex items-center gap-4 text-xs text-slate-400">
-            <div className="flex items-center gap-1" title={t('events.likes')}>
-              <Heart className="w-3 h-3" />
-              <span>0</span>
-            </div>
-            <div className="flex items-center gap-1" title={t('events.views')}>
-              <Eye className="w-3 h-3" />
-              <span>0</span>
-            </div>
-            <div className="flex items-center gap-1" title={t('events.comments')}>
-              <MessageCircle className="w-3 h-3" />
-              <span>0</span>
-            </div>
-          </div>
         </div>
       </div>
     </div>

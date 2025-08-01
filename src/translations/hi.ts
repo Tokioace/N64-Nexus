@@ -893,6 +893,8 @@ const hi = {
   'interaction.writeComment': 'टिप्पणी लिखें...',
   'interaction.loginToLike': 'पसंद के लिए लॉगिन करें',
   'interaction.loginToComment': 'टिप्पणी के लिए लॉगिन करें',
+  'interaction.viewCount': 'View count',
+  'interaction.showComments': 'Show comments',
 
   // Time
   'time.justNow': 'अभी',
@@ -900,6 +902,7 @@ const hi = {
   // Media types
   'media.photo': 'फोटो',
   'media.video': 'वीडियो',
+  'media.noMediaTooltip': 'No media yet – upload your video or screenshot to verify run',
 
   // Event Card specific translations
   'events.likes': 'लाइक्स',

@@ -943,6 +943,8 @@ const zh = {
   'interaction.writeComment': '写评论...',
   'interaction.loginToLike': '登录以点赞',
   'interaction.loginToComment': '登录以评论',
+  'interaction.viewCount': 'View count',
+  'interaction.showComments': 'Show comments',
 
   // Time
   'time.justNow': '刚刚',
@@ -950,6 +952,7 @@ const zh = {
   // Media types
   'media.photo': '照片',
   'media.video': '视频',
+  'media.noMediaTooltip': 'No media yet – upload your video or screenshot to verify run',
 
   // Event Card specific translations
   'events.likes': '点赞',

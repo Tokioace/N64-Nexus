@@ -894,6 +894,8 @@ const tr = {
   'interaction.writeComment': 'Yorum yazın...',
   'interaction.loginToLike': 'Beğenmek için giriş yapın',
   'interaction.loginToComment': 'Yorum yapmak için giriş yapın',
+  'interaction.viewCount': 'View count',
+  'interaction.showComments': 'Show comments',
 
   // Time
   'time.justNow': 'şimdi',
@@ -901,6 +903,7 @@ const tr = {
   // Media types
   'media.photo': 'Fotoğraf',
   'media.video': 'Video',
+  'media.noMediaTooltip': 'No media yet – upload your video or screenshot to verify run',
 
   // Event Card specific translations
   'events.likes': 'Beğeniler',
