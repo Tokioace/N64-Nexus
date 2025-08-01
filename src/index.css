@@ -913,26 +913,35 @@ code {
   }
 }
 
-/* Interaction Bar Optimization for Event Cards - Ultra-compact */
+/* Interaction Bar Optimization for Event Cards - Ultra-compact, bottom-left positioned */
 .event-card-content .interaction-bar {
   margin-top: 0.125rem !important; /* Minimal top margin */
   padding-top: 0 !important; /* Remove padding */
   margin-bottom: 0 !important; /* No bottom margin */
   padding-bottom: 0 !important; /* No bottom padding */
+  padding-left: 0 !important; /* No left padding */
+  justify-content: flex-start !important; /* Left align */
 }
 
-/* Remove any unwanted spacing from interaction icons */
+/* Remove any unwanted spacing from interaction icons and ensure white color */
 .event-card-content .interaction-bar button {
   padding: 0 !important;
   margin: 0 !important;
   border: none !important;
   background: transparent !important;
   line-height: 1 !important;
+  color: #FFFFFF !important; /* Force white color */
 }
 
 .event-card-content .interaction-bar svg {
   display: block !important;
   flex-shrink: 0 !important;
+  color: #FFFFFF !important; /* Force white color */
+}
+
+/* Ensure all text in interaction bar is white */
+.event-card-content .interaction-bar span {
+  color: #FFFFFF !important; /* Force white color for all numbers */
 }
 
 /* Enhanced Event Tile Styles for Better Readability */
@@ -2742,13 +2751,22 @@ input[type="submit"] {
   white-space: nowrap !important;
 }
 
-/* Ultra-compact interaction bar for all screen sizes */
+/* Ultra-compact interaction bar for all screen sizes - all white */
 .event-card-content .interaction-bar {
   font-size: clamp(10px, 2.5vw, 12px) !important;
   line-height: 1 !important;
+  color: #FFFFFF !important; /* Force white color */
 }
 
 .event-card-content .interaction-bar svg {
   width: clamp(12px, 3vw, 14px) !important;
   height: clamp(12px, 3vw, 14px) !important;
+  color: #FFFFFF !important; /* Force white color */
+  stroke: #FFFFFF !important; /* Force white stroke */
+  fill: #FFFFFF !important; /* Force white fill where applicable */
+}
+
+/* Additional white color enforcement for interaction bar elements */
+.event-card-content .interaction-bar * {
+  color: #FFFFFF !important;
 }

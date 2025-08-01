@@ -137,9 +137,9 @@ const EventCard: React.FC<EventCardProps> = ({ event, leaderboard, timeRemaining
         {/* Section 1: Event Title & Status - Optimized Layout */}
         <div className="border-b border-slate-600/30 pb-3 mb-3">
           <div className="flex items-start justify-between gap-3">
-            {/* Title Section - Two Line Layout */}
+            {/* Title Section - Two Line Layout - No Icons */}
             <div className="min-w-0 flex-1">
-              {/* First line: Game Name */}
+              {/* First line: Game Name - Consistent alignment */}
               <h3 className="text-sm font-bold text-slate-100 leading-tight mb-1" 
                   style={{ 
                     fontSize: '13px',
@@ -147,10 +147,12 @@ const EventCard: React.FC<EventCardProps> = ({ event, leaderboard, timeRemaining
                     wordBreak: 'break-word',
                     whiteSpace: 'normal',
                     overflow: 'visible',
-                    textOverflow: 'unset'
+                    textOverflow: 'unset',
+                    textAlign: 'left',
+                    marginLeft: '0'
                   }}>{gameName}</h3>
               
-              {/* Second line: Track/Mode Name */}
+              {/* Second line: Track/Mode Name - Consistent alignment */}
               <p className="text-xs text-slate-400 leading-tight" 
                  style={{ 
                    fontSize: '11px',
@@ -158,7 +160,9 @@ const EventCard: React.FC<EventCardProps> = ({ event, leaderboard, timeRemaining
                    wordBreak: 'break-word',
                    whiteSpace: 'normal',
                    overflow: 'visible',
-                   textOverflow: 'unset'
+                   textOverflow: 'unset',
+                   textAlign: 'left',
+                   marginLeft: '0'
                  }}>{trackName}</p>
             </div>
             
@@ -290,17 +294,32 @@ const EventCard: React.FC<EventCardProps> = ({ event, leaderboard, timeRemaining
                         {getRankIcon(position)}
                       </div>
                       <div className="text-xs text-slate-500 font-medium mb-2 truncate">-</div>
-                      <div className="text-xs font-bold text-slate-600 mb-2 text-right" style={{ 
+                      {/* Centered placeholder time display */}
+                      <div className="text-xs font-bold text-slate-600 mb-2 flex justify-center items-center" style={{ 
                         fontFamily: '"Roboto Mono", "Courier New", monospace',
-                        fontSize: 'clamp(11px, 3vw, 13px)'
+                        fontSize: 'clamp(11px, 3vw, 13px)',
+                        textAlign: 'center'
                       }}>-:--.---</div>
                       <div className="h-4"></div>
                     </div>
                   )
                 }
                 
+                const getBorderStyle = (position: number) => {
+                  switch (position) {
+                    case 1:
+                      return 'border-2 border-yellow-400/60 shadow-lg shadow-yellow-400/20 bg-gradient-to-b from-yellow-500/10 to-slate-800/30'
+                    case 2:
+                      return 'border-2 border-gray-400/60 shadow-lg shadow-gray-400/20 bg-gradient-to-b from-gray-500/10 to-slate-800/30'
+                    case 3:
+                      return 'border-2 border-amber-500/60 shadow-lg shadow-amber-500/20 bg-gradient-to-b from-amber-500/10 to-slate-800/30'
+                    default:
+                      return 'border border-slate-600/30'
+                  }
+                }
+                
                 return (
-                  <div key={entry.id} className="bg-slate-800/30 rounded-lg p-2 sm:p-3 text-center border border-slate-600/30 hover:border-slate-500/50 transition-colors">
+                  <div key={entry.id} className={`rounded-lg p-2 sm:p-3 text-center hover:border-slate-500/50 transition-all duration-300 ${getBorderStyle(position)}`}>
                     <div className="flex justify-center mb-2">
                       {getRankIcon(position)}
                     </div>
@@ -311,9 +330,11 @@ const EventCard: React.FC<EventCardProps> = ({ event, leaderboard, timeRemaining
                     >
                       {entry.username}
                     </div>
-                    <div className={`text-sm font-bold ${getRankColor(position)} mb-2 text-right flex justify-end items-center`} style={{ 
+                    {/* Centered time display - both horizontally and vertically */}
+                    <div className={`text-sm font-bold ${getRankColor(position)} mb-2 flex justify-center items-center`} style={{ 
                       fontFamily: '"Roboto Mono", "Courier New", monospace',
-                      fontSize: 'clamp(12px, 3.5vw, 14px)'
+                      fontSize: 'clamp(12px, 3.5vw, 14px)',
+                      textAlign: 'center'
                     }}>
                       {formatTime(entry.time!)}
                     </div>
@@ -358,13 +379,15 @@ const EventCard: React.FC<EventCardProps> = ({ event, leaderboard, timeRemaining
           </Link>
         </div>
         
-        {/* Section 5: Interaction Bar - Left-aligned and compact */}
+        {/* Section 5: Interaction Bar - Bottom left positioned, compact and flush */}
         <div className="interaction-bar" style={{ 
-          marginTop: '4px', 
+          marginTop: '6px', 
           marginBottom: '0px',
           display: 'flex',
           justifyContent: 'flex-start',
-          alignItems: 'center'
+          alignItems: 'center',
+          paddingLeft: '0px',
+          position: 'relative'
         }}>
           <InteractionBar 
             contentType="event"

@@ -354,14 +354,14 @@ const CompactInteractionBar: React.FC<CompactInteractionBarProps> = ({
           disabled={!user || isLiking}
           title={user ? (isLiked ? t('interaction.unlike') : t('interaction.like')) : t('interaction.loginToLike')}
           aria-label={user ? (isLiked ? t('interaction.unlike') : t('interaction.like')) : t('interaction.loginToLike')}
-          className={`transition-all duration-200 flex-shrink-0 text-white hover:scale-105 ${
+          className={`transition-all duration-200 flex-shrink-0 text-white hover:text-white hover:scale-105 ${
             !user ? 'opacity-50 cursor-not-allowed' : ''
           }`}
           style={{ padding: '0', margin: '0', border: 'none', background: 'transparent' }}
         >
           <CompactHeartIcon filled={isLiked} />
         </button>
-        <span className="text-white font-medium min-w-[1ch]" style={{ fontSize: '11px' }}>
+        <span className="text-white font-medium min-w-[1ch]" style={{ fontSize: '11px', color: '#FFFFFF' }}>
           {interactionData.likes}
         </span>
       </div>
@@ -369,7 +369,7 @@ const CompactInteractionBar: React.FC<CompactInteractionBarProps> = ({
       {/* View Counter with count - Ultra-compact, all white */}
       <div className="flex items-center" style={{ gap: '2px' }} title={t('interaction.viewCount')} aria-label={t('interaction.viewCount')}>
         <CompactEyeIcon />
-        <span className="text-white font-medium min-w-[1ch]" style={{ fontSize: '11px' }}>
+        <span className="text-white font-medium min-w-[1ch]" style={{ fontSize: '11px', color: '#FFFFFF' }}>
           {interactionData.views}
         </span>
       </div>
@@ -381,12 +381,12 @@ const CompactInteractionBar: React.FC<CompactInteractionBarProps> = ({
             onClick={() => setShowCommentsSection(!showCommentsSection)}
             title={t('interaction.showComments')}
             aria-label={t('interaction.showComments')}
-            className="text-white hover:scale-105 transition-all duration-200 flex-shrink-0"
+            className="text-white hover:text-white hover:scale-105 transition-all duration-200 flex-shrink-0"
             style={{ padding: '0', margin: '0', border: 'none', background: 'transparent' }}
           >
             <CompactCommentIcon />
           </button>
-          <span className="text-white font-medium min-w-[1ch]" style={{ fontSize: '11px' }}>
+          <span className="text-white font-medium min-w-[1ch]" style={{ fontSize: '11px', color: '#FFFFFF' }}>
             {interactionData.comments.length}
           </span>
         </div>
