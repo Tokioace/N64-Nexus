@@ -192,10 +192,12 @@ const SingleMediaCard: React.FC<SingleMediaCardProps> = ({ mediaItems, className
                         <div className="text-sm text-text-muted mb-2">
                           {mediaItems[currentIndex + 1].game}
                         </div>
-                        <div className="flex items-center gap-4 text-sm text-text-muted">
-                          <span>👁 {mediaItems[currentIndex + 1].views.toLocaleString()}</span>
-                          <span>❤ {mediaItems[currentIndex + 1].likes.toLocaleString()}</span>
-                        </div>
+                        <InteractionBar 
+                          contentType="media"
+                          contentId={mediaItems[currentIndex + 1].id}
+                          showComments={false}
+                          compact={true}
+                        />
                       </div>
                       <div className="border-t border-slate-600/30 pt-3 mt-auto">
                         <div className="flex items-center justify-between text-sm text-text-muted">
@@ -235,10 +237,12 @@ const SingleMediaCard: React.FC<SingleMediaCardProps> = ({ mediaItems, className
                         <div className="text-sm text-text-muted mb-2">
                           {mediaItems[currentIndex - 1].game}
                         </div>
-                        <div className="flex items-center gap-4 text-sm text-text-muted">
-                          <span>👁 {mediaItems[currentIndex - 1].views.toLocaleString()}</span>
-                          <span>❤ {mediaItems[currentIndex - 1].likes.toLocaleString()}</span>
-                        </div>
+                        <InteractionBar 
+                          contentType="media"
+                          contentId={mediaItems[currentIndex - 1].id}
+                          showComments={false}
+                          compact={true}
+                        />
                       </div>
                       <div className="border-t border-slate-600/30 pt-3 mt-auto">
                         <div className="flex items-center justify-between text-sm text-text-muted">
