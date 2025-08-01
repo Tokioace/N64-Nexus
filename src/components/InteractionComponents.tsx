@@ -318,7 +318,7 @@ const CompactInteractionBar: React.FC<CompactInteractionBarProps> = ({
   }
 
   return (
-    <div className={`flex items-center gap-4 ${className}`}>
+    <div className={`flex items-center justify-center gap-6 ${className}`}>
       {/* Like Button with count */}
       <div className="flex items-center gap-1.5">
         <button
@@ -339,8 +339,8 @@ const CompactInteractionBar: React.FC<CompactInteractionBarProps> = ({
         </span>
       </div>
       
-      {/* View Counter with count - increased gap for better spacing */}
-      <div className="flex items-center gap-2" title={t('interaction.viewCount')} aria-label={t('interaction.viewCount')}>
+      {/* View Counter with count */}
+      <div className="flex items-center gap-1.5" title={t('interaction.viewCount')} aria-label={t('interaction.viewCount')}>
         <Eye className="w-4 h-4 text-slate-400 flex-shrink-0" />
         <span className="text-xs text-slate-400 font-medium min-w-[1ch]">
           {interactionData.views > 0 ? interactionData.views : '0'}
@@ -354,7 +354,7 @@ const CompactInteractionBar: React.FC<CompactInteractionBarProps> = ({
             onClick={() => setShowCommentsSection(!showCommentsSection)}
             title={t('interaction.showComments')}
             aria-label={t('interaction.showComments')}
-            className="text-slate-400 hover:text-blue-400 transition-colors flex-shrink-0"
+            className="text-slate-400 hover:text-blue-400 transition-colors flex-shrink-0 hover:scale-105"
           >
             <MessageSquare className="w-4 h-4" />
           </button>

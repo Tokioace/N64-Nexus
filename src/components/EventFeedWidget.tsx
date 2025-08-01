@@ -56,13 +56,15 @@ const EventCard: React.FC<EventCardProps> = ({ event, leaderboard, timeRemaining
     }
   }
 
-  // Format time to MM:SS.sss
+  // Format time to MM:SS.sss with consistent 3 decimal places
   const formatTime = (timeStr: string) => {
-    if (!timeStr) return '-:--'
+    if (!timeStr) return '-:--.---'
     
-    // If already in MM:SS.sss format, return as is
+    // If already in MM:SS.sss format, ensure 3 decimal places
     if (timeStr.includes(':') && timeStr.includes('.')) {
-      return timeStr
+      const [timePart, decimalPart] = timeStr.split('.')
+      const paddedDecimal = (decimalPart || '000').padEnd(3, '0').substring(0, 3)
+      return `${timePart}.${paddedDecimal}`
     }
     
     // Convert seconds to MM:SS.sss format
@@ -112,9 +114,9 @@ const EventCard: React.FC<EventCardProps> = ({ event, leaderboard, timeRemaining
   }
 
   return (
-    <div className={`simple-tile bg-gradient-to-br ${getEventGradient(event.id)} mb-8 shadow-lg hover:shadow-xl transition-shadow duration-300`}>
+    <div className={`simple-tile bg-gradient-to-br ${getEventGradient(event.id)} mb-4 shadow-lg hover:shadow-xl transition-shadow duration-300`}>
       {/* Section 1: Event Title & Status */}
-      <div className="border-b border-slate-600/30 pb-3 mb-4">
+      <div className="border-b border-slate-600/30 pb-4 mb-4">
         <div className="flex items-center justify-between gap-2">
           <div className="flex items-center gap-2 sm:gap-3 min-w-0 flex-1">
             <div className="text-lg sm:text-2xl flex-shrink-0">{getGameIcon(event.game)}</div>
@@ -208,7 +210,7 @@ const EventCard: React.FC<EventCardProps> = ({ event, leaderboard, timeRemaining
                 )}
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 to-transparent p-2 sm:p-3">
                   <div className="flex items-center justify-center">
-                    <div className="text-lg sm:text-xl text-yellow-400 font-bold font-mono">{formatTime(sortedLeaderboard[0].time!)}</div>
+                    <div className="text-lg sm:text-xl text-yellow-400 font-bold" style={{ fontFamily: '"Roboto Mono", "Courier New", monospace' }}>{formatTime(sortedLeaderboard[0].time!)}</div>
                   </div>
                 </div>
               </div>
@@ -217,7 +219,7 @@ const EventCard: React.FC<EventCardProps> = ({ event, leaderboard, timeRemaining
                 <div className="text-center">
                   <Trophy className="w-6 h-6 sm:w-8 sm:h-8 text-slate-500 mx-auto mb-2" />
                   <p className="text-sm text-slate-300 font-medium">{t('home.noMediaSubmitted')}</p>
-                  <div className="text-lg sm:text-xl text-yellow-400 font-bold font-mono mt-2">{formatTime(sortedLeaderboard[0].time!)}</div>
+                  <div className="text-lg sm:text-xl text-yellow-400 font-bold mt-2" style={{ fontFamily: '"Roboto Mono", "Courier New", monospace' }}>{formatTime(sortedLeaderboard[0].time!)}</div>
                 </div>
               </div>
             )}
@@ -244,7 +246,7 @@ const EventCard: React.FC<EventCardProps> = ({ event, leaderboard, timeRemaining
                       {getRankIcon(position)}
                     </div>
                     <div className="text-xs text-slate-500 font-medium mb-2 truncate">-</div>
-                    <div className="text-xs font-mono font-bold text-slate-600 mb-2">-:--</div>
+                    <div className="text-xs font-bold text-slate-600 mb-2 text-right" style={{ fontFamily: '"Roboto Mono", "Courier New", monospace' }}>-:--.---</div>
                     <div className="h-4"></div>
                   </div>
                 )
@@ -262,7 +264,7 @@ const EventCard: React.FC<EventCardProps> = ({ event, leaderboard, timeRemaining
                   >
                     {entry.username}
                   </div>
-                  <div className={`text-sm font-mono font-bold ${getRankColor(position)} mb-2 text-right`}>
+                  <div className={`text-sm font-bold ${getRankColor(position)} mb-2 text-right flex justify-end items-center`} style={{ fontFamily: '"Roboto Mono", "Courier New", monospace' }}>
                     {formatTime(entry.time!)}
                   </div>
                   <div className="flex items-center justify-center gap-1">
@@ -291,7 +293,7 @@ const EventCard: React.FC<EventCardProps> = ({ event, leaderboard, timeRemaining
       </div>
 
       {/* Section 4: Participants & Join */}
-      <div className="border-b border-slate-600/30 pb-4 mb-3">
+      <div className="pb-3 mb-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Users className="w-4 h-4 text-cyan-400" />
@@ -300,7 +302,7 @@ const EventCard: React.FC<EventCardProps> = ({ event, leaderboard, timeRemaining
           
           <Link 
             to="/events" 
-            className="flex items-center gap-2 px-4 py-2 rounded-lg bg-gradient-to-r from-green-600/20 to-green-500/20 border border-green-500/40 text-green-400 hover:from-green-600/30 hover:to-green-500/30 hover:border-green-400/60 transition-all duration-200 text-sm font-medium"
+            className="flex items-center gap-2 px-3 py-2 rounded-lg bg-gradient-to-r from-green-600/20 to-green-500/20 border border-green-500/40 text-green-400 hover:from-green-600/30 hover:to-green-500/30 hover:border-green-400/60 hover:scale-105 transition-all duration-200 text-sm font-medium shadow-lg hover:shadow-xl"
           >
             <span>{t('events.join')}</span>
             <ChevronRight className="w-4 h-4" />
@@ -308,16 +310,14 @@ const EventCard: React.FC<EventCardProps> = ({ event, leaderboard, timeRemaining
         </div>
       </div>
       
-      {/* Section 5: Interaction Bar (Likes, Views, Comments) */}
-      <div className="pt-3">
-        <div className="flex items-center justify-center">
-          <InteractionBar 
-            contentType="event"
-            contentId={event.id}
-            showComments={true}
-            compact={true}
-          />
-        </div>
+      {/* Section 5: Interaction Bar (Likes, Views, Comments) - Kompakter Abschluss */}
+      <div className="flex items-center justify-center">
+        <InteractionBar 
+          contentType="event"
+          contentId={event.id}
+          showComments={true}
+          compact={true}
+        />
       </div>
     </div>
   )
@@ -417,9 +417,9 @@ const EventFeedWidget: React.FC = () => {
     )
   }
 
-  return (
-    <div className="space-y-4">
-      <div className="text-center mb-4">
+      return (
+      <div className="space-y-4">
+        <div className="text-center mb-6">
         <div className="bg-gradient-to-r from-slate-800/90 via-slate-700/90 to-slate-800/90 rounded-xl p-3 sm:p-4 border border-sky-500/30">
           <div className="flex items-center justify-center gap-2 sm:gap-4 mb-3">
             <Trophy className="w-6 h-6 sm:w-8 sm:h-8 text-sky-400" />
