@@ -901,6 +901,10 @@ code {
   border-radius: 0.75rem; /* Slightly more rounded for elegant look */
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* Subtle shadow */
   margin-bottom: 0.625rem !important; /* Tighter spacing between cards */
+  overflow-x: hidden !important;
+  max-width: 100% !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
 }
 
 @media (max-width: 640px) {
@@ -2769,4 +2773,123 @@ input[type="submit"] {
 /* Additional white color enforcement for interaction bar elements */
 .event-card-content .interaction-bar * {
   color: #FFFFFF !important;
+}
+
+
+
+/* Ensure event card content never overflows horizontally */
+.event-card-content {
+  overflow-x: hidden !important;
+  max-width: 100% !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+/* Prevent any child elements from causing horizontal overflow */
+.event-card-content * {
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+/* Ensure the header section doesn't overflow */
+.event-card-content .flex {
+  overflow: hidden !important;
+  min-width: 0 !important;
+}
+
+/* Ensure grid layout doesn't overflow */
+.event-card-content .grid {
+  overflow: hidden !important;
+  max-width: 100% !important;
+}
+
+/* Ensure all text elements wrap properly and don't overflow */
+.event-card-content h3,
+.event-card-content p,
+.event-card-content span {
+  overflow-wrap: break-word !important;
+  word-break: break-word !important;
+  hyphens: auto !important;
+  max-width: 100% !important;
+  overflow: hidden !important;
+}
+
+/* Specific fixes for event card leaderboard grid */
+.event-card-content .grid-cols-3 {
+  overflow: hidden !important;
+  max-width: 100% !important;
+  gap: clamp(0.25rem, 1vw, 0.75rem) !important;
+}
+
+.event-card-content .grid-cols-3 > div {
+  min-width: 0 !important;
+  overflow: hidden !important;
+  max-width: 100% !important;
+}
+
+/* Ensure truncate class works properly */
+.event-card-content .truncate {
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+  max-width: 100% !important;
+}
+
+
+
+/* Ensure images and media don't cause overflow */
+.event-card-content img,
+.event-card-content video {
+  max-width: 100% !important;
+  height: auto !important;
+  object-fit: cover !important;
+}
+
+/* Override inline styles that might cause overflow */
+.event-card-content h3[style*="overflow: visible"],
+.event-card-content p[style*="overflow: visible"] {
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+/* Ensure the title section doesn't overflow */
+.event-card-content .min-w-0 {
+  min-width: 0 !important;
+  overflow: hidden !important;
+  flex: 1 !important;
+}
+
+/* Ensure right-aligned status section doesn't overflow */
+.event-card-content .flex-shrink-0 {
+  flex-shrink: 0 !important;
+  min-width: 0 !important;
+  overflow: hidden !important;
+  max-width: 40% !important; /* Limit width to prevent overflow */
+}
+
+/* Ensure bottom section (participants and join button) doesn't overflow */
+.event-card-content .flex.items-center.justify-between {
+  overflow: hidden !important;
+  flex-wrap: wrap !important;
+  gap: 0.5rem !important;
+}
+
+.event-card-content .flex.items-center.justify-between > * {
+  min-width: 0 !important;
+  overflow: hidden !important;
+}
+
+/* Ensure join button doesn't overflow */
+.event-card-content a[href="/events"] {
+  flex-shrink: 0 !important;
+  min-width: 0 !important;
+  max-width: 50% !important;
+  overflow: hidden !important;
+}
+
+/* Ensure interaction bar doesn't overflow */
+.event-card-content .interaction-bar {
+  overflow: hidden !important;
+  max-width: 100% !important;
+  flex-wrap: wrap !important;
 }

@@ -146,8 +146,6 @@ const EventCard: React.FC<EventCardProps> = ({ event, leaderboard, timeRemaining
                     lineHeight: '1.2',
                     wordBreak: 'break-word',
                     whiteSpace: 'normal',
-                    overflow: 'visible',
-                    textOverflow: 'unset',
                     textAlign: 'left',
                     marginLeft: '0'
                   }}>{gameName}</h3>
@@ -159,8 +157,6 @@ const EventCard: React.FC<EventCardProps> = ({ event, leaderboard, timeRemaining
                    lineHeight: '1.2',
                    wordBreak: 'break-word',
                    whiteSpace: 'normal',
-                   overflow: 'visible',
-                   textOverflow: 'unset',
                    textAlign: 'left',
                    marginLeft: '0'
                  }}>{trackName}</p>
