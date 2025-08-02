@@ -423,11 +423,11 @@ const fr = {
   'minigames.puzzle': 'Puzzle',
   'minigames.skill': 'Skill',
   'minigames.quiz': 'Quiz',
-  'minigames.easy': 'Easy',
-  'minigames.medium': 'Medium',
-  'minigames.hard': 'Hard',
+  'minigames.easy': 'Facile',
+  'minigames.medium': 'Moyen',
+  'minigames.hard': 'Difficile',
   'minigames.backToMenu': 'Back to Menu',
-  'minigames.highScore': 'High Score',
+  'minigames.highScore': 'Meilleur score',
 
   // Final remaining missing keys
   'collection.gamesCollected': 'Jeux Collectés',

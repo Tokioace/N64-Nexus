@@ -406,11 +406,11 @@ const ru = {
   'minigames.puzzle': 'Puzzle',
   'minigames.skill': 'Skill',
   'minigames.quiz': 'Quiz',
-  'minigames.easy': 'Easy',
-  'minigames.medium': 'Medium',
-  'minigames.hard': 'Hard',
+  'minigames.easy': 'Легко',
+  'minigames.medium': 'Средне',
+  'minigames.hard': 'Сложно',
   'minigames.backToMenu': 'Back to Menu',
-  'minigames.highScore': 'High Score',
+  'minigames.highScore': 'Рекорд',
 
   // Final remaining missing keys
   'collection.gamesCollected': 'Games Collected',
@@ -486,7 +486,7 @@ const ru = {
   'fanart.titlePlaceholder': 'Give your artwork a title...',
   'fanart.selectGame': 'Select Game',
   'fanart.chooseGame': 'Choose a game...',
-  'fanart.tags': 'Tags',
+  'fanart.tags': 'Теги',
   'fanart.tagsPlaceholder': 'Add tags...',
   'fanart.tagsHint': 'Separated by commas',
   'fanart.uploading': 'Uploading...',
@@ -713,10 +713,10 @@ const ru = {
   'placeholder.recordNotes': 'Record notes...',
 
   // Final TypeScript error fixes - professional translations
-  'achievement.progress': 'Progress',
+  'achievement.progress': 'Прогресс',
   'achievement.requirements': 'Requirements',
   'achievement.unlocked': 'Unlocked',
-  'achievement.unlockedOn': 'Unlocked on',
+  'achievement.unlockedOn': 'Разблокировано',
   'achievement.notUnlocked': 'Not unlocked yet',
   'auth.enhancedExperienceMessage': 'Войдите для расширенного опыта',
   'home.winner': 'Winner',
