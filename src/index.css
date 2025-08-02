@@ -679,6 +679,34 @@ code {
   }
 }
 
+/* Forum Mobile Optimizations */
+@media (max-width: 768px) {
+  .simple-tile {
+    padding: clamp(0.75rem, 3vw, 1rem);
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+  }
+  
+  .simple-tile * {
+    max-width: 100%;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+  
+  .simple-tile pre {
+    white-space: pre-wrap;
+    word-break: break-all;
+    overflow-x: auto;
+  }
+  
+  .simple-tile img {
+    max-width: 100% !important;
+    height: auto !important;
+    object-fit: contain;
+  }
+}
+
 /* Prevent border overlapping in horizontal mode */
 @media (orientation: landscape) and (max-height: 500px) {
   .n64-tile, .simple-tile {
