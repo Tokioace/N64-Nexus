@@ -1,5 +1,5 @@
 import React from 'react'
-import { Newspaper, X } from 'lucide-react'
+import { Newspaper, X, Calendar, Tag } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 import { useLanguage, getLocaleString } from '../contexts/LanguageContext'
 import { InteractionBar } from './InteractionComponents'
@@ -133,6 +133,16 @@ const NewsCard: React.FC<NewsCardProps> = ({ newsItem, index, onDismiss, isAnima
           <span className={`capitalize ${getTypeColor(newsItem.type)}`}>
             {getTypeTranslation(newsItem.type)}
           </span>
+        </div>
+      </div>
+      
+      {/* Meta symbols in corner */}
+      <div className="absolute bottom-3 right-3 flex items-center gap-1">
+        <div className={`${getTypeColor(newsItem.type)}`} title={getTypeTranslation(newsItem.type)}>
+          <Tag className="w-4 h-4" />
+        </div>
+        <div className="text-slate-400" title={formatTime(newsItem.date)}>
+          <Calendar className="w-4 h-4" />
         </div>
       </div>
       

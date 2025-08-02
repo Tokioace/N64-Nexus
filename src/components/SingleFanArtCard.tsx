@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react'
-import { Palette, Heart, Eye } from 'lucide-react'
+import { Palette, Heart, Eye, Image, Calendar } from 'lucide-react'
 import { useLanguage } from '../contexts/LanguageContext'
 import { useUser } from '../contexts/UserContext'
 import { useNavigate } from 'react-router-dom'
@@ -119,6 +119,18 @@ const SingleFanArtCard: React.FC<SingleFanArtCardProps> = ({ fanArtItems, classN
         <div className="text-xs text-slate-400">
           <span className="text-rose-400">{item.game}</span>
         </div>
+      </div>
+      
+      {/* Meta symbols in corner */}
+      <div className="absolute bottom-3 right-3 flex items-center gap-1">
+        <div className="text-slate-400" title="Fan Art">
+          <Image className="w-4 h-4" />
+        </div>
+        {item.createdAt && (
+          <div className="text-slate-400" title={item.createdAt.toLocaleDateString()}>
+            <Calendar className="w-4 h-4" />
+          </div>
+        )}
       </div>
       
       <div className="swipeable-card-content">

@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react'
-import { MessageCircle } from 'lucide-react'
+import { MessageCircle, Users, Clock } from 'lucide-react'
 import { useLanguage, getLocaleString } from '../contexts/LanguageContext'
 import { useNavigate } from 'react-router-dom'
 import { InteractionBar } from './InteractionComponents'
@@ -102,6 +102,16 @@ const SingleForumCard: React.FC<SingleForumCardProps> = ({ forumThreads, classNa
         </div>
         <div className="text-xs text-slate-400">
           <span className="capitalize text-cyan-400">{thread.category}</span>
+        </div>
+      </div>
+      
+      {/* Meta symbols in corner */}
+      <div className="absolute bottom-3 right-3 flex items-center gap-1">
+        <div className="text-slate-400" title={`${thread.replies} Antworten`}>
+          <Users className="w-4 h-4" />
+        </div>
+        <div className="text-slate-400" title={formatTime(thread.lastActivity)}>
+          <Clock className="w-4 h-4" />
         </div>
       </div>
       

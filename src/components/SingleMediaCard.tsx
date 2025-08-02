@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react'
-import { Play } from 'lucide-react'
+import { Play, Camera, Video, Trophy, Radio } from 'lucide-react'
 import { useLanguage, getLocaleString } from '../contexts/LanguageContext'
 import { InteractionBar } from './InteractionComponents'
 
@@ -104,15 +104,15 @@ const SingleMediaCard: React.FC<SingleMediaCardProps> = ({ mediaItems, className
   const getTypeIcon = (type: string) => {
     switch (type) {
       case 'speedrun':
-        return '🏃'
+        return <Play className="w-4 h-4" />
       case 'screenshot':
-        return '📸'
+        return <Camera className="w-4 h-4" />
       case 'achievement':
-        return '🏆'
+        return <Trophy className="w-4 h-4" />
       case 'stream':
-        return '📺'
+        return <Radio className="w-4 h-4" />
       default:
-        return '🎮'
+        return <Video className="w-4 h-4" />
     }
   }
 
@@ -171,13 +171,10 @@ const SingleMediaCard: React.FC<SingleMediaCardProps> = ({ mediaItems, className
                       <Play className="w-5 h-5 text-accent-green" />
                       <h3 className="text-responsive-base font-bold text-text-primary">{t('card.media')}</h3>
                     </div>
-                    <div className="text-xs text-text-muted flex items-center gap-1">
+                    <div className="text-xs text-text-muted">
                       <span className={getTypeColor(mediaItems[currentIndex + 1].type)}>
-                        {getTypeIcon(mediaItems[currentIndex + 1].type)} {getTypeTranslation(mediaItems[currentIndex + 1].type)}
+                        {getTypeTranslation(mediaItems[currentIndex + 1].type)}
                       </span>
-                      {mediaItems[currentIndex + 1].verified && (
-                        <span className="text-accent-green">✓ {t('card.verified')}</span>
-                      )}
                     </div>
                   </div>
                   <div className="swipeable-card-content">
@@ -216,13 +213,10 @@ const SingleMediaCard: React.FC<SingleMediaCardProps> = ({ mediaItems, className
                       <Play className="w-5 h-5 text-accent-green" />
                       <h3 className="text-responsive-base font-bold text-text-primary">{t('card.media')}</h3>
                     </div>
-                    <div className="text-xs text-text-muted flex items-center gap-1">
+                    <div className="text-xs text-text-muted">
                       <span className={getTypeColor(mediaItems[currentIndex - 1].type)}>
-                        {getTypeIcon(mediaItems[currentIndex - 1].type)} {getTypeTranslation(mediaItems[currentIndex - 1].type)}
+                        {getTypeTranslation(mediaItems[currentIndex - 1].type)}
                       </span>
-                      {mediaItems[currentIndex - 1].verified && (
-                        <span className="text-accent-green">✓ {t('card.verified')}</span>
-                      )}
                     </div>
                   </div>
                   <div className="swipeable-card-content">
@@ -266,19 +260,26 @@ const SingleMediaCard: React.FC<SingleMediaCardProps> = ({ mediaItems, className
                 : 'transform translate-x-0 opacity-100'
             }`}
           >
-            <div className="swipeable-card bg-gradient-to-br from-green-600/20 to-green-800/20 border-l-4 border-accent-green">
+            <div className="swipeable-card bg-gradient-to-br from-green-600/20 to-green-800/20 border-l-4 border-accent-green relative">
               <div className="swipeable-card-header">
                 <div className="flex items-center gap-2">
                   <Play className="w-5 h-5 text-accent-green" />
                   <h3 className="text-responsive-base font-bold text-text-primary">{t('card.media')}</h3>
                 </div>
-                <div className="text-xs text-text-muted flex items-center gap-1">
+                <div className="text-xs text-text-muted">
                   <span className={getTypeColor(currentItem.type)}>
-                    {getTypeIcon(currentItem.type)} {getTypeTranslation(currentItem.type)}
+                    {getTypeTranslation(currentItem.type)}
                   </span>
-                  {currentItem.verified && (
-                    <span className="text-accent-green">✓ {t('card.verified')}</span>
-                  )}
+                </div>
+              </div>
+              
+              {/* Meta symbols in corner */}
+              <div className="absolute bottom-3 right-3 flex items-center gap-1">
+                {currentItem.verified && (
+                  <div className="w-4 h-4 bg-green-400 rounded-full" title={t('card.verified')}></div>
+                )}
+                <div className={`${getTypeColor(currentItem.type)}`} title={getTypeTranslation(currentItem.type)}>
+                  {getTypeIcon(currentItem.type)}
                 </div>
               </div>
               <div className="swipeable-card-content">

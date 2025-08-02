@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react'
-import { ShoppingBag } from 'lucide-react'
+import { ShoppingBag, Star, Package } from 'lucide-react'
 import { useLanguage, getLocaleString } from '../contexts/LanguageContext'
 import { useNavigate } from 'react-router-dom'
 
@@ -232,7 +232,7 @@ const SingleMarketplaceCard: React.FC<SingleMarketplaceCardProps> = ({ marketpla
             }`}
             onClick={() => handleCardClick(currentItem)}
           >
-            <div className="swipeable-card bg-gradient-to-br from-purple-600/20 to-purple-800/20 border-l-4 border-accent-purple">
+            <div className="swipeable-card bg-gradient-to-br from-purple-600/20 to-purple-800/20 border-l-4 border-accent-purple relative">
               <div className="swipeable-card-header">
                 <div className="flex items-center gap-2">
                   <ShoppingBag className="w-5 h-5 text-accent-purple" />
@@ -240,6 +240,16 @@ const SingleMarketplaceCard: React.FC<SingleMarketplaceCardProps> = ({ marketpla
                 </div>
                 <div className="text-xs text-text-muted">
                   {currentItem.category}
+                </div>
+              </div>
+              
+              {/* Meta symbols in corner */}
+              <div className="absolute bottom-3 right-3 flex items-center gap-1">
+                <div className="text-slate-400" title={currentItem.condition}>
+                  <Package className="w-4 h-4" />
+                </div>
+                <div className="text-slate-400" title={currentItem.seller}>
+                  <Star className="w-4 h-4" />
                 </div>
               </div>
               <div className="swipeable-card-content">
