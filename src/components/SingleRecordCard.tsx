@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react'
-import { Trophy } from 'lucide-react'
+import { Trophy, Monitor, Gamepad2 } from 'lucide-react'
 import { useLanguage, getLocaleString } from '../contexts/LanguageContext'
 
 interface PersonalRecord {
@@ -122,10 +122,8 @@ const SingleRecordCard: React.FC<SingleRecordCardProps> = ({ personalRecords, cl
                       <Trophy className="w-5 h-5 text-accent-yellow" />
                       <h3 className="text-responsive-base font-bold text-text-primary">{t('card.records')}</h3>
                     </div>
-                    <div className="text-xs text-text-muted flex items-center gap-1">
-                      {personalRecords[currentIndex + 1].verified && (
-                        <span className="text-accent-green">✓ {t('card.verified')}</span>
-                      )}
+                    <div className="text-xs text-text-muted">
+                      <span>{personalRecords[currentIndex + 1].platform}</span>
                     </div>
                   </div>
                   <div className="swipeable-card-content">
@@ -158,10 +156,8 @@ const SingleRecordCard: React.FC<SingleRecordCardProps> = ({ personalRecords, cl
                       <Trophy className="w-5 h-5 text-accent-yellow" />
                       <h3 className="text-responsive-base font-bold text-text-primary">{t('card.records')}</h3>
                     </div>
-                    <div className="text-xs text-text-muted flex items-center gap-1">
-                      {personalRecords[currentIndex - 1].verified && (
-                        <span className="text-accent-green">✓ {t('card.verified')}</span>
-                      )}
+                    <div className="text-xs text-text-muted">
+                      <span>{personalRecords[currentIndex - 1].platform}</span>
                     </div>
                   </div>
                   <div className="swipeable-card-content">
@@ -199,16 +195,27 @@ const SingleRecordCard: React.FC<SingleRecordCardProps> = ({ personalRecords, cl
                 : 'transform translate-x-0 opacity-100'
             }`}
           >
-            <div className="swipeable-card bg-gradient-to-br from-yellow-600/20 to-yellow-800/20 border-l-4 border-accent-yellow">
+            <div className="swipeable-card bg-gradient-to-br from-yellow-600/20 to-yellow-800/20 border-l-4 border-accent-yellow relative">
               <div className="swipeable-card-header">
                 <div className="flex items-center gap-2">
                   <Trophy className="w-5 h-5 text-accent-yellow" />
                   <h3 className="text-responsive-base font-bold text-text-primary">{t('card.records')}</h3>
                 </div>
-                <div className="text-xs text-text-muted flex items-center gap-1">
-                  {currentRecord.verified && (
-                    <span className="text-accent-green">✓ {t('card.verified')}</span>
-                  )}
+                <div className="text-xs text-text-muted">
+                  <span>{currentRecord.platform}</span>
+                </div>
+              </div>
+              
+              {/* Meta symbols in corner */}
+              <div className="absolute bottom-3 right-3 flex items-center gap-1">
+                {currentRecord.verified && (
+                  <div className="w-4 h-4 bg-green-400 rounded-full" title={t('card.verified')}></div>
+                )}
+                <div className="text-slate-400" title={currentRecord.platform}>
+                  {currentRecord.platform.toLowerCase().includes('pc') || currentRecord.platform.toLowerCase().includes('computer') ? 
+                    <Monitor className="w-4 h-4" /> : 
+                    <Gamepad2 className="w-4 h-4" />
+                  }
                 </div>
               </div>
               <div className="swipeable-card-content">

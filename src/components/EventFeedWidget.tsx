@@ -336,13 +336,13 @@ const EventCard: React.FC<EventCardProps> = ({ event, leaderboard, timeRemaining
                     </div>
                     <div className="flex items-center justify-center gap-1">
                       {entry.verified && (
-                        <div className="w-2 h-2 bg-green-400 rounded-full" title={t('home.verified')}></div>
+                        <div className="w-3 h-3 bg-green-400 rounded-full" title={t('home.verified')}></div>
                       )}
                       {entry.mediaUrl && (
                         <div className="flex items-center" title={`${entry.documentationType === 'photo' ? 'Photo' : entry.documentationType === 'video' ? 'Video' : 'Livestream'} available`}>
-                          {entry.documentationType === 'photo' && <Camera className="w-3 h-3 text-slate-400" />}
-                          {entry.documentationType === 'video' && <Video className="w-3 h-3 text-slate-400" />}
-                          {entry.documentationType === 'livestream' && <Radio className="w-3 h-3 text-slate-400" />}
+                          {entry.documentationType === 'photo' && <Camera className="w-4 h-4 text-slate-400" />}
+                          {entry.documentationType === 'video' && <Video className="w-4 h-4 text-slate-400" />}
+                          {entry.documentationType === 'livestream' && <Radio className="w-4 h-4 text-slate-400" />}
                         </div>
                       )}
                     </div>

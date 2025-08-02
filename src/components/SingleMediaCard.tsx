@@ -260,7 +260,7 @@ const SingleMediaCard: React.FC<SingleMediaCardProps> = ({ mediaItems, className
                 : 'transform translate-x-0 opacity-100'
             }`}
           >
-            <div className="swipeable-card bg-gradient-to-br from-green-600/20 to-green-800/20 border-l-4 border-accent-green">
+            <div className="swipeable-card bg-gradient-to-br from-green-600/20 to-green-800/20 border-l-4 border-accent-green relative">
               <div className="swipeable-card-header">
                 <div className="flex items-center gap-2">
                   <Play className="w-5 h-5 text-accent-green" />
@@ -270,6 +270,16 @@ const SingleMediaCard: React.FC<SingleMediaCardProps> = ({ mediaItems, className
                   <span className={getTypeColor(currentItem.type)}>
                     {getTypeTranslation(currentItem.type)}
                   </span>
+                </div>
+              </div>
+              
+              {/* Meta symbols in corner */}
+              <div className="absolute bottom-3 right-3 flex items-center gap-1">
+                {currentItem.verified && (
+                  <div className="w-4 h-4 bg-green-400 rounded-full" title={t('card.verified')}></div>
+                )}
+                <div className={`${getTypeColor(currentItem.type)}`} title={getTypeTranslation(currentItem.type)}>
+                  {getTypeIcon(currentItem.type)}
                 </div>
               </div>
               <div className="swipeable-card-content">
@@ -294,17 +304,7 @@ const SingleMediaCard: React.FC<SingleMediaCardProps> = ({ mediaItems, className
                   <div className="border-t border-slate-600/30 pt-3 mt-auto">
                     <div className="flex items-center justify-between text-sm text-text-muted">
                       <span>{currentItem.uploader}</span>
-                      <div className="flex items-center gap-2">
-                        <span className="font-medium">{formatTime(currentItem.date)}</span>
-                        <div className="flex items-center gap-1">
-                          {currentItem.verified && (
-                            <div className="w-4 h-4 bg-green-400 rounded-full" title={t('card.verified')}></div>
-                          )}
-                          <div className={`flex items-center ${getTypeColor(currentItem.type)}`} title={getTypeTranslation(currentItem.type)}>
-                            {getTypeIcon(currentItem.type)}
-                          </div>
-                        </div>
-                      </div>
+                      <span className="font-medium">{formatTime(currentItem.date)}</span>
                     </div>
                   </div>
                 </div>
