@@ -65,7 +65,7 @@ const ru = {
   'auth.register': 'Регистрация',
   'auth.username': 'Имя пользователя',
   'auth.password': 'Пароль',
-  'auth.email': 'Email',
+  'auth.email': 'Электронная почта',
   'auth.confirmPassword': 'Подтвердить пароль',
   'auth.forgotPassword': 'Забыли пароль?',
   'auth.loginRequired': 'Требуется вход',
