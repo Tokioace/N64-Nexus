@@ -106,33 +106,35 @@ const SingleForumCard: React.FC<SingleForumCardProps> = ({ forumThreads, classNa
       </div>
       
       <div className="swipeable-card-content">
-        <div className="p-3 h-full flex flex-col">
-          <div className="flex-1">
-            <h4 className="text-sm sm:text-base font-semibold text-slate-100 mb-2 leading-tight">
+        <div className="p-2 sm:p-3 h-full flex flex-col">
+          <div className="flex-1 min-w-0">
+            <h4 className="text-sm sm:text-base font-semibold text-slate-100 mb-2 leading-tight break-words">
               {thread.title}
             </h4>
-            <div className="text-xs text-slate-300 mb-2">
-              <span className="text-blue-400">{thread.author}</span> • {thread.category}
+            <div className="text-xs text-slate-300 mb-2 break-words">
+              <span className="text-blue-400 break-words">{thread.author}</span> • <span className="break-words">{thread.category}</span>
             </div>
             {/* Show last post content if available */}
             {thread.lastPostContent && (
-              <div className="text-xs text-slate-400 mb-2 line-clamp-2">
-                <span className="text-cyan-400">Letzte Antwort von {thread.lastPostAuthor || 'Unbekannt'}:</span>
+              <div className="text-xs text-slate-400 mb-2 line-clamp-2 break-words">
+                <span className="text-cyan-400 break-words">Letzte Antwort von {thread.lastPostAuthor || 'Unbekannt'}:</span>
                 <br />
-                {thread.lastPostContent.length > 80 
-                  ? `${thread.lastPostContent.substring(0, 80)}...` 
-                  : thread.lastPostContent
-                }
+                <span className="break-words">
+                  {thread.lastPostContent.length > 60 
+                    ? `${thread.lastPostContent.substring(0, 60)}...` 
+                    : thread.lastPostContent
+                  }
+                </span>
               </div>
             )}
           </div>
-          <div className="flex items-center justify-between text-xs text-slate-400 mt-auto">
-            <span>{thread.replies} Antworten</span>
-            <span>{formatTime(thread.lastActivity)}</span>
+          <div className="flex items-center justify-between text-xs text-slate-400 mt-auto gap-2">
+            <span className="whitespace-nowrap">{thread.replies} Antworten</span>
+            <span className="whitespace-nowrap">{formatTime(thread.lastActivity)}</span>
           </div>
           
           {/* Interaction Bar */}
-          <div className="mt-3 pt-3 border-t border-slate-600/30">
+          <div className="mt-2 sm:mt-3 pt-2 sm:pt-3 border-t border-slate-600/30">
             <InteractionBar 
               contentType="forum"
               contentId={thread.id}
