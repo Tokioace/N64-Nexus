@@ -102,54 +102,80 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const [user, setUser] = useState<User | null>(null)
   const [users, setUsers] = useState<User[]>(mockUsers)
   const [isAuthenticated, setIsAuthenticated] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
 
   // Load data from localStorage on mount
   useEffect(() => {
-    const savedUsers = localStorage.getItem(STORAGE_KEY_USERS)
-    const savedCurrentUser = localStorage.getItem(STORAGE_KEY_CURRENT_USER)
-    
-    if (savedUsers) {
+    const loadUserData = async () => {
       try {
-        const parsedUsers = JSON.parse(savedUsers).map((u: any) => ({
-          ...u,
-          joinDate: new Date(u.joinDate),
-          collections: u.collections?.map((c: any) => ({
-            ...c,
-            acquisitionDate: new Date(c.acquisitionDate)
-          })) || [],
-          personalRecords: u.personalRecords?.map((pr: any) => ({
-            ...pr,
-            achievedDate: new Date(pr.achievedDate)
-          })) || []
-        }))
-        setUsers(parsedUsers)
-      } catch (error) {
-        console.error('Error loading users from localStorage:', error)
-        setUsers(mockUsers)
-      }
-    }
-
-    if (savedCurrentUser) {
-      try {
-        const parsedUser = JSON.parse(savedCurrentUser)
-        const userWithDates = {
-          ...parsedUser,
-          joinDate: new Date(parsedUser.joinDate),
-          collections: parsedUser.collections?.map((c: any) => ({
-            ...c,
-            acquisitionDate: new Date(c.acquisitionDate)
-          })) || [],
-          personalRecords: parsedUser.personalRecords?.map((pr: any) => ({
-            ...pr,
-            achievedDate: new Date(pr.achievedDate)
-          })) || []
+        const savedUsers = localStorage.getItem(STORAGE_KEY_USERS)
+        const savedCurrentUser = localStorage.getItem(STORAGE_KEY_CURRENT_USER)
+        
+        if (savedUsers && savedUsers.trim() !== '') {
+          try {
+            const parsedUsers = JSON.parse(savedUsers)
+            if (Array.isArray(parsedUsers)) {
+              const validatedUsers = parsedUsers
+                .filter(u => u && u.id) // Filter out invalid users
+                .map((u: any) => ({
+                  ...u,
+                  joinDate: new Date(u.joinDate),
+                  collections: u.collections?.map((c: any) => ({
+                    ...c,
+                    acquisitionDate: new Date(c.acquisitionDate)
+                  })) || [],
+                  personalRecords: u.personalRecords?.map((pr: any) => ({
+                    ...pr,
+                    achievedDate: new Date(pr.achievedDate)
+                  })) || []
+                }))
+              setUsers(validatedUsers)
+            } else {
+              console.warn('Invalid users data format, using mock data')
+              setUsers(mockUsers)
+            }
+          } catch (parseError) {
+            console.error('Error parsing users from localStorage:', parseError)
+            localStorage.removeItem(STORAGE_KEY_USERS)
+            setUsers(mockUsers)
+          }
         }
-        setUser(userWithDates)
-        setIsAuthenticated(true)
+
+        if (savedCurrentUser && savedCurrentUser.trim() !== '') {
+          try {
+            const parsedUser = JSON.parse(savedCurrentUser)
+            if (parsedUser && parsedUser.id) {
+              const userWithDates = {
+                ...parsedUser,
+                joinDate: new Date(parsedUser.joinDate),
+                collections: parsedUser.collections?.map((c: any) => ({
+                  ...c,
+                  acquisitionDate: new Date(c.acquisitionDate)
+                })) || [],
+                personalRecords: parsedUser.personalRecords?.map((pr: any) => ({
+                  ...pr,
+                  achievedDate: new Date(pr.achievedDate)
+                })) || []
+              }
+              setUser(userWithDates)
+              setIsAuthenticated(true)
+            } else {
+              console.warn('Invalid user data format')
+              localStorage.removeItem(STORAGE_KEY_CURRENT_USER)
+            }
+          } catch (parseError) {
+            console.error('Error parsing current user from localStorage:', parseError)
+            localStorage.removeItem(STORAGE_KEY_CURRENT_USER)
+          }
+        }
       } catch (error) {
-        console.error('Error loading current user from localStorage:', error)
+        console.error('Error loading user data:', error)
+      } finally {
+        setIsLoading(false)
       }
     }
+    
+    loadUserData()
   }, [])
 
   // Save users to localStorage whenever users array changes
@@ -360,6 +386,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const value: UserContextType = {
     user,
     isAuthenticated,
+    isLoading,
     login,
     register,
     logout,

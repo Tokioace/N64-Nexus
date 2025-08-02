@@ -62,6 +62,7 @@ export interface PersonalRecord {
 export interface UserContextType {
   user: User | null
   isAuthenticated: boolean
+  isLoading: boolean
   login: (email: string, password: string) => Promise<boolean>
   register: (data: UserRegistrationData) => Promise<boolean>
   logout: () => void
