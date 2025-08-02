@@ -74,26 +74,66 @@ interface MarketplaceItem {
   createdAt?: string // Add createdAt property for backward compatibility
 }
 
-// Simple error boundary component
+// Simple error boundary component with better error handling
 const SafeComponent: React.FC<{ children: React.ReactNode; fallback?: React.ReactNode; name: string }> = ({ 
   children, 
-  fallback = null, 
+  fallback, 
   name 
 }) => {
+  const [hasError, setHasError] = React.useState(false)
+  const [error, setError] = React.useState<Error | null>(null)
+  
+  React.useEffect(() => {
+    // Reset error state when children change
+    setHasError(false)
+    setError(null)
+  }, [children])
+  
+  if (hasError) {
+    return fallback || (
+      <div className="simple-tile bg-slate-800/50 border-slate-600 p-4 rounded-lg">
+        <p className="text-slate-400 text-sm">
+          ⚠️ Error loading {name}
+        </p>
+        <button 
+          onClick={() => {
+            setHasError(false)
+            setError(null)
+          }}
+          className="mt-2 text-xs text-blue-400 hover:text-blue-300 underline"
+        >
+          Try again
+        </button>
+      </div>
+    )
+  }
+  
   try {
-    return <>{children}</>
+    return (
+      <React.Suspense fallback={
+        <div className="simple-tile bg-slate-800/50 border-slate-600 p-4 rounded-lg">
+          <div className="animate-pulse">
+            <div className="h-4 bg-slate-600 rounded w-3/4 mb-2"></div>
+            <div className="h-3 bg-slate-700 rounded w-1/2"></div>
+          </div>
+        </div>
+      }>
+        {children}
+      </React.Suspense>
+    )
   } catch (error) {
     console.error(`Error in ${name}:`, error)
-    return <div style={{ padding: '10px', backgroundColor: 'rgba(255, 0, 0, 0.1)', border: '1px solid red', borderRadius: '4px' }}>
-      <p style={{ color: 'red', fontSize: '14px' }}>Error loading {name}</p>
-    </div>
+    setHasError(true)
+    setError(error as Error)
+    return null
   }
 }
 
 const HomePage: React.FC = () => {
-  const { user } = useUser()
+  const { user, isLoading: userLoading } = useUser()
   const { t, currentLanguage } = useLanguage()
   const { threads, posts } = useForum()
+  const [isDataLoading, setIsDataLoading] = React.useState(true)
 
   // Load FanArt data from localStorage or use mock data
   const [fanArtItems, setFanArtItems] = useState<FanArtItem[]>([])
@@ -123,10 +163,24 @@ const HomePage: React.FC = () => {
     const loadFanArtData = () => {
       try {
         const savedFanArt = localStorage.getItem('fanart_items')
-        if (savedFanArt) {
-          const parsedFanArt = JSON.parse(savedFanArt) as FanArtItem[]
+        if (savedFanArt && savedFanArt.trim() !== '') {
+          let parsedFanArt
+          try {
+            parsedFanArt = JSON.parse(savedFanArt) as FanArtItem[]
+            // Validate that parsed data is an array
+            if (!Array.isArray(parsedFanArt)) {
+              throw new Error('Invalid fanart data format')
+            }
+          } catch (parseError) {
+            console.error('Error parsing fanart data:', parseError)
+            // Clear corrupted data and use fallback
+            localStorage.removeItem('fanart_items')
+            throw parseError
+          }
+          
           // Sort by date (newest first) and convert date strings back to Date objects
           const sortedFanArt = parsedFanArt
+            .filter(item => item && item.id) // Filter out invalid items
             .map((item: FanArtItem) => ({
               ...item,
               createdAt: item.createdAt ? new Date(item.createdAt) : new Date(),
@@ -148,7 +202,8 @@ const HomePage: React.FC = () => {
         }
       } catch (error) {
         console.error('Error loading fanart data:', error)
-        // Use fallback data on error
+        // Use fallback data on error and clear corrupted localStorage
+        localStorage.removeItem('fanart_items')
         setFanArtItems([
           { id: '1', title: 'Mario in Peach\'s Castle', artist: 'PixelArtist64', imageUrl: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRkY2QjZCIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIiBmaWxsPSIjRkZGRkZGIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiPk1hcmlvIEFydDwvdGV4dD48L3N2Zz4=', likes: 234, views: 1250, game: 'Super Mario 64', createdAt: new Date() }
         ])
@@ -158,10 +213,24 @@ const HomePage: React.FC = () => {
     const loadMarketplaceData = () => {
       try {
         const savedMarketplace = localStorage.getItem('marketplace_items')
-        if (savedMarketplace) {
-          const parsedMarketplace = JSON.parse(savedMarketplace) as MarketplaceItem[]
+        if (savedMarketplace && savedMarketplace.trim() !== '') {
+          let parsedMarketplace
+          try {
+            parsedMarketplace = JSON.parse(savedMarketplace) as MarketplaceItem[]
+            // Validate that parsed data is an array
+            if (!Array.isArray(parsedMarketplace)) {
+              throw new Error('Invalid marketplace data format')
+            }
+          } catch (parseError) {
+            console.error('Error parsing marketplace data:', parseError)
+            // Clear corrupted data and use fallback
+            localStorage.removeItem('marketplace_items')
+            throw parseError
+          }
+          
           // Sort by date (newest first) and convert date strings back to Date objects
           const sortedMarketplace = parsedMarketplace
+            .filter(item => item && item.id) // Filter out invalid items
             .map((item: MarketplaceItem) => ({
               ...item,
               date: item.date ? new Date(item.date) : (item.createdAt ? new Date(item.createdAt) : new Date())
@@ -178,15 +247,29 @@ const HomePage: React.FC = () => {
         }
       } catch (error) {
         console.error('Error loading marketplace data:', error)
-        // Use fallback data on error
+        // Use fallback data on error and clear corrupted localStorage
+        localStorage.removeItem('marketplace_items')
         setMarketplaceItems([
           { id: '1', title: 'Super Mario 64 - Mint Condition', description: 'Original cartridge in mint condition with manual', price: 89.99, condition: 'Mint', seller: 'RetroCollector', date: new Date(Date.now() - 3600000), category: 'Games' }
         ])
       }
     }
 
-    loadFanArtData()
-    loadMarketplaceData()
+    const loadData = async () => {
+      setIsDataLoading(true)
+      try {
+        await Promise.all([
+          new Promise(resolve => { loadFanArtData(); resolve(void 0) }),
+          new Promise(resolve => { loadMarketplaceData(); resolve(void 0) })
+        ])
+      } catch (error) {
+        console.error('Error loading homepage data:', error)
+      } finally {
+        setIsDataLoading(false)
+      }
+    }
+
+    loadData()
 
     // Listen for data updates
     const handleStorageChange = (e: StorageEvent) => {
@@ -202,25 +285,62 @@ const HomePage: React.FC = () => {
   }, [])
 
   // Convert forum threads to the format expected by SingleForumCard with enhanced data
-  const forumThreads: ForumThread[] = threads
-    .sort((a, b) => new Date(b.lastUpdated).getTime() - new Date(a.lastUpdated).getTime())
-    .slice(0, 10) // Take top 10 most recent
-    .map(thread => {
-      // Find the latest post for this thread
-      const threadPosts = posts.filter(post => post.threadId === thread.id)
-      const latestPost = threadPosts.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())[0]
-      
-      return {
-        id: thread.id,
-        title: thread.title,
-        author: thread.authorName, // Use authorName instead of authorId
-        replies: thread.postCount, // Use postCount for replies
-        lastActivity: new Date(thread.lastUpdated), // Use lastUpdated
-        category: thread.categoryId, // Use categoryId instead of category
-        lastPostContent: latestPost?.content,
-        lastPostAuthor: latestPost?.authorName
+  const forumThreads: ForumThread[] = React.useMemo(() => {
+    try {
+      if (!threads || !Array.isArray(threads)) {
+        console.warn('Invalid threads data:', threads)
+        return []
       }
-    })
+      
+      return threads
+        .filter(thread => thread && thread.id && thread.title) // Filter out invalid threads
+        .sort((a, b) => {
+          try {
+            const dateA = new Date(a.lastUpdated || a.createdAt || 0).getTime()
+            const dateB = new Date(b.lastUpdated || b.createdAt || 0).getTime()
+            return dateB - dateA
+          } catch (error) {
+            console.warn('Error sorting threads:', error)
+            return 0
+          }
+        })
+        .slice(0, 10) // Take top 10 most recent
+        .map(thread => {
+          try {
+            // Find the latest post for this thread
+            const threadPosts = Array.isArray(posts) 
+              ? posts.filter(post => post && post.threadId === thread.id)
+              : []
+            const latestPost = threadPosts
+              .sort((a, b) => {
+                try {
+                  return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+                } catch (error) {
+                  return 0
+                }
+              })[0]
+            
+            return {
+              id: thread.id,
+              title: thread.title || 'Untitled Thread',
+              author: thread.authorName || thread.authorId || 'Unknown', // Use authorName instead of authorId
+              replies: thread.postCount || 0, // Use postCount for replies
+              lastActivity: new Date(thread.lastUpdated || thread.createdAt || Date.now()), // Use lastUpdated
+              category: thread.categoryId || 'general', // Use categoryId instead of category
+              lastPostContent: latestPost?.content,
+              lastPostAuthor: latestPost?.authorName || latestPost?.authorId
+            }
+          } catch (error) {
+            console.error('Error processing thread:', thread, error)
+            return null
+          }
+        })
+        .filter(Boolean) as ForumThread[] // Remove null entries
+    } catch (error) {
+      console.error('Error processing forum threads:', error)
+      return []
+    }
+  }, [threads, posts])
 
   const formatTime = (date: Date) => {
     return date.toLocaleTimeString(currentLanguage === 'de' ? 'de-DE' : 'en-US', {
@@ -236,6 +356,47 @@ const HomePage: React.FC = () => {
       month: 'long',
       day: 'numeric'
     })
+  }
+
+  // Show loading state while data is loading
+  if (userLoading || isDataLoading) {
+    return (
+      <div className="container-lg space-responsive responsive-max-width responsive-overflow-hidden">
+        <div className="text-center mb-6 responsive-max-width">
+          <div className="battle64-header-container">
+            <img 
+              src="/mascot.png" 
+              alt={t('alt.battle64Mascot')} 
+              className="battle64-mascot mx-auto block"
+              style={{
+                marginTop: 'clamp(0.5rem, 1vw, 1rem)',
+                marginBottom: 'clamp(0.5rem, 1vw, 0.75rem)'
+              }}
+            />
+          </div>
+          <div className="mt-2">
+            <div className="animate-pulse">
+              <div className="h-8 bg-slate-600 rounded w-64 mx-auto mb-4"></div>
+              <div className="h-4 bg-slate-700 rounded w-96 mx-auto mb-2"></div>
+              <div className="h-3 bg-slate-700 rounded w-32 mx-auto"></div>
+            </div>
+          </div>
+        </div>
+        
+        {/* Loading skeleton for content */}
+        <div className="space-y-6">
+          {[1, 2, 3, 4].map(i => (
+            <div key={i} className="simple-tile bg-slate-800/50 border-slate-600 p-4 rounded-lg">
+              <div className="animate-pulse">
+                <div className="h-6 bg-slate-600 rounded w-1/3 mb-3"></div>
+                <div className="h-4 bg-slate-700 rounded w-full mb-2"></div>
+                <div className="h-4 bg-slate-700 rounded w-2/3"></div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    )
   }
 
   return (
