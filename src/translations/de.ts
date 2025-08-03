@@ -104,6 +104,15 @@ const de = {
   'map.showMenu': 'Menü anzeigen',
   'map.hideMenu': 'Menü verstecken',
   'map.hostingTooFar': 'Standort zu weit von deiner Position entfernt um ein Event zu hosten',
+  'map.updateLocation': 'Standort aktualisieren',
+  'map.youAreHere': 'Du bist hier',
+  'map.showLegend': 'Legende anzeigen',
+  'map.hideLegend': 'Legende ausblenden',
+  'event.type.casual': 'Casual Match',
+  'event.type.tournament': 'Turnier',
+  'event.type.speedrun': 'Speedrun Session',
+  'event.type.meetup': 'Meetup',
+  'event.category': 'Event-Kategorie',
 
   // Common
   'common.welcome': 'Willkommen',

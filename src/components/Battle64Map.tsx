@@ -1,7 +1,11 @@
-import React, { useState, useEffect, useMemo } from 'react'
+import React, { useState, useEffect, useMemo, useCallback } from 'react'
 import { MapContainer, TileLayer, Marker, Popup, Circle, useMap, useMapEvents } from 'react-leaflet'
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
+// Import marker clustering
+import 'leaflet.markercluster/dist/MarkerCluster.css'
+import 'leaflet.markercluster/dist/MarkerCluster.Default.css'
+import 'leaflet.markercluster'
 import { useMap as useMapContext, MapEvent } from '../contexts/MapContext'
 import { useUser } from '../contexts/UserContext'
 import { useLanguage } from '../contexts/LanguageContext'
@@ -18,7 +22,9 @@ import {
   Navigation,
   Settings,
   Eye,
-  EyeOff
+  EyeOff,
+  RefreshCw,
+  Info
 } from 'lucide-react'
 
 // Fix for default Leaflet markers
@@ -30,18 +36,18 @@ L.Icon.Default.mergeOptions({
   shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
 })
 
-// Enhanced emoji-based custom icons with retro N64 styling
-const createEmojiIcon = (emoji: string, isPulsing: boolean = false, isNightMode: boolean = false) => {
+// Enhanced emoji-based custom icons with balanced glow effects
+const createEmojiIcon = (emoji: string, isPulsing: boolean = false, isNightMode: boolean = false, isHovered: boolean = false) => {
   const baseStyles = isNightMode ? {
     background: 'linear-gradient(135deg, #0B0F1E, #1F2633)',
     borderColor: '#eab308',
-    glowColor: 'rgba(234, 179, 8, 0.6)',
-    shadowColor: 'rgba(234, 179, 8, 0.8)'
+    glowColor: isHovered ? 'rgba(234, 179, 8, 0.9)' : 'rgba(234, 179, 8, 0.4)',
+    shadowColor: isHovered ? 'rgba(234, 179, 8, 1.0)' : 'rgba(234, 179, 8, 0.6)'
   } : {
     background: 'linear-gradient(135deg, #1e293b, #334155)',
     borderColor: '#eab308',
-    glowColor: 'rgba(234, 179, 8, 0.4)',
-    shadowColor: 'rgba(234, 179, 8, 0.4)'
+    glowColor: isHovered ? 'rgba(234, 179, 8, 0.7)' : 'rgba(234, 179, 8, 0.3)',
+    shadowColor: isHovered ? 'rgba(234, 179, 8, 0.8)' : 'rgba(234, 179, 8, 0.4)'
   }
 
   return L.divIcon({
@@ -59,19 +65,34 @@ const createEmojiIcon = (emoji: string, isPulsing: boolean = false, isNightMode:
         font-size: 16px;
         box-shadow: 0 4px 12px ${baseStyles.glowColor}${isNightMode ? ', 0 0 20px ' + baseStyles.glowColor : ''};
         position: relative;
-        ${isPulsing ? 'animation: pulse-glow 2s infinite;' : ''}
+        ${isPulsing ? 'animation: balanced-pulse-glow 2.5s infinite;' : ''}
+        ${isHovered ? 'animation: hover-glow 0.3s ease-out forwards;' : ''}
         ${isNightMode ? 'filter: drop-shadow(0 0 10px ' + baseStyles.shadowColor + ');' : ''}
+        transition: all 0.3s ease;
       ">
         ${emoji}
-        ${isPulsing ? `<div style="position: absolute; inset: -6px; border-radius: 50%; background: radial-gradient(circle, ${baseStyles.glowColor} 0%, transparent 70%); animation: pulse-ring 2s infinite;"></div>` : ''}
+        ${isPulsing ? `<div style="position: absolute; inset: -6px; border-radius: 50%; background: radial-gradient(circle, ${baseStyles.glowColor} 0%, transparent 70%); animation: balanced-pulse-ring 2.5s infinite;"></div>` : ''}
       </div>
       <style>
-        @keyframes pulse-glow {
-          0%, 100% { transform: scale(1); box-shadow: 0 4px 12px ${baseStyles.glowColor}${isNightMode ? ', 0 0 20px ' + baseStyles.glowColor : ''}; }
-          50% { transform: scale(1.1); box-shadow: 0 6px 20px ${baseStyles.shadowColor}${isNightMode ? ', 0 0 30px ' + baseStyles.shadowColor : ''}; }
+        @keyframes balanced-pulse-glow {
+          0%, 100% { 
+            transform: scale(1); 
+            box-shadow: 0 4px 12px ${baseStyles.glowColor}${isNightMode ? ', 0 0 20px ' + baseStyles.glowColor : ''}; 
+          }
+          50% { 
+            transform: scale(1.08); 
+            box-shadow: 0 6px 18px ${baseStyles.shadowColor}${isNightMode ? ', 0 0 25px ' + baseStyles.shadowColor : ''}; 
+          }
         }
-        @keyframes pulse-ring {
-          0% { transform: scale(0.8); opacity: 1; }
+        @keyframes hover-glow {
+          0% { transform: scale(1); }
+          100% { 
+            transform: scale(1.12); 
+            box-shadow: 0 8px 25px ${baseStyles.shadowColor}${isNightMode ? ', 0 0 35px ' + baseStyles.shadowColor : ''}; 
+          }
+        }
+        @keyframes balanced-pulse-ring {
+          0% { transform: scale(0.8); opacity: 0.7; }
           100% { transform: scale(2); opacity: 0; }
         }
       </style>
@@ -81,22 +102,22 @@ const createEmojiIcon = (emoji: string, isPulsing: boolean = false, isNightMode:
   })
 }
 
-// User location icon with 'You' label
-const createUserLocationIcon = (isNightMode: boolean = false) => {
+// Create cluster icon for multiple events at same location
+const createClusterIcon = (count: number, isNightMode: boolean = false) => {
   const baseStyles = isNightMode ? {
-    background: 'linear-gradient(135deg, #065f46, #047857)',
-    borderColor: '#10b981',
-    glowColor: 'rgba(16, 185, 129, 0.8)',
+    background: 'linear-gradient(135deg, #7c2d12, #dc2626)',
+    borderColor: '#ef4444',
+    glowColor: 'rgba(239, 68, 68, 0.8)',
     textColor: '#ffffff'
   } : {
-    background: 'linear-gradient(135deg, #065f46, #047857)',
-    borderColor: '#10b981',
-    glowColor: 'rgba(16, 185, 129, 0.4)',
+    background: 'linear-gradient(135deg, #7c2d12, #dc2626)',
+    borderColor: '#ef4444',
+    glowColor: 'rgba(239, 68, 68, 0.5)',
     textColor: '#ffffff'
   }
 
   return L.divIcon({
-    className: 'user-location-icon',
+    className: 'cluster-icon',
     html: `
       <div style="
         width: 40px;
@@ -107,40 +128,132 @@ const createUserLocationIcon = (isNightMode: boolean = false) => {
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 18px;
-        box-shadow: 0 4px 12px ${baseStyles.glowColor}${isNightMode ? ', 0 0 25px ' + baseStyles.glowColor : ''};
+        font-size: 14px;
+        font-weight: bold;
+        color: ${baseStyles.textColor};
+        box-shadow: 0 4px 15px ${baseStyles.glowColor}${isNightMode ? ', 0 0 25px ' + baseStyles.glowColor : ''};
         position: relative;
-        animation: gentle-pulse 3s infinite;
-        ${isNightMode ? 'filter: drop-shadow(0 0 15px ' + baseStyles.glowColor + ');' : ''}
+        animation: cluster-pulse 2s infinite;
+        ${isNightMode ? 'filter: drop-shadow(0 0 12px ' + baseStyles.glowColor + ');' : ''}
       ">
-        🟢
+        ${count}
         <div style="
           position: absolute;
-          top: -25px;
-          left: 50%;
-          transform: translateX(-50%);
-          background: rgba(0, 0, 0, 0.8);
-          color: ${baseStyles.textColor};
-          padding: 2px 6px;
-          border-radius: 4px;
-          font-size: 10px;
-          font-weight: bold;
-          white-space: nowrap;
-          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-          ${isNightMode ? 'border: 1px solid ' + baseStyles.borderColor + ';' : ''}
-        ">
-          YOU
-        </div>
+          inset: -4px;
+          border-radius: 50%;
+          background: radial-gradient(circle, ${baseStyles.glowColor} 0%, transparent 70%);
+          animation: cluster-ring 2s infinite;
+          z-index: -1;
+        "></div>
       </div>
       <style>
-        @keyframes gentle-pulse {
-          0%, 100% { transform: scale(1); opacity: 1; }
-          50% { transform: scale(1.05); opacity: 0.9; }
+        @keyframes cluster-pulse {
+          0%, 100% { 
+            transform: scale(1); 
+            box-shadow: 0 4px 15px ${baseStyles.glowColor}${isNightMode ? ', 0 0 25px ' + baseStyles.glowColor : ''}; 
+          }
+          50% { 
+            transform: scale(1.1); 
+            box-shadow: 0 6px 20px ${baseStyles.glowColor}${isNightMode ? ', 0 0 35px ' + baseStyles.glowColor : ''}; 
+          }
+        }
+        @keyframes cluster-ring {
+          0% { transform: scale(0.9); opacity: 0.6; }
+          100% { transform: scale(1.8); opacity: 0; }
         }
       </style>
     `,
     iconSize: [40, 40],
     iconAnchor: [20, 20]
+  })
+}
+
+// Enhanced user location icon with stronger glow and pulsing
+const createUserLocationIcon = (isNightMode: boolean = false) => {
+  const baseStyles = isNightMode ? {
+    background: 'linear-gradient(135deg, #065f46, #047857)',
+    borderColor: '#10b981',
+    glowColor: 'rgba(16, 185, 129, 1.0)',
+    shadowColor: 'rgba(16, 185, 129, 0.8)',
+    textColor: '#ffffff'
+  } : {
+    background: 'linear-gradient(135deg, #065f46, #047857)',
+    borderColor: '#10b981',
+    glowColor: 'rgba(16, 185, 129, 0.7)',
+    shadowColor: 'rgba(16, 185, 129, 0.5)',
+    textColor: '#ffffff'
+  }
+
+  return L.divIcon({
+    className: 'user-location-icon',
+    html: `
+      <div style="
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: ${baseStyles.background};
+        border: 3px solid ${baseStyles.borderColor};
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        box-shadow: 0 6px 20px ${baseStyles.glowColor}${isNightMode ? ', 0 0 35px ' + baseStyles.glowColor + ', 0 0 50px ' + baseStyles.shadowColor : ''};
+        position: relative;
+        animation: enhanced-pulse 2.5s infinite;
+        ${isNightMode ? 'filter: drop-shadow(0 0 20px ' + baseStyles.glowColor + ');' : ''}
+        z-index: 1000;
+      ">
+        🟢
+        <div style="
+          position: absolute;
+          top: -30px;
+          left: 50%;
+          transform: translateX(-50%);
+          background: rgba(0, 0, 0, 0.9);
+          color: ${baseStyles.textColor};
+          padding: 4px 8px;
+          border-radius: 6px;
+          font-size: 11px;
+          font-weight: bold;
+          white-space: nowrap;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+          ${isNightMode ? 'border: 1px solid ' + baseStyles.borderColor + ';' : ''}
+          animation: label-pulse 2.5s infinite;
+        ">
+          YOU
+        </div>
+        <div style="
+          position: absolute;
+          inset: -8px;
+          border-radius: 50%;
+          background: radial-gradient(circle, ${baseStyles.glowColor} 0%, transparent 70%);
+          animation: pulse-ring 2.5s infinite;
+          z-index: -1;
+        "></div>
+      </div>
+      <style>
+        @keyframes enhanced-pulse {
+          0%, 100% { 
+            transform: scale(1); 
+            box-shadow: 0 6px 20px ${baseStyles.glowColor}${isNightMode ? ', 0 0 35px ' + baseStyles.glowColor + ', 0 0 50px ' + baseStyles.shadowColor : ''}; 
+          }
+          50% { 
+            transform: scale(1.15); 
+            box-shadow: 0 8px 30px ${baseStyles.shadowColor}${isNightMode ? ', 0 0 45px ' + baseStyles.shadowColor + ', 0 0 65px ' + baseStyles.glowColor : ''}; 
+          }
+        }
+        @keyframes label-pulse {
+          0%, 100% { opacity: 1; transform: translateX(-50%) scale(1); }
+          50% { opacity: 0.8; transform: translateX(-50%) scale(1.05); }
+        }
+        @keyframes pulse-ring {
+          0% { transform: scale(0.8); opacity: 0.8; }
+          100% { transform: scale(2.2); opacity: 0; }
+        }
+      </style>
+    `,
+    iconSize: [44, 44],
+    iconAnchor: [22, 22]
   })
 }
 
@@ -152,6 +265,7 @@ interface EventFormData {
   description: string
   date: string
   time: string
+  category: 'casual' | 'tournament' | 'speedrun' | 'meetup'
   location: {
     country: string
     region: string
@@ -168,6 +282,7 @@ interface EventSubmissionData {
   title: string
   description: string
   date: Date
+  category: 'casual' | 'tournament' | 'speedrun' | 'meetup'
   location: {
     country: string
     region: string
@@ -198,6 +313,7 @@ const EventHostingModal: React.FC<EventHostingModalProps> = ({ isOpen, onClose, 
     description: '',
     date: '',
     time: '',
+    category: 'casual',
     location: {
       country: 'Germany',
       region: '',
@@ -257,6 +373,7 @@ const EventHostingModal: React.FC<EventHostingModalProps> = ({ isOpen, onClose, 
         description: '',
         date: '',
         time: '',
+        category: 'casual',
         location: {
           country: 'Germany',
           region: '',
@@ -346,6 +463,23 @@ const EventHostingModal: React.FC<EventHostingModalProps> = ({ isOpen, onClose, 
                 placeholder={t('map.descriptionPlaceholder')}
                 className="w-full bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-white focus:ring-2 focus:ring-yellow-500 focus:border-transparent resize-none"
               />
+            </div>
+
+            {/* Event Category */}
+            <div>
+              <label className="block text-sm font-medium text-slate-300 mb-2">
+                {t('event.category')}
+              </label>
+              <select
+                value={formData.category}
+                onChange={(e) => setFormData({ ...formData, category: e.target.value as 'casual' | 'tournament' | 'speedrun' | 'meetup' })}
+                className="w-full bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-white focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+              >
+                <option value="casual">🎮 {t('event.type.casual')}</option>
+                <option value="tournament">🏆 {t('event.type.tournament')}</option>
+                <option value="speedrun">🏁 {t('event.type.speedrun')}</option>
+                <option value="meetup">🤝 {t('event.type.meetup')}</option>
+              </select>
             </div>
 
             {/* Date and Time */}
@@ -541,6 +675,8 @@ const Battle64Map: React.FC = () => {
   const [clickedLocation, setClickedLocation] = useState<{ lat: number; lng: number } | null>(null)
   const [showOverlay, setShowOverlay] = useState(false)
   const [isNightMode, setIsNightMode] = useState(false)
+  const [isLocationLoading, setIsLocationLoading] = useState(false)
+  const [showLegend, setShowLegend] = useState(true)
 
   // Load night mode preference from localStorage
   useEffect(() => {
@@ -555,52 +691,90 @@ const Battle64Map: React.FC = () => {
     localStorage.setItem('battle64.nightmode', JSON.stringify(isNightMode))
   }, [isNightMode])
 
-  // Request location permission on component mount
-  useEffect(() => {
-    if (navigator.geolocation && user && !userLocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
+  // Enhanced location detection with reverse geocoding simulation
+  const updateUserLocation = useCallback(async () => {
+    if (!navigator.geolocation || !user) return
+
+    setIsLocationLoading(true)
+    
+    navigator.geolocation.getCurrentPosition(
+      async (position) => {
+        try {
+          // Simulate reverse geocoding - in production, use a real service
+          const lat = position.coords.latitude
+          const lng = position.coords.longitude
+          
+          // Simple region detection based on coordinates (for demo purposes)
+          let country = 'Germany'
+          let region = 'Unknown'
+          let postalCode = '00000'
+          
+          // Basic coordinate-based region detection
+          if (lat >= 47 && lat <= 55 && lng >= 5 && lng <= 15) {
+            country = 'Germany'
+            if (lat >= 52.3 && lat <= 52.7 && lng >= 13.0 && lng <= 13.8) {
+              region = 'Berlin'
+              postalCode = '10115'
+            } else if (lat >= 48.0 && lat <= 48.3 && lng >= 11.3 && lng <= 11.8) {
+              region = 'Munich'
+              postalCode = '80331'
+            } else if (lat >= 48.7 && lat <= 49.0 && lng >= 8.1 && lng <= 8.5) {
+              region = 'Stuttgart'
+              postalCode = '70173'
+            }
+          }
+          
           const location = {
             userId: user.id,
-            country: 'Germany', // Would be determined by reverse geocoding
-            region: 'Unknown',
-            postalCode: '00000',
-            coordinates: {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude
-            },
+            country,
+            region,
+            postalCode,
+            coordinates: { lat, lng },
             isVisible: true,
             lastUpdated: new Date()
           }
+          
           setUserLocation(location)
-          setMapCenter([position.coords.latitude, position.coords.longitude])
+          setMapCenter([lat, lng])
           setMapZoom(10)
-        },
-        (error) => {
-          console.warn('Location access denied:', error.message)
-          // Set a default location if user denies location access
-          const defaultLocation = {
-            userId: user.id,
-            country: 'Germany',
-            region: 'Berlin',
-            postalCode: '10115',
-            coordinates: {
-              lat: 52.5200,
-              lng: 13.4050
-            },
-            isVisible: false,
-            lastUpdated: new Date()
-          }
-          setUserLocation(defaultLocation)
-        },
-        {
-          timeout: 10000,
-          enableHighAccuracy: false,
-          maximumAge: 300000 // 5 minutes
+        } catch (error) {
+          console.error('Error processing location:', error)
+        } finally {
+          setIsLocationLoading(false)
         }
-      )
+      },
+      (error) => {
+        console.warn('Location access denied:', error.message)
+        // Set a default location if user denies location access
+        const defaultLocation = {
+          userId: user.id,
+          country: 'Germany',
+          region: 'Berlin',
+          postalCode: '10115',
+          coordinates: {
+            lat: 52.5200,
+            lng: 13.4050
+          },
+          isVisible: false,
+          lastUpdated: new Date()
+        }
+        setUserLocation(defaultLocation)
+        setIsLocationLoading(false)
+      },
+      {
+        timeout: 15000,
+        enableHighAccuracy: true,
+        maximumAge: 60000 // 1 minute
+      }
+    )
+  }, [user, setUserLocation])
+
+  // Request location permission on component mount
+  useEffect(() => {
+    if (user && !userLocation) {
+      updateUserLocation()
     }
-  }, [user, userLocation, setUserLocation])
+  }, [user, userLocation, updateUserLocation])
 
   const handleCreateEvent = async (eventData: EventSubmissionData) => {
     try {
@@ -676,44 +850,61 @@ const Battle64Map: React.FC = () => {
         gameFilter ? event.game === gameFilter : true
       )
 
-  const games = [...new Set(allEvents.map(event => event.game))]
-
-  // Cluster events that are close together
+  // Enhanced clustering logic for overlapping markers
   const clusteredEvents = useMemo(() => {
-    const CLUSTER_DISTANCE = 0.01 // ~1km at equator
     const clusters: Array<{
       position: [number, number]
       events: MapEvent[]
       isCluster: boolean
     }> = []
-
+    
+    const processedEvents = new Set<string>()
+    const CLUSTER_DISTANCE = 0.01 // ~1km clustering radius
+    
     filteredEvents.forEach(event => {
-      const existingCluster = clusters.find(cluster => {
+      if (processedEvents.has(event.id)) return
+      
+      const eventCoords = [event.location.coordinates.lat, event.location.coordinates.lng] as [number, number]
+      const nearbyEvents = filteredEvents.filter(otherEvent => {
+        if (processedEvents.has(otherEvent.id) || otherEvent.id === event.id) return false
+        
         const distance = Math.sqrt(
-          Math.pow(cluster.position[0] - event.location.coordinates.lat, 2) +
-          Math.pow(cluster.position[1] - event.location.coordinates.lng, 2)
+          Math.pow(event.location.coordinates.lat - otherEvent.location.coordinates.lat, 2) +
+          Math.pow(event.location.coordinates.lng - otherEvent.location.coordinates.lng, 2)
         )
+        
         return distance < CLUSTER_DISTANCE
       })
-
-      if (existingCluster) {
-        existingCluster.events.push(event)
-        // Update cluster position to center of all events
-        const avgLat = existingCluster.events.reduce((sum, e) => sum + e.location.coordinates.lat, 0) / existingCluster.events.length
-        const avgLng = existingCluster.events.reduce((sum, e) => sum + e.location.coordinates.lng, 0) / existingCluster.events.length
-        existingCluster.position = [avgLat, avgLng]
-        existingCluster.isCluster = existingCluster.events.length > 1
-      } else {
+      
+      if (nearbyEvents.length > 0) {
+        // Create cluster with offset positioning
+        const allEvents = [event, ...nearbyEvents]
+        allEvents.forEach(e => processedEvents.add(e.id))
+        
+        // Calculate cluster center
+        const centerLat = allEvents.reduce((sum, e) => sum + e.location.coordinates.lat, 0) / allEvents.length
+        const centerLng = allEvents.reduce((sum, e) => sum + e.location.coordinates.lng, 0) / allEvents.length
+        
         clusters.push({
-          position: [event.location.coordinates.lat, event.location.coordinates.lng],
+          position: [centerLat, centerLng],
+          events: allEvents,
+          isCluster: true
+        })
+      } else {
+        // Single event
+        processedEvents.add(event.id)
+        clusters.push({
+          position: eventCoords,
           events: [event],
           isCluster: false
         })
       }
     })
-
+    
     return clusters
   }, [filteredEvents])
+
+  const games = [...new Set(allEvents.map(event => event.game))]
 
   // Create cluster icon
   const createClusterIcon = (count: number, isNightMode: boolean = false) => {
@@ -800,18 +991,17 @@ const Battle64Map: React.FC = () => {
             </div>
             
             <div className="flex items-center gap-3">
-              {/* Unified Menu Toggle */}
+              {/* Compact Menu Toggle */}
               <button
                 onClick={() => setShowOverlay(!showOverlay)}
-                className={`px-3 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-1 ${
+                className={`p-2 rounded-lg text-sm font-medium transition-all ${
                   showOverlay 
-                    ? 'bg-yellow-600 text-black' 
-                    : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
+                    ? 'bg-yellow-600 text-black shadow-lg' 
+                    : 'bg-slate-700/80 text-slate-300 hover:bg-slate-600/80 hover:text-white'
                 }`}
                 title={showOverlay ? t('map.hideMenu') : t('map.showMenu')}
               >
                 <Settings className="w-4 h-4" />
-                <span className="hidden sm:inline">{showOverlay ? t('map.hideMenu') : t('map.showMenu')}</span>
               </button>
 
                                               {/* Quick Actions */}
@@ -846,9 +1036,11 @@ const Battle64Map: React.FC = () => {
 
       {/* Main Content - Enhanced Landscape Layout */}
       <div className="flex h-[calc(100vh-5rem)] relative">
-        {/* Unified Control Panel */}
-        {showOverlay && (
-          <div className={`absolute left-4 top-4 bottom-4 w-80 backdrop-blur-sm border rounded-xl p-4 overflow-y-auto z-10 shadow-2xl transition-all duration-300 ${
+        {/* Enhanced Slide-In Control Panel */}
+        <div className={`absolute left-0 top-0 bottom-0 z-10 transition-all duration-300 ease-out ${
+          showOverlay ? 'translate-x-0' : '-translate-x-full'
+        }`}>
+          <div className={`w-80 h-full backdrop-blur-sm border-r p-4 overflow-y-auto shadow-2xl ${
             isNightMode 
               ? 'bg-slate-900/95 border-yellow-500/50 shadow-yellow-500/20' 
               : 'bg-slate-800/95 border-slate-600'
@@ -932,16 +1124,35 @@ const Battle64Map: React.FC = () => {
             {/* User Location Status */}
             {userLocation && (
               <div className="bg-gradient-to-r from-slate-700/50 to-slate-600/50 border border-slate-500 rounded-lg p-3 mb-4">
-                <h3 className="text-sm font-semibold text-yellow-400 mb-2 flex items-center gap-2">
-                  <Target className="w-4 h-4" />
-                  {t('map.yourLocation')}
-                </h3>
+                <div className="flex items-center justify-between mb-2">
+                  <h3 className="text-sm font-semibold text-yellow-400 flex items-center gap-2">
+                    <Target className="w-4 h-4" />
+                    {t('map.yourLocation')}
+                  </h3>
+                  <button
+                    onClick={updateUserLocation}
+                    disabled={isLocationLoading}
+                    className={`p-1 rounded transition-colors ${
+                      isLocationLoading 
+                        ? 'text-slate-500 cursor-not-allowed' 
+                        : 'text-slate-300 hover:text-yellow-400 hover:bg-slate-600'
+                    }`}
+                    title={t('map.updateLocation')}
+                  >
+                    <RefreshCw className={`w-3 h-3 ${isLocationLoading ? 'animate-spin' : ''}`} />
+                  </button>
+                </div>
                 <div className="text-xs text-slate-300 space-y-1">
                   <div>{userLocation.region}, {userLocation.country}</div>
                   <div className="text-slate-400">{userLocation.postalCode}</div>
                   {showRadius && (
                     <div className="text-yellow-400 font-medium">
                       {t('map.yourRadius').replace('{radius}', distanceFilter.toString())}
+                    </div>
+                  )}
+                  {isLocationLoading && (
+                    <div className="text-blue-400 font-medium">
+                      Updating location...
                     </div>
                   )}
                 </div>
@@ -1028,7 +1239,7 @@ const Battle64Map: React.FC = () => {
               </div>
             </div>
           </div>
-        )}
+        </div>
 
         {/* Center - Enhanced Interactive Map */}
         <div className="flex-1 relative">
@@ -1056,10 +1267,22 @@ const Battle64Map: React.FC = () => {
                   position={[userLocation.coordinates.lat, userLocation.coordinates.lng]}
                   icon={createUserLocationIcon(isNightMode)}
                 >
-                  <Popup>
-                    <div className="text-center">
-                      <strong>{t('map.yourLocation')}</strong><br />
-                      {userLocation.region}, {userLocation.country}
+                  <Popup className={isNightMode ? 'night-mode-popup' : ''}>
+                    <div className={`text-center p-2 ${isNightMode ? 'bg-slate-800 text-white' : ''}`}>
+                      <div className={`font-bold text-lg mb-1 ${isNightMode ? 'text-green-400' : 'text-green-600'}`}>
+                        {t('map.youAreHere')}
+                      </div>
+                      <div className={`text-sm ${isNightMode ? 'text-slate-300' : 'text-gray-700'}`}>
+                        {userLocation.region}, {userLocation.country}
+                      </div>
+                      <div className={`text-xs mt-1 ${isNightMode ? 'text-slate-400' : 'text-gray-500'}`}>
+                        {userLocation.postalCode}
+                      </div>
+                      {showRadius && (
+                        <div className={`text-xs mt-2 ${isNightMode ? 'text-yellow-400' : 'text-yellow-600'}`}>
+                          Search radius: {distanceFilter}km
+                        </div>
+                      )}
                     </div>
                   </Popup>
                 </Marker>
@@ -1158,9 +1381,23 @@ const Battle64Map: React.FC = () => {
                       </>
                     ) : (
                       <>
-                        <h4 className={`font-bold text-lg mb-1 ${isNightMode ? 'text-yellow-400' : 'text-yellow-600'}`}>
-                          {cluster.events[0].title}
-                        </h4>
+                        <div className="flex items-center justify-between mb-2">
+                          <h4 className={`font-bold text-lg ${isNightMode ? 'text-yellow-400' : 'text-yellow-600'}`}>
+                            {cluster.events[0].title}
+                          </h4>
+                          {cluster.events[0].category && (
+                            <span className={`px-2 py-1 rounded text-xs font-medium ${
+                              cluster.events[0].category === 'tournament' ? 'bg-red-500/20 text-red-400 border border-red-500/30' :
+                              cluster.events[0].category === 'speedrun' ? 'bg-blue-500/20 text-blue-400 border border-blue-500/30' :
+                              cluster.events[0].category === 'meetup' ? 'bg-green-500/20 text-green-400 border border-green-500/30' :
+                              'bg-yellow-500/20 text-yellow-400 border border-yellow-500/30'
+                            }`}>
+                              {cluster.events[0].category === 'tournament' ? '🏆' :
+                               cluster.events[0].category === 'speedrun' ? '🏁' :
+                               cluster.events[0].category === 'meetup' ? '🤝' : '🎮'}
+                            </span>
+                          )}
+                        </div>
                         <p className={`text-sm mb-2 font-medium ${isNightMode ? 'text-yellow-300' : 'text-gray-600'}`}>
                           {cluster.events[0].game}
                         </p>
@@ -1229,47 +1466,50 @@ const Battle64Map: React.FC = () => {
             ))}
           </MapContainer>
 
-          {/* Enhanced Map Legend */}
-          <div className={`absolute bottom-4 left-4 backdrop-blur-sm rounded-xl p-4 border shadow-2xl transition-all duration-300 ${
-            isNightMode 
-              ? 'bg-slate-900/95 border-yellow-500/50 shadow-yellow-500/20' 
-              : 'bg-slate-800/95 border-slate-600'
-          }`}>
-            <div className="flex flex-col gap-3 text-sm text-slate-300">
-              <div className="flex items-center gap-2">
-                <div className={`w-4 h-4 rounded-full animate-pulse ${
-                  isNightMode ? 'bg-yellow-400 shadow-yellow-400/50 shadow-lg' : 'bg-yellow-500'
-                }`}></div>
-                <span className="font-medium">{t('map.pulsing')}</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className={`w-4 h-4 rounded-full ${
-                  isNightMode ? 'bg-blue-400 shadow-blue-400/50 shadow-lg' : 'bg-blue-500'
-                }`}></div>
-                <span>{t('map.activeUsers')}</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className={`w-4 h-4 rounded-full ${
-                  isNightMode ? 'bg-green-400 shadow-green-400/50 shadow-lg' : 'bg-green-500'
-                }`}></div>
-                <span>{t('map.yourLocation')}</span>
-              </div>
-              {isNightMode && (
-                <div className="flex items-center gap-2">
-                  <div className="w-4 h-4 bg-red-400 rounded-full shadow-red-400/50 shadow-lg"></div>
-                  <span>Event Clusters</span>
+          {/* Compact Toggleable Legend */}
+          <div className={`absolute bottom-4 left-4 transition-all duration-300`}>
+            {/* Legend Toggle Button */}
+            <button
+              onClick={() => setShowLegend(!showLegend)}
+              className={`mb-2 p-2 backdrop-blur-sm rounded-lg border shadow-lg transition-all duration-300 ${
+                isNightMode 
+                  ? 'bg-slate-900/90 border-yellow-500/50 text-yellow-400 hover:bg-slate-800/90' 
+                  : 'bg-slate-800/90 border-slate-600 text-slate-300 hover:bg-slate-700/90'
+              }`}
+              title={showLegend ? t('map.hideLegend') : t('map.showLegend')}
+            >
+              <Info className="w-4 h-4" />
+            </button>
+
+            {/* Compact Legend */}
+            {showLegend && (
+              <div className={`backdrop-blur-sm rounded-lg p-3 border shadow-lg transition-all duration-300 opacity-80 hover:opacity-100 ${
+                isNightMode 
+                  ? 'bg-slate-900/90 border-yellow-500/50 shadow-yellow-500/20' 
+                  : 'bg-slate-800/90 border-slate-600'
+              }`}>
+                <div className="flex flex-col gap-2 text-xs text-slate-300">
+                  <div className="flex items-center gap-2">
+                    <div className={`w-3 h-3 rounded-full animate-pulse ${
+                      isNightMode ? 'bg-yellow-400 shadow-yellow-400/50 shadow-sm' : 'bg-yellow-500'
+                    }`}></div>
+                    <span className="font-medium">{t('map.pulsing')}</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className={`w-3 h-3 rounded-full ${
+                      isNightMode ? 'bg-green-400 shadow-green-400/50 shadow-sm' : 'bg-green-500'
+                    }`}></div>
+                    <span>{t('map.yourLocation')}</span>
+                  </div>
+                  {isNightMode && (
+                    <div className="flex items-center gap-2">
+                      <div className="w-3 h-3 bg-red-400 rounded-full shadow-red-400/50 shadow-sm"></div>
+                      <span>Clusters</span>
+                    </div>
+                  )}
                 </div>
-              )}
-              {!user && (
-                <div className={`text-xs mt-2 p-2 rounded border ${
-                  isNightMode 
-                    ? 'text-yellow-300 bg-yellow-500/20 border-yellow-500/30' 
-                    : 'text-yellow-400 bg-yellow-500/10 border-yellow-500/20'
-                }`}>
-                  {t('map.clickToHost')}
-                </div>
-              )}
-            </div>
+              </div>
+            )}
           </div>
 
           {/* Click to Host Hint */}
@@ -1315,7 +1555,21 @@ const Battle64Map: React.FC = () => {
               
               <div className="space-y-3">
                 <div>
-                  <div className="font-medium text-white text-lg">{selectedEvent.title}</div>
+                  <div className="flex items-center justify-between mb-1">
+                    <div className="font-medium text-white text-lg">{selectedEvent.title}</div>
+                    {selectedEvent.category && (
+                      <span className={`px-2 py-1 rounded text-xs font-medium ${
+                        selectedEvent.category === 'tournament' ? 'bg-red-500/20 text-red-400 border border-red-500/30' :
+                        selectedEvent.category === 'speedrun' ? 'bg-blue-500/20 text-blue-400 border border-blue-500/30' :
+                        selectedEvent.category === 'meetup' ? 'bg-green-500/20 text-green-400 border border-green-500/30' :
+                        'bg-yellow-500/20 text-yellow-400 border border-yellow-500/30'
+                      }`}>
+                        {selectedEvent.category === 'tournament' ? '🏆 Tournament' :
+                         selectedEvent.category === 'speedrun' ? '🏁 Speedrun' :
+                         selectedEvent.category === 'meetup' ? '🤝 Meetup' : '🎮 Casual'}
+                      </span>
+                    )}
+                  </div>
                   <div className="text-sm text-yellow-400 font-medium">{selectedEvent.game}</div>
                 </div>
                 
