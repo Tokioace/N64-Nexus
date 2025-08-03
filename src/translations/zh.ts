@@ -89,6 +89,14 @@ const zh = {
   'map.eventTooFar': '活动距离{distance}公里，但您的限制是{limit}公里',
   'map.away': '距离',
   'map.countryStats': '国家统计',
+  'map.clickToHost': '点击地图举办活动',
+  'map.tooFarToJoin': '距离太远无法参加',
+  'map.youJoined': '您已加入活动！',
+  'map.hostedSuccessfully': '活动举办成功！',
+  'map.radiusDisplay': '显示半径',
+  'map.yourRadius': '您的半径：{radius}公里',
+  'map.pulsing': '直播活动',
+  'map.joinableEvent': '可参加的活动',
 
   // Common
   'common.welcome': '欢迎',

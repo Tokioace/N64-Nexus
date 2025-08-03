@@ -89,6 +89,14 @@ const ko = {
   'map.eventTooFar': '이벤트가 {distance}km 떨어져 있지만 한계는 {limit}km입니다',
   'map.away': '떨어진',
   'map.countryStats': '국가 통계',
+  'map.clickToHost': '지도를 클릭하여 이벤트 주최',
+  'map.tooFarToJoin': '참가하기에는 너무 멀어요',
+  'map.youJoined': '이벤트에 참가했습니다!',
+  'map.hostedSuccessfully': '이벤트 주최가 성공했습니다!',
+  'map.radiusDisplay': '반경 표시',
+  'map.yourRadius': '당신의 반경: {radius}km',
+  'map.pulsing': '라이브 이벤트',
+  'map.joinableEvent': '참가 가능한 이벤트',
 
   // Common
   'common.welcome': '환영합니다',

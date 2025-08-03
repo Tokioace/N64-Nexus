@@ -89,6 +89,14 @@ const tr = {
   'map.eventTooFar': 'Etkinlik {distance}km uzakta, ancak sınırınız {limit}km',
   'map.away': 'uzakta',
   'map.countryStats': 'Ülke İstatistikleri',
+  'map.clickToHost': 'Etkinlik düzenlemek için haritaya tıklayın',
+  'map.tooFarToJoin': 'Katılmak için çok uzak',
+  'map.youJoined': 'Etkinliğe katıldınız!',
+  'map.hostedSuccessfully': 'Etkinlik başarıyla düzenlendi!',
+  'map.radiusDisplay': 'Yarıçapı göster',
+  'map.yourRadius': 'Yarıçapınız: {radius}km',
+  'map.pulsing': 'Canlı Etkinlik',
+  'map.joinableEvent': 'Katılınabilir Etkinlik',
 
   // Common
   'common.welcome': 'Hoş geldin',
