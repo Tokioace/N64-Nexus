@@ -89,6 +89,14 @@ const en = {
   'map.eventTooFar': 'Event is {distance}km away, but your limit is {limit}km',
   'map.away': 'away',
   'map.countryStats': 'Country Statistics',
+  'map.clickToHost': 'Click on map to host event',
+  'map.tooFarToJoin': 'Too far away to join',
+  'map.youJoined': 'You joined the event!',
+  'map.hostedSuccessfully': 'Event hosted successfully!',
+  'map.radiusDisplay': 'Show radius',
+  'map.yourRadius': 'Your radius: {radius}km',
+  'map.pulsing': 'Live Event',
+  'map.joinableEvent': 'Joinable Event',
 
   // Common
   'common.welcome': 'Welcome',
