@@ -104,6 +104,15 @@ const ja = {
   'map.showMenu': 'メニューを表示',
   'map.hideMenu': 'メニューを非表示',
   'map.hostingTooFar': 'イベントを主催するには位置が遠すぎます',
+  'map.updateLocation': '位置を更新',
+  'map.youAreHere': 'あなたはここにいます',
+  'map.showLegend': '凡例を表示',
+  'map.hideLegend': '凡例を非表示',
+  'event.type.casual': 'カジュアルマッチ',
+  'event.type.tournament': 'トーナメント',
+  'event.type.speedrun': 'スピードランセッション',
+  'event.type.meetup': 'ミートアップ',
+  'event.category': 'イベントカテゴリー',
 
   // Common
   'common.welcome': 'ようこそ',

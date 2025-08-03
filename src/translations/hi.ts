@@ -104,6 +104,15 @@ const hi = {
   'map.showMenu': 'मेन्यू दिखाएं',
   'map.hideMenu': 'मेन्यू छुपाएं',
   'map.hostingTooFar': 'इवेंट होस्ट करने के लिए स्थान आपकी पोजीशन से बहुत दूर है',
+  'map.updateLocation': 'स्थान अपडेट करें',
+  'map.youAreHere': 'आप यहाँ हैं',
+  'map.showLegend': 'लेजेंड दिखाएं',
+  'map.hideLegend': 'लेजेंड छुपाएं',
+  'event.type.casual': 'कैजुअल मैच',
+  'event.type.tournament': 'टूर्नामेंट',
+  'event.type.speedrun': 'स्पीडरन सेशन',
+  'event.type.meetup': 'मीटअप',
+  'event.category': 'इवेंट श्रेणी',
 
   // Common
   'common.welcome': 'स्वागत है',

@@ -104,6 +104,15 @@ const tr = {
   'map.showMenu': 'Menüyü Göster',
   'map.hideMenu': 'Menüyü Gizle',
   'map.hostingTooFar': 'Etkinlik düzenlemek için konum çok uzak',
+  'map.updateLocation': 'Konumu güncelle',
+  'map.youAreHere': 'Buradasınız',
+  'map.showLegend': 'Açıklamayı göster',
+  'map.hideLegend': 'Açıklamayı gizle',
+  'event.type.casual': 'Günlük oyun',
+  'event.type.tournament': 'Turnuva',
+  'event.type.speedrun': 'Speedrun oturumu',
+  'event.type.meetup': 'Buluşma',
+  'event.category': 'Etkinlik kategorisi',
 
   // Common
   'common.welcome': 'Hoş geldin',

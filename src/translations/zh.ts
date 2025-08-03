@@ -104,6 +104,15 @@ const zh = {
   'map.showMenu': '显示菜单',
   'map.hideMenu': '隐藏菜单',
   'map.hostingTooFar': '位置离您太远，无法举办活动',
+  'map.updateLocation': '更新位置',
+  'map.youAreHere': '您在这里',
+  'map.showLegend': '显示图例',
+  'map.hideLegend': '隐藏图例',
+  'event.type.casual': '休闲比赛',
+  'event.type.tournament': '锦标赛',
+  'event.type.speedrun': '速通会话',
+  'event.type.meetup': '聚会',
+  'event.category': '活动类别',
 
   // Common
   'common.welcome': '欢迎',

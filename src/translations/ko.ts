@@ -104,6 +104,15 @@ const ko = {
   'map.showMenu': '메뉴 표시',
   'map.hideMenu': '메뉴 숨기기',
   'map.hostingTooFar': '이벤트를 주최하기에는 위치가 너무 멀어요',
+  'map.updateLocation': '위치 업데이트',
+  'map.youAreHere': '현재 위치',
+  'map.showLegend': '범례 표시',
+  'map.hideLegend': '범례 숨기기',
+  'event.type.casual': '캐주얼 매치',
+  'event.type.tournament': '토너먼트',
+  'event.type.speedrun': '스피드런 세션',
+  'event.type.meetup': '모임',
+  'event.category': '이벤트 카테고리',
 
   // Common
   'common.welcome': '환영합니다',
