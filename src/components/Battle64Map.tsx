@@ -1208,7 +1208,7 @@ const Battle64Map: React.FC = () => {
         </div>
 
         {/* Center - Enhanced Interactive Map */}
-        <div className="flex-1 relative">
+        <div className="flex-1 relative battle64-map">
           <MapContainer
             center={mapCenter}
             zoom={mapZoom}

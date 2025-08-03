@@ -45,15 +45,15 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   // Prevent body scroll when mobile sidebar is open
   useEffect(() => {
     if (isMobileSidebarOpen && isMobile) {
-      document.body.style.overflow = 'hidden'
+      document.body.style.overflowY = 'hidden'
       document.body.style.touchAction = 'none'
       document.body.style.position = 'fixed'
       document.body.style.width = '100%'
       document.body.style.top = '0'
       document.body.style.left = '0'
     } else {
-      document.body.style.overflow = ''
-      document.body.style.touchAction = ''
+      document.body.style.overflowY = 'auto'
+      document.body.style.touchAction = 'manipulation'
       document.body.style.position = ''
       document.body.style.width = ''
       document.body.style.top = ''
@@ -61,8 +61,8 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     }
 
     return () => {
-      document.body.style.overflow = ''
-      document.body.style.touchAction = ''
+      document.body.style.overflowY = 'auto'
+      document.body.style.touchAction = 'manipulation'
       document.body.style.position = ''
       document.body.style.width = ''
       document.body.style.top = ''
