@@ -24,7 +24,10 @@ import {
   Eye,
   EyeOff,
   RefreshCw,
-  Info
+  Info,
+  Home,
+  ZoomIn,
+  ZoomOut
 } from 'lucide-react'
 
 // Fix for default Leaflet markers
@@ -638,12 +641,18 @@ const MapClickHandler: React.FC<{ onMapClick: (lat: number, lng: number) => void
 }
 
 // Component to handle map center updates
-const MapCenterUpdater: React.FC<{ center: [number, number], zoom: number }> = ({ center, zoom }) => {
+const MapCenterUpdater: React.FC<{ center: [number, number], zoom: number, onMapReady?: (map: L.Map) => void }> = ({ center, zoom, onMapReady }) => {
   const map = useMap()
   
   useEffect(() => {
     map.setView(center, zoom)
   }, [map, center, zoom])
+  
+  useEffect(() => {
+    if (onMapReady) {
+      onMapReady(map)
+    }
+  }, [map, onMapReady])
   
   return null
 }
@@ -677,6 +686,7 @@ const Battle64Map: React.FC = () => {
   const [isNightMode, setIsNightMode] = useState(false)
   const [isLocationLoading, setIsLocationLoading] = useState(false)
   const [showLegend, setShowLegend] = useState(true)
+  const [mapRef, setMapRef] = useState<L.Map | null>(null)
 
   // Load night mode preference from localStorage
   useEffect(() => {
@@ -970,14 +980,25 @@ const Battle64Map: React.FC = () => {
     }
   }
 
+  const resetMapView = () => {
+    if (userLocation) {
+      setMapCenter([userLocation.coordinates.lat, userLocation.coordinates.lng])
+      setMapZoom(10)
+    } else {
+      // Default to Germany center
+      setMapCenter([51.1657, 10.4515])
+      setMapZoom(6)
+    }
+  }
+
   return (
     <div className={`h-screen overflow-hidden transition-all duration-500 ${
       isNightMode 
         ? 'bg-gradient-to-br from-slate-950 via-slate-900 to-black' 
         : 'bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900'
-    }`}>
+    }`} style={{ touchAction: 'manipulation' }}>
       {/* Enhanced Header with N64 styling */}
-      <div className="bg-gradient-to-r from-slate-800/90 to-slate-700/90 backdrop-blur-sm border-b-2 border-yellow-500/50 p-4 h-20 flex items-center shadow-xl">
+      <div className="bg-gradient-to-r from-slate-800/90 to-slate-700/90 backdrop-blur-sm border-b-2 border-yellow-500/50 p-4 h-20 flex items-center shadow-xl" style={{ touchAction: 'manipulation' }}>
         <div className="max-w-full mx-auto w-full">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
@@ -1039,12 +1060,12 @@ const Battle64Map: React.FC = () => {
         {/* Enhanced Slide-In Control Panel */}
         <div className={`absolute left-0 top-0 bottom-0 z-10 transition-all duration-300 ease-out ${
           showOverlay ? 'translate-x-0' : '-translate-x-full'
-        }`}>
+        }`} style={{ touchAction: 'manipulation' }}>
           <div className={`w-80 h-full backdrop-blur-sm border-r p-4 overflow-y-auto shadow-2xl ${
             isNightMode 
               ? 'bg-slate-900/95 border-yellow-500/50 shadow-yellow-500/20' 
               : 'bg-slate-800/95 border-slate-600'
-          }`}>
+          }`} style={{ touchAction: 'manipulation' }}>
             {/* Panel Header */}
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-lg font-bold text-yellow-400">Battle64 Map Controls</h2>
@@ -1246,8 +1267,14 @@ const Battle64Map: React.FC = () => {
           <MapContainer
             center={mapCenter}
             zoom={mapZoom}
-            style={{ height: '100%', width: '100%' }}
+            style={{ height: '100%', width: '100%', touchAction: 'auto' }}
             className="z-0"
+            zoomControl={true}
+            scrollWheelZoom={true}
+            doubleClickZoom={true}
+            touchZoom={true}
+            dragging={true}
+            boxZoom={true}
           >
             {/* Base map layer */}
             <TileLayer
@@ -1267,7 +1294,7 @@ const Battle64Map: React.FC = () => {
               />
             )}
             
-            <MapCenterUpdater center={mapCenter} zoom={mapZoom} />
+            <MapCenterUpdater center={mapCenter} zoom={mapZoom} onMapReady={setMapRef} />
             <MapClickHandler onMapClick={handleMapClick} />
 
             {/* User Location Marker with Radius Circles */}
@@ -1476,8 +1503,22 @@ const Battle64Map: React.FC = () => {
             ))}
           </MapContainer>
 
-          {/* Compact Toggleable Legend */}
+          {/* Map Controls - Bottom Left */}
           <div className={`absolute bottom-4 left-4 transition-all duration-300`}>
+            {/* Map Reset Button */}
+            <button
+              onClick={resetMapView}
+              className={`mb-2 p-2 backdrop-blur-sm rounded-lg border shadow-lg transition-all duration-300 ${
+                isNightMode 
+                  ? 'bg-slate-900/90 border-yellow-500/50 text-yellow-400 hover:bg-slate-800/90' 
+                  : 'bg-slate-800/90 border-slate-600 text-slate-300 hover:bg-slate-700/90'
+              }`}
+              title={t('map.resetView') || 'Reset View'}
+              style={{ touchAction: 'manipulation' }}
+            >
+              <Home className="w-4 h-4" />
+            </button>
+
             {/* Legend Toggle Button */}
             <button
               onClick={() => setShowLegend(!showLegend)}
@@ -1487,6 +1528,7 @@ const Battle64Map: React.FC = () => {
                   : 'bg-slate-800/90 border-slate-600 text-slate-300 hover:bg-slate-700/90'
               }`}
               title={showLegend ? t('map.hideLegend') : t('map.showLegend')}
+              style={{ touchAction: 'manipulation' }}
             >
               <Info className="w-4 h-4" />
             </button>
@@ -1528,7 +1570,7 @@ const Battle64Map: React.FC = () => {
               isNightMode 
                 ? 'bg-yellow-500/90 text-black border border-yellow-400' 
                 : 'bg-yellow-600/90 text-black'
-            }`}>
+            }`} style={{ touchAction: 'manipulation' }}>
               <div className="flex items-center gap-2">
                 <span className="animate-pulse">💡</span>
                 <span>{t('map.clickToHost')}</span>
@@ -1540,6 +1582,18 @@ const Battle64Map: React.FC = () => {
               )}
             </div>
           )}
+
+          {/* Map Zoom Tooltip */}
+          <div className={`absolute top-4 right-4 px-3 py-2 rounded-lg text-xs font-medium shadow-lg transition-all duration-300 ${
+            isNightMode 
+              ? 'bg-slate-900/90 border border-yellow-500/50 text-yellow-400' 
+              : 'bg-slate-800/90 border border-slate-600 text-slate-300'
+          }`} style={{ touchAction: 'manipulation' }}>
+            <div className="flex items-center gap-2">
+              <ZoomIn className="w-3 h-3" />
+              <span>🔍 Zoom in to see more</span>
+            </div>
+          </div>
         </div>
 
         {/* Optional Right Sidebar - Event Details */}
@@ -1548,7 +1602,7 @@ const Battle64Map: React.FC = () => {
             isNightMode 
               ? 'bg-slate-900/95 border-yellow-500/50 shadow-yellow-500/20' 
               : 'bg-slate-800/95 border-slate-600'
-          }`}>
+          }`} style={{ touchAction: 'manipulation' }}>
             <div className="bg-gradient-to-r from-slate-700/50 to-slate-600/50 border border-slate-500 rounded-lg p-4">
               <div className="flex items-center justify-between mb-3">
                 <h3 className="text-lg font-semibold text-yellow-400 flex items-center gap-2">
