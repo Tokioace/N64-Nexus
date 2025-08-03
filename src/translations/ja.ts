@@ -16,6 +16,7 @@ const ja = {
   'nav.fanart': 'ファンアート',
   'nav.newsfeed': 'ニュースフィード',
   'nav.community': 'コミュニティ',
+  'nav.map': 'Battle64 Map',
 
   // Home Screen
   'home.subtitle': 'ミレニアル世代のためのN64コミュニティ',
@@ -32,6 +33,7 @@ const ja = {
   'home.friends.subtitle': 'ソーシャルネットワーク',
   'home.fanart.subtitle': '創造性',
   'home.newsfeed.subtitle': 'アップデート',
+  'home.map.subtitle': 'Local Battles',
 
   // Common
   'common.welcome': 'ようこそ',
@@ -48,6 +50,7 @@ const ja = {
   'common.back': '戻る',
   'common.next': '次へ',
   'common.previous': '前へ',
+  'common.more': 'more',
   'common.search': '検索',
   'common.filter': 'フィルター',
   'common.sort': 'ソート',

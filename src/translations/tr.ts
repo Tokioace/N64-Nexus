@@ -16,6 +16,7 @@ const tr = {
   'nav.fanart': 'Fan Sanatı',
   'nav.newsfeed': 'Haber Akışı',
   'nav.community': 'Topluluk',
+  'nav.map': 'Battle64 Map',
 
   // Home Screen
   'home.subtitle': 'Milenyum Kuşağı için N64 Topluluğu',
@@ -32,6 +33,7 @@ const tr = {
   'home.friends.subtitle': 'Sosyal Ağ',
   'home.fanart.subtitle': 'Yaratıcılık',
   'home.newsfeed.subtitle': 'Güncellemeler',
+  'home.map.subtitle': 'Local Battles',
 
   // Common
   'common.welcome': 'Hoş geldin',
@@ -48,6 +50,7 @@ const tr = {
   'common.back': 'Geri',
   'common.next': 'İleri',
   'common.previous': 'Önceki',
+  'common.more': 'more',
   'common.search': 'Ara',
   'common.filter': 'Filtrele',
   'common.sort': 'Sırala',

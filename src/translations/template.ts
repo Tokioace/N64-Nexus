@@ -20,6 +20,7 @@ const template = {
   'nav.fanart': 'Fan Art',
   'nav.newsfeed': 'Newsfeed',
   'nav.community': 'Community',
+  'nav.map': 'Battle64 Map',
 
   // Home Screen
   'home.subtitle': 'The N64 Community for Millennials',
@@ -36,6 +37,7 @@ const template = {
   'home.friends.subtitle': 'Social Network',
   'home.fanart.subtitle': 'Creativity',
   'home.newsfeed.subtitle': 'Updates',
+  'home.map.subtitle': 'Local Battles',
 
   // Common
   'common.welcome': 'Welcome',
@@ -52,6 +54,7 @@ const template = {
   'common.back': 'Back',
   'common.next': 'Next',
   'common.previous': 'Previous',
+  'common.more': 'more',
   'common.search': 'Search',
   'common.filter': 'Filter',
   'common.sort': 'Sort',

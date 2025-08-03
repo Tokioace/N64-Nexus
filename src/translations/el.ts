@@ -16,6 +16,7 @@ const el = {
   'nav.fanart': 'Fan Art',
   'nav.newsfeed': 'Ροή Νέων',
   'nav.community': 'Κοινότητα',
+  'nav.map': 'Battle64 Map',
 
   // Home Screen
   'home.subtitle': 'Η Κοινότητα N64 για τους Millennials',
@@ -32,6 +33,7 @@ const el = {
   'home.friends.subtitle': 'Κοινωνικό Δίκτυο',
   'home.fanart.subtitle': 'Δημιουργικότητα',
   'home.newsfeed.subtitle': 'Ενημερώσεις',
+  'home.map.subtitle': 'Local Battles',
 
   // Common
   'common.welcome': 'Καλώς ήρθες',
@@ -48,6 +50,7 @@ const el = {
   'common.back': 'Πίσω',
   'common.next': 'Επόμενο',
   'common.previous': 'Προηγούμενο',
+  'common.more': 'more',
   'common.search': 'Αναζήτηση',
   'common.filter': 'Φίλτρο',
   'common.sort': 'Ταξινόμηση',

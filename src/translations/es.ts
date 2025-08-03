@@ -16,6 +16,7 @@ const es = {
   'nav.fanart': 'Fan Art',
   'nav.newsfeed': 'Noticias',
   'nav.community': 'Comunidad',
+  'nav.map': 'Battle64 Map',
 
   // Home Screen
   'home.subtitle': 'La Comunidad N64 para Millennials',
@@ -32,6 +33,7 @@ const es = {
   'home.friends.subtitle': 'Red Social',
   'home.fanart.subtitle': 'Creatividad',
   'home.newsfeed.subtitle': 'Actualizaciones',
+  'home.map.subtitle': 'Local Battles',
   'home.ended': 'Terminado',
   'home.liveEvents': 'Eventos en Vivo',
   'home.footer.tagline': 'La comunidad N64 definitiva',
@@ -59,6 +61,7 @@ const es = {
   'common.back': 'Atrás',
   'common.next': 'Siguiente',
   'common.previous': 'Anterior',
+  'common.more': 'more',
   'common.search': 'Buscar',
   'common.filter': 'Filtro',
   'common.sort': 'Ordenar',

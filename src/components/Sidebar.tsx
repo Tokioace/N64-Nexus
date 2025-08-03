@@ -19,7 +19,8 @@ import {
   MessageSquare,
   MessageCircle,
   Palette,
-  Newspaper
+  Newspaper,
+  MapPin
 } from 'lucide-react'
 
 interface SidebarProps {
@@ -101,6 +102,12 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen = false, onClose }) => {
                 <Link to="/events" onClick={handleLinkClick} className="nav-link">
                   <Trophy className="w-4 h-4 sm:w-5 sm:h-5 mr-2 sm:mr-3 flex-shrink-0" />
                   <span className="truncate">{t('nav.events')}</span>
+                </Link>
+              </li>
+              <li className={location.pathname === '/map' ? 'active' : ''}>
+                <Link to="/map" onClick={handleLinkClick} className="nav-link">
+                  <MapPin className="w-4 h-4 sm:w-5 sm:h-5 mr-2 sm:mr-3 flex-shrink-0" />
+                  <span className="truncate">{t('nav.map')}</span>
                 </Link>
               </li>
               <li className={location.pathname === '/speedrun-media' ? 'active' : ''}>

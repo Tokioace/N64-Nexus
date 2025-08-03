@@ -16,6 +16,7 @@ const hi = {
   'nav.fanart': 'फैन आर्ट',
   'nav.newsfeed': 'न्यूज़फीड',
   'nav.community': 'कम्युनिटी',
+  'nav.map': 'Battle64 Map',
 
   // Home Screen
   'home.subtitle': 'मिलेनियल्स के लिए N64 कम्युनिटी',
@@ -32,6 +33,7 @@ const hi = {
   'home.friends.subtitle': 'सोशल नेटवर्क',
   'home.fanart.subtitle': 'रचनात्मकता',
   'home.newsfeed.subtitle': 'अपडेट्स',
+  'home.map.subtitle': 'Local Battles',
 
   // Common
   'common.welcome': 'स्वागत है',
@@ -48,6 +50,7 @@ const hi = {
   'common.back': 'वापस',
   'common.next': 'अगला',
   'common.previous': 'पिछला',
+  'common.more': 'more',
   'common.search': 'खोजें',
   'common.filter': 'फिल्टर',
   'common.sort': 'सॉर्ट करें',

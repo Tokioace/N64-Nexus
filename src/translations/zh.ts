@@ -16,6 +16,7 @@ const zh = {
   'nav.fanart': '粉丝艺术',
   'nav.newsfeed': '新闻动态',
   'nav.community': '社区',
+  'nav.map': 'Battle64 Map',
 
   // Home Screen
   'home.subtitle': '千禧一代的N64社区',
@@ -32,6 +33,7 @@ const zh = {
   'home.friends.subtitle': '社交网络',
   'home.fanart.subtitle': '创意',
   'home.newsfeed.subtitle': '更新',
+  'home.map.subtitle': 'Local Battles',
 
   // Common
   'common.welcome': '欢迎',
@@ -48,6 +50,7 @@ const zh = {
   'common.back': '返回',
   'common.next': '下一个',
   'common.previous': '上一个',
+  'common.more': 'more',
   'common.search': '搜索',
   'common.filter': '筛选',
   'common.sort': '排序',

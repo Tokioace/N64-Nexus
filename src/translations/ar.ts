@@ -16,6 +16,7 @@ const ar = {
   'nav.fanart': 'فن المعجبين',
   'nav.newsfeed': 'تغذية الأخبار',
   'nav.community': 'المجتمع',
+  'nav.map': 'Battle64 Map',
 
   // Home Screen - الشاشة الرئيسية
   'home.subtitle': 'مجتمع N64 لجيل الألفية',
@@ -32,6 +33,7 @@ const ar = {
   'home.friends.subtitle': 'الشبكة الاجتماعية',
   'home.fanart.subtitle': 'الإبداع',
   'home.newsfeed.subtitle': 'التحديثات',
+  'home.map.subtitle': 'Local Battles',
 
   // Common - عام
   'common.welcome': 'مرحباً',
@@ -48,6 +50,7 @@ const ar = {
   'common.back': 'رجوع',
   'common.next': 'التالي',
   'common.previous': 'السابق',
+  'common.more': 'more',
   'common.search': 'بحث',
   'common.filter': 'تصفية',
   'common.sort': 'ترتيب',

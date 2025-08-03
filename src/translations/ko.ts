@@ -16,6 +16,7 @@ const ko = {
   'nav.fanart': '팬아트',
   'nav.newsfeed': '뉴스피드',
   'nav.community': '커뮤니티',
+  'nav.map': 'Battle64 Map',
 
   // Home Screen
   'home.subtitle': '밀레니얼 세대를 위한 N64 커뮤니티',
@@ -32,6 +33,7 @@ const ko = {
   'home.friends.subtitle': '소셜 네트워크',
   'home.fanart.subtitle': '창의성',
   'home.newsfeed.subtitle': '업데이트',
+  'home.map.subtitle': 'Local Battles',
 
   // Common
   'common.welcome': '환영합니다',
@@ -48,6 +50,7 @@ const ko = {
   'common.back': '뒤로',
   'common.next': '다음',
   'common.previous': '이전',
+  'common.more': 'more',
   'common.search': '검색',
   'common.filter': '필터',
   'common.sort': '정렬',
