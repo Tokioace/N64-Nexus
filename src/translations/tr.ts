@@ -85,6 +85,10 @@ const tr = {
   'map.allGames': 'Tüm Oyunlar',
   'map.distance': 'Mesafe',
   'map.noLimit': 'Sınır Yok',
+  'map.locationRequired': 'Etkinliklere katılmak için konum erişimi gereklidir',
+  'map.eventTooFar': 'Etkinlik {distance}km uzakta, ancak sınırınız {limit}km',
+  'map.away': 'uzakta',
+  'map.countryStats': 'Ülke İstatistikleri',
 
   // Common
   'common.welcome': 'Hoş geldin',

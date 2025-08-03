@@ -85,6 +85,10 @@ const ar = {
   'map.allGames': 'جميع الألعاب',
   'map.distance': 'المسافة',
   'map.noLimit': 'بلا حدود',
+  'map.locationRequired': 'مطلوب الوصول إلى الموقع للانضمام إلى الأحداث',
+  'map.eventTooFar': 'الحدث على بعد {distance}كم، لكن حدك هو {limit}كم',
+  'map.away': 'بعيدًا',
+  'map.countryStats': 'إحصائيات البلد',
 
   // Common - عام
   'common.welcome': 'مرحباً',

@@ -85,6 +85,10 @@ const el = {
   'map.allGames': 'Όλα τα Παιχνίδια',
   'map.distance': 'Απόσταση',
   'map.noLimit': 'Χωρίς Όριο',
+  'map.locationRequired': 'Απαιτείται πρόσβαση στην τοποθεσία για συμμετοχή σε εκδηλώσεις',
+  'map.eventTooFar': 'Η εκδήλωση είναι {distance}km μακριά, αλλά το όριό σας είναι {limit}km',
+  'map.away': 'μακριά',
+  'map.countryStats': 'Στατιστικά Χώρας',
 
   // Common
   'common.welcome': 'Καλώς ήρθες',

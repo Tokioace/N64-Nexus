@@ -82,14 +82,18 @@ const MapContext = createContext<MapContextType | undefined>(undefined)
 
 // Sample data for development
 const sampleCountryStats: CountryStats[] = [
-  { country: 'Germany', countryCode: 'DE', activeUsers: 482, totalEvents: 23, flag: '🇩🇪' },
-  { country: 'United States', countryCode: 'US', activeUsers: 1247, totalEvents: 67, flag: '🇺🇸' },
-  { country: 'Japan', countryCode: 'JP', activeUsers: 892, totalEvents: 45, flag: '🇯🇵' },
-  { country: 'United Kingdom', countryCode: 'GB', activeUsers: 356, totalEvents: 19, flag: '🇬🇧' },
-  { country: 'France', countryCode: 'FR', activeUsers: 298, totalEvents: 15, flag: '🇫🇷' },
-  { country: 'Canada', countryCode: 'CA', activeUsers: 267, totalEvents: 12, flag: '🇨🇦' },
-  { country: 'Australia', countryCode: 'AU', activeUsers: 189, totalEvents: 8, flag: '🇦🇺' },
+  { country: 'Germany', countryCode: 'DE', activeUsers: 487, totalEvents: 25, flag: '🇩🇪' },
+  { country: 'United States', countryCode: 'US', activeUsers: 1251, totalEvents: 68, flag: '🇺🇸' },
+  { country: 'Japan', countryCode: 'JP', activeUsers: 894, totalEvents: 46, flag: '🇯🇵' },
+  { country: 'United Kingdom', countryCode: 'GB', activeUsers: 360, totalEvents: 20, flag: '🇬🇧' },
+  { country: 'France', countryCode: 'FR', activeUsers: 299, totalEvents: 16, flag: '🇫🇷' },
+  { country: 'Canada', countryCode: 'CA', activeUsers: 272, totalEvents: 13, flag: '🇨🇦' },
+  { country: 'Australia', countryCode: 'AU', activeUsers: 192, totalEvents: 9, flag: '🇦🇺' },
   { country: 'Brazil', countryCode: 'BR', activeUsers: 156, totalEvents: 6, flag: '🇧🇷' },
+  { country: 'Italy', countryCode: 'IT', activeUsers: 143, totalEvents: 7, flag: '🇮🇹' },
+  { country: 'Spain', countryCode: 'ES', activeUsers: 128, totalEvents: 5, flag: '🇪🇸' },
+  { country: 'Netherlands', countryCode: 'NL', activeUsers: 95, totalEvents: 4, flag: '🇳🇱' },
+  { country: 'Sweden', countryCode: 'SE', activeUsers: 78, totalEvents: 3, flag: '🇸🇪' },
 ]
 
 const sampleEvents: MapEvent[] = [
@@ -134,6 +138,132 @@ const sampleEvents: MapEvent[] = [
     isPublic: true,
     status: 'upcoming',
     createdAt: new Date(Date.now() - 43200000)
+  },
+  {
+    id: '3',
+    hostId: 'user4',
+    hostName: 'GoldenEyePro',
+    game: 'GoldenEye 007',
+    title: 'Secret Agent Showdown',
+    description: 'Four controller splitscreen madness! Snacks provided.',
+    date: new Date(Date.now() + 86400000 * 3), // 3 days from now
+    location: {
+      country: 'United States',
+      region: 'New York',
+      postalCode: '10001',
+      coordinates: { lat: 40.7128, lng: -74.0060 }
+    },
+    maxPlayers: 4,
+    currentPlayers: 3,
+    participants: ['user4', 'user5', 'user6'],
+    isPublic: true,
+    status: 'upcoming',
+    createdAt: new Date(Date.now() - 86400000 * 2)
+  },
+  {
+    id: '4',
+    hostId: 'user7',
+    hostName: 'MarioPartyKing',
+    game: 'Mario Party',
+    title: 'Board Game Chaos Night',
+    description: 'Pizza, friends, and mini-games! What more do you need?',
+    date: new Date(Date.now() + 86400000 * 7), // 7 days from now
+    location: {
+      country: 'Japan',
+      region: 'Tokyo',
+      postalCode: '100-0001',
+      coordinates: { lat: 35.6762, lng: 139.6503 }
+    },
+    maxPlayers: 4,
+    currentPlayers: 2,
+    participants: ['user7', 'user8'],
+    isPublic: true,
+    status: 'upcoming',
+    createdAt: new Date(Date.now() - 86400000)
+  },
+  {
+    id: '5',
+    hostId: 'user9',
+    hostName: 'ZeldaMaster',
+    game: 'The Legend of Zelda: Ocarina of Time',
+    title: 'Speedrun Competition',
+    description: 'Any% category, best time wins! Recording equipment available.',
+    date: new Date(Date.now() + 86400000 * 4), // 4 days from now
+    location: {
+      country: 'United Kingdom',
+      region: 'London',
+      postalCode: 'SW1A 1AA',
+      coordinates: { lat: 51.5074, lng: -0.1278 }
+    },
+    maxPlayers: 6,
+    currentPlayers: 4,
+    participants: ['user9', 'user10', 'user11', 'user12'],
+    isPublic: true,
+    status: 'upcoming',
+    createdAt: new Date(Date.now() - 86400000 * 3)
+  },
+  {
+    id: '6',
+    hostId: 'user13',
+    hostName: 'F-ZeroRacer',
+    game: 'F-Zero X',
+    title: 'High Speed Racing League',
+    description: 'Mute City or bust! Bring your A-game.',
+    date: new Date(Date.now() + 86400000 * 6), // 6 days from now
+    location: {
+      country: 'France',
+      region: 'Paris',
+      postalCode: '75001',
+      coordinates: { lat: 48.8566, lng: 2.3522 }
+    },
+    maxPlayers: 4,
+    currentPlayers: 1,
+    participants: ['user13'],
+    isPublic: true,
+    status: 'upcoming',
+    createdAt: new Date(Date.now() - 86400000)
+  },
+  {
+    id: '7',
+    hostId: 'user14',
+    hostName: 'TennisAce',
+    game: 'Mario Tennis',
+    title: 'Court Champions Tournament',
+    description: 'Singles and doubles matches. Trophies for winners!',
+    date: new Date(Date.now() + 86400000 * 8), // 8 days from now
+    location: {
+      country: 'Canada',
+      region: 'Toronto',
+      postalCode: 'M5H 2N2',
+      coordinates: { lat: 43.6532, lng: -79.3832 }
+    },
+    maxPlayers: 8,
+    currentPlayers: 5,
+    participants: ['user14', 'user15', 'user16', 'user17', 'user18'],
+    isPublic: true,
+    status: 'upcoming',
+    createdAt: new Date(Date.now() - 86400000 * 2)
+  },
+  {
+    id: '8',
+    hostId: 'user19',
+    hostName: 'RetroGamer',
+    game: 'Super Mario 64',
+    title: 'Platforming Perfection',
+    description: 'Star collecting competition! 120 stars or die trying.',
+    date: new Date(Date.now() + 86400000 * 9), // 9 days from now
+    location: {
+      country: 'Australia',
+      region: 'Sydney',
+      postalCode: '2000',
+      coordinates: { lat: -33.8688, lng: 151.2093 }
+    },
+    maxPlayers: 6,
+    currentPlayers: 3,
+    participants: ['user19', 'user20', 'user21'],
+    isPublic: true,
+    status: 'upcoming',
+    createdAt: new Date(Date.now() - 86400000)
   }
 ]
 

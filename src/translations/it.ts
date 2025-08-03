@@ -85,6 +85,10 @@ const it = {
   'map.allGames': 'Tutti i Giochi',
   'map.distance': 'Distanza',
   'map.noLimit': 'Nessun Limite',
+  'map.locationRequired': 'Accesso alla posizione richiesto per partecipare agli eventi',
+  'map.eventTooFar': 'L\'evento è a {distance}km di distanza, ma il tuo limite è {limit}km',
+  'map.away': 'di distanza',
+  'map.countryStats': 'Statistiche per Paese',
 
   // Common
   'common.welcome': 'Benvenuto',

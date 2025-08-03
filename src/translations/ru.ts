@@ -82,6 +82,10 @@ const ru = {
   'map.allGames': 'Все Игры',
   'map.distance': 'Расстояние',
   'map.noLimit': 'Без Ограничений',
+  'map.locationRequired': 'Для участия в событиях требуется доступ к местоположению',
+  'map.eventTooFar': 'Событие находится на расстоянии {distance}км, но ваш лимит {limit}км',
+  'map.away': 'расстояние',
+  'map.countryStats': 'Статистика по странам',
 
   'common.welcome': 'Добро пожаловать',
   'common.loading': 'Загрузка...',
