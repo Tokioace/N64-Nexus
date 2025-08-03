@@ -94,6 +94,13 @@ const ru = {
   'map.yourRadius': 'Ваш радиус: {radius}км',
   'map.pulsing': 'Прямое Событие',
   'map.joinableEvent': 'Доступное Событие',
+  'map.nightMode': 'Ночной Режим',
+  'map.dayMode': 'Дневной Режим',
+  'map.enableNightMode': 'Включить Ночной Режим',
+  'map.disableNightMode': 'Отключить Ночной Режим',
+  'map.showMenu': 'Показать Меню',
+  'map.hideMenu': 'Скрыть Меню',
+  'map.hostingTooFar': 'Местоположение слишком далеко от вашей позиции для проведения события',
 
   'common.welcome': 'Добро пожаловать',
   'common.loading': 'Загрузка...',

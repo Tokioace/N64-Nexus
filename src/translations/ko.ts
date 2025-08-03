@@ -97,6 +97,13 @@ const ko = {
   'map.yourRadius': '당신의 반경: {radius}km',
   'map.pulsing': '라이브 이벤트',
   'map.joinableEvent': '참가 가능한 이벤트',
+  'map.nightMode': '야간 모드',
+  'map.dayMode': '주간 모드',
+  'map.enableNightMode': '야간 모드 활성화',
+  'map.disableNightMode': '야간 모드 비활성화',
+  'map.showMenu': '메뉴 표시',
+  'map.hideMenu': '메뉴 숨기기',
+  'map.hostingTooFar': '이벤트를 주최하기에는 위치가 너무 멀어요',
 
   // Common
   'common.welcome': '환영합니다',

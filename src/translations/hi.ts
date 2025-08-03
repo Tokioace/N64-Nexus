@@ -97,6 +97,13 @@ const hi = {
   'map.yourRadius': 'आपका रेडियस: {radius}km',
   'map.pulsing': 'लाइव इवेंट',
   'map.joinableEvent': 'शामिल होने योग्य इवेंट',
+  'map.nightMode': 'नाइट मोड',
+  'map.dayMode': 'डे मोड',
+  'map.enableNightMode': 'नाइट मोड चालू करें',
+  'map.disableNightMode': 'नाइट मोड बंद करें',
+  'map.showMenu': 'मेन्यू दिखाएं',
+  'map.hideMenu': 'मेन्यू छुपाएं',
+  'map.hostingTooFar': 'इवेंट होस्ट करने के लिए स्थान आपकी पोजीशन से बहुत दूर है',
 
   // Common
   'common.welcome': 'स्वागत है',

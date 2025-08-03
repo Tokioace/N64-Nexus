@@ -97,6 +97,13 @@ const zh = {
   'map.yourRadius': '您的半径：{radius}公里',
   'map.pulsing': '直播活动',
   'map.joinableEvent': '可参加的活动',
+  'map.nightMode': '夜间模式',
+  'map.dayMode': '日间模式',
+  'map.enableNightMode': '启用夜间模式',
+  'map.disableNightMode': '禁用夜间模式',
+  'map.showMenu': '显示菜单',
+  'map.hideMenu': '隐藏菜单',
+  'map.hostingTooFar': '位置离您太远，无法举办活动',
 
   // Common
   'common.welcome': '欢迎',

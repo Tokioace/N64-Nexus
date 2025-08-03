@@ -1213,7 +1213,7 @@ const Battle64Map: React.FC = () => {
                                   ? 'bg-yellow-500 text-black hover:bg-yellow-400'
                                   : 'bg-yellow-600 text-black hover:bg-yellow-500')
                             }`}
-                            disabled={userLocation && calculateDistance(userLocation.coordinates, cluster.events[0].location.coordinates) > distanceFilter && distanceFilter > 0}
+                            disabled={!!(userLocation && calculateDistance(userLocation.coordinates, cluster.events[0].location.coordinates) > distanceFilter && distanceFilter > 0)}
                           >
                             {userLocation && calculateDistance(userLocation.coordinates, cluster.events[0].location.coordinates) > distanceFilter && distanceFilter > 0
                               ? t('map.tooFarToJoin')
