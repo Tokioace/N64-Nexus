@@ -33,49 +33,49 @@ import Layout from './components/Layout'
 
 function App() {
   return (
-    <LanguageProvider>
-      <UserProvider>
-        <PointsProvider>
-          <InteractionProvider>
-            <QuizProvider>
-              <EventProvider>
-                <MediaProvider>
-                  <ForumProvider>
-                    <Layout>
-                    <Routes>
-                      <Route path="/" element={<HomePage />} />
-                      <Route path="/auth" element={<AuthPage />} />
-                      <Route path="/community" element={<CommunityPage />} />
-                      <Route path="/retro" element={<HomeScreenRetro />} />
-                      <Route path="/quiz" element={<QuizPage />} />
-                      <Route path="/quiz/result" element={<QuizResultPage />} />
-                      <Route path="/leaderboard" element={<LeaderboardPage />} />
-                      <Route path="/profile" element={<ProfilePage />} />
-                      <Route path="/profile/:userId" element={<ProfilePage />} />
-                      <Route path="/minigames" element={<MinigamesPage />} />
-                      <Route path="/events" element={<EventsPage />} />
-                      <Route path="/speedrun-media" element={<SpeedrunMediaPage />} />
-                      <Route path="/collector" element={<CollectorMode />} />
-                      <Route path="/marktplatz" element={<MarketplacePage />} />
-                      <Route path="/chat" element={<ChatPage />} />
-                      <Route path="/forum" element={<ErrorBoundary><ForumPage /></ErrorBoundary>} />
-                      <Route path="/forum/category/:categoryId" element={<ErrorBoundary><ForumCategoryPage /></ErrorBoundary>} />
-                      <Route path="/forum/category/:categoryId/new-thread" element={<ErrorBoundary><ForumNewThreadPage /></ErrorBoundary>} />
-                      <Route path="/forum/thread/:threadId" element={<ErrorBoundary><ForumThreadPage /></ErrorBoundary>} />
-                      <Route path="/newsfeed" element={<NewsFeedPage />} />
-                      <Route path="/fanart" element={<FanArtPage />} />
-                      <Route path="/typography-showcase" element={<TypographyShowcase />} />
-                      </Routes>
-                    </Layout>
-                  </ForumProvider>
-                </MediaProvider>
-              </EventProvider>
-            </QuizProvider>
-          </InteractionProvider>
-        </PointsProvider>
-      </UserProvider>
-    </LanguageProvider>
-  )
+      <LanguageProvider>
+        <UserProvider>
+          <PointsProvider>
+            <InteractionProvider>
+              <QuizProvider>
+                <EventProvider>
+                  <MediaProvider>
+                    <ForumProvider>
+                      <Layout>
+                      <Routes>
+                        <Route path="/" element={<HomePage />} />
+                        <Route path="/auth" element={<AuthPage />} />
+                        <Route path="/community" element={<CommunityPage />} />
+                        <Route path="/retro" element={<HomeScreenRetro />} />
+                        <Route path="/quiz" element={<QuizPage />} />
+                        <Route path="/quiz/result" element={<QuizResultPage />} />
+                        <Route path="/leaderboard" element={<LeaderboardPage />} />
+                        <Route path="/profile" element={<ProfilePage />} />
+                        <Route path="/profile/:userId" element={<ProfilePage />} />
+                        <Route path="/minigames" element={<MinigamesPage />} />
+                        <Route path="/events" element={<EventsPage />} />
+                        <Route path="/speedrun-media" element={<SpeedrunMediaPage />} />
+                        <Route path="/collector" element={<CollectorMode />} />
+                        <Route path="/marktplatz" element={<MarketplacePage />} />
+                        <Route path="/chat" element={<ChatPage />} />
+                        <Route path="/forum" element={<ErrorBoundary><ForumPage /></ErrorBoundary>} />
+                        <Route path="/forum/category/:categoryId" element={<ErrorBoundary><ForumCategoryPage /></ErrorBoundary>} />
+                        <Route path="/forum/category/:categoryId/new-thread" element={<ErrorBoundary><ForumNewThreadPage /></ErrorBoundary>} />
+                        <Route path="/forum/thread/:threadId" element={<ErrorBoundary><ForumThreadPage /></ErrorBoundary>} />
+                        <Route path="/newsfeed" element={<NewsFeedPage />} />
+                        <Route path="/fanart" element={<FanArtPage />} />
+                        <Route path="/typography-showcase" element={<TypographyShowcase />} />
+                        </Routes>
+                      </Layout>
+                    </ForumProvider>
+                  </MediaProvider>
+                </EventProvider>
+              </QuizProvider>
+            </InteractionProvider>
+          </PointsProvider>
+        </UserProvider>
+      </LanguageProvider>
+    )
 }
 
 export default App
