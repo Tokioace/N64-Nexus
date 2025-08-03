@@ -97,6 +97,13 @@ const tr = {
   'map.yourRadius': 'Yarıçapınız: {radius}km',
   'map.pulsing': 'Canlı Etkinlik',
   'map.joinableEvent': 'Katılınabilir Etkinlik',
+  'map.nightMode': 'Gece Modu',
+  'map.dayMode': 'Gündüz Modu',
+  'map.enableNightMode': 'Gece Modunu Etkinleştir',
+  'map.disableNightMode': 'Gece Modunu Devre Dışı Bırak',
+  'map.showMenu': 'Menüyü Göster',
+  'map.hideMenu': 'Menüyü Gizle',
+  'map.hostingTooFar': 'Etkinlik düzenlemek için konum çok uzak',
 
   // Common
   'common.welcome': 'Hoş geldin',

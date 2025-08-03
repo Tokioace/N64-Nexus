@@ -97,6 +97,13 @@ const ar = {
   'map.yourRadius': 'نصف قطرك: {radius}كم',
   'map.pulsing': 'حدث مباشر',
   'map.joinableEvent': 'حدث قابل للانضمام',
+  'map.nightMode': 'الوضع الليلي',
+  'map.dayMode': 'الوضع النهاري',
+  'map.enableNightMode': 'تفعيل الوضع الليلي',
+  'map.disableNightMode': 'إلغاء الوضع الليلي',
+  'map.showMenu': 'إظهار القائمة',
+  'map.hideMenu': 'إخفاء القائمة',
+  'map.hostingTooFar': 'الموقع بعيد جداً عن موقعك لإنشاء حدث',
 
   // Common - عام
   'common.welcome': 'مرحباً',

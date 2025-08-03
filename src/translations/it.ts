@@ -97,6 +97,13 @@ const it = {
   'map.yourRadius': 'Il tuo raggio: {radius}km',
   'map.pulsing': 'Evento Live',
   'map.joinableEvent': 'Evento Disponibile',
+  'map.nightMode': 'Modalità Notte',
+  'map.dayMode': 'Modalità Giorno',
+  'map.enableNightMode': 'Attiva Modalità Notte',
+  'map.disableNightMode': 'Disattiva Modalità Notte',
+  'map.showMenu': 'Mostra Menu',
+  'map.hideMenu': 'Nascondi Menu',
+  'map.hostingTooFar': 'Posizione troppo lontana dalla tua per organizzare un evento',
 
   // Common
   'common.welcome': 'Benvenuto',

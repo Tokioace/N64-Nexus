@@ -10,6 +10,38 @@ html {
   position: relative;
 }
 
+/* Battle64 Map Night Mode Styles */
+.night-mode-popup .leaflet-popup-content-wrapper {
+  background: #1e293b !important;
+  color: #ffffff !important;
+  border: 1px solid #eab308 !important;
+  box-shadow: 0 4px 20px rgba(234, 179, 8, 0.3) !important;
+}
+
+.night-mode-popup .leaflet-popup-tip {
+  background: #1e293b !important;
+  border: 1px solid #eab308 !important;
+}
+
+/* Optional CRT scanlines effect */
+.night-mode-scanlines::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.1) 2px,
+    rgba(0, 0, 0, 0.1) 4px
+  );
+  pointer-events: none;
+  z-index: 1000;
+}
+
 body {
   margin: 0;
   padding: 0;

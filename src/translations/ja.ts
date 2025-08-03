@@ -97,6 +97,13 @@ const ja = {
   'map.yourRadius': 'あなたの半径：{radius}km',
   'map.pulsing': 'ライブイベント',
   'map.joinableEvent': '参加可能なイベント',
+  'map.nightMode': 'ナイトモード',
+  'map.dayMode': 'デイモード',
+  'map.enableNightMode': 'ナイトモードを有効にする',
+  'map.disableNightMode': 'ナイトモードを無効にする',
+  'map.showMenu': 'メニューを表示',
+  'map.hideMenu': 'メニューを非表示',
+  'map.hostingTooFar': 'イベントを主催するには位置が遠すぎます',
 
   // Common
   'common.welcome': 'ようこそ',

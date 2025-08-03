@@ -97,6 +97,13 @@ const el = {
   'map.yourRadius': 'Η ακτίνα σας: {radius}km',
   'map.pulsing': 'Ζωντανή Εκδήλωση',
   'map.joinableEvent': 'Διαθέσιμη Εκδήλωση',
+  'map.nightMode': 'Νυχτερινή Λειτουργία',
+  'map.dayMode': 'Ημερήσια Λειτουργία',
+  'map.enableNightMode': 'Ενεργοποίηση Νυχτερινής Λειτουργίας',
+  'map.disableNightMode': 'Απενεργοποίηση Νυχτερινής Λειτουργίας',
+  'map.showMenu': 'Εμφάνιση Μενού',
+  'map.hideMenu': 'Απόκρυψη Μενού',
+  'map.hostingTooFar': 'Η τοποθεσία είναι πολύ μακριά από τη θέση σας για να διοργανώσετε εκδήλωση',
 
   // Common
   'common.welcome': 'Καλώς ήρθες',
