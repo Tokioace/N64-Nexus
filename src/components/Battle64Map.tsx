@@ -21,13 +21,10 @@ import {
   Target,
   Navigation,
   Settings,
-  Eye,
-  EyeOff,
   RefreshCw,
   Info,
   Home,
-  ZoomIn,
-  ZoomOut
+  ZoomIn
 } from 'lucide-react'
 
 // Fix for default Leaflet markers
@@ -641,18 +638,12 @@ const MapClickHandler: React.FC<{ onMapClick: (lat: number, lng: number) => void
 }
 
 // Component to handle map center updates
-const MapCenterUpdater: React.FC<{ center: [number, number], zoom: number, onMapReady?: (map: L.Map) => void }> = ({ center, zoom, onMapReady }) => {
+const MapCenterUpdater: React.FC<{ center: [number, number], zoom: number }> = ({ center, zoom }) => {
   const map = useMap()
   
   useEffect(() => {
     map.setView(center, zoom)
   }, [map, center, zoom])
-  
-  useEffect(() => {
-    if (onMapReady) {
-      onMapReady(map)
-    }
-  }, [map, onMapReady])
   
   return null
 }
@@ -686,7 +677,6 @@ const Battle64Map: React.FC = () => {
   const [isNightMode, setIsNightMode] = useState(false)
   const [isLocationLoading, setIsLocationLoading] = useState(false)
   const [showLegend, setShowLegend] = useState(true)
-  const [mapRef, setMapRef] = useState<L.Map | null>(null)
 
   // Load night mode preference from localStorage
   useEffect(() => {
@@ -916,52 +906,7 @@ const Battle64Map: React.FC = () => {
 
   const games = [...new Set(allEvents.map(event => event.game))]
 
-  // Create cluster icon
-  const createClusterIcon = (count: number, isNightMode: boolean = false) => {
-    const baseStyles = isNightMode ? {
-      background: 'linear-gradient(135deg, #7c2d12, #dc2626)',
-      borderColor: '#f59e0b',
-      glowColor: 'rgba(245, 158, 11, 0.8)',
-      textColor: '#ffffff'
-    } : {
-      background: 'linear-gradient(135deg, #7c2d12, #dc2626)',
-      borderColor: '#f59e0b',
-      glowColor: 'rgba(245, 158, 11, 0.4)',
-      textColor: '#ffffff'
-    }
 
-    return L.divIcon({
-      className: 'event-cluster-icon',
-      html: `
-        <div style="
-          width: 48px;
-          height: 48px;
-          border-radius: 50%;
-          background: ${baseStyles.background};
-          border: 3px solid ${baseStyles.borderColor};
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 14px;
-          font-weight: bold;
-          color: ${baseStyles.textColor};
-          box-shadow: 0 4px 12px ${baseStyles.glowColor}${isNightMode ? ', 0 0 25px ' + baseStyles.glowColor : ''};
-          animation: cluster-pulse 2s infinite;
-          ${isNightMode ? 'filter: drop-shadow(0 0 15px ' + baseStyles.glowColor + ');' : ''}
-        ">
-          ${count}
-        </div>
-        <style>
-          @keyframes cluster-pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-          }
-        </style>
-      `,
-      iconSize: [48, 48],
-      iconAnchor: [24, 24]
-    })
-  }
 
   const handleMapClick = (lat: number, lng: number) => {
     if (user) {
@@ -1294,7 +1239,7 @@ const Battle64Map: React.FC = () => {
               />
             )}
             
-            <MapCenterUpdater center={mapCenter} zoom={mapZoom} onMapReady={setMapRef} />
+            <MapCenterUpdater center={mapCenter} zoom={mapZoom} />
             <MapClickHandler onMapClick={handleMapClick} />
 
             {/* User Location Marker with Radius Circles */}
@@ -1513,7 +1458,7 @@ const Battle64Map: React.FC = () => {
                   ? 'bg-slate-900/90 border-yellow-500/50 text-yellow-400 hover:bg-slate-800/90' 
                   : 'bg-slate-800/90 border-slate-600 text-slate-300 hover:bg-slate-700/90'
               }`}
-              title={t('map.resetView') || 'Reset View'}
+              title="Reset View"
               style={{ touchAction: 'manipulation' }}
             >
               <Home className="w-4 h-4" />
