@@ -1,7 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect } from 'react'
 import { MapContainer, TileLayer, Marker, Popup, Circle, useMap, useMapEvents } from 'react-leaflet'
 import L from 'leaflet'
-import { useMap as useMapContext, MapEvent, CountryStats } from '../contexts/MapContext'
+import 'leaflet/dist/leaflet.css'
+import { useMap as useMapContext, MapEvent } from '../contexts/MapContext'
 import { useUser } from '../contexts/UserContext'
 import { useLanguage } from '../contexts/LanguageContext'
 import { 
@@ -11,14 +12,8 @@ import {
   Calendar, 
   Clock, 
   Globe, 
-  Filter, 
-  Search,
   X,
   Gamepad2,
-  MessageCircle,
-  Star,
-  ChevronLeft,
-  ChevronRight,
   Trophy,
   Target,
   Navigation,
@@ -142,26 +137,30 @@ const EventHostingModal: React.FC<EventHostingModalProps> = ({ isOpen, onClose, 
       status: 'upcoming' as const
     }
 
-    onSubmit(eventData)
-    onClose()
-    
-    // Reset form
-    setFormData({
-      game: '',
-      title: '',
-      description: '',
-      date: '',
-      time: '',
-      location: {
-        country: 'Germany',
-        region: '',
-        postalCode: '',
-        coordinates: { lat: 52.5200, lng: 13.4050 }
-      },
-      maxPlayers: 4,
-      isPublic: true,
-      inviteCode: ''
-    })
+    try {
+      onSubmit(eventData)
+      onClose()
+      
+      // Reset form
+      setFormData({
+        game: '',
+        title: '',
+        description: '',
+        date: '',
+        time: '',
+        location: {
+          country: 'Germany',
+          region: '',
+          postalCode: '',
+          coordinates: { lat: 52.5200, lng: 13.4050 }
+        },
+        maxPlayers: 4,
+        isPublic: true,
+        inviteCode: ''
+      })
+    } catch (error) {
+      console.error('Error submitting event:', error)
+    }
   }
 
   if (!isOpen) return null
@@ -455,7 +454,26 @@ const Battle64Map: React.FC = () => {
           setMapZoom(10)
         },
         (error) => {
-          console.log('Location access denied:', error)
+          console.warn('Location access denied:', error.message)
+          // Set a default location if user denies location access
+          const defaultLocation = {
+            userId: user.id,
+            country: 'Germany',
+            region: 'Berlin',
+            postalCode: '10115',
+            coordinates: {
+              lat: 52.5200,
+              lng: 13.4050
+            },
+            isVisible: false,
+            lastUpdated: new Date()
+          }
+          setUserLocation(defaultLocation)
+        },
+        {
+          timeout: 10000,
+          enableHighAccuracy: false,
+          maximumAge: 300000 // 5 minutes
         }
       )
     }
@@ -472,40 +490,68 @@ const Battle64Map: React.FC = () => {
   }
 
   const handleJoinEvent = async (eventId: string) => {
+    if (!user) {
+      alert(t('auth.loginRequired') || 'Please log in to join events')
+      return
+    }
+
     if (!userLocation) {
       alert(t('map.locationRequired'))
       return
     }
 
     const event = allEvents.find(e => e.id === eventId)
-    if (!event) return
+    if (!event) {
+      alert('Event not found')
+      return
+    }
 
-    const distance = calculateDistance(userLocation.coordinates, event.location.coordinates)
-    if (distanceFilter > 0 && distance > distanceFilter) {
-      alert(t('map.eventTooFar').replace('{distance}', distance.toFixed(1)).replace('{limit}', distanceFilter.toString()))
+    if (event.participants.includes(user.id)) {
+      alert('You are already participating in this event')
+      return
+    }
+
+    if (event.currentPlayers >= event.maxPlayers) {
+      alert('Event is full')
       return
     }
 
     try {
+      const distance = calculateDistance(userLocation.coordinates, event.location.coordinates)
+      if (distanceFilter > 0 && distance > distanceFilter) {
+        alert(t('map.eventTooFar').replace('{distance}', distance.toFixed(1)).replace('{limit}', distanceFilter.toString()))
+        return
+      }
+
       await joinEvent(eventId)
       alert(t('map.youJoined'))
     } catch (error) {
       console.error('Failed to join event:', error)
+      alert('Failed to join event. Please try again.')
     }
   }
 
   const filteredEvents = allEvents.filter(event => {
     if (gameFilter && event.game !== gameFilter) return false
     if (userLocation && distanceFilter > 0) {
-      const distance = calculateDistance(userLocation.coordinates, event.location.coordinates)
-      if (distance > distanceFilter) return false
+      try {
+        const distance = calculateDistance(userLocation.coordinates, event.location.coordinates)
+        if (distance > distanceFilter) return false
+      } catch (error) {
+        console.warn('Error calculating distance:', error)
+        return false
+      }
     }
     return true
   })
 
   const nearbyFilteredEvents = userLocation && distanceFilter > 0 
-    ? getEventsInRadius(userLocation.coordinates, distanceFilter)
-    : nearbyEvents
+    ? getEventsInRadius(userLocation.coordinates, distanceFilter).filter(event => 
+        gameFilter ? event.game === gameFilter : true
+      )
+    : nearbyEvents.filter(event => 
+        gameFilter ? event.game === gameFilter : true
+      )
 
   const games = [...new Set(allEvents.map(event => event.game))]
 
@@ -513,6 +559,8 @@ const Battle64Map: React.FC = () => {
     if (user) {
       setClickedLocation({ lat, lng })
       setIsHostingModalOpen(true)
+    } else {
+      alert(t('auth.loginRequired') || 'Please log in to host events')
     }
   }
 
@@ -537,14 +585,14 @@ const Battle64Map: React.FC = () => {
               {userLocation && (
                 <button
                   onClick={() => setShowRadius(!showRadius)}
-                  className={`px-3 py-2 rounded-lg text-sm font-medium transition-all ${
+                  className={`px-3 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-1 ${
                     showRadius 
                       ? 'bg-yellow-600 text-black' 
                       : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
                   }`}
                 >
                   {showRadius ? <Eye className="w-4 h-4" /> : <EyeOff className="w-4 h-4" />}
-                  <span className="ml-1 hidden sm:inline">{t('map.radiusDisplay')}</span>
+                  <span className="hidden sm:inline">{t('map.radiusDisplay')}</span>
                 </button>
               )}
 
