@@ -104,6 +104,15 @@ const el = {
   'map.showMenu': 'Εμφάνιση Μενού',
   'map.hideMenu': 'Απόκρυψη Μενού',
   'map.hostingTooFar': 'Η τοποθεσία είναι πολύ μακριά από τη θέση σας για να διοργανώσετε εκδήλωση',
+  'map.updateLocation': 'Ενημέρωση τοποθεσίας',
+  'map.youAreHere': 'Είστε εδώ',
+  'map.showLegend': 'Εμφάνιση υπομνήματος',
+  'map.hideLegend': 'Απόκρυψη υπομνήματος',
+  'event.type.casual': 'Αναπαυτικό παιχνίδι',
+  'event.type.tournament': 'Τουρνουά',
+  'event.type.speedrun': 'Συνεδρία Speedrun',
+  'event.type.meetup': 'Συνάντηση',
+  'event.category': 'Κατηγορία εκδήλωσης',
 
   // Common
   'common.welcome': 'Καλώς ήρθες',

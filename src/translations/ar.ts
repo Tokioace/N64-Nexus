@@ -104,6 +104,15 @@ const ar = {
   'map.showMenu': 'إظهار القائمة',
   'map.hideMenu': 'إخفاء القائمة',
   'map.hostingTooFar': 'الموقع بعيد جداً عن موقعك لإنشاء حدث',
+  'map.updateLocation': 'تحديث الموقع',
+  'map.youAreHere': 'أنت هنا',
+  'map.showLegend': 'إظهار وسيلة الإيضاح',
+  'map.hideLegend': 'إخفاء وسيلة الإيضاح',
+  'event.type.casual': 'مباراة عادية',
+  'event.type.tournament': 'بطولة',
+  'event.type.speedrun': 'جلسة سبيدران',
+  'event.type.meetup': 'لقاء',
+  'event.category': 'فئة الحدث',
 
   // Common - عام
   'common.welcome': 'مرحباً',

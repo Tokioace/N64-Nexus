@@ -10,6 +10,7 @@ export interface MapEvent {
   title: string
   description: string
   date: Date
+  category?: 'casual' | 'tournament' | 'speedrun' | 'meetup'
   location: {
     country: string
     region: string
@@ -104,6 +105,7 @@ const sampleEvents: MapEvent[] = [
     title: 'Weekend Racing Tournament',
     description: 'Projektor vorhanden, bringt eure Controller mit!',
     date: new Date(Date.now() + 86400000 * 2), // 2 days from now
+    category: 'tournament',
     location: {
       country: 'Germany',
       region: 'Berlin',
@@ -125,6 +127,7 @@ const sampleEvents: MapEvent[] = [
     title: 'Local Smash Meetup',
     description: 'Casual games, all skill levels welcome!',
     date: new Date(Date.now() + 86400000 * 5), // 5 days from now
+    category: 'meetup',
     location: {
       country: 'Germany',
       region: 'Munich',
@@ -146,6 +149,7 @@ const sampleEvents: MapEvent[] = [
     title: 'Secret Agent Showdown',
     description: 'Four controller splitscreen madness! Snacks provided.',
     date: new Date(Date.now() + 86400000 * 3), // 3 days from now
+    category: 'casual',
     location: {
       country: 'United States',
       region: 'New York',
@@ -188,6 +192,7 @@ const sampleEvents: MapEvent[] = [
     title: 'Speedrun Competition',
     description: 'Any% category, best time wins! Recording equipment available.',
     date: new Date(Date.now() + 86400000 * 4), // 4 days from now
+    category: 'speedrun',
     location: {
       country: 'United Kingdom',
       region: 'London',
