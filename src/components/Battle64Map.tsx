@@ -14,7 +14,6 @@ import {
   Globe, 
   X,
   Gamepad2,
-  Trophy,
   Target,
   Navigation,
   Settings,
@@ -23,6 +22,7 @@ import {
 } from 'lucide-react'
 
 // Fix for default Leaflet markers
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 delete (L.Icon.Default.prototype as any)._getIconUrl
 L.Icon.Default.mergeOptions({
   iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png',
@@ -70,20 +70,55 @@ const createEmojiIcon = (emoji: string, isPulsing: boolean = false) => {
 
 // N64-themed emoji icons
 const eventIcon = createEmojiIcon('🎮', true)
-const userIcon = createEmojiIcon('👤')
 const myLocationIcon = createEmojiIcon('🟢')
+
+interface EventFormData {
+  game: string
+  title: string
+  description: string
+  date: string
+  time: string
+  location: {
+    country: string
+    region: string
+    postalCode: string
+    coordinates: { lat: number; lng: number }
+  }
+  maxPlayers: number
+  isPublic: boolean
+  inviteCode: string
+}
+
+interface EventSubmissionData {
+  game: string
+  title: string
+  description: string
+  date: Date
+  location: {
+    country: string
+    region: string
+    postalCode: string
+    coordinates: { lat: number; lng: number }
+  }
+  maxPlayers: number
+  isPublic: boolean
+  inviteCode?: string
+  hostId: string
+  hostName: string
+  status: 'upcoming'
+}
 
 interface EventHostingModalProps {
   isOpen: boolean
   onClose: () => void
-  onSubmit: (eventData: any) => void
+  onSubmit: (eventData: EventSubmissionData) => void
   clickedLocation?: { lat: number; lng: number } | null
 }
 
 const EventHostingModal: React.FC<EventHostingModalProps> = ({ isOpen, onClose, onSubmit, clickedLocation }) => {
   const { t } = useLanguage()
   const { user } = useUser()
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<EventFormData>({
     game: '',
     title: '',
     description: '',
@@ -129,13 +164,13 @@ const EventHostingModal: React.FC<EventHostingModalProps> = ({ isOpen, onClose, 
     e.preventDefault()
     if (!user) return
 
-    const eventData = {
-      ...formData,
-      hostId: user.id,
-      hostName: user.name,
-      date: new Date(`${formData.date}T${formData.time}`),
-      status: 'upcoming' as const
-    }
+          const eventData = {
+        ...formData,
+        hostId: user.id,
+        hostName: user.username,
+        date: new Date(`${formData.date}T${formData.time}`),
+        status: 'upcoming' as const
+      }
 
     try {
       onSubmit(eventData)
@@ -479,7 +514,7 @@ const Battle64Map: React.FC = () => {
     }
   }, [user, userLocation, setUserLocation])
 
-  const handleCreateEvent = async (eventData: any) => {
+  const handleCreateEvent = async (eventData: EventSubmissionData) => {
     try {
       await createEvent(eventData)
       // Show success notification

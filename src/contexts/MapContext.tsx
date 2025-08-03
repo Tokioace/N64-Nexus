@@ -1,6 +1,5 @@
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react'
+import React, { createContext, useContext, useState, useEffect, useCallback, ReactNode } from 'react'
 import { useUser } from './UserContext'
-import { useLanguage } from './LanguageContext'
 
 // Types for the Map Context
 export interface MapEvent {
@@ -269,17 +268,16 @@ const sampleEvents: MapEvent[] = [
 
 export const MapProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const { user } = useUser()
-  const { t } = useLanguage()
   
   // State
   const [userLocation, setUserLocationState] = useState<UserLocation | null>(null)
   const [allEvents, setAllEvents] = useState<MapEvent[]>(sampleEvents)
   const [nearbyEvents, setNearbyEvents] = useState<MapEvent[]>([])
-  const [countryStats, setCountryStats] = useState<CountryStats[]>(sampleCountryStats)
+  const [countryStats] = useState<CountryStats[]>(sampleCountryStats)
   const [selectedCountry, setSelectedCountry] = useState<string | null>(null)
   const [mapCenter, setMapCenter] = useState({ lat: 51.1657, lng: 10.4515 }) // Center of Germany
   const [mapZoom, setMapZoom] = useState(6)
-  const [isLoadingLocation, setIsLoadingLocation] = useState(false)
+  const [isLoadingLocation] = useState(false)
   const [isLoadingEvents, setIsLoadingEvents] = useState(false)
 
   // Calculate distance between two coordinates (Haversine formula)
@@ -296,12 +294,12 @@ export const MapProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
   }
 
   // Get events within specified radius
-  const getEventsInRadius = (coordinates: { lat: number; lng: number }, radiusKm: number): MapEvent[] => {
+  const getEventsInRadius = useCallback((coordinates: { lat: number; lng: number }, radiusKm: number): MapEvent[] => {
     return allEvents.filter(event => {
       const distance = calculateDistance(coordinates, event.location.coordinates)
       return distance <= radiusKm && event.status === 'upcoming'
     })
-  }
+  }, [allEvents])
 
   // Update nearby events when user location changes
   useEffect(() => {
@@ -309,7 +307,7 @@ export const MapProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
       const nearby = getEventsInRadius(userLocation.coordinates, 30) // 30km radius
       setNearbyEvents(nearby)
     }
-  }, [userLocation, allEvents])
+  }, [userLocation, allEvents, getEventsInRadius])
 
   // Actions
   const setUserLocation = (location: UserLocation) => {
@@ -428,6 +426,7 @@ export const MapProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
   )
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useMap = () => {
   const context = useContext(MapContext)
   if (context === undefined) {
