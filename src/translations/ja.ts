@@ -85,6 +85,10 @@ const ja = {
   'map.allGames': 'すべてのゲーム',
   'map.distance': '距離',
   'map.noLimit': '制限なし',
+  'map.locationRequired': 'イベント参加には位置情報へのアクセスが必要です',
+  'map.eventTooFar': 'イベントは{distance}km離れていますが、制限は{limit}kmです',
+  'map.away': '離れた',
+  'map.countryStats': '国別統計',
 
   // Common
   'common.welcome': 'ようこそ',

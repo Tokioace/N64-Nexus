@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { useMap, MapEvent, CountryStats } from '../contexts/MapContext'
+import { MapContainer, TileLayer, Marker, Popup, useMap, useMapEvents } from 'react-leaflet'
+import L from 'leaflet'
+import { useMap as useMapContext, MapEvent, CountryStats } from '../contexts/MapContext'
 import { useUser } from '../contexts/UserContext'
 import { useLanguage } from '../contexts/LanguageContext'
 import { 
@@ -18,8 +20,46 @@ import {
   ChevronLeft,
   ChevronRight,
   Trophy,
-  Target
+  Target,
+  Navigation
 } from 'lucide-react'
+
+// Fix for default Leaflet markers
+delete (L.Icon.Default.prototype as any)._getIconUrl
+L.Icon.Default.mergeOptions({
+  iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png',
+  iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png',
+  shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
+})
+
+// Custom icons for different marker types
+const createCustomIcon = (color: string, symbol: string) => {
+  return L.divIcon({
+    className: 'custom-div-icon',
+    html: `
+      <div style="
+        background-color: ${color};
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        border: 2px solid white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: bold;
+        font-size: 12px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+      ">${symbol}</div>
+    `,
+    iconSize: [24, 24],
+    iconAnchor: [12, 12]
+  })
+}
+
+const eventIcon = createCustomIcon('#EAB308', '🎮')
+const userIcon = createCustomIcon('#3B82F6', '👤')
+const myLocationIcon = createCustomIcon('#10B981', '📍')
 
 interface EventHostingModalProps {
   isOpen: boolean
@@ -309,84 +349,25 @@ const EventHostingModal: React.FC<EventHostingModalProps> = ({ isOpen, onClose, 
   )
 }
 
-// Simple world map component (placeholder for actual map implementation)
-const WorldMap: React.FC<{
-  events: MapEvent[]
-  countryStats: CountryStats[]
-  onCountryClick: (countryCode: string) => void
-  onEventClick: (event: MapEvent) => void
-  selectedCountry: string | null
-}> = ({ events, countryStats, onCountryClick, onEventClick, selectedCountry }) => {
-  const { t } = useLanguage()
+// Component to handle map click events
+const MapClickHandler: React.FC<{ onMapClick: (lat: number, lng: number) => void }> = ({ onMapClick }) => {
+  useMapEvents({
+    click: (e) => {
+      onMapClick(e.latlng.lat, e.latlng.lng)
+    }
+  })
+  return null
+}
 
-  return (
-    <div className="relative w-full h-full bg-slate-900 rounded-lg overflow-hidden border border-slate-600">
-      {/* Map Header */}
-      <div className="absolute top-4 left-4 right-4 z-10">
-        <div className="bg-slate-800/90 backdrop-blur-sm rounded-lg p-3 border border-slate-600">
-          <div className="flex items-center justify-between">
-            <h3 className="text-lg font-semibold text-yellow-400 flex items-center gap-2">
-              <Globe className="w-5 h-5" />
-              {t('map.worldMap')}
-            </h3>
-            <div className="text-sm text-slate-300">
-              {events.length} {t('map.activeEvents')}
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Simplified World Map with Country Regions */}
-      <div className="w-full h-full flex items-center justify-center p-8 pt-20">
-        <div className="grid grid-cols-4 gap-4 w-full max-w-4xl">
-          {countryStats.map((country) => (
-            <button
-              key={country.countryCode}
-              onClick={() => onCountryClick(country.countryCode)}
-              className={`p-4 rounded-lg border-2 transition-all hover:scale-105 ${
-                selectedCountry === country.countryCode
-                  ? 'border-yellow-500 bg-yellow-500/20'
-                  : 'border-slate-600 bg-slate-800/50 hover:border-slate-500'
-              }`}
-            >
-              <div className="text-2xl mb-2">{country.flag}</div>
-              <div className="text-sm font-medium text-white">{country.country}</div>
-              <div className="text-xs text-slate-400 mt-1">
-                <div className="flex items-center justify-center gap-1">
-                  <Users className="w-3 h-3" />
-                  {country.activeUsers}
-                </div>
-                <div className="flex items-center justify-center gap-1 mt-1">
-                  <Calendar className="w-3 h-3" />
-                  {country.totalEvents}
-                </div>
-              </div>
-            </button>
-          ))}
-        </div>
-      </div>
-
-      {/* Event Markers */}
-      <div className="absolute bottom-4 left-4 right-4">
-        <div className="bg-slate-800/90 backdrop-blur-sm rounded-lg p-3 border border-slate-600">
-          <div className="flex items-center gap-4 text-xs text-slate-300">
-            <div className="flex items-center gap-1">
-              <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-              {t('map.upcomingEvents')}
-            </div>
-            <div className="flex items-center gap-1">
-              <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
-              {t('map.activeUsers')}
-            </div>
-            <div className="flex items-center gap-1">
-              <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-              {t('map.yourLocation')}
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  )
+// Component to handle map center updates
+const MapCenterUpdater: React.FC<{ center: [number, number], zoom: number }> = ({ center, zoom }) => {
+  const map = useMap()
+  
+  useEffect(() => {
+    map.setView(center, zoom)
+  }, [map, center, zoom])
+  
+  return null
 }
 
 const Battle64Map: React.FC = () => {
@@ -401,14 +382,17 @@ const Battle64Map: React.FC = () => {
     joinEvent, 
     selectCountry,
     userLocation,
-    setUserLocation
-  } = useMap()
+    setUserLocation,
+    getEventsInRadius,
+    calculateDistance
+  } = useMapContext()
 
   const [isHostingModalOpen, setIsHostingModalOpen] = useState(false)
   const [selectedEvent, setSelectedEvent] = useState<MapEvent | null>(null)
   const [gameFilter, setGameFilter] = useState('')
   const [distanceFilter, setDistanceFilter] = useState(30)
-  const [showFilters, setShowFilters] = useState(false)
+  const [mapCenter, setMapCenter] = useState<[number, number]>([51.1657, 10.4515])
+  const [mapZoom, setMapZoom] = useState(6)
 
   // Request location permission on component mount
   useEffect(() => {
@@ -428,6 +412,8 @@ const Battle64Map: React.FC = () => {
             lastUpdated: new Date()
           }
           setUserLocation(location)
+          setMapCenter([position.coords.latitude, position.coords.longitude])
+          setMapZoom(10)
         },
         (error) => {
           console.log('Location access denied:', error)
@@ -446,6 +432,20 @@ const Battle64Map: React.FC = () => {
   }
 
   const handleJoinEvent = async (eventId: string) => {
+    if (!userLocation) {
+      alert(t('map.locationRequired'))
+      return
+    }
+
+    const event = allEvents.find(e => e.id === eventId)
+    if (!event) return
+
+    const distance = calculateDistance(userLocation.coordinates, event.location.coordinates)
+    if (distanceFilter > 0 && distance > distanceFilter) {
+      alert(t('map.eventTooFar').replace('{distance}', distance.toFixed(1)).replace('{limit}', distanceFilter.toString()))
+      return
+    }
+
     try {
       await joinEvent(eventId)
       // Show success message
@@ -456,42 +456,71 @@ const Battle64Map: React.FC = () => {
 
   const filteredEvents = allEvents.filter(event => {
     if (gameFilter && event.game !== gameFilter) return false
+    if (userLocation && distanceFilter > 0) {
+      const distance = calculateDistance(userLocation.coordinates, event.location.coordinates)
+      if (distance > distanceFilter) return false
+    }
     return true
   })
 
+  const nearbyFilteredEvents = userLocation && distanceFilter > 0 
+    ? getEventsInRadius(userLocation.coordinates, distanceFilter)
+    : nearbyEvents
+
   const games = [...new Set(allEvents.map(event => event.game))]
 
+  const handleMapClick = (lat: number, lng: number) => {
+    // Optional: Handle map clicks for future features
+  }
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
-      {/* Header */}
-      <div className="bg-slate-800/50 border-b border-slate-600 p-4">
-        <div className="max-w-7xl mx-auto">
+    <div className="h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 overflow-hidden">
+      {/* Header - Fixed height */}
+      <div className="bg-slate-800/50 border-b border-slate-600 p-3 h-16 flex items-center">
+        <div className="max-w-full mx-auto w-full">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-yellow-600 rounded-lg flex items-center justify-center">
-                <MapPin className="w-6 h-6 text-black" />
+              <div className="w-8 h-8 bg-yellow-600 rounded-lg flex items-center justify-center">
+                <MapPin className="w-5 h-5 text-black" />
               </div>
               <div>
-                <h1 className="text-2xl font-bold text-yellow-400">Battle64 Map</h1>
-                <p className="text-slate-400 text-sm">{t('map.subtitle')}</p>
+                <h1 className="text-xl font-bold text-yellow-400">Battle64 Map</h1>
+                <p className="text-slate-400 text-xs">{t('map.subtitle')}</p>
               </div>
             </div>
             
-            <div className="flex items-center gap-3">
-              <button
-                onClick={() => setShowFilters(!showFilters)}
-                className="px-4 py-2 bg-slate-700 text-white rounded-lg hover:bg-slate-600 transition-colors flex items-center gap-2"
-              >
-                <Filter className="w-4 h-4" />
-                {t('map.filters')}
-              </button>
+            <div className="flex items-center gap-2">
+              {/* Filters */}
+              <div className="flex items-center gap-2 text-sm">
+                <select
+                  value={gameFilter}
+                  onChange={(e) => setGameFilter(e.target.value)}
+                  className="bg-slate-700 border border-slate-600 rounded px-2 py-1 text-white text-xs"
+                >
+                  <option value="">{t('map.allGames')}</option>
+                  {games.map((game) => (
+                    <option key={game} value={game}>{game}</option>
+                  ))}
+                </select>
+                
+                <select
+                  value={distanceFilter}
+                  onChange={(e) => setDistanceFilter(parseInt(e.target.value))}
+                  className="bg-slate-700 border border-slate-600 rounded px-2 py-1 text-white text-xs"
+                >
+                  <option value={10}>10 km</option>
+                  <option value={30}>30 km</option>
+                  <option value={100}>100 km</option>
+                  <option value={0}>{t('map.noLimit')}</option>
+                </select>
+              </div>
               
               {user && (
                 <button
                   onClick={() => setIsHostingModalOpen(true)}
-                  className="px-6 py-2 bg-yellow-600 text-black font-semibold rounded-lg hover:bg-yellow-500 transition-colors flex items-center gap-2"
+                  className="px-4 py-1.5 bg-yellow-600 text-black font-semibold rounded-lg hover:bg-yellow-500 transition-colors flex items-center gap-1 text-sm"
                 >
-                  <Plus className="w-4 h-4" />
+                  <Plus className="w-3 h-3" />
                   {t('map.hostEvent')}
                 </button>
               )}
@@ -500,251 +529,290 @@ const Battle64Map: React.FC = () => {
         </div>
       </div>
 
-      {/* Filters Bar */}
-      {showFilters && (
-        <div className="bg-slate-800/30 border-b border-slate-600 p-4">
-          <div className="max-w-7xl mx-auto">
-            <div className="flex flex-wrap items-center gap-4">
-              <div className="flex items-center gap-2">
-                <label className="text-sm text-slate-300">{t('map.game')}:</label>
-                <select
-                  value={gameFilter}
-                  onChange={(e) => setGameFilter(e.target.value)}
-                  className="bg-slate-700 border border-slate-600 rounded px-3 py-1 text-white text-sm"
-                >
-                  <option value="">{t('map.allGames')}</option>
-                  {games.map((game) => (
-                    <option key={game} value={game}>{game}</option>
-                  ))}
-                </select>
+      {/* Main Content - Landscape Layout */}
+      <div className="flex h-[calc(100vh-4rem)]">
+        {/* Left Sidebar - Stats & Events */}
+        <div className="w-80 bg-slate-800/30 border-r border-slate-600 p-4 overflow-y-auto">
+          {/* User Location Status */}
+          {userLocation && (
+            <div className="bg-slate-800/50 border border-slate-600 rounded-lg p-3 mb-4">
+              <h3 className="text-sm font-semibold text-yellow-400 mb-2 flex items-center gap-2">
+                <Target className="w-4 h-4" />
+                {t('map.yourLocation')}
+              </h3>
+              <div className="text-xs text-slate-300 space-y-1">
+                <div>{userLocation.region}, {userLocation.country}</div>
+                <div className="text-slate-400">{userLocation.postalCode}</div>
               </div>
-              
-              <div className="flex items-center gap-2">
-                <label className="text-sm text-slate-300">{t('map.distance')}:</label>
-                <select
-                  value={distanceFilter}
-                  onChange={(e) => setDistanceFilter(parseInt(e.target.value))}
-                  className="bg-slate-700 border border-slate-600 rounded px-3 py-1 text-white text-sm"
+            </div>
+          )}
+
+          {/* Global Statistics */}
+          <div className="bg-slate-800/50 border border-slate-600 rounded-lg p-3 mb-4">
+            <h3 className="text-sm font-semibold text-yellow-400 mb-2 flex items-center gap-2">
+              <Globe className="w-4 h-4" />
+              {t('map.globalStats')}
+            </h3>
+            <div className="space-y-1 text-xs">
+              <div className="flex justify-between text-slate-300">
+                <span>{t('map.totalUsers')}:</span>
+                <span className="font-bold text-yellow-400">{countryStats.reduce((sum, country) => sum + country.activeUsers, 0)}</span>
+              </div>
+              <div className="flex justify-between text-slate-300">
+                <span>{t('map.totalEvents')}:</span>
+                <span className="font-bold text-yellow-400">{countryStats.reduce((sum, country) => sum + country.totalEvents, 0)}</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Country Stats */}
+          <div className="bg-slate-800/50 border border-slate-600 rounded-lg p-3 mb-4">
+            <h3 className="text-sm font-semibold text-yellow-400 mb-2">{t('map.countryStats')}</h3>
+            <div className="space-y-2 max-h-48 overflow-y-auto">
+              {countryStats.map((country) => (
+                <button
+                  key={country.countryCode}
+                  onClick={() => selectCountry(country.countryCode)}
+                  className={`w-full p-2 rounded border transition-all text-left ${
+                    selectedCountry === country.countryCode
+                      ? 'border-yellow-500 bg-yellow-500/20'
+                      : 'border-slate-600 bg-slate-700/30 hover:border-slate-500'
+                  }`}
                 >
-                  <option value={10}>10 km</option>
-                  <option value={30}>30 km</option>
-                  <option value={50}>50 km</option>
-                  <option value={100}>100 km</option>
-                  <option value={0}>{t('map.noLimit')}</option>
-                </select>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <span className="text-lg">{country.flag}</span>
+                      <span className="text-xs font-medium text-white">{country.country}</span>
+                    </div>
+                    <div className="text-xs text-slate-400">
+                      <div className="flex items-center gap-1">
+                        <Users className="w-3 h-3" />
+                        {country.activeUsers}
+                      </div>
+                    </div>
+                  </div>
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Nearby Events */}
+          <div className="bg-slate-800/50 border border-slate-600 rounded-lg p-3">
+            <h3 className="text-sm font-semibold text-yellow-400 mb-2 flex items-center gap-2">
+              <MapPin className="w-4 h-4" />
+              {t('map.nearbyEvents')} ({distanceFilter}km)
+            </h3>
+            <div className="space-y-2 max-h-64 overflow-y-auto">
+              {nearbyFilteredEvents.length === 0 ? (
+                <p className="text-slate-400 text-xs">{t('map.noNearbyEvents')}</p>
+              ) : (
+                nearbyFilteredEvents.map((event) => (
+                  <div
+                    key={event.id}
+                    className="p-2 bg-slate-700/50 rounded cursor-pointer hover:bg-slate-700 transition-colors"
+                    onClick={() => setSelectedEvent(event)}
+                  >
+                    <div className="font-medium text-white text-xs">{event.title}</div>
+                    <div className="text-xs text-slate-400 mt-1">
+                      {event.game} • {event.currentPlayers}/{event.maxPlayers} {t('map.players')}
+                    </div>
+                    {userLocation && (
+                      <div className="text-xs text-green-400 mt-1">
+                        {calculateDistance(userLocation.coordinates, event.location.coordinates).toFixed(1)}km {t('map.away')}
+                      </div>
+                    )}
+                  </div>
+                ))
+              )}
+            </div>
+          </div>
+        </div>
+
+        {/* Center - Interactive Map */}
+        <div className="flex-1 relative">
+          <MapContainer
+            center={mapCenter}
+            zoom={mapZoom}
+            style={{ height: '100%', width: '100%' }}
+            className="z-0"
+          >
+            <TileLayer
+              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            />
+            
+            <MapCenterUpdater center={mapCenter} zoom={mapZoom} />
+            <MapClickHandler onMapClick={handleMapClick} />
+
+            {/* User Location Marker */}
+            {userLocation && (
+              <Marker 
+                position={[userLocation.coordinates.lat, userLocation.coordinates.lng]}
+                icon={myLocationIcon}
+              >
+                <Popup>
+                  <div className="text-center">
+                    <strong>{t('map.yourLocation')}</strong><br />
+                    {userLocation.region}, {userLocation.country}
+                  </div>
+                </Popup>
+              </Marker>
+            )}
+
+            {/* Event Markers */}
+            {filteredEvents.map((event) => (
+              <Marker 
+                key={event.id}
+                position={[event.location.coordinates.lat, event.location.coordinates.lng]}
+                icon={eventIcon}
+                eventHandlers={{
+                  click: () => setSelectedEvent(event)
+                }}
+              >
+                <Popup>
+                  <div className="min-w-48">
+                    <h4 className="font-bold text-sm mb-1">{event.title}</h4>
+                    <p className="text-xs text-gray-600 mb-2">{event.game}</p>
+                    <div className="text-xs space-y-1">
+                      <div className="flex items-center gap-1">
+                        <Calendar className="w-3 h-3" />
+                        {event.date.toLocaleDateString()}
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <Clock className="w-3 h-3" />
+                        {event.date.toLocaleTimeString()}
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <Users className="w-3 h-3" />
+                        {event.currentPlayers}/{event.maxPlayers} {t('map.players')}
+                      </div>
+                    </div>
+                    {event.description && (
+                      <p className="text-xs mt-2 p-2 bg-gray-100 rounded">{event.description}</p>
+                    )}
+                  </div>
+                </Popup>
+              </Marker>
+            ))}
+          </MapContainer>
+
+          {/* Map Legend */}
+          <div className="absolute bottom-4 left-4 bg-slate-800/90 backdrop-blur-sm rounded-lg p-3 border border-slate-600">
+            <div className="flex items-center gap-4 text-xs text-slate-300">
+              <div className="flex items-center gap-1">
+                <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                {t('map.upcomingEvents')}
+              </div>
+              <div className="flex items-center gap-1">
+                <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
+                {t('map.activeUsers')}
+              </div>
+              <div className="flex items-center gap-1">
+                <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                {t('map.yourLocation')}
               </div>
             </div>
           </div>
         </div>
-      )}
 
-      {/* Main Content - Landscape Layout */}
-      <div className="max-w-7xl mx-auto p-4">
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 h-[calc(100vh-200px)]">
-          {/* Left Sidebar - Filters & Stats */}
-          <div className="lg:col-span-1 space-y-4">
-            {/* User Location Status */}
-            {userLocation && (
-              <div className="bg-slate-800/50 border border-slate-600 rounded-lg p-4">
-                <h3 className="text-lg font-semibold text-yellow-400 mb-3 flex items-center gap-2">
-                  <Target className="w-5 h-5" />
-                  {t('map.yourLocation')}
-                </h3>
-                <div className="text-sm text-slate-300 space-y-1">
-                  <div>{userLocation.region}, {userLocation.country}</div>
-                  <div className="text-slate-400">{userLocation.postalCode}</div>
-                </div>
-              </div>
-            )}
-
-            {/* Nearby Events */}
+        {/* Right Sidebar - Event Details */}
+        <div className="w-80 bg-slate-800/30 border-l border-slate-600 p-4 overflow-y-auto">
+          {selectedEvent ? (
             <div className="bg-slate-800/50 border border-slate-600 rounded-lg p-4">
               <h3 className="text-lg font-semibold text-yellow-400 mb-3 flex items-center gap-2">
-                <MapPin className="w-5 h-5" />
-                {t('map.nearbyEvents')}
+                <Gamepad2 className="w-5 h-5" />
+                {t('map.eventDetails')}
               </h3>
-              <div className="space-y-2 max-h-64 overflow-y-auto">
-                {nearbyEvents.length === 0 ? (
-                  <p className="text-slate-400 text-sm">{t('map.noNearbyEvents')}</p>
-                ) : (
-                  nearbyEvents.map((event) => (
-                    <div
-                      key={event.id}
-                      className="p-3 bg-slate-700/50 rounded-lg cursor-pointer hover:bg-slate-700 transition-colors"
-                      onClick={() => setSelectedEvent(event)}
-                    >
-                      <div className="font-medium text-white text-sm">{event.title}</div>
-                      <div className="text-xs text-slate-400 mt-1">
-                        {event.game} • {event.currentPlayers}/{event.maxPlayers} {t('map.players')}
-                      </div>
-                    </div>
-                  ))
-                )}
-              </div>
-            </div>
-
-            {/* Country Stats */}
-            <div className="bg-slate-800/50 border border-slate-600 rounded-lg p-4">
-              <h3 className="text-lg font-semibold text-yellow-400 mb-3 flex items-center gap-2">
-                <Globe className="w-5 h-5" />
-                {t('map.globalStats')}
-              </h3>
-              <div className="space-y-2 text-sm">
-                <div className="flex justify-between text-slate-300">
-                  <span>{t('map.totalUsers')}:</span>
-                  <span>{countryStats.reduce((sum, country) => sum + country.activeUsers, 0)}</span>
+              <div className="space-y-3">
+                <div>
+                  <div className="font-medium text-white">{selectedEvent.title}</div>
+                  <div className="text-sm text-slate-400">{selectedEvent.game}</div>
                 </div>
-                <div className="flex justify-between text-slate-300">
-                  <span>{t('map.totalEvents')}:</span>
-                  <span>{countryStats.reduce((sum, country) => sum + country.totalEvents, 0)}</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Center - World Map */}
-          <div className="lg:col-span-2">
-            <WorldMap
-              events={filteredEvents}
-              countryStats={countryStats}
-              onCountryClick={selectCountry}
-              onEventClick={setSelectedEvent}
-              selectedCountry={selectedCountry}
-            />
-          </div>
-
-          {/* Right Sidebar - Selected Event/Country Details */}
-          <div className="lg:col-span-1 space-y-4">
-            {selectedEvent ? (
-              <div className="bg-slate-800/50 border border-slate-600 rounded-lg p-4">
-                <h3 className="text-lg font-semibold text-yellow-400 mb-3 flex items-center gap-2">
-                  <Gamepad2 className="w-5 h-5" />
-                  {t('map.eventDetails')}
-                </h3>
-                <div className="space-y-3">
-                  <div>
-                    <div className="font-medium text-white">{selectedEvent.title}</div>
-                    <div className="text-sm text-slate-400">{selectedEvent.game}</div>
-                  </div>
-                  
-                  <div className="text-sm text-slate-300">
-                    <div className="flex items-center gap-2 mb-1">
-                      <Calendar className="w-4 h-4" />
-                      {selectedEvent.date.toLocaleDateString()}
-                    </div>
-                    <div className="flex items-center gap-2 mb-1">
-                      <Clock className="w-4 h-4" />
-                      {selectedEvent.date.toLocaleTimeString()}
-                    </div>
-                    <div className="flex items-center gap-2 mb-1">
-                      <MapPin className="w-4 h-4" />
-                      {selectedEvent.location.region}, {selectedEvent.location.country}
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Users className="w-4 h-4" />
-                      {selectedEvent.currentPlayers}/{selectedEvent.maxPlayers} {t('map.players')}
-                    </div>
-                  </div>
-
-                  {selectedEvent.description && (
-                    <div className="text-sm text-slate-300 bg-slate-700/50 p-3 rounded">
-                      {selectedEvent.description}
-                    </div>
-                  )}
-
-                  <div className="text-sm text-slate-400">
-                    {t('map.hostedBy')}: {selectedEvent.hostName}
-                  </div>
-
-                  {user && selectedEvent.hostId !== user.id && selectedEvent.currentPlayers < selectedEvent.maxPlayers && (
-                    <button
-                      onClick={() => handleJoinEvent(selectedEvent.id)}
-                      className="w-full px-4 py-2 bg-yellow-600 text-black font-semibold rounded-lg hover:bg-yellow-500 transition-colors"
-                    >
-                      {t('map.joinEvent')}
-                    </button>
-                  )}
-                </div>
-              </div>
-            ) : selectedCountry ? (
-              <div className="bg-slate-800/50 border border-slate-600 rounded-lg p-4">
-                <h3 className="text-lg font-semibold text-yellow-400 mb-3 flex items-center gap-2">
-                  <Globe className="w-5 h-5" />
-                  {t('map.countryDetails')}
-                </h3>
-                {(() => {
-                  const country = countryStats.find(c => c.countryCode === selectedCountry)
-                  if (!country) return null
-                  
-                  return (
-                    <div className="space-y-3">
-                      <div className="flex items-center gap-3">
-                        <span className="text-3xl">{country.flag}</span>
-                        <div>
-                          <div className="font-medium text-white">{country.country}</div>
-                          <div className="text-sm text-slate-400">{country.countryCode}</div>
-                        </div>
-                      </div>
-                      
-                      <div className="space-y-2 text-sm">
-                        <div className="flex justify-between text-slate-300">
-                          <span>{t('map.activeUsers')}:</span>
-                          <span>{country.activeUsers}</span>
-                        </div>
-                        <div className="flex justify-between text-slate-300">
-                          <span>{t('map.totalEvents')}:</span>
-                          <span>{country.totalEvents}</span>
-                        </div>
-                      </div>
-
-                      <button className="w-full px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-500 transition-colors flex items-center justify-center gap-2">
-                        <MessageCircle className="w-4 h-4" />
-                        {t('map.countryForum')}
-                      </button>
-                    </div>
-                  )
-                })()}
-              </div>
-            ) : (
-              <div className="bg-slate-800/50 border border-slate-600 rounded-lg p-4">
-                <h3 className="text-lg font-semibold text-yellow-400 mb-3">
-                  {t('map.welcome')}
-                </h3>
+                
                 <div className="text-sm text-slate-300 space-y-2">
-                  <p>{t('map.welcomeDescription')}</p>
-                  <ul className="space-y-1 text-slate-400">
-                    <li>• {t('map.clickCountry')}</li>
-                    <li>• {t('map.viewEvents')}</li>
-                    <li>• {t('map.hostYourOwn')}</li>
-                  </ul>
-                </div>
-              </div>
-            )}
-
-            {/* All Events List */}
-            <div className="bg-slate-800/50 border border-slate-600 rounded-lg p-4">
-              <h3 className="text-lg font-semibold text-yellow-400 mb-3 flex items-center gap-2">
-                <Trophy className="w-5 h-5" />
-                {t('map.allEvents')}
-              </h3>
-              <div className="space-y-2 max-h-64 overflow-y-auto">
-                {filteredEvents.length === 0 ? (
-                  <p className="text-slate-400 text-sm">{t('map.noEvents')}</p>
-                ) : (
-                  filteredEvents.map((event) => (
-                    <div
-                      key={event.id}
-                      className="p-2 bg-slate-700/30 rounded cursor-pointer hover:bg-slate-700/50 transition-colors"
-                      onClick={() => setSelectedEvent(event)}
-                    >
-                      <div className="font-medium text-white text-sm">{event.title}</div>
-                      <div className="text-xs text-slate-400">
-                        {event.game} • {event.location.country}
-                      </div>
+                  <div className="flex items-center gap-2">
+                    <Calendar className="w-4 h-4" />
+                    {selectedEvent.date.toLocaleDateString()}
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Clock className="w-4 h-4" />
+                    {selectedEvent.date.toLocaleTimeString()}
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <MapPin className="w-4 h-4" />
+                    {selectedEvent.location.region}, {selectedEvent.location.country}
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Users className="w-4 h-4" />
+                    {selectedEvent.currentPlayers}/{selectedEvent.maxPlayers} {t('map.players')}
+                  </div>
+                  {userLocation && (
+                    <div className="flex items-center gap-2">
+                      <Navigation className="w-4 h-4" />
+                      {calculateDistance(userLocation.coordinates, selectedEvent.location.coordinates).toFixed(1)}km {t('map.away')}
                     </div>
-                  ))
+                  )}
+                </div>
+
+                {selectedEvent.description && (
+                  <div className="text-sm text-slate-300 bg-slate-700/50 p-3 rounded">
+                    {selectedEvent.description}
+                  </div>
+                )}
+
+                <div className="text-sm text-slate-400">
+                  {t('map.hostedBy')}: {selectedEvent.hostName}
+                </div>
+
+                {user && selectedEvent.hostId !== user.id && selectedEvent.currentPlayers < selectedEvent.maxPlayers && (
+                  <button
+                    onClick={() => handleJoinEvent(selectedEvent.id)}
+                    className="w-full px-4 py-2 bg-yellow-600 text-black font-semibold rounded-lg hover:bg-yellow-500 transition-colors"
+                  >
+                    {t('map.joinEvent')}
+                  </button>
                 )}
               </div>
+            </div>
+          ) : (
+            <div className="bg-slate-800/50 border border-slate-600 rounded-lg p-4">
+              <h3 className="text-lg font-semibold text-yellow-400 mb-3">
+                {t('map.welcome')}
+              </h3>
+              <div className="text-sm text-slate-300 space-y-2">
+                <p>{t('map.welcomeDescription')}</p>
+                <ul className="space-y-1 text-slate-400">
+                  <li>• {t('map.clickCountry')}</li>
+                  <li>• {t('map.viewEvents')}</li>
+                  <li>• {t('map.hostYourOwn')}</li>
+                </ul>
+              </div>
+            </div>
+          )}
+
+          {/* All Events List */}
+          <div className="bg-slate-800/50 border border-slate-600 rounded-lg p-4 mt-4">
+            <h3 className="text-lg font-semibold text-yellow-400 mb-3 flex items-center gap-2">
+              <Trophy className="w-5 h-5" />
+              {t('map.allEvents')}
+            </h3>
+            <div className="space-y-2 max-h-64 overflow-y-auto">
+              {filteredEvents.length === 0 ? (
+                <p className="text-slate-400 text-sm">{t('map.noEvents')}</p>
+              ) : (
+                filteredEvents.map((event) => (
+                  <div
+                    key={event.id}
+                    className="p-2 bg-slate-700/30 rounded cursor-pointer hover:bg-slate-700/50 transition-colors"
+                    onClick={() => setSelectedEvent(event)}
+                  >
+                    <div className="font-medium text-white text-sm">{event.title}</div>
+                    <div className="text-xs text-slate-400">
+                      {event.game} • {event.location.country} • {event.currentPlayers}/{event.maxPlayers}
+                    </div>
+                  </div>
+                ))
+              )}
             </div>
           </div>
         </div>

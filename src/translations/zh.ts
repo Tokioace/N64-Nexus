@@ -85,6 +85,10 @@ const zh = {
   'map.allGames': '所有游戏',
   'map.distance': '距离',
   'map.noLimit': '无限制',
+  'map.locationRequired': '需要位置访问权限才能参加活动',
+  'map.eventTooFar': '活动距离{distance}公里，但您的限制是{limit}公里',
+  'map.away': '距离',
+  'map.countryStats': '国家统计',
 
   // Common
   'common.welcome': '欢迎',

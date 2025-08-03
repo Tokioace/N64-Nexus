@@ -85,6 +85,10 @@ const hi = {
   'map.allGames': 'सभी गेम्स',
   'map.distance': 'दूरी',
   'map.noLimit': 'कोई सीमा नहीं',
+  'map.locationRequired': 'इवेंट्स में शामिल होने के लिए स्थान पहुंच आवश्यक है',
+  'map.eventTooFar': 'इवेंट {distance}km दूर है, लेकिन आपकी सीमा {limit}km है',
+  'map.away': 'दूर',
+  'map.countryStats': 'देश के आंकड़े',
 
   // Common
   'common.welcome': 'स्वागत है',
