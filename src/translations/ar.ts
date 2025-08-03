@@ -89,6 +89,14 @@ const ar = {
   'map.eventTooFar': 'الحدث على بعد {distance}كم، لكن حدك هو {limit}كم',
   'map.away': 'بعيدًا',
   'map.countryStats': 'إحصائيات البلد',
+  'map.clickToHost': 'انقر على الخريطة لاستضافة حدث',
+  'map.tooFarToJoin': 'بعيد جداً للانضمام',
+  'map.youJoined': 'لقد انضممت إلى الحدث!',
+  'map.hostedSuccessfully': 'تم إنشاء الحدث بنجاح!',
+  'map.radiusDisplay': 'إظهار نصف القطر',
+  'map.yourRadius': 'نصف قطرك: {radius}كم',
+  'map.pulsing': 'حدث مباشر',
+  'map.joinableEvent': 'حدث قابل للانضمام',
 
   // Common - عام
   'common.welcome': 'مرحباً',

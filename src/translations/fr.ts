@@ -89,6 +89,14 @@ const fr = {
   'map.eventTooFar': 'L\'événement est à {distance}km, mais votre limite est {limit}km',
   'map.away': 'de distance',
   'map.countryStats': 'Statistiques par Pays',
+  'map.clickToHost': 'Cliquez sur la carte pour organiser un événement',
+  'map.tooFarToJoin': 'Trop loin pour rejoindre',
+  'map.youJoined': 'Vous avez rejoint l\'événement !',
+  'map.hostedSuccessfully': 'Événement organisé avec succès !',
+  'map.radiusDisplay': 'Afficher le rayon',
+  'map.yourRadius': 'Votre rayon : {radius}km',
+  'map.pulsing': 'Événement en Direct',
+  'map.joinableEvent': 'Événement Disponible',
 
   // Common
   'common.welcome': 'Bienvenue',

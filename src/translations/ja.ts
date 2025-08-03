@@ -89,6 +89,14 @@ const ja = {
   'map.eventTooFar': 'イベントは{distance}km離れていますが、制限は{limit}kmです',
   'map.away': '離れた',
   'map.countryStats': '国別統計',
+  'map.clickToHost': 'マップをクリックしてイベントを主催',
+  'map.tooFarToJoin': '参加するには遠すぎます',
+  'map.youJoined': 'イベントに参加しました！',
+  'map.hostedSuccessfully': 'イベントの主催が成功しました！',
+  'map.radiusDisplay': '半径を表示',
+  'map.yourRadius': 'あなたの半径：{radius}km',
+  'map.pulsing': 'ライブイベント',
+  'map.joinableEvent': '参加可能なイベント',
 
   // Common
   'common.welcome': 'ようこそ',

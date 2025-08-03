@@ -89,6 +89,14 @@ const el = {
   'map.eventTooFar': 'Η εκδήλωση είναι {distance}km μακριά, αλλά το όριό σας είναι {limit}km',
   'map.away': 'μακριά',
   'map.countryStats': 'Στατιστικά Χώρας',
+  'map.clickToHost': 'Κάντε κλικ στον χάρτη για να φιλοξενήσετε εκδήλωση',
+  'map.tooFarToJoin': 'Πολύ μακριά για συμμετοχή',
+  'map.youJoined': 'Συμμετείχατε στην εκδήλωση!',
+  'map.hostedSuccessfully': 'Η εκδήλωση δημιουργήθηκε με επιτυχία!',
+  'map.radiusDisplay': 'Εμφάνιση ακτίνας',
+  'map.yourRadius': 'Η ακτίνα σας: {radius}km',
+  'map.pulsing': 'Ζωντανή Εκδήλωση',
+  'map.joinableEvent': 'Διαθέσιμη Εκδήλωση',
 
   // Common
   'common.welcome': 'Καλώς ήρθες',

@@ -89,6 +89,14 @@ const hi = {
   'map.eventTooFar': 'इवेंट {distance}km दूर है, लेकिन आपकी सीमा {limit}km है',
   'map.away': 'दूर',
   'map.countryStats': 'देश के आंकड़े',
+  'map.clickToHost': 'इवेंट होस्ट करने के लिए मैप पर क्लिक करें',
+  'map.tooFarToJoin': 'शामिल होने के लिए बहुत दूर',
+  'map.youJoined': 'आप इवेंट में शामिल हो गए!',
+  'map.hostedSuccessfully': 'इवेंट सफलतापूर्वक होस्ट किया गया!',
+  'map.radiusDisplay': 'रेडियस दिखाएं',
+  'map.yourRadius': 'आपका रेडियस: {radius}km',
+  'map.pulsing': 'लाइव इवेंट',
+  'map.joinableEvent': 'शामिल होने योग्य इवेंट',
 
   // Common
   'common.welcome': 'स्वागत है',
