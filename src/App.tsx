@@ -7,6 +7,7 @@ import { ForumProvider } from './contexts/ForumContext'
 import { LanguageProvider } from './contexts/LanguageContext'
 import { PointsProvider } from './contexts/PointsContext'
 import { InteractionProvider } from './contexts/InteractionContext'
+import { MapProvider } from './contexts/MapContext'
 import HomePage from './pages/HomePage'
 import HomeScreenRetro from './components/HomeScreenRetro'
 import AuthPage from './pages/AuthPage'
@@ -30,6 +31,7 @@ import FanArtPage from './pages/FanArtPage'
 import TypographyShowcase from './components/TypographyShowcase'
 import ErrorBoundary from './components/ErrorBoundary'
 import Layout from './components/Layout'
+import Battle64Map from './components/Battle64Map'
 
 function App() {
   return (
@@ -41,7 +43,8 @@ function App() {
                 <EventProvider>
                   <MediaProvider>
                     <ForumProvider>
-                      <Layout>
+                      <MapProvider>
+                        <Layout>
                       <Routes>
                         <Route path="/" element={<HomePage />} />
                         <Route path="/auth" element={<AuthPage />} />
@@ -64,9 +67,11 @@ function App() {
                         <Route path="/forum/thread/:threadId" element={<ErrorBoundary><ForumThreadPage /></ErrorBoundary>} />
                         <Route path="/newsfeed" element={<NewsFeedPage />} />
                         <Route path="/fanart" element={<FanArtPage />} />
+                        <Route path="/map" element={<Battle64Map />} />
                         <Route path="/typography-showcase" element={<TypographyShowcase />} />
                         </Routes>
-                      </Layout>
+                        </Layout>
+                      </MapProvider>
                     </ForumProvider>
                   </MediaProvider>
                 </EventProvider>

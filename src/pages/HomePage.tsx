@@ -12,6 +12,7 @@ import SingleFanArtCard from '../components/SingleFanArtCard'
 import SingleMediaCard from '../components/SingleMediaCard'
 import SingleRecordCard from '../components/SingleRecordCard'
 import SingleMarketplaceCard from '../components/SingleMarketplaceCard'
+import Battle64MapTile from '../components/Battle64MapTile'
 
 interface ForumThread {
   id: string
@@ -476,6 +477,11 @@ const HomePage: React.FC = () => {
               className="w-full"
             />
           </div>
+        </SafeComponent>
+
+        {/* Battle64 Map Tile */}
+        <SafeComponent name="Battle64MapTile">
+          <Battle64MapTile className="w-full" />
         </SafeComponent>
 
         {/* Forum Posts - Single card interface */}
