@@ -10,6 +10,11 @@ html {
   position: relative;
 }
 
+/* Battle64 Map Styles */
+.battle64-map {
+  touch-action: pan-x pan-y;
+}
+
 /* Battle64 Map Night Mode Styles */
 .night-mode-popup .leaflet-popup-content-wrapper {
   background: #1e293b !important;
