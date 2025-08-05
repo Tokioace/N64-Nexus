@@ -14,7 +14,8 @@ import {
   MessageCircle,
   Palette,
   Newspaper,
-  BarChart3
+  BarChart3,
+  MapPin
 } from 'lucide-react'
 
 const HomeScreenRetro: React.FC = () => {
@@ -69,6 +70,17 @@ const HomeScreenRetro: React.FC = () => {
           <div className="simple-tile-label">
             <div className="font-medium text-text-primary text-sm">{t('nav.events')}</div>
             <div className="text-xs text-text-muted">{t('home.events.subtitle')}</div>
+          </div>
+        </Link>
+
+        {/* Battle64 Map Tile */}
+        <Link to="/map" className="simple-tile simple-tile-small mobile-tile-optimized">
+          <div className="simple-tile-icon">
+            <MapPin className="w-7 h-7 text-yellow-400 mx-auto" />
+          </div>
+          <div className="simple-tile-label">
+            <div className="font-medium text-text-primary text-sm">{t('nav.map')}</div>
+            <div className="text-xs text-text-muted">{t('home.map.subtitle')}</div>
           </div>
         </Link>
 
