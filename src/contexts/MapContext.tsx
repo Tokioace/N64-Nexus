@@ -27,6 +27,21 @@ export interface MapEvent {
   inviteCode?: string
   status: 'upcoming' | 'active' | 'completed' | 'cancelled'
   createdAt: Date
+  // Enhanced battle tracking
+  liveData?: {
+    scores: { [playerId: string]: number }
+    currentRound: number
+    totalRounds: number
+    startTime?: Date
+    isLive: boolean
+    spectators: number
+  }
+  prizes?: {
+    first: string
+    second: string
+    third: string
+  }
+  skillRequirement?: number // Minimum skill rating to join
 }
 
 export interface UserLocation {
@@ -48,6 +63,105 @@ export interface CountryStats {
   activeUsers: number
   totalEvents: number
   flag: string
+  // Enhanced stats
+  averageSkillRating: number
+  topPlayers: string[]
+  mostPopularGame: string
+}
+
+// New gamification interfaces
+export interface Achievement {
+  id: string
+  title: string
+  description: string
+  icon: string
+  category: 'battles' | 'social' | 'exploration' | 'mastery' | 'special'
+  rarity: 'common' | 'rare' | 'epic' | 'legendary'
+  points: number
+  requirement: {
+    type: 'battle_wins' | 'events_hosted' | 'distance_traveled' | 'games_mastered' | 'special'
+    target: number
+    game?: string
+  }
+  unlockedAt?: Date
+  progress: number
+}
+
+export interface BattleStats {
+  userId: string
+  totalBattles: number
+  wins: number
+  losses: number
+  winRate: number
+  skillRating: number
+  favoriteGame: string
+  totalDistanceTraveled: number
+  eventsHosted: number
+  achievementsUnlocked: number
+  currentStreak: number
+  bestStreak: number
+  gameStats: {
+    [game: string]: {
+      battles: number
+      wins: number
+      losses: number
+      skillRating: number
+      lastPlayed: Date
+    }
+  }
+  recentMatches: Array<{
+    eventId: string
+    game: string
+    result: 'win' | 'loss'
+    score: number
+    date: Date
+    skillChange: number
+  }>
+}
+
+export interface BattlePass {
+  id: string
+  season: string
+  title: string
+  description: string
+  startDate: Date
+  endDate: Date
+  tiers: Array<{
+    tier: number
+    xpRequired: number
+    freeReward?: {
+      type: 'achievement' | 'badge' | 'title' | 'cosmetic' | 'currency'
+      item: string
+    }
+    premiumReward?: {
+      type: 'achievement' | 'badge' | 'title' | 'cosmetic' | 'currency'
+      item: string
+    }
+  }>
+  userProgress: {
+    currentXp: number
+    currentTier: number
+    isPremium: boolean
+    unlockedRewards: string[]
+  }
+}
+
+export interface LiveBattle {
+  eventId: string
+  title: string
+  game: string
+  players: Array<{
+    id: string
+    name: string
+    score: number
+    status: 'playing' | 'spectating' | 'disconnected'
+  }>
+  spectators: number
+  currentRound: number
+  totalRounds: number
+  startTime: Date
+  isStreamLive: boolean
+  streamUrl?: string
 }
 
 interface MapContextType {
@@ -64,6 +178,20 @@ interface MapContextType {
   isLoadingLocation: boolean
   isLoadingEvents: boolean
   
+  // Enhanced gamification state
+  userStats: BattleStats | null
+  achievements: Achievement[]
+  battlePass: BattlePass | null
+  liveBattles: LiveBattle[]
+  leaderboard: Array<{
+    userId: string
+    username: string
+    skillRating: number
+    wins: number
+    favoriteGame: string
+    country: string
+  }>
+  
   // Actions
   setUserLocation: (location: UserLocation) => void
   createEvent: (eventData: Omit<MapEvent, 'id' | 'createdAt' | 'participants' | 'currentPlayers'>) => Promise<string>
@@ -73,28 +201,132 @@ interface MapContextType {
   selectCountry: (countryCode: string | null) => void
   refreshNearbyEvents: () => Promise<void>
   
+  // Enhanced gamification actions
+  updateBattleResult: (eventId: string, result: 'win' | 'loss', score: number) => Promise<void>
+  unlockAchievement: (achievementId: string) => Promise<void>
+  updateBattlePassProgress: (xpGained: number) => Promise<void>
+  startLiveBattle: (eventId: string) => Promise<void>
+  joinAsSpectator: (eventId: string) => Promise<void>
+  
   // Geo-matching
   getEventsInRadius: (coordinates: { lat: number; lng: number }, radiusKm: number) => MapEvent[]
   calculateDistance: (coord1: { lat: number; lng: number }, coord2: { lat: number; lng: number }) => number
+  
+  // Advanced matchmaking
+  findOptimalOpponents: (skillRating: number, game: string, maxDistance: number) => MapEvent[]
+  getSuggestedEvents: () => MapEvent[]
 }
 
 const MapContext = createContext<MapContextType | undefined>(undefined)
 
-// Sample data for development
+// Sample enhanced data
 const sampleCountryStats: CountryStats[] = [
-  { country: 'Germany', countryCode: 'DE', activeUsers: 487, totalEvents: 25, flag: '🇩🇪' },
-  { country: 'United States', countryCode: 'US', activeUsers: 1251, totalEvents: 68, flag: '🇺🇸' },
-  { country: 'Japan', countryCode: 'JP', activeUsers: 894, totalEvents: 46, flag: '🇯🇵' },
-  { country: 'United Kingdom', countryCode: 'GB', activeUsers: 360, totalEvents: 20, flag: '🇬🇧' },
-  { country: 'France', countryCode: 'FR', activeUsers: 299, totalEvents: 16, flag: '🇫🇷' },
-  { country: 'Canada', countryCode: 'CA', activeUsers: 272, totalEvents: 13, flag: '🇨🇦' },
-  { country: 'Australia', countryCode: 'AU', activeUsers: 192, totalEvents: 9, flag: '🇦🇺' },
-  { country: 'Brazil', countryCode: 'BR', activeUsers: 156, totalEvents: 6, flag: '🇧🇷' },
-  { country: 'Italy', countryCode: 'IT', activeUsers: 143, totalEvents: 7, flag: '🇮🇹' },
-  { country: 'Spain', countryCode: 'ES', activeUsers: 128, totalEvents: 5, flag: '🇪🇸' },
-  { country: 'Netherlands', countryCode: 'NL', activeUsers: 95, totalEvents: 4, flag: '🇳🇱' },
-  { country: 'Sweden', countryCode: 'SE', activeUsers: 78, totalEvents: 3, flag: '🇸🇪' },
+  { country: 'Germany', countryCode: 'DE', activeUsers: 487, totalEvents: 25, flag: '🇩🇪', averageSkillRating: 1650, topPlayers: ['Mario64Master', 'BerlinBattler', 'GermanGamer'], mostPopularGame: 'Mario Kart 64' },
+  { country: 'United States', countryCode: 'US', activeUsers: 1251, totalEvents: 68, flag: '🇺🇸', averageSkillRating: 1580, topPlayers: ['AmericanAce', 'USAChampion', 'StarSpangled'], mostPopularGame: 'Super Smash Bros' },
+  { country: 'Japan', countryCode: 'JP', activeUsers: 894, totalEvents: 46, flag: '🇯🇵', averageSkillRating: 1720, topPlayers: ['NintendoNinja', 'TokyoTitan', 'SamuraiGamer'], mostPopularGame: 'Super Mario 64' },
+  { country: 'United Kingdom', countryCode: 'GB', activeUsers: 360, totalEvents: 20, flag: '🇬🇧', averageSkillRating: 1590, topPlayers: ['BritishBeast', 'LondonLegend', 'UKUltimate'], mostPopularGame: 'GoldenEye 007' },
+  { country: 'France', countryCode: 'FR', activeUsers: 299, totalEvents: 16, flag: '🇫🇷', averageSkillRating: 1610, topPlayers: ['FrenchFighter', 'ParisianPro', 'GallicGamer'], mostPopularGame: 'Mario Kart 64' },
+  { country: 'Canada', countryCode: 'CA', activeUsers: 272, totalEvents: 13, flag: '🇨🇦', averageSkillRating: 1570, topPlayers: ['CanadianCrusher', 'MapleLeafMaster', 'NorthernNinja'], mostPopularGame: 'Super Smash Bros' },
+  { country: 'Australia', countryCode: 'AU', activeUsers: 192, totalEvents: 9, flag: '🇦🇺', averageSkillRating: 1540, topPlayers: ['AussieAce', 'SydneySlayer', 'DownUnderDominator'], mostPopularGame: 'Mario Party' },
+  { country: 'Brazil', countryCode: 'BR', activeUsers: 156, totalEvents: 6, flag: '🇧🇷', averageSkillRating: 1520, topPlayers: ['BrazilianBeast', 'SambaSlayer', 'CariocaChampion'], mostPopularGame: 'Mario Kart 64' },
+  { country: 'Italy', countryCode: 'IT', activeUsers: 143, totalEvents: 7, flag: '🇮🇹', averageSkillRating: 1600, topPlayers: ['ItalianIcon', 'RomanRuler', 'VenetianVictor'], mostPopularGame: 'Super Mario 64' },
+  { country: 'Spain', countryCode: 'ES', activeUsers: 128, totalEvents: 5, flag: '🇪🇸', averageSkillRating: 1560, topPlayers: ['SpanishStar', 'MadridMaster', 'IberianIcon'], mostPopularGame: 'F-Zero X' },
+  { country: 'Netherlands', countryCode: 'NL', activeUsers: 95, totalEvents: 4, flag: '🇳🇱', averageSkillRating: 1640, topPlayers: ['DutchDominator', 'AmsterdamAce', 'HollandHero'], mostPopularGame: 'Mario Tennis' },
+  { country: 'Sweden', countryCode: 'SE', activeUsers: 78, totalEvents: 3, flag: '🇸🇪', averageSkillRating: 1680, topPlayers: ['SwedishSlayer', 'StockholmStar', 'NordicNinja'], mostPopularGame: 'GoldenEye 007' },
 ]
+
+// Sample achievements
+const sampleAchievements: Achievement[] = [
+  {
+    id: 'first_victory',
+    title: 'First Blood',
+    description: 'Win your first battle',
+    icon: '🏆',
+    category: 'battles',
+    rarity: 'common',
+    points: 100,
+    requirement: { type: 'battle_wins', target: 1 },
+    progress: 0
+  },
+  {
+    id: 'win_streak_5',
+    title: 'Hot Streak',
+    description: 'Win 5 battles in a row',
+    icon: '🔥',
+    category: 'battles',
+    rarity: 'rare',
+    points: 250,
+    requirement: { type: 'battle_wins', target: 5 },
+    progress: 0
+  },
+  {
+    id: 'mario_kart_master',
+    title: 'Kart Racing Legend',
+    description: 'Win 50 Mario Kart 64 battles',
+    icon: '🏎️',
+    category: 'mastery',
+    rarity: 'epic',
+    points: 500,
+    requirement: { type: 'battle_wins', target: 50, game: 'Mario Kart 64' },
+    progress: 0
+  },
+  {
+    id: 'globe_trotter',
+    title: 'Globe Trotter',
+    description: 'Travel 1000km for battles',
+    icon: '🌍',
+    category: 'exploration',
+    rarity: 'rare',
+    points: 300,
+    requirement: { type: 'distance_traveled', target: 1000 },
+    progress: 0
+  },
+  {
+    id: 'event_host_legend',
+    title: 'Event Master',
+    description: 'Host 25 successful events',
+    icon: '🎪',
+    category: 'social',
+    rarity: 'epic',
+    points: 750,
+    requirement: { type: 'events_hosted', target: 25 },
+    progress: 0
+  },
+  {
+    id: 'perfect_game',
+    title: 'Perfection',
+    description: 'Win a battle without losing a single round',
+    icon: '💎',
+    category: 'battles',
+    rarity: 'legendary',
+    points: 1000,
+    requirement: { type: 'special', target: 1 },
+    progress: 0
+  }
+]
+
+// Sample battle pass
+const sampleBattlePass: BattlePass = {
+  id: 'season_1_2024',
+  season: 'Season 1',
+  title: 'N64 Legends',
+  description: 'Celebrate the golden age of gaming',
+  startDate: new Date('2024-01-01'),
+  endDate: new Date('2024-03-31'),
+  tiers: [
+    { tier: 1, xpRequired: 0, freeReward: { type: 'badge', item: 'Newcomer Badge' } },
+    { tier: 2, xpRequired: 500, freeReward: { type: 'title', item: 'Battle Rookie' }, premiumReward: { type: 'cosmetic', item: 'Golden Controller Icon' } },
+    { tier: 3, xpRequired: 1200, freeReward: { type: 'achievement', item: 'Season Warrior' } },
+    { tier: 4, xpRequired: 2000, premiumReward: { type: 'cosmetic', item: 'N64 Avatar Frame' } },
+    { tier: 5, xpRequired: 3000, freeReward: { type: 'currency', item: '500 Battle Coins' }, premiumReward: { type: 'cosmetic', item: 'Legendary Map Theme' } },
+  ],
+  userProgress: {
+    currentXp: 750,
+    currentTier: 2,
+    isPremium: false,
+    unlockedRewards: ['Newcomer Badge', 'Battle Rookie']
+  }
+}
 
 const sampleEvents: MapEvent[] = [
   {
@@ -271,6 +503,48 @@ const sampleEvents: MapEvent[] = [
   }
 ]
 
+// Sample user stats initialization
+const initializeUserStats = (userId: string): BattleStats => ({
+  userId,
+  totalBattles: 0,
+  wins: 0,
+  losses: 0,
+  winRate: 0,
+  skillRating: 1500, // Starting rating
+  favoriteGame: 'Mario Kart 64',
+  totalDistanceTraveled: 0,
+  eventsHosted: 0,
+  achievementsUnlocked: 0,
+  currentStreak: 0,
+  bestStreak: 0,
+  gameStats: {
+    'Mario Kart 64': { battles: 0, wins: 0, losses: 0, skillRating: 1500, lastPlayed: new Date() },
+    'Super Smash Bros': { battles: 0, wins: 0, losses: 0, skillRating: 1500, lastPlayed: new Date() },
+    'GoldenEye 007': { battles: 0, wins: 0, losses: 0, skillRating: 1500, lastPlayed: new Date() },
+    'Mario Party': { battles: 0, wins: 0, losses: 0, skillRating: 1500, lastPlayed: new Date() },
+    'Super Mario 64': { battles: 0, wins: 0, losses: 0, skillRating: 1500, lastPlayed: new Date() },
+    'The Legend of Zelda: Ocarina of Time': { battles: 0, wins: 0, losses: 0, skillRating: 1500, lastPlayed: new Date() },
+    'Mario Tennis': { battles: 0, wins: 0, losses: 0, skillRating: 1500, lastPlayed: new Date() },
+    'F-Zero X': { battles: 0, wins: 0, losses: 0, skillRating: 1500, lastPlayed: new Date() },
+    'Jet Force Gemini': { battles: 0, wins: 0, losses: 0, skillRating: 1500, lastPlayed: new Date() }
+  },
+  recentMatches: []
+})
+
+// Sample leaderboard data
+const sampleLeaderboard = [
+  { userId: 'user1', username: 'Mario64Master', skillRating: 2150, wins: 87, favoriteGame: 'Mario Kart 64', country: 'Germany' },
+  { userId: 'user2', username: 'NintendoNinja', skillRating: 2089, wins: 76, favoriteGame: 'Super Mario 64', country: 'Japan' },
+  { userId: 'user3', username: 'GoldenEyePro', skillRating: 2034, wins: 69, favoriteGame: 'GoldenEye 007', country: 'United States' },
+  { userId: 'user4', username: 'SmashBrosLegend', skillRating: 1987, wins: 64, favoriteGame: 'Super Smash Bros', country: 'United Kingdom' },
+  { userId: 'user5', username: 'KartRacingKing', skillRating: 1923, wins: 58, favoriteGame: 'Mario Kart 64', country: 'France' },
+  { userId: 'user6', username: 'ZeldaMaster', skillRating: 1876, wins: 52, favoriteGame: 'The Legend of Zelda: Ocarina of Time', country: 'Canada' },
+  { userId: 'user7', username: 'F-ZeroRacer', skillRating: 1834, wins: 47, favoriteGame: 'F-Zero X', country: 'Australia' },
+  { userId: 'user8', username: 'MarioPartyKing', skillRating: 1789, wins: 43, favoriteGame: 'Mario Party', country: 'Brazil' },
+  { userId: 'user9', username: 'TennisAce', skillRating: 1745, wins: 38, favoriteGame: 'Mario Tennis', country: 'Italy' },
+  { userId: 'user10', username: 'RetroGamer', skillRating: 1698, wins: 34, favoriteGame: 'Super Mario 64', country: 'Spain' }
+]
+
 export const MapProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const { user } = useUser()
   
@@ -284,6 +558,20 @@ export const MapProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
   const [mapZoom, setMapZoom] = useState(6)
   const [isLoadingLocation] = useState(false)
   const [isLoadingEvents, setIsLoadingEvents] = useState(false)
+
+  // Enhanced gamification state
+  const [userStats, setUserStats] = useState<BattleStats | null>(null)
+  const [achievements, setAchievements] = useState<Achievement[]>(sampleAchievements)
+  const [battlePass, setBattlePass] = useState<BattlePass | null>(sampleBattlePass)
+  const [liveBattles, setLiveBattles] = useState<LiveBattle[]>([])
+  const [leaderboard] = useState(sampleLeaderboard)
+
+  // Initialize user stats when user logs in
+  useEffect(() => {
+    if (user && !userStats) {
+      setUserStats(initializeUserStats(user.id))
+    }
+  }, [user, userStats])
 
   // Calculate distance between two coordinates (Haversine formula)
   const calculateDistance = (coord1: { lat: number; lng: number }, coord2: { lat: number; lng: number }): number => {
@@ -413,6 +701,11 @@ export const MapProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
     mapZoom,
     isLoadingLocation,
     isLoadingEvents,
+    userStats,
+    achievements,
+    battlePass,
+    liveBattles,
+    leaderboard,
     setUserLocation,
     createEvent,
     joinEvent,
@@ -421,7 +714,224 @@ export const MapProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
     selectCountry,
     refreshNearbyEvents,
     getEventsInRadius,
-    calculateDistance
+    calculateDistance,
+    // Enhanced gamification actions
+    updateBattleResult: async (eventId, result, score) => {
+      if (!user) return
+      console.log(`Updating battle result for event ${eventId}: ${result}, score: ${score}`)
+      
+      const event = allEvents.find(e => e.id === eventId)
+      if (!event) return
+      
+      // Update event live data
+      setAllEvents(prev => prev.map(e => {
+        if (e.id === eventId) {
+          return {
+            ...e,
+            liveData: {
+              scores: { ...e.liveData?.scores, [user.id]: score },
+              currentRound: (e.liveData?.currentRound || 0) + 1,
+              totalRounds: e.liveData?.totalRounds || 3,
+              startTime: e.liveData?.startTime || new Date(),
+              isLive: true,
+              spectators: e.liveData?.spectators || 0
+            }
+          }
+        }
+        return e
+      }))
+
+      // Update user stats
+      setUserStats(prev => {
+        if (!prev) return null
+        const newWins = result === 'win' ? prev.wins + 1 : prev.wins
+        const newLosses = result === 'loss' ? prev.losses + 1 : prev.losses
+        const newTotalBattles = prev.totalBattles + 1
+        const skillChange = result === 'win' ? 15 : -8
+        
+        return {
+          ...prev,
+          totalBattles: newTotalBattles,
+          wins: newWins,
+          losses: newLosses,
+          winRate: newTotalBattles > 0 ? (newWins / newTotalBattles) * 100 : 0,
+          skillRating: Math.max(100, prev.skillRating + skillChange),
+          currentStreak: result === 'win' ? prev.currentStreak + 1 : 0,
+          bestStreak: result === 'win' ? Math.max(prev.bestStreak, prev.currentStreak + 1) : prev.bestStreak,
+          gameStats: {
+            ...prev.gameStats,
+            [event.game]: {
+              battles: (prev.gameStats[event.game]?.battles || 0) + 1,
+              wins: (prev.gameStats[event.game]?.wins || 0) + (result === 'win' ? 1 : 0),
+              losses: (prev.gameStats[event.game]?.losses || 0) + (result === 'loss' ? 1 : 0),
+              skillRating: Math.max(100, (prev.gameStats[event.game]?.skillRating || 1500) + skillChange),
+              lastPlayed: new Date()
+            }
+          },
+          recentMatches: [
+            {
+              eventId,
+              game: event.game,
+              result,
+              score,
+              date: new Date(),
+              skillChange
+            },
+            ...prev.recentMatches.slice(0, 9) // Keep last 10 matches
+          ]
+        }
+      })
+
+      // Check for achievement unlocks
+      setAchievements(prev => prev.map(achievement => {
+        if (achievement.unlockedAt) return achievement
+        
+        let shouldUnlock = false
+        if (achievement.requirement.type === 'battle_wins') {
+          const wins = userStats ? userStats.wins + (result === 'win' ? 1 : 0) : 0
+          shouldUnlock = wins >= achievement.requirement.target
+          if (achievement.requirement.game) {
+            const gameWins = userStats?.gameStats[achievement.requirement.game]?.wins || 0
+            shouldUnlock = gameWins + (result === 'win' && event.game === achievement.requirement.game ? 1 : 0) >= achievement.requirement.target
+          }
+        }
+        
+        return shouldUnlock ? { ...achievement, unlockedAt: new Date(), progress: achievement.requirement.target } : achievement
+      }))
+
+      // Update battle pass XP
+      setBattlePass(prev => prev ? {
+        ...prev,
+        userProgress: {
+          ...prev.userProgress,
+          currentXp: prev.userProgress.currentXp + (result === 'win' ? 150 : 75)
+        }
+      } : null)
+    },
+    unlockAchievement: async (achievementId) => {
+      console.log(`Unlocking achievement: ${achievementId}`)
+      setAchievements(prev => prev.map(achievement => {
+        if (achievement.id === achievementId) {
+          return { ...achievement, unlockedAt: new Date(), progress: achievement.requirement.target }
+        }
+        return achievement
+      }))
+      setUserStats(prev => prev ? {
+        ...prev,
+        achievementsUnlocked: prev.achievementsUnlocked + 1
+      } : null)
+    },
+    updateBattlePassProgress: async (xpGained) => {
+      console.log(`Updating battle pass progress: ${xpGained} XP`)
+      setBattlePass(prev => {
+        if (!prev) return null
+        const newXp = prev.userProgress.currentXp + xpGained
+        let newTier = prev.userProgress.currentTier
+        
+        // Check for tier progression
+        for (const tier of prev.tiers) {
+          if (newXp >= tier.xpRequired && tier.tier > newTier) {
+            newTier = tier.tier
+          }
+        }
+        
+        return {
+          ...prev,
+          userProgress: {
+            ...prev.userProgress,
+            currentXp: newXp,
+            currentTier: newTier
+          }
+        }
+      })
+    },
+    startLiveBattle: async (eventId) => {
+      if (!user) return
+      console.log(`Starting live battle for event: ${eventId}`)
+      const event = allEvents.find(e => e.id === eventId)
+      if (!event) return
+      
+      setLiveBattles(prev => [...prev, {
+        eventId,
+        title: event.title,
+        game: event.game,
+        players: [{ id: user.id, name: user.username, score: 0, status: 'playing' }],
+        spectators: 0,
+        currentRound: 1,
+        totalRounds: 3,
+        startTime: new Date(),
+        isStreamLive: true,
+        streamUrl: `https://battle64.stream/${eventId}`
+      }])
+    },
+    joinAsSpectator: async (eventId) => {
+      console.log(`Joining as spectator for event: ${eventId}`)
+      setLiveBattles(prev => prev.map(battle => {
+        if (battle.eventId === eventId) {
+          return {
+            ...battle,
+            spectators: battle.spectators + 1
+          }
+        }
+        return battle
+      }))
+    },
+    // Advanced matchmaking
+    findOptimalOpponents: (skillRating, game, maxDistance) => {
+      if (!userLocation) return []
+      return allEvents.filter(event => {
+        if (event.status !== 'upcoming') return false
+        if (event.game !== game) return false
+        
+        const distance = calculateDistance(userLocation.coordinates, event.location.coordinates)
+        if (distance > maxDistance) return false
+        
+        // Consider skill requirement if set
+        if (event.skillRequirement && Math.abs(skillRating - event.skillRequirement) > 200) return false
+        
+        return true
+      }).sort((a, b) => {
+        // Sort by skill compatibility and distance
+        const distanceA = calculateDistance(userLocation.coordinates, a.location.coordinates)
+        const distanceB = calculateDistance(userLocation.coordinates, b.location.coordinates)
+        const skillDiffA = Math.abs(skillRating - (a.skillRequirement || 1500))
+        const skillDiffB = Math.abs(skillRating - (b.skillRequirement || 1500))
+        
+        return (skillDiffA + distanceA * 0.1) - (skillDiffB + distanceB * 0.1)
+      })
+    },
+    getSuggestedEvents: () => {
+      if (!userStats || !userLocation) return allEvents.filter(e => e.status === 'upcoming').slice(0, 5)
+      
+      return allEvents.filter(event => {
+        if (event.status !== 'upcoming') return false
+        
+        const distance = calculateDistance(userLocation.coordinates, event.location.coordinates)
+        if (distance > 100) return false // Max 100km for suggestions
+        
+        // Prefer user's favorite games
+        const gameStats = userStats.gameStats[event.game]
+        if (gameStats && gameStats.battles > 0) return true
+        
+        // Include popular games in user's skill range
+        if (event.skillRequirement) {
+          return Math.abs(userStats.skillRating - event.skillRequirement) <= 300
+        }
+        
+        return true
+      }).sort((a, b) => {
+        const distanceA = calculateDistance(userLocation.coordinates, a.location.coordinates)
+        const distanceB = calculateDistance(userLocation.coordinates, b.location.coordinates)
+        const gameStatsA = userStats.gameStats[a.game]
+        const gameStatsB = userStats.gameStats[b.game]
+        
+        // Prioritize familiar games and closer events
+        const scoreA = (gameStatsA?.battles || 0) * 10 - distanceA
+        const scoreB = (gameStatsB?.battles || 0) * 10 - distanceB
+        
+        return scoreB - scoreA
+      }).slice(0, 8)
+    }
   }
 
   return (

@@ -9,6 +9,8 @@ import 'leaflet.markercluster'
 import { useMap as useMapContext, MapEvent } from '../contexts/MapContext'
 import { useUser } from '../contexts/UserContext'
 import { useLanguage } from '../contexts/LanguageContext'
+import BattleStatsPanel from './BattleStatsPanel'
+import LiveBattleViewer from './LiveBattleViewer'
 import { 
   MapPin, 
   Plus, 
@@ -24,7 +26,14 @@ import {
   RefreshCw,
   Info,
   Home,
-  ZoomIn
+  ZoomIn,
+  Trophy,
+  Eye,
+  Zap,
+  Sparkles,
+  Crown,
+  Star,
+  Award
 } from 'lucide-react'
 
 // Fix for default Leaflet markers
@@ -36,8 +45,8 @@ L.Icon.Default.mergeOptions({
   shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
 })
 
-// Enhanced emoji-based custom icons with balanced glow effects
-const createEmojiIcon = (emoji: string, isPulsing: boolean = false, isNightMode: boolean = false, isHovered: boolean = false) => {
+// Enhanced emoji-based custom icons with balanced glow effects and N64-style animations
+const createEmojiIcon = (emoji: string, isPulsing: boolean = false, isNightMode: boolean = false, isHovered: boolean = false, eventType?: string) => {
   const baseStyles = isNightMode ? {
     background: 'linear-gradient(135deg, #0B0F1E, #1F2633)',
     borderColor: '#eab308',
@@ -50,52 +59,74 @@ const createEmojiIcon = (emoji: string, isPulsing: boolean = false, isNightMode:
     shadowColor: isHovered ? 'rgba(234, 179, 8, 0.8)' : 'rgba(234, 179, 8, 0.4)'
   }
 
+  // Event type specific styling
+  const eventTypeStyles = {
+    tournament: { borderColor: '#ef4444', glowColor: 'rgba(239, 68, 68, 0.6)', emoji: '🏆' },
+    speedrun: { borderColor: '#3b82f6', glowColor: 'rgba(59, 130, 246, 0.6)', emoji: '🏁' },
+    meetup: { borderColor: '#10b981', glowColor: 'rgba(16, 185, 129, 0.6)', emoji: '🤝' },
+    casual: { borderColor: '#eab308', glowColor: 'rgba(234, 179, 8, 0.6)', emoji: '🎮' }
+  }
+
+  const typeStyle = eventType && eventTypeStyles[eventType as keyof typeof eventTypeStyles] 
+    ? eventTypeStyles[eventType as keyof typeof eventTypeStyles] 
+    : { borderColor: baseStyles.borderColor, glowColor: baseStyles.glowColor, emoji }
+
   return L.divIcon({
     className: 'custom-emoji-icon',
     html: `
       <div style="
-        width: 32px;
-        height: 32px;
+        width: 36px;
+        height: 36px;
         border-radius: 50%;
-        background: ${baseStyles.background};
-        border: 3px solid ${baseStyles.borderColor};
+        background: ${isNightMode ? 'linear-gradient(135deg, #1e293b, #334155)' : 'linear-gradient(135deg, #0f172a, #1e293b)'};
+        border: 3px solid ${typeStyle.borderColor};
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 16px;
-        box-shadow: 0 4px 12px ${baseStyles.glowColor}${isNightMode ? ', 0 0 20px ' + baseStyles.glowColor : ''};
+        font-size: 18px;
+        box-shadow: 0 4px 15px ${typeStyle.glowColor}${isNightMode ? ', 0 0 25px ' + typeStyle.glowColor : ''};
         position: relative;
-        ${isPulsing ? 'animation: balanced-pulse-glow 2.5s infinite;' : ''}
-        ${isHovered ? 'animation: hover-glow 0.3s ease-out forwards;' : ''}
-        ${isNightMode ? 'filter: drop-shadow(0 0 10px ' + baseStyles.shadowColor + ');' : ''}
+        ${isPulsing ? 'animation: enhanced-pulse-glow 2s infinite;' : ''}
+        ${isHovered ? 'animation: hover-bounce 0.5s ease-out forwards;' : ''}
+        ${isNightMode ? 'filter: drop-shadow(0 0 15px ' + typeStyle.glowColor + ');' : ''}
         transition: all 0.3s ease;
+        cursor: pointer;
+        z-index: 1000;
       ">
-        ${emoji}
-        ${isPulsing ? `<div style="position: absolute; inset: -6px; border-radius: 50%; background: radial-gradient(circle, ${baseStyles.glowColor} 0%, transparent 70%); animation: balanced-pulse-ring 2.5s infinite;"></div>` : ''}
+        ${typeStyle.emoji}
+        ${isPulsing ? `<div style="position: absolute; inset: -8px; border-radius: 50%; background: radial-gradient(circle, ${typeStyle.glowColor} 0%, transparent 70%); animation: enhanced-pulse-ring 2s infinite; z-index: -1;"></div>` : ''}
+        ${eventType === 'tournament' ? '<div style="position: absolute; top: -5px; right: -5px; width: 12px; height: 12px; background: #ef4444; border-radius: 50%; border: 2px solid white; animation: trophy-sparkle 1.5s infinite;"></div>' : ''}
+        ${eventType === 'speedrun' ? '<div style="position: absolute; top: -3px; left: -3px; width: 0; height: 0; border-left: 6px solid transparent; border-right: 6px solid transparent; border-bottom: 8px solid #3b82f6; animation: speed-indicator 1s infinite;"></div>' : ''}
       </div>
-      <style>
-        @keyframes balanced-pulse-glow {
-          0%, 100% { 
-            transform: scale(1); 
-            box-shadow: 0 4px 12px ${baseStyles.glowColor}${isNightMode ? ', 0 0 20px ' + baseStyles.glowColor : ''}; 
+              <style>
+          @keyframes enhanced-pulse-glow {
+            0%, 100% { 
+              transform: scale(1); 
+              box-shadow: 0 4px 15px ${typeStyle.glowColor}${isNightMode ? ', 0 0 25px ' + typeStyle.glowColor : ''}; 
+            }
+            50% { 
+              transform: scale(1.1); 
+              box-shadow: 0 8px 25px ${typeStyle.glowColor}${isNightMode ? ', 0 0 35px ' + typeStyle.glowColor : ''}; 
+            }
           }
-          50% { 
-            transform: scale(1.08); 
-            box-shadow: 0 6px 18px ${baseStyles.shadowColor}${isNightMode ? ', 0 0 25px ' + baseStyles.shadowColor : ''}; 
+          @keyframes hover-bounce {
+            0% { transform: scale(1) translateY(0); }
+            50% { transform: scale(1.15) translateY(-3px); }
+            100% { transform: scale(1.12) translateY(-2px); }
           }
-        }
-        @keyframes hover-glow {
-          0% { transform: scale(1); }
-          100% { 
-            transform: scale(1.12); 
-            box-shadow: 0 8px 25px ${baseStyles.shadowColor}${isNightMode ? ', 0 0 35px ' + baseStyles.shadowColor : ''}; 
+          @keyframes enhanced-pulse-ring {
+            0% { transform: scale(0.8); opacity: 0.8; }
+            100% { transform: scale(2.5); opacity: 0; }
           }
-        }
-        @keyframes balanced-pulse-ring {
-          0% { transform: scale(0.8); opacity: 0.7; }
-          100% { transform: scale(2); opacity: 0; }
-        }
-      </style>
+          @keyframes trophy-sparkle {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+          }
+          @keyframes speed-indicator {
+            0%, 100% { opacity: 1; transform: translateX(0); }
+            50% { opacity: 0.7; transform: translateX(2px); }
+          }
+        </style>
     `,
     iconSize: [32, 32],
     iconAnchor: [16, 16]
@@ -662,7 +693,12 @@ const Battle64Map: React.FC = () => {
     userLocation,
     setUserLocation,
     getEventsInRadius,
-    calculateDistance
+    calculateDistance,
+    userStats,
+    battlePass,
+    liveBattles,
+    getSuggestedEvents,
+    findOptimalOpponents
   } = useMapContext()
 
   const [isHostingModalOpen, setIsHostingModalOpen] = useState(false)
@@ -677,6 +713,11 @@ const Battle64Map: React.FC = () => {
   const [isNightMode, setIsNightMode] = useState(false)
   const [isLocationLoading, setIsLocationLoading] = useState(false)
   const [showLegend, setShowLegend] = useState(true)
+  
+  // New enhanced UI states
+  const [showBattleStats, setShowBattleStats] = useState(false)
+  const [showLiveBattles, setShowLiveBattles] = useState(false)
+  const [showMatchmaking, setShowMatchmaking] = useState(false)
 
   // Load night mode preference from localStorage
   useEffect(() => {
@@ -957,34 +998,98 @@ const Battle64Map: React.FC = () => {
             </div>
             
             <div className="flex items-center gap-3">
-              {/* Compact Menu Toggle */}
-              <button
-                onClick={() => setShowOverlay(!showOverlay)}
-                className={`p-2 rounded-lg text-sm font-medium transition-all ${
-                  showOverlay 
-                    ? 'bg-yellow-600 text-black shadow-lg' 
-                    : 'bg-slate-700/80 text-slate-300 hover:bg-slate-600/80 hover:text-white'
-                }`}
-                title={showOverlay ? t('map.hideMenu') : t('map.showMenu')}
-              >
-                <Settings className="w-4 h-4" />
-              </button>
-
-                                              {/* Quick Actions */}
-                <div className="flex items-center gap-2">
-                  {/* Quick Night Mode Toggle */}
-                  <button
-                    onClick={() => setIsNightMode(!isNightMode)}
-                    className={`px-2 py-2 rounded-lg text-sm font-medium transition-all ${
-                      isNightMode
-                        ? 'bg-yellow-600 text-black'
-                        : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
-                    }`}
-                    title={isNightMode ? t('map.disableNightMode') : t('map.enableNightMode')}
-                  >
-                    🌙
-                  </button>
+              {/* User Stats Display */}
+              {user && userStats && (
+                <div className="flex items-center gap-3 bg-slate-700/50 rounded-lg px-3 py-2 border border-slate-600">
+                  <div className="flex items-center gap-2">
+                    <Trophy className="w-4 h-4 text-yellow-400" />
+                    <span className="text-yellow-400 font-bold">{userStats.skillRating}</span>
+                  </div>
+                  <div className="w-px h-4 bg-slate-600" />
+                  <div className="flex items-center gap-2">
+                    <Crown className="w-4 h-4 text-green-400" />
+                    <span className="text-green-400 font-bold">{userStats.wins}</span>
+                  </div>
+                  {battlePass && (
+                    <>
+                      <div className="w-px h-4 bg-slate-600" />
+                      <div className="flex items-center gap-2">
+                        <Star className="w-4 h-4 text-purple-400" />
+                        <span className="text-purple-400 font-bold">T{battlePass.userProgress.currentTier}</span>
+                      </div>
+                    </>
+                  )}
                 </div>
+              )}
+
+              {/* Enhanced Action Buttons */}
+              <div className="flex items-center gap-2">
+                {/* Battle Stats Button */}
+                {user && (
+                  <button
+                    onClick={() => setShowBattleStats(true)}
+                    className="p-2 bg-slate-700/80 text-slate-300 hover:bg-slate-600/80 hover:text-yellow-400 rounded-lg transition-all"
+                    title="Battle Dashboard"
+                  >
+                    <Award className="w-4 h-4" />
+                  </button>
+                )}
+
+                {/* Live Battles Button */}
+                <button
+                  onClick={() => setShowLiveBattles(true)}
+                  className={`p-2 rounded-lg transition-all relative ${
+                    liveBattles.length > 0
+                      ? 'bg-red-600/20 text-red-400 hover:bg-red-600/30 animate-pulse'
+                      : 'bg-slate-700/80 text-slate-300 hover:bg-slate-600/80'
+                  }`}
+                  title="Live Battles"
+                >
+                  <Eye className="w-4 h-4" />
+                  {liveBattles.length > 0 && (
+                    <div className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full flex items-center justify-center">
+                      <span className="text-xs text-white font-bold">{liveBattles.length}</span>
+                    </div>
+                  )}
+                </button>
+
+                {/* Smart Matchmaking Button */}
+                {user && userStats && (
+                  <button
+                    onClick={() => setShowMatchmaking(true)}
+                    className="p-2 bg-slate-700/80 text-slate-300 hover:bg-slate-600/80 hover:text-blue-400 rounded-lg transition-all"
+                    title="Smart Matchmaking"
+                  >
+                    <Zap className="w-4 h-4" />
+                  </button>
+                )}
+
+                {/* Compact Menu Toggle */}
+                <button
+                  onClick={() => setShowOverlay(!showOverlay)}
+                  className={`p-2 rounded-lg text-sm font-medium transition-all ${
+                    showOverlay 
+                      ? 'bg-yellow-600 text-black shadow-lg' 
+                      : 'bg-slate-700/80 text-slate-300 hover:bg-slate-600/80 hover:text-white'
+                  }`}
+                  title={showOverlay ? t('map.hideMenu') : t('map.showMenu')}
+                >
+                  <Settings className="w-4 h-4" />
+                </button>
+
+                {/* Quick Night Mode Toggle */}
+                <button
+                  onClick={() => setIsNightMode(!isNightMode)}
+                  className={`px-2 py-2 rounded-lg text-sm font-medium transition-all ${
+                    isNightMode
+                      ? 'bg-yellow-600 text-black'
+                      : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
+                  }`}
+                  title={isNightMode ? t('map.disableNightMode') : t('map.enableNightMode')}
+                >
+                  🌙
+                </button>
+              </div>
               
               {user && (
                 <button
@@ -1317,7 +1422,7 @@ const Battle64Map: React.FC = () => {
                 position={cluster.position}
                 icon={cluster.isCluster 
                   ? createClusterIcon(cluster.events.length, isNightMode)
-                  : createEmojiIcon('🎮', true, isNightMode)
+                  : createEmojiIcon('🎮', true, isNightMode, false, cluster.events[0].category)
                 }
                 eventHandlers={{
                   click: () => {
@@ -1641,6 +1746,128 @@ const Battle64Map: React.FC = () => {
         onSubmit={handleCreateEvent}
         clickedLocation={clickedLocation}
       />
+
+      {/* Battle Stats Panel */}
+      <BattleStatsPanel
+        isOpen={showBattleStats}
+        onClose={() => setShowBattleStats(false)}
+      />
+
+      {/* Live Battle Viewer */}
+      <LiveBattleViewer
+        isOpen={showLiveBattles}
+        onClose={() => setShowLiveBattles(false)}
+      />
+
+      {/* Smart Matchmaking Modal */}
+      {showMatchmaking && user && userStats && (
+        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+          <div className="bg-gradient-to-br from-slate-900 to-slate-800 rounded-2xl border-2 border-blue-500/50 shadow-2xl max-w-4xl w-full max-h-[80vh] overflow-hidden">
+            <div className="bg-gradient-to-r from-blue-600/20 to-purple-600/20 border-b border-blue-500/30 p-6">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl flex items-center justify-center shadow-lg">
+                    <Zap className="w-7 h-7 text-white" />
+                  </div>
+                  <div>
+                    <h2 className="text-3xl font-bold text-blue-400">Smart Matchmaking</h2>
+                    <p className="text-slate-400">AI-Powered Opponent Finding</p>
+                  </div>
+                </div>
+                <button
+                  onClick={() => setShowMatchmaking(false)}
+                  className="p-2 hover:bg-slate-700 rounded-lg transition-colors"
+                >
+                  <X className="w-6 h-6 text-slate-400" />
+                </button>
+              </div>
+            </div>
+
+            <div className="p-6 overflow-y-auto max-h-[calc(80vh-120px)]">
+              <div className="space-y-6">
+                {/* Skill-Based Recommendations */}
+                <div className="bg-slate-800/50 border border-slate-600 rounded-xl p-6">
+                  <h3 className="text-xl font-bold text-blue-400 mb-4 flex items-center gap-2">
+                    <Target className="w-5 h-5" />
+                    Perfect Skill Matches
+                  </h3>
+                  <div className="space-y-3">
+                    {findOptimalOpponents(userStats.skillRating, userStats.favoriteGame, 50).slice(0, 3).map((event) => (
+                      <div key={event.id} className="bg-slate-700/50 border border-slate-600 rounded-lg p-4 flex items-center justify-between">
+                        <div>
+                          <div className="font-bold text-white">{event.title}</div>
+                          <div className="text-sm text-blue-400">{event.game}</div>
+                          <div className="text-xs text-slate-400">
+                            {event.location.region}, {event.location.country} • 
+                            {userLocation && ` ${calculateDistance(userLocation.coordinates, event.location.coordinates).toFixed(1)}km away`}
+                          </div>
+                        </div>
+                        <div className="text-right">
+                          <div className="text-sm text-green-400">
+                            {event.skillRequirement ? `${event.skillRequirement} SR` : 'Open Skill'}
+                          </div>
+                          <button
+                            onClick={() => handleJoinEvent(event.id)}
+                            className="mt-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-500 transition-colors"
+                          >
+                            Join Battle
+                          </button>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Suggested Events */}
+                <div className="bg-slate-800/50 border border-slate-600 rounded-xl p-6">
+                  <h3 className="text-xl font-bold text-purple-400 mb-4 flex items-center gap-2">
+                    <Sparkles className="w-5 h-5" />
+                    Personalized Suggestions
+                  </h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {getSuggestedEvents().slice(0, 4).map((event) => (
+                      <div key={event.id} className="bg-slate-700/50 border border-slate-600 rounded-lg p-4">
+                        <div className="font-bold text-white mb-2">{event.title}</div>
+                        <div className="text-sm text-purple-400 mb-1">{event.game}</div>
+                        <div className="text-xs text-slate-400 mb-3">
+                          {event.date.toLocaleDateString()} • {event.currentPlayers}/{event.maxPlayers} players
+                        </div>
+                        <div className="flex items-center justify-between">
+                          <div className="text-xs text-green-400">
+                            {userLocation && `${calculateDistance(userLocation.coordinates, event.location.coordinates).toFixed(1)}km away`}
+                          </div>
+                          <button
+                            onClick={() => handleJoinEvent(event.id)}
+                            className="px-3 py-1 bg-purple-600 text-white text-sm rounded hover:bg-purple-500 transition-colors"
+                          >
+                            Join
+                          </button>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Quick Stats */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div className="bg-gradient-to-br from-yellow-900/50 to-yellow-800/50 border border-yellow-500/30 rounded-xl p-4 text-center">
+                    <div className="text-2xl font-bold text-yellow-400">{userStats.skillRating}</div>
+                    <div className="text-sm text-yellow-300">Your Skill Rating</div>
+                  </div>
+                  <div className="bg-gradient-to-br from-green-900/50 to-green-800/50 border border-green-500/30 rounded-xl p-4 text-center">
+                    <div className="text-2xl font-bold text-green-400">{userStats.winRate.toFixed(1)}%</div>
+                    <div className="text-sm text-green-300">Win Rate</div>
+                  </div>
+                  <div className="bg-gradient-to-br from-purple-900/50 to-purple-800/50 border border-purple-500/30 rounded-xl p-4 text-center">
+                    <div className="text-2xl font-bold text-purple-400">{userStats.favoriteGame}</div>
+                    <div className="text-sm text-purple-300">Favorite Game</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }
