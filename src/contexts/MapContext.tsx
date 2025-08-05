@@ -130,7 +130,7 @@ export interface BattlePass {
     tier: number
     xpRequired: number
     freeReward?: {
-      type: 'achievement' | 'badge' | 'title' | 'cosmetic'
+      type: 'achievement' | 'badge' | 'title' | 'cosmetic' | 'currency'
       item: string
     }
     premiumReward?: {
@@ -564,7 +564,7 @@ export const MapProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
   const [achievements, setAchievements] = useState<Achievement[]>(sampleAchievements)
   const [battlePass, setBattlePass] = useState<BattlePass | null>(sampleBattlePass)
   const [liveBattles, setLiveBattles] = useState<LiveBattle[]>([])
-  const [leaderboard, setLeaderboard] = useState(sampleLeaderboard)
+  const [leaderboard] = useState(sampleLeaderboard)
 
   // Initialize user stats when user logs in
   useEffect(() => {

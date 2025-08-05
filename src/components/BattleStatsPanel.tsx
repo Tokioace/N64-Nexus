@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useMap } from '../contexts/MapContext'
 import { useUser } from '../contexts/UserContext'
-import { useLanguage } from '../contexts/LanguageContext'
+
 import { 
   Trophy, 
   Target, 
@@ -9,16 +9,12 @@ import {
   Star, 
   TrendingUp, 
   Gamepad2, 
-  Award, 
-  Zap,
-  Medal,
+  Award,
   Users,
   Calendar,
   BarChart3,
   Flame,
-  Globe,
   X,
-  ChevronRight,
   Lock,
   Unlock
 } from 'lucide-react'
@@ -29,7 +25,6 @@ interface BattleStatsPanelProps {
 }
 
 const BattleStatsPanel: React.FC<BattleStatsPanelProps> = ({ isOpen, onClose }) => {
-  const { t } = useLanguage()
   const { user } = useUser()
   const { userStats, achievements, battlePass, leaderboard } = useMap()
   const [activeTab, setActiveTab] = useState<'stats' | 'achievements' | 'battlepass' | 'leaderboard'>('stats')
@@ -89,7 +84,7 @@ const BattleStatsPanel: React.FC<BattleStatsPanelProps> = ({ isOpen, onClose }) 
             ].map((tab) => (
               <button
                 key={tab.id}
-                onClick={() => setActiveTab(tab.id as any)}
+                onClick={() => setActiveTab(tab.id as 'stats' | 'achievements' | 'battlepass' | 'leaderboard')}
                 className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-all ${
                   activeTab === tab.id
                     ? 'bg-yellow-600 text-black shadow-lg'

@@ -695,10 +695,8 @@ const Battle64Map: React.FC = () => {
     getEventsInRadius,
     calculateDistance,
     userStats,
-    achievements,
     battlePass,
     liveBattles,
-    leaderboard,
     getSuggestedEvents,
     findOptimalOpponents
   } = useMapContext()
@@ -719,7 +717,6 @@ const Battle64Map: React.FC = () => {
   // New enhanced UI states
   const [showBattleStats, setShowBattleStats] = useState(false)
   const [showLiveBattles, setShowLiveBattles] = useState(false)
-  const [showSuggestedEvents, setShowSuggestedEvents] = useState(false)
   const [showMatchmaking, setShowMatchmaking] = useState(false)
 
   // Load night mode preference from localStorage

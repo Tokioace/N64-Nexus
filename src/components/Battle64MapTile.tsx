@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { useLanguage } from '../contexts/LanguageContext'
 import { useMap } from '../contexts/MapContext'
 import { useUser } from '../contexts/UserContext'
-import { MapPin, Users, Calendar, Plus, Globe, Trophy, Crown, Star, Eye, Zap, Award, Flame } from 'lucide-react'
+import { MapPin, Users, Calendar, Plus, Globe, Trophy, Star, Eye, Zap, Award, Flame } from 'lucide-react'
 
 const Battle64MapTile: React.FC<{ className?: string }> = ({ className = '' }) => {
   const { t } = useLanguage()

@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { useMap } from '../contexts/MapContext'
 import { useUser } from '../contexts/UserContext'
-import { useLanguage } from '../contexts/LanguageContext'
+
 import { 
   Play, 
-  Pause, 
   Users, 
   Eye, 
   Volume2, 
@@ -13,17 +12,9 @@ import {
   Minimize, 
   Share2, 
   MessageCircle,
-  Heart,
-  Zap,
-  Crown,
   Target,
   Timer,
-  X,
-  ExternalLink,
-  Camera,
-  Mic,
-  MicOff,
-  Settings
+  X
 } from 'lucide-react'
 
 interface LiveBattleViewerProps {
@@ -33,7 +24,6 @@ interface LiveBattleViewerProps {
 }
 
 const LiveBattleViewer: React.FC<LiveBattleViewerProps> = ({ isOpen, onClose, battleId }) => {
-  const { t } = useLanguage()
   const { user } = useUser()
   const { liveBattles, joinAsSpectator } = useMap()
   const [selectedBattle, setSelectedBattle] = useState<string | null>(battleId || null)
@@ -282,11 +272,11 @@ const LiveBattleViewer: React.FC<LiveBattleViewerProps> = ({ isOpen, onClose, ba
                 <div className="mt-8 bg-slate-800 rounded-lg p-6 max-w-md mx-auto">
                   <div className="text-yellow-400 font-bold mb-4">{currentBattle.game}</div>
                   <div className="grid grid-cols-2 gap-4">
-                    {currentBattle.players.map((player, index) => (
-                      <div key={player.id} className="text-center">
-                        <div className={`w-16 h-16 rounded-full mx-auto mb-2 flex items-center justify-center text-2xl ${
-                          index === 0 ? 'bg-red-600' : index === 1 ? 'bg-blue-600' : index === 2 ? 'bg-green-600' : 'bg-purple-600'
-                        }`}>
+                                       {currentBattle.players.map((player, playerIndex) => (
+                     <div key={player.id} className="text-center">
+                       <div className={`w-16 h-16 rounded-full mx-auto mb-2 flex items-center justify-center text-2xl ${
+                         playerIndex === 0 ? 'bg-red-600' : playerIndex === 1 ? 'bg-blue-600' : playerIndex === 2 ? 'bg-green-600' : 'bg-purple-600'
+                       }`}>
                           🎮
                         </div>
                         <div className="text-white font-medium text-sm">{player.name}</div>
@@ -355,9 +345,9 @@ const LiveBattleViewer: React.FC<LiveBattleViewerProps> = ({ isOpen, onClose, ba
                     </div>
                   </div>
                   
-                  {/* Player Scores */}
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    {currentBattle.players.map((player, index) => (
+                                     {/* Player Scores */}
+                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                     {currentBattle.players.map((player) => (
                       <div key={player.id} className="bg-slate-800/50 rounded-lg p-3">
                         <div className="flex items-center gap-2 mb-2">
                           <div className={`w-3 h-3 rounded-full ${
@@ -422,7 +412,7 @@ const LiveBattleViewer: React.FC<LiveBattleViewerProps> = ({ isOpen, onClose, ba
         )}
       </div>
       
-      <style jsx>{`
+      <style>{`
         @keyframes float-up {
           0% {
             opacity: 1;
