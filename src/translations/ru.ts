@@ -90,7 +90,7 @@ const ru = {
   'map.tooFarToJoin': 'Слишком далеко для участия',
   'map.youJoined': 'Вы присоединились к событию!',
   'map.hostedSuccessfully': 'Событие успешно создано!',
-  'map.radiusDisplay': 'Показать радиус',
+  'map.radiusDisplay': 'Показать Радиус Поиска',
   'map.yourRadius': 'Ваш радиус: {radius}км',
   'map.pulsing': 'Прямое Событие',
   'map.joinableEvent': 'Доступное Событие',

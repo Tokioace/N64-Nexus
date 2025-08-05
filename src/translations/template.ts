@@ -89,6 +89,14 @@ const template = {
   'map.allGames': 'All Games',
   'map.distance': 'Distance',
   'map.noLimit': 'No Limit',
+  'map.radiusDisplay': 'Show Search Radius',
+  'map.nightMode': 'Night Mode',
+  'map.enableNightMode': 'Enable Night Mode',
+  'map.disableNightMode': 'Disable Night Mode',
+  'map.showMenu': 'Show Menu',
+  'map.hideMenu': 'Hide Menu',
+  'map.youAreHere': 'You are here',
+  'map.away': 'away',
 
   // Common
   'common.welcome': 'Welcome',

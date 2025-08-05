@@ -93,7 +93,7 @@ const zh = {
   'map.tooFarToJoin': '距离太远无法参加',
   'map.youJoined': '您已加入活动！',
   'map.hostedSuccessfully': '活动举办成功！',
-  'map.radiusDisplay': '显示半径',
+  'map.radiusDisplay': '显示搜索半径',
   'map.yourRadius': '您的半径：{radius}公里',
   'map.pulsing': '直播活动',
   'map.joinableEvent': '可参加的活动',

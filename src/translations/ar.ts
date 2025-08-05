@@ -93,7 +93,7 @@ const ar = {
   'map.tooFarToJoin': 'بعيد جداً للانضمام',
   'map.youJoined': 'لقد انضممت إلى الحدث!',
   'map.hostedSuccessfully': 'تم إنشاء الحدث بنجاح!',
-  'map.radiusDisplay': 'إظهار نصف القطر',
+  'map.radiusDisplay': 'إظهار نطاق البحث',
   'map.yourRadius': 'نصف قطرك: {radius}كم',
   'map.pulsing': 'حدث مباشر',
   'map.joinableEvent': 'حدث قابل للانضمام',

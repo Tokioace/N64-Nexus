@@ -93,7 +93,7 @@ const tr = {
   'map.tooFarToJoin': 'Katılmak için çok uzak',
   'map.youJoined': 'Etkinliğe katıldınız!',
   'map.hostedSuccessfully': 'Etkinlik başarıyla düzenlendi!',
-  'map.radiusDisplay': 'Yarıçapı göster',
+  'map.radiusDisplay': 'Arama Yarıçapını Göster',
   'map.yourRadius': 'Yarıçapınız: {radius}km',
   'map.pulsing': 'Canlı Etkinlik',
   'map.joinableEvent': 'Katılınabilir Etkinlik',

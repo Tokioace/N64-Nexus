@@ -984,38 +984,38 @@ const Battle64Map: React.FC = () => {
         : 'bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900'
     }`} style={{ touchAction: 'manipulation' }}>
       {/* Enhanced Header with N64 styling */}
-      <div className="bg-gradient-to-r from-slate-800/90 to-slate-700/90 backdrop-blur-sm border-b-2 border-yellow-500/50 p-4 h-20 flex items-center shadow-xl" style={{ touchAction: 'manipulation' }}>
+      <div className="bg-gradient-to-r from-slate-800/90 to-slate-700/90 backdrop-blur-sm border-b-2 border-yellow-500/50 p-2 sm:p-4 h-16 sm:h-20 flex items-center shadow-xl overflow-hidden" style={{ touchAction: 'manipulation' }}>
         <div className="max-w-full mx-auto w-full">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 bg-gradient-to-br from-yellow-600 to-yellow-500 rounded-xl flex items-center justify-center shadow-lg transform rotate-3">
-                <MapPin className="w-7 h-7 text-black" />
+          <div className="flex items-center justify-between gap-2">
+            <div className="flex items-center gap-2 sm:gap-4 min-w-0 flex-1">
+              <div className="w-8 h-8 sm:w-12 sm:h-12 bg-gradient-to-br from-yellow-600 to-yellow-500 rounded-lg sm:rounded-xl flex items-center justify-center shadow-lg transform rotate-3 flex-shrink-0">
+                <MapPin className="w-4 h-4 sm:w-7 sm:h-7 text-black" />
               </div>
-              <div>
-                <h1 className="text-2xl font-bold text-yellow-400 tracking-wide">Battle64 Map</h1>
-                <p className="text-slate-400 text-sm">{t('map.subtitle')}</p>
+              <div className="min-w-0 flex-1">
+                <h1 className="text-lg sm:text-2xl font-bold text-yellow-400 tracking-wide truncate">Battle64 Map</h1>
+                <p className="text-slate-400 text-xs sm:text-sm truncate hidden sm:block">{t('map.subtitle')}</p>
               </div>
             </div>
             
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-1 sm:gap-3 flex-shrink-0">
               {/* User Stats Display */}
               {user && userStats && (
-                <div className="flex items-center gap-3 bg-slate-700/50 rounded-lg px-3 py-2 border border-slate-600">
-                  <div className="flex items-center gap-2">
-                    <Trophy className="w-4 h-4 text-yellow-400" />
-                    <span className="text-yellow-400 font-bold">{userStats.skillRating}</span>
+                <div className="hidden md:flex items-center gap-2 sm:gap-3 bg-slate-700/50 rounded-lg px-2 sm:px-3 py-1 sm:py-2 border border-slate-600">
+                  <div className="flex items-center gap-1 sm:gap-2">
+                    <Trophy className="w-3 h-3 sm:w-4 sm:h-4 text-yellow-400" />
+                    <span className="text-yellow-400 font-bold text-xs sm:text-sm">{userStats.skillRating}</span>
                   </div>
-                  <div className="w-px h-4 bg-slate-600" />
-                  <div className="flex items-center gap-2">
-                    <Crown className="w-4 h-4 text-green-400" />
-                    <span className="text-green-400 font-bold">{userStats.wins}</span>
+                  <div className="w-px h-3 sm:h-4 bg-slate-600" />
+                  <div className="flex items-center gap-1 sm:gap-2">
+                    <Crown className="w-3 h-3 sm:w-4 sm:h-4 text-green-400" />
+                    <span className="text-green-400 font-bold text-xs sm:text-sm">{userStats.wins}</span>
                   </div>
                   {battlePass && (
                     <>
-                      <div className="w-px h-4 bg-slate-600" />
-                      <div className="flex items-center gap-2">
-                        <Star className="w-4 h-4 text-purple-400" />
-                        <span className="text-purple-400 font-bold">T{battlePass.userProgress.currentTier}</span>
+                      <div className="w-px h-3 sm:h-4 bg-slate-600" />
+                      <div className="flex items-center gap-1 sm:gap-2">
+                        <Star className="w-3 h-3 sm:w-4 sm:h-4 text-purple-400" />
+                        <span className="text-purple-400 font-bold text-xs sm:text-sm">T{battlePass.userProgress.currentTier}</span>
                       </div>
                     </>
                   )}
@@ -1023,32 +1023,32 @@ const Battle64Map: React.FC = () => {
               )}
 
               {/* Enhanced Action Buttons */}
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-1 sm:gap-2">
                 {/* Battle Stats Button */}
                 {user && (
                   <button
                     onClick={() => setShowBattleStats(true)}
-                    className="p-2 bg-slate-700/80 text-slate-300 hover:bg-slate-600/80 hover:text-yellow-400 rounded-lg transition-all"
+                    className="p-1.5 sm:p-2 bg-slate-700/80 text-slate-300 hover:bg-slate-600/80 hover:text-yellow-400 rounded-lg transition-all"
                     title="Battle Dashboard"
                   >
-                    <Award className="w-4 h-4" />
+                    <Award className="w-3 h-3 sm:w-4 sm:h-4" />
                   </button>
                 )}
 
                 {/* Live Battles Button */}
                 <button
                   onClick={() => setShowLiveBattles(true)}
-                  className={`p-2 rounded-lg transition-all relative ${
+                  className={`p-1.5 sm:p-2 rounded-lg transition-all relative ${
                     liveBattles.length > 0
                       ? 'bg-red-600/20 text-red-400 hover:bg-red-600/30 animate-pulse'
                       : 'bg-slate-700/80 text-slate-300 hover:bg-slate-600/80'
                   }`}
                   title="Live Battles"
                 >
-                  <Eye className="w-4 h-4" />
+                  <Eye className="w-3 h-3 sm:w-4 sm:h-4" />
                   {liveBattles.length > 0 && (
-                    <div className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full flex items-center justify-center">
-                      <span className="text-xs text-white font-bold">{liveBattles.length}</span>
+                    <div className="absolute -top-1 -right-1 w-2 h-2 sm:w-3 sm:h-3 bg-red-500 rounded-full flex items-center justify-center">
+                      <span className="text-xs text-white font-bold hidden sm:block">{liveBattles.length}</span>
                     </div>
                   )}
                 </button>
@@ -1057,30 +1057,30 @@ const Battle64Map: React.FC = () => {
                 {user && userStats && (
                   <button
                     onClick={() => setShowMatchmaking(true)}
-                    className="p-2 bg-slate-700/80 text-slate-300 hover:bg-slate-600/80 hover:text-blue-400 rounded-lg transition-all"
+                    className="p-1.5 sm:p-2 bg-slate-700/80 text-slate-300 hover:bg-slate-600/80 hover:text-blue-400 rounded-lg transition-all"
                     title="Smart Matchmaking"
                   >
-                    <Zap className="w-4 h-4" />
+                    <Zap className="w-3 h-3 sm:w-4 sm:h-4" />
                   </button>
                 )}
 
                 {/* Compact Menu Toggle */}
                 <button
                   onClick={() => setShowOverlay(!showOverlay)}
-                  className={`p-2 rounded-lg text-sm font-medium transition-all ${
+                  className={`p-1.5 sm:p-2 rounded-lg text-sm font-medium transition-all ${
                     showOverlay 
                       ? 'bg-yellow-600 text-black shadow-lg' 
                       : 'bg-slate-700/80 text-slate-300 hover:bg-slate-600/80 hover:text-white'
                   }`}
                   title={showOverlay ? t('map.hideMenu') : t('map.showMenu')}
                 >
-                  <Settings className="w-4 h-4" />
+                  <Settings className="w-3 h-3 sm:w-4 sm:h-4" />
                 </button>
 
                 {/* Quick Night Mode Toggle */}
                 <button
                   onClick={() => setIsNightMode(!isNightMode)}
-                  className={`px-2 py-2 rounded-lg text-sm font-medium transition-all ${
+                  className={`px-1.5 sm:px-2 py-1.5 sm:py-2 rounded-lg text-sm font-medium transition-all ${
                     isNightMode
                       ? 'bg-yellow-600 text-black'
                       : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
@@ -1094,10 +1094,11 @@ const Battle64Map: React.FC = () => {
               {user && (
                 <button
                   onClick={() => setIsHostingModalOpen(true)}
-                  className="px-4 py-2 bg-gradient-to-r from-yellow-600 to-yellow-500 text-black font-bold rounded-lg hover:from-yellow-500 hover:to-yellow-400 transition-all transform hover:scale-105 flex items-center gap-2 shadow-lg"
+                  className="px-2 sm:px-4 py-1.5 sm:py-2 bg-gradient-to-r from-yellow-600 to-yellow-500 text-black font-bold rounded-lg hover:from-yellow-500 hover:to-yellow-400 transition-all transform hover:scale-105 flex items-center gap-1 sm:gap-2 shadow-lg text-xs sm:text-sm"
                 >
-                  <Plus className="w-4 h-4" />
+                  <Plus className="w-3 h-3 sm:w-4 sm:h-4" />
                   <span className="hidden sm:inline">{t('map.hostEvent')}</span>
+                  <span className="sm:hidden">Host</span>
                 </button>
               )}
             </div>
@@ -1105,35 +1106,37 @@ const Battle64Map: React.FC = () => {
         </div>
       </div>
 
-      {/* Main Content - Enhanced Landscape Layout */}
-      <div className="flex h-[calc(100vh-5rem)] relative">
-        {/* Enhanced Slide-In Control Panel */}
+      {/* Main Content - Enhanced Responsive Layout */}
+      <div className="flex h-[calc(100vh-5rem)] relative overflow-hidden">
+        {/* Enhanced Responsive Slide-In Control Panel */}
         <div className={`absolute left-0 top-0 bottom-0 z-10 transition-all duration-300 ease-out ${
           showOverlay ? 'translate-x-0' : '-translate-x-full'
         }`} style={{ touchAction: 'manipulation' }}>
-          <div className={`w-80 h-full backdrop-blur-sm border-r p-4 overflow-y-auto shadow-2xl ${
+          <div className={`w-80 sm:w-80 md:w-96 lg:w-80 xl:w-96 h-full backdrop-blur-sm border-r p-3 sm:p-4 overflow-y-auto shadow-2xl max-w-[85vw] ${
             isNightMode 
               ? 'bg-slate-900/95 border-yellow-500/50 shadow-yellow-500/20' 
               : 'bg-slate-800/95 border-slate-600'
           }`} style={{ touchAction: 'manipulation' }}>
             {/* Panel Header */}
-            <div className="flex items-center justify-between mb-4">
-              <h2 className="text-lg font-bold text-yellow-400">Battle64 Map Controls</h2>
+            <div className="flex items-center justify-between mb-3 sm:mb-4">
+              <h2 className="text-base sm:text-lg font-bold text-yellow-400 truncate pr-2">
+                {t('map.title')} {t('map.filters')}
+              </h2>
               <button
                 onClick={() => setShowOverlay(false)}
-                className="p-1 hover:bg-slate-700 rounded transition-colors"
+                className="p-1 hover:bg-slate-700 rounded transition-colors flex-shrink-0"
               >
                 <X className="w-4 h-4 text-slate-400" />
               </button>
             </div>
 
             {/* Filters Section */}
-            <div className="bg-gradient-to-r from-slate-700/50 to-slate-600/50 border border-slate-500 rounded-lg p-3 mb-4">
-              <h3 className="text-sm font-semibold text-yellow-400 mb-3 flex items-center gap-2">
-                <Settings className="w-4 h-4" />
+            <div className="bg-gradient-to-r from-slate-700/50 to-slate-600/50 border border-slate-500 rounded-lg p-2 sm:p-3 mb-3 sm:mb-4">
+              <h3 className="text-xs sm:text-sm font-semibold text-yellow-400 mb-2 sm:mb-3 flex items-center gap-2">
+                <Settings className="w-3 h-3 sm:w-4 sm:h-4" />
                 {t('map.filters')}
               </h3>
-              <div className="space-y-3">
+              <div className="space-y-2 sm:space-y-3">
                 {/* Game Filter */}
                 <div>
                   <label className="block text-xs font-medium text-slate-300 mb-1">
@@ -1142,7 +1145,7 @@ const Battle64Map: React.FC = () => {
                   <select
                     value={gameFilter}
                     onChange={(e) => setGameFilter(e.target.value)}
-                    className="w-full bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-white text-sm focus:ring-2 focus:ring-yellow-500"
+                    className="w-full bg-slate-700 border border-slate-600 rounded-lg px-2 sm:px-3 py-1.5 sm:py-2 text-white text-xs sm:text-sm focus:ring-2 focus:ring-yellow-500"
                   >
                     <option value="">{t('map.allGames')}</option>
                     {games.map((game) => (
@@ -1159,7 +1162,7 @@ const Battle64Map: React.FC = () => {
                   <select
                     value={distanceFilter}
                     onChange={(e) => setDistanceFilter(parseInt(e.target.value))}
-                    className="w-full bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-white text-sm focus:ring-2 focus:ring-yellow-500"
+                    className="w-full bg-slate-700 border border-slate-600 rounded-lg px-2 sm:px-3 py-1.5 sm:py-2 text-white text-xs sm:text-sm focus:ring-2 focus:ring-yellow-500"
                   >
                     <option value={10}>10 km</option>
                     <option value={30}>30 km</option>
@@ -1169,24 +1172,24 @@ const Battle64Map: React.FC = () => {
                 </div>
 
                 {/* View Options */}
-                <div className="space-y-2">
+                <div className="space-y-1.5 sm:space-y-2">
                   <label className="flex items-center">
                     <input
                       type="checkbox"
                       checked={showRadius}
                       onChange={(e) => setShowRadius(e.target.checked)}
-                      className="mr-2 text-yellow-500 focus:ring-yellow-500"
+                      className="mr-2 text-yellow-500 focus:ring-yellow-500 w-3 h-3 sm:w-4 sm:h-4"
                     />
-                    <span className="text-sm text-slate-300">{t('map.radiusDisplay')}</span>
+                    <span className="text-xs sm:text-sm text-slate-300">{t('map.radiusDisplay')}</span>
                   </label>
                   <label className="flex items-center">
                     <input
                       type="checkbox"
                       checked={isNightMode}
                       onChange={(e) => setIsNightMode(e.target.checked)}
-                      className="mr-2 text-yellow-500 focus:ring-yellow-500"
+                      className="mr-2 text-yellow-500 focus:ring-yellow-500 w-3 h-3 sm:w-4 sm:h-4"
                     />
-                    <span className="text-sm text-slate-300">🌙 {t('map.nightMode')}</span>
+                    <span className="text-xs sm:text-sm text-slate-300">🌙 {t('map.nightMode')}</span>
                   </label>
                 </div>
               </div>
@@ -1313,12 +1316,12 @@ const Battle64Map: React.FC = () => {
         </div>
 
         {/* Center - Enhanced Interactive Map */}
-        <div className="flex-1 relative battle64-map">
+        <div className={`flex-1 relative battle64-map w-full min-w-0 ${isNightMode ? 'night-mode' : ''}`}>
           <MapContainer
             center={mapCenter}
             zoom={mapZoom}
             style={{ height: '100%', width: '100%', touchAction: 'auto' }}
-            className="z-0"
+            className="z-0 rounded-lg sm:rounded-none"
             zoomControl={true}
             scrollWheelZoom={true}
             doubleClickZoom={true}
@@ -1335,12 +1338,13 @@ const Battle64Map: React.FC = () => {
               }
             />
             
-            {/* White text overlay for night mode */}
+            {/* Enhanced city labels overlay for night mode */}
             {isNightMode && (
               <TileLayer
                 url="https://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}{r}.png"
                 attribution='&copy; <a href="https://carto.com/attributions">CARTO</a>'
-                opacity={0.9}
+                opacity={0.8}
+                className="night-mode-labels"
               />
             )}
             
@@ -1435,28 +1439,28 @@ const Battle64Map: React.FC = () => {
                   }
                 }}
               >
-                <Popup className={isNightMode ? 'night-mode-popup' : ''}>
-                  <div className={`min-w-48 p-2 ${isNightMode ? 'bg-slate-800 text-white' : ''}`}>
+                <Popup className={`${isNightMode ? 'night-mode-popup' : ''} responsive-popup`} maxWidth={300} minWidth={200}>
+                  <div className={`w-full max-w-[280px] sm:max-w-[320px] p-2 sm:p-3 ${isNightMode ? 'bg-slate-800 text-white' : ''}`}>
                     {cluster.isCluster ? (
                       <>
-                        <h4 className={`font-bold text-lg mb-2 ${isNightMode ? 'text-yellow-400' : 'text-yellow-600'}`}>
+                        <h4 className={`font-bold text-sm sm:text-lg mb-2 ${isNightMode ? 'text-yellow-400' : 'text-yellow-600'} truncate`}>
                           {cluster.events.length} Events Here
                         </h4>
-                        <div className="space-y-2 max-h-48 overflow-y-auto">
-                          {cluster.events.map((event) => (
+                        <div className="space-y-1.5 sm:space-y-2 max-h-32 sm:max-h-48 overflow-y-auto">
+                          {cluster.events.slice(0, 5).map((event) => (
                             <div 
                               key={event.id}
-                              className={`p-2 rounded cursor-pointer transition-colors ${
+                              className={`p-1.5 sm:p-2 rounded cursor-pointer transition-colors ${
                                 isNightMode 
                                   ? 'bg-slate-700 hover:bg-slate-600 border border-slate-600' 
                                   : 'bg-gray-100 hover:bg-gray-200 border'
                               }`}
                               onClick={() => setSelectedEvent(event)}
                             >
-                              <div className={`font-medium ${isNightMode ? 'text-white' : 'text-gray-900'}`}>
+                              <div className={`font-medium text-xs sm:text-sm truncate ${isNightMode ? 'text-white' : 'text-gray-900'}`}>
                                 {event.title}
                               </div>
-                              <div className={`text-sm ${isNightMode ? 'text-yellow-400' : 'text-gray-600'}`}>
+                              <div className={`text-xs ${isNightMode ? 'text-yellow-400' : 'text-gray-600'} truncate`}>
                                 {event.game}
                               </div>
                               <div className={`text-xs ${isNightMode ? 'text-slate-300' : 'text-gray-500'}`}>
@@ -1464,16 +1468,21 @@ const Battle64Map: React.FC = () => {
                               </div>
                             </div>
                           ))}
+                          {cluster.events.length > 5 && (
+                            <div className={`text-xs text-center py-1 ${isNightMode ? 'text-slate-400' : 'text-gray-500'}`}>
+                              +{cluster.events.length - 5} more events
+                            </div>
+                          )}
                         </div>
                       </>
                     ) : (
                       <>
-                        <div className="flex items-center justify-between mb-2">
-                          <h4 className={`font-bold text-lg ${isNightMode ? 'text-yellow-400' : 'text-yellow-600'}`}>
-                            {cluster.events[0].title}
+                        <div className="flex items-start justify-between mb-2 gap-2">
+                          <h4 className={`font-bold text-sm sm:text-lg flex-1 min-w-0 ${isNightMode ? 'text-yellow-400' : 'text-yellow-600'}`}>
+                            <span className="block truncate">{cluster.events[0].title}</span>
                           </h4>
                           {cluster.events[0].category && (
-                            <span className={`px-2 py-1 rounded text-xs font-medium ${
+                            <span className={`px-1.5 py-0.5 rounded text-xs font-medium flex-shrink-0 ${
                               cluster.events[0].category === 'tournament' ? 'bg-red-500/20 text-red-400 border border-red-500/30' :
                               cluster.events[0].category === 'speedrun' ? 'bg-blue-500/20 text-blue-400 border border-blue-500/30' :
                               cluster.events[0].category === 'meetup' ? 'bg-green-500/20 text-green-400 border border-green-500/30' :
@@ -1485,31 +1494,31 @@ const Battle64Map: React.FC = () => {
                             </span>
                           )}
                         </div>
-                        <p className={`text-sm mb-2 font-medium ${isNightMode ? 'text-yellow-300' : 'text-gray-600'}`}>
+                        <p className={`text-xs sm:text-sm mb-2 font-medium truncate ${isNightMode ? 'text-yellow-300' : 'text-gray-600'}`}>
                           {cluster.events[0].game}
                         </p>
-                        <div className="text-sm space-y-1">
+                        <div className="text-xs sm:text-sm space-y-1">
                           <div className="flex items-center gap-2">
-                            <Calendar className={`w-4 h-4 ${isNightMode ? 'text-blue-400' : 'text-blue-500'}`} />
-                            <span className={isNightMode ? 'text-slate-300' : 'text-gray-700'}>
+                            <Calendar className={`w-3 h-3 sm:w-4 sm:h-4 flex-shrink-0 ${isNightMode ? 'text-blue-400' : 'text-blue-500'}`} />
+                            <span className={`truncate ${isNightMode ? 'text-slate-300' : 'text-gray-700'}`}>
                               {cluster.events[0].date.toLocaleDateString()}
                             </span>
                           </div>
                           <div className="flex items-center gap-2">
-                            <Clock className={`w-4 h-4 ${isNightMode ? 'text-green-400' : 'text-green-500'}`} />
-                            <span className={isNightMode ? 'text-slate-300' : 'text-gray-700'}>
+                            <Clock className={`w-3 h-3 sm:w-4 sm:h-4 flex-shrink-0 ${isNightMode ? 'text-green-400' : 'text-green-500'}`} />
+                            <span className={`truncate ${isNightMode ? 'text-slate-300' : 'text-gray-700'}`}>
                               {cluster.events[0].date.toLocaleTimeString()}
                             </span>
                           </div>
                           <div className="flex items-center gap-2">
-                            <Users className={`w-4 h-4 ${isNightMode ? 'text-purple-400' : 'text-purple-500'}`} />
-                            <span className={isNightMode ? 'text-slate-300' : 'text-gray-700'}>
+                            <Users className={`w-3 h-3 sm:w-4 sm:h-4 flex-shrink-0 ${isNightMode ? 'text-purple-400' : 'text-purple-500'}`} />
+                            <span className={`truncate ${isNightMode ? 'text-slate-300' : 'text-gray-700'}`}>
                               {cluster.events[0].currentPlayers}/{cluster.events[0].maxPlayers} {t('map.players')}
                             </span>
                           </div>
                           {userLocation && (
                             <div className="flex items-center gap-2">
-                              <Navigation className={`w-4 h-4 ${isNightMode ? 'text-orange-400' : 'text-orange-500'}`} />
+                              <Navigation className={`w-3 h-3 sm:w-4 sm:h-4 flex-shrink-0 ${isNightMode ? 'text-orange-400' : 'text-orange-500'}`} />
                               <span className={`${isNightMode ? 'text-green-400' : 'text-green-600'} font-medium`}>
                                 {calculateDistance(userLocation.coordinates, cluster.events[0].location.coordinates).toFixed(1)}km {t('map.away')}
                               </span>

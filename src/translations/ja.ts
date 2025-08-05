@@ -93,7 +93,7 @@ const ja = {
   'map.tooFarToJoin': '参加するには遠すぎます',
   'map.youJoined': 'イベントに参加しました！',
   'map.hostedSuccessfully': 'イベントの主催が成功しました！',
-  'map.radiusDisplay': '半径を表示',
+  'map.radiusDisplay': '検索範囲を表示',
   'map.yourRadius': 'あなたの半径：{radius}km',
   'map.pulsing': 'ライブイベント',
   'map.joinableEvent': '参加可能なイベント',

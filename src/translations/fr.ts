@@ -93,7 +93,7 @@ const fr = {
   'map.tooFarToJoin': 'Trop loin pour rejoindre',
   'map.youJoined': 'Vous avez rejoint l\'événement !',
   'map.hostedSuccessfully': 'Événement organisé avec succès !',
-  'map.radiusDisplay': 'Afficher le rayon',
+  'map.radiusDisplay': 'Afficher le Rayon de Recherche',
   'map.yourRadius': 'Votre rayon : {radius}km',
   'map.pulsing': 'Événement en Direct',
   'map.joinableEvent': 'Événement Disponible',

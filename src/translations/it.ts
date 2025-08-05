@@ -93,7 +93,7 @@ const it = {
   'map.tooFarToJoin': 'Troppo lontano per partecipare',
   'map.youJoined': 'Ti sei unito all\'evento!',
   'map.hostedSuccessfully': 'Evento organizzato con successo!',
-  'map.radiusDisplay': 'Mostra raggio',
+  'map.radiusDisplay': 'Mostra Raggio di Ricerca',
   'map.yourRadius': 'Il tuo raggio: {radius}km',
   'map.pulsing': 'Evento Live',
   'map.joinableEvent': 'Evento Disponibile',

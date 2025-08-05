@@ -93,7 +93,7 @@ const hi = {
   'map.tooFarToJoin': 'शामिल होने के लिए बहुत दूर',
   'map.youJoined': 'आप इवेंट में शामिल हो गए!',
   'map.hostedSuccessfully': 'इवेंट सफलतापूर्वक होस्ट किया गया!',
-  'map.radiusDisplay': 'रेडियस दिखाएं',
+  'map.radiusDisplay': 'खोज त्रिज्या दिखाएं',
   'map.yourRadius': 'आपका रेडियस: {radius}km',
   'map.pulsing': 'लाइव इवेंट',
   'map.joinableEvent': 'शामिल होने योग्य इवेंट',

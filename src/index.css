@@ -13,6 +13,18 @@ html {
 /* Battle64 Map Styles */
 .battle64-map {
   touch-action: pan-x pan-y;
+  overflow: hidden;
+}
+
+/* Enhanced responsive popup styles */
+.responsive-popup .leaflet-popup-content-wrapper {
+  max-width: 90vw !important;
+  border-radius: 8px !important;
+}
+
+.responsive-popup .leaflet-popup-content {
+  margin: 0 !important;
+  line-height: 1.4 !important;
 }
 
 /* Battle64 Map Night Mode Styles */
@@ -26,6 +38,61 @@ html {
 .night-mode-popup .leaflet-popup-tip {
   background: #1e293b !important;
   border: 1px solid #eab308 !important;
+}
+
+/* Enhanced night mode labels for better city visibility */
+.night-mode-labels {
+  filter: brightness(1.3) contrast(1.2) saturate(0.8) !important;
+  mix-blend-mode: screen !important;
+}
+
+/* Additional night mode map enhancements */
+.battle64-map.night-mode {
+  filter: brightness(0.95) contrast(1.05);
+}
+
+.battle64-map.night-mode .leaflet-tile {
+  filter: brightness(0.9) contrast(1.1);
+}
+
+/* Night mode city labels with enhanced readability */
+.night-mode-labels .leaflet-tile {
+  filter: brightness(1.4) contrast(1.3) hue-rotate(5deg) !important;
+  text-shadow: 0 0 3px rgba(255, 255, 255, 0.8) !important;
+}
+
+/* Leaflet controls responsive positioning */
+.leaflet-control-zoom {
+  margin-left: 10px !important;
+  margin-top: 10px !important;
+}
+
+@media (max-width: 640px) {
+  .leaflet-control-zoom {
+    margin-left: 5px !important;
+    margin-top: 5px !important;
+  }
+  
+  .leaflet-control-zoom a {
+    width: 32px !important;
+    height: 32px !important;
+    line-height: 32px !important;
+    font-size: 16px !important;
+  }
+}
+
+/* Battle Map mobile overlay improvements */
+@media (max-width: 768px) {
+  .battle64-map {
+    border-radius: 0 !important;
+  }
+}
+
+/* Prevent horizontal scroll on mobile */
+@media (max-width: 640px) {
+  .battle64-map .leaflet-container {
+    max-width: 100vw !important;
+  }
 }
 
 /* Optional CRT scanlines effect */

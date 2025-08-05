@@ -93,7 +93,7 @@ const el = {
   'map.tooFarToJoin': 'Πολύ μακριά για συμμετοχή',
   'map.youJoined': 'Συμμετείχατε στην εκδήλωση!',
   'map.hostedSuccessfully': 'Η εκδήλωση δημιουργήθηκε με επιτυχία!',
-  'map.radiusDisplay': 'Εμφάνιση ακτίνας',
+  'map.radiusDisplay': 'Εμφάνιση Ακτίνας Αναζήτησης',
   'map.yourRadius': 'Η ακτίνα σας: {radius}km',
   'map.pulsing': 'Ζωντανή Εκδήλωση',
   'map.joinableEvent': 'Διαθέσιμη Εκδήλωση',

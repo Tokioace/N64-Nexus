@@ -93,7 +93,7 @@ const ko = {
   'map.tooFarToJoin': '참가하기에는 너무 멀어요',
   'map.youJoined': '이벤트에 참가했습니다!',
   'map.hostedSuccessfully': '이벤트 주최가 성공했습니다!',
-  'map.radiusDisplay': '반경 표시',
+  'map.radiusDisplay': '검색 반경 표시',
   'map.yourRadius': '당신의 반경: {radius}km',
   'map.pulsing': '라이브 이벤트',
   'map.joinableEvent': '참가 가능한 이벤트',
