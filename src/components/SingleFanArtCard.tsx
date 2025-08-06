@@ -1,7 +1,6 @@
-import React, { useState, useRef, useEffect } from 'react'
-import { Palette, Heart, Eye, Image, Calendar } from 'lucide-react'
+import React, { useState, useRef } from 'react'
+import { Palette, Image, Calendar } from 'lucide-react'
 import { useLanguage } from '../contexts/LanguageContext'
-import { useUser } from '../contexts/UserContext'
 import { useNavigate } from 'react-router-dom'
 import { InteractionBar } from './InteractionComponents'
 
@@ -24,7 +23,6 @@ interface SingleFanArtCardProps {
 
 const SingleFanArtCard: React.FC<SingleFanArtCardProps> = ({ fanArtItems, className = '' }) => {
   const { t } = useLanguage()
-  const { user, isAuthenticated } = useUser()
   const navigate = useNavigate()
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isFlipping, setIsFlipping] = useState(false)

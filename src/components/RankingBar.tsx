@@ -1,13 +1,11 @@
 import React, { useState } from 'react'
 import { useUser } from '../contexts/UserContext'
 import { usePoints } from '../contexts/PointsContext'
-import { useLanguage } from '../contexts/LanguageContext'
 import { Trophy, Zap, ChevronUp, ChevronDown } from 'lucide-react'
 
 const RankingBar: React.FC = () => {
   const { user, isAuthenticated } = useUser()
   const { getUserPosition, userPoints } = usePoints()
-  const { t } = useLanguage()
   const [isExpanded, setIsExpanded] = useState(false)
   const [isHovered, setIsHovered] = useState(false)
 
