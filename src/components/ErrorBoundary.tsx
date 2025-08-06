@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component, ErrorInfo, ReactNode } from 'react'
+import { logger } from '../lib/logger'
 import { AlertCircle, RefreshCw, Home } from 'lucide-react'
 import { useLanguage } from '../contexts/LanguageContext'
 import { useNavigate } from 'react-router-dom'
@@ -26,7 +27,7 @@ class ErrorBoundaryClass extends Component<Props, State> {
   }
 
   public componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-    console.error('Forum Error Boundary caught an error:', error, errorInfo)
+    logger.error('Forum Error Boundary caught an error:', error, errorInfo)
   }
 
   private handleReset = () => {

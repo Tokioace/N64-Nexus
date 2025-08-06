@@ -2,6 +2,7 @@
 import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react'
 import { GameEvent, EventParticipation, EventContextType, RaceSubmissionData } from '../types'
 import { useLanguage } from './LanguageContext'
+import { logger } from '../lib/logger'
 
 const EventContext = createContext<EventContextType | undefined>(undefined)
 
@@ -269,7 +270,7 @@ export const EventProvider: React.FC<{ children: ReactNode }> = ({ children }) =
       try {
         setEventPointsAwarded(JSON.parse(savedPointsAwarded))
       } catch (error) {
-        console.error('Error loading event points awarded:', error)
+        logger.error('Error loading event points awarded:', error)
       }
     }
   }, [])
@@ -295,7 +296,7 @@ export const EventProvider: React.FC<{ children: ReactNode }> = ({ children }) =
         setEvents(parsedEvents)
         setActiveEvents(parsedEvents.filter((e: GameEvent) => e.isActive))
       } catch (error) {
-        console.error('Error loading events from localStorage:', error)
+        logger.error('Error loading events from localStorage:', error)
         const fallbackEvents = getEventData(t)
         setEvents(fallbackEvents)
         setActiveEvents(fallbackEvents.filter(e => e.isActive))
@@ -310,7 +311,7 @@ export const EventProvider: React.FC<{ children: ReactNode }> = ({ children }) =
         }))
         setUserParticipations(parsedParticipations)
       } catch (error) {
-        console.error('Error loading user participations from localStorage:', error)
+        logger.error('Error loading user participations from localStorage:', error)
         setUserParticipations([])
       }
     }
@@ -323,7 +324,7 @@ export const EventProvider: React.FC<{ children: ReactNode }> = ({ children }) =
         }))
         setAllEventSubmissions(parsedSubmissions)
       } catch (error) {
-        console.error('Error loading all submissions from localStorage:', error)
+        logger.error('Error loading all submissions from localStorage:', error)
         setAllEventSubmissions(mockParticipations)
       }
     } else {
@@ -464,7 +465,7 @@ export const EventProvider: React.FC<{ children: ReactNode }> = ({ children }) =
   }
 
   const submitRaceTime = async (data: RaceSubmissionData, currentUser?: { id: string; username: string }): Promise<boolean> => {
-    console.log('EventContext: submitRaceTime called with:', data)
+          logger.log('EventContext: submitRaceTime called with:', data)
     setLoading(true)
     try {
       await new Promise(resolve => setTimeout(resolve, 1000)) // Simulate upload time
@@ -483,8 +484,8 @@ export const EventProvider: React.FC<{ children: ReactNode }> = ({ children }) =
         p.eventId === data.eventId && p.userId === userId
       )
       
-      console.log('Existing user participation:', existingUserParticipation)
-      console.log('Existing all submission:', existingAllSubmission)
+              logger.log('Existing user participation:', existingUserParticipation)
+        logger.log('Existing all submission:', existingAllSubmission)
       
       const participationId = existingUserParticipation?.id || existingAllSubmission?.id || Date.now().toString()
       
@@ -510,17 +511,17 @@ export const EventProvider: React.FC<{ children: ReactNode }> = ({ children }) =
         verified: false // Will be verified by admins
       }
       
-      console.log('New participation:', newParticipation)
+              logger.log('New participation:', newParticipation)
       
       // Update or add to user participations
       if (existingUserParticipation) {
         setUserParticipations(prev => 
           prev.map(p => p.id === participationId ? newParticipation : p)
         )
-        console.log('Updated existing user participation')
+                  logger.log('Updated existing user participation')
       } else {
         setUserParticipations(prev => [...prev, newParticipation])
-        console.log('Added new user participation')
+                  logger.log('Added new user participation')
       }
 
       // Update or add to all submissions
@@ -528,17 +529,17 @@ export const EventProvider: React.FC<{ children: ReactNode }> = ({ children }) =
         setAllEventSubmissions(prev => 
           prev.map(p => p.id === participationId ? newParticipation : p)
         )
-        console.log('Updated existing all submission')
+                  logger.log('Updated existing all submission')
       } else {
         setAllEventSubmissions(prev => [...prev, newParticipation])
-        console.log('Added new all submission')
+                  logger.log('Added new all submission')
       }
       
       setLoading(false)
-      console.log('submitRaceTime: Success')
+              logger.log('submitRaceTime: Success')
       return true
     } catch (err) {
-      console.error('submitRaceTime error:', err)
+              logger.error('submitRaceTime error:', err)
               setError(t('error.generic'))
       setLoading(false)
       return false

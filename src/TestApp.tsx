@@ -1,7 +1,7 @@
 import React from 'react'
 
 const TestApp: React.FC = () => {
-  console.log('TestApp: Rendering test app')
+
   
   return (
     <div style={{

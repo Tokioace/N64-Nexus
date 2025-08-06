@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
+import { logger } from '../lib/logger'
 import { useUser } from '../contexts/UserContext'
 import { useLanguage } from '../contexts/LanguageContext'
 import { usePoints } from '../contexts/PointsContext'
@@ -62,7 +63,7 @@ const ChatPage: React.FC = () => {
         const users = await getAllUsers()
         setAllUsers(users.filter(u => u.id !== user?.id)) // Exclude current user
       } catch (error) {
-        console.error('Error loading users:', error)
+        logger.error('Error loading users:', error)
       }
     }
 
@@ -171,7 +172,7 @@ const ChatPage: React.FC = () => {
         await awardPoints('chat.messages', 'Chat message sent')
         setLastPointsTime(now)
       } catch (error) {
-        console.error('Error awarding chat points:', error)
+        logger.error('Error awarding chat points:', error)
       }
     }
   }

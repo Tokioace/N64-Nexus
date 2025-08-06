@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { logger } from '../lib/logger'
 import { useLanguage } from '../contexts/LanguageContext'
 import { isValidTimeFormat } from '../utils/timeUtils'
 import { 
@@ -106,9 +107,9 @@ const RaceSubmissionModal: React.FC<RaceSubmissionModalProps> = ({
         notes: notes || undefined
       }
       
-      console.log('Submitting race time:', submissionData)
+      logger.log('Submitting race time:', submissionData)
       const success = await onSubmit(submissionData)
-      console.log('Submission result:', success)
+              logger.log('Submission result:', success)
       
       if (success) {
         // Reset form
@@ -122,7 +123,7 @@ const RaceSubmissionModal: React.FC<RaceSubmissionModalProps> = ({
         setError(t('events.uploadError'))
       }
     } catch (err) {
-      console.error('Submission error:', err)
+      logger.error('Submission error:', err)
               setError(t('error.generic'))
     } finally {
       setIsSubmitting(false)

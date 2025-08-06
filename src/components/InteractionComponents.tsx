@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { logger } from '../lib/logger'
 import { Heart, MessageCircle, MessageSquare, Eye, Send, ThumbsUp } from 'lucide-react'
 import { useInteraction } from '../contexts/InteractionContext'
 import { useUser } from '../contexts/UserContext'
@@ -60,7 +61,7 @@ export const LikeButton: React.FC<LikeButtonProps> = ({
         await likeContent(contentType, contentId, user.id)
       }
     } catch (error) {
-      console.error('Error toggling like:', error)
+      logger.error('Error toggling like:', error)
     } finally {
       setIsLiking(false)
     }
@@ -142,7 +143,7 @@ export const CommentSection: React.FC<CommentSectionProps> = ({
         setNewComment('')
       }
     } catch (error) {
-      console.error('Error submitting comment:', error)
+      logger.error('Error submitting comment:', error)
     } finally {
       setIsSubmitting(false)
     }
@@ -153,7 +154,7 @@ export const CommentSection: React.FC<CommentSectionProps> = ({
     try {
       await likeComment(contentType, contentId, commentId, user.id)
     } catch (error) {
-      console.error('Error liking comment:', error)
+      logger.error('Error liking comment:', error)
     }
   }
 
@@ -307,7 +308,7 @@ const CompactInteractionBar: React.FC<CompactInteractionBarProps> = ({
         await likeContent(contentType, contentId, user.id)
       }
     } catch (error) {
-      console.error('Error toggling like:', error)
+      logger.error('Error toggling like:', error)
     } finally {
       setIsLiking(false)
     }

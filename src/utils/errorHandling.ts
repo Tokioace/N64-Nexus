@@ -1,4 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { logger } from '../lib/logger'
+
 // Error types for better categorization
 export enum ErrorType {
   NETWORK = 'NETWORK',
@@ -145,20 +147,20 @@ class ErrorHandler {
     
     switch (level) {
       case LogLevel.DEBUG:
-        console.debug(logMessage, context)
+        logger.debug(logMessage, context)
         break
       case LogLevel.INFO:
-        console.info(logMessage, context)
+        logger.log(logMessage, context)
         break
       case LogLevel.WARN:
-        console.warn(logMessage, context)
+        logger.warn(logMessage, context)
         break
       case LogLevel.ERROR:
       case LogLevel.FATAL:
-        console.error(logMessage, context)
+        logger.error(logMessage, context)
         break
       default:
-        console.log(logMessage, context)
+        logger.log(logMessage, context)
     }
   }
 
@@ -180,9 +182,9 @@ class ErrorHandler {
       //   body: JSON.stringify(entry)
       // })
       
-      console.info('Error logged to monitoring service:', entry)
+      logger.log('Error logged to monitoring service:', entry)
     } catch (error) {
-      console.error('Failed to send error to monitoring service:', error)
+      logger.error('Failed to send error to monitoring service:', error)
     }
   }
 
@@ -195,7 +197,7 @@ class ErrorHandler {
       const trimmedQueue = queuedErrors.slice(-50)
       localStorage.setItem('queuedErrors', JSON.stringify(trimmedQueue))
     } catch (error) {
-      console.error('Failed to queue error for offline sending:', error)
+      logger.error('Failed to queue error for offline sending:', error)
     }
   }
 
@@ -213,7 +215,7 @@ class ErrorHandler {
       localStorage.removeItem('queuedErrors')
       this.logInfo('Sent queued offline errors to monitoring service')
     } catch (error) {
-      console.error('Failed to send queued errors:', error)
+      logger.error('Failed to send queued errors:', error)
     }
   }
 

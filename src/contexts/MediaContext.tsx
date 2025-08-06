@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { createContext, useContext, useState, ReactNode, useEffect, useCallback, useMemo } from 'react'
+import { logger } from '../lib/logger'
 import { MediaMeta, MediaContextType } from '../types'
 import { useLanguage } from './LanguageContext'
 import { useUser } from './UserContext'
@@ -86,12 +87,12 @@ export const MediaProvider: React.FC<{ children: ReactNode }> = ({ children }) =
           }))
       }
     } catch (error) {
-      console.error('Error loading media from storage:', error)
+      logger.error('Error loading media from storage:', error)
       // Clear corrupted data
       try {
         localStorage.removeItem(MEDIA_STORAGE_KEY)
       } catch (clearError) {
-        console.error('Error clearing corrupted media data:', clearError)
+        logger.error('Error clearing corrupted media data:', clearError)
       }
     }
     
@@ -198,7 +199,7 @@ export const MediaProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     try {
       localStorage.setItem(MEDIA_STORAGE_KEY, JSON.stringify(mediaData))
     } catch (error) {
-      console.error('Error saving media to storage:', error)
+      logger.error('Error saving media to storage:', error)
       setError('Failed to save media data')
     }
   }, [])
@@ -317,7 +318,7 @@ export const MediaProvider: React.FC<{ children: ReactNode }> = ({ children }) =
       setLoading(false)
       return true
     } catch (err) {
-      console.error('Upload error:', err)
+      logger.error('Upload error:', err)
       setError(t('error.generic'))
       setLoading(false)
       return false
@@ -400,7 +401,7 @@ export const MediaProvider: React.FC<{ children: ReactNode }> = ({ children }) =
       setLoading(false)
       return true
     } catch (err) {
-      console.error('URL upload error:', err)
+      logger.error('URL upload error:', err)
       setError(t('error.generic'))
       setLoading(false)
       return false
@@ -491,7 +492,7 @@ export const MediaProvider: React.FC<{ children: ReactNode }> = ({ children }) =
       setLoading(false)
       return true
     } catch (err) {
-      console.error('Delete error:', err)
+      logger.error('Delete error:', err)
       setError(t('error.generic'))
       setLoading(false)
       return false
@@ -516,7 +517,7 @@ export const MediaProvider: React.FC<{ children: ReactNode }> = ({ children }) =
       
       return true
     } catch (err) {
-      console.error('Like error:', err)
+      logger.error('Like error:', err)
       return false
     }
   }, [user])

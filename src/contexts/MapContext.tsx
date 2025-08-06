@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect, useCallback, ReactNode } from 'react'
+import { logger } from '../lib/logger'
 import { useUser } from './UserContext'
 
 // Types for the Map Context
@@ -718,7 +719,7 @@ export const MapProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
     // Enhanced gamification actions
     updateBattleResult: async (eventId, result, score) => {
       if (!user) return
-      console.log(`Updating battle result for event ${eventId}: ${result}, score: ${score}`)
+      logger.log(`Updating battle result for event ${eventId}: ${result}, score: ${score}`)
       
       const event = allEvents.find(e => e.id === eventId)
       if (!event) return
@@ -809,7 +810,7 @@ export const MapProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
       } : null)
     },
     unlockAchievement: async (achievementId) => {
-      console.log(`Unlocking achievement: ${achievementId}`)
+      logger.log(`Unlocking achievement: ${achievementId}`)
       setAchievements(prev => prev.map(achievement => {
         if (achievement.id === achievementId) {
           return { ...achievement, unlockedAt: new Date(), progress: achievement.requirement.target }
@@ -822,7 +823,7 @@ export const MapProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
       } : null)
     },
     updateBattlePassProgress: async (xpGained) => {
-      console.log(`Updating battle pass progress: ${xpGained} XP`)
+      logger.log(`Updating battle pass progress: ${xpGained} XP`)
       setBattlePass(prev => {
         if (!prev) return null
         const newXp = prev.userProgress.currentXp + xpGained
@@ -847,7 +848,7 @@ export const MapProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
     },
     startLiveBattle: async (eventId) => {
       if (!user) return
-      console.log(`Starting live battle for event: ${eventId}`)
+      logger.log(`Starting live battle for event: ${eventId}`)
       const event = allEvents.find(e => e.id === eventId)
       if (!event) return
       
@@ -865,7 +866,7 @@ export const MapProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
       }])
     },
     joinAsSpectator: async (eventId) => {
-      console.log(`Joining as spectator for event: ${eventId}`)
+      logger.log(`Joining as spectator for event: ${eventId}`)
       setLiveBattles(prev => prev.map(battle => {
         if (battle.eventId === eventId) {
           return {

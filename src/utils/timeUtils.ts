@@ -48,9 +48,8 @@ export const safeFormatTime = (time: string | null | undefined): string => {
       return `${minutes}:${remainingSeconds.padStart(6, '0')}`
     }
     
-    // If we can't parse it, return a safe fallback
-    console.warn(`Invalid time format: ${time}`)
-    return '0:00.000'
+      // If we can't parse it, return a safe fallback
+  return '0:00.000'
   }
   
   return trimmedTime

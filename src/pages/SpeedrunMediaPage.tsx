@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState, useEffect, useCallback, useMemo } from 'react'
+import { logger } from '../lib/logger'
 import { useLanguage } from '../contexts/LanguageContext'
 import { useUser } from '../contexts/UserContext'
 import { useMedia } from '../contexts/MediaContext'
@@ -60,7 +61,7 @@ class MediaErrorBoundary extends React.Component<
   }
 
   componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
-    console.error('Media component error:', error, errorInfo)
+    logger.error('Media component error:', error, errorInfo)
   }
 
   render() {
@@ -191,7 +192,7 @@ const SpeedrunMediaPage: React.FC = () => {
   useEffect(() => {
     if (!isAuthenticated) {
       // In a real app, you might want to redirect to login
-      console.log('User not authenticated')
+      logger.log('User not authenticated')
     }
   }, [isAuthenticated])
 
@@ -260,7 +261,7 @@ const SpeedrunMediaPage: React.FC = () => {
         alert(error || t('error.generic'))
       }
     } catch (error) {
-      console.error('Upload error:', error)
+      logger.error('Upload error:', error)
       alert(t('error.generic'))
     } finally {
       setUploading(false)

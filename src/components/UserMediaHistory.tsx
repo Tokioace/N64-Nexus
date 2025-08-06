@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState, useMemo, useCallback } from 'react'
+import { logger } from '../lib/logger'
 import { useLanguage } from '../contexts/LanguageContext'
 import { useUser } from '../contexts/UserContext'
 import { useMedia } from '../contexts/MediaContext'
@@ -37,7 +38,7 @@ const UserMediaHistory: React.FC<UserMediaHistoryProps> = ({ className = '' }) =
     try {
       return getUserMediaHistory(user.id)
     } catch (error) {
-      console.error('Error fetching user media:', error)
+      logger.error('Error fetching user media:', error)
       return []
     }
   }, [user, getUserMediaHistory])
@@ -105,7 +106,7 @@ const UserMediaHistory: React.FC<UserMediaHistoryProps> = ({ className = '' }) =
         })
       }
     } catch (error) {
-      console.error('Error formatting date:', error)
+      logger.error('Error formatting date:', error)
       return 'Unbekannt'
     }
   }, [])

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { logger } from '../lib/logger'
 import { useUser } from '../contexts/UserContext'
 import { useLanguage } from '../contexts/LanguageContext'
 import { useForum } from '../contexts/ForumContext'
@@ -123,7 +124,7 @@ const SafeComponent: React.FC<{ children: React.ReactNode; fallback?: React.Reac
       </React.Suspense>
     )
   } catch (error) {
-    console.error(`Error in ${name}:`, error)
+            logger.error(`Error in ${name}:`, error)
     setHasError(true)
     setError(error as Error)
     return null
@@ -173,7 +174,7 @@ const HomePage: React.FC = () => {
               throw new Error('Invalid fanart data format')
             }
           } catch (parseError) {
-            console.error('Error parsing fanart data:', parseError)
+            logger.error('Error parsing fanart data:', parseError)
             // Clear corrupted data and use fallback
             localStorage.removeItem('fanart_items')
             throw parseError
@@ -202,7 +203,7 @@ const HomePage: React.FC = () => {
           ])
         }
       } catch (error) {
-        console.error('Error loading fanart data:', error)
+        logger.error('Error loading fanart data:', error)
         // Use fallback data on error and clear corrupted localStorage
         localStorage.removeItem('fanart_items')
         setFanArtItems([
@@ -223,7 +224,7 @@ const HomePage: React.FC = () => {
               throw new Error('Invalid marketplace data format')
             }
           } catch (parseError) {
-            console.error('Error parsing marketplace data:', parseError)
+            logger.error('Error parsing marketplace data:', parseError)
             // Clear corrupted data and use fallback
             localStorage.removeItem('marketplace_items')
             throw parseError
@@ -247,7 +248,7 @@ const HomePage: React.FC = () => {
           ])
         }
       } catch (error) {
-        console.error('Error loading marketplace data:', error)
+        logger.error('Error loading marketplace data:', error)
         // Use fallback data on error and clear corrupted localStorage
         localStorage.removeItem('marketplace_items')
         setMarketplaceItems([
@@ -264,7 +265,7 @@ const HomePage: React.FC = () => {
           new Promise(resolve => { loadMarketplaceData(); resolve(void 0) })
         ])
       } catch (error) {
-        console.error('Error loading homepage data:', error)
+        logger.error('Error loading homepage data:', error)
       } finally {
         setIsDataLoading(false)
       }
@@ -289,7 +290,7 @@ const HomePage: React.FC = () => {
   const forumThreads: ForumThread[] = React.useMemo(() => {
     try {
       if (!threads || !Array.isArray(threads)) {
-        console.warn('Invalid threads data:', threads)
+        logger.warn('Invalid threads data:', threads)
         return []
       }
       
@@ -301,7 +302,7 @@ const HomePage: React.FC = () => {
             const dateB = new Date(b.lastUpdated || b.createdAt || 0).getTime()
             return dateB - dateA
           } catch (error) {
-            console.warn('Error sorting threads:', error)
+            logger.warn('Error sorting threads:', error)
             return 0
           }
         })
@@ -332,13 +333,13 @@ const HomePage: React.FC = () => {
               lastPostAuthor: latestPost?.authorName || latestPost?.authorId
             }
           } catch (error) {
-            console.error('Error processing thread:', thread, error)
+            logger.error('Error processing thread:', thread, error)
             return null
           }
         })
         .filter(Boolean) as ForumThread[] // Remove null entries
     } catch (error) {
-      console.error('Error processing forum threads:', error)
+              logger.error('Error processing forum threads:', error)
       return []
     }
   }, [threads, posts])

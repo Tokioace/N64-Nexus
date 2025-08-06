@@ -3,6 +3,7 @@ import React, { createContext, useContext, useState, ReactNode } from 'react'
 import { QuizQuestion, QuizResult, QuizContextType } from '../types'
 import { useLanguage } from './LanguageContext'
 import { usePoints } from './PointsContext'
+import { logger } from '../lib/logger'
 
 const QuizContext = createContext<QuizContextType | undefined>(undefined)
 
@@ -56,7 +57,7 @@ export const QuizProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       try {
         await awardPoints('quiz.answerCorrect', `Correct answer: ${currentQuestion.question}`)
       } catch (error) {
-        console.error('Failed to award points for correct answer:', error)
+        logger.error('Failed to award points for correct answer:', error)
       }
     }
   }
@@ -89,7 +90,7 @@ export const QuizProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       try {
         await awardPoints('quiz.fullPerfect', `Perfect quiz completed: ${score}/${actualQuestionCount}`)
       } catch (error) {
-        console.error('Failed to award points for perfect quiz:', error)
+        logger.error('Failed to award points for perfect quiz:', error)
       }
     }
     
