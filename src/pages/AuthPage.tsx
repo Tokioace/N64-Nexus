@@ -4,6 +4,7 @@ import { useLanguage } from '../contexts/LanguageContext'
 import { useNavigate } from 'react-router-dom'
 import { UserRegistrationData } from '../types'
 import { User, Mail, Lock, Gamepad2, Globe, Eye, EyeOff } from 'lucide-react'
+import PasswordResetModal from '../components/PasswordResetModal'
 
 const AuthPage: React.FC = () => {
   const { login, register, isAuthenticated } = useUser()
@@ -14,6 +15,7 @@ const AuthPage: React.FC = () => {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
+  const [showPasswordReset, setShowPasswordReset] = useState(false)
 
   // Login form state
   const [loginData, setLoginData] = useState({
@@ -198,6 +200,17 @@ const AuthPage: React.FC = () => {
               >
                 {loading ? t('auth.loggingIn') : t('auth.login')}
               </button>
+
+              {/* Passwort vergessen Link */}
+              <div className="text-center mt-4">
+                <button
+                  type="button"
+                  onClick={() => setShowPasswordReset(true)}
+                  className="text-sm text-blue-400 hover:text-blue-300 transition-colors"
+                >
+                  Passwort vergessen?
+                </button>
+              </div>
             </form>
           ) : (
             /* Registration Form */
@@ -357,6 +370,12 @@ const AuthPage: React.FC = () => {
             )}
           </div>
         </div>
+
+        {/* Passwort Reset Modal */}
+        <PasswordResetModal
+          isOpen={showPasswordReset}
+          onClose={() => setShowPasswordReset(false)}
+        />
       </div>
     </div>
   )
