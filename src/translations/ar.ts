@@ -313,7 +313,7 @@ const ar = {
   'media.urlInput': 'إدخال رابط',
   'media.title': 'العنوان',
   'media.titleRequired': 'العنوان *',
-  'media.titlePlaceholder': 'مثال: محاولة رقم قياسي عالمي 120 نجمة',
+  'media.titlePlaceholder': 'مثال: محاولة الرقم القياسي العالمي 120 نجمة',
   'media.game': 'اللعبة',
   'media.streamTitle': 'عنوان البث',
   'media.description': 'الوصف',
@@ -330,7 +330,7 @@ const ar = {
   'media.uploadedOn': 'رفع في',
 
   // Placeholders - النصوص التوضيحية
-  'placeholder.speedrunTitle': 'مثال: ماريو 64 سباق سريع 120 نجمة',
+  'placeholder.speedrunTitle': 'مثال: ماريو 64 120 نجمة سرعة',
   'placeholder.speedrunUrl': 'https://twitch.tv/قناتك',
   'placeholder.speedrunGame': 'مثال: سوبر ماريو 64',
   'placeholder.mediaSearch': 'البحث بالعنوان أو الوصف أو العلامات...',
@@ -415,7 +415,7 @@ const ar = {
   'minigames.available': 'متاح',
   'minigames.games': 'الألعاب',
   'minigames.bestScore': 'أفضل نتيجة',
-  'minigames.globalLeaderboard': 'لوحة المتصدرين العالمية',
+  'minigames.globalLeaderboard': 'قائمة المتصدرين العالمية',
   'minigames.globalLeaderboardDesc': 'شاهد أفضل اللاعبين حول العالم',
   'minigames.viewLeaderboards': 'عرض لوحات المتصدرين',
   'minigames.tournamentsTitle': 'البطولات',
@@ -756,7 +756,7 @@ const ar = {
   'chat.rules.noLinks': 'لا للروابط الخارجية بدون إذن',
 
   // Event submission - إرسال الأحداث
-  'placeholder.raceTime': 'أدخل الوقت (مثال 1:23:45)...',
+  'placeholder.raceTime': 'أدخل الوقت (مثال: 1:23:45)...',
   'events.timeFormat': 'التنسيق: ساعات:دقائق:ثواني',
   'events.selectDocumentation': 'اختر التوثيق',
   'events.photo': 'صورة',
@@ -1122,7 +1122,39 @@ const ar = {
   // Event Card specific translations
   'events.likes': 'إعجابات',
   'events.views': 'مشاهدات', 
-  'events.comments': 'تعليقات'
+  'events.comments': 'تعليقات',
+
+  // PWA Installation Prompt
+  'pwa.installTitle': 'تثبيت Battle64',
+  'pwa.installDescription': 'احصل على تجربة التطبيق الكاملة مع الوصول دون اتصال والتحميل السريع!',
+  'pwa.install': 'تثبيت التطبيق',
+  'pwa.gotIt': 'فهمت!',
+  'pwa.iosStep1': 'اضغط على زر المشاركة',
+  'pwa.iosStep2': 'ثم "إضافة إلى الشاشة الرئيسية"',
+  'common.later': 'لاحقاً',
+
+  // Offline Functionality
+  'offline.workingOffline': 'العمل في وضع عدم الاتصال',
+  'offline.backOnline': 'العودة متصلاً!',
+  'offline.cachedDataAvailable': 'البيانات المخزنة متاحة',
+  'offline.cachedData': 'البيانات المخزنة',
+
+  // Enhanced Chat
+  'chat.communityChat': 'دردشة المجتمع',
+  'chat.activeUsers': 'المستخدمون النشطون',
+  'chat.loading': 'تحميل الرسائل...',
+  'chat.noMessages': 'لا توجد رسائل حتى الآن',
+  'chat.startConversation': 'كن أول من يبدأ المحادثة!',
+  'chat.typeMessage': 'اكتب رسالة...',
+  'chat.emoji': 'إضافة رمز تعبيري',
+  'chat.scrollToBottom': 'انتقل للأسفل',
+  'chat.errorLoading': 'خطأ في تحميل الرسائل',
+  'time.today': 'اليوم',
+  'time.yesterday': 'أمس',
+
+  // Realtime Events
+  'events.nowLive': 'الحدث مباشر الآن!'
+
 }
 
 export default ar

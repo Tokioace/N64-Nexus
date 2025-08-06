@@ -401,7 +401,7 @@ const pt = {
   'minigames.available': 'Disponíveis',
   'minigames.games': 'Jogos',
   'minigames.bestScore': 'Melhor pontuação',
-  'minigames.globalLeaderboard': 'Classificação global',
+  'minigames.globalLeaderboard': 'Classificação Global',
   'minigames.globalLeaderboardDesc': 'Veja os melhores jogadores do mundo',
   'minigames.viewLeaderboards': 'Ver classificações',
   'minigames.tournamentsTitle': 'Torneios',
@@ -990,7 +990,39 @@ const pt = {
   // Event Card specific translations
   'events.likes': 'Curtidas',
   'events.views': 'Visualizações', 
-  'events.comments': 'Comentários'
+  'events.comments': 'Comentários',
+
+  // PWA Installation Prompt
+  'pwa.installTitle': 'Instalar Battle64',
+  'pwa.installDescription': 'Obtenha a experiência completa do app com acesso offline e carregamento mais rápido!',
+  'pwa.install': 'Instalar App',
+  'pwa.gotIt': 'Entendi!',
+  'pwa.iosStep1': 'Toque no botão Compartilhar',
+  'pwa.iosStep2': 'Depois "Adicionar à Tela de Início"',
+  'common.later': 'Mais tarde',
+
+  // Offline Functionality
+  'offline.workingOffline': 'Funcionando offline',
+  'offline.backOnline': 'De volta online!',
+  'offline.cachedDataAvailable': 'Dados em cache disponíveis',
+  'offline.cachedData': 'Dados em cache',
+
+  // Enhanced Chat
+  'chat.communityChat': 'Chat da Comunidade',
+  'chat.activeUsers': 'usuários ativos',
+  'chat.loading': 'Carregando mensagens...',
+  'chat.noMessages': 'Ainda não há mensagens',
+  'chat.startConversation': 'Seja o primeiro a iniciar a conversa!',
+  'chat.typeMessage': 'Digite uma mensagem...',
+  'chat.emoji': 'Adicionar emoji',
+  'chat.scrollToBottom': 'Ir para o final',
+  'chat.errorLoading': 'Erro ao carregar mensagens',
+  'time.today': 'Hoje',
+  'time.yesterday': 'Ontem',
+
+  // Realtime Events
+  'events.nowLive': 'O evento está agora ao vivo!'
+
 }
 
 export default pt

@@ -337,7 +337,7 @@ const zh = {
   'media.urlInput': '输入URL',
   'media.title': '标题',
   'media.titleRequired': '标题 *',
-  'media.titlePlaceholder': '例如：120星世界纪录尝试',
+  'media.titlePlaceholder': '例：120星世界纪录挑战',
   'media.game': '游戏',
   'media.streamTitle': '直播标题',
   'media.description': '描述',
@@ -360,9 +360,9 @@ const zh = {
   'media.error': '媒体错误',
 
   // Placeholders
-  'placeholder.speedrunTitle': '例如：马里奥64 120星速通',
+  'placeholder.speedrunTitle': '例：马里奥64 120星速通',
   'placeholder.speedrunUrl': 'https://twitch.tv/你的频道',
-  'placeholder.speedrunGame': '例如：超级马里奥64',
+  'placeholder.speedrunGame': '例：超级马里奥64',
   'placeholder.mediaSearch': '按标题、描述或标签搜索...',
   'placeholder.mediaUrl': 'https://youtube.com/watch?v=...',
   'placeholder.mediaDescription': '描述你的成就...',
@@ -376,7 +376,7 @@ const zh = {
   'placeholder.notes': '添加备注...',
   'placeholder.additionalInfo': '附加信息...',
   'placeholder.password': '输入密码...',
-  'placeholder.raceTime': '输入时间（例如 1:23:45）...',
+  'placeholder.raceTime': '输入时间（例：1:23:45）...',
   'placeholder.livestreamUrl': 'https://twitch.tv/你的频道...',
   'placeholder.setupController': '描述控制器设置...',
   'placeholder.category': '选择类别...',
@@ -1039,7 +1039,39 @@ const zh = {
   // Event Card specific translations
   'events.likes': '点赞',
   'events.views': '浏览量', 
-  'events.comments': '评论'
+  'events.comments': '评论',
+
+  // PWA Installation Prompt
+  'pwa.installTitle': '安装 Battle64',
+  'pwa.installDescription': '获得完整的应用体验，支持离线访问和快速加载！',
+  'pwa.install': '安装应用',
+  'pwa.gotIt': '知道了！',
+  'pwa.iosStep1': '点击分享按钮',
+  'pwa.iosStep2': '然后点击"添加到主屏幕"',
+  'common.later': '稍后',
+
+  // Offline Functionality
+  'offline.workingOffline': '离线工作中',
+  'offline.backOnline': '重新上线！',
+  'offline.cachedDataAvailable': '缓存数据可用',
+  'offline.cachedData': '缓存数据',
+
+  // Enhanced Chat
+  'chat.communityChat': '社区聊天',
+  'chat.activeUsers': '活跃用户',
+  'chat.loading': '加载消息中...',
+  'chat.noMessages': '还没有消息',
+  'chat.startConversation': '成为第一个开始对话的人！',
+  'chat.typeMessage': '输入消息...',
+  'chat.emoji': '添加表情',
+  'chat.scrollToBottom': '滚动到底部',
+  'chat.errorLoading': '消息加载错误',
+  'time.today': '今天',
+  'time.yesterday': '昨天',
+
+  // Realtime Events
+  'events.nowLive': '活动现在正在直播！'
+
 }
 
 export default zh

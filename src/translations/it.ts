@@ -325,7 +325,7 @@ const it = {
   'media.uploadedBy': 'Caricato da',
   'media.uploadedOn': 'Caricato il',
   'placeholder.speedrunTitle': 'es. Mario 64 120 Stelle Speedrun',
-  'placeholder.speedrunUrl': 'https://twitch.tv/il-tuo-canale',
+  'placeholder.speedrunUrl': 'https://twitch.tv/tuo-canale',
   'placeholder.speedrunGame': 'es. Super Mario 64',
   'placeholder.mediaSearch': 'Cerca per titolo, descrizione o tag...',
   'placeholder.mediaUrl': 'https://youtube.com/watch?v=...',
@@ -403,7 +403,7 @@ const it = {
   'minigames.available': 'Disponibili',
   'minigames.games': 'Giochi',
   'minigames.bestScore': 'Miglior punteggio',
-  'minigames.globalLeaderboard': 'Classifica globale',
+  'minigames.globalLeaderboard': 'Classifica Globale',
   'minigames.globalLeaderboardDesc': 'Guarda i migliori giocatori al mondo',
   'minigames.viewLeaderboards': 'Vedi classifiche',
   'minigames.tournamentsTitle': 'Tornei',
@@ -679,7 +679,7 @@ const it = {
   'events.photo': 'Foto',
   'events.video': 'Video',
   'events.livestreamUrlLabel': 'URL Livestream',
-  'placeholder.livestreamUrl': 'https://twitch.tv/il-tuo-canale...',
+  'placeholder.livestreamUrl': 'https://twitch.tv/tuo-canale...',
   'events.streamingPlatforms': 'Piattaforme di Streaming',
   'placeholder.setupController': 'Descrivi la configurazione del controller...',
   'events.status.upcoming': 'In Arrivo',
@@ -992,7 +992,39 @@ const it = {
   // Event Card specific translations
   'events.likes': 'Mi piace',
   'events.views': 'Visualizzazioni', 
-  'events.comments': 'Commenti'
+  'events.comments': 'Commenti',
+
+  // PWA Installation Prompt
+  'pwa.installTitle': 'Installa Battle64',
+  'pwa.installDescription': 'Ottieni l\'esperienza completa dell\'app con accesso offline e caricamento più veloce!',
+  'pwa.install': 'Installa App',
+  'pwa.gotIt': 'Capito!',
+  'pwa.iosStep1': 'Tocca il pulsante Condividi',
+  'pwa.iosStep2': 'Poi "Aggiungi alla schermata Home"',
+  'common.later': 'Più tardi',
+
+  // Offline Functionality
+  'offline.workingOffline': 'Funzionamento offline',
+  'offline.backOnline': 'Di nuovo online!',
+  'offline.cachedDataAvailable': 'Dati cache disponibili',
+  'offline.cachedData': 'Dati cache',
+
+  // Enhanced Chat
+  'chat.communityChat': 'Chat della Comunità',
+  'chat.activeUsers': 'utenti attivi',
+  'chat.loading': 'Caricamento messaggi...',
+  'chat.noMessages': 'Nessun messaggio ancora',
+  'chat.startConversation': 'Sii il primo a iniziare la conversazione!',
+  'chat.typeMessage': 'Scrivi un messaggio...',
+  'chat.emoji': 'Aggiungi emoji',
+  'chat.scrollToBottom': 'Vai in fondo',
+  'chat.errorLoading': 'Errore caricamento messaggi',
+  'time.today': 'Oggi',
+  'time.yesterday': 'Ieri',
+
+  // Realtime Events
+  'events.nowLive': 'L\'evento è ora dal vivo!'
+
 }
 
 export default it

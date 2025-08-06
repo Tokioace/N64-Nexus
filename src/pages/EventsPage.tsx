@@ -1,9 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { logger } from '../lib/logger'
 import { useEvent } from '../contexts/EventContext'
 import { useUser } from '../contexts/UserContext'
 import { useLanguage } from '../contexts/LanguageContext'
+import { useRealtimeEvents } from '../hooks/useRealtimeSub'
 import RaceSubmissionModal, { RaceSubmissionData } from '../components/RaceSubmissionModal'
 import EventLeaderboard from '../components/EventLeaderboard'
 import BestLapShowcase from '../components/BestLapShowcase'
@@ -33,6 +34,30 @@ const EventsPage: React.FC = () => {
   const [notificationsEnabled, setNotificationsEnabled] = useState(false)
   const [showSubmissionModal, setShowSubmissionModal] = useState<string | null>(null)
   const [showLeaderboard, setShowLeaderboard] = useState<string | null>(null)
+
+  // Realtime events subscription
+  useRealtimeEvents((payload) => {
+    logger.info('Live event update received:', payload)
+    
+    // Log the realtime update (refetch would be handled by the context if available)
+    console.log('Event update received, consider refreshing data')
+    
+    // Show notification for live event status changes
+    if (payload.eventType === 'UPDATE' && payload.new?.status !== payload.old?.status) {
+      const eventName = payload.new?.title || 'Event'
+      const status = payload.new?.status
+      
+      if (status === 'live') {
+        // Show notification that event went live
+        if ('Notification' in window && Notification.permission === 'granted') {
+          new Notification(`🔴 ${eventName} ist jetzt LIVE!`, {
+            body: t('events.nowLive'),
+            icon: '/android-chrome-192x192.png'
+          })
+        }
+      }
+    }
+  })
 
   const getEventStatus = (event: any) => {
     const now = new Date()

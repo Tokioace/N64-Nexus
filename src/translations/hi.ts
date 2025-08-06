@@ -307,7 +307,7 @@ const hi = {
   'media.urlInput': 'URL दर्ज करें',
   'media.title': 'शीर्षक',
   'media.titleRequired': 'शीर्षक *',
-  'media.titlePlaceholder': 'उदा. 120 स्टार्स वर्ल्ड रिकॉर्ड प्रयास',
+  'media.titlePlaceholder': 'उदा. 120 स्टार विश्व रिकॉर्ड प्रयास',
   'media.game': 'गेम',
   'media.streamTitle': 'स्ट्रीम शीर्षक',
   'media.description': 'विवरण',
@@ -322,7 +322,7 @@ const hi = {
   'media.noEvent': 'कोई इवेंट नहीं',
   'media.uploadedBy': 'द्वारा अपलोड किया गया',
   'media.uploadedOn': 'को अपलोड किया गया',
-  'placeholder.speedrunTitle': 'उदा. मारियो 64 120 स्टार्स स्पीडरन',
+  'placeholder.speedrunTitle': 'उदा. मारियो 64 120 स्टार स्पीडरन',
   'placeholder.speedrunUrl': 'https://twitch.tv/आपका-चैनल',
   'placeholder.speedrunGame': 'उदा. सुपर मारियो 64',
   'placeholder.mediaSearch': 'शीर्षक, विवरण या टैग्स से खोजें...',
@@ -401,7 +401,7 @@ const hi = {
   'minigames.available': 'उपलब्ध',
   'minigames.games': 'गेम्स',
   'minigames.bestScore': 'सर्वश्रेष्ठ स्कोर',
-  'minigames.globalLeaderboard': 'ग्लोबल लीडरबोर्ड',
+  'minigames.globalLeaderboard': 'वैश्विक लीडरबोर्ड',
   'minigames.globalLeaderboardDesc': 'दुनिया के सर्वश्रेष्ठ खिलाड़ी देखें',
   'minigames.viewLeaderboards': 'लीडरबोर्ड देखें',
   'minigames.tournamentsTitle': 'टूर्नामेंट',
@@ -989,7 +989,39 @@ const hi = {
   // Event Card specific translations
   'events.likes': 'लाइक्स',
   'events.views': 'व्यूज', 
-  'events.comments': 'टिप्पणियाँ'
+  'events.comments': 'टिप्पणियाँ',
+
+  // PWA Installation Prompt
+  'pwa.installTitle': 'Battle64 इंस्टॉल करें',
+  'pwa.installDescription': 'ऑफ़लाइन एक्सेस और तेज़ लोडिंग के साथ पूरा ऐप अनुभव पाएं!',
+  'pwa.install': 'ऐप इंस्टॉल करें',
+  'pwa.gotIt': 'समझ गया!',
+  'pwa.iosStep1': 'शेयर बटन पर टैप करें',
+  'pwa.iosStep2': 'फिर "होम स्क्रीन पर जोड़ें" चुनें',
+  'common.later': 'बाद में',
+
+  // Offline Functionality
+  'offline.workingOffline': 'ऑफलाइन काम कर रहा है',
+  'offline.backOnline': 'वापस ऑनलाइन!',
+  'offline.cachedDataAvailable': 'कैश्ड डेटा उपलब्ध',
+  'offline.cachedData': 'कैश्ड डेटा',
+
+  // Enhanced Chat
+  'chat.communityChat': 'समुदाय चैट',
+  'chat.activeUsers': 'सक्रिय उपयोगकर्ता',
+  'chat.loading': 'संदेश लोड हो रहे हैं...',
+  'chat.noMessages': 'अभी तक कोई संदेश नहीं',
+  'chat.startConversation': 'बातचीत शुरू करने वाले पहले व्यक्ति बनें!',
+  'chat.typeMessage': 'एक संदेश टाइप करें...',
+  'chat.emoji': 'इमोजी जोड़ें',
+  'chat.scrollToBottom': 'नीचे स्क्रॉल करें',
+  'chat.errorLoading': 'संदेश लोड करने में त्रुटि',
+  'time.today': 'आज',
+  'time.yesterday': 'कल',
+
+  // Realtime Events
+  'events.nowLive': 'इवेंट अब लाइव है!'
+
 }
 
 export default hi

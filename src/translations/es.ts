@@ -506,15 +506,15 @@ const es = {
   'placeholder.threadTitle': 'Dale un título a tu hilo...',
   'placeholder.threadContent': 'Escribe tu publicación...',
   'placeholder.replyContent': 'Escribe tu respuesta...',
-  'placeholder.marketplacePrice': 'Ingresa precio...',
-  'placeholder.notes': 'Añadir notas...',
+  'placeholder.marketplacePrice': 'Ingresa el precio...',
+  'placeholder.notes': 'Agregar notas...',
   'placeholder.additionalInfo': 'Información adicional...',
   'placeholder.password': 'Ingresa contraseña...',
   'placeholder.gameName': 'Ingresa nombre del juego...',
   'placeholder.category': 'Seleccionar categoría...',
-  'placeholder.time': 'Ingresar tiempo...',
-  'placeholder.score': 'Ingresar puntuación...',
-  'placeholder.proofUrl': 'Ingresar URL de prueba...',
+  'placeholder.time': 'Ingresa tiempo...',
+  'placeholder.score': 'Ingresa puntuación...',
+  'placeholder.proofUrl': 'Ingresa URL de prueba...',
   'placeholder.recordNotes': 'Notas del récord...',
 
   // Success messages
@@ -607,7 +607,7 @@ const es = {
   'minigames.available': 'Disponibles',
   'minigames.games': 'juegos',
   'minigames.bestScore': 'Mejor Puntuación',
-  'minigames.globalLeaderboard': 'Clasificación Global',
+  'minigames.globalLeaderboard': 'Tabla de Clasificación Global',
   'minigames.globalLeaderboardDesc': 'Ve los mejores jugadores del mundo',
   'minigames.viewLeaderboards': 'Ver Clasificaciones',
   'minigames.tournamentsTitle': 'Torneos',
@@ -645,11 +645,11 @@ const es = {
   'fanart.chooseImage': 'Elegir Imagen',
   'fanart.imageFormats': 'Formatos soportados: JPG, PNG, GIF',
   'fanart.artworkTitle': 'Título de la Obra',
-  'fanart.titlePlaceholder': 'Dale un título a tu obra...',
+  'fanart.titlePlaceholder': 'Dale un título a tu obra de arte...',
   'fanart.selectGame': 'Seleccionar Juego',
   'fanart.chooseGame': 'Elige un juego...',
   'fanart.tags': 'Etiquetas',
-  'fanart.tagsPlaceholder': 'Añadir etiquetas...',
+  'fanart.tagsPlaceholder': 'Agregar etiquetas...',
   'fanart.tagsHint': 'Separadas por comas',
   'fanart.uploading': 'Subiendo...',
   'fanart.allCategories': 'Todas las Categorías',
@@ -697,23 +697,23 @@ const es = {
   'notifications.error': 'Error de notificación',
 
   // Leaderboard
-  'leaderboard.pageTitle': 'Clasificación',
+  'leaderboard.pageTitle': 'Tabla de Clasificación',
   'leaderboard.pageSubtitle': 'Los mejores jugadores de la comunidad',
-  'leaderboard.globalLeaderboard': 'Clasificación Global',
+  'leaderboard.globalLeaderboard': 'Tabla de Clasificación Global',
   'leaderboard.selectEvent': 'Seleccionar Evento',
   'leaderboard.noData': 'No hay datos disponibles',
   'leaderboard.noDataDesc': 'Aún no hay datos disponibles para este evento.',
-  'leaderboard.seasonLeaderboard': 'Clasificación de Temporada',
+  'leaderboard.seasonLeaderboard': 'Tabla de Temporada',
   'leaderboard.filterType': 'Tipo de Filtro',
   'leaderboard.filterGlobal': 'Global',
   'leaderboard.filterFriends': 'Amigos',
   'leaderboard.filterRegion': 'Región',
-  'leaderboard.timeframe': 'Período',
-  'leaderboard.timeframeAllTime': 'Todo el Tiempo',
+  'leaderboard.timeframe': 'Marco Temporal',
+  'leaderboard.timeframeAllTime': 'Todos los Tiempos',
   'leaderboard.timeframeSeason': 'Temporada',
   'leaderboard.timeframeMonth': 'Mes',
   'leaderboard.regionPlatform': 'Región/Plataforma',
-  'leaderboard.yourRank': 'Tu Rango',
+  'leaderboard.yourRank': 'Tu Posición',
 
   // Collection
   'collection.gamesCollected': 'Juegos Coleccionados',
@@ -1029,7 +1029,39 @@ const es = {
   // Event Card specific translations
   'events.likes': 'Me gusta',
   'events.views': 'Vistas', 
-  'events.comments': 'Comentarios'
+  'events.comments': 'Comentarios',
+
+  // PWA Installation Prompt
+  'pwa.installTitle': 'Instalar Battle64',
+  'pwa.installDescription': '¡Obtén la experiencia completa de la app con acceso offline y carga más rápida!',
+  'pwa.install': 'Instalar App',
+  'pwa.gotIt': '¡Entendido!',
+  'pwa.iosStep1': 'Toca el botón Compartir',
+  'pwa.iosStep2': 'Luego "Añadir a pantalla de inicio"',
+  'common.later': 'Más tarde',
+
+  // Offline Functionality
+  'offline.workingOffline': 'Trabajando sin conexión',
+  'offline.backOnline': '¡De vuelta en línea!',
+  'offline.cachedDataAvailable': 'Datos en caché disponibles',
+  'offline.cachedData': 'Datos en caché',
+
+  // Enhanced Chat
+  'chat.communityChat': 'Chat de la Comunidad',
+  'chat.activeUsers': 'usuarios activos',
+  'chat.loading': 'Cargando mensajes...',
+  'chat.noMessages': 'Aún no hay mensajes',
+  'chat.startConversation': '¡Sé el primero en iniciar la conversación!',
+  'chat.typeMessage': 'Escribe un mensaje...',
+  'chat.emoji': 'Añadir emoji',
+  'chat.scrollToBottom': 'Ir al final',
+  'chat.errorLoading': 'Error cargando mensajes',
+  'time.today': 'Hoy',
+  'time.yesterday': 'Ayer',
+
+  // Realtime Events
+  'events.nowLive': '¡El evento está ahora en vivo!'
+
 }
 
 export default es

@@ -360,7 +360,7 @@ const ja = {
   'media.error': 'メディアエラー',
 
   // Placeholders
-  'placeholder.speedrunTitle': '例：マリオ64 120スター スピードラン',
+  'placeholder.speedrunTitle': '例：マリオ64 120スタースピードラン',
   'placeholder.speedrunUrl': 'https://twitch.tv/あなたのチャンネル',
   'placeholder.speedrunGame': '例：スーパーマリオ64',
   'placeholder.mediaSearch': 'タイトル、説明、またはタグで検索...',
@@ -1039,7 +1039,39 @@ const ja = {
   // Event Card specific translations
   'events.likes': 'いいね',
   'events.views': '閲覧数', 
-  'events.comments': 'コメント'
+  'events.comments': 'コメント',
+
+  // PWA Installation Prompt
+  'pwa.installTitle': 'Battle64をインストール',
+  'pwa.installDescription': 'オフラインアクセスと高速読み込みで完全なアプリ体験を！',
+  'pwa.install': 'アプリをインストール',
+  'pwa.gotIt': '分かりました！',
+  'pwa.iosStep1': '共有ボタンをタップ',
+  'pwa.iosStep2': '「ホーム画面に追加」をタップ',
+  'common.later': '後で',
+
+  // Offline Functionality
+  'offline.workingOffline': 'オフラインで動作中',
+  'offline.backOnline': 'オンラインに復帰！',
+  'offline.cachedDataAvailable': 'キャッシュデータが利用可能',
+  'offline.cachedData': 'キャッシュデータ',
+
+  // Enhanced Chat
+  'chat.communityChat': 'コミュニティチャット',
+  'chat.activeUsers': 'アクティブユーザー',
+  'chat.loading': 'メッセージを読み込み中...',
+  'chat.noMessages': 'まだメッセージがありません',
+  'chat.startConversation': '最初に会話を始めましょう！',
+  'chat.typeMessage': 'メッセージを入力...',
+  'chat.emoji': '絵文字を追加',
+  'chat.scrollToBottom': '下へスクロール',
+  'chat.errorLoading': 'メッセージの読み込みエラー',
+  'time.today': '今日',
+  'time.yesterday': '昨日',
+
+  // Realtime Events
+  'events.nowLive': 'イベントが現在ライブ中です！'
+
 }
 
 export default ja

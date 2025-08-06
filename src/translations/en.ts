@@ -265,7 +265,7 @@ const en = {
   'news.noResults': 'Keine Ergebnisse',
   'news.noResultsDescription': 'Keine Nachrichten gefunden',
   'news.pagination': 'Seite {current} von {total}',
-  'news.search.placeholder': 'Nachrichten durchsuchen...',
+  'news.search.placeholder': 'Search news...',
   'news.filter.all': 'Alle',
   'news.filter.events': 'Events',
   'news.filter.winners': 'Gewinner',
@@ -307,7 +307,7 @@ const en = {
   'media.urlInput': 'URL eingeben',
   'media.title': 'Titel',
   'media.titleRequired': 'Titel *',
-  'media.titlePlaceholder': 'z.B. 120 Stars World Record Attempt',
+  'media.titlePlaceholder': 'e.g. 120 Stars World Record Attempt',
   'media.game': 'Spiel',
   'media.streamTitle': 'Stream Titel',
   'media.description': 'Beschreibung',
@@ -322,20 +322,20 @@ const en = {
   'media.noEvent': 'Kein Event',
   'media.uploadedBy': 'Hochgeladen von',
   'media.uploadedOn': 'Hochgeladen am',
-  'placeholder.speedrunTitle': 'z.B. Mario 64 120 Stars Speedrun',
-  'placeholder.speedrunUrl': 'https://twitch.tv/dein-kanal',
-  'placeholder.speedrunGame': 'z.B. Super Mario 64',
-  'placeholder.mediaSearch': 'Suche nach Titel, Beschreibung oder Tags...',
+  'placeholder.speedrunTitle': 'e.g. Mario 64 120 Stars Speedrun',
+  'placeholder.speedrunUrl': 'https://twitch.tv/your-channel',
+  'placeholder.speedrunGame': 'e.g. Super Mario 64',
+  'placeholder.mediaSearch': 'Search by title, description or tags...',
   'placeholder.mediaUrl': 'https://youtube.com/watch?v=...',
-  'placeholder.mediaDescription': 'Beschreibe dein Achievement...',
-  'placeholder.mediaTags': 'Weltrekord, Any%, Glitchless (kommagetrennt)',
-  'success.uploaded': 'Erfolgreich hochgeladen',
-  'validation.allFieldsRequired': 'Alle Felder sind erforderlich',
+  'placeholder.mediaDescription': 'Describe your achievement...',
+  'placeholder.mediaTags': 'World Record, Any%, Glitchless (comma separated)',
+  'success.uploaded': 'Successfully uploaded',
+  'validation.allFieldsRequired': 'All fields are required',
 
   // Additional missing keys
-  'marketplace.subtitle': 'N64 Handel & Tauschbörse',
-  'marketplace.createOffer': 'Angebot erstellen',
-  'marketplace.searchPlaceholder': 'Suche nach Artikeln...',
+  'marketplace.subtitle': 'N64 Trading & Marketplace',
+  'marketplace.createOffer': 'Create Offer',
+  'marketplace.searchPlaceholder': 'Search for items...',
   'marketplace.category': 'Kategorie',
   'marketplace.allCategories': 'Alle Kategorien',
   'marketplace.categoryGames': 'Spiele',
@@ -401,7 +401,7 @@ const en = {
   'minigames.available': 'Verfügbar',
   'minigames.games': 'Spiele',
   'minigames.bestScore': 'Beste Punktzahl',
-  'minigames.globalLeaderboard': 'Globale Bestenliste',
+  'minigames.globalLeaderboard': 'Global Leaderboard',
   'minigames.globalLeaderboardDesc': 'Sieh dir die besten Spieler weltweit an',
   'minigames.viewLeaderboards': 'Bestenlisten ansehen',
   'minigames.tournamentsTitle': 'Turniere',
@@ -990,7 +990,38 @@ const en = {
   // Event Card specific translations
   'events.likes': 'Likes',
   'events.views': 'Views', 
-  'events.comments': 'Comments'
+  'events.comments': 'Comments',
+
+  // PWA Installation Prompt
+  'pwa.installTitle': 'Install Battle64',
+  'pwa.installDescription': 'Get the full app experience with offline access and faster loading!',
+  'pwa.install': 'Install App',
+  'pwa.gotIt': 'Got it!',
+  'pwa.iosStep1': 'Tap the Share button',
+  'pwa.iosStep2': 'Then "Add to Home Screen"',
+  'common.later': 'Later',
+
+  // Offline Functionality
+  'offline.workingOffline': 'Working offline',
+  'offline.backOnline': 'Back online!',
+  'offline.cachedDataAvailable': 'Cached data available',
+  'offline.cachedData': 'Cached data',
+
+  // Enhanced Chat
+  'chat.communityChat': 'Community Chat',
+  'chat.activeUsers': 'active users',
+  'chat.loading': 'Loading messages...',
+  'chat.noMessages': 'No messages yet',
+  'chat.startConversation': 'Be the first to start the conversation!',
+  'chat.typeMessage': 'Type a message...',
+  'chat.emoji': 'Add emoji',
+  'chat.scrollToBottom': 'Scroll to bottom',
+  'chat.errorLoading': 'Error loading messages',
+  'time.today': 'Today',
+  'time.yesterday': 'Yesterday',
+
+  // Realtime Events
+  'events.nowLive': 'Event is now live!'
 }
 
 export default en

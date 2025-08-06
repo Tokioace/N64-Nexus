@@ -265,7 +265,7 @@ const fr = {
   'news.noResults': 'Keine Ergebnisse',
   'news.noResultsDescription': 'Keine Nachrichten gefunden',
   'news.pagination': 'Seite {current} von {total}',
-  'news.search.placeholder': 'Nachrichten durchsuchen...',
+  'news.search.placeholder': 'Rechercher des actualités...',
   'news.filter.all': 'Alle',
   'news.filter.events': 'Events',
   'news.filter.winners': 'Gewinner',
@@ -307,7 +307,7 @@ const fr = {
   'media.urlInput': 'URL eingeben',
   'media.title': 'Titel',
   'media.titleRequired': 'Titel *',
-  'media.titlePlaceholder': 'z.B. 120 Stars World Record Attempt',
+  'media.titlePlaceholder': 'ex. Tentative de Record du Monde 120 Étoiles',
   'media.game': 'Spiel',
   'media.streamTitle': 'Stream Titel',
   'media.description': 'Beschreibung',
@@ -322,20 +322,20 @@ const fr = {
   'media.noEvent': 'Kein Event',
   'media.uploadedBy': 'Hochgeladen von',
   'media.uploadedOn': 'Hochgeladen am',
-  'placeholder.speedrunTitle': 'z.B. Mario 64 120 Stars Speedrun',
-  'placeholder.speedrunUrl': 'https://twitch.tv/dein-kanal',
-  'placeholder.speedrunGame': 'z.B. Super Mario 64',
-  'placeholder.mediaSearch': 'Suche nach Titel, Beschreibung oder Tags...',
+  'placeholder.speedrunTitle': 'ex. Mario 64 120 Étoiles Speedrun',
+  'placeholder.speedrunUrl': 'https://twitch.tv/votre-chaine',
+  'placeholder.speedrunGame': 'ex. Super Mario 64',
+  'placeholder.mediaSearch': 'Rechercher par titre, description ou tags...',
   'placeholder.mediaUrl': 'https://youtube.com/watch?v=...',
-  'placeholder.mediaDescription': 'Beschreibe dein Achievement...',
-  'placeholder.mediaTags': 'Weltrekord, Any%, Glitchless (kommagetrennt)',
-  'success.uploaded': 'Erfolgreich hochgeladen',
-  'validation.allFieldsRequired': 'Alle Felder sind erforderlich',
+  'placeholder.mediaDescription': 'Décrivez votre exploit...',
+  'placeholder.mediaTags': 'Record du monde, Any%, Sans glitch (séparés par des virgules)',
+  'success.uploaded': 'Téléchargé avec succès',
+  'validation.allFieldsRequired': 'Tous les champs sont requis',
 
   // Additional missing keys
-  'marketplace.subtitle': 'N64 Handel & Tauschbörse',
-  'marketplace.createOffer': 'Angebot erstellen',
-  'marketplace.searchPlaceholder': 'Suche nach Artikeln...',
+  'marketplace.subtitle': 'N64 Commerce et Échange',
+  'marketplace.createOffer': 'Créer une Offre',
+  'marketplace.searchPlaceholder': 'Rechercher des articles...',
   'marketplace.category': 'Kategorie',
   'marketplace.allCategories': 'Alle Kategorien',
   'marketplace.categoryGames': 'Spiele',
@@ -401,7 +401,7 @@ const fr = {
   'minigames.available': 'Verfügbar',
   'minigames.games': 'Spiele',
   'minigames.bestScore': 'Beste Punktzahl',
-  'minigames.globalLeaderboard': 'Globale Bestenliste',
+  'minigames.globalLeaderboard': 'Classement Mondial',
   'minigames.globalLeaderboardDesc': 'Sieh dir die besten Spieler weltweit an',
   'minigames.viewLeaderboards': 'Bestenlisten ansehen',
   'minigames.tournamentsTitle': 'Turniere',
@@ -471,8 +471,8 @@ const fr = {
   'category.tips': 'Tips',
   'validation.titleTooLong': 'Le titre est trop long',
   'validation.contentTooLong': 'Le contenu est trop long',
-  'placeholder.threadTitle': 'Give your thread a title...',
-  'placeholder.threadContent': 'Write your post...',
+  'placeholder.threadTitle': 'Donnez un titre à votre sujet...',
+  'placeholder.threadContent': 'Rédigez votre message...',
   'placeholder.replyContent': 'Write your reply...',
   'placeholder.marketplacePrice': 'Enter price...',
   'ui.login': 'Login',
@@ -990,7 +990,39 @@ const fr = {
   // Event Card specific translations
   'events.likes': 'J\'aime',
   'events.views': 'Vues', 
-  'events.comments': 'Commentaires'
+  'events.comments': 'Commentaires',
+
+  // PWA Installation Prompt
+  'pwa.installTitle': 'Installer Battle64',
+  'pwa.installDescription': 'Obtenez l\'expérience complète de l\'app avec accès hors ligne et chargement plus rapide !',
+  'pwa.install': 'Installer l\'App',
+  'pwa.gotIt': 'Compris !',
+  'pwa.iosStep1': 'Appuyez sur le bouton Partager',
+  'pwa.iosStep2': 'Puis "Ajouter à l\'écran d\'accueil"',
+  'common.later': 'Plus tard',
+
+  // Offline Functionality
+  'offline.workingOffline': 'Fonctionnement hors ligne',
+  'offline.backOnline': 'De retour en ligne !',
+  'offline.cachedDataAvailable': 'Données en cache disponibles',
+  'offline.cachedData': 'Données en cache',
+
+  // Enhanced Chat
+  'chat.communityChat': 'Chat de la Communauté',
+  'chat.activeUsers': 'utilisateurs actifs',
+  'chat.loading': 'Chargement des messages...',
+  'chat.noMessages': 'Aucun message pour le moment',
+  'chat.startConversation': 'Soyez le premier à lancer la conversation !',
+  'chat.typeMessage': 'Tapez un message...',
+  'chat.emoji': 'Ajouter emoji',
+  'chat.scrollToBottom': 'Aller en bas',
+  'chat.errorLoading': 'Erreur lors du chargement des messages',
+  'time.today': 'Aujourd\'hui',
+  'time.yesterday': 'Hier',
+
+  // Realtime Events
+  'events.nowLive': 'L\'événement est maintenant en direct !'
+
 }
 
 export default fr

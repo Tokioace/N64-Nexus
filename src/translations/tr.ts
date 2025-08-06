@@ -323,7 +323,7 @@ const tr = {
   'media.uploadedBy': 'Yükleyen',
   'media.uploadedOn': 'Yüklenme Tarihi',
   'placeholder.speedrunTitle': 'örn. Mario 64 120 Yıldız Speedrun',
-  'placeholder.speedrunUrl': 'https://twitch.tv/kanal-adiniz',
+  'placeholder.speedrunUrl': 'https://twitch.tv/kanaliniz',
   'placeholder.speedrunGame': 'örn. Super Mario 64',
   'placeholder.mediaSearch': 'Başlık, açıklama veya etiketlere göre ara...',
   'placeholder.mediaUrl': 'https://youtube.com/watch?v=...',
@@ -672,13 +672,13 @@ const tr = {
   'chat.rules.noLinks': 'İzinsiz dış bağlantı yasak',
 
   // Professional translations - final batch
-  'placeholder.raceTime': 'Süre girin (örn. 1:23:45)...',
+  'placeholder.raceTime': 'Zamanı girin (örn. 1:23:45)...',
   'events.timeFormat': 'Format: Saat:Dakika:Saniye',
   'events.selectDocumentation': 'Belgelendirme Seç',
   'events.photo': 'Fotoğraf',
   'events.video': 'Video',
   'events.livestreamUrlLabel': 'Canlı Yayın URL\'si',
-  'placeholder.livestreamUrl': 'https://twitch.tv/kanal-adiniz...',
+  'placeholder.livestreamUrl': 'https://twitch.tv/kanaliniz...',
   'events.streamingPlatforms': 'Yayın Platformları',
   'placeholder.setupController': 'Kontrol cihazı kurulumunu açıklayın...',
   'events.status.upcoming': 'Yaklaşan',
@@ -991,7 +991,39 @@ const tr = {
   // Event Card specific translations
   'events.likes': 'Beğeniler',
   'events.views': 'Görüntülemeler', 
-  'events.comments': 'Yorumlar'
+  'events.comments': 'Yorumlar',
+
+  // PWA Installation Prompt
+  'pwa.installTitle': 'Battle64 Yükle',
+  'pwa.installDescription': 'Çevrimdışı erişim ve hızlı yükleme ile tam uygulama deneyimi yaşayın!',
+  'pwa.install': 'Uygulamayı Yükle',
+  'pwa.gotIt': 'Anladım!',
+  'pwa.iosStep1': 'Paylaş düğmesine dokunun',
+  'pwa.iosStep2': 'Sonra "Ana Ekrana Ekle"yi seçin',
+  'common.later': 'Daha sonra',
+
+  // Offline Functionality
+  'offline.workingOffline': 'Çevrimdışı çalışıyor',
+  'offline.backOnline': 'Tekrar çevrimiçi!',
+  'offline.cachedDataAvailable': 'Önbelleğe alınmış veriler mevcut',
+  'offline.cachedData': 'Önbelleğe alınmış veriler',
+
+  // Enhanced Chat
+  'chat.communityChat': 'Topluluk Sohbeti',
+  'chat.activeUsers': 'aktif kullanıcılar',
+  'chat.loading': 'Mesajlar yükleniyor...',
+  'chat.noMessages': 'Henüz mesaj yok',
+  'chat.startConversation': 'Konuşmayı başlatan ilk kişi olun!',
+  'chat.typeMessage': 'Bir mesaj yazın...',
+  'chat.emoji': 'Emoji ekle',
+  'chat.scrollToBottom': 'Aşağı kaydır',
+  'chat.errorLoading': 'Mesaj yükleme hatası',
+  'time.today': 'Bugün',
+  'time.yesterday': 'Dün',
+
+  // Realtime Events
+  'events.nowLive': 'Etkinlik şu anda canlı!'
+
 }
 
 export default tr

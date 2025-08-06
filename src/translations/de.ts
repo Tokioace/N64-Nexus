@@ -307,7 +307,7 @@ const de = {
   'media.urlInput': 'URL eingeben',
   'media.title': 'Titel',
   'media.titleRequired': 'Titel *',
-  'media.titlePlaceholder': 'z.B. 120 Stars World Record Attempt',
+  'media.titlePlaceholder': 'z.B. 120 Sterne Weltrekord-Versuch',
   'media.game': 'Spiel',
   'media.streamTitle': 'Stream Titel',
   'media.description': 'Beschreibung',
@@ -322,7 +322,7 @@ const de = {
   'media.noEvent': 'Kein Event',
   'media.uploadedBy': 'Hochgeladen von',
   'media.uploadedOn': 'Hochgeladen am',
-  'placeholder.speedrunTitle': 'z.B. Mario 64 120 Stars Speedrun',
+  'placeholder.speedrunTitle': 'z.B. Mario 64 120 Sterne Speedrun',
   'placeholder.speedrunUrl': 'https://twitch.tv/dein-kanal',
   'placeholder.speedrunGame': 'z.B. Super Mario 64',
   'placeholder.mediaSearch': 'Suche nach Titel, Beschreibung oder Tags...',
@@ -484,9 +484,9 @@ const de = {
   'home.ended': 'Beendet',
   'home.liveEvents': 'Live Events',
   'home.footer.tagline': 'Die ultimative N64 Community',
-  'leaderboard.pageTitle': 'Rangliste',
+  'leaderboard.pageTitle': 'Bestenliste',
   'leaderboard.pageSubtitle': 'Die besten Spieler der Community',
-  'leaderboard.globalLeaderboard': 'Globale Rangliste',
+  'leaderboard.globalLeaderboard': 'Globale Bestenliste',
   'leaderboard.selectEvent': 'Event auswählen',
   'leaderboard.noData': 'Keine Daten verfügbar',
   'leaderboard.noDataDesc': 'Für dieses Event sind noch keine Daten verfügbar.',
@@ -495,7 +495,7 @@ const de = {
   'marketplace.title': 'Titel',
   'marketplace.titlePlaceholder': 'Artikelname eingeben...',
   'marketplace.description': 'Beschreibung',
-  'marketplace.descriptionPlaceholder': 'Beschreibung des Artikels...',
+  'marketplace.descriptionPlaceholder': 'Beschreibe deinen Artikel...',
   'marketplace.price': 'Preis',
   'marketplace.condition': 'Zustand',
   'marketplace.conditionNew': 'Neu',
@@ -677,7 +677,7 @@ const de = {
   'events.photo': 'Foto',
   'events.video': 'Video',
   'events.livestreamUrlLabel': 'Livestream-URL',
-  'placeholder.livestreamUrl': 'https://twitch.tv/ihr-kanal...',
+  'placeholder.livestreamUrl': 'https://twitch.tv/dein-kanal...',
   'events.streamingPlatforms': 'Streaming-Plattformen',
   'placeholder.setupController': 'Controller-Setup beschreiben...',
   'events.status.upcoming': 'Bevorstehend',
@@ -717,7 +717,7 @@ const de = {
   'label.required': '(erforderlich)',
   'label.platform': 'Plattform',
   'label.region': 'Region',
-  'placeholder.gameName': 'Name des Spiels eingeben...',
+  'placeholder.gameName': 'Spielname eingeben...',
   'news.noNewsAvailable': 'Keine Nachrichten verfügbar',
 
   // Final remaining missing keys - professional translations
@@ -727,7 +727,7 @@ const de = {
   'imageUpload.supportedFormats': 'Unterstützte Formate: JPG, PNG, GIF',
   'aria.toggleMobileMenu': 'Mobile Navigation umschalten',
   'aria.dismissNews': 'Nachricht schließen',
-  'leaderboard.seasonLeaderboard': 'Saison-Rangliste',
+  'leaderboard.seasonLeaderboard': 'Saison-Bestenliste',
   'leaderboard.filterType': 'Filter-Typ',
   'leaderboard.filterGlobal': 'Global',
   'leaderboard.filterFriends': 'Freunde',
@@ -760,7 +760,7 @@ const de = {
   'Button Masher': 'Knopfdrücker',
   'Cartridge Hunter': 'Modul Jäger',
   'Console Explorer': 'Konsolen Entdecker',
-  'Retro Enthusiast': 'Retro Enthusiast',
+  'Retro Enthusiast': 'Retro-Enthusiast',
   'Speed Demon': 'Geschwindigkeitsdämon',
   'High Score Hero': 'Highscore Held',
   'Gem Collector': 'Edelstein Sammler',
@@ -807,9 +807,9 @@ const de = {
   'label.proofUrl': 'Nachweis-URL',
   'placeholder.category': 'Kategorie auswählen...',
   'placeholder.time': 'Zeit eingeben...',
-  'placeholder.score': 'Punkte eingeben...',
-  'placeholder.proofUrl': 'URL für Nachweis eingeben...',
-  'placeholder.recordNotes': 'Notizen zum Rekord...',
+  'placeholder.score': 'Punktzahl eingeben...',
+  'placeholder.proofUrl': 'Beweis-URL eingeben...',
+  'placeholder.recordNotes': 'Rekord-Notizen...',
 
   // Final TypeScript error fixes - professional translations
   'achievement.progress': 'Fortschritt',
@@ -989,7 +989,38 @@ const de = {
   // Event Card specific translations
   'events.likes': 'Gefällt mir',
   'events.views': 'Aufrufe', 
-  'events.comments': 'Kommentare'
+  'events.comments': 'Kommentare',
+
+  // PWA Installation Prompt
+  'pwa.installTitle': 'Battle64 installieren',
+  'pwa.installDescription': 'Holen Sie sich die vollständige App-Erfahrung mit Offline-Zugang und schnellerem Laden!',
+  'pwa.install': 'App installieren',
+  'pwa.gotIt': 'Verstanden!',
+  'pwa.iosStep1': 'Tippen Sie auf die Teilen-Schaltfläche',
+  'pwa.iosStep2': 'Dann "Zum Home-Bildschirm hinzufügen"',
+  'common.later': 'Später',
+
+  // Offline Functionality
+  'offline.workingOffline': 'Offline-Modus',
+  'offline.backOnline': 'Wieder online!',
+  'offline.cachedDataAvailable': 'Zwischengespeicherte Daten verfügbar',
+  'offline.cachedData': 'Zwischengespeicherte Daten',
+
+  // Enhanced Chat
+  'chat.communityChat': 'Community-Chat',
+  'chat.activeUsers': 'aktive Nutzer',
+  'chat.loading': 'Nachrichten werden geladen...',
+  'chat.noMessages': 'Noch keine Nachrichten',
+  'chat.startConversation': 'Sei der Erste, der die Unterhaltung beginnt!',
+  'chat.typeMessage': 'Nachricht eingeben...',
+  'chat.emoji': 'Emoji hinzufügen',
+  'chat.scrollToBottom': 'Nach unten scrollen',
+  'chat.errorLoading': 'Fehler beim Laden der Nachrichten',
+  'time.today': 'Heute',
+  'time.yesterday': 'Gestern',
+
+  // Realtime Events
+  'events.nowLive': 'Event ist jetzt live!'
 }
 
 export default de

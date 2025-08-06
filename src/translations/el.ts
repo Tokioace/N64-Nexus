@@ -265,7 +265,7 @@ const el = {
   'news.noResults': 'Δεν υπάρχουν αποτελέσματα',
   'news.noResultsDescription': 'Δεν βρέθηκαν νέα',
   'news.pagination': 'Σελίδα {current} από {total}',
-  'news.search.placeholder': 'Αναζήτηση νέων...',
+  'news.search.placeholder': 'Αναζήτηση ειδήσεων...',
   'news.filter.all': 'Όλα',
   'news.filter.events': 'Εκδηλώσεις',
   'news.filter.winners': 'Νικητές',
@@ -337,7 +337,7 @@ const el = {
   'media.urlInput': 'Εισαγωγή URL',
   'media.title': 'Τίτλος',
   'media.titleRequired': 'Τίτλος *',
-  'media.titlePlaceholder': 'π.χ. Απόπειρα Παγκόσμιου Ρεκόρ 120 Αστέρια',
+  'media.titlePlaceholder': 'π.χ. Προσπάθεια Παγκόσμιου Ρεκόρ 120 Αστέρων',
   'media.game': 'Παιχνίδι',
   'media.streamTitle': 'Τίτλος Stream',
   'media.description': 'Περιγραφή',
@@ -360,7 +360,7 @@ const el = {
   'media.error': 'Σφάλμα μέσου',
 
   // Placeholders
-  'placeholder.speedrunTitle': 'π.χ. Mario 64 120 Αστέρια Speedrun',
+  'placeholder.speedrunTitle': 'π.χ. Mario 64 120 Αστέρων Speedrun',
   'placeholder.speedrunUrl': 'https://twitch.tv/το-κανάλι-σας',
   'placeholder.speedrunGame': 'π.χ. Super Mario 64',
   'placeholder.mediaSearch': 'Αναζήτηση με τίτλο, περιγραφή ή ετικέτες...',
@@ -436,7 +436,7 @@ const el = {
   'minigames.available': 'Διαθέσιμα',
   'minigames.games': 'Παιχνίδια',
   'minigames.bestScore': 'Καλύτερη βαθμολογία',
-  'minigames.globalLeaderboard': 'Παγκόσμιος πίνακας κατάταξης',
+  'minigames.globalLeaderboard': 'Παγκόσμιος Πίνακας Κατάταξης',
   'minigames.globalLeaderboardDesc': 'Δες τους καλύτερους παίκτες παγκοσμίως',
   'minigames.viewLeaderboards': 'Δες πίνακες κατάταξης',
   'minigames.tournamentsTitle': 'Τουρνουά',
@@ -1039,7 +1039,41 @@ const el = {
   // Event Card specific translations
   'events.likes': 'Μου αρέσει',
   'events.views': 'Προβολές', 
-  'events.comments': 'Σχόλια'
+  'events.comments': 'Σχόλια',
+
+  // PWA Installation Prompt
+  'pwa.installTitle': 'Εγκατάσταση Battle64',
+  'pwa.installDescription': 'Αποκτήστε την πλήρη εμπειρία εφαρμογής με offline πρόσβαση και γρήγορη φόρτωση!',
+  'pwa.install': 'Εγκατάσταση Εφαρμογής',
+  'pwa.gotIt': 'Κατάλαβα!',
+  'pwa.iosStep1': 'Πατήστε το κουμπί Κοινοποίηση',
+  'pwa.iosStep2': 'Στη συνέχεια "Προσθήκη στην Αρχική Οθόνη"',
+  'common.later': 'Αργότερα',
+
+  // Offline Functionality
+  'offline.workingOffline': 'Λειτουργία εκτός σύνδεσης',
+  'offline.backOnline': 'Επιστροφή online!',
+  'offline.cachedDataAvailable': 'Διαθέσιμα δεδομένα cache',
+  'offline.cachedData': 'Δεδομένα cache',
+
+  // Enhanced Chat
+  'chat.communityChat': 'Συνομιλία Κοινότητας',
+  'chat.activeUsers': 'ενεργοί χρήστες',
+  'chat.loading': 'Φόρτωση μηνυμάτων...',
+  'chat.noMessages': 'Δεν υπάρχουν μηνύματα ακόμα',
+  'chat.startConversation': 'Γίνετε ο πρώτος που θα ξεκινήσει τη συνομιλία!',
+  'chat.typeMessage': 'Πληκτρολογήστε ένα μήνυμα...',
+  'chat.emoji': 'Προσθήκη emoji',
+  'chat.scrollToBottom': 'Μετάβαση στο τέλος',
+  'chat.errorLoading': 'Σφάλμα φόρτωσης μηνυμάτων',
+  'time.today': 'Σήμερα',
+  'time.yesterday': 'Χθες',
+
+  // Realtime Events
+  'events.nowLive': 'Η εκδήλωση είναι τώρα ζωντανά!',
+
+
+
 }
 
 export default el

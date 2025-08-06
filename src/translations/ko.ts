@@ -307,7 +307,7 @@ const ko = {
   'media.urlInput': 'URL 입력',
   'media.title': '제목',
   'media.titleRequired': '제목 *',
-  'media.titlePlaceholder': '예: 120 스타 세계 기록 시도',
+  'media.titlePlaceholder': '예: 120 스타 세계 기록 도전',
   'media.game': '게임',
   'media.streamTitle': '스트림 제목',
   'media.description': '설명',
@@ -323,7 +323,7 @@ const ko = {
   'media.uploadedBy': '업로드한 사람',
   'media.uploadedOn': '업로드 날짜',
   'placeholder.speedrunTitle': '예: 마리오 64 120 스타 스피드런',
-  'placeholder.speedrunUrl': 'https://twitch.tv/your-channel',
+  'placeholder.speedrunUrl': 'https://twitch.tv/당신의-채널',
   'placeholder.speedrunGame': '예: 슈퍼 마리오 64',
   'placeholder.mediaSearch': '제목, 설명 또는 태그로 검색...',
   'placeholder.mediaUrl': 'https://youtube.com/watch?v=...',
@@ -677,7 +677,7 @@ const ko = {
   'events.photo': '사진',
   'events.video': '비디오',
   'events.livestreamUrlLabel': '라이브스트림 URL',
-  'placeholder.livestreamUrl': 'https://twitch.tv/your-channel...',
+  'placeholder.livestreamUrl': 'https://twitch.tv/당신의-채널...',
   'events.streamingPlatforms': '스트리밍 플랫폼',
   'placeholder.setupController': '컨트롤러 설정 설명...',
   'events.status.upcoming': '예정됨',
@@ -989,7 +989,39 @@ const ko = {
   // Event Card specific translations
   'events.likes': '좋아요',
   'events.views': '조회수', 
-  'events.comments': '댓글'
+  'events.comments': '댓글',
+
+  // PWA Installation Prompt
+  'pwa.installTitle': 'Battle64 설치',
+  'pwa.installDescription': '오프라인 액세스와 빠른 로딩으로 완전한 앱 경험을 얻으세요!',
+  'pwa.install': '앱 설치',
+  'pwa.gotIt': '알겠습니다!',
+  'pwa.iosStep1': '공유 버튼을 탭하세요',
+  'pwa.iosStep2': '그런 다음 "홈 화면에 추가"를 탭하세요',
+  'common.later': '나중에',
+
+  // Offline Functionality
+  'offline.workingOffline': '오프라인으로 작업 중',
+  'offline.backOnline': '다시 온라인!',
+  'offline.cachedDataAvailable': '캐시된 데이터 사용 가능',
+  'offline.cachedData': '캐시된 데이터',
+
+  // Enhanced Chat
+  'chat.communityChat': '커뮤니티 채팅',
+  'chat.activeUsers': '활성 사용자',
+  'chat.loading': '메시지 로딩 중...',
+  'chat.noMessages': '아직 메시지가 없습니다',
+  'chat.startConversation': '첫 번째로 대화를 시작하세요!',
+  'chat.typeMessage': '메시지를 입력하세요...',
+  'chat.emoji': '이모지 추가',
+  'chat.scrollToBottom': '맨 아래로',
+  'chat.errorLoading': '메시지 로딩 오류',
+  'time.today': '오늘',
+  'time.yesterday': '어제',
+
+  // Realtime Events
+  'events.nowLive': '이벤트가 현재 라이브 중입니다!'
+
 }
 
 export default ko

@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { useEvent } from '../contexts/EventContext'
 import { useUser } from '../contexts/UserContext'
 import { useLanguage } from '../contexts/LanguageContext'
+import { useRealtimeSpeedruns } from '../hooks/useRealtimeSub'
 import EventLeaderboard from '../components/EventLeaderboard'
 import N64FanLeaderboard from '../components/N64FanLeaderboard'
 import { 
@@ -19,6 +20,26 @@ const LeaderboardPage: React.FC = () => {
   const { t } = useLanguage()
   const [selectedEvent, setSelectedEvent] = useState<string | null>(null)
   const [activeTab, setActiveTab] = useState<'n64fan' | 'events'>('n64fan')
+
+  // Realtime speedrun updates
+  useRealtimeSpeedruns((payload) => {
+    console.log('🏁 New speedrun record received:', payload)
+    
+    // Log the speedrun update (refetch would be handled by the context if available)
+    console.log('Speedrun update received, consider refreshing leaderboard')
+    
+    // Show notification for new records
+    if (payload.eventType === 'INSERT' && payload.new) {
+      const { time, user_name, game_title } = payload.new
+      
+      if ('Notification' in window && Notification.permission === 'granted') {
+        new Notification(`🏁 Neue Bestzeit!`, {
+          body: `${user_name}: ${time} in ${game_title}`,
+          icon: '/android-chrome-192x192.png'
+        })
+      }
+    }
+  })
 
   // Get active events with leaderboard data - show all active events
   const activeEventsWithLeaderboard = events.filter(event => {

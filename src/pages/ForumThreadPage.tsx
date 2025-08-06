@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom'
 import { useForum } from '../contexts/ForumContext'
 import { useUser } from '../contexts/UserContext'
 import { useLanguage } from '../contexts/LanguageContext'
+import { useRealtimeForum, useRealtimeForumComments } from '../hooks/useRealtimeSub'
 import ImageUpload from '../components/ImageUpload'
 import { 
   MessageSquare, 
@@ -37,6 +38,26 @@ const ForumThreadPage: React.FC = () => {
   const [, setReplyImageFile] = useState<File | null>(null)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [showReplyForm, setShowReplyForm] = useState(false)
+
+  // Realtime forum updates for new posts in this thread
+  useRealtimeForum(threadId, (payload) => {
+    console.log('📝 New forum post received:', payload)
+    
+    // Log the forum update (refresh would be handled by the context if available)
+    if (payload.eventType === 'INSERT') {
+      console.log('New forum post received, consider refreshing posts')
+    }
+  })
+
+  // Realtime forum comments updates
+  useRealtimeForumComments(undefined, (payload) => {
+    console.log('💬 New forum comment received:', payload)
+    
+    // Log the comment update (refresh would be handled by the context if available)
+    if (payload.eventType === 'INSERT') {
+      console.log('New forum comment received, consider refreshing posts')
+    }
+  })
 
   useEffect(() => {
     if (threadId) {
