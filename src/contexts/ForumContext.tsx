@@ -4,6 +4,7 @@ import { ForumCategory, ForumThread, ForumPost, ForumStats } from '../types'
 import { useUser } from './UserContext'
 import { useLanguage } from './LanguageContext'
 import { usePoints } from './PointsContext'
+import { logger } from '../lib/logger'
 
 interface ForumContextType {
   categories: ForumCategory[]
@@ -638,7 +639,7 @@ export const ForumProvider: React.FC<{ children: ReactNode }> = ({ children }) =
       try {
         await awardPoints('forum.post', `Thread created: ${title}`)
       } catch (error) {
-        console.error('Failed to award points for forum thread:', error)
+        logger.error('Failed to award points for forum thread:', error)
       }
       
       setLoading(false)
@@ -709,7 +710,7 @@ export const ForumProvider: React.FC<{ children: ReactNode }> = ({ children }) =
       try {
         await awardPoints('forum.reply', `Reply posted in thread`)
       } catch (error) {
-        console.error('Failed to award points for forum reply:', error)
+        logger.error('Failed to award points for forum reply:', error)
       }
       
       setLoading(false)

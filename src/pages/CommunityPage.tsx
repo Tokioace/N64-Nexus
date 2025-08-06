@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState, useEffect } from 'react'
+import { logger } from '../lib/logger'
 import { Link } from 'react-router-dom'
 import { useUser } from '../contexts/UserContext'
 import { useLanguage, getLocaleString } from '../contexts/LanguageContext'
@@ -23,7 +24,7 @@ const CommunityPage: React.FC = () => {
         const allUsers = await getAllUsers()
         setUsers(allUsers)
       } catch (error) {
-        console.error('Error loading users:', error)
+        logger.error('Error loading users:', error)
       } finally {
         setLoading(false)
       }

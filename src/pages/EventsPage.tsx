@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState } from 'react'
+import { logger } from '../lib/logger'
 import { useEvent } from '../contexts/EventContext'
 import { useUser } from '../contexts/UserContext'
 import { useLanguage } from '../contexts/LanguageContext'
@@ -95,21 +96,21 @@ const EventsPage: React.FC = () => {
   }
 
   const handleRaceSubmission = async (data: RaceSubmissionData): Promise<boolean> => {
-    console.log('EventsPage: handleRaceSubmission called with:', data)
+          logger.log('EventsPage: handleRaceSubmission called with:', data)
     
     // Pass current user information to submitRaceTime
     const currentUser = user ? { id: user.id, username: user.username } : undefined
     const success = await submitRaceTime(data, currentUser)
-    console.log('EventsPage: submitRaceTime returned:', success)
+          logger.log('EventsPage: submitRaceTime returned:', success)
     
     if (success) {
       setShowSubmissionModal(null)
       // Show leaderboard after successful submission
       setShowLeaderboard(data.eventId)
-      console.log('EventsPage: Showing success alert')
+              logger.log('EventsPage: Showing success alert')
       alert(t('events.submissionSuccess'))
     } else {
-      console.log('EventsPage: Submission failed')
+              logger.log('EventsPage: Submission failed')
     }
     return success
   }

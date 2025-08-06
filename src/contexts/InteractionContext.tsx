@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react'
 import { InteractionContextType, InteractionData, Comment } from '../types'
 import { usePoints } from './PointsContext'
+import { logger } from '../lib/logger'
 
 const InteractionContext = createContext<InteractionContextType | undefined>(undefined)
 
@@ -48,7 +49,7 @@ export const InteractionProvider: React.FC<{ children: ReactNode }> = ({ childre
           setInteractions(processedInteractions)
         }
       } catch (error) {
-        console.error('Error loading interactions from localStorage:', error)
+        logger.error('Error loading interactions from localStorage:', error)
         setError('Failed to load interaction data')
       }
     }
@@ -61,7 +62,7 @@ export const InteractionProvider: React.FC<{ children: ReactNode }> = ({ childre
     try {
       localStorage.setItem(STORAGE_KEY_INTERACTIONS, JSON.stringify(interactions))
     } catch (error) {
-      console.error('Error saving interactions to localStorage:', error)
+              logger.error('Error saving interactions to localStorage:', error)
     }
   }, [interactions])
 
@@ -115,7 +116,7 @@ export const InteractionProvider: React.FC<{ children: ReactNode }> = ({ childre
       setLoading(false)
       return true
     } catch (err) {
-      console.error('Error liking content:', err)
+              logger.error('Error liking content:', err)
       setError('Failed to like content')
       setLoading(false)
       return false
@@ -144,7 +145,7 @@ export const InteractionProvider: React.FC<{ children: ReactNode }> = ({ childre
       setLoading(false)
       return true
     } catch (err) {
-      console.error('Error unliking content:', err)
+              logger.error('Error unliking content:', err)
       setError('Failed to unlike content')
       setLoading(false)
       return false
@@ -182,7 +183,7 @@ export const InteractionProvider: React.FC<{ children: ReactNode }> = ({ childre
       setLoading(false)
       return true
     } catch (err) {
-      console.error('Error adding comment:', err)
+              logger.error('Error adding comment:', err)
       setError('Failed to add comment')
       setLoading(false)
       return false
@@ -224,7 +225,7 @@ export const InteractionProvider: React.FC<{ children: ReactNode }> = ({ childre
       setLoading(false)
       return true
     } catch (err) {
-      console.error('Error liking comment:', err)
+              logger.error('Error liking comment:', err)
       setError('Failed to like comment')
       setLoading(false)
       return false
@@ -249,7 +250,7 @@ export const InteractionProvider: React.FC<{ children: ReactNode }> = ({ childre
 
       return true
     } catch (err) {
-      console.error('Error recording view:', err)
+              logger.error('Error recording view:', err)
       return false
     }
   }

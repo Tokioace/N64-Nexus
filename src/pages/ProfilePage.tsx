@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { logger } from '../lib/logger'
 import { useParams, useNavigate, Link } from 'react-router-dom'
 import { useUser } from '../contexts/UserContext'
 import { useLanguage } from '../contexts/LanguageContext'
@@ -78,7 +79,7 @@ const ProfilePage: React.FC = () => {
             navigate('/profile') // Redirect to own profile if user not found
           }
         } catch (error) {
-          console.error('Error loading profile:', error)
+          logger.error('Error loading profile:', error)
           navigate('/profile')
         } finally {
           setLoading(false)

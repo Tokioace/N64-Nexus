@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { logger } from '../lib/logger'
 import { useLanguage } from '../contexts/LanguageContext'
 import { useUser } from '../contexts/UserContext'
 import { usePoints } from '../contexts/PointsContext'
@@ -164,7 +165,7 @@ const UploadModal: React.FC<UploadModalProps> = ({ onClose, onUpload, awardPoint
     try {
       await awardPoints('fanart.upload', `Fanart uploaded: ${title}`)
     } catch (error) {
-      console.error('Failed to award points for fanart upload:', error)
+      logger.error('Failed to award points for fanart upload:', error)
     }
     
     setIsUploading(false)
@@ -410,7 +411,7 @@ const FanArtPage: React.FC = () => {
           localStorage.setItem('fanart_items', JSON.stringify(defaultFanArt))
         }
       } catch (error) {
-        console.error('Error loading fanart data:', error)
+        logger.error('Error loading fanart data:', error)
         // Use minimal fallback on error
         setFanArtItems([])
       }
@@ -448,7 +449,7 @@ const FanArtPage: React.FC = () => {
         setComments(parsedComments)
       }
     } catch (error) {
-      console.error('Error loading comments:', error)
+      logger.error('Error loading comments:', error)
     }
   }, [])
 
@@ -487,7 +488,7 @@ const FanArtPage: React.FC = () => {
 
     // Prevent self-liking
     if (artwork.artist === user.username) {
-      console.log('Cannot like your own artwork')
+      logger.log('Cannot like your own artwork')
       return
     }
 
@@ -547,7 +548,7 @@ const FanArtPage: React.FC = () => {
       try {
         await awardPoints('fanart.likeReceived', `Like received on: ${artwork.title}`)
       } catch (error) {
-        console.error('Failed to award points for fanart like:', error)
+        logger.error('Failed to award points for fanart like:', error)
       }
     }
   }
@@ -597,7 +598,7 @@ const FanArtPage: React.FC = () => {
           newValue: JSON.stringify(updated)
         }))
       } catch (error) {
-        console.error('Error saving fanart to localStorage:', error)
+        logger.error('Error saving fanart to localStorage:', error)
       }
       return updated
     })
@@ -655,7 +656,7 @@ const FanArtPage: React.FC = () => {
     try {
       await awardPoints('fanart.comment', `Comment added to: ${fanArtItems.find(item => item.id === artworkId)?.title}`)
     } catch (error) {
-      console.error('Failed to award points for comment:', error)
+      logger.error('Failed to award points for comment:', error)
     }
   }
 

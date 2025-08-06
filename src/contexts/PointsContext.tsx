@@ -13,6 +13,7 @@ import {
   LeaderboardFilter
 } from '../types'
 import { useUser } from './UserContext'
+import { logger } from '../lib/logger'
 
 import PointsNotification from '../components/PointsNotification'
 
@@ -231,7 +232,7 @@ export const PointsProvider: React.FC<{ children: ReactNode }> = ({ children }) 
       try {
         awardPoints('profile.setupComplete', 'Profile setup completed')
       } catch (error) {
-        console.error('Failed to award points for profile completion:', error)
+        logger.error('Failed to award points for profile completion:', error)
       }
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -268,7 +269,7 @@ export const PointsProvider: React.FC<{ children: ReactNode }> = ({ children }) 
         setGlobalLeaderboard(JSON.parse(savedGlobal))
       }
     } catch (error) {
-      console.error('Error loading leaderboards:', error)
+              logger.error('Error loading leaderboards:', error)
     }
   }
 
@@ -285,7 +286,7 @@ export const PointsProvider: React.FC<{ children: ReactNode }> = ({ children }) 
       
       return true
     } catch (error) {
-      console.error('Error saving user points:', error)
+              logger.error('Error saving user points:', error)
       setError('Failed to save points')
       return false
     }
@@ -335,7 +336,7 @@ export const PointsProvider: React.FC<{ children: ReactNode }> = ({ children }) 
 
     // Check rate limiting
     if (isRateLimited(action)) {
-      console.warn(`Rate limited: ${action}`)
+              logger.warn(`Rate limited: ${action}`)
       return false
     }
 
@@ -384,7 +385,7 @@ export const PointsProvider: React.FC<{ children: ReactNode }> = ({ children }) 
 
       return success
     } catch (error) {
-      console.error('Error awarding points:', error)
+              logger.error('Error awarding points:', error)
       setError('Failed to award points')
       return false
     } finally {

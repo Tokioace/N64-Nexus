@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react'
+import { logger } from '../lib/logger';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useLocation } from 'react-router-dom';
 import { Search, Plus, Package, Clock, Star, Grid, List, Eye, MessageCircle, Heart, ShoppingCart } from 'lucide-react';
@@ -290,7 +291,7 @@ const MarketplacePage: React.FC = () => {
           localStorage.setItem('marketplace_items', JSON.stringify(mockOffers));
         }
       } catch (error) {
-        console.error('Error loading marketplace data:', error);
+        logger.error('Error loading marketplace data:', error);
         setOffers([]);
       }
     };
@@ -343,7 +344,7 @@ const MarketplacePage: React.FC = () => {
         newValue: JSON.stringify(updatedOffers)
       }));
     } catch (error) {
-      console.error('Error saving marketplace data:', error);
+      logger.error('Error saving marketplace data:', error);
     }
   };
 

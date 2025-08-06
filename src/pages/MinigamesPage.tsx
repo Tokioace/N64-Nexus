@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState, useEffect } from 'react'
+import { logger } from '../lib/logger'
 import { useLanguage } from '../contexts/LanguageContext'
 import { usePoints } from '../contexts/PointsContext'
 import { 
@@ -268,7 +269,7 @@ const MinigamesPage: React.FC = () => {
               try {
                 await awardPoints('minigame.success', 'Memory game completed')
               } catch (error) {
-                console.error('Failed to award points for memory game:', error)
+                logger.error('Failed to award points for memory game:', error)
               }
             }
           }, 1000)
@@ -422,7 +423,7 @@ const MinigamesPage: React.FC = () => {
             try {
               await awardPoints('minigame.success', 'Trivia game completed successfully')
             } catch (error) {
-              console.error('Failed to award points for trivia game:', error)
+              logger.error('Failed to award points for trivia game:', error)
             }
           }
         }
@@ -570,7 +571,7 @@ const MinigamesPage: React.FC = () => {
           try {
             await awardPoints('minigame.success', 'Sound guessing game completed successfully')
           } catch (error) {
-            console.error('Failed to award points for sound guessing game:', error)
+            logger.error('Failed to award points for sound guessing game:', error)
           }
         }
       }

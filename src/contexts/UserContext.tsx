@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react'
 import { User, UserContextType, UserRegistrationData, UserCollection, PersonalRecord } from '../types'
+import { logger } from '../lib/logger'
 
 const UserContext = createContext<UserContextType | undefined>(undefined)
 
@@ -131,11 +132,11 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
                 }))
               setUsers(validatedUsers)
             } else {
-              console.warn('Invalid users data format, using mock data')
+              logger.warn('Invalid users data format, using mock data')
               setUsers(mockUsers)
             }
           } catch (parseError) {
-            console.error('Error parsing users from localStorage:', parseError)
+            logger.error('Error parsing users from localStorage:', parseError)
             localStorage.removeItem(STORAGE_KEY_USERS)
             setUsers(mockUsers)
           }
@@ -160,16 +161,16 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
               setUser(userWithDates)
               setIsAuthenticated(true)
             } else {
-              console.warn('Invalid user data format')
+              logger.warn('Invalid user data format')
               localStorage.removeItem(STORAGE_KEY_CURRENT_USER)
             }
           } catch (parseError) {
-            console.error('Error parsing current user from localStorage:', parseError)
+            logger.error('Error parsing current user from localStorage:', parseError)
             localStorage.removeItem(STORAGE_KEY_CURRENT_USER)
           }
         }
       } catch (error) {
-        console.error('Error loading user data:', error)
+        logger.error('Error loading user data:', error)
       } finally {
         setIsLoading(false)
       }
@@ -207,7 +208,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       }
       return false
     } catch (error) {
-      console.error('Login error:', error)
+      logger.error('Login error:', error)
       return false
     }
   }
@@ -248,7 +249,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       
       return true
     } catch (error) {
-      console.error('Registration error:', error)
+      logger.error('Registration error:', error)
       return false
     }
   }
@@ -274,7 +275,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       
       return true
     } catch (error) {
-      console.error('Profile update error:', error)
+      logger.error('Profile update error:', error)
       return false
     }
   }
@@ -306,7 +307,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       
       return true
     } catch (error) {
-      console.error('Add to collection error:', error)
+      logger.error('Add to collection error:', error)
       return false
     }
   }
@@ -320,7 +321,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       
       return true
     } catch (error) {
-      console.error('Remove from collection error:', error)
+      logger.error('Remove from collection error:', error)
       return false
     }
   }
@@ -343,7 +344,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       
       return true
     } catch (error) {
-      console.error('Add personal record error:', error)
+      logger.error('Add personal record error:', error)
       return false
     }
   }
@@ -359,7 +360,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       
       return true
     } catch (error) {
-      console.error('Update personal record error:', error)
+      logger.error('Update personal record error:', error)
       return false
     }
   }
@@ -369,7 +370,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       const foundUser = users.find(u => u.id === userId)
       return foundUser || null
     } catch (error) {
-      console.error('Get user profile error:', error)
+      logger.error('Get user profile error:', error)
       return null
     }
   }
@@ -378,7 +379,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     try {
       return users.filter(u => u.isPublic)
     } catch (error) {
-      console.error('Get all users error:', error)
+      logger.error('Get all users error:', error)
       return []
     }
   }
