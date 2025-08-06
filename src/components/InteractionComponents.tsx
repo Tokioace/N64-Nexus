@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { logger } from '../lib/logger'
-import { Heart, MessageCircle, MessageSquare, Eye, Send, ThumbsUp } from 'lucide-react'
+import { Heart, MessageCircle, Eye, Send, ThumbsUp } from 'lucide-react'
 import { useInteraction } from '../contexts/InteractionContext'
 import { useUser } from '../contexts/UserContext'
 import { useLanguage } from '../contexts/LanguageContext'
-import { Comment, InteractionData } from '../types'
 
 interface InteractionBarProps {
   contentType: string
@@ -424,11 +423,7 @@ export const InteractionBar: React.FC<InteractionBarProps> = ({
   showComments = true,
   compact = false
 }) => {
-  const { getInteractionData } = useInteraction()
-  const { t } = useLanguage()
   const [showCommentsSection, setShowCommentsSection] = useState(false)
-  
-  const interactionData = getInteractionData(contentType, contentId)
 
   if (compact) {
     // Compact mode for events - show like, saw, comment with proper spacing like FanArt
