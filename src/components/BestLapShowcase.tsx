@@ -139,7 +139,7 @@ const BestLapShowcase: React.FC<BestLapShowcaseProps> = ({
               muted
               playsInline
               onError={() => {
-                console.error('Error loading best lap video')
+
               }}
             />
             {/* Video Controls Overlay */}

@@ -117,7 +117,7 @@ const MediaViewer: React.FC<MediaViewerProps> = ({ entry, isOpen, onClose }) => 
                 autoPlay
                 loop
                 onError={() => {
-                  console.error(t('media.error'))
+
                 }}
               />
               <div className="absolute top-4 right-4 bg-black bg-opacity-50 rounded-lg p-2">

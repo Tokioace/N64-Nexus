@@ -5,7 +5,7 @@
 
 type LogLevel = 'log' | 'warn' | 'error';
 
-const isDev = import.meta.env.DEV || import.meta.env.NODE_ENV === 'development';
+const isDev = import.meta.env.DEV || import.meta.env.MODE === 'development';
 
 /**
  * Log function that only outputs in development mode

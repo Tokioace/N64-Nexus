@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useMemo, useCallback } from 'react'
+import { logger } from '../lib/logger'
 import { MapContainer, TileLayer, Marker, Popup, Circle, useMap, useMapEvents } from 'react-leaflet'
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
@@ -416,7 +417,7 @@ const EventHostingModal: React.FC<EventHostingModalProps> = ({ isOpen, onClose, 
         inviteCode: ''
       })
     } catch (error) {
-      console.error('Error submitting event:', error)
+      logger.error('Error submitting event:', error)
     }
   }
 
@@ -779,13 +780,13 @@ const Battle64Map: React.FC = () => {
           setMapCenter([lat, lng])
           setMapZoom(10)
         } catch (error) {
-          console.error('Error processing location:', error)
+          logger.error('Error processing location:', error)
         } finally {
           setIsLocationLoading(false)
         }
       },
       (error) => {
-        console.warn('Location access denied:', error.message)
+        logger.warn('Location access denied:', error.message)
         // Set a default location if user denies location access
         const defaultLocation = {
           userId: user.id,
@@ -823,7 +824,7 @@ const Battle64Map: React.FC = () => {
       // Show success notification
       alert(t('map.hostedSuccessfully'))
     } catch (error) {
-      console.error('Failed to create event:', error)
+      logger.error('Failed to create event:', error)
     }
   }
 
@@ -864,7 +865,7 @@ const Battle64Map: React.FC = () => {
       await joinEvent(eventId)
       alert(t('map.youJoined'))
     } catch (error) {
-      console.error('Failed to join event:', error)
+      logger.error('Failed to join event:', error)
       alert('Failed to join event. Please try again.')
     }
   }
@@ -876,7 +877,7 @@ const Battle64Map: React.FC = () => {
         const distance = calculateDistance(userLocation.coordinates, event.location.coordinates)
         if (distance > distanceFilter) return false
       } catch (error) {
-        console.warn('Error calculating distance:', error)
+        logger.warn('Error calculating distance:', error)
         return false
       }
     }
