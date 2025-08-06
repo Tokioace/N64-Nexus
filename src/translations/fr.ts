@@ -1000,6 +1000,7 @@ const fr = {
   'pwa.iosStep1': 'Appuyez sur le bouton Partager',
   'pwa.iosStep2': 'Puis "Ajouter à l\'écran d\'accueil"',
   'common.later': 'Plus tard',
+
 }
 
 export default fr

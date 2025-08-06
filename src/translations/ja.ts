@@ -1049,6 +1049,7 @@ const ja = {
   'pwa.iosStep1': '共有ボタンをタップ',
   'pwa.iosStep2': '「ホーム画面に追加」をタップ',
   'common.later': '後で',
+
 }
 
 export default ja

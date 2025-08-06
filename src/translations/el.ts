@@ -1049,6 +1049,7 @@ const el = {
   'pwa.iosStep1': 'Πατήστε το κουμπί Κοινοποίηση',
   'pwa.iosStep2': 'Στη συνέχεια "Προσθήκη στην Αρχική Οθόνη"',
   'common.later': 'Αργότερα',
+
 }
 
 export default el

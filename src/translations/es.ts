@@ -1039,6 +1039,7 @@ const es = {
   'pwa.iosStep1': 'Toca el botón Compartir',
   'pwa.iosStep2': 'Luego "Añadir a pantalla de inicio"',
   'common.later': 'Más tarde',
+
 }
 
 export default es

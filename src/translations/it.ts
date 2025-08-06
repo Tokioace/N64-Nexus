@@ -1002,6 +1002,7 @@ const it = {
   'pwa.iosStep1': 'Tocca il pulsante Condividi',
   'pwa.iosStep2': 'Poi "Aggiungi alla schermata Home"',
   'common.later': 'Più tardi',
+
 }
 
 export default it

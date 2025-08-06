@@ -999,6 +999,7 @@ const ko = {
   'pwa.iosStep1': '공유 버튼을 탭하세요',
   'pwa.iosStep2': '그런 다음 "홈 화면에 추가"를 탭하세요',
   'common.later': '나중에',
+
 }
 
 export default ko

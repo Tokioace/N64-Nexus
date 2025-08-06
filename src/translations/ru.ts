@@ -984,6 +984,7 @@ const ru = {
   'pwa.iosStep1': 'Нажмите кнопку "Поделиться"',
   'pwa.iosStep2': 'Затем "Добавить на экран "Домой""',
   'common.later': 'Позже',
+
 }
 
 export default ru

@@ -999,6 +999,7 @@ const hi = {
   'pwa.iosStep1': 'शेयर बटन पर टैप करें',
   'pwa.iosStep2': 'फिर "होम स्क्रीन पर जोड़ें" चुनें',
   'common.later': 'बाद में',
+
 }
 
 export default hi

@@ -1049,6 +1049,7 @@ const zh = {
   'pwa.iosStep1': '点击分享按钮',
   'pwa.iosStep2': '然后点击"添加到主屏幕"',
   'common.later': '稍后',
+
 }
 
 export default zh

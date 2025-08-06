@@ -1001,6 +1001,7 @@ const tr = {
   'pwa.iosStep1': 'Paylaş düğmesine dokunun',
   'pwa.iosStep2': 'Sonra "Ana Ekrana Ekle"yi seçin',
   'common.later': 'Daha sonra',
+
 }
 
 export default tr

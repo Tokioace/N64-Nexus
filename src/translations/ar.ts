@@ -1131,7 +1131,8 @@ const ar = {
   'pwa.gotIt': 'فهمت!',
   'pwa.iosStep1': 'اضغط على زر المشاركة',
   'pwa.iosStep2': 'ثم "إضافة إلى الشاشة الرئيسية"',
-  'common.later': 'لاحقاً'
+  'common.later': 'لاحقاً',
+
 }
 
 export default ar

@@ -1000,6 +1000,7 @@ const pt = {
   'pwa.iosStep1': 'Toque no botão Compartilhar',
   'pwa.iosStep2': 'Depois "Adicionar à Tela de Início"',
   'common.later': 'Mais tarde',
+
 }
 
 export default pt
