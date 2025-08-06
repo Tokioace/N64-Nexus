@@ -318,8 +318,8 @@ const ru = {
 
   // Additional missing keys
   'marketplace.subtitle': 'N64 Торговля и Обмен',
-  'marketplace.createOffer': 'Angebot erstellen',
-  'marketplace.searchPlaceholder': 'Suche nach Artikeln...',
+  'marketplace.createOffer': 'Создать Предложение',
+  'marketplace.searchPlaceholder': 'Поиск товаров...',
   'marketplace.category': 'Kategorie',
   'marketplace.allCategories': 'Alle Kategorien',
   'marketplace.categoryGames': 'Spiele',

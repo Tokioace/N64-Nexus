@@ -334,8 +334,8 @@ const en = {
 
   // Additional missing keys
   'marketplace.subtitle': 'N64 Trading & Marketplace',
-  'marketplace.createOffer': 'Angebot erstellen',
-  'marketplace.searchPlaceholder': 'Suche nach Artikeln...',
+  'marketplace.createOffer': 'Create Offer',
+  'marketplace.searchPlaceholder': 'Search for items...',
   'marketplace.category': 'Kategorie',
   'marketplace.allCategories': 'Alle Kategorien',
   'marketplace.categoryGames': 'Spiele',

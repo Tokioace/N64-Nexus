@@ -760,7 +760,7 @@ const de = {
   'Button Masher': 'Knopfdrücker',
   'Cartridge Hunter': 'Modul Jäger',
   'Console Explorer': 'Konsolen Entdecker',
-  'Retro Enthusiast': 'Retro Enthusiast',
+  'Retro Enthusiast': 'Retro-Enthusiast',
   'Speed Demon': 'Geschwindigkeitsdämon',
   'High Score Hero': 'Highscore Held',
   'Gem Collector': 'Edelstein Sammler',
