@@ -313,7 +313,7 @@ const ar = {
   'media.urlInput': 'إدخال رابط',
   'media.title': 'العنوان',
   'media.titleRequired': 'العنوان *',
-  'media.titlePlaceholder': 'مثال: محاولة رقم قياسي عالمي 120 نجمة',
+  'media.titlePlaceholder': 'مثال: محاولة الرقم القياسي العالمي 120 نجمة',
   'media.game': 'اللعبة',
   'media.streamTitle': 'عنوان البث',
   'media.description': 'الوصف',
@@ -330,7 +330,7 @@ const ar = {
   'media.uploadedOn': 'رفع في',
 
   // Placeholders - النصوص التوضيحية
-  'placeholder.speedrunTitle': 'مثال: ماريو 64 سباق سريع 120 نجمة',
+  'placeholder.speedrunTitle': 'مثال: ماريو 64 120 نجمة سرعة',
   'placeholder.speedrunUrl': 'https://twitch.tv/قناتك',
   'placeholder.speedrunGame': 'مثال: سوبر ماريو 64',
   'placeholder.mediaSearch': 'البحث بالعنوان أو الوصف أو العلامات...',
@@ -415,7 +415,7 @@ const ar = {
   'minigames.available': 'متاح',
   'minigames.games': 'الألعاب',
   'minigames.bestScore': 'أفضل نتيجة',
-  'minigames.globalLeaderboard': 'لوحة المتصدرين العالمية',
+  'minigames.globalLeaderboard': 'قائمة المتصدرين العالمية',
   'minigames.globalLeaderboardDesc': 'شاهد أفضل اللاعبين حول العالم',
   'minigames.viewLeaderboards': 'عرض لوحات المتصدرين',
   'minigames.tournamentsTitle': 'البطولات',
@@ -756,7 +756,7 @@ const ar = {
   'chat.rules.noLinks': 'لا للروابط الخارجية بدون إذن',
 
   // Event submission - إرسال الأحداث
-  'placeholder.raceTime': 'أدخل الوقت (مثال 1:23:45)...',
+  'placeholder.raceTime': 'أدخل الوقت (مثال: 1:23:45)...',
   'events.timeFormat': 'التنسيق: ساعات:دقائق:ثواني',
   'events.selectDocumentation': 'اختر التوثيق',
   'events.photo': 'صورة',

@@ -360,7 +360,7 @@ const ja = {
   'media.error': 'メディアエラー',
 
   // Placeholders
-  'placeholder.speedrunTitle': '例：マリオ64 120スター スピードラン',
+  'placeholder.speedrunTitle': '例：マリオ64 120スタースピードラン',
   'placeholder.speedrunUrl': 'https://twitch.tv/あなたのチャンネル',
   'placeholder.speedrunGame': '例：スーパーマリオ64',
   'placeholder.mediaSearch': 'タイトル、説明、またはタグで検索...',

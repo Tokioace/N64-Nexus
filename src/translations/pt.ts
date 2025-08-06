@@ -401,7 +401,7 @@ const pt = {
   'minigames.available': 'Disponíveis',
   'minigames.games': 'Jogos',
   'minigames.bestScore': 'Melhor pontuação',
-  'minigames.globalLeaderboard': 'Classificação global',
+  'minigames.globalLeaderboard': 'Classificação Global',
   'minigames.globalLeaderboardDesc': 'Veja os melhores jogadores do mundo',
   'minigames.viewLeaderboards': 'Ver classificações',
   'minigames.tournamentsTitle': 'Torneios',
