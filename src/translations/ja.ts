@@ -1070,8 +1070,74 @@ const ja = {
   'time.yesterday': '昨日',
 
   // Realtime Events
-  'events.nowLive': 'イベントが現在ライブ中です！'
+  'events.nowLive': 'イベントがライブ中です！',
+  'realtime.connected': 'ライブ接続がアクティブ',
+  'realtime.disconnected': 'ライブ接続が中断されました',
+  'realtime.reconnecting': '再接続中...',
+  'realtime.newUpdate': '新しいライブアップデートが利用可能',
+  'realtime.leaderboard.updated': 'リーダーボードが更新されました',
+  'realtime.points.updated': 'ポイントが更新されました',
+  'realtime.participant.joined': '新しい参加者が参加しました',
+  'realtime.participant.left': '参加者が退出しました',
+  'realtime.event.started': 'イベントが開始されました',
+  'realtime.event.finished': 'イベントが終了しました',
 
+  // PWA Installation
+  'pwa.install.button': 'アプリをインストール',
+  'pwa.install.banner.title': 'Battle64をアプリとしてインストール',
+  'pwa.install.banner.description': 'より高速なアクセスと優れたパフォーマンス',
+  'pwa.install.modal.title': 'デバイスにアプリをインストール',
+  'pwa.install.modal.description': 'オフラインアクセスとプッシュ通知を備えたネイティブアプリ体験のためにBattle64をインストールしてください。',
+  'pwa.install.ios.title': 'ホーム画面に追加',
+  'pwa.install.ios.step1': 'ブラウザ下部の共有ボタンをタップ',
+  'pwa.install.ios.step2': '下にスクロールして「ホーム画面に追加」を選択',
+  'pwa.install.ios.step3': '「追加」をタップしてアプリをインストール',
+
+  // Battle Map
+  'battleMap.title': 'Battle64マップ',
+  'battleMap.liveEvents': 'ライブイベント',
+  'battleMap.participants': '参加者',
+  'battleMap.nearbyPlayers': '近くのプレイヤー',
+  'battleMap.joinEvent': 'イベントに参加',
+  'battleMap.leaveEvent': 'イベントを退出',
+  'battleMap.distance': '距離',
+  'battleMap.radius': '半径',
+  'battleMap.location.share': '位置情報を共有',
+  'battleMap.location.required': '位置情報アクセスが必要',
+  'battleMap.noEvents': '近くにライブイベントがありません',
+  'battleMap.participantCount': '参加者',
+
+  // Live Leaderboard
+  'leaderboard.live': 'ライブリーダーボード',
+  'leaderboard.updating': '更新中...',
+  'leaderboard.lastUpdate': '最終更新',
+  'leaderboard.points.live': 'ライブポイント',
+  'leaderboard.rank.changed': 'ランクが変更されました',
+  'leaderboard.newRecord': '新記録！',
+
+  // GDPR Realtime
+  'gdpr.realtime.title': 'ライブ機能',
+  'gdpr.realtime.description': 'リーダーボード、イベント、チャットのライブアップデートを有効にする',
+  'gdpr.realtime.enable': 'ライブアップデートを有効にする',
+  'gdpr.realtime.disable': 'ライブアップデートを無効にする',
+  'gdpr.location.title': '位置情報アクセス',
+  'gdpr.location.description': 'ローカルイベントと近くの参加者のために位置情報を共有',
+  'gdpr.location.enable': '位置情報を有効にする',
+  'gdpr.location.disable': '位置情報を無効にする',
+
+  // Offline Mode
+  'offline.title': 'オフラインモード',
+  'offline.description': 'オフラインです。一部の機能が制限されています。',
+  'offline.cached': 'キャッシュされたコンテンツを表示',
+  'offline.retry': '再試行',
+
+  // Common
+  'common.understood': '理解しました',
+  'common.cancel': 'キャンセル',
+  'common.refresh': '更新',
+  'common.loading': '読み込み中...',
+  'common.error': 'エラー',
+  'common.success': '成功'
 }
 
 export default ja

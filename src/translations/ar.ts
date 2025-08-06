@@ -1153,8 +1153,74 @@ const ar = {
   'time.yesterday': 'أمس',
 
   // Realtime Events
-  'events.nowLive': 'الحدث مباشر الآن!'
+  'events.nowLive': 'الحدث مباشر الآن!',
+  'realtime.connected': 'الاتصال المباشر نشط',
+  'realtime.disconnected': 'الاتصال المباشر منقطع',
+  'realtime.reconnecting': 'إعادة الاتصال...',
+  'realtime.newUpdate': 'تحديثات مباشرة جديدة متاحة',
+  'realtime.leaderboard.updated': 'تم تحديث لوحة المتصدرين',
+  'realtime.points.updated': 'تم تحديث النقاط',
+  'realtime.participant.joined': 'انضم مشارك جديد',
+  'realtime.participant.left': 'غادر المشارك',
+  'realtime.event.started': 'بدأ الحدث',
+  'realtime.event.finished': 'انتهى الحدث',
 
+  // PWA Installation
+  'pwa.install.button': 'تثبيت التطبيق',
+  'pwa.install.banner.title': 'تثبيت Battle64 كتطبيق',
+  'pwa.install.banner.description': 'وصول أسرع وأداء أفضل',
+  'pwa.install.modal.title': 'تثبيت التطبيق على الجهاز',
+  'pwa.install.modal.description': 'قم بتثبيت Battle64 للحصول على تجربة تطبيق أصلي مع الوصول دون اتصال والإشعارات الفورية.',
+  'pwa.install.ios.title': 'إضافة إلى الشاشة الرئيسية',
+  'pwa.install.ios.step1': 'اضغط على زر المشاركة في أسفل المتصفح',
+  'pwa.install.ios.step2': 'مرر لأسفل واختر "إضافة إلى الشاشة الرئيسية"',
+  'pwa.install.ios.step3': 'اضغط على "إضافة" لتثبيت التطبيق',
+
+  // Battle Map
+  'battleMap.title': 'خريطة Battle64',
+  'battleMap.liveEvents': 'الأحداث المباشرة',
+  'battleMap.participants': 'المشاركون',
+  'battleMap.nearbyPlayers': 'اللاعبون القريبون',
+  'battleMap.joinEvent': 'انضمام للحدث',
+  'battleMap.leaveEvent': 'مغادرة الحدث',
+  'battleMap.distance': 'المسافة',
+  'battleMap.radius': 'نطاق',
+  'battleMap.location.share': 'مشاركة الموقع',
+  'battleMap.location.required': 'الوصول للموقع مطلوب',
+  'battleMap.noEvents': 'لا توجد أحداث مباشرة قريبة',
+  'battleMap.participantCount': 'المشاركون',
+
+  // Live Leaderboard
+  'leaderboard.live': 'لوحة المتصدرين المباشرة',
+  'leaderboard.updating': 'جاري التحديث...',
+  'leaderboard.lastUpdate': 'آخر تحديث',
+  'leaderboard.points.live': 'النقاط المباشرة',
+  'leaderboard.rank.changed': 'تغير الترتيب',
+  'leaderboard.newRecord': 'رقم قياسي جديد!',
+
+  // GDPR Realtime
+  'gdpr.realtime.title': 'الميزات المباشرة',
+  'gdpr.realtime.description': 'تفعيل التحديثات المباشرة للوحة المتصدرين والأحداث والدردشة',
+  'gdpr.realtime.enable': 'تفعيل التحديثات المباشرة',
+  'gdpr.realtime.disable': 'إلغاء التحديثات المباشرة',
+  'gdpr.location.title': 'الوصول للموقع',
+  'gdpr.location.description': 'شارك موقعك للأحداث المحلية والمشاركين القريبين',
+  'gdpr.location.enable': 'تفعيل الموقع',
+  'gdpr.location.disable': 'إلغاء الموقع',
+
+  // Offline Mode
+  'offline.title': 'وضع عدم الاتصال',
+  'offline.description': 'أنت غير متصل. بعض الميزات محدودة.',
+  'offline.cached': 'عرض المحتوى المحفوظ',
+  'offline.retry': 'إعادة المحاولة',
+
+  // Common
+  'common.understood': 'مفهوم',
+  'common.cancel': 'إلغاء',
+  'common.refresh': 'تحديث',
+  'common.loading': 'جاري التحميل...',
+  'common.error': 'خطأ',
+  'common.success': 'نجح'
 }
 
 export default ar

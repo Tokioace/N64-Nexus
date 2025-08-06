@@ -463,6 +463,44 @@ export type Database = {
           updated_at?: string
         }
       }
+      events_live_locations: {
+        Row: {
+          id: string
+          event_id: string
+          user_id: string
+          latitude: number
+          longitude: number
+          location_name: string | null
+          is_active: boolean
+          radius_km: number
+          created_at: string
+          updated_at: string
+        }
+        Insert: {
+          id?: string
+          event_id: string
+          user_id: string
+          latitude: number
+          longitude: number
+          location_name?: string | null
+          is_active?: boolean
+          radius_km?: number
+          created_at?: string
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          event_id?: string
+          user_id?: string
+          latitude?: number
+          longitude?: number
+          location_name?: string | null
+          is_active?: boolean
+          radius_km?: number
+          created_at?: string
+          updated_at?: string
+        }
+      }
     }
     Functions: {
       get_event_leaderboard: {

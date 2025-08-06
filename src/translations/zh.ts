@@ -1070,8 +1070,74 @@ const zh = {
   'time.yesterday': '昨天',
 
   // Realtime Events
-  'events.nowLive': '活动现在正在直播！'
+  'events.nowLive': '活动正在直播！',
+  'realtime.connected': '实时连接已激活',
+  'realtime.disconnected': '实时连接中断',
+  'realtime.reconnecting': '重新连接中...',
+  'realtime.newUpdate': '有新的实时更新可用',
+  'realtime.leaderboard.updated': '排行榜已更新',
+  'realtime.points.updated': '积分已更新',
+  'realtime.participant.joined': '新参与者加入',
+  'realtime.participant.left': '参与者离开',
+  'realtime.event.started': '活动开始',
+  'realtime.event.finished': '活动结束',
 
+  // PWA Installation
+  'pwa.install.button': '安装应用',
+  'pwa.install.banner.title': '将Battle64安装为应用',
+  'pwa.install.banner.description': '更快的访问速度和更好的性能',
+  'pwa.install.modal.title': '在设备上安装应用',
+  'pwa.install.modal.description': '安装Battle64以获得原生应用体验，支持离线访问和推送通知。',
+  'pwa.install.ios.title': '添加到主屏幕',
+  'pwa.install.ios.step1': '点击浏览器底部的分享按钮',
+  'pwa.install.ios.step2': '向下滚动并选择"添加到主屏幕"',
+  'pwa.install.ios.step3': '点击"添加"安装应用',
+
+  // Battle Map
+  'battleMap.title': 'Battle64地图',
+  'battleMap.liveEvents': '实时活动',
+  'battleMap.participants': '参与者',
+  'battleMap.nearbyPlayers': '附近玩家',
+  'battleMap.joinEvent': '加入活动',
+  'battleMap.leaveEvent': '离开活动',
+  'battleMap.distance': '距离',
+  'battleMap.radius': '半径',
+  'battleMap.location.share': '分享位置',
+  'battleMap.location.required': '需要位置访问权限',
+  'battleMap.noEvents': '附近没有实时活动',
+  'battleMap.participantCount': '参与者',
+
+  // Live Leaderboard
+  'leaderboard.live': '实时排行榜',
+  'leaderboard.updating': '更新中...',
+  'leaderboard.lastUpdate': '最后更新',
+  'leaderboard.points.live': '实时积分',
+  'leaderboard.rank.changed': '排名变更',
+  'leaderboard.newRecord': '新纪录！',
+
+  // GDPR Realtime
+  'gdpr.realtime.title': '实时功能',
+  'gdpr.realtime.description': '启用排行榜、活动和聊天的实时更新',
+  'gdpr.realtime.enable': '启用实时更新',
+  'gdpr.realtime.disable': '禁用实时更新',
+  'gdpr.location.title': '位置访问',
+  'gdpr.location.description': '分享您的位置以查看本地活动和附近参与者',
+  'gdpr.location.enable': '启用位置',
+  'gdpr.location.disable': '禁用位置',
+
+  // Offline Mode
+  'offline.title': '离线模式',
+  'offline.description': '您处于离线状态。某些功能受限。',
+  'offline.cached': '显示缓存内容',
+  'offline.retry': '重试',
+
+  // Common
+  'common.understood': '明白了',
+  'common.cancel': '取消',
+  'common.refresh': '刷新',
+  'common.loading': '加载中...',
+  'common.error': '错误',
+  'common.success': '成功'
 }
 
 export default zh

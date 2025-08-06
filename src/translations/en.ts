@@ -1021,7 +1021,74 @@ const en = {
   'time.yesterday': 'Yesterday',
 
   // Realtime Events
-  'events.nowLive': 'Event is now live!'
+  'events.nowLive': 'Event is now live!',
+  'realtime.connected': 'Live connection active',
+  'realtime.disconnected': 'Live connection interrupted',
+  'realtime.reconnecting': 'Reconnecting...',
+  'realtime.newUpdate': 'New live updates available',
+  'realtime.leaderboard.updated': 'Leaderboard updated',
+  'realtime.points.updated': 'Points updated',
+  'realtime.participant.joined': 'New participant joined',
+  'realtime.participant.left': 'Participant left',
+  'realtime.event.started': 'Event started',
+  'realtime.event.finished': 'Event finished',
+
+  // PWA Installation
+  'pwa.install.button': 'Install App',
+  'pwa.install.banner.title': 'Install Battle64 as App',
+  'pwa.install.banner.description': 'Faster access and better performance',
+  'pwa.install.modal.title': 'Install App on Device',
+  'pwa.install.modal.description': 'Install Battle64 for a native app experience with offline access and push notifications.',
+  'pwa.install.ios.title': 'Add to Home Screen',
+  'pwa.install.ios.step1': 'Tap the Share button at the bottom of the browser',
+  'pwa.install.ios.step2': 'Scroll down and select "Add to Home Screen"',
+  'pwa.install.ios.step3': 'Tap "Add" to install the app',
+
+  // Battle Map
+  'battleMap.title': 'Battle64 Map',
+  'battleMap.liveEvents': 'Live Events',
+  'battleMap.participants': 'Participants',
+  'battleMap.nearbyPlayers': 'Nearby Players',
+  'battleMap.joinEvent': 'Join Event',
+  'battleMap.leaveEvent': 'Leave Event',
+  'battleMap.distance': 'Distance',
+  'battleMap.radius': 'Radius',
+  'battleMap.location.share': 'Share Location',
+  'battleMap.location.required': 'Location access required',
+  'battleMap.noEvents': 'No live events nearby',
+  'battleMap.participantCount': 'Participants',
+
+  // Live Leaderboard
+  'leaderboard.live': 'Live Leaderboard',
+  'leaderboard.updating': 'Updating...',
+  'leaderboard.lastUpdate': 'Last Update',
+  'leaderboard.points.live': 'Live Points',
+  'leaderboard.rank.changed': 'Rank Changed',
+  'leaderboard.newRecord': 'New Record!',
+
+  // GDPR Realtime
+  'gdpr.realtime.title': 'Live Features',
+  'gdpr.realtime.description': 'Enable live updates for leaderboards, events and chat',
+  'gdpr.realtime.enable': 'Enable Live Updates',
+  'gdpr.realtime.disable': 'Disable Live Updates',
+  'gdpr.location.title': 'Location Access',
+  'gdpr.location.description': 'Share your location for local events and nearby participants',
+  'gdpr.location.enable': 'Enable Location',
+  'gdpr.location.disable': 'Disable Location',
+
+  // Offline Mode
+  'offline.title': 'Offline Mode',
+  'offline.description': 'You are offline. Some features are limited.',
+  'offline.cached': 'Showing cached content',
+  'offline.retry': 'Retry',
+
+  // Common
+  'common.understood': 'Understood',
+  'common.cancel': 'Cancel',
+  'common.refresh': 'Refresh',
+  'common.loading': 'Loading...',
+  'common.error': 'Error',
+  'common.success': 'Success'
 }
 
 export default en
