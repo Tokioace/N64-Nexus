@@ -1,36 +1,60 @@
 /**
  * Centralized logging utility for Battle64
- * Only logs in development mode to keep production builds clean
+ * Uses environment-specific configuration for logging behavior
  */
 
-type LogLevel = 'log' | 'warn' | 'error';
+import { isLoggingEnabled, isDevelopment, isDebugMode } from '@/utils/env';
 
-const isDev = import.meta.env.DEV || import.meta.env.MODE === 'development';
+type LogLevel = 'log' | 'warn' | 'error' | 'debug';
 
 /**
- * Log function that only outputs in development mode
+ * Check if logging should be enabled based on environment configuration
+ */
+const shouldLog = (): boolean => {
+  return isLoggingEnabled();
+};
+
+/**
+ * Check if debug logging should be enabled
+ */
+const shouldDebug = (): boolean => {
+  return isDebugMode() && shouldLog();
+};
+
+/**
+ * Log function that respects environment configuration
  */
 export const log = (...args: any[]) => {
-  if (isDev) {
+  if (shouldLog()) {
     console.log(...args);
   }
 };
 
 /**
- * Warning function that only outputs in development mode
+ * Warning function that respects environment configuration
  */
 export const warn = (...args: any[]) => {
-  if (isDev) {
+  if (shouldLog()) {
     console.warn(...args);
   }
 };
 
 /**
- * Error function that only outputs in development mode
+ * Error function that always outputs (critical for debugging)
+ * Only respects environment in development, always shows in staging/prod for critical errors
  */
 export const error = (...args: any[]) => {
-  if (isDev) {
+  if (shouldLog() || !isDevelopment()) {
     console.error(...args);
+  }
+};
+
+/**
+ * Debug function that only outputs in debug mode
+ */
+export const debug = (...args: any[]) => {
+  if (shouldDebug()) {
+    console.debug(...args);
   }
 };
 
@@ -39,23 +63,28 @@ export const error = (...args: any[]) => {
  */
 export const logger = {
   log: (...args: any[]) => {
-    if (isDev) {
+    if (shouldLog()) {
       console.log(...args);
     }
   },
   warn: (...args: any[]) => {
-    if (isDev) {
+    if (shouldLog()) {
       console.warn(...args);
     }
   },
   error: (...args: any[]) => {
-    if (isDev) {
+    if (shouldLog() || !isDevelopment()) {
       console.error(...args);
     }
   },
   debug: (...args: any[]) => {
-    if (isDev) {
+    if (shouldDebug()) {
       console.debug(...args);
+    }
+  },
+  info: (...args: any[]) => {
+    if (shouldLog()) {
+      console.info(...args);
     }
   }
 };
