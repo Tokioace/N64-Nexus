@@ -1133,6 +1133,28 @@ const ar = {
   'pwa.iosStep2': 'ثم "إضافة إلى الشاشة الرئيسية"',
   'common.later': 'لاحقاً',
 
+  // Offline Functionality
+  'offline.workingOffline': 'العمل في وضع عدم الاتصال',
+  'offline.backOnline': 'العودة متصلاً!',
+  'offline.cachedDataAvailable': 'البيانات المخزنة متاحة',
+  'offline.cachedData': 'البيانات المخزنة',
+
+  // Enhanced Chat
+  'chat.communityChat': 'دردشة المجتمع',
+  'chat.activeUsers': 'المستخدمون النشطون',
+  'chat.loading': 'تحميل الرسائل...',
+  'chat.noMessages': 'لا توجد رسائل حتى الآن',
+  'chat.startConversation': 'كن أول من يبدأ المحادثة!',
+  'chat.typeMessage': 'اكتب رسالة...',
+  'chat.emoji': 'إضافة رمز تعبيري',
+  'chat.scrollToBottom': 'انتقل للأسفل',
+  'chat.errorLoading': 'خطأ في تحميل الرسائل',
+  'time.today': 'اليوم',
+  'time.yesterday': 'أمس',
+
+  // Realtime Events
+  'events.nowLive': 'الحدث مباشر الآن!'
+
 }
 
 export default ar

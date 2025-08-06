@@ -313,11 +313,11 @@ const ru = {
   'placeholder.mediaUrl': 'https://youtube.com/watch?v=...',
   'placeholder.mediaDescription': 'Опишите ваше достижение...',
   'placeholder.mediaTags': 'Мировой рекорд, Any%, Glitchless (через запятую)',
-  'success.uploaded': 'Erfolgreich hochgeladen',
-  'validation.allFieldsRequired': 'Alle Felder sind erforderlich',
+  'success.uploaded': 'Успешно загружено',
+  'validation.allFieldsRequired': 'Все поля обязательны',
 
   // Additional missing keys
-  'marketplace.subtitle': 'N64 Handel & Tauschbörse',
+  'marketplace.subtitle': 'N64 Торговля и Обмен',
   'marketplace.createOffer': 'Angebot erstellen',
   'marketplace.searchPlaceholder': 'Suche nach Artikeln...',
   'marketplace.category': 'Kategorie',
@@ -984,6 +984,28 @@ const ru = {
   'pwa.iosStep1': 'Нажмите кнопку "Поделиться"',
   'pwa.iosStep2': 'Затем "Добавить на экран "Домой""',
   'common.later': 'Позже',
+
+  // Offline Functionality
+  'offline.workingOffline': 'Работа в автономном режиме',
+  'offline.backOnline': 'Снова онлайн!',
+  'offline.cachedDataAvailable': 'Доступны кешированные данные',
+  'offline.cachedData': 'Кешированные данные',
+
+  // Enhanced Chat
+  'chat.communityChat': 'Чат Сообщества',
+  'chat.activeUsers': 'активных пользователей',
+  'chat.loading': 'Загрузка сообщений...',
+  'chat.noMessages': 'Пока нет сообщений',
+  'chat.startConversation': 'Будьте первым, кто начнет разговор!',
+  'chat.typeMessage': 'Введите сообщение...',
+  'chat.emoji': 'Добавить эмодзи',
+  'chat.scrollToBottom': 'Перейти вниз',
+  'chat.errorLoading': 'Ошибка загрузки сообщений',
+  'time.today': 'Сегодня',
+  'time.yesterday': 'Вчера',
+
+  // Realtime Events
+  'events.nowLive': 'Событие сейчас в прямом эфире!'
 
 }
 

@@ -330,10 +330,10 @@ const en = {
   'placeholder.mediaDescription': 'Describe your achievement...',
   'placeholder.mediaTags': 'World Record, Any%, Glitchless (comma separated)',
   'success.uploaded': 'Successfully uploaded',
-  'validation.allFieldsRequired': 'Alle Felder sind erforderlich',
+  'validation.allFieldsRequired': 'All fields are required',
 
   // Additional missing keys
-  'marketplace.subtitle': 'N64 Handel & Tauschbörse',
+  'marketplace.subtitle': 'N64 Trading & Marketplace',
   'marketplace.createOffer': 'Angebot erstellen',
   'marketplace.searchPlaceholder': 'Suche nach Artikeln...',
   'marketplace.category': 'Kategorie',

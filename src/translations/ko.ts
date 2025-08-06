@@ -1000,6 +1000,28 @@ const ko = {
   'pwa.iosStep2': '그런 다음 "홈 화면에 추가"를 탭하세요',
   'common.later': '나중에',
 
+  // Offline Functionality
+  'offline.workingOffline': '오프라인으로 작업 중',
+  'offline.backOnline': '다시 온라인!',
+  'offline.cachedDataAvailable': '캐시된 데이터 사용 가능',
+  'offline.cachedData': '캐시된 데이터',
+
+  // Enhanced Chat
+  'chat.communityChat': '커뮤니티 채팅',
+  'chat.activeUsers': '활성 사용자',
+  'chat.loading': '메시지 로딩 중...',
+  'chat.noMessages': '아직 메시지가 없습니다',
+  'chat.startConversation': '첫 번째로 대화를 시작하세요!',
+  'chat.typeMessage': '메시지를 입력하세요...',
+  'chat.emoji': '이모지 추가',
+  'chat.scrollToBottom': '맨 아래로',
+  'chat.errorLoading': '메시지 로딩 오류',
+  'time.today': '오늘',
+  'time.yesterday': '어제',
+
+  // Realtime Events
+  'events.nowLive': '이벤트가 현재 라이브 중입니다!'
+
 }
 
 export default ko

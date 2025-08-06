@@ -1040,6 +1040,28 @@ const es = {
   'pwa.iosStep2': 'Luego "Añadir a pantalla de inicio"',
   'common.later': 'Más tarde',
 
+  // Offline Functionality
+  'offline.workingOffline': 'Trabajando sin conexión',
+  'offline.backOnline': '¡De vuelta en línea!',
+  'offline.cachedDataAvailable': 'Datos en caché disponibles',
+  'offline.cachedData': 'Datos en caché',
+
+  // Enhanced Chat
+  'chat.communityChat': 'Chat de la Comunidad',
+  'chat.activeUsers': 'usuarios activos',
+  'chat.loading': 'Cargando mensajes...',
+  'chat.noMessages': 'Aún no hay mensajes',
+  'chat.startConversation': '¡Sé el primero en iniciar la conversación!',
+  'chat.typeMessage': 'Escribe un mensaje...',
+  'chat.emoji': 'Añadir emoji',
+  'chat.scrollToBottom': 'Ir al final',
+  'chat.errorLoading': 'Error cargando mensajes',
+  'time.today': 'Hoy',
+  'time.yesterday': 'Ayer',
+
+  // Realtime Events
+  'events.nowLive': '¡El evento está ahora en vivo!'
+
 }
 
 export default es

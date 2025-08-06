@@ -1003,6 +1003,28 @@ const it = {
   'pwa.iosStep2': 'Poi "Aggiungi alla schermata Home"',
   'common.later': 'Più tardi',
 
+  // Offline Functionality
+  'offline.workingOffline': 'Funzionamento offline',
+  'offline.backOnline': 'Di nuovo online!',
+  'offline.cachedDataAvailable': 'Dati cache disponibili',
+  'offline.cachedData': 'Dati cache',
+
+  // Enhanced Chat
+  'chat.communityChat': 'Chat della Comunità',
+  'chat.activeUsers': 'utenti attivi',
+  'chat.loading': 'Caricamento messaggi...',
+  'chat.noMessages': 'Nessun messaggio ancora',
+  'chat.startConversation': 'Sii il primo a iniziare la conversazione!',
+  'chat.typeMessage': 'Scrivi un messaggio...',
+  'chat.emoji': 'Aggiungi emoji',
+  'chat.scrollToBottom': 'Vai in fondo',
+  'chat.errorLoading': 'Errore caricamento messaggi',
+  'time.today': 'Oggi',
+  'time.yesterday': 'Ieri',
+
+  // Realtime Events
+  'events.nowLive': 'L\'evento è ora dal vivo!'
+
 }
 
 export default it

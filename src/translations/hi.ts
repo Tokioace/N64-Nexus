@@ -1000,6 +1000,28 @@ const hi = {
   'pwa.iosStep2': 'फिर "होम स्क्रीन पर जोड़ें" चुनें',
   'common.later': 'बाद में',
 
+  // Offline Functionality
+  'offline.workingOffline': 'ऑफलाइन काम कर रहा है',
+  'offline.backOnline': 'वापस ऑनलाइन!',
+  'offline.cachedDataAvailable': 'कैश्ड डेटा उपलब्ध',
+  'offline.cachedData': 'कैश्ड डेटा',
+
+  // Enhanced Chat
+  'chat.communityChat': 'समुदाय चैट',
+  'chat.activeUsers': 'सक्रिय उपयोगकर्ता',
+  'chat.loading': 'संदेश लोड हो रहे हैं...',
+  'chat.noMessages': 'अभी तक कोई संदेश नहीं',
+  'chat.startConversation': 'बातचीत शुरू करने वाले पहले व्यक्ति बनें!',
+  'chat.typeMessage': 'एक संदेश टाइप करें...',
+  'chat.emoji': 'इमोजी जोड़ें',
+  'chat.scrollToBottom': 'नीचे स्क्रॉल करें',
+  'chat.errorLoading': 'संदेश लोड करने में त्रुटि',
+  'time.today': 'आज',
+  'time.yesterday': 'कल',
+
+  // Realtime Events
+  'events.nowLive': 'इवेंट अब लाइव है!'
+
 }
 
 export default hi

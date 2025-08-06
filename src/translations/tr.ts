@@ -1002,6 +1002,28 @@ const tr = {
   'pwa.iosStep2': 'Sonra "Ana Ekrana Ekle"yi seçin',
   'common.later': 'Daha sonra',
 
+  // Offline Functionality
+  'offline.workingOffline': 'Çevrimdışı çalışıyor',
+  'offline.backOnline': 'Tekrar çevrimiçi!',
+  'offline.cachedDataAvailable': 'Önbelleğe alınmış veriler mevcut',
+  'offline.cachedData': 'Önbelleğe alınmış veriler',
+
+  // Enhanced Chat
+  'chat.communityChat': 'Topluluk Sohbeti',
+  'chat.activeUsers': 'aktif kullanıcılar',
+  'chat.loading': 'Mesajlar yükleniyor...',
+  'chat.noMessages': 'Henüz mesaj yok',
+  'chat.startConversation': 'Konuşmayı başlatan ilk kişi olun!',
+  'chat.typeMessage': 'Bir mesaj yazın...',
+  'chat.emoji': 'Emoji ekle',
+  'chat.scrollToBottom': 'Aşağı kaydır',
+  'chat.errorLoading': 'Mesaj yükleme hatası',
+  'time.today': 'Bugün',
+  'time.yesterday': 'Dün',
+
+  // Realtime Events
+  'events.nowLive': 'Etkinlik şu anda canlı!'
+
 }
 
 export default tr

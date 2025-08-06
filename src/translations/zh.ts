@@ -1050,6 +1050,28 @@ const zh = {
   'pwa.iosStep2': '然后点击"添加到主屏幕"',
   'common.later': '稍后',
 
+  // Offline Functionality
+  'offline.workingOffline': '离线工作中',
+  'offline.backOnline': '重新上线！',
+  'offline.cachedDataAvailable': '缓存数据可用',
+  'offline.cachedData': '缓存数据',
+
+  // Enhanced Chat
+  'chat.communityChat': '社区聊天',
+  'chat.activeUsers': '活跃用户',
+  'chat.loading': '加载消息中...',
+  'chat.noMessages': '还没有消息',
+  'chat.startConversation': '成为第一个开始对话的人！',
+  'chat.typeMessage': '输入消息...',
+  'chat.emoji': '添加表情',
+  'chat.scrollToBottom': '滚动到底部',
+  'chat.errorLoading': '消息加载错误',
+  'time.today': '今天',
+  'time.yesterday': '昨天',
+
+  // Realtime Events
+  'events.nowLive': '活动现在正在直播！'
+
 }
 
 export default zh

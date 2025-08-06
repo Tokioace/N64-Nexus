@@ -325,15 +325,15 @@ const fr = {
   'placeholder.speedrunTitle': 'ex. Mario 64 120 Étoiles Speedrun',
   'placeholder.speedrunUrl': 'https://twitch.tv/votre-chaine',
   'placeholder.speedrunGame': 'ex. Super Mario 64',
-  'placeholder.mediaSearch': 'Suche nach Titel, Beschreibung oder Tags...',
+  'placeholder.mediaSearch': 'Rechercher par titre, description ou tags...',
   'placeholder.mediaUrl': 'https://youtube.com/watch?v=...',
-  'placeholder.mediaDescription': 'Beschreibe dein Achievement...',
-  'placeholder.mediaTags': 'Weltrekord, Any%, Glitchless (kommagetrennt)',
-  'success.uploaded': 'Erfolgreich hochgeladen',
-  'validation.allFieldsRequired': 'Alle Felder sind erforderlich',
+  'placeholder.mediaDescription': 'Décrivez votre exploit...',
+  'placeholder.mediaTags': 'Record du monde, Any%, Sans glitch (séparés par des virgules)',
+  'success.uploaded': 'Téléchargé avec succès',
+  'validation.allFieldsRequired': 'Tous les champs sont requis',
 
   // Additional missing keys
-  'marketplace.subtitle': 'N64 Handel & Tauschbörse',
+  'marketplace.subtitle': 'N64 Commerce et Échange',
   'marketplace.createOffer': 'Angebot erstellen',
   'marketplace.searchPlaceholder': 'Suche nach Artikeln...',
   'marketplace.category': 'Kategorie',
@@ -471,8 +471,8 @@ const fr = {
   'category.tips': 'Tips',
   'validation.titleTooLong': 'Le titre est trop long',
   'validation.contentTooLong': 'Le contenu est trop long',
-  'placeholder.threadTitle': 'Give your thread a title...',
-  'placeholder.threadContent': 'Write your post...',
+  'placeholder.threadTitle': 'Donnez un titre à votre sujet...',
+  'placeholder.threadContent': 'Rédigez votre message...',
   'placeholder.replyContent': 'Write your reply...',
   'placeholder.marketplacePrice': 'Enter price...',
   'ui.login': 'Login',
@@ -1000,6 +1000,28 @@ const fr = {
   'pwa.iosStep1': 'Appuyez sur le bouton Partager',
   'pwa.iosStep2': 'Puis "Ajouter à l\'écran d\'accueil"',
   'common.later': 'Plus tard',
+
+  // Offline Functionality
+  'offline.workingOffline': 'Fonctionnement hors ligne',
+  'offline.backOnline': 'De retour en ligne !',
+  'offline.cachedDataAvailable': 'Données en cache disponibles',
+  'offline.cachedData': 'Données en cache',
+
+  // Enhanced Chat
+  'chat.communityChat': 'Chat de la Communauté',
+  'chat.activeUsers': 'utilisateurs actifs',
+  'chat.loading': 'Chargement des messages...',
+  'chat.noMessages': 'Aucun message pour le moment',
+  'chat.startConversation': 'Soyez le premier à lancer la conversation !',
+  'chat.typeMessage': 'Tapez un message...',
+  'chat.emoji': 'Ajouter emoji',
+  'chat.scrollToBottom': 'Aller en bas',
+  'chat.errorLoading': 'Erreur lors du chargement des messages',
+  'time.today': 'Aujourd\'hui',
+  'time.yesterday': 'Hier',
+
+  // Realtime Events
+  'events.nowLive': 'L\'événement est maintenant en direct !'
 
 }
 
