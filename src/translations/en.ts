@@ -325,11 +325,11 @@ const en = {
   'placeholder.speedrunTitle': 'e.g. Mario 64 120 Stars Speedrun',
   'placeholder.speedrunUrl': 'https://twitch.tv/your-channel',
   'placeholder.speedrunGame': 'e.g. Super Mario 64',
-  'placeholder.mediaSearch': 'Suche nach Titel, Beschreibung oder Tags...',
+  'placeholder.mediaSearch': 'Search by title, description or tags...',
   'placeholder.mediaUrl': 'https://youtube.com/watch?v=...',
-  'placeholder.mediaDescription': 'Beschreibe dein Achievement...',
-  'placeholder.mediaTags': 'Weltrekord, Any%, Glitchless (kommagetrennt)',
-  'success.uploaded': 'Erfolgreich hochgeladen',
+  'placeholder.mediaDescription': 'Describe your achievement...',
+  'placeholder.mediaTags': 'World Record, Any%, Glitchless (comma separated)',
+  'success.uploaded': 'Successfully uploaded',
   'validation.allFieldsRequired': 'Alle Felder sind erforderlich',
 
   // Additional missing keys

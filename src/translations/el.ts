@@ -1050,6 +1050,71 @@ const el = {
   'pwa.iosStep2': 'Στη συνέχεια "Προσθήκη στην Αρχική Οθόνη"',
   'common.later': 'Αργότερα',
 
+  // Offline Functionality
+  'offline.workingOffline': 'Λειτουργία εκτός σύνδεσης',
+  'offline.backOnline': 'Επιστροφή online!',
+  'offline.cachedDataAvailable': 'Διαθέσιμα δεδομένα cache',
+  'offline.cachedData': 'Δεδομένα cache',
+
+  // Enhanced Chat
+  'chat.communityChat': 'Συνομιλία Κοινότητας',
+  'chat.activeUsers': 'ενεργοί χρήστες',
+  'chat.loading': 'Φόρτωση μηνυμάτων...',
+  'chat.noMessages': 'Δεν υπάρχουν μηνύματα ακόμα',
+  'chat.startConversation': 'Γίνετε ο πρώτος που θα ξεκινήσει τη συνομιλία!',
+  'chat.typeMessage': 'Πληκτρολογήστε ένα μήνυμα...',
+  'chat.emoji': 'Προσθήκη emoji',
+  'chat.scrollToBottom': 'Μετάβαση στο τέλος',
+  'chat.errorLoading': 'Σφάλμα φόρτωσης μηνυμάτων',
+  'time.today': 'Σήμερα',
+  'time.yesterday': 'Χθες',
+
+  // Realtime Events
+  'events.nowLive': 'Η εκδήλωση είναι τώρα ζωντανά!',
+
+  // Complete Placeholder Translations
+  'placeholder.threadTitle': 'Δώστε έναν τίτλο στο νήμα σας...',
+  'placeholder.threadContent': 'Γράψτε τη δημοσίευσή σας...',
+  'placeholder.replyContent': 'Γράψτε την απάντησή σας...',
+  'placeholder.marketplacePrice': 'Εισάγετε τιμή...',
+  'marketplace.titlePlaceholder': 'Εισάγετε όνομα αντικειμένου...',
+  'marketplace.descriptionPlaceholder': 'Περιγράψτε το αντικείμενό σας...',
+  'fanart.titlePlaceholder': 'Δώστε έναν τίτλο στο έργο τέχνης σας...',
+  'fanart.tagsPlaceholder': 'Προσθήκη ετικετών...',
+  'placeholder.searchGames': 'Αναζήτηση παιχνιδιών...',
+  'placeholder.searchPlayers': 'Αναζήτηση παικτών...',
+  'placeholder.notes': 'Προσθήκη σημειώσεων...',
+  'placeholder.additionalInfo': 'Επιπλέον πληροφορίες...',
+  'placeholder.password': 'Εισάγετε κωδικό πρόσβασης...',
+  'auth.emailPlaceholder': 'Εισάγετε email...',
+  'auth.usernamePlaceholder': 'Εισάγετε όνομα χρήστη...',
+  'chat.messagePlaceholder': 'Πληκτρολογήστε ένα μήνυμα...',
+  'placeholder.gameName': 'Εισάγετε όνομα παιχνιδιού...',
+  'placeholder.category': 'Επιλέξτε κατηγορία...',
+  'placeholder.time': 'Εισάγετε χρόνο...',
+  'placeholder.score': 'Εισάγετε σκορ...',
+  'placeholder.proofUrl': 'Εισάγετε URL απόδειξης...',
+  'placeholder.recordNotes': 'Σημειώσεις ρεκόρ...',
+
+  // Leaderboard Extended
+  'leaderboard.pageTitle': 'Πίνακας Κατάταξης',
+  'leaderboard.pageSubtitle': 'Οι καλύτεροι παίκτες στην κοινότητα',
+  'leaderboard.globalLeaderboard': 'Παγκόσμιος Πίνακας Κατάταξης',
+  'leaderboard.selectEvent': 'Επιλογή Εκδήλωσης',
+  'leaderboard.noData': 'Δεν υπάρχουν διαθέσιμα δεδομένα',
+  'leaderboard.noDataDesc': 'Δεν υπάρχουν ακόμα διαθέσιμα δεδομένα για αυτή την εκδήλωση.',
+  'leaderboard.seasonLeaderboard': 'Πίνακας Κατάταξης Σεζόν',
+  'leaderboard.filterType': 'Τύπος Φίλτρου',
+  'leaderboard.filterGlobal': 'Παγκόσμιος',
+  'leaderboard.filterFriends': 'Φίλοι',
+  'leaderboard.filterRegion': 'Περιοχή',
+  'leaderboard.timeframe': 'Χρονικό Πλαίσιο',
+  'leaderboard.timeframeAllTime': 'Όλων των Εποχών',
+  'leaderboard.timeframeSeason': 'Σεζόν',
+  'leaderboard.timeframeMonth': 'Μήνας',
+  'leaderboard.regionPlatform': 'Περιοχή/Πλατφόρμα',
+  'leaderboard.yourRank': 'Η Κατάταξή Σας',
+
 }
 
 export default el
