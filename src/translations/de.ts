@@ -989,7 +989,38 @@ const de = {
   // Event Card specific translations
   'events.likes': 'Gefällt mir',
   'events.views': 'Aufrufe', 
-  'events.comments': 'Kommentare'
+  'events.comments': 'Kommentare',
+
+  // PWA Installation Prompt
+  'pwa.installTitle': 'Battle64 installieren',
+  'pwa.installDescription': 'Holen Sie sich die vollständige App-Erfahrung mit Offline-Zugang und schnellerem Laden!',
+  'pwa.install': 'App installieren',
+  'pwa.gotIt': 'Verstanden!',
+  'pwa.iosStep1': 'Tippen Sie auf die Teilen-Schaltfläche',
+  'pwa.iosStep2': 'Dann "Zum Home-Bildschirm hinzufügen"',
+  'common.later': 'Später',
+
+  // Offline Functionality
+  'offline.workingOffline': 'Offline-Modus',
+  'offline.backOnline': 'Wieder online!',
+  'offline.cachedDataAvailable': 'Zwischengespeicherte Daten verfügbar',
+  'offline.cachedData': 'Zwischengespeicherte Daten',
+
+  // Enhanced Chat
+  'chat.communityChat': 'Community-Chat',
+  'chat.activeUsers': 'aktive Nutzer',
+  'chat.loading': 'Nachrichten werden geladen...',
+  'chat.noMessages': 'Noch keine Nachrichten',
+  'chat.startConversation': 'Sei der Erste, der die Unterhaltung beginnt!',
+  'chat.typeMessage': 'Nachricht eingeben...',
+  'chat.emoji': 'Emoji hinzufügen',
+  'chat.scrollToBottom': 'Nach unten scrollen',
+  'chat.errorLoading': 'Fehler beim Laden der Nachrichten',
+  'time.today': 'Heute',
+  'time.yesterday': 'Gestern',
+
+  // Realtime Events
+  'events.nowLive': 'Event ist jetzt live!'
 }
 
 export default de

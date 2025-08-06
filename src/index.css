@@ -10,6 +10,183 @@ html {
   position: relative;
 }
 
+/* PWA and Mobile Optimizations */
+@media (display-mode: standalone) {
+  /* PWA-specific styles */
+  body {
+    user-select: none; /* Prevent text selection in PWA mode */
+    -webkit-touch-callout: none; /* Disable callout on iOS */
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+  }
+
+  /* Allow text selection in input fields and content areas */
+  input, textarea, [contenteditable="true"], .selectable {
+    user-select: text !important;
+    -webkit-user-select: text !important;
+    -khtml-user-select: text !important;
+    -moz-user-select: text !important;
+    -ms-user-select: text !important;
+  }
+}
+
+/* Landscape orientation optimizations */
+@media screen and (orientation: landscape) and (max-height: 500px) {
+  /* Compact header in landscape */
+  .mobile-header {
+    padding: 0.5rem 1rem;
+    min-height: 3rem;
+  }
+
+  /* Reduce vertical spacing in landscape */
+  .landscape-compact {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  /* Optimize chat for landscape */
+  .chat-landscape {
+    max-height: 60vh;
+  }
+
+  /* Optimize forms for landscape */
+  .form-landscape {
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  /* Hide less important elements in landscape */
+  .hide-landscape {
+    display: none;
+  }
+}
+
+/* Mobile-first responsive design */
+@media (max-width: 768px) {
+  /* Touch-friendly buttons */
+  .btn-mobile {
+    min-height: 44px; /* iOS minimum touch target */
+    min-width: 44px;
+    padding: 0.75rem 1rem;
+  }
+
+  /* Mobile navigation */
+  .mobile-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(15, 23, 42, 0.95);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(148, 163, 184, 0.2);
+    padding: 0.5rem;
+    z-index: 50;
+  }
+
+  /* Mobile-optimized cards */
+  .card-mobile {
+    margin: 0.5rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Mobile typography */
+  .text-mobile-sm {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
+
+  .text-mobile-base {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+
+  /* Mobile spacing */
+  .space-mobile {
+    padding: 1rem;
+  }
+
+  /* Mobile-friendly modals */
+  .modal-mobile {
+    margin: 1rem;
+    max-height: calc(100vh - 2rem);
+    overflow-y: auto;
+  }
+}
+
+/* Tablet optimizations */
+@media (min-width: 768px) and (max-width: 1024px) {
+  /* Tablet-specific grid layouts */
+  .grid-tablet {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  /* Tablet navigation */
+  .nav-tablet {
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 1rem;
+  }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  /* Sharper borders and shadows */
+  .border-sharp {
+    border-width: 0.5px;
+  }
+
+  .shadow-sharp {
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  }
+}
+
+/* Dark mode optimizations */
+@media (prefers-color-scheme: dark) {
+  /* Enhanced dark mode colors */
+  .auto-dark {
+    background-color: #0f172a;
+    color: #f1f5f9;
+  }
+
+  .auto-dark-card {
+    background-color: #1e293b;
+    border-color: #334155;
+  }
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Safe area insets for notched devices */
+@supports (padding: max(0px)) {
+  .safe-area-top {
+    padding-top: max(1rem, env(safe-area-inset-top));
+  }
+
+  .safe-area-bottom {
+    padding-bottom: max(1rem, env(safe-area-inset-bottom));
+  }
+
+  .safe-area-left {
+    padding-left: max(1rem, env(safe-area-inset-left));
+  }
+
+  .safe-area-right {
+    padding-right: max(1rem, env(safe-area-inset-right));
+  }
+}
+
 /* Battle64 Map Styles */
 .battle64-map {
   touch-action: pan-x pan-y;

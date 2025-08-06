@@ -4,6 +4,7 @@ import { resolve } from 'path'
 import { visualizer } from 'rollup-plugin-visualizer'
 import viteCompression from 'vite-plugin-compression'
 import strip from '@rollup/plugin-strip'
+import { VitePWA } from 'vite-plugin-pwa'
 
 // https://vitejs.dev/config/
 export default defineConfig(({ command, mode }) => {
@@ -18,6 +19,72 @@ export default defineConfig(({ command, mode }) => {
   return {
     plugins: [
       react(),
+      // PWA Plugin Configuration
+      VitePWA({
+        registerType: 'autoUpdate',
+        workbox: {
+          globPatterns: ['**/*.{js,css,html,ico,png,svg,webp,jpg,jpeg}'],
+          runtimeCaching: [
+            {
+              urlPattern: /^https:\/\/.*\.supabase\.co\/rest\/v1\//,
+              handler: 'NetworkFirst',
+              options: {
+                cacheName: 'supabase-api-cache',
+                expiration: {
+                  maxEntries: 100,
+                  maxAgeSeconds: 60 * 5 // 5 minutes
+                }
+              }
+            },
+            {
+              urlPattern: /^https:\/\/.*\.supabase\.co\/storage\/v1\//,
+              handler: 'CacheFirst',
+              options: {
+                cacheName: 'supabase-storage-cache',
+                expiration: {
+                  maxEntries: 200,
+                  maxAgeSeconds: 60 * 60 * 24 * 7 // 1 week
+                }
+              }
+            },
+            {
+              urlPattern: /\.(png|jpg|jpeg|svg|gif|webp)$/,
+              handler: 'CacheFirst',
+              options: {
+                cacheName: 'images-cache',
+                expiration: {
+                  maxEntries: 300,
+                  maxAgeSeconds: 60 * 60 * 24 * 30 // 30 days
+                }
+              }
+            }
+          ]
+        },
+        includeAssets: ['favicon.ico', 'apple-touch-icon.png'],
+        manifest: {
+          name: 'Battle64 - N64 Community',
+          short_name: 'Battle64',
+          description: 'Die ultimative Nintendo 64 Community mit Events, Ranglisten, Sammler-Features und mehr',
+          theme_color: '#1e293b',
+          background_color: '#0f172a',
+          display: 'standalone',
+          orientation: 'any',
+          start_url: '/',
+          scope: '/',
+          icons: [
+            {
+              src: 'android-chrome-192x192.png',
+              sizes: '192x192',
+              type: 'image/png'
+            },
+            {
+              src: 'android-chrome-512x512.png',
+              sizes: '512x512',
+              type: 'image/png'
+            }
+          ]
+        }
+      }),
       // Only strip console statements in production builds
       ...(isProduction ? [strip({
         include: ['**/*.(js|ts|tsx)'],

@@ -1122,7 +1122,16 @@ const ar = {
   // Event Card specific translations
   'events.likes': 'إعجابات',
   'events.views': 'مشاهدات', 
-  'events.comments': 'تعليقات'
+  'events.comments': 'تعليقات',
+
+  // PWA Installation Prompt
+  'pwa.installTitle': 'تثبيت Battle64',
+  'pwa.installDescription': 'احصل على تجربة التطبيق الكاملة مع الوصول دون اتصال والتحميل السريع!',
+  'pwa.install': 'تثبيت التطبيق',
+  'pwa.gotIt': 'فهمت!',
+  'pwa.iosStep1': 'اضغط على زر المشاركة',
+  'pwa.iosStep2': 'ثم "إضافة إلى الشاشة الرئيسية"',
+  'common.later': 'لاحقاً'
 }
 
 export default ar

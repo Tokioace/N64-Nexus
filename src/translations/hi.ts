@@ -989,7 +989,16 @@ const hi = {
   // Event Card specific translations
   'events.likes': 'लाइक्स',
   'events.views': 'व्यूज', 
-  'events.comments': 'टिप्पणियाँ'
+  'events.comments': 'टिप्पणियाँ',
+
+  // PWA Installation Prompt
+  'pwa.installTitle': 'Battle64 इंस्टॉल करें',
+  'pwa.installDescription': 'ऑफ़लाइन एक्सेस और तेज़ लोडिंग के साथ पूरा ऐप अनुभव पाएं!',
+  'pwa.install': 'ऐप इंस्टॉल करें',
+  'pwa.gotIt': 'समझ गया!',
+  'pwa.iosStep1': 'शेयर बटन पर टैप करें',
+  'pwa.iosStep2': 'फिर "होम स्क्रीन पर जोड़ें" चुनें',
+  'common.later': 'बाद में',
 }
 
 export default hi

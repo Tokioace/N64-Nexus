@@ -989,7 +989,16 @@ const ko = {
   // Event Card specific translations
   'events.likes': '좋아요',
   'events.views': '조회수', 
-  'events.comments': '댓글'
+  'events.comments': '댓글',
+
+  // PWA Installation Prompt
+  'pwa.installTitle': 'Battle64 설치',
+  'pwa.installDescription': '오프라인 액세스와 빠른 로딩으로 완전한 앱 경험을 얻으세요!',
+  'pwa.install': '앱 설치',
+  'pwa.gotIt': '알겠습니다!',
+  'pwa.iosStep1': '공유 버튼을 탭하세요',
+  'pwa.iosStep2': '그런 다음 "홈 화면에 추가"를 탭하세요',
+  'common.later': '나중에',
 }
 
 export default ko

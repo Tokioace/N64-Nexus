@@ -991,7 +991,16 @@ const tr = {
   // Event Card specific translations
   'events.likes': 'Beğeniler',
   'events.views': 'Görüntülemeler', 
-  'events.comments': 'Yorumlar'
+  'events.comments': 'Yorumlar',
+
+  // PWA Installation Prompt
+  'pwa.installTitle': 'Battle64 Yükle',
+  'pwa.installDescription': 'Çevrimdışı erişim ve hızlı yükleme ile tam uygulama deneyimi yaşayın!',
+  'pwa.install': 'Uygulamayı Yükle',
+  'pwa.gotIt': 'Anladım!',
+  'pwa.iosStep1': 'Paylaş düğmesine dokunun',
+  'pwa.iosStep2': 'Sonra "Ana Ekrana Ekle"yi seçin',
+  'common.later': 'Daha sonra',
 }
 
 export default tr

@@ -1039,7 +1039,16 @@ const zh = {
   // Event Card specific translations
   'events.likes': '点赞',
   'events.views': '浏览量', 
-  'events.comments': '评论'
+  'events.comments': '评论',
+
+  // PWA Installation Prompt
+  'pwa.installTitle': '安装 Battle64',
+  'pwa.installDescription': '获得完整的应用体验，支持离线访问和快速加载！',
+  'pwa.install': '安装应用',
+  'pwa.gotIt': '知道了！',
+  'pwa.iosStep1': '点击分享按钮',
+  'pwa.iosStep2': '然后点击"添加到主屏幕"',
+  'common.later': '稍后',
 }
 
 export default zh

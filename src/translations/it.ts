@@ -992,7 +992,16 @@ const it = {
   // Event Card specific translations
   'events.likes': 'Mi piace',
   'events.views': 'Visualizzazioni', 
-  'events.comments': 'Commenti'
+  'events.comments': 'Commenti',
+
+  // PWA Installation Prompt
+  'pwa.installTitle': 'Installa Battle64',
+  'pwa.installDescription': 'Ottieni l\'esperienza completa dell\'app con accesso offline e caricamento più veloce!',
+  'pwa.install': 'Installa App',
+  'pwa.gotIt': 'Capito!',
+  'pwa.iosStep1': 'Tocca il pulsante Condividi',
+  'pwa.iosStep2': 'Poi "Aggiungi alla schermata Home"',
+  'common.later': 'Più tardi',
 }
 
 export default it

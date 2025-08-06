@@ -15,6 +15,8 @@ import QuizResultPage from './pages/QuizResultPage'
 import TypographyShowcase from './components/TypographyShowcase'
 import ErrorBoundary from './components/ErrorBoundary'
 import Layout from './components/Layout'
+import PWAInstallPrompt from './components/PWAInstallPrompt'
+import OfflineIndicator from './components/OfflineIndicator'
 
 // Import lazy components for code splitting
 import {
@@ -49,6 +51,8 @@ function App() {
                     <ForumProvider>
                       <MapProvider>
                         <Layout>
+                          <PWAInstallPrompt />
+                          <OfflineIndicator />
                       <Routes>
                         <Route path="/" element={<HomePage />} />
                         <Route path="/auth" element={<AuthPage />} />

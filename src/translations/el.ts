@@ -1039,7 +1039,16 @@ const el = {
   // Event Card specific translations
   'events.likes': 'Μου αρέσει',
   'events.views': 'Προβολές', 
-  'events.comments': 'Σχόλια'
+  'events.comments': 'Σχόλια',
+
+  // PWA Installation Prompt
+  'pwa.installTitle': 'Εγκατάσταση Battle64',
+  'pwa.installDescription': 'Αποκτήστε την πλήρη εμπειρία εφαρμογής με offline πρόσβαση και γρήγορη φόρτωση!',
+  'pwa.install': 'Εγκατάσταση Εφαρμογής',
+  'pwa.gotIt': 'Κατάλαβα!',
+  'pwa.iosStep1': 'Πατήστε το κουμπί Κοινοποίηση',
+  'pwa.iosStep2': 'Στη συνέχεια "Προσθήκη στην Αρχική Οθόνη"',
+  'common.later': 'Αργότερα',
 }
 
 export default el

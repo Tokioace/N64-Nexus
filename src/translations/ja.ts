@@ -1039,7 +1039,16 @@ const ja = {
   // Event Card specific translations
   'events.likes': 'いいね',
   'events.views': '閲覧数', 
-  'events.comments': 'コメント'
+  'events.comments': 'コメント',
+
+  // PWA Installation Prompt
+  'pwa.installTitle': 'Battle64をインストール',
+  'pwa.installDescription': 'オフラインアクセスと高速読み込みで完全なアプリ体験を！',
+  'pwa.install': 'アプリをインストール',
+  'pwa.gotIt': '分かりました！',
+  'pwa.iosStep1': '共有ボタンをタップ',
+  'pwa.iosStep2': '「ホーム画面に追加」をタップ',
+  'common.later': '後で',
 }
 
 export default ja

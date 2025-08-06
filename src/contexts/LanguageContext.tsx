@@ -70,9 +70,9 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
   }
 
   // Translation function with parameter support
-  const t = (key: TranslationKeys, params?: Record<string, string>): string => {
-    const languageTranslations = translations[currentLanguage]
-    let translation = languageTranslations[key] || translations.en[key] || key
+  const t = (key: TranslationKeys | string, params?: Record<string, string>): string => {
+    const languageTranslations = translations[currentLanguage] as any
+    let translation = languageTranslations[key] || (translations.en as any)[key] || key
 
     // Replace parameters in the translation
     if (params) {

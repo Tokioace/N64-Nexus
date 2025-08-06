@@ -974,7 +974,16 @@ const ru = {
   // Event Card specific translations
   'events.likes': 'Лайки',
   'events.views': 'Просмотры', 
-  'events.comments': 'Комментарии'
+  'events.comments': 'Комментарии',
+
+  // PWA Installation Prompt
+  'pwa.installTitle': 'Установить Battle64',
+  'pwa.installDescription': 'Получите полный опыт приложения с офлайн-доступом и быстрой загрузкой!',
+  'pwa.install': 'Установить приложение',
+  'pwa.gotIt': 'Понятно!',
+  'pwa.iosStep1': 'Нажмите кнопку "Поделиться"',
+  'pwa.iosStep2': 'Затем "Добавить на экран "Домой""',
+  'common.later': 'Позже',
 }
 
 export default ru

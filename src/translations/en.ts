@@ -990,7 +990,38 @@ const en = {
   // Event Card specific translations
   'events.likes': 'Likes',
   'events.views': 'Views', 
-  'events.comments': 'Comments'
+  'events.comments': 'Comments',
+
+  // PWA Installation Prompt
+  'pwa.installTitle': 'Install Battle64',
+  'pwa.installDescription': 'Get the full app experience with offline access and faster loading!',
+  'pwa.install': 'Install App',
+  'pwa.gotIt': 'Got it!',
+  'pwa.iosStep1': 'Tap the Share button',
+  'pwa.iosStep2': 'Then "Add to Home Screen"',
+  'common.later': 'Later',
+
+  // Offline Functionality
+  'offline.workingOffline': 'Working offline',
+  'offline.backOnline': 'Back online!',
+  'offline.cachedDataAvailable': 'Cached data available',
+  'offline.cachedData': 'Cached data',
+
+  // Enhanced Chat
+  'chat.communityChat': 'Community Chat',
+  'chat.activeUsers': 'active users',
+  'chat.loading': 'Loading messages...',
+  'chat.noMessages': 'No messages yet',
+  'chat.startConversation': 'Be the first to start the conversation!',
+  'chat.typeMessage': 'Type a message...',
+  'chat.emoji': 'Add emoji',
+  'chat.scrollToBottom': 'Scroll to bottom',
+  'chat.errorLoading': 'Error loading messages',
+  'time.today': 'Today',
+  'time.yesterday': 'Yesterday',
+
+  // Realtime Events
+  'events.nowLive': 'Event is now live!'
 }
 
 export default en
