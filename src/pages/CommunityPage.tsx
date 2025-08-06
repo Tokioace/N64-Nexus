@@ -166,8 +166,14 @@ const CommunityPage: React.FC = () => {
 
       {/* Users Grid - Protected by AuthGuard */}
       <AuthGuard 
-        customMessage={t('community.loginToViewProfiles')}
-        className="min-h-[400px]"
+        fallback={
+          <div className="simple-tile text-center py-12">
+            <Users className="w-16 h-16 text-slate-600 mx-auto mb-4" />
+            <h3 className="text-xl font-semibold text-slate-300 mb-2">
+              {t('community.loginToViewProfiles')}
+            </h3>
+          </div>
+        }
       >
         {filteredAndSortedUsers.length === 0 ? (
           <div className="simple-tile text-center py-8 sm:py-12">
