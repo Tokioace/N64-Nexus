@@ -11,27 +11,31 @@ import { MapProvider } from './contexts/MapContext'
 import HomePage from './pages/HomePage'
 import HomeScreenRetro from './components/HomeScreenRetro'
 import AuthPage from './pages/AuthPage'
-import CommunityPage from './pages/CommunityPage'
-import QuizPage from './pages/QuizPage'
 import QuizResultPage from './pages/QuizResultPage'
-import LeaderboardPage from './pages/LeaderboardPage'
-import ProfilePage from './pages/ProfilePage'
-import MinigamesPage from './pages/MinigamesPage'
-import EventsPage from './pages/EventsPage'
-import SpeedrunMediaPage from './pages/SpeedrunMediaPage'
-import CollectorMode from './pages/CollectorMode'
-import MarketplacePage from './pages/MarketplacePage'
-import ChatPage from './pages/ChatPage'
-import ForumPage from './pages/ForumPage'
-import ForumCategoryPage from './pages/ForumCategoryPage'
-import ForumThreadPage from './pages/ForumThreadPage'
-import ForumNewThreadPage from './pages/ForumNewThreadPage'
-import NewsFeedPage from './pages/NewsFeedPage'
-import FanArtPage from './pages/FanArtPage'
 import TypographyShowcase from './components/TypographyShowcase'
 import ErrorBoundary from './components/ErrorBoundary'
 import Layout from './components/Layout'
-import Battle64Map from './components/Battle64Map'
+
+// Import lazy components for code splitting
+import {
+  CommunityPage,
+  QuizPage,
+  LeaderboardPage,
+  ProfilePage,
+  MinigamesPage,
+  EventsPage,
+  SpeedrunMediaPage,
+  CollectorMode,
+  MarketplacePage,
+  ChatPage,
+  ForumPage,
+  ForumCategoryPage,
+  ForumThreadPage,
+  ForumNewThreadPage,
+  NewsFeedPage,
+  FanArtPage,
+  Battle64Map
+} from './components/LazyComponents'
 
 function App() {
   return (
