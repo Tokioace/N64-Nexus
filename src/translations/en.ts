@@ -1082,12 +1082,8 @@ const en = {
   'offline.cached': 'Showing cached content',
   'offline.retry': 'Retry',
 
-  // Common
+  // Common - New additions
   'common.understood': 'Understood',
-  'common.cancel': 'Cancel',
-  'common.refresh': 'Refresh',
-  'common.loading': 'Loading...',
-  'common.error': 'Error',
   'common.success': 'Success'
 }
 

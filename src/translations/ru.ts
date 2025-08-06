@@ -1005,8 +1005,70 @@ const ru = {
   'time.yesterday': 'Вчера',
 
   // Realtime Events
-  'events.nowLive': 'Событие сейчас в прямом эфире!'
+  'events.nowLive': 'Событие сейчас в прямом эфире!',
+  'realtime.connected': 'Прямое соединение активно',
+  'realtime.disconnected': 'Прямое соединение прервано',
+  'realtime.reconnecting': 'Переподключение...',
+  'realtime.newUpdate': 'Доступны новые обновления в реальном времени',
+  'realtime.leaderboard.updated': 'Таблица лидеров обновлена',
+  'realtime.points.updated': 'Очки обновлены',
+  'realtime.participant.joined': 'Присоединился новый участник',
+  'realtime.participant.left': 'Участник покинул',
+  'realtime.event.started': 'Событие началось',
+  'realtime.event.finished': 'Событие завершено',
 
+  // PWA Installation
+  'pwa.install.button': 'Установить Приложение',
+  'pwa.install.banner.title': 'Установить Battle64 как Приложение',
+  'pwa.install.banner.description': 'Более быстрый доступ и лучшая производительность',
+  'pwa.install.modal.title': 'Установить Приложение на Устройство',
+  'pwa.install.modal.description': 'Установите Battle64 для получения нативного опыта приложения с офлайн-доступом и push-уведомлениями.',
+  'pwa.install.ios.title': 'Добавить на Главный Экран',
+  'pwa.install.ios.step1': 'Нажмите кнопку Поделиться внизу браузера',
+  'pwa.install.ios.step2': 'Прокрутите вниз и выберите "Добавить на экран Домой"',
+  'pwa.install.ios.step3': 'Нажмите "Добавить" для установки приложения',
+
+  // Battle Map
+  'battleMap.title': 'Карта Battle64',
+  'battleMap.liveEvents': 'Прямые События',
+  'battleMap.participants': 'Участники',
+  'battleMap.nearbyPlayers': 'Игроки Рядом',
+  'battleMap.joinEvent': 'Присоединиться к Событию',
+  'battleMap.leaveEvent': 'Покинуть Событие',
+  'battleMap.distance': 'Расстояние',
+  'battleMap.radius': 'Радиус',
+  'battleMap.location.share': 'Поделиться Местоположением',
+  'battleMap.location.required': 'Требуется доступ к местоположению',
+  'battleMap.noEvents': 'Нет прямых событий рядом',
+  'battleMap.participantCount': 'Участники',
+
+  // Live Leaderboard
+  'leaderboard.live': 'Прямая Таблица Лидеров',
+  'leaderboard.updating': 'Обновление...',
+  'leaderboard.lastUpdate': 'Последнее Обновление',
+  'leaderboard.points.live': 'Очки в Реальном Времени',
+  'leaderboard.rank.changed': 'Позиция Изменена',
+  'leaderboard.newRecord': 'Новый Рекорд!',
+
+  // GDPR Realtime
+  'gdpr.realtime.title': 'Прямые Функции',
+  'gdpr.realtime.description': 'Включить обновления в реальном времени для таблиц лидеров, событий и чата',
+  'gdpr.realtime.enable': 'Включить Обновления в Реальном Времени',
+  'gdpr.realtime.disable': 'Отключить Обновления в Реальном Времени',
+  'gdpr.location.title': 'Доступ к Местоположению',
+  'gdpr.location.description': 'Поделитесь своим местоположением для локальных событий и ближайших участников',
+  'gdpr.location.enable': 'Включить Местоположение',
+  'gdpr.location.disable': 'Отключить Местоположение',
+
+  // Offline Mode
+  'offline.title': 'Офлайн Режим',
+  'offline.description': 'Вы офлайн. Некоторые функции ограничены.',
+  'offline.cached': 'Показ кешированного контента',
+  'offline.retry': 'Повторить',
+
+  // Common - New additions
+  'common.understood': 'Понятно',
+  'common.success': 'Успех'
 }
 
 export default ru

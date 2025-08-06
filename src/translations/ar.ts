@@ -1214,12 +1214,8 @@ const ar = {
   'offline.cached': 'عرض المحتوى المحفوظ',
   'offline.retry': 'إعادة المحاولة',
 
-  // Common
+  // Common - New additions
   'common.understood': 'مفهوم',
-  'common.cancel': 'إلغاء',
-  'common.refresh': 'تحديث',
-  'common.loading': 'جاري التحميل...',
-  'common.error': 'خطأ',
   'common.success': 'نجح'
 }
 

@@ -1121,12 +1121,8 @@ const es = {
   'offline.cached': 'Mostrando contenido en caché',
   'offline.retry': 'Reintentar',
 
-  // Common
+  // Common - New additions
   'common.understood': 'Entendido',
-  'common.cancel': 'Cancelar',
-  'common.refresh': 'Actualizar',
-  'common.loading': 'Cargando...',
-  'common.error': 'Error',
   'common.success': 'Éxito'
 }
 

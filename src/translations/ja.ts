@@ -1131,12 +1131,8 @@ const ja = {
   'offline.cached': 'キャッシュされたコンテンツを表示',
   'offline.retry': '再試行',
 
-  // Common
+  // Common - New additions
   'common.understood': '理解しました',
-  'common.cancel': 'キャンセル',
-  'common.refresh': '更新',
-  'common.loading': '読み込み中...',
-  'common.error': 'エラー',
   'common.success': '成功'
 }
 

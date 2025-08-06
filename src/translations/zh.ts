@@ -1131,12 +1131,8 @@ const zh = {
   'offline.cached': '显示缓存内容',
   'offline.retry': '重试',
 
-  // Common
+  // Common - New additions
   'common.understood': '明白了',
-  'common.cancel': '取消',
-  'common.refresh': '刷新',
-  'common.loading': '加载中...',
-  'common.error': '错误',
   'common.success': '成功'
 }
 

@@ -1021,8 +1021,70 @@ const pt = {
   'time.yesterday': 'Ontem',
 
   // Realtime Events
-  'events.nowLive': 'O evento está agora ao vivo!'
+  'events.nowLive': 'O evento está agora ao vivo!',
+  'realtime.connected': 'Conexão ao vivo ativa',
+  'realtime.disconnected': 'Conexão ao vivo interrompida',
+  'realtime.reconnecting': 'Reconectando...',
+  'realtime.newUpdate': 'Novas atualizações ao vivo disponíveis',
+  'realtime.leaderboard.updated': 'Classificação atualizada',
+  'realtime.points.updated': 'Pontos atualizados',
+  'realtime.participant.joined': 'Novo participante entrou',
+  'realtime.participant.left': 'Participante saiu',
+  'realtime.event.started': 'Evento iniciado',
+  'realtime.event.finished': 'Evento terminado',
 
+  // PWA Installation
+  'pwa.install.button': 'Instalar App',
+  'pwa.install.banner.title': 'Instalar Battle64 como App',
+  'pwa.install.banner.description': 'Acesso mais rápido e melhor desempenho',
+  'pwa.install.modal.title': 'Instalar App no Dispositivo',
+  'pwa.install.modal.description': 'Instale o Battle64 para uma experiência de app nativo com acesso offline e notificações push.',
+  'pwa.install.ios.title': 'Adicionar à Tela Inicial',
+  'pwa.install.ios.step1': 'Toque no botão Compartilhar na parte inferior do navegador',
+  'pwa.install.ios.step2': 'Role para baixo e selecione "Adicionar à tela inicial"',
+  'pwa.install.ios.step3': 'Toque em "Adicionar" para instalar o app',
+
+  // Battle Map
+  'battleMap.title': 'Mapa Battle64',
+  'battleMap.liveEvents': 'Eventos ao Vivo',
+  'battleMap.participants': 'Participantes',
+  'battleMap.nearbyPlayers': 'Jogadores Próximos',
+  'battleMap.joinEvent': 'Entrar no Evento',
+  'battleMap.leaveEvent': 'Sair do Evento',
+  'battleMap.distance': 'Distância',
+  'battleMap.radius': 'Raio',
+  'battleMap.location.share': 'Compartilhar Localização',
+  'battleMap.location.required': 'Acesso à localização necessário',
+  'battleMap.noEvents': 'Nenhum evento ao vivo próximo',
+  'battleMap.participantCount': 'Participantes',
+
+  // Live Leaderboard
+  'leaderboard.live': 'Classificação ao Vivo',
+  'leaderboard.updating': 'Atualizando...',
+  'leaderboard.lastUpdate': 'Última Atualização',
+  'leaderboard.points.live': 'Pontos ao Vivo',
+  'leaderboard.rank.changed': 'Posição Alterada',
+  'leaderboard.newRecord': 'Novo Recorde!',
+
+  // GDPR Realtime
+  'gdpr.realtime.title': 'Recursos ao Vivo',
+  'gdpr.realtime.description': 'Habilitar atualizações ao vivo para classificações, eventos e chat',
+  'gdpr.realtime.enable': 'Habilitar Atualizações ao Vivo',
+  'gdpr.realtime.disable': 'Desabilitar Atualizações ao Vivo',
+  'gdpr.location.title': 'Acesso à Localização',
+  'gdpr.location.description': 'Compartilhe sua localização para eventos locais e participantes próximos',
+  'gdpr.location.enable': 'Habilitar Localização',
+  'gdpr.location.disable': 'Desabilitar Localização',
+
+  // Offline Mode
+  'offline.title': 'Modo Offline',
+  'offline.description': 'Você está offline. Algumas funcionalidades estão limitadas.',
+  'offline.cached': 'Mostrando conteúdo em cache',
+  'offline.retry': 'Tentar Novamente',
+
+  // Common - New additions
+  'common.understood': 'Entendido',
+  'common.success': 'Sucesso'
 }
 
 export default pt

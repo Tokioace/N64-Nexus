@@ -1081,12 +1081,8 @@ const de = {
   'offline.cached': 'Zwischengespeicherte Inhalte werden angezeigt',
   'offline.retry': 'Erneut versuchen',
 
-  // Common
+  // Common - New additions
   'common.understood': 'Verstanden',
-  'common.cancel': 'Abbrechen',
-  'common.refresh': 'Aktualisieren',
-  'common.loading': 'Wird geladen...',
-  'common.error': 'Fehler',
   'common.success': 'Erfolgreich'
 }
 
