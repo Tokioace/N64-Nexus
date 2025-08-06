@@ -1020,8 +1020,70 @@ const hi = {
   'time.yesterday': 'कल',
 
   // Realtime Events
-  'events.nowLive': 'इवेंट अब लाइव है!'
+  'events.nowLive': 'इवेंट अब लाइव है!',
+  'realtime.connected': 'लाइव कनेक्शन सक्रिय',
+  'realtime.disconnected': 'लाइव कनेक्शन बाधित',
+  'realtime.reconnecting': 'पुनः कनेक्ट हो रहा है...',
+  'realtime.newUpdate': 'नए लाइव अपडेट उपलब्ध',
+  'realtime.leaderboard.updated': 'लीडरबोर्ड अपडेट हुआ',
+  'realtime.points.updated': 'पॉइंट्स अपडेट हुए',
+  'realtime.participant.joined': 'नया प्रतिभागी जुड़ा',
+  'realtime.participant.left': 'प्रतिभागी चला गया',
+  'realtime.event.started': 'इवेंट शुरू हुआ',
+  'realtime.event.finished': 'इवेंट समाप्त हुआ',
 
+  // PWA Installation
+  'pwa.install.button': 'ऐप इंस्टॉल करें',
+  'pwa.install.banner.title': 'Battle64 को ऐप के रूप में इंस्टॉल करें',
+  'pwa.install.banner.description': 'तेज़ एक्सेस और बेहतर प्रदर्शन',
+  'pwa.install.modal.title': 'डिवाइस पर ऐप इंस्टॉल करें',
+  'pwa.install.modal.description': 'ऑफ़लाइन एक्सेस और पुश नोटिफिकेशन के साथ नेटिव ऐप अनुभव के लिए Battle64 इंस्टॉल करें।',
+  'pwa.install.ios.title': 'होम स्क्रीन पर जोड़ें',
+  'pwa.install.ios.step1': 'ब्राउज़र के नीचे शेयर बटन पर टैप करें',
+  'pwa.install.ios.step2': 'नीचे स्क्रॉल करें और "होम स्क्रीन पर जोड़ें" चुनें',
+  'pwa.install.ios.step3': 'ऐप इंस्टॉल करने के लिए "जोड़ें" पर टैप करें',
+
+  // Battle Map
+  'battleMap.title': 'Battle64 मैप',
+  'battleMap.liveEvents': 'लाइव इवेंट्स',
+  'battleMap.participants': 'प्रतिभागी',
+  'battleMap.nearbyPlayers': 'आसपास के खिलाड़ी',
+  'battleMap.joinEvent': 'इवेंट में शामिल हों',
+  'battleMap.leaveEvent': 'इवेंट छोड़ें',
+  'battleMap.distance': 'दूरी',
+  'battleMap.radius': 'त्रिज्या',
+  'battleMap.location.share': 'स्थान साझा करें',
+  'battleMap.location.required': 'स्थान एक्सेस आवश्यक',
+  'battleMap.noEvents': 'आसपास कोई लाइव इवेंट नहीं',
+  'battleMap.participantCount': 'प्रतिभागी',
+
+  // Live Leaderboard
+  'leaderboard.live': 'लाइव लीडरबोर्ड',
+  'leaderboard.updating': 'अपडेट हो रहा है...',
+  'leaderboard.lastUpdate': 'अंतिम अपडेट',
+  'leaderboard.points.live': 'लाइव पॉइंट्स',
+  'leaderboard.rank.changed': 'रैंक बदला',
+  'leaderboard.newRecord': 'नया रिकॉर्ड!',
+
+  // GDPR Realtime
+  'gdpr.realtime.title': 'लाइव सुविधाएं',
+  'gdpr.realtime.description': 'लीडरबोर्ड, इवेंट्स और चैट के लिए लाइव अपडेट सक्षम करें',
+  'gdpr.realtime.enable': 'लाइव अपडेट सक्षम करें',
+  'gdpr.realtime.disable': 'लाइव अपडेट अक्षम करें',
+  'gdpr.location.title': 'स्थान एक्सेस',
+  'gdpr.location.description': 'स्थानीय इवेंट्स और आसपास के प्रतिभागियों के लिए अपना स्थान साझा करें',
+  'gdpr.location.enable': 'स्थान सक्षम करें',
+  'gdpr.location.disable': 'स्थान अक्षम करें',
+
+  // Offline Mode
+  'offline.title': 'ऑफ़लाइन मोड',
+  'offline.description': 'आप ऑफ़लाइन हैं। कुछ सुविधाएं सीमित हैं।',
+  'offline.cached': 'कैश्ड कंटेंट दिखाया जा रहा है',
+  'offline.retry': 'पुनः प्रयास करें',
+
+  // Common - New additions
+  'common.understood': 'समझ गया',
+  'common.success': 'सफल'
 }
 
 export default hi
