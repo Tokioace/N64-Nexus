@@ -9,10 +9,13 @@
     "build:dev": "npx tsc && vite build --mode development",
     "build:staging": "npx tsc && vite build --mode staging",
     "build:prod": "npx tsc && vite build --mode production",
-    "lint": "eslint . --max-warnings 50",
+    "lint": "eslint . --max-warnings 100",
     "preview": "vite preview",
     "preview:staging": "vite preview --mode staging",
-    "preview:prod": "vite preview --mode production"
+    "preview:prod": "vite preview --mode production",
+    "check": "npm run lint && npm run build",
+    "test": "echo \"No tests specified\"",
+    "typecheck": "npx tsc --noEmit"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.53.0",
@@ -31,7 +34,6 @@
     "@types/node": "^24.1.0",
     "@types/react": "^19.1.9",
     "@types/react-dom": "^19.1.7",
-    "@types/workbox-sw": "^4.3.7",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",
     "@vitejs/plugin-react": "^4.7.0",

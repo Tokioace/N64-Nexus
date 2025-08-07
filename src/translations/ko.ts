@@ -199,6 +199,9 @@ const ko = {
   'events.timeRemaining': '남은 시간',
   'events.ended': '종료됨',
   'events.notStarted': '시작되지 않음',
+  'events.game': '게임',
+  'events.track': '트랙',
+  'events.time': '시간',
 
   // Forum
   'forum.title': '포럼',
@@ -1020,8 +1023,80 @@ const ko = {
   'time.yesterday': '어제',
 
   // Realtime Events
-  'events.nowLive': '이벤트가 현재 라이브 중입니다!'
+  'events.nowLive': '이벤트가 현재 라이브 중입니다!',
+  'realtime.connected': '실시간 연결 활성화',
+  'realtime.disconnected': '실시간 연결 중단됨',
+  'realtime.reconnecting': '재연결 중...',
+  'realtime.newUpdate': '새로운 실시간 업데이트 사용 가능',
+  'realtime.leaderboard.updated': '순위표가 업데이트됨',
+  'realtime.points.updated': '포인트가 업데이트됨',
+  'realtime.participant.joined': '새 참가자가 참여함',
+  'realtime.participant.left': '참가자가 떠남',
+  'realtime.event.started': '이벤트 시작됨',
+  'realtime.event.finished': '이벤트 종료됨',
 
+  // PWA Installation
+  'pwa.install.button': '앱 설치',
+  'pwa.install.banner.title': 'Battle64를 앱으로 설치',
+  'pwa.install.banner.description': '더 빠른 접근과 향상된 성능',
+  'pwa.install.modal.title': '기기에 앱 설치',
+  'pwa.install.modal.description': '오프라인 접근과 푸시 알림이 있는 네이티브 앱 경험을 위해 Battle64를 설치하세요.',
+  'pwa.install.ios.title': '홈 화면에 추가',
+  'pwa.install.ios.step1': '브라우저 하단의 공유 버튼을 탭하세요',
+  'pwa.install.ios.step2': '아래로 스크롤하여 "홈 화면에 추가"를 선택하세요',
+  'pwa.install.ios.step3': '"추가"를 탭하여 앱을 설치하세요',
+
+  // Battle Map
+  'battleMap.title': 'Battle64 지도',
+  'battleMap.liveEvents': '실시간 이벤트',
+  'battleMap.participants': '참가자',
+  'battleMap.nearbyPlayers': '근처 플레이어',
+  'battleMap.joinEvent': '이벤트 참여',
+  'battleMap.leaveEvent': '이벤트 떠나기',
+  'battleMap.distance': '거리',
+  'battleMap.radius': '반경',
+  'battleMap.location.share': '위치 공유',
+  'battleMap.location.required': '위치 접근 필요',
+  'battleMap.location.notSupported': '이 브라우저에서 위치 정보가 지원되지 않습니다',
+  'battleMap.yourLocation': '귀하의 위치',
+  'battleMap.noEvents': '근처에 실시간 이벤트 없음',
+  'battleMap.participantCount': '참가자',
+
+  // Live Leaderboard
+  'leaderboard.live': '실시간 순위표',
+  'leaderboard.updating': '업데이트 중...',
+  'leaderboard.lastUpdate': '마지막 업데이트',
+  'leaderboard.points.live': '실시간 포인트',
+  'leaderboard.rank.changed': '순위 변경됨',
+  'leaderboard.newRecord': '새 기록!',
+
+  // GDPR Realtime
+  'gdpr.realtime.title': '실시간 기능',
+  'gdpr.realtime.description': '순위표, 이벤트, 채팅의 실시간 업데이트 활성화',
+  'gdpr.realtime.enable': '실시간 업데이트 활성화',
+  'gdpr.realtime.disable': '실시간 업데이트 비활성화',
+  'gdpr.location.title': '위치 접근',
+  'gdpr.location.description': '지역 이벤트와 근처 참가자를 위해 위치를 공유하세요',
+  'gdpr.location.enable': '위치 활성화',
+  'gdpr.location.disable': '위치 비활성화',
+
+  // Offline Mode
+  'offline.title': '오프라인 모드',
+  'offline.description': '오프라인 상태입니다. 일부 기능이 제한됩니다.',
+  'offline.cached': '캐시된 콘텐츠 표시',
+  'offline.retry': '다시 시도',
+
+  // Common - New additions
+  'common.understood': '이해했습니다',
+  'common.success': '성공',
+  // Settings
+  'settings.privacy.title': '개인정보 설정',
+  'settings.notifications.title': '알림 설정',
+  'settings.notifications.description': '알림 기본 설정 관리',
+
+  // GDPR Notice
+  'gdpr.notice.title': '개인정보 보호 고지',
+  'gdpr.notice.description': '귀하의 개인정보를 존중하며 데이터 보호를 위한 GDPR 지침을 따릅니다'
 }
 
 export default ko

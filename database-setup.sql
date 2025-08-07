@@ -196,6 +196,27 @@ CREATE TABLE personal_records (
 );
 
 -- =====================================================
+-- EVENTS_LIVE_LOCATIONS TABLE (für Battle64 Map)
+-- =====================================================
+CREATE TABLE events_live_locations (
+    id uuid PRIMARY KEY DEFAULT uuid_generate_v4(),
+    event_id uuid REFERENCES events(id) ON DELETE CASCADE NOT NULL,
+    user_id uuid REFERENCES profiles(id) ON DELETE CASCADE NOT NULL,
+    latitude decimal(10, 8) NOT NULL,
+    longitude decimal(11, 8) NOT NULL,
+    location_name text,
+    is_active boolean DEFAULT true,
+    radius_km integer DEFAULT 30,
+    created_at timestamptz DEFAULT now(),
+    updated_at timestamptz DEFAULT now()
+);
+
+-- Index für geografische Suchen
+CREATE INDEX idx_events_live_locations_coords ON events_live_locations (latitude, longitude);
+CREATE INDEX idx_events_live_locations_event_active ON events_live_locations (event_id, is_active);
+CREATE INDEX idx_events_live_locations_user ON events_live_locations (user_id);
+
+-- =====================================================
 -- INDEXES FOR PERFORMANCE
 -- =====================================================
 CREATE INDEX idx_speedruns_event_id ON speedruns(event_id);

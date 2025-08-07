@@ -199,6 +199,9 @@ const el = {
   'events.timeRemaining': 'Χρόνος που απομένει',
   'events.ended': 'Τελείωσε',
   'events.notStarted': 'Δεν Έχει Ξεκινήσει',
+  'events.game': 'Παιχνίδι',
+  'events.track': 'Πίστα',
+  'events.time': 'Χρόνος',
 
   // Forum
   'forum.title': 'Φόρουμ',
@@ -1070,10 +1073,80 @@ const el = {
   'time.yesterday': 'Χθες',
 
   // Realtime Events
-  'events.nowLive': 'Η εκδήλωση είναι τώρα ζωντανά!',
+  'events.nowLive': 'Το event είναι τώρα live!',
+  'realtime.connected': 'Ζωντανή σύνδεση ενεργή',
+  'realtime.disconnected': 'Ζωντανή σύνδεση διακόπηκε',
+  'realtime.reconnecting': 'Επανασύνδεση...',
+  'realtime.newUpdate': 'Νέες ζωντανές ενημερώσεις διαθέσιμες',
+  'realtime.leaderboard.updated': 'Πίνακας κατάταξης ενημερώθηκε',
+  'realtime.points.updated': 'Πόντοι ενημερώθηκαν',
+  'realtime.participant.joined': 'Νέος συμμετέχων εντάχθηκε',
+  'realtime.participant.left': 'Συμμετέχων έφυγε',
+  'realtime.event.started': 'Event ξεκίνησε',
+  'realtime.event.finished': 'Event τελείωσε',
 
+  // PWA Installation
+  'pwa.install.button': 'Εγκατάσταση Εφαρμογής',
+  'pwa.install.banner.title': 'Εγκατάσταση Battle64 ως Εφαρμογή',
+  'pwa.install.banner.description': 'Ταχύτερη πρόσβαση και καλύτερη απόδοση',
+  'pwa.install.modal.title': 'Εγκατάσταση Εφαρμογής στη Συσκευή',
+  'pwa.install.modal.description': 'Εγκαταστήστε το Battle64 για εμπειρία εγγενούς εφαρμογής με offline πρόσβαση και push ειδοποιήσεις.',
+  'pwa.install.ios.title': 'Προσθήκη στην Αρχική Οθόνη',
+  'pwa.install.ios.step1': 'Πατήστε το κουμπί Κοινοποίηση στο κάτω μέρος του browser',
+  'pwa.install.ios.step2': 'Κάντε scroll προς τα κάτω και επιλέξτε "Προσθήκη στην αρχική οθόνη"',
+  'pwa.install.ios.step3': 'Πατήστε "Προσθήκη" για εγκατάσταση της εφαρμογής',
 
+  // Battle Map
+  'battleMap.title': 'Χάρτης Battle64',
+  'battleMap.liveEvents': 'Ζωντανά Events',
+  'battleMap.participants': 'Συμμετέχοντες',
+  'battleMap.nearbyPlayers': 'Κοντινοί Παίκτες',
+  'battleMap.joinEvent': 'Συμμετοχή σε Event',
+  'battleMap.leaveEvent': 'Έξοδος από Event',
+  'battleMap.distance': 'Απόσταση',
+  'battleMap.radius': 'Ακτίνα',
+  'battleMap.location.share': 'Κοινοποίηση Τοποθεσίας',
+  'battleMap.location.required': 'Απαιτείται πρόσβαση τοποθεσίας',
+  'battleMap.location.notSupported': 'Ο εντοπισμός θέσης δεν υποστηρίζεται από αυτόν τον browser',
+  'battleMap.yourLocation': 'Η Τοποθεσία σας',
+  'battleMap.noEvents': 'Δεν υπάρχουν ζωντανά events κοντά',
+  'battleMap.participantCount': 'Συμμετέχοντες',
 
+  // Live Leaderboard
+  'leaderboard.live': 'Ζωντανός Πίνακας Κατάταξης',
+  'leaderboard.updating': 'Ενημέρωση...',
+  'leaderboard.lastUpdate': 'Τελευταία Ενημέρωση',
+  'leaderboard.points.live': 'Ζωντανοί Πόντοι',
+  'leaderboard.rank.changed': 'Κατάταξη Άλλαξε',
+  'leaderboard.newRecord': 'Νέο Ρεκόρ!',
+
+  // GDPR Realtime
+  'gdpr.realtime.title': 'Ζωντανές Λειτουργίες',
+  'gdpr.realtime.description': 'Ενεργοποίηση ζωντανών ενημερώσεων για πίνακες κατάταξης, events και chat',
+  'gdpr.realtime.enable': 'Ενεργοποίηση Ζωντανών Ενημερώσεων',
+  'gdpr.realtime.disable': 'Απενεργοποίηση Ζωντανών Ενημερώσεων',
+  'gdpr.location.title': 'Πρόσβαση Τοποθεσίας',
+  'gdpr.location.description': 'Κοινοποιήστε την τοποθεσία σας για τοπικά events και κοντινούς συμμετέχοντες',
+  'gdpr.location.enable': 'Ενεργοποίηση Τοποθεσίας',
+  'gdpr.location.disable': 'Απενεργοποίηση Τοποθεσίας',
+
+  // Offline Mode
+  'offline.title': 'Λειτουργία Offline',
+  'offline.description': 'Είστε offline. Κάποιες λειτουργίες είναι περιορισμένες.',
+  'offline.cached': 'Εμφάνιση περιεχομένου cache',
+  'offline.retry': 'Επανάληψη',
+
+  // Common - New additions
+  'common.understood': 'Κατανοητό',
+  'common.success': 'Επιτυχία',
+  // Settings
+  'settings.privacy.title': 'Ρυθμίσεις Απορρήτου',
+  'settings.notifications.title': 'Ρυθμίσεις Ειδοποιήσεων',
+  'settings.notifications.description': 'Διαχείριση προτιμήσεων ειδοποιήσεων',
+
+  // GDPR Notice
+  'gdpr.notice.title': 'Ειδοποίηση Απορρήτου',
+  'gdpr.notice.description': 'Σεβόμαστε την ιδιωτικότητά σας και ακολουθούμε τις οδηγίες GDPR για την προστασία δεδομένων'
 }
 
 export default el

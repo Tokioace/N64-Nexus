@@ -199,6 +199,9 @@ const it = {
   'events.timeRemaining': 'Tempo rimanente',
   'events.ended': 'Finito',
   'events.notStarted': 'Non ancora iniziato',
+  'events.game': 'Gioco',
+  'events.track': 'Pista',
+  'events.time': 'Tempo',
 
   // Forum
   'forum.title': 'Forum',
@@ -1023,8 +1026,80 @@ const it = {
   'time.yesterday': 'Ieri',
 
   // Realtime Events
-  'events.nowLive': 'L\'evento è ora dal vivo!'
+  'events.nowLive': 'L\'evento è ora dal vivo!',
+  'realtime.connected': 'Connessione live attiva',
+  'realtime.disconnected': 'Connessione live interrotta',
+  'realtime.reconnecting': 'Riconnessione...',
+  'realtime.newUpdate': 'Nuovi aggiornamenti live disponibili',
+  'realtime.leaderboard.updated': 'Classifica aggiornata',
+  'realtime.points.updated': 'Punti aggiornati',
+  'realtime.participant.joined': 'Nuovo partecipante entrato',
+  'realtime.participant.left': 'Partecipante uscito',
+  'realtime.event.started': 'Evento iniziato',
+  'realtime.event.finished': 'Evento terminato',
 
+  // PWA Installation
+  'pwa.install.button': 'Installa App',
+  'pwa.install.banner.title': 'Installa Battle64 come App',
+  'pwa.install.banner.description': 'Accesso più veloce e migliori prestazioni',
+  'pwa.install.modal.title': 'Installa App sul Dispositivo',
+  'pwa.install.modal.description': 'Installa Battle64 per un\'esperienza app nativa con accesso offline e notifiche push.',
+  'pwa.install.ios.title': 'Aggiungi alla Schermata Home',
+  'pwa.install.ios.step1': 'Tocca il pulsante Condividi in fondo al browser',
+  'pwa.install.ios.step2': 'Scorri verso il basso e seleziona "Aggiungi alla schermata Home"',
+  'pwa.install.ios.step3': 'Tocca "Aggiungi" per installare l\'app',
+
+  // Battle Map
+  'battleMap.title': 'Mappa Battle64',
+  'battleMap.liveEvents': 'Eventi Live',
+  'battleMap.participants': 'Partecipanti',
+  'battleMap.nearbyPlayers': 'Giocatori Vicini',
+  'battleMap.joinEvent': 'Unisciti all\'Evento',
+  'battleMap.leaveEvent': 'Lascia l\'Evento',
+  'battleMap.distance': 'Distanza',
+  'battleMap.radius': 'Raggio',
+  'battleMap.location.share': 'Condividi Posizione',
+  'battleMap.location.required': 'Accesso alla posizione richiesto',
+  'battleMap.location.notSupported': 'Geolocalizzazione non supportata da questo browser',
+  'battleMap.yourLocation': 'La Tua Posizione',
+  'battleMap.noEvents': 'Nessun evento live nelle vicinanze',
+  'battleMap.participantCount': 'Partecipanti',
+
+  // Live Leaderboard
+  'leaderboard.live': 'Classifica Live',
+  'leaderboard.updating': 'Aggiornamento...',
+  'leaderboard.lastUpdate': 'Ultimo Aggiornamento',
+  'leaderboard.points.live': 'Punti Live',
+  'leaderboard.rank.changed': 'Posizione Cambiata',
+  'leaderboard.newRecord': 'Nuovo Record!',
+
+  // GDPR Realtime
+  'gdpr.realtime.title': 'Funzionalità Live',
+  'gdpr.realtime.description': 'Abilita aggiornamenti live per classifiche, eventi e chat',
+  'gdpr.realtime.enable': 'Abilita Aggiornamenti Live',
+  'gdpr.realtime.disable': 'Disabilita Aggiornamenti Live',
+  'gdpr.location.title': 'Accesso alla Posizione',
+  'gdpr.location.description': 'Condividi la tua posizione per eventi locali e partecipanti vicini',
+  'gdpr.location.enable': 'Abilita Posizione',
+  'gdpr.location.disable': 'Disabilita Posizione',
+
+  // Offline Mode
+  'offline.title': 'Modalità Offline',
+  'offline.description': 'Sei offline. Alcune funzionalità sono limitate.',
+  'offline.cached': 'Mostra contenuto in cache',
+  'offline.retry': 'Riprova',
+
+  // Common - New additions
+  'common.understood': 'Capito',
+  'common.success': 'Successo',
+  // Settings
+  'settings.privacy.title': 'Impostazioni Privacy',
+  'settings.notifications.title': 'Impostazioni Notifiche',
+  'settings.notifications.description': 'Gestisci le tue preferenze di notifica',
+
+  // GDPR Notice
+  'gdpr.notice.title': 'Informativa sulla Privacy',
+  'gdpr.notice.description': 'Rispettiamo la tua privacy e seguiamo le linee guida GDPR per la protezione dei dati'
 }
 
 export default it

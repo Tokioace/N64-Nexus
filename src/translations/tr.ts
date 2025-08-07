@@ -199,6 +199,9 @@ const tr = {
   'events.timeRemaining': 'Kalan süre',
   'events.ended': 'Bitti',
   'events.notStarted': 'Henüz başlamadı',
+  'events.game': 'Oyun',
+  'events.track': 'Pist',
+  'events.time': 'Süre',
 
   // Forum
   'forum.title': 'Tartışma Forumu',
@@ -1022,8 +1025,80 @@ const tr = {
   'time.yesterday': 'Dün',
 
   // Realtime Events
-  'events.nowLive': 'Etkinlik şu anda canlı!'
+  'events.nowLive': 'Etkinlik şu anda canlı!',
+  'realtime.connected': 'Canlı bağlantı aktif',
+  'realtime.disconnected': 'Canlı bağlantı kesildi',
+  'realtime.reconnecting': 'Yeniden bağlanıyor...',
+  'realtime.newUpdate': 'Yeni canlı güncellemeler mevcut',
+  'realtime.leaderboard.updated': 'Liderlik tablosu güncellendi',
+  'realtime.points.updated': 'Puanlar güncellendi',
+  'realtime.participant.joined': 'Yeni katılımcı katıldı',
+  'realtime.participant.left': 'Katılımcı ayrıldı',
+  'realtime.event.started': 'Etkinlik başladı',
+  'realtime.event.finished': 'Etkinlik bitti',
 
+  // PWA Installation
+  'pwa.install.button': 'Uygulama Yükle',
+  'pwa.install.banner.title': 'Battle64\'ü Uygulama Olarak Yükle',
+  'pwa.install.banner.description': 'Daha hızlı erişim ve daha iyi performans',
+  'pwa.install.modal.title': 'Cihaza Uygulama Yükle',
+  'pwa.install.modal.description': 'Çevrimdışı erişim ve push bildirimleri ile yerel uygulama deneyimi için Battle64\'ü yükleyin.',
+  'pwa.install.ios.title': 'Ana Ekrana Ekle',
+  'pwa.install.ios.step1': 'Tarayıcının altındaki Paylaş düğmesine dokunun',
+  'pwa.install.ios.step2': 'Aşağı kaydırın ve "Ana ekrana ekle"yi seçin',
+  'pwa.install.ios.step3': 'Uygulamayı yüklemek için "Ekle"ye dokunun',
+
+  // Battle Map
+  'battleMap.title': 'Battle64 Haritası',
+  'battleMap.liveEvents': 'Canlı Etkinlikler',
+  'battleMap.participants': 'Katılımcılar',
+  'battleMap.nearbyPlayers': 'Yakındaki Oyuncular',
+  'battleMap.joinEvent': 'Etkinliğe Katıl',
+  'battleMap.leaveEvent': 'Etkinlikten Ayrıl',
+  'battleMap.distance': 'Mesafe',
+  'battleMap.radius': 'Yarıçap',
+  'battleMap.location.share': 'Konum Paylaş',
+  'battleMap.location.required': 'Konum erişimi gerekli',
+  'battleMap.location.notSupported': 'Coğrafi konum bu tarayıcı tarafından desteklenmiyor',
+  'battleMap.yourLocation': 'Konumunuz',
+  'battleMap.noEvents': 'Yakında canlı etkinlik yok',
+  'battleMap.participantCount': 'Katılımcılar',
+
+  // Live Leaderboard
+  'leaderboard.live': 'Canlı Liderlik Tablosu',
+  'leaderboard.updating': 'Güncelleniyor...',
+  'leaderboard.lastUpdate': 'Son Güncelleme',
+  'leaderboard.points.live': 'Canlı Puanlar',
+  'leaderboard.rank.changed': 'Sıralama Değişti',
+  'leaderboard.newRecord': 'Yeni Rekor!',
+
+  // GDPR Realtime
+  'gdpr.realtime.title': 'Canlı Özellikler',
+  'gdpr.realtime.description': 'Liderlik tabloları, etkinlikler ve sohbet için canlı güncellemeleri etkinleştir',
+  'gdpr.realtime.enable': 'Canlı Güncellemeleri Etkinleştir',
+  'gdpr.realtime.disable': 'Canlı Güncellemeleri Devre Dışı Bırak',
+  'gdpr.location.title': 'Konum Erişimi',
+  'gdpr.location.description': 'Yerel etkinlikler ve yakındaki katılımcılar için konumunuzu paylaşın',
+  'gdpr.location.enable': 'Konumu Etkinleştir',
+  'gdpr.location.disable': 'Konumu Devre Dışı Bırak',
+
+  // Offline Mode
+  'offline.title': 'Çevrimdışı Modu',
+  'offline.description': 'Çevrimdışısınız. Bazı özellikler sınırlı.',
+  'offline.cached': 'Önbelleğe alınmış içerik gösteriliyor',
+  'offline.retry': 'Tekrar Dene',
+
+  // Common - New additions
+  'common.understood': 'Anlaşıldı',
+  'common.success': 'Başarılı',
+  // Settings
+  'settings.privacy.title': 'Gizlilik Ayarları',
+  'settings.notifications.title': 'Bildirim Ayarları',
+  'settings.notifications.description': 'Bildirim tercihlerinizi yönetin',
+
+  // GDPR Notice
+  'gdpr.notice.title': 'Gizlilik Bildirimi',
+  'gdpr.notice.description': 'Gizliliğinizi saygı duyuyoruz ve veri korunması için GDPR yönergelerini takip ediyoruz'
 }
 
 export default tr

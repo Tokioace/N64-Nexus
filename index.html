@@ -2,42 +2,66 @@
 <html lang="de">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <!-- Enhanced Viewport für PWA -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
     
     <!-- SEO Meta Tags -->
-    <title>N64 Nexus - Die ultimative Nintendo 64 Community</title>
-    <meta name="description" content="N64 Nexus ist die führende Nintendo 64 Community mit Events, Ranglisten, Sammler-Features, Forum und vielem mehr. Tritt der größten retro Gaming Community bei!" />
-    <meta name="keywords" content="Nintendo 64, N64, Retro Gaming, Community, Events, Ranglisten, Sammler, Forum, Speedrun" />
-    <meta name="author" content="N64 Nexus Team" />
+    <title>Battle64 - Die ultimative Nintendo 64 Community</title>
+    <meta name="description" content="Battle64 ist die führende Nintendo 64 Community mit Events, Ranglisten, Sammler-Features, Forum und vielem mehr. Tritt der größten retro Gaming Community bei!" />
+    <meta name="keywords" content="Nintendo 64, N64, Retro Gaming, Community, Events, Ranglisten, Sammler, Forum, Speedrun, Battle64" />
+    <meta name="author" content="Battle64 Team" />
     <meta name="robots" content="index, follow" />
     <meta name="language" content="de" />
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://n64nexus.com/" />
-    <meta property="og:title" content="N64 Nexus - Die ultimative Nintendo 64 Community" />
+    <meta property="og:url" content="https://battle64.com/" />
+    <meta property="og:title" content="Battle64 - Die ultimative Nintendo 64 Community" />
     <meta property="og:description" content="Tritt der größten Nintendo 64 Community bei! Events, Ranglisten, Sammler-Features und mehr." />
     <meta property="og:image" content="/og-image.jpg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:site_name" content="N64 Nexus" />
+    <meta property="og:site_name" content="Battle64" />
     <meta property="og:locale" content="de_DE" />
     
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://n64nexus.com/" />
-    <meta property="twitter:title" content="N64 Nexus - Die ultimative Nintendo 64 Community" />
+    <meta property="twitter:url" content="https://battle64.com/" />
+    <meta property="twitter:title" content="Battle64 - Die ultimative Nintendo 64 Community" />
     <meta property="twitter:description" content="Tritt der größten Nintendo 64 Community bei! Events, Ranglisten, Sammler-Features und mehr." />
     <meta property="twitter:image" content="/twitter-image.jpg" />
-    <meta property="twitter:creator" content="@N64Nexus" />
+    <meta property="twitter:creator" content="@Battle64" />
     
     <!-- Performance and Security -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="theme-color" content="#1e293b" />
-    <meta name="msapplication-TileColor" content="#1e293b" />
+    
+    <!-- Apple spezifische Meta-Tags und Splash-Screens -->
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-    <meta name="apple-mobile-web-app-title" content="N64 Nexus" />
+    <meta name="apple-mobile-web-app-title" content="Battle64" />
+    <meta name="apple-touch-fullscreen" content="yes" />
+    
+    <!-- iOS Splash Screens für verschiedene Geräte -->
+    <link rel="apple-touch-startup-image" href="/splash/iphone5_splash.png" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)" />
+    <link rel="apple-touch-startup-image" href="/splash/iphone6_splash.png" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)" />
+    <link rel="apple-touch-startup-image" href="/splash/iphoneplus_splash.png" media="(device-width: 621px) and (device-height: 1104px) and (-webkit-device-pixel-ratio: 3)" />
+    <link rel="apple-touch-startup-image" href="/splash/iphonex_splash.png" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)" />
+    <link rel="apple-touch-startup-image" href="/splash/iphonexr_splash.png" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2)" />
+    <link rel="apple-touch-startup-image" href="/splash/iphonexsmax_splash.png" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3)" />
+    <link rel="apple-touch-startup-image" href="/splash/ipad_splash.png" media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2)" />
+    <link rel="apple-touch-startup-image" href="/splash/ipadpro1_splash.png" media="(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2)" />
+    <link rel="apple-touch-startup-image" href="/splash/ipadpro3_splash.png" media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2)" />
+    <link rel="apple-touch-startup-image" href="/splash/ipadpro2_splash.png" media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)" />
+    
+    <!-- PWA Theme Colors für verschiedene Plattformen -->
+    <meta name="msapplication-TileColor" content="#1e293b" />
+    <meta name="msapplication-config" content="/browserconfig.xml" />
+    
+    <!-- Enhanced PWA Support -->
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="application-name" content="Battle64" />
+    <meta name="format-detection" content="telephone=no" />
     
     <!-- Preconnect to external domains for better performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />

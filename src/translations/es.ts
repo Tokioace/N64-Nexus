@@ -236,6 +236,9 @@ const es = {
   'events.timeRemaining': 'Tiempo restante',
   'events.ended': 'Terminado',
   'events.notStarted': 'No ha comenzado',
+  'events.game': 'Juego',
+  'events.track': 'Pista',
+  'events.time': 'Tiempo',
   'events.status.live': 'En Vivo',
   'events.status.completed': 'Completado',
   'events.status.upcoming': 'Próximo',
@@ -1060,8 +1063,80 @@ const es = {
   'time.yesterday': 'Ayer',
 
   // Realtime Events
-  'events.nowLive': '¡El evento está ahora en vivo!'
+  'events.nowLive': '¡El evento está en vivo!',
+  'realtime.connected': 'Conexión en vivo activa',
+  'realtime.disconnected': 'Conexión en vivo interrumpida',
+  'realtime.reconnecting': 'Reconectando...',
+  'realtime.newUpdate': 'Nuevas actualizaciones en vivo disponibles',
+  'realtime.leaderboard.updated': 'Tabla de líderes actualizada',
+  'realtime.points.updated': 'Puntos actualizados',
+  'realtime.participant.joined': 'Nuevo participante se unió',
+  'realtime.participant.left': 'Participante se fue',
+  'realtime.event.started': 'Evento iniciado',
+  'realtime.event.finished': 'Evento terminado',
 
+  // PWA Installation
+  'pwa.install.button': 'Instalar App',
+  'pwa.install.banner.title': 'Instalar Battle64 como App',
+  'pwa.install.banner.description': 'Acceso más rápido y mejor rendimiento',
+  'pwa.install.modal.title': 'Instalar App en Dispositivo',
+  'pwa.install.modal.description': 'Instala Battle64 para una experiencia de app nativa con acceso offline y notificaciones push.',
+  'pwa.install.ios.title': 'Añadir a Pantalla de Inicio',
+  'pwa.install.ios.step1': 'Toca el botón Compartir en la parte inferior del navegador',
+  'pwa.install.ios.step2': 'Desplázate hacia abajo y selecciona "Añadir a pantalla de inicio"',
+  'pwa.install.ios.step3': 'Toca "Añadir" para instalar la app',
+
+  // Battle Map
+  'battleMap.title': 'Mapa Battle64',
+  'battleMap.liveEvents': 'Eventos en Vivo',
+  'battleMap.participants': 'Participantes',
+  'battleMap.nearbyPlayers': 'Jugadores Cercanos',
+  'battleMap.joinEvent': 'Unirse al Evento',
+  'battleMap.leaveEvent': 'Salir del Evento',
+  'battleMap.distance': 'Distancia',
+  'battleMap.radius': 'Radio',
+  'battleMap.location.share': 'Compartir Ubicación',
+  'battleMap.location.required': 'Acceso a ubicación requerido',
+  'battleMap.location.notSupported': 'Geolocalización no compatible con este navegador',
+  'battleMap.yourLocation': 'Tu Ubicación',
+  'battleMap.noEvents': 'No hay eventos en vivo cerca',
+  'battleMap.participantCount': 'Participantes',
+
+  // Live Leaderboard
+  'leaderboard.live': 'Tabla de Líderes en Vivo',
+  'leaderboard.updating': 'Actualizando...',
+  'leaderboard.lastUpdate': 'Última Actualización',
+  'leaderboard.points.live': 'Puntos en Vivo',
+  'leaderboard.rank.changed': 'Rango Cambiado',
+  'leaderboard.newRecord': '¡Nuevo Récord!',
+
+  // GDPR Realtime
+  'gdpr.realtime.title': 'Funciones en Vivo',
+  'gdpr.realtime.description': 'Habilitar actualizaciones en vivo para tablas de líderes, eventos y chat',
+  'gdpr.realtime.enable': 'Habilitar Actualizaciones en Vivo',
+  'gdpr.realtime.disable': 'Deshabilitar Actualizaciones en Vivo',
+  'gdpr.location.title': 'Acceso a Ubicación',
+  'gdpr.location.description': 'Comparte tu ubicación para eventos locales y participantes cercanos',
+  'gdpr.location.enable': 'Habilitar Ubicación',
+  'gdpr.location.disable': 'Deshabilitar Ubicación',
+
+  // Offline Mode
+  'offline.title': 'Modo Sin Conexión',
+  'offline.description': 'Estás sin conexión. Algunas funciones están limitadas.',
+  'offline.cached': 'Mostrando contenido en caché',
+  'offline.retry': 'Reintentar',
+
+  // Common - New additions
+  'common.understood': 'Entendido',
+  'common.success': 'Éxito',
+  // Settings
+  'settings.privacy.title': 'Configuración de Privacidad',
+  'settings.notifications.title': 'Configuración de Notificaciones',
+  'settings.notifications.description': 'Gestiona tus preferencias de notificación',
+
+  // GDPR Notice
+  'gdpr.notice.title': 'Aviso de Privacidad',
+  'gdpr.notice.description': 'Respetamos tu privacidad y seguimos las pautas GDPR para la protección de datos'
 }
 
 export default es

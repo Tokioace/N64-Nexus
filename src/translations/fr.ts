@@ -199,6 +199,9 @@ const fr = {
   'events.timeRemaining': 'Temps restant',
   'events.ended': 'Terminé',
   'events.notStarted': 'Pas encore commencé',
+  'events.game': 'Jeu',
+  'events.track': 'Piste',
+  'events.time': 'Temps',
 
   // Forum
   'forum.title': 'Forum',
@@ -1021,8 +1024,80 @@ const fr = {
   'time.yesterday': 'Hier',
 
   // Realtime Events
-  'events.nowLive': 'L\'événement est maintenant en direct !'
+  'events.nowLive': 'L\'événement est maintenant en direct !',
+  'realtime.connected': 'Connexion en direct active',
+  'realtime.disconnected': 'Connexion en direct interrompue',
+  'realtime.reconnecting': 'Reconnexion...',
+  'realtime.newUpdate': 'Nouvelles mises à jour en direct disponibles',
+  'realtime.leaderboard.updated': 'Classement mis à jour',
+  'realtime.points.updated': 'Points mis à jour',
+  'realtime.participant.joined': 'Nouveau participant rejoint',
+  'realtime.participant.left': 'Participant parti',
+  'realtime.event.started': 'Événement commencé',
+  'realtime.event.finished': 'Événement terminé',
 
+  // PWA Installation
+  'pwa.install.button': 'Installer l\'App',
+  'pwa.install.banner.title': 'Installer Battle64 comme App',
+  'pwa.install.banner.description': 'Accès plus rapide et meilleures performances',
+  'pwa.install.modal.title': 'Installer l\'App sur l\'Appareil',
+  'pwa.install.modal.description': 'Installez Battle64 pour une expérience d\'app native avec accès hors ligne et notifications push.',
+  'pwa.install.ios.title': 'Ajouter à l\'Écran d\'Accueil',
+  'pwa.install.ios.step1': 'Appuyez sur le bouton Partager en bas du navigateur',
+  'pwa.install.ios.step2': 'Faites défiler vers le bas et sélectionnez "Ajouter à l\'écran d\'accueil"',
+  'pwa.install.ios.step3': 'Appuyez sur "Ajouter" pour installer l\'app',
+
+  // Battle Map
+  'battleMap.title': 'Carte Battle64',
+  'battleMap.liveEvents': 'Événements en Direct',
+  'battleMap.participants': 'Participants',
+  'battleMap.nearbyPlayers': 'Joueurs Proches',
+  'battleMap.joinEvent': 'Rejoindre l\'Événement',
+  'battleMap.leaveEvent': 'Quitter l\'Événement',
+  'battleMap.distance': 'Distance',
+  'battleMap.radius': 'Rayon',
+  'battleMap.location.share': 'Partager la Localisation',
+  'battleMap.location.required': 'Accès à la localisation requis',
+  'battleMap.location.notSupported': 'Géolocalisation non prise en charge par ce navigateur',
+  'battleMap.yourLocation': 'Votre Position',
+  'battleMap.noEvents': 'Aucun événement en direct à proximité',
+  'battleMap.participantCount': 'Participants',
+
+  // Live Leaderboard
+  'leaderboard.live': 'Classement en Direct',
+  'leaderboard.updating': 'Mise à jour...',
+  'leaderboard.lastUpdate': 'Dernière Mise à Jour',
+  'leaderboard.points.live': 'Points en Direct',
+  'leaderboard.rank.changed': 'Rang Changé',
+  'leaderboard.newRecord': 'Nouveau Record !',
+
+  // GDPR Realtime
+  'gdpr.realtime.title': 'Fonctionnalités en Direct',
+  'gdpr.realtime.description': 'Activer les mises à jour en direct pour les classements, événements et chat',
+  'gdpr.realtime.enable': 'Activer les Mises à Jour en Direct',
+  'gdpr.realtime.disable': 'Désactiver les Mises à Jour en Direct',
+  'gdpr.location.title': 'Accès à la Localisation',
+  'gdpr.location.description': 'Partagez votre localisation pour les événements locaux et participants proches',
+  'gdpr.location.enable': 'Activer la Localisation',
+  'gdpr.location.disable': 'Désactiver la Localisation',
+
+  // Offline Mode
+  'offline.title': 'Mode Hors Ligne',
+  'offline.description': 'Vous êtes hors ligne. Certaines fonctionnalités sont limitées.',
+  'offline.cached': 'Affichage du contenu en cache',
+  'offline.retry': 'Réessayer',
+
+  // Common - New additions
+  'common.understood': 'Compris',
+  'common.success': 'Succès',
+  // Settings
+  'settings.privacy.title': 'Paramètres de Confidentialité',
+  'settings.notifications.title': 'Paramètres de Notification',
+  'settings.notifications.description': 'Gérez vos préférences de notification',
+
+  // GDPR Notice
+  'gdpr.notice.title': 'Avis de Confidentialité',
+  'gdpr.notice.description': 'Nous respectons votre vie privée et suivons les directives GDPR pour la protection des données'
 }
 
 export default fr
