@@ -12,7 +12,10 @@
     "lint": "eslint . --max-warnings 100",
     "preview": "vite preview",
     "preview:staging": "vite preview --mode staging",
-    "preview:prod": "vite preview --mode production"
+    "preview:prod": "vite preview --mode production",
+    "check": "npm run lint && npm run build",
+    "test": "echo \"No tests specified\"",
+    "typecheck": "npx tsc --noEmit"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.53.0",
