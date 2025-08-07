@@ -199,6 +199,9 @@ const hi = {
   'events.timeRemaining': 'बचा हुआ समय',
   'events.ended': 'समाप्त',
   'events.notStarted': 'शुरू नहीं हुआ',
+  'events.game': 'खेल',
+  'events.track': 'ट्रैक',
+  'events.time': 'समय',
 
   // Forum
   'forum.title': 'फोरम',
@@ -1054,6 +1057,8 @@ const hi = {
   'battleMap.radius': 'त्रिज्या',
   'battleMap.location.share': 'स्थान साझा करें',
   'battleMap.location.required': 'स्थान एक्सेस आवश्यक',
+  'battleMap.location.notSupported': 'इस ब्राउज़र द्वारा भौगोलिक स्थिति समर्थित नहीं',
+  'battleMap.yourLocation': 'आपका स्थान',
   'battleMap.noEvents': 'आसपास कोई लाइव इवेंट नहीं',
   'battleMap.participantCount': 'प्रतिभागी',
 
@@ -1083,7 +1088,15 @@ const hi = {
 
   // Common - New additions
   'common.understood': 'समझ गया',
-  'common.success': 'सफल'
+  'common.success': 'सफल',
+  // Settings
+  'settings.privacy.title': 'गोपनीयता सेटिंग्स',
+  'settings.notifications.title': 'सूचना सेटिंग्स',
+  'settings.notifications.description': 'अपनी सूचना प्राथमिकताएं प्रबंधित करें',
+
+  // GDPR Notice
+  'gdpr.notice.title': 'गोपनीयता सूचना',
+  'gdpr.notice.description': 'हम आपकी गोपनीयता का सम्मान करते हैं और डेटा सुरक्षा के लिए GDPR दिशानिर्देशों का पालन करते हैं'
 }
 
 export default hi

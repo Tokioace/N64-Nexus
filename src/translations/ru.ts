@@ -189,6 +189,9 @@ const ru = {
   'events.timeRemaining': 'Осталось времени',
   'events.ended': 'Завершено',
   'events.notStarted': 'Не начато',
+  'events.game': 'Игра',
+  'events.track': 'Трасса',
+  'events.time': 'Время',
   'forum.title': 'Форум',
   'forum.subtitle': 'Обсуждения сообщества',
   'forum.noThreads': 'В этой категории нет тем',
@@ -1039,6 +1042,8 @@ const ru = {
   'battleMap.radius': 'Радиус',
   'battleMap.location.share': 'Поделиться Местоположением',
   'battleMap.location.required': 'Требуется доступ к местоположению',
+  'battleMap.location.notSupported': 'Геолокация не поддерживается этим браузером',
+  'battleMap.yourLocation': 'Ваше Местоположение',
   'battleMap.noEvents': 'Нет прямых событий рядом',
   'battleMap.participantCount': 'Участники',
 
@@ -1068,7 +1073,15 @@ const ru = {
 
   // Common - New additions
   'common.understood': 'Понятно',
-  'common.success': 'Успех'
+  'common.success': 'Успех',
+  // Settings
+  'settings.privacy.title': 'Настройки Конфиденциальности',
+  'settings.notifications.title': 'Настройки Уведомлений',
+  'settings.notifications.description': 'Управление настройками уведомлений',
+
+  // GDPR Notice
+  'gdpr.notice.title': 'Уведомление о Конфиденциальности',
+  'gdpr.notice.description': 'Мы уважаем вашу конфиденциальность и следуем руководящим принципам GDPR по защите данных'
 }
 
 export default ru

@@ -199,6 +199,9 @@ const ko = {
   'events.timeRemaining': '남은 시간',
   'events.ended': '종료됨',
   'events.notStarted': '시작되지 않음',
+  'events.game': '게임',
+  'events.track': '트랙',
+  'events.time': '시간',
 
   // Forum
   'forum.title': '포럼',
@@ -1054,6 +1057,8 @@ const ko = {
   'battleMap.radius': '반경',
   'battleMap.location.share': '위치 공유',
   'battleMap.location.required': '위치 접근 필요',
+  'battleMap.location.notSupported': '이 브라우저에서 위치 정보가 지원되지 않습니다',
+  'battleMap.yourLocation': '귀하의 위치',
   'battleMap.noEvents': '근처에 실시간 이벤트 없음',
   'battleMap.participantCount': '참가자',
 
@@ -1083,7 +1088,15 @@ const ko = {
 
   // Common - New additions
   'common.understood': '이해했습니다',
-  'common.success': '성공'
+  'common.success': '성공',
+  // Settings
+  'settings.privacy.title': '개인정보 설정',
+  'settings.notifications.title': '알림 설정',
+  'settings.notifications.description': '알림 기본 설정 관리',
+
+  // GDPR Notice
+  'gdpr.notice.title': '개인정보 보호 고지',
+  'gdpr.notice.description': '귀하의 개인정보를 존중하며 데이터 보호를 위한 GDPR 지침을 따릅니다'
 }
 
 export default ko

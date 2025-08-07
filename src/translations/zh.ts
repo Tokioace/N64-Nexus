@@ -199,6 +199,9 @@ const zh = {
   'events.timeRemaining': '剩余时间',
   'events.ended': '已结束',
   'events.notStarted': '尚未开始',
+  'events.game': '游戏',
+  'events.track': '赛道',
+  'events.time': '时间',
 
   // Forum
   'forum.title': '论坛',
@@ -1104,6 +1107,8 @@ const zh = {
   'battleMap.radius': '半径',
   'battleMap.location.share': '分享位置',
   'battleMap.location.required': '需要位置访问权限',
+  'battleMap.location.notSupported': '此浏览器不支持地理定位',
+  'battleMap.yourLocation': '您的位置',
   'battleMap.noEvents': '附近没有实时活动',
   'battleMap.participantCount': '参与者',
 
@@ -1133,7 +1138,15 @@ const zh = {
 
   // Common - New additions
   'common.understood': '明白了',
-  'common.success': '成功'
+  'common.success': '成功',
+  // Settings
+  'settings.privacy.title': '隐私设置',
+  'settings.notifications.title': '通知设置',
+  'settings.notifications.description': '管理您的通知偏好',
+
+  // GDPR Notice
+  'gdpr.notice.title': '隐私声明',
+  'gdpr.notice.description': '我们尊重您的隐私并遵循GDPR数据保护准则'
 }
 
 export default zh

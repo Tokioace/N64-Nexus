@@ -199,6 +199,9 @@ const el = {
   'events.timeRemaining': 'Χρόνος που απομένει',
   'events.ended': 'Τελείωσε',
   'events.notStarted': 'Δεν Έχει Ξεκινήσει',
+  'events.game': 'Παιχνίδι',
+  'events.track': 'Πίστα',
+  'events.time': 'Χρόνος',
 
   // Forum
   'forum.title': 'Φόρουμ',
@@ -1104,6 +1107,8 @@ const el = {
   'battleMap.radius': 'Ακτίνα',
   'battleMap.location.share': 'Κοινοποίηση Τοποθεσίας',
   'battleMap.location.required': 'Απαιτείται πρόσβαση τοποθεσίας',
+  'battleMap.location.notSupported': 'Ο εντοπισμός θέσης δεν υποστηρίζεται από αυτόν τον browser',
+  'battleMap.yourLocation': 'Η Τοποθεσία σας',
   'battleMap.noEvents': 'Δεν υπάρχουν ζωντανά events κοντά',
   'battleMap.participantCount': 'Συμμετέχοντες',
 
@@ -1133,7 +1138,15 @@ const el = {
 
   // Common - New additions
   'common.understood': 'Κατανοητό',
-  'common.success': 'Επιτυχία'
+  'common.success': 'Επιτυχία',
+  // Settings
+  'settings.privacy.title': 'Ρυθμίσεις Απορρήτου',
+  'settings.notifications.title': 'Ρυθμίσεις Ειδοποιήσεων',
+  'settings.notifications.description': 'Διαχείριση προτιμήσεων ειδοποιήσεων',
+
+  // GDPR Notice
+  'gdpr.notice.title': 'Ειδοποίηση Απορρήτου',
+  'gdpr.notice.description': 'Σεβόμαστε την ιδιωτικότητά σας και ακολουθούμε τις οδηγίες GDPR για την προστασία δεδομένων'
 }
 
 export default el

@@ -199,6 +199,9 @@ const en = {
   'events.timeRemaining': 'Time remaining',
   'events.ended': 'Ended',
   'events.notStarted': 'Not Started',
+  'events.game': 'Game',
+  'events.track': 'Track',
+  'events.time': 'Time',
 
   // Forum
   'forum.title': 'Forum',
@@ -1055,6 +1058,8 @@ const en = {
   'battleMap.radius': 'Radius',
   'battleMap.location.share': 'Share Location',
   'battleMap.location.required': 'Location access required',
+  'battleMap.location.notSupported': 'Geolocation not supported by this browser',
+  'battleMap.yourLocation': 'Your Location',
   'battleMap.noEvents': 'No live events nearby',
   'battleMap.participantCount': 'Participants',
 
@@ -1084,7 +1089,16 @@ const en = {
 
   // Common - New additions
   'common.understood': 'Understood',
-  'common.success': 'Success'
+  'common.success': 'Success',
+
+  // Settings
+  'settings.privacy.title': 'Privacy Settings',
+  'settings.notifications.title': 'Notification Settings',
+  'settings.notifications.description': 'Manage your notification preferences',
+
+  // GDPR Notice
+  'gdpr.notice.title': 'Privacy Notice',
+  'gdpr.notice.description': 'We respect your privacy and follow GDPR guidelines for data protection'
 }
 
 export default en

@@ -236,6 +236,9 @@ const es = {
   'events.timeRemaining': 'Tiempo restante',
   'events.ended': 'Terminado',
   'events.notStarted': 'No ha comenzado',
+  'events.game': 'Juego',
+  'events.track': 'Pista',
+  'events.time': 'Tiempo',
   'events.status.live': 'En Vivo',
   'events.status.completed': 'Completado',
   'events.status.upcoming': 'Próximo',
@@ -1094,6 +1097,8 @@ const es = {
   'battleMap.radius': 'Radio',
   'battleMap.location.share': 'Compartir Ubicación',
   'battleMap.location.required': 'Acceso a ubicación requerido',
+  'battleMap.location.notSupported': 'Geolocalización no compatible con este navegador',
+  'battleMap.yourLocation': 'Tu Ubicación',
   'battleMap.noEvents': 'No hay eventos en vivo cerca',
   'battleMap.participantCount': 'Participantes',
 
@@ -1123,7 +1128,15 @@ const es = {
 
   // Common - New additions
   'common.understood': 'Entendido',
-  'common.success': 'Éxito'
+  'common.success': 'Éxito',
+  // Settings
+  'settings.privacy.title': 'Configuración de Privacidad',
+  'settings.notifications.title': 'Configuración de Notificaciones',
+  'settings.notifications.description': 'Gestiona tus preferencias de notificación',
+
+  // GDPR Notice
+  'gdpr.notice.title': 'Aviso de Privacidad',
+  'gdpr.notice.description': 'Respetamos tu privacidad y seguimos las pautas GDPR para la protección de datos'
 }
 
 export default es

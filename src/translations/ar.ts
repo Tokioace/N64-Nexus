@@ -199,6 +199,9 @@ const ar = {
   'events.timeRemaining': 'الوقت المتبقي',
   'events.ended': 'انتهى',
   'events.notStarted': 'لم يبدأ بعد',
+  'events.game': 'اللعبة',
+  'events.track': 'المسار',
+  'events.time': 'الوقت',
 
   // Forum - المنتدى
   'forum.title': 'المنتدى',
@@ -1187,6 +1190,8 @@ const ar = {
   'battleMap.radius': 'نطاق',
   'battleMap.location.share': 'مشاركة الموقع',
   'battleMap.location.required': 'الوصول للموقع مطلوب',
+  'battleMap.location.notSupported': 'تحديد الموقع الجغرافي غير مدعوم في هذا المتصفح',
+  'battleMap.yourLocation': 'موقعك',
   'battleMap.noEvents': 'لا توجد أحداث مباشرة قريبة',
   'battleMap.participantCount': 'المشاركون',
 
@@ -1216,7 +1221,15 @@ const ar = {
 
   // Common - New additions
   'common.understood': 'مفهوم',
-  'common.success': 'نجح'
+  'common.success': 'نجح',
+  // Settings
+  'settings.privacy.title': 'إعدادات الخصوصية',
+  'settings.notifications.title': 'إعدادات الإشعارات',
+  'settings.notifications.description': 'إدارة تفضيلات الإشعارات',
+
+  // GDPR Notice
+  'gdpr.notice.title': 'إشعار الخصوصية',
+  'gdpr.notice.description': 'نحن نحترم خصوصيتك ونتبع إرشادات GDPR لحماية البيانات'
 }
 
 export default ar

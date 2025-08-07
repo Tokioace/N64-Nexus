@@ -166,8 +166,8 @@ export const useBattleMap = (userLocation?: { latitude: number; longitude: numbe
           return {
             id: participant.id,
             user_id: participant.user_id,
-            username: participant.profiles?.username || 'Unknown',
-            avatar_url: participant.profiles?.avatar_url,
+            username: (participant.profiles as any)?.username || 'Unknown',
+            avatar_url: (participant.profiles as any)?.avatar_url,
             latitude: parseFloat(participant.latitude),
             longitude: parseFloat(participant.longitude),
             location_name: participant.location_name,

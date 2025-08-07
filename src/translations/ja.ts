@@ -199,6 +199,9 @@ const ja = {
   'events.timeRemaining': '残り時間',
   'events.ended': '終了',
   'events.notStarted': '未開始',
+  'events.game': 'ゲーム',
+  'events.track': 'トラック',
+  'events.time': '時間',
 
   // Forum
   'forum.title': 'フォーラム',
@@ -1104,6 +1107,8 @@ const ja = {
   'battleMap.radius': '半径',
   'battleMap.location.share': '位置情報を共有',
   'battleMap.location.required': '位置情報アクセスが必要',
+  'battleMap.location.notSupported': 'このブラウザは位置情報をサポートしていません',
+  'battleMap.yourLocation': 'あなたの位置',
   'battleMap.noEvents': '近くにライブイベントがありません',
   'battleMap.participantCount': '参加者',
 
@@ -1133,7 +1138,15 @@ const ja = {
 
   // Common - New additions
   'common.understood': '理解しました',
-  'common.success': '成功'
+  'common.success': '成功',
+  // Settings
+  'settings.privacy.title': 'プライバシー設定',
+  'settings.notifications.title': '通知設定',
+  'settings.notifications.description': '通知設定を管理',
+
+  // GDPR Notice
+  'gdpr.notice.title': 'プライバシー通知',
+  'gdpr.notice.description': 'プライバシーを尊重し、データ保護のためGDPRガイドラインに従います'
 }
 
 export default ja

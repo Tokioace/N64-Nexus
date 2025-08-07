@@ -199,6 +199,9 @@ const tr = {
   'events.timeRemaining': 'Kalan süre',
   'events.ended': 'Bitti',
   'events.notStarted': 'Henüz başlamadı',
+  'events.game': 'Oyun',
+  'events.track': 'Pist',
+  'events.time': 'Süre',
 
   // Forum
   'forum.title': 'Tartışma Forumu',
@@ -1056,6 +1059,8 @@ const tr = {
   'battleMap.radius': 'Yarıçap',
   'battleMap.location.share': 'Konum Paylaş',
   'battleMap.location.required': 'Konum erişimi gerekli',
+  'battleMap.location.notSupported': 'Coğrafi konum bu tarayıcı tarafından desteklenmiyor',
+  'battleMap.yourLocation': 'Konumunuz',
   'battleMap.noEvents': 'Yakında canlı etkinlik yok',
   'battleMap.participantCount': 'Katılımcılar',
 
@@ -1085,7 +1090,15 @@ const tr = {
 
   // Common - New additions
   'common.understood': 'Anlaşıldı',
-  'common.success': 'Başarılı'
+  'common.success': 'Başarılı',
+  // Settings
+  'settings.privacy.title': 'Gizlilik Ayarları',
+  'settings.notifications.title': 'Bildirim Ayarları',
+  'settings.notifications.description': 'Bildirim tercihlerinizi yönetin',
+
+  // GDPR Notice
+  'gdpr.notice.title': 'Gizlilik Bildirimi',
+  'gdpr.notice.description': 'Gizliliğinizi saygı duyuyoruz ve veri korunması için GDPR yönergelerini takip ediyoruz'
 }
 
 export default tr
