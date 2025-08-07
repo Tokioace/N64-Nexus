@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Download, X, Smartphone, Monitor } from 'lucide-react'
+import { Download, X, Smartphone } from 'lucide-react'
 import { useLanguage } from '../contexts/LanguageContext'
 import { logger } from '../lib/logger'
 

@@ -9,10 +9,8 @@ import 'leaflet/dist/leaflet.css'
 
 // Fix for default markers in React Leaflet
 import L from 'leaflet'
-import icon from 'leaflet/dist/images/marker-icon.png'
-import iconShadow from 'leaflet/dist/images/marker-shadow.png'
 
-let DefaultIcon = L.divIcon({
+const DefaultIcon = L.divIcon({
   html: `<div class="w-6 h-6 bg-blue-600 rounded-full border-2 border-white shadow-lg flex items-center justify-center">
     <div class="w-2 h-2 bg-white rounded-full"></div>
   </div>`,
