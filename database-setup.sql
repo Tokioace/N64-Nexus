@@ -23,8 +23,13 @@ CREATE TABLE profiles (
     bio text,
     location text,
     is_public boolean DEFAULT true,
+    birth_date date NOT NULL, -- Required for age verification (18+)
+    terms_accepted boolean DEFAULT false NOT NULL, -- Terms of Service acceptance
+    privacy_accepted boolean DEFAULT false NOT NULL, -- Privacy Policy acceptance
+    copyright_acknowledged boolean DEFAULT false NOT NULL, -- Copyright acknowledgment
     created_at timestamptz DEFAULT now(),
-    updated_at timestamptz DEFAULT now()
+    updated_at timestamptz DEFAULT now(),
+    CONSTRAINT age_verification CHECK (birth_date <= (CURRENT_DATE - INTERVAL '18 years'))
 );
 
 -- =====================================================
@@ -160,17 +165,50 @@ CREATE TABLE likes (
 );
 
 -- =====================================================
--- REPORTS TABLE (Moderation)
+-- REPORTS TABLE (Content Moderation System)
 -- =====================================================
 CREATE TABLE reports (
     id uuid PRIMARY KEY DEFAULT uuid_generate_v4(),
+    content_type text CHECK (content_type IN ('speedrun', 'fanart', 'chat', 'forum', 'profile', 'event')) NOT NULL,
+    content_id uuid NOT NULL,
+    reason text NOT NULL,
+    description text,
     reported_by uuid REFERENCES profiles(id) ON DELETE CASCADE NOT NULL,
-    target_type text NOT NULL,
+    status text CHECK (status IN ('pending', 'reviewed', 'dismissed', 'action_taken')) DEFAULT 'pending',
+    reviewed_by uuid REFERENCES profiles(id) ON DELETE SET NULL,
+    reviewed_at timestamptz,
+    action_taken text,
+    created_at timestamptz DEFAULT now(),
+    updated_at timestamptz DEFAULT now(),
+    UNIQUE(content_type, content_id, reported_by) -- Prevent duplicate reports from same user
+);
+
+-- =====================================================
+-- CONTENT_FLAGS TABLE (Auto-moderation tracking)
+-- =====================================================
+CREATE TABLE content_flags (
+    id uuid PRIMARY KEY DEFAULT uuid_generate_v4(),
+    content_type text CHECK (content_type IN ('speedrun', 'fanart', 'chat', 'forum', 'profile', 'event')) NOT NULL,
+    content_id uuid NOT NULL,
+    flag_type text CHECK (flag_type IN ('nsfw', 'spam', 'hate_speech', 'copyright', 'inappropriate')) NOT NULL,
+    confidence_score decimal(3,2), -- AI confidence score (0.00-1.00)
+    auto_hidden boolean DEFAULT false, -- Automatically hidden due to flags
+    manual_review_required boolean DEFAULT false,
+    created_at timestamptz DEFAULT now(),
+    UNIQUE(content_type, content_id, flag_type)
+);
+
+-- =====================================================
+-- ADMIN_ACTIONS TABLE (Audit log for admin actions)
+-- =====================================================
+CREATE TABLE admin_actions (
+    id uuid PRIMARY KEY DEFAULT uuid_generate_v4(),
+    admin_id uuid REFERENCES profiles(id) ON DELETE CASCADE NOT NULL,
+    action_type text CHECK (action_type IN ('content_hidden', 'content_removed', 'user_warned', 'user_suspended', 'user_banned', 'report_reviewed')) NOT NULL,
+    target_type text CHECK (target_type IN ('user', 'content', 'report')) NOT NULL,
     target_id uuid NOT NULL,
     reason text NOT NULL,
-    status text CHECK (status IN ('pending', 'reviewed', 'resolved', 'dismissed')) DEFAULT 'pending',
-    reviewed_by uuid REFERENCES profiles(id),
-    reviewed_at timestamptz,
+    notes text,
     created_at timestamptz DEFAULT now()
 );
 
@@ -281,6 +319,8 @@ ALTER TABLE forum_posts ENABLE ROW LEVEL SECURITY;
 ALTER TABLE forum_comments ENABLE ROW LEVEL SECURITY;
 ALTER TABLE likes ENABLE ROW LEVEL SECURITY;
 ALTER TABLE reports ENABLE ROW LEVEL SECURITY;
+ALTER TABLE content_flags ENABLE ROW LEVEL SECURITY;
+ALTER TABLE admin_actions ENABLE ROW LEVEL SECURITY;
 ALTER TABLE personal_records ENABLE ROW LEVEL SECURITY;
 
 -- =====================================================
@@ -433,6 +473,45 @@ CREATE POLICY "Users can view their own reports" ON reports
 CREATE POLICY "Users can create reports" ON reports
     FOR INSERT WITH CHECK (auth.uid() IS NOT NULL AND reported_by = auth.uid());
 
+-- Admins can view all reports (requires admin role check)
+CREATE POLICY "Admins can manage all reports" ON reports
+    FOR ALL USING (
+        EXISTS (
+            SELECT 1 FROM profiles 
+            WHERE id = auth.uid() 
+            AND (username = 'admin' OR username LIKE 'mod_%')
+        )
+    );
+
+-- =====================================================
+-- CONTENT_FLAGS POLICIES
+-- =====================================================
+CREATE POLICY "System can manage content flags" ON content_flags
+    FOR ALL USING (true); -- Only system/admin functions should access this
+
+-- =====================================================
+-- ADMIN_ACTIONS POLICIES
+-- =====================================================
+CREATE POLICY "Admins can view admin actions" ON admin_actions
+    FOR SELECT USING (
+        EXISTS (
+            SELECT 1 FROM profiles 
+            WHERE id = auth.uid() 
+            AND (username = 'admin' OR username LIKE 'mod_%')
+        )
+    );
+
+CREATE POLICY "Admins can create admin actions" ON admin_actions
+    FOR INSERT WITH CHECK (
+        auth.uid() IS NOT NULL 
+        AND admin_id = auth.uid()
+        AND EXISTS (
+            SELECT 1 FROM profiles 
+            WHERE id = auth.uid() 
+            AND (username = 'admin' OR username LIKE 'mod_%')
+        )
+    );
+
 -- =====================================================
 -- PERSONAL_RECORDS POLICIES
 -- =====================================================
@@ -515,20 +594,169 @@ BEGIN
     SELECT 
         (SELECT COUNT(*)::integer FROM speedruns WHERE user_id = user_uuid),
         (SELECT MIN(rank)::integer FROM (
-            SELECT ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY time_ms ASC) as rank
-            FROM speedruns 
-            WHERE user_id = user_uuid
-        ) ranked_runs),
-        (SELECT COUNT(*)::integer FROM likes l 
-         WHERE (l.target_type = 'speedrun' AND l.target_id IN (SELECT id FROM speedruns WHERE user_id = user_uuid))
-            OR (l.target_type = 'fanart' AND l.target_id IN (SELECT id FROM fanarts WHERE user_id = user_uuid))
-            OR (l.target_type = 'post' AND l.target_id IN (SELECT id FROM forum_posts WHERE user_id = user_uuid))
-            OR (l.target_type = 'comment' AND l.target_id IN (SELECT id FROM forum_comments WHERE user_id = user_uuid))
-        ),
+            SELECT ROW_NUMBER() OVER (ORDER BY time_ms ASC) as rank
+            FROM speedruns s
+            WHERE s.user_id = user_uuid
+        ) ranked),
+        (SELECT COUNT(*)::integer FROM likes WHERE target_id = user_uuid AND target_type = 'user'),
         (SELECT COUNT(*)::integer FROM fanarts WHERE user_id = user_uuid),
-        (SELECT COUNT(*)::integer FROM collections WHERE user_id = user_uuid AND is_wishlist = false);
+        (SELECT COUNT(*)::integer FROM collections WHERE user_id = user_uuid);
 END;
 $$ LANGUAGE plpgsql SECURITY DEFINER;
+
+-- =====================================================
+-- GDPR COMPLIANCE FUNCTIONS
+-- =====================================================
+
+-- Function to delete user account and all related data (GDPR Article 17)
+CREATE OR REPLACE FUNCTION delete_user_account(user_uuid uuid)
+RETURNS boolean AS $$
+DECLARE
+    deletion_successful boolean := true;
+BEGIN
+    -- Only allow users to delete their own account or admins to delete any account
+    IF auth.uid() != user_uuid AND NOT EXISTS (
+        SELECT 1 FROM profiles 
+        WHERE id = auth.uid() 
+        AND (username = 'admin' OR username LIKE 'mod_%')
+    ) THEN
+        RAISE EXCEPTION 'Unauthorized: Cannot delete this account';
+    END IF;
+
+    -- Delete user data in correct order (respecting foreign key constraints)
+    BEGIN
+        -- Delete reports made by user
+        DELETE FROM reports WHERE reported_by = user_uuid;
+        
+        -- Delete admin actions by user (if admin)
+        DELETE FROM admin_actions WHERE admin_id = user_uuid;
+        
+        -- Delete likes by user
+        DELETE FROM likes WHERE user_id = user_uuid;
+        
+        -- Delete forum comments
+        DELETE FROM forum_comments WHERE user_id = user_uuid;
+        
+        -- Delete forum posts
+        DELETE FROM forum_posts WHERE user_id = user_uuid;
+        
+        -- Delete chat messages
+        DELETE FROM chat_messages WHERE user_id = user_uuid;
+        
+        -- Delete speedruns
+        DELETE FROM speedruns WHERE user_id = user_uuid;
+        
+        -- Delete fanarts
+        DELETE FROM fanarts WHERE user_id = user_uuid;
+        
+        -- Delete collections
+        DELETE FROM collections WHERE user_id = user_uuid;
+        
+        -- Delete personal records
+        DELETE FROM personal_records WHERE user_id = user_uuid;
+        
+        -- Delete events live locations
+        DELETE FROM events_live_locations WHERE user_id = user_uuid;
+        
+        -- Delete events created by user
+        DELETE FROM events WHERE created_by = user_uuid;
+        
+        -- Finally delete profile (this will cascade to auth.users due to ON DELETE CASCADE)
+        DELETE FROM profiles WHERE id = user_uuid;
+        
+    EXCEPTION WHEN OTHERS THEN
+        deletion_successful := false;
+        RAISE EXCEPTION 'Error deleting user data: %', SQLERRM;
+    END;
+
+    RETURN deletion_successful;
+END;
+$$ LANGUAGE plpgsql SECURITY DEFINER;
+
+-- Function to check if content should be auto-hidden based on report count
+CREATE OR REPLACE FUNCTION check_auto_hide_content()
+RETURNS TRIGGER AS $$
+DECLARE
+    report_count integer;
+    auto_hide_threshold integer := 3; -- Hide after 3 reports
+BEGIN
+    -- Count reports for this content
+    SELECT COUNT(*) INTO report_count
+    FROM reports 
+    WHERE content_type = NEW.content_type 
+    AND content_id = NEW.content_id 
+    AND status = 'pending';
+    
+    -- Auto-hide if threshold reached
+    IF report_count >= auto_hide_threshold THEN
+        -- Add auto-hide flag
+        INSERT INTO content_flags (content_type, content_id, flag_type, auto_hidden, manual_review_required)
+        VALUES (NEW.content_type, NEW.content_id, 'spam', true, true)
+        ON CONFLICT (content_type, content_id, flag_type) 
+        DO UPDATE SET auto_hidden = true, manual_review_required = true;
+        
+        -- Log admin action
+        INSERT INTO admin_actions (admin_id, action_type, target_type, target_id, reason, notes)
+        VALUES (
+            '00000000-0000-0000-0000-000000000000'::uuid, -- System user
+            'content_hidden',
+            'content',
+            NEW.content_id,
+            'Auto-hidden due to multiple reports',
+            format('Content type: %s, Report count: %s', NEW.content_type, report_count)
+        );
+    END IF;
+    
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+-- Trigger to auto-hide content after multiple reports
+CREATE TRIGGER auto_hide_reported_content
+    AFTER INSERT ON reports
+    FOR EACH ROW
+    EXECUTE FUNCTION check_auto_hide_content();
+
+-- Function to validate age (18+) on profile creation/update
+CREATE OR REPLACE FUNCTION validate_age_requirement()
+RETURNS TRIGGER AS $$
+BEGIN
+    IF NEW.birth_date > (CURRENT_DATE - INTERVAL '18 years') THEN
+        RAISE EXCEPTION 'User must be at least 18 years old to register';
+    END IF;
+    
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+-- Trigger to enforce age verification
+CREATE TRIGGER enforce_age_verification
+    BEFORE INSERT OR UPDATE ON profiles
+    FOR EACH ROW
+    EXECUTE FUNCTION validate_age_requirement();
+
+-- Function to ensure legal agreements are accepted
+CREATE OR REPLACE FUNCTION validate_legal_agreements()
+RETURNS TRIGGER AS $$
+BEGIN
+    IF NOT NEW.terms_accepted OR NOT NEW.privacy_accepted OR NOT NEW.copyright_acknowledged THEN
+        RAISE EXCEPTION 'All legal agreements must be accepted before account creation';
+    END IF;
+    
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+-- Trigger to enforce legal agreement acceptance
+CREATE TRIGGER enforce_legal_agreements
+    BEFORE INSERT ON profiles
+    FOR EACH ROW
+    EXECUTE FUNCTION validate_legal_agreements();
+
+-- Grant necessary permissions
+GRANT EXECUTE ON FUNCTION delete_user_account(uuid) TO authenticated;
+GRANT EXECUTE ON FUNCTION get_user_stats(uuid) TO authenticated;
+GRANT EXECUTE ON FUNCTION get_event_leaderboard(uuid) TO authenticated;
 
 -- =====================================================
 -- SAMPLE DATA (Optional - for testing)

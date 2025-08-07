@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { useUser } from '../contexts/UserContext'
 import { useLanguage } from '../contexts/LanguageContext'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import { UserRegistrationData } from '../types'
-import { User, Mail, Lock, Gamepad2, Globe, Eye, EyeOff } from 'lucide-react'
+import { User, Mail, Lock, Gamepad2, Globe, Eye, EyeOff, Calendar, AlertCircle } from 'lucide-react'
 import PasswordResetModal from '../components/PasswordResetModal'
 
 const AuthPage: React.FC = () => {
@@ -30,7 +30,12 @@ const AuthPage: React.FC = () => {
     password: '',
     confirmPassword: '',
     region: 'PAL',
-    platform: 'N64'
+    platform: 'N64',
+    birthDate: '',
+    termsAccepted: false,
+    privacyAccepted: false,
+    copyrightAcknowledged: false,
+    ageConfirmed: false
   })
 
   // Redirect if already authenticated
@@ -63,6 +68,31 @@ const AuthPage: React.FC = () => {
     e.preventDefault()
     setLoading(true)
     setError('')
+
+    // Age verification
+    if (!registrationData.birthDate) {
+      setError(t('legal.birthDateRequired'))
+      setLoading(false)
+      return
+    }
+
+    const birthDate = new Date(registrationData.birthDate)
+    const eighteenYearsAgo = new Date()
+    eighteenYearsAgo.setFullYear(eighteenYearsAgo.getFullYear() - 18)
+    
+    if (birthDate > eighteenYearsAgo) {
+      setError(t('legal.mustBe18'))
+      setLoading(false)
+      return
+    }
+
+    // Legal agreements validation
+    if (!registrationData.termsAccepted || !registrationData.privacyAccepted || 
+        !registrationData.copyrightAcknowledged || !registrationData.ageConfirmed) {
+      setError(t('legal.allAgreementsRequired'))
+      setLoading(false)
+      return
+    }
 
     // Validation
     if (registrationData.password !== registrationData.confirmPassword) {
@@ -215,6 +245,16 @@ const AuthPage: React.FC = () => {
           ) : (
             /* Registration Form */
             <form onSubmit={handleRegister} className="space-y-4">
+              {/* Age Verification Notice */}
+              <div className="bg-amber-600/20 border border-amber-600/30 rounded-lg p-4 mb-4">
+                <div className="flex items-center space-x-2">
+                  <AlertCircle className="w-5 h-5 text-amber-400 flex-shrink-0" />
+                  <p className="text-amber-200 text-sm">
+                    {t('legal.adultOnlyPlatform')}
+                  </p>
+                </div>
+              </div>
+
               <div>
                 <label className="block text-sm font-medium text-slate-300 mb-2">
                   {t('auth.username')}
@@ -246,6 +286,24 @@ const AuthPage: React.FC = () => {
                     onChange={(e) => setRegistrationData({ ...registrationData, email: e.target.value })}
                     className="w-full pl-10 pr-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-slate-100 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     placeholder={t('auth.emailPlaceholder')}
+                  />
+                </div>
+              </div>
+
+              {/* Birth Date for Age Verification */}
+              <div>
+                <label className="block text-sm font-medium text-slate-300 mb-2">
+                  {t('legal.birthDate')} *
+                </label>
+                <div className="relative">
+                  <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-slate-400" />
+                  <input
+                    type="date"
+                    required
+                    value={registrationData.birthDate}
+                    onChange={(e) => setRegistrationData({ ...registrationData, birthDate: e.target.value })}
+                    className="w-full pl-10 pr-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-slate-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    max={new Date(Date.now() - 18 * 365.25 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]}
                   />
                 </div>
               </div>
@@ -332,6 +390,81 @@ const AuthPage: React.FC = () => {
                   >
                     {showConfirmPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                   </button>
+                </div>
+              </div>
+
+              {/* Legal Agreements Section */}
+              <div className="space-y-3 pt-4 border-t border-slate-600">
+                <h4 className="text-sm font-medium text-slate-300 mb-2">
+                  {t('legal.ageVerification')}
+                </h4>
+                
+                {/* Age Confirmation */}
+                <div className="flex items-start space-x-3">
+                  <input
+                    type="checkbox"
+                    id="ageConfirmed"
+                    required
+                    checked={registrationData.ageConfirmed}
+                    onChange={(e) => setRegistrationData({ ...registrationData, ageConfirmed: e.target.checked })}
+                    className="mt-0.5 w-4 h-4 text-blue-600 bg-slate-700 border-slate-600 rounded focus:ring-blue-500"
+                  />
+                  <label htmlFor="ageConfirmed" className="text-sm text-slate-300">
+                    {t('legal.ageConfirmation')}
+                  </label>
+                </div>
+
+                {/* Terms of Service */}
+                <div className="flex items-start space-x-3">
+                  <input
+                    type="checkbox"
+                    id="termsAccepted"
+                    required
+                    checked={registrationData.termsAccepted}
+                    onChange={(e) => setRegistrationData({ ...registrationData, termsAccepted: e.target.checked })}
+                    className="mt-0.5 w-4 h-4 text-blue-600 bg-slate-700 border-slate-600 rounded focus:ring-blue-500"
+                  />
+                  <label htmlFor="termsAccepted" className="text-sm text-slate-300">
+                    {t('legal.termsAcceptance')} (
+                    <Link to="/terms" className="text-blue-400 hover:text-blue-300 underline">
+                      {t('legal.readTerms')}
+                    </Link>
+                    )
+                  </label>
+                </div>
+
+                {/* Privacy Policy */}
+                <div className="flex items-start space-x-3">
+                  <input
+                    type="checkbox"
+                    id="privacyAccepted"
+                    required
+                    checked={registrationData.privacyAccepted}
+                    onChange={(e) => setRegistrationData({ ...registrationData, privacyAccepted: e.target.checked })}
+                    className="mt-0.5 w-4 h-4 text-blue-600 bg-slate-700 border-slate-600 rounded focus:ring-blue-500"
+                  />
+                  <label htmlFor="privacyAccepted" className="text-sm text-slate-300">
+                    {t('legal.privacyAcceptance')} (
+                    <Link to="/privacy" className="text-blue-400 hover:text-blue-300 underline">
+                      {t('legal.readPrivacy')}
+                    </Link>
+                    )
+                  </label>
+                </div>
+
+                {/* Copyright Acknowledgment */}
+                <div className="flex items-start space-x-3">
+                  <input
+                    type="checkbox"
+                    id="copyrightAcknowledged"
+                    required
+                    checked={registrationData.copyrightAcknowledged}
+                    onChange={(e) => setRegistrationData({ ...registrationData, copyrightAcknowledged: e.target.checked })}
+                    className="mt-0.5 w-4 h-4 text-blue-600 bg-slate-700 border-slate-600 rounded focus:ring-blue-500"
+                  />
+                  <label htmlFor="copyrightAcknowledged" className="text-sm text-slate-300">
+                    {t('legal.copyrightAcknowledgment')}
+                  </label>
                 </div>
               </div>
 

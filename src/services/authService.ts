@@ -20,6 +20,26 @@ class AuthService {
    */
   async register(data: UserRegistrationData): Promise<AuthResult> {
     try {
+      // Age verification (18+ only)
+      const birthDate = new Date(data.birthDate)
+      const eighteenYearsAgo = new Date()
+      eighteenYearsAgo.setFullYear(eighteenYearsAgo.getFullYear() - 18)
+      
+      if (birthDate > eighteenYearsAgo) {
+        return {
+          success: false,
+          error: 'Du musst mindestens 18 Jahre alt sein, um Battle64 zu nutzen'
+        }
+      }
+
+      // Legal agreements validation
+      if (!data.termsAccepted || !data.privacyAccepted || !data.copyrightAcknowledged || !data.ageConfirmed) {
+        return {
+          success: false,
+          error: 'Alle rechtlichen Vereinbarungen müssen akzeptiert werden'
+        }
+      }
+
       // Prüfe ob Username bereits existiert (über Profile-Tabelle)
       const { data: existingProfile } = await supabase
         .from('profiles')
@@ -42,7 +62,11 @@ class AuthService {
           data: {
             username: data.username,
             region: data.region,
-            platform: data.platform
+            platform: data.platform,
+            birth_date: data.birthDate,
+            terms_accepted: data.termsAccepted,
+            privacy_accepted: data.privacyAccepted,
+            copyright_acknowledged: data.copyrightAcknowledged
           }
         }
       })
@@ -74,6 +98,10 @@ class AuthService {
           xp: 0,
           region: data.region,
           platform: data.platform,
+          birth_date: data.birthDate,
+          terms_accepted: data.termsAccepted,
+          privacy_accepted: data.privacyAccepted,
+          copyright_acknowledged: data.copyrightAcknowledged,
           avatar: '🎮',
           bio: '',
           location: '',
@@ -274,17 +302,9 @@ class AuthService {
         }
       }
 
-      // Lösche zuerst alle verknüpften Daten
-      await Promise.all([
-        supabase.from('collections').delete().eq('user_id', user.id),
-        supabase.from('personal_records').delete().eq('user_id', user.id),
-        supabase.from('profiles').delete().eq('id', user.id)
-      ])
-
-      // Lösche den Auth-User (funktioniert nur mit Admin-Rechten)
-      // In der Praxis würde das über eine Edge Function laufen
-      const { error } = await supabase.rpc('delete_user_account', {
-        user_id: user.id
+      // Rufe die DSGVO-konforme Löschfunktion auf
+      const { data, error } = await supabase.rpc('delete_user_account', {
+        user_uuid: user.id
       })
 
       if (error) {
@@ -293,9 +313,12 @@ class AuthService {
         }
         return {
           success: false,
-          error: 'Fehler beim Löschen des Kontos'
+          error: 'Fehler beim Löschen des Kontos: ' + error.message
         }
       }
+
+      // Melde den Benutzer ab
+      await this.logout()
 
       if (import.meta.env.DEV) {
         logger.info('Account deleted successfully:', { userId: user.id })
@@ -412,6 +435,11 @@ class AuthService {
       bio: profile?.bio || '',
       location: profile?.location || '',
       isPublic: profile?.is_public ?? true,
+      // Legal compliance fields
+      birthDate: profile?.birth_date ? new Date(profile.birth_date) : undefined,
+      termsAccepted: profile?.terms_accepted || false,
+      privacyAccepted: profile?.privacy_accepted || false,
+      copyrightAcknowledged: profile?.copyright_acknowledged || false,
       collections: (collections || []).map(c => ({
         id: c.id,
         userId: c.user_id,

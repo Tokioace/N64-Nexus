@@ -208,6 +208,68 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             {children}
           </div>
         </main>
+
+        {/* Footer */}
+        <footer className="bg-slate-800/50 backdrop-blur-sm border-t border-slate-700 mt-auto">
+          <div className="max-w-6xl mx-auto px-4 py-6">
+            {/* Nintendo Copyright Disclaimer */}
+            <div className="bg-slate-700/30 border border-slate-600 rounded-lg p-4 mb-6">
+              <div className="text-center">
+                <p className="text-slate-300 text-sm font-medium mb-2">
+                  Nintendo Copyright Notice
+                </p>
+                <p className="text-slate-400 text-xs leading-relaxed max-w-4xl mx-auto">
+                  {t('legal.nintendoDisclaimer')} Battle64 is an independent retro gaming community and is not affiliated with, endorsed by, or sponsored by Nintendo Co., Ltd. Nintendo 64, N64, and all related characters, names, marks, emblems and images are trademarks of Nintendo. All other trademarks are property of their respective owners.
+                </p>
+              </div>
+            </div>
+
+            {/* Legal Links */}
+            <div className="flex flex-wrap justify-center items-center gap-4 text-sm text-slate-400 mb-4">
+              <Link 
+                to="/terms" 
+                className="hover:text-slate-200 transition-colors underline"
+              >
+                {t('footer.terms')}
+              </Link>
+              <span className="text-slate-600">•</span>
+              <Link 
+                to="/privacy" 
+                className="hover:text-slate-200 transition-colors underline"
+              >
+                {t('footer.privacy')}
+              </Link>
+              <span className="text-slate-600">•</span>
+              <a 
+                href="mailto:legal@battle64.com" 
+                className="hover:text-slate-200 transition-colors underline"
+              >
+                {t('footer.contact')}
+              </a>
+              {isAuthenticated && (
+                <>
+                  <span className="text-slate-600">•</span>
+                  <Link 
+                    to="/account/delete" 
+                    className="hover:text-red-300 text-red-400 transition-colors underline"
+                  >
+                    {t('account.delete')}
+                  </Link>
+                </>
+              )}
+            </div>
+
+            {/* Copyright */}
+            <div className="text-center">
+              <p className="text-slate-500 text-xs">
+                {t('footer.copyright')}
+              </p>
+              <p className="text-slate-600 text-xs mt-1">
+                Battle64 is exclusively for users 18 years and older
+              </p>
+            </div>
+          </div>
+        </footer>
       </div>
     </div>
   )

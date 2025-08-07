@@ -11,12 +11,17 @@ import { MapProvider } from './contexts/MapContext'
 import HomePage from './pages/HomePage'
 import HomeScreenRetro from './components/HomeScreenRetro'
 import AuthPage from './pages/AuthPage'
+import TermsPage from './pages/TermsPage'
+import PrivacyPage from './pages/PrivacyPage'
+import AccountDeletionPage from './pages/AccountDeletionPage'
 import QuizResultPage from './pages/QuizResultPage'
 import TypographyShowcase from './components/TypographyShowcase'
 import ErrorBoundary from './components/ErrorBoundary'
 import Layout from './components/Layout'
 import PWAInstallPrompt from './components/PWAInstallPrompt'
 import OfflineIndicator from './components/OfflineIndicator'
+import CookieConsent from './components/CookieConsent'
+import React, { useState } from 'react'
 
 // Import lazy components for code splitting
 import {
@@ -40,6 +45,25 @@ import {
 } from './components/LazyComponents'
 
 function App() {
+  const [cookiePreferences, setCookiePreferences] = useState(null)
+
+  const handleCookieAccept = (preferences: any) => {
+    setCookiePreferences(preferences)
+    // Here you would typically initialize analytics, marketing scripts, etc.
+    // based on the user's preferences
+    console.log('Cookie preferences accepted:', preferences)
+  }
+
+  const handleCookieReject = () => {
+    setCookiePreferences({
+      necessary: true,
+      analytics: false,
+      marketing: false,
+      preferences: false
+    })
+    console.log('Cookies rejected - only necessary cookies will be used')
+  }
+
   return (
       <LanguageProvider>
         <UserProvider>
@@ -53,9 +77,16 @@ function App() {
                         <Layout>
                           <PWAInstallPrompt />
                           <OfflineIndicator />
+                          <CookieConsent 
+                            onAccept={handleCookieAccept}
+                            onReject={handleCookieReject}
+                          />
                       <Routes>
                         <Route path="/" element={<HomePage />} />
                         <Route path="/auth" element={<AuthPage />} />
+                        <Route path="/terms" element={<TermsPage />} />
+                        <Route path="/privacy" element={<PrivacyPage />} />
+                        <Route path="/account/delete" element={<AccountDeletionPage />} />
                         <Route path="/community" element={<CommunityPage />} />
                         <Route path="/retro" element={<HomeScreenRetro />} />
                         <Route path="/quiz" element={<QuizPage />} />

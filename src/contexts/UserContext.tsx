@@ -102,9 +102,31 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       if (import.meta.env.DEV) {
         logger.error('Logout error in context:', error)
       }
-      // Auch bei Fehlern den lokalen State zurücksetzen
-      setUser(null)
-      setIsAuthenticated(false)
+      throw error
+    }
+  }
+
+  const deleteAccount = async (): Promise<boolean> => {
+    try {
+      const result = await authService.deleteAccount()
+      
+      if (result.success) {
+        // Clear user state immediately
+        setUser(null)
+        setIsAuthenticated(false)
+        
+        // Clear any stored data
+        localStorage.removeItem('battle64_cookie_consent')
+        
+        return true
+      }
+      
+      return false
+    } catch (error) {
+      if (import.meta.env.DEV) {
+        logger.error('Delete account error in context:', error)
+      }
+      return false
     }
   }
 
@@ -479,6 +501,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     login,
     register,
     logout,
+    deleteAccount,
     updateProfile,
     addXP,
     addToCollection,
