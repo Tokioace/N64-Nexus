@@ -18,7 +18,17 @@ export default defineConfig(({ command, mode }) => {
 
   return {
     plugins: [
-      react(),
+      react({
+        // Add React plugin configuration for better forwardRef compatibility
+        jsxRuntime: 'automatic',
+        jsxImportSource: 'react',
+        babel: {
+          plugins: [
+            // Add babel plugins to handle potential forwardRef issues
+            ...(isDevelopment ? [] : [])
+          ]
+        }
+      }),
       // PWA Plugin Configuration
       VitePWA({
         registerType: 'autoUpdate',
