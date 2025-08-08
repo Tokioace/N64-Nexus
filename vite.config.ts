@@ -174,6 +174,10 @@ export default defineConfig(({ command, mode }) => {
             }
             
             return undefined
+          },
+          globals: {
+            'react': 'React',
+            'react-dom': 'ReactDOM'
           }
         }
       }
