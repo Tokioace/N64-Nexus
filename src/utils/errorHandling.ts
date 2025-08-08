@@ -44,7 +44,7 @@ class ErrorHandler {
   private static instance: ErrorHandler
   private logs: LogEntry[] = []
   private maxLogs = 1000
-  private isDevelopment = process.env.NODE_ENV === 'development'
+  private isDevelopment = import.meta.env.DEV
 
   private constructor() {
     this.setupGlobalErrorHandlers()
