@@ -1,12 +1,19 @@
 {
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "version": 2,
+  "installCommand": "npm install",
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
-  "framework": "vite",
+  "cleanUrls": true,
+  "trailingSlash": false,
   "rewrites": [
-    {
-      "source": "/(.*)",
-      "destination": "/index.html"
-    }
+    { "source": "/assets/:path*", "destination": "/assets/:path*" },
+    { "source": "/static/:path*", "destination": "/static/:path*" },
+    { "source": "/icons/:path*", "destination": "/icons/:path*" },
+    { "source": "/splash/:path*", "destination": "/splash/:path*" },
+    { "source": "/manifest.json", "destination": "/manifest.json" },
+    { "source": "/sw.js", "destination": "/sw.js" },
+    { "source": "/:path*", "destination": "/index" }
   ],
   "headers": [
     {
