@@ -13,7 +13,8 @@ import {
   LeaderboardFilter
 } from '../types'
 import { useUser } from './UserContext'
-import { useLanguage } from './LanguageContext'
+import { logger } from '../lib/logger'
+
 import PointsNotification from '../components/PointsNotification'
 
 const PointsContext = createContext<PointsContextType | undefined>(undefined)
@@ -28,6 +29,7 @@ const POINTS_CONFIG: PointsConfig = {
   'media.stream': 50,
   'fanart.upload': 40,
   'fanart.likeReceived': 5,
+  'fanart.comment': 3,
   'quiz.answerCorrect': 10,
   'quiz.fullPerfect': 50,
   'minigame.success': 15,
@@ -38,18 +40,50 @@ const POINTS_CONFIG: PointsConfig = {
   'chat.likeReceived': 1,
   'profile.setupComplete': 10,
   'marketplace.saleConfirmed': 20,
-  'news.shared': 10
+  'news.shared': 10,
+  // Event participation points
+  'event.participation': 5,
+  // F1-style position points for events
+  'event.position.1': 25,
+  'event.position.2': 18,
+  'event.position.3': 15,
+  'event.position.4': 12,
+  'event.position.5': 10,
+  'event.position.6': 8,
+  'event.position.7': 6,
+  'event.position.8': 4,
+  'event.position.9': 2,
+  'event.position.10': 1,
+  // Interaction points
+  'interaction.like': 1,
+  'interaction.likeReceived': 2,
+  'interaction.comment': 3,
+  'interaction.commentReceived': 5,
+  'interaction.view': 0.5
 }
 
 // Ranks configuration with i18n keys
 const RANKS_CONFIG: RankConfig[] = [
-  { key: 'rank.n64Beginner', minPoints: 0, iconKey: 'icon.n64Controller' },
-  { key: 'rank.moduleCollector', minPoints: 100, iconKey: 'icon.cartridge' },
-  { key: 'rank.retroGeek', minPoints: 250, iconKey: 'icon.retrogamer' },
-  { key: 'rank.speedrunner', minPoints: 500, iconKey: 'icon.stopwatch' },
-  { key: 'rank.fanartMaster', minPoints: 1000, iconKey: 'icon.paintbrush' },
-  { key: 'rank.retroChampion', minPoints: 2000, iconKey: 'icon.trophy' },
-  { key: 'rank.n64Legend', minPoints: 5000, iconKey: 'icon.crown' }
+  { key: 'Pixel Rookie', minPoints: 0, iconKey: 'icon.controller' },
+  { key: 'Button Masher', minPoints: 50, iconKey: 'icon.gamepad' },
+  { key: 'Cartridge Hunter', minPoints: 150, iconKey: 'icon.cartridge' },
+  { key: 'Console Explorer', minPoints: 300, iconKey: 'icon.console' },
+  { key: 'Retro Enthusiast', minPoints: 500, iconKey: 'icon.retrogamer' },
+  { key: 'Speed Demon', minPoints: 750, iconKey: 'icon.stopwatch' },
+  { key: 'High Score Hero', minPoints: 1100, iconKey: 'icon.score' },
+  { key: 'Gem Collector', minPoints: 1500, iconKey: 'icon.gem' },
+  { key: 'Fortress Conqueror', minPoints: 2000, iconKey: 'icon.fortress' },
+  { key: 'Retro Kingdom Elite', minPoints: 2600, iconKey: 'icon.crown' },
+  { key: 'Galaxy Guardian', minPoints: 3300, iconKey: 'icon.galaxy' },
+  { key: 'Time Trial Master', minPoints: 4100, iconKey: 'icon.timer' },
+  { key: 'Portal Zone Warrior', minPoints: 5000, iconKey: 'icon.portal' },
+  { key: 'Boss Battle Champion', minPoints: 6000, iconKey: 'icon.boss' },
+  { key: 'Secret Level Sage', minPoints: 7200, iconKey: 'icon.secret' },
+  { key: 'Golden Controller God', minPoints: 8500, iconKey: 'icon.goldController' },
+  { key: 'Dimension Destroyer', minPoints: 10000, iconKey: 'icon.dimension' },
+  { key: 'Reality Bender', minPoints: 12000, iconKey: 'icon.reality' },
+  { key: 'Retro Overlord', minPoints: 15000, iconKey: 'icon.overlord' },
+  { key: 'Ultimate Gaming Legend', minPoints: 20000, iconKey: 'icon.legend' }
 ]
 
 // Achievements configuration
@@ -116,13 +150,12 @@ const MEDALS_CONFIG: MedalConfig[] = [
 ]
 
 // Local storage keys
-const STORAGE_KEY_USER_POINTS = 'battle64_user_points'
+// const STORAGE_KEY_USER_POINTS = 'battle64_user_points' // Reserved for future use
 const STORAGE_KEY_GLOBAL_LEADERBOARD = 'battle64_global_leaderboard'
 const STORAGE_KEY_CURRENT_SEASON = 'battle64_current_season'
 
 export const PointsProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const { user, updateProfile } = useUser()
-  const { t } = useLanguage()
   
   const [userPoints, setUserPoints] = useState<UserPoints | null>(null)
   const [globalLeaderboard, setGlobalLeaderboard] = useState<N64FanLeaderboardEntry[]>([])
@@ -172,6 +205,7 @@ export const PointsProvider: React.FC<{ children: ReactNode }> = ({ children }) 
     if (user && !userPoints) {
       initializeUserPoints()
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user])
 
   // Load leaderboards
@@ -198,9 +232,10 @@ export const PointsProvider: React.FC<{ children: ReactNode }> = ({ children }) 
       try {
         awardPoints('profile.setupComplete', 'Profile setup completed')
       } catch (error) {
-        console.error('Failed to award points for profile completion:', error)
+        logger.error('Failed to award points for profile completion:', error)
       }
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user?.bio, user?.location, user?.avatar, user?.collections?.length, userPoints?.pointHistory?.length])
 
   const initializeUserPoints = () => {
@@ -234,7 +269,7 @@ export const PointsProvider: React.FC<{ children: ReactNode }> = ({ children }) 
         setGlobalLeaderboard(JSON.parse(savedGlobal))
       }
     } catch (error) {
-      console.error('Error loading leaderboards:', error)
+              logger.error('Error loading leaderboards:', error)
     }
   }
 
@@ -251,7 +286,7 @@ export const PointsProvider: React.FC<{ children: ReactNode }> = ({ children }) 
       
       return true
     } catch (error) {
-      console.error('Error saving user points:', error)
+              logger.error('Error saving user points:', error)
       setError('Failed to save points')
       return false
     }
@@ -301,7 +336,7 @@ export const PointsProvider: React.FC<{ children: ReactNode }> = ({ children }) 
 
     // Check rate limiting
     if (isRateLimited(action)) {
-      console.warn(`Rate limited: ${action}`)
+              logger.warn(`Rate limited: ${action}`)
       return false
     }
 
@@ -350,7 +385,7 @@ export const PointsProvider: React.FC<{ children: ReactNode }> = ({ children }) 
 
       return success
     } catch (error) {
-      console.error('Error awarding points:', error)
+              logger.error('Error awarding points:', error)
       setError('Failed to award points')
       return false
     } finally {
@@ -540,6 +575,7 @@ export const PointsProvider: React.FC<{ children: ReactNode }> = ({ children }) 
   )
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const usePoints = () => {
   const context = useContext(PointsContext)
   if (!context) {

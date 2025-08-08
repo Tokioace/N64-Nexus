@@ -17,6 +17,11 @@ export interface User {
   personalRecords: PersonalRecord[]
   // New points system fields
   points?: UserPoints
+  // Legal compliance fields
+  birthDate?: Date // Required for 18+ verification
+  termsAccepted?: boolean
+  privacyAccepted?: boolean
+  copyrightAcknowledged?: boolean
 }
 
 export interface UserRegistrationData {
@@ -26,6 +31,12 @@ export interface UserRegistrationData {
   confirmPassword: string
   region: 'PAL' | 'NTSC'
   platform: 'N64' | 'PC'
+  // Legal compliance fields (required for registration)
+  birthDate: string // Date string from form input
+  termsAccepted: boolean
+  privacyAccepted: boolean
+  copyrightAcknowledged: boolean
+  ageConfirmed: boolean // "I am over 18 years old" checkbox
 }
 
 export interface UserCollection {
@@ -62,10 +73,12 @@ export interface PersonalRecord {
 export interface UserContextType {
   user: User | null
   isAuthenticated: boolean
+  isLoading: boolean
   login: (email: string, password: string) => Promise<boolean>
   register: (data: UserRegistrationData) => Promise<boolean>
   logout: () => void
   updateProfile: (updates: Partial<User>) => Promise<boolean>
+  deleteAccount: () => Promise<boolean> // GDPR-compliant account deletion
   addXP: (amount: number) => void
   addToCollection: (item: Omit<UserCollection, 'id' | 'userId'>) => Promise<boolean>
   removeFromCollection: (itemId: string) => Promise<boolean>
@@ -110,6 +123,25 @@ export interface QuizContextType {
   resetQuiz: () => void
 }
 
+// Interaction System Types
+export interface InteractionData {
+  likes: number
+  views: number
+  comments: Comment[]
+  likedBy: string[] // User IDs who liked this content
+  viewedBy: string[] // User IDs who viewed this content
+}
+
+export interface Comment {
+  id: string
+  userId: string
+  username: string
+  content: string
+  createdAt: Date
+  likes: number
+  likedBy: string[]
+}
+
 // Event System Types
 export interface GameEvent {
   id: string
@@ -125,6 +157,20 @@ export interface GameEvent {
   rules: string[]
   prizes: string[]
   region: 'PAL' | 'NTSC' | 'BOTH'
+  pointsSystem?: {
+    participation: number
+    positions: number[] // Points for positions 1-10, F1 style
+  }
+  interactions: InteractionData
+  // Best lap media for showcasing
+  bestLap?: {
+    time: string
+    username: string
+    mediaUrl?: string
+    mediaType: 'photo' | 'video' | 'livestream'
+    livestreamUrl?: string
+    verified: boolean
+  }
 }
 
 export interface EventParticipation {
@@ -168,6 +214,11 @@ export interface EventContextType {
   getLeaderboard: (eventId: string) => EventParticipation[]
   getAllSubmissions: () => EventParticipation[]
   getSubmissionsByUser: (userId: string) => EventParticipation[]
+  // Points system integration
+  shouldAwardParticipationPoints: (eventId: string, userId: string) => boolean
+  markParticipationPointsAwarded: (eventId: string, userId: string) => void
+  getEventPositionPoints: (eventId: string) => Array<{userId: string, position: number, points: number}>
+  markPositionPointsAwarded: (eventId: string, userId: string, position: number) => void
 }
 
 // Global Leaderboard Types
@@ -223,6 +274,7 @@ export interface MediaMeta {
   likes: number
   views: number
   tags: string[]
+  interactions: InteractionData
 }
 
 export interface MediaContextType {
@@ -294,6 +346,7 @@ export interface ForumThread {
     authorName: string
     createdAt: Date
   }
+  interactions: InteractionData
 }
 
 export interface ForumPost {
@@ -307,6 +360,7 @@ export interface ForumPost {
   isEdited: boolean
   editedAt?: Date
   isDeleted: boolean
+  interactions: InteractionData
 }
 
 export interface ForumStats {
@@ -370,6 +424,7 @@ export interface PointsConfig {
   'media.stream': number
   'fanart.upload': number
   'fanart.likeReceived': number
+  'fanart.comment': number
   'quiz.answerCorrect': number
   'quiz.fullPerfect': number
   'minigame.success': number
@@ -381,6 +436,24 @@ export interface PointsConfig {
   'profile.setupComplete': number
   'marketplace.saleConfirmed': number
   'news.shared': number
+  // Event participation and position points
+  'event.participation': number
+  'event.position.1': number
+  'event.position.2': number
+  'event.position.3': number
+  'event.position.4': number
+  'event.position.5': number
+  'event.position.6': number
+  'event.position.7': number
+  'event.position.8': number
+  'event.position.9': number
+  'event.position.10': number
+  // Interaction points
+  'interaction.like': number
+  'interaction.likeReceived': number
+  'interaction.comment': number
+  'interaction.commentReceived': number
+  'interaction.view': number
 }
 
 export interface RankConfig {
@@ -446,4 +519,151 @@ export interface PointsContextType {
   // Loading states
   loading: boolean
   error: string | null
+}
+
+// Interaction System Context Type
+export interface InteractionContextType {
+  // Actions for any content type
+  likeContent: (contentType: string, contentId: string, userId: string) => Promise<boolean>
+  unlikeContent: (contentType: string, contentId: string, userId: string) => Promise<boolean>
+  addComment: (contentType: string, contentId: string, userId: string, username: string, content: string) => Promise<boolean>
+  likeComment: (contentType: string, contentId: string, commentId: string, userId: string) => Promise<boolean>
+  viewContent: (contentType: string, contentId: string, userId: string) => Promise<boolean>
+  
+  // Getters for interaction data
+  getInteractionData: (contentType: string, contentId: string) => InteractionData
+  hasUserLiked: (contentType: string, contentId: string, userId: string) => boolean
+  hasUserViewed: (contentType: string, contentId: string, userId: string) => boolean
+  
+  // Statistics
+  getTotalLikesForUser: (userId: string) => number
+  getTotalCommentsForUser: (userId: string) => number
+  getMostLikedContent: (contentType?: string) => Array<{id: string, type: string, likes: number}>
+  
+  // Loading states
+  loading: boolean
+  error: string | null
+}
+
+// Content Moderation & Reporting Types
+export interface ContentReport {
+  id: string
+  contentType: 'speedrun' | 'fanart' | 'chat' | 'forum' | 'profile' | 'event'
+  contentId: string
+  reason: string
+  description?: string
+  reportedBy: string
+  reportedByUsername?: string
+  status: 'pending' | 'reviewed' | 'dismissed' | 'action_taken'
+  reviewedBy?: string
+  reviewedAt?: Date
+  actionTaken?: string
+  createdAt: Date
+  updatedAt: Date
+}
+
+export interface ContentFlag {
+  id: string
+  contentType: 'speedrun' | 'fanart' | 'chat' | 'forum' | 'profile' | 'event'
+  contentId: string
+  flagType: 'nsfw' | 'spam' | 'hate_speech' | 'copyright' | 'inappropriate'
+  confidenceScore?: number // AI confidence score (0.00-1.00)
+  autoHidden: boolean
+  manualReviewRequired: boolean
+  createdAt: Date
+}
+
+export interface AdminAction {
+  id: string
+  adminId: string
+  adminUsername?: string
+  actionType: 'content_hidden' | 'content_removed' | 'user_warned' | 'user_suspended' | 'user_banned' | 'report_reviewed'
+  targetType: 'user' | 'content' | 'report'
+  targetId: string
+  reason: string
+  notes?: string
+  createdAt: Date
+}
+
+export interface ReportingContextType {
+  // Report content
+  reportContent: (contentType: string, contentId: string, reason: string, description?: string) => Promise<boolean>
+  
+  // Admin functions
+  getReports: (status?: string) => Promise<ContentReport[]>
+  reviewReport: (reportId: string, action: 'dismiss' | 'take_action', actionDetails?: string) => Promise<boolean>
+  hideContent: (contentType: string, contentId: string, reason: string) => Promise<boolean>
+  unhideContent: (contentType: string, contentId: string) => Promise<boolean>
+  
+  // Content flags
+  getContentFlags: (contentType?: string, contentId?: string) => Promise<ContentFlag[]>
+  isContentHidden: (contentType: string, contentId: string) => Promise<boolean>
+  
+  // Admin actions audit
+  getAdminActions: (adminId?: string) => Promise<AdminAction[]>
+  
+  // Statistics
+  getReportStats: () => Promise<{
+    totalReports: number
+    pendingReports: number
+    resolvedReports: number
+    reportsByType: Record<string, number>
+  }>
+  
+  loading: boolean
+  error: string | null
+}
+
+// Legal & Compliance Types
+export interface LegalAgreement {
+  type: 'terms' | 'privacy' | 'copyright'
+  version: string
+  acceptedAt: Date
+  ipAddress?: string
+}
+
+export interface CookieConsent {
+  necessary: boolean
+  analytics: boolean
+  marketing: boolean
+  preferences: boolean
+  consentDate: Date
+  consentVersion: string
+}
+
+export interface LegalContextType {
+  // Cookie consent
+  cookieConsent: CookieConsent | null
+  updateCookieConsent: (consent: Partial<CookieConsent>) => void
+  hasCookieConsent: () => boolean
+  
+  // Legal agreements
+  acceptLegalAgreement: (type: 'terms' | 'privacy' | 'copyright') => Promise<boolean>
+  getLegalAgreements: () => Promise<LegalAgreement[]>
+  
+  // Age verification
+  verifyAge: (birthDate: Date) => boolean
+  
+  // GDPR data export
+  requestDataExport: () => Promise<boolean>
+  
+  loading: boolean
+  error: string | null
+}
+
+// Upload Security Types
+export interface UploadSecurityCheck {
+  isNSFW: boolean
+  confidence: number
+  flaggedContent: string[]
+  approved: boolean
+  requiresManualReview: boolean
+}
+
+export interface SecureUploadData {
+  file: File
+  contentType: string
+  rightsConfirmed: boolean
+  copyrightAcknowledged: boolean
+  contentWarnings?: string[]
 }

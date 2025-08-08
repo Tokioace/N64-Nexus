@@ -1,10 +1,10 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef } from 'react'
 
 interface SwipeableCardProps {
   title: string
   icon: React.ReactNode
-  items: any[]
-  renderItem: (item: any, index: number) => React.ReactNode
+  items: unknown[]
+  renderItem: (item: unknown, index: number) => React.ReactNode
   className?: string
   gradientColors?: string
   borderColor?: string

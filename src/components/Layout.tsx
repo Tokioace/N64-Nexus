@@ -1,9 +1,10 @@
 import React, { ReactNode, useState, useEffect } from 'react'
 import Sidebar from './Sidebar'
+import RankingBar from './RankingBar'
 import { useUser } from '../contexts/UserContext'
 import { usePoints } from '../contexts/PointsContext'
 import { useLanguage } from '../contexts/LanguageContext'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { Trophy, Zap } from 'lucide-react'
 
 interface LayoutProps {
@@ -16,6 +17,10 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   const { user, isAuthenticated } = useUser()
   const { userPoints } = usePoints()
   const { t } = useLanguage()
+  const location = useLocation()
+
+  // Check if we should show the ranking bar (only on homepage and retro homepage)
+  const shouldShowRankingBar = location.pathname === '/' || location.pathname === '/retro'
 
   const toggleMobileSidebar = () => {
     setIsMobileSidebarOpen(!isMobileSidebarOpen)
@@ -40,15 +45,15 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   // Prevent body scroll when mobile sidebar is open
   useEffect(() => {
     if (isMobileSidebarOpen && isMobile) {
-      document.body.style.overflow = 'hidden'
+      document.body.style.overflowY = 'hidden'
       document.body.style.touchAction = 'none'
       document.body.style.position = 'fixed'
       document.body.style.width = '100%'
       document.body.style.top = '0'
       document.body.style.left = '0'
     } else {
-      document.body.style.overflow = ''
-      document.body.style.touchAction = ''
+      document.body.style.overflowY = 'auto'
+      document.body.style.touchAction = 'manipulation'
       document.body.style.position = ''
       document.body.style.width = ''
       document.body.style.top = ''
@@ -56,8 +61,8 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     }
 
     return () => {
-      document.body.style.overflow = ''
-      document.body.style.touchAction = ''
+      document.body.style.overflowY = 'auto'
+      document.body.style.touchAction = 'manipulation'
       document.body.style.position = ''
       document.body.style.width = ''
       document.body.style.top = ''
@@ -98,7 +103,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       {/* Mobile menu button */}
       <button
         onClick={toggleMobileSidebar}
-        className="mobile-menu-button fixed z-50 lg:hidden bg-slate-800/90 backdrop-blur-sm text-white rounded-lg shadow-lg hover:bg-slate-700 transition-all duration-200 border border-slate-600 flex items-center justify-center"
+        className="mobile-menu-button absolute z-50 lg:hidden bg-slate-800/90 backdrop-blur-sm text-white rounded-lg shadow-lg hover:bg-slate-700 transition-all duration-200 border border-slate-600 flex items-center justify-center"
         style={{
           top: 'clamp(0.5rem, 2vw, 1rem)',
           left: 'clamp(0.5rem, 2vw, 1rem)',
@@ -123,11 +128,11 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         </svg>
       </button>
 
-      {/* User Profile Icon - Responsive fixed position */}
+      {/* User Profile Icon - Responsive absolute position */}
       {isAuthenticated && user && (
         <Link 
           to="/profile" 
-          className="fixed z-50 flex items-center justify-center rounded-full bg-slate-800/90 backdrop-blur-sm hover:bg-slate-700/90 transition-all duration-200 border border-slate-600 shadow-lg group"
+          className="absolute z-50 flex items-center justify-center rounded-full bg-slate-800/90 backdrop-blur-sm hover:bg-slate-700/90 transition-all duration-200 border border-slate-600 shadow-lg group"
           style={{
             top: 'clamp(0.5rem, 2vw, 1rem)',
             right: 'clamp(0.5rem, 2vw, 1rem)',
@@ -147,6 +152,22 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             {user.avatar || '🎮'}
           </div>
         </Link>
+      )}
+
+      {/* Ranking Bar - Only shown on homepage and retro homepage */}
+      {shouldShowRankingBar && isAuthenticated && user && (
+        <div 
+          className="absolute z-40"
+          style={{
+            top: 'clamp(0.5rem, 2vw, 1rem)',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            width: 'clamp(200px, 40vw, 280px)',
+            maxWidth: 'calc(100vw - 120px)' // Leave space for user icon and sidebar
+          }}
+        >
+          <RankingBar />
+        </div>
       )}
 
       <Sidebar isOpen={isMobileSidebarOpen} onClose={closeMobileSidebar} />
@@ -169,7 +190,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
               <div className="flex items-center gap-2 bg-gradient-to-r from-blue-500/20 to-blue-600/20 border border-blue-500/30 rounded-lg" style={{ padding: 'clamp(0.5rem, 1.5vw, 0.75rem)' }}>
                 <Zap className="text-blue-400" style={{ width: 'clamp(16px, 3vw, 20px)', height: 'clamp(16px, 3vw, 20px)' }} />
                 <span className="text-blue-200" style={{ fontSize: 'clamp(0.75rem, 1.8vw, 0.875rem)' }}>
-                  {userPoints.currentRank.key.split('.')[1] || 'Beginner'}
+                  {t(userPoints.currentRank.key as any)}
                 </span>
               </div>
             </div>
@@ -187,6 +208,68 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             {children}
           </div>
         </main>
+
+        {/* Footer */}
+        <footer className="bg-slate-800/50 backdrop-blur-sm border-t border-slate-700 mt-auto">
+          <div className="max-w-6xl mx-auto px-4 py-6">
+            {/* Nintendo Copyright Disclaimer */}
+            <div className="bg-slate-700/30 border border-slate-600 rounded-lg p-4 mb-6">
+              <div className="text-center">
+                <p className="text-slate-300 text-sm font-medium mb-2">
+                  Nintendo Copyright Notice
+                </p>
+                <p className="text-slate-400 text-xs leading-relaxed max-w-4xl mx-auto">
+                  {t('legal.nintendoDisclaimer')} Battle64 is an independent retro gaming community and is not affiliated with, endorsed by, or sponsored by Nintendo Co., Ltd. Nintendo 64, N64, and all related characters, names, marks, emblems and images are trademarks of Nintendo. All other trademarks are property of their respective owners.
+                </p>
+              </div>
+            </div>
+
+            {/* Legal Links */}
+            <div className="flex flex-wrap justify-center items-center gap-4 text-sm text-slate-400 mb-4">
+              <Link 
+                to="/terms" 
+                className="hover:text-slate-200 transition-colors underline"
+              >
+                {t('footer.terms')}
+              </Link>
+              <span className="text-slate-600">•</span>
+              <Link 
+                to="/privacy" 
+                className="hover:text-slate-200 transition-colors underline"
+              >
+                {t('footer.privacy')}
+              </Link>
+              <span className="text-slate-600">•</span>
+              <a 
+                href="mailto:legal@battle64.com" 
+                className="hover:text-slate-200 transition-colors underline"
+              >
+                {t('footer.contact')}
+              </a>
+              {isAuthenticated && (
+                <>
+                  <span className="text-slate-600">•</span>
+                  <Link 
+                    to="/account/delete" 
+                    className="hover:text-red-300 text-red-400 transition-colors underline"
+                  >
+                    {t('account.delete')}
+                  </Link>
+                </>
+              )}
+            </div>
+
+            {/* Copyright */}
+            <div className="text-center">
+              <p className="text-slate-500 text-xs">
+                {t('footer.copyright')}
+              </p>
+              <p className="text-slate-600 text-xs mt-1">
+                Battle64 is exclusively for users 18 years and older
+              </p>
+            </div>
+          </div>
+        </footer>
       </div>
     </div>
   )

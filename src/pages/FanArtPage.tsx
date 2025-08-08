@@ -1,8 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { logger } from '../lib/logger'
 import { useLanguage } from '../contexts/LanguageContext'
 import { useUser } from '../contexts/UserContext'
 import { usePoints } from '../contexts/PointsContext'
-import { Palette, Heart, Eye, MessageSquare, Upload, Filter, Grid, List, Zap, X, Image as ImageIcon } from 'lucide-react'
+import { useLocation } from 'react-router-dom'
+import { Palette, Heart, Eye, MessageSquare, Upload, Filter, Grid, List, Zap, X, Image as ImageIcon, Send } from 'lucide-react'
 
 interface FanArtItem {
   id: string
@@ -18,6 +20,7 @@ interface FanArtItem {
   rating: number // Average rating (0-5)
   ratingCount: number // Number of ratings
   userRating?: number // Current user's rating
+  likedBy?: string[] // Array of user IDs who liked this artwork
 }
 
 interface RatingDisplayProps {
@@ -67,7 +70,7 @@ const RatingInput: React.FC<RatingInputProps> = ({ currentRating, onRate, disabl
   const [hoverRating, setHoverRating] = useState(0)
 
   return (
-    <div className="flex items-center gap-1">
+    <div className="flex items-center gap-0.5"> {/* Reduced gap for mobile */}
       {[1, 2, 3, 4, 5].map((star) => (
         <button
           key={star}
@@ -75,7 +78,7 @@ const RatingInput: React.FC<RatingInputProps> = ({ currentRating, onRate, disabl
           onMouseEnter={() => setHoverRating(star)}
           onMouseLeave={() => setHoverRating(0)}
           onClick={() => onRate(star)}
-          className={`w-5 h-5 transition-colors ${disabled ? 'cursor-not-allowed' : 'cursor-pointer hover:scale-110'}`}
+          className={`w-4 h-4 sm:w-5 sm:h-5 transition-colors ${disabled ? 'cursor-not-allowed' : 'cursor-pointer hover:scale-110'}`} // Smaller on mobile
         >
           <Zap
             className={`w-full h-full ${
@@ -162,7 +165,7 @@ const UploadModal: React.FC<UploadModalProps> = ({ onClose, onUpload, awardPoint
     try {
       await awardPoints('fanart.upload', `Fanart uploaded: ${title}`)
     } catch (error) {
-      console.error('Failed to award points for fanart upload:', error)
+      logger.error('Failed to award points for fanart upload:', error)
     }
     
     setIsUploading(false)
@@ -306,105 +309,159 @@ const UploadModal: React.FC<UploadModalProps> = ({ onClose, onUpload, awardPoint
   )
 }
 
+interface Comment {
+  id: string
+  artworkId: string
+  author: string
+  content: string
+  createdAt: Date
+}
+
 const FanArtPage: React.FC = () => {
   const { t } = useLanguage()
   const { user, isAuthenticated } = useUser()
   const { awardPoints } = usePoints()
+  const location = useLocation()
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid')
   const [selectedCategory, setSelectedCategory] = useState('all')
   const [showUploadModal, setShowUploadModal] = useState(false)
-  const [fanArtItems, setFanArtItems] = useState<FanArtItem[]>([
-    {
-      id: '1',
-      title: 'Mario 64 Castle Reimagined',
-      artist: 'PixelMaster64',
-      imageUrl: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRkY2QjZCIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIiBmaWxsPSIjRkZGRkZGIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiPk1hcmlvIENhc3RsZTwvdGV4dD48L3N2Zz4=',
-      likes: 142,
-      views: 1205,
-      comments: 23,
-      rating: 4.7,
-      ratingCount: 89,
-      userRating: undefined,
-      tags: ['Mario', 'Castle', 'Digital Art'],
-      createdAt: new Date('2024-01-15'),
-      game: 'Super Mario 64'
-    },
-    {
-      id: '2',
-      title: 'Link in Hyrule Field',
-      artist: 'ZeldaFan98',
-      imageUrl: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjNEVDREMxIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIiBmaWxsPSIjRkZGRkZGIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiPlplbGRhIEFydDwvdGV4dD48L3N2Zz4=',
-      likes: 89,
-      views: 756,
-      comments: 15,
-      rating: 4.2,
-      ratingCount: 54,
-      userRating: undefined,
-      tags: ['Zelda', 'Link', 'Landscape'],
-      createdAt: new Date('2024-01-14'),
-      game: 'The Legend of Zelda: Ocarina of Time'
-    },
-    {
-      id: '3',
-      title: 'GoldenEye Facility',
-      artist: 'SpyArtist',
-      imageUrl: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRTVFN0VCIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIiBmaWxsPSIjNkI3MjgwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiPjMwMHgyMDA8L3RleHQ+PC9zdmc+',
-      likes: 67,
-      views: 432,
-      comments: 8,
-      rating: 3.8,
-      ratingCount: 32,
-      userRating: undefined,
-      tags: ['GoldenEye', 'Facility', '3D'],
-      createdAt: new Date('2024-01-13'),
-      game: 'GoldenEye 007'
-    },
-    {
-      id: '4',
-      title: 'Donkey Kong Country Jungle',
-      artist: 'JungleDrawer',
-      imageUrl: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRTVFN0VCIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIiBmaWxsPSIjNkI3MjgwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiPjMwMHgyMDA8L3RleHQ+PC9zdmc+',
-      likes: 156,
-      views: 923,
-      comments: 31,
-      rating: 4.9,
-      ratingCount: 127,
-      userRating: undefined,
-      tags: ['DK', 'Jungle', 'Nature'],
-      createdAt: new Date('2024-01-12'),
-      game: 'Donkey Kong 64'
-    },
-    {
-      id: '5',
-      title: 'Star Fox Arwing Squadron',
-      artist: 'SpacePilot',
-      imageUrl: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRTVFN0VCIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIiBmaWxsPSIjNkI3MjgwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiPjMwMHgyMDA8L3RleHQ+PC9zdmc+',
-      likes: 98,
-      views: 645,
-      comments: 19,
-      rating: 4.1,
-      ratingCount: 73,
-      userRating: undefined,
-      tags: ['Star Fox', 'Arwing', 'Space'],
-      createdAt: new Date('2024-01-11'),
-      game: 'Star Fox 64'
-    },
-    {
-      id: '6',
-      title: 'Mario Kart 64 Rainbow Road',
-      artist: 'RainbowRacer',
-      imageUrl: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRTVFN0VCIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIiBmaWxsPSIjNkI3MjgwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiPjMwMHgyMDA8L3RleHQ+PC9zdmc+',
-      likes: 203,
-      views: 1456,
-      comments: 42,
-      rating: 4.6,
-      ratingCount: 156,
-      userRating: undefined,
-      tags: ['Mario Kart', 'Rainbow Road', 'Racing'],
-      createdAt: new Date('2024-01-10'),
-      game: 'Mario Kart 64'
+  const [fanArtItems, setFanArtItems] = useState<FanArtItem[]>([])
+  const [highlightedPostId, setHighlightedPostId] = useState<string | null>(null)
+  const [userLikes, setUserLikes] = useState<Set<string>>(new Set()) // Track user's likes
+  const [comments, setComments] = useState<Comment[]>([]) // Track comments
+  const [showComments, setShowComments] = useState<string | null>(null) // Show comments for specific artwork
+  const [newComment, setNewComment] = useState<string>('') // New comment input
+
+  // Load FanArt data from localStorage on component mount
+  useEffect(() => {
+    const loadFanArtData = () => {
+      try {
+        const savedFanArt = localStorage.getItem('fanart_items')
+        const savedUserLikes = localStorage.getItem('user_fanart_likes')
+        
+        if (savedUserLikes && user) {
+          setUserLikes(new Set(JSON.parse(savedUserLikes)))
+        }
+        
+        if (savedFanArt) {
+          const parsedFanArt = JSON.parse(savedFanArt) as FanArtItem[]
+          // Convert date strings back to Date objects and sort by newest first
+          const sortedFanArt = parsedFanArt
+            .map((item: FanArtItem) => ({
+              ...item,
+              createdAt: item.createdAt ? new Date(item.createdAt) : new Date(),
+              likedBy: item.likedBy || []
+            }))
+            .sort((a: FanArtItem, b: FanArtItem) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+          setFanArtItems(sortedFanArt)
+        } else {
+          // Use default mock data if no saved data exists
+          const defaultFanArt = [
+            {
+              id: '1',
+              title: 'Mario 64 Castle Reimagined',
+              artist: 'PixelMaster64',
+              imageUrl: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRkY2QjZCIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIiBmaWxsPSIjRkZGRkZGIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiPk1hcmlvIENhc3RsZTwvdGV4dD48L3N2Zz4=',
+              likes: 142,
+              views: 1205,
+              comments: 23,
+              rating: 4.7,
+              ratingCount: 89,
+              userRating: undefined,
+              tags: ['Mario', 'Castle', 'Digital Art'],
+              createdAt: new Date('2024-01-15'),
+              game: 'Super Mario 64',
+              likedBy: []
+            },
+            {
+              id: '2',
+              title: 'Link in Hyrule Field',
+              artist: 'ZeldaFan98',
+              imageUrl: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjNEVDREMxIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIiBmaWxsPSIjRkZGRkZGIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiPlplbGRhIEFydDwvdGV4dD48L3N2Zz4=',
+              likes: 89,
+              views: 756,
+              comments: 15,
+              rating: 4.2,
+              ratingCount: 54,
+              userRating: undefined,
+              tags: ['Zelda', 'Link', 'Landscape'],
+              createdAt: new Date('2024-01-14'),
+              game: 'The Legend of Zelda: Ocarina of Time',
+              likedBy: []
+            },
+            {
+              id: '3',
+              title: 'GoldenEye Facility',
+              artist: 'SpyArtist',
+              imageUrl: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRkZFQUE3Ii8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIiBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiPkdvbGRlbkV5ZSBBcnQ8L3RleHQ+PC9zdmc+',
+              likes: 67,
+              views: 543,
+              comments: 8,
+              rating: 4.0,
+              ratingCount: 32,
+              userRating: undefined,
+              tags: ['GoldenEye', 'Facility', 'Map'],
+              createdAt: new Date('2024-01-13'),
+              game: 'GoldenEye 007',
+              likedBy: []
+            }
+          ]
+          setFanArtItems(defaultFanArt)
+          // Save default data to localStorage
+          localStorage.setItem('fanart_items', JSON.stringify(defaultFanArt))
+        }
+      } catch (error) {
+        logger.error('Error loading fanart data:', error)
+        // Use minimal fallback on error
+        setFanArtItems([])
+      }
     }
-  ])
+
+    loadFanArtData()
+
+    // Check if we need to highlight a specific post
+    if (location.state?.highlightPostId) {
+      setHighlightedPostId(location.state.highlightPostId)
+      // Auto-scroll to the highlighted post after a short delay
+      setTimeout(() => {
+        const element = document.getElementById(`fanart-${location.state.highlightPostId}`)
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth', block: 'center' })
+        }
+      }, 500)
+      
+      // Clear the highlight after a few seconds
+      setTimeout(() => {
+        setHighlightedPostId(null)
+      }, 3000)
+    }
+  }, [location.state, user])
+
+  // Load comments from localStorage
+  useEffect(() => {
+    try {
+      const savedComments = localStorage.getItem('fanart_comments')
+      if (savedComments) {
+        const parsedComments = JSON.parse(savedComments).map((comment: Comment) => ({
+          ...comment,
+          createdAt: new Date(comment.createdAt)
+        }))
+        setComments(parsedComments)
+      }
+    } catch (error) {
+      logger.error('Error loading comments:', error)
+    }
+  }, [])
+
+  // Update fanart items with correct comment counts on load
+  useEffect(() => {
+    if (comments.length > 0 && fanArtItems.length > 0) {
+      setFanArtItems(prev => prev.map(item => {
+        const itemCommentCount = comments.filter(c => c.artworkId === item.id).length
+        return { ...item, comments: itemCommentCount }
+      }))
+    }
+  }, [comments])
 
   const categories = [
     { id: 'all', name: t('fanart.allCategories') },
@@ -431,27 +488,68 @@ const FanArtPage: React.FC = () => {
 
     // Prevent self-liking
     if (artwork.artist === user.username) {
-      console.log('Cannot like your own artwork')
+      logger.log('Cannot like your own artwork')
       return
     }
 
-    // In a real app, you'd check if user already liked this artwork
-    // For now, we'll just increment the likes
+    const isCurrentlyLiked = userLikes.has(artworkId)
+    const newUserLikes = new Set(userLikes)
+    
+    if (isCurrentlyLiked) {
+      newUserLikes.delete(artworkId)
+    } else {
+      newUserLikes.add(artworkId)
+    }
+    
+    setUserLikes(newUserLikes)
+    
+    // Save user likes to localStorage
+    localStorage.setItem('user_fanart_likes', JSON.stringify(Array.from(newUserLikes)))
+
+    // Update the artwork likes count
     setFanArtItems(prev => prev.map(item => {
       if (item.id === artworkId) {
-        return {
+        const updatedItem = {
           ...item,
-          likes: item.likes + 1
+          likes: isCurrentlyLiked ? item.likes - 1 : item.likes + 1,
+          likedBy: isCurrentlyLiked 
+            ? (item.likedBy || []).filter(id => id !== user.id)
+            : [...(item.likedBy || []), user.id]
         }
+        return updatedItem
       }
       return item
     }))
 
-    // Award points to the artwork creator
-    try {
-      await awardPoints('fanart.likeReceived', `Like received on: ${artwork.title}`)
-    } catch (error) {
-      console.error('Failed to award points for fanart like:', error)
+    // Update localStorage with new fanart data
+    const updatedFanArt = fanArtItems.map(item => {
+      if (item.id === artworkId) {
+        return {
+          ...item,
+          likes: isCurrentlyLiked ? item.likes - 1 : item.likes + 1,
+          likedBy: isCurrentlyLiked 
+            ? (item.likedBy || []).filter(id => id !== user.id)
+            : [...(item.likedBy || []), user.id]
+        }
+      }
+      return item
+    })
+    
+    localStorage.setItem('fanart_items', JSON.stringify(updatedFanArt))
+    
+    // Trigger storage event for HomePage to update
+    window.dispatchEvent(new StorageEvent('storage', {
+      key: 'fanart_items',
+      newValue: JSON.stringify(updatedFanArt)
+    }))
+
+    // Award points only when liking (not unliking)
+    if (!isCurrentlyLiked) {
+      try {
+        await awardPoints('fanart.likeReceived', `Like received on: ${artwork.title}`)
+      } catch (error) {
+        logger.error('Failed to award points for fanart like:', error)
+      }
     }
   }
 
@@ -486,6 +584,85 @@ const FanArtPage: React.FC = () => {
       }
       return item
     }))
+  }
+
+  const handleNewArtwork = (newArtwork: FanArtItem) => {
+    setFanArtItems(prev => {
+      const updated = [newArtwork, ...prev]
+      // Save to localStorage so it appears on HomePage
+      try {
+        localStorage.setItem('fanart_items', JSON.stringify(updated))
+        // Trigger storage event for HomePage to update
+        window.dispatchEvent(new StorageEvent('storage', {
+          key: 'fanart_items',
+          newValue: JSON.stringify(updated)
+        }))
+      } catch (error) {
+        logger.error('Error saving fanart to localStorage:', error)
+      }
+      return updated
+    })
+  }
+
+  const handleAddComment = async (artworkId: string) => {
+    if (!isAuthenticated || !user || !newComment.trim()) return
+
+    const newCommentObj: Comment = {
+      id: Date.now().toString(),
+      artworkId,
+      author: user.username,
+      content: newComment.trim(),
+      createdAt: new Date()
+    }
+
+    const updatedComments = [...comments, newCommentObj]
+    setComments(updatedComments)
+    setNewComment('')
+
+    // Save comments to localStorage
+    localStorage.setItem('fanart_comments', JSON.stringify(updatedComments))
+
+    // Update fanart items with new comment count
+    setFanArtItems(prev => prev.map(item => {
+      if (item.id === artworkId) {
+        const itemCommentCount = updatedComments.filter(c => c.artworkId === artworkId).length
+        return { ...item, comments: itemCommentCount }
+      }
+      return item
+    }))
+
+    // Update localStorage fanart data
+    const savedFanArt = localStorage.getItem('fanart_items')
+    if (savedFanArt) {
+      const fanArtData = JSON.parse(savedFanArt)
+      const updatedFanArt = fanArtData.map((item: FanArtItem) => {
+        if (item.id === artworkId) {
+          const itemCommentCount = updatedComments.filter(c => c.artworkId === artworkId).length
+          return { ...item, comments: itemCommentCount }
+        }
+        return item
+      })
+      
+      localStorage.setItem('fanart_items', JSON.stringify(updatedFanArt))
+      
+      // Trigger storage event for HomePage to update
+      window.dispatchEvent(new StorageEvent('storage', {
+        key: 'fanart_items',
+        newValue: JSON.stringify(updatedFanArt)
+      }))
+    }
+
+    // Award points for commenting
+    try {
+      await awardPoints('fanart.comment', `Comment added to: ${fanArtItems.find(item => item.id === artworkId)?.title}`)
+    } catch (error) {
+      logger.error('Failed to award points for comment:', error)
+    }
+  }
+
+  const getCommentsForArtwork = (artworkId: string) => {
+    return comments.filter(comment => comment.artworkId === artworkId)
+      .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
   }
 
   return (
@@ -575,7 +752,13 @@ const FanArtPage: React.FC = () => {
       {viewMode === 'grid' ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredItems.map(item => (
-            <div key={item.id} className="n64-tile bg-slate-800/50 hover:bg-slate-800/70 transition-colors">
+            <div 
+              key={item.id} 
+              id={`fanart-${item.id}`}
+              className={`n64-tile bg-slate-800/50 hover:bg-slate-800/70 transition-colors ${
+                highlightedPostId === item.id ? 'ring-2 ring-rose-500' : ''
+              }`}
+            >
               <div className="aspect-video bg-slate-700 rounded-lg mb-4 overflow-hidden">
                 <img 
                   src={item.imageUrl} 
@@ -621,27 +804,94 @@ const FanArtPage: React.FC = () => {
 
                 <div className="flex items-center justify-between text-sm text-slate-400">
                   <div className="flex items-center gap-4">
-                    <button 
-                      onClick={() => handleLikeArtwork(item.id)}
-                      className="flex items-center gap-1 hover:text-rose-400 transition-colors"
-                      disabled={!isAuthenticated}
+                    {/* Like Button with Heart Icon */}
+                    <div className="relative">
+                      <button 
+                        onClick={() => handleLikeArtwork(item.id)}
+                        className={`flex items-center gap-1 transition-colors ${
+                          !isAuthenticated 
+                            ? 'cursor-not-allowed opacity-50' 
+                            : userLikes.has(item.id)
+                            ? 'text-white hover:text-gray-200'
+                            : 'text-white hover:text-gray-200'
+                        }`}
+                        disabled={!isAuthenticated}
+                      >
+                        <Heart 
+                          className={`w-4 h-4 transition-all ${
+                            userLikes.has(item.id) 
+                              ? 'fill-white text-white scale-110' 
+                              : 'text-white'
+                          }`} 
+                        />
+                        <span className="text-white">{item.likes}</span>
+                      </button>
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <Eye className="w-4 h-4 text-white" />
+                      <span className="text-white">{item.views}</span>
+                    </div>
+                    <button
+                      onClick={() => setShowComments(showComments === item.id ? null : item.id)}
+                      className="flex items-center gap-1 text-white hover:text-gray-200 transition-colors"
                     >
-                      <Heart className="w-4 h-4" />
-                      <span>{item.likes}</span>
+                      <MessageSquare className="w-4 h-4 text-white" />
+                      <span className="text-white">{item.comments}</span>
                     </button>
-                    <div className="flex items-center gap-1">
-                      <Eye className="w-4 h-4" />
-                      <span>{item.views}</span>
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <MessageSquare className="w-4 h-4" />
-                      <span>{item.comments}</span>
-                    </div>
                   </div>
                   <span className="text-xs">
                     {item.createdAt.toLocaleDateString()}
                   </span>
                 </div>
+
+                {/* Comments Section */}
+                {showComments === item.id && (
+                  <div className="mt-4 pt-4 border-t border-slate-600">
+                    <div className="space-y-3 max-h-48 overflow-y-auto">
+                      {getCommentsForArtwork(item.id).map(comment => (
+                        <div key={comment.id} className="flex gap-2">
+                          <div className="w-6 h-6 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full flex items-center justify-center text-xs flex-shrink-0">
+                            {comment.author[0].toUpperCase()}
+                          </div>
+                          <div className="flex-1">
+                            <div className="flex items-center gap-2 mb-1">
+                              <span className="text-sm font-medium text-blue-400">{comment.author}</span>
+                              <span className="text-xs text-slate-500">
+                                {comment.createdAt.toLocaleDateString()}
+                              </span>
+                            </div>
+                            <p className="text-sm text-slate-300">{comment.content}</p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                    
+                    {/* Add Comment */}
+                    {isAuthenticated && (
+                      <div className="mt-3 flex gap-2">
+                        <input
+                          type="text"
+                          value={newComment}
+                          onChange={(e) => setNewComment(e.target.value)}
+                          placeholder={t('fanart.addComment')}
+                          className="flex-1 px-3 py-2 bg-slate-700 text-slate-100 rounded text-sm border border-slate-600 focus:border-blue-500 focus:outline-none"
+                          onKeyPress={(e) => {
+                            if (e.key === 'Enter') {
+                              handleAddComment(item.id)
+                            }
+                          }}
+                        />
+                        <button
+                          onClick={() => handleAddComment(item.id)}
+                          disabled={!newComment.trim()}
+                          className="px-3 py-2 bg-blue-600 hover:bg-blue-700 disabled:bg-slate-600 disabled:cursor-not-allowed text-white rounded text-sm transition-colors"
+                        >
+                          <Send className="w-4 h-4" />
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                )}
               </div>
             </div>
           ))}
@@ -649,7 +899,13 @@ const FanArtPage: React.FC = () => {
       ) : (
         <div className="space-y-4">
           {filteredItems.map(item => (
-            <div key={item.id} className="n64-tile bg-slate-800/50 hover:bg-slate-800/70 transition-colors">
+            <div 
+              key={item.id} 
+              id={`fanart-${item.id}`}
+              className={`n64-tile bg-slate-800/50 hover:bg-slate-800/70 transition-colors ${
+                highlightedPostId === item.id ? 'ring-2 ring-rose-500' : ''
+              }`}
+            >
               <div className="flex gap-4">
                 <div className="w-32 h-20 bg-slate-700 rounded-lg overflow-hidden flex-shrink-0">
                   <img 
@@ -693,27 +949,94 @@ const FanArtPage: React.FC = () => {
 
                   <div className="flex items-center justify-between text-sm text-slate-400">
                     <div className="flex items-center gap-4">
-                      <button 
-                        onClick={() => handleLikeArtwork(item.id)}
-                        className="flex items-center gap-1 hover:text-rose-400 transition-colors"
-                        disabled={!isAuthenticated}
+                      {/* Like Button with Heart Icon */}
+                      <div className="relative">
+                        <button 
+                          onClick={() => handleLikeArtwork(item.id)}
+                          className={`flex items-center gap-1 transition-colors ${
+                            !isAuthenticated 
+                              ? 'cursor-not-allowed opacity-50' 
+                              : userLikes.has(item.id)
+                              ? 'text-white hover:text-gray-200'
+                              : 'text-white hover:text-gray-200'
+                          }`}
+                          disabled={!isAuthenticated}
+                        >
+                          <Heart 
+                            className={`w-4 h-4 transition-all ${
+                              userLikes.has(item.id) 
+                                ? 'fill-white text-white scale-110' 
+                                : 'text-white'
+                            }`} 
+                          />
+                          <span className="text-white">{item.likes}</span>
+                        </button>
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <Eye className="w-4 h-4 text-white" />
+                        <span className="text-white">{item.views}</span>
+                      </div>
+                      <button
+                        onClick={() => setShowComments(showComments === item.id ? null : item.id)}
+                        className="flex items-center gap-1 text-white hover:text-gray-200 transition-colors"
                       >
-                        <Heart className="w-4 h-4" />
-                        <span>{item.likes}</span>
+                        <MessageSquare className="w-4 h-4 text-white" />
+                        <span className="text-white">{item.comments}</span>
                       </button>
-                      <div className="flex items-center gap-1">
-                        <Eye className="w-4 h-4" />
-                        <span>{item.views}</span>
-                      </div>
-                      <div className="flex items-center gap-1">
-                        <MessageSquare className="w-4 h-4" />
-                        <span>{item.comments}</span>
-                      </div>
                     </div>
                     <span className="text-xs">
                       {item.createdAt.toLocaleDateString()}
                     </span>
                   </div>
+
+                  {/* Comments Section */}
+                  {showComments === item.id && (
+                    <div className="mt-4 pt-4 border-t border-slate-600">
+                      <div className="space-y-3 max-h-48 overflow-y-auto">
+                        {getCommentsForArtwork(item.id).map(comment => (
+                          <div key={comment.id} className="flex gap-2">
+                            <div className="w-6 h-6 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full flex items-center justify-center text-xs flex-shrink-0">
+                              {comment.author[0].toUpperCase()}
+                            </div>
+                            <div className="flex-1">
+                              <div className="flex items-center gap-2 mb-1">
+                                <span className="text-sm font-medium text-blue-400">{comment.author}</span>
+                                <span className="text-xs text-slate-500">
+                                  {comment.createdAt.toLocaleDateString()}
+                                </span>
+                              </div>
+                              <p className="text-sm text-slate-300">{comment.content}</p>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                      
+                      {/* Add Comment */}
+                      {isAuthenticated && (
+                        <div className="mt-3 flex gap-2">
+                          <input
+                            type="text"
+                            value={newComment}
+                            onChange={(e) => setNewComment(e.target.value)}
+                            placeholder={t('fanart.addComment')}
+                            className="flex-1 px-3 py-2 bg-slate-700 text-slate-100 rounded text-sm border border-slate-600 focus:border-blue-500 focus:outline-none"
+                            onKeyPress={(e) => {
+                              if (e.key === 'Enter') {
+                                handleAddComment(item.id)
+                              }
+                            }}
+                          />
+                          <button
+                            onClick={() => handleAddComment(item.id)}
+                            disabled={!newComment.trim()}
+                            className="px-3 py-2 bg-blue-600 hover:bg-blue-700 disabled:bg-slate-600 disabled:cursor-not-allowed text-white rounded text-sm transition-colors"
+                          >
+                            <Send className="w-4 h-4" />
+                          </button>
+                        </div>
+                      )}
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
@@ -739,7 +1062,7 @@ const FanArtPage: React.FC = () => {
         <UploadModal
           onClose={() => setShowUploadModal(false)}
           onUpload={(newArtwork) => {
-            setFanArtItems(prev => [newArtwork, ...prev])
+            handleNewArtwork(newArtwork)
             setShowUploadModal(false)
           }}
           awardPoints={awardPoints}

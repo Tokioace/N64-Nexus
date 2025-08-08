@@ -5,11 +5,30 @@
 export const TIME_REGEX = /^\d{1,2}:\d{2}\.\d{3}$/
 
 /**
- * Validates if a time string matches the expected format (MM:SS.mmm)
+ * Validates if a time string matches the expected format (MM:SS.mmm or xx:xx:xxx)
+ * Accepts formats like: 1:23.456, 12:34.567, 99:59.999
  */
 export const isValidTimeFormat = (time: string): boolean => {
   if (!time || typeof time !== 'string') return false
-  return TIME_REGEX.test(time.trim())
+  const trimmedTime = time.trim()
+  
+  // Check the main format: MM:SS.mmm (xx:xx:xxx)
+  if (TIME_REGEX.test(trimmedTime)) {
+    // Additional validation to ensure reasonable values
+    const [minutesPart, secondsPart] = trimmedTime.split(':')
+    const [seconds, milliseconds] = secondsPart.split('.')
+    
+    const minutes = parseInt(minutesPart)
+    const secs = parseInt(seconds)
+    const ms = parseInt(milliseconds)
+    
+    // Validate ranges: minutes 0-99, seconds 0-59, milliseconds 0-999
+    return minutes >= 0 && minutes <= 99 && 
+           secs >= 0 && secs <= 59 && 
+           ms >= 0 && ms <= 999
+  }
+  
+  return false
 }
 
 /**
@@ -29,9 +48,8 @@ export const safeFormatTime = (time: string | null | undefined): string => {
       return `${minutes}:${remainingSeconds.padStart(6, '0')}`
     }
     
-    // If we can't parse it, return a safe fallback
-    console.warn(`Invalid time format: ${time}`)
-    return '0:00.000'
+      // If we can't parse it, return a safe fallback
+  return '0:00.000'
   }
   
   return trimmedTime

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState, useEffect } from 'react'
 import { useLanguage } from '../contexts/LanguageContext'
 import { usePoints } from '../contexts/PointsContext'
@@ -6,16 +7,9 @@ import {
   Trophy, 
   Crown, 
   Medal,
-  Star,
   Filter,
-  Globe,
-  Users,
   MapPin,
   Gamepad2,
-  Clock,
-  TrendingUp,
-  Award,
-  Zap,
   Target
 } from 'lucide-react'
 import { N64FanLeaderboardEntry, LeaderboardFilter } from '../types'
@@ -32,7 +26,7 @@ const N64FanLeaderboard: React.FC<N64FanLeaderboardProps> = ({
   compact = false 
 }) => {
   const { t } = useLanguage()
-  const { getLeaderboard, getUserPosition, currentSeason } = usePoints()
+  const { getLeaderboard, getUserPosition } = usePoints()
   const { user } = useUser()
   
   const [filter, setFilter] = useState<LeaderboardFilter>({
@@ -182,7 +176,7 @@ const N64FanLeaderboard: React.FC<N64FanLeaderboardProps> = ({
               </label>
               <select
                 value={filter.type}
-                onChange={(e) => setFilter(prev => ({ ...prev, type: e.target.value as any }))}
+                onChange={(e) => setFilter(prev => ({ ...prev, type: e.target.value as 'global' | 'friends' | 'region' }))}
                 className="w-full bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-slate-100"
               >
                 <option value="global">{t('leaderboard.filterGlobal')}</option>
@@ -198,7 +192,7 @@ const N64FanLeaderboard: React.FC<N64FanLeaderboardProps> = ({
               </label>
               <select
                 value={filter.timeframe}
-                onChange={(e) => setFilter(prev => ({ ...prev, timeframe: e.target.value as any }))}
+                onChange={(e) => setFilter(prev => ({ ...prev, timeframe: e.target.value as 'allTime' | 'season' | 'month' }))}
                 className="w-full bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-slate-100"
               >
                 <option value="allTime">{t('leaderboard.timeframeAllTime')}</option>
@@ -216,7 +210,7 @@ const N64FanLeaderboard: React.FC<N64FanLeaderboardProps> = ({
                 value={filter.region || 'all'}
                 onChange={(e) => setFilter(prev => ({ 
                   ...prev, 
-                  region: e.target.value === 'all' ? undefined : e.target.value as any 
+                  region: e.target.value === 'all' ? undefined : e.target.value as 'PAL' | 'NTSC' 
                 }))}
                 className="w-full bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-slate-100"
               >
@@ -251,7 +245,7 @@ const N64FanLeaderboard: React.FC<N64FanLeaderboardProps> = ({
       <div className="simple-tile">
         <div className="space-y-2">
           {leaderboard.length > 0 ? (
-            leaderboard.map((entry, index) => (
+            leaderboard.map((entry, _index) => (
               <div
                 key={entry.userId}
                 className={`leaderboard-entry hover:scale-[1.02] ${
@@ -323,11 +317,11 @@ const N64FanLeaderboard: React.FC<N64FanLeaderboardProps> = ({
                   {/* Medals */}
                   {entry.medals.length > 0 && (
                     <div className="flex items-center justify-end gap-1 mt-1">
-                      {entry.medals.slice(0, 3).map((medal, medalIndex) => (
+                                                {entry.medals.slice(0, 3).map((medal, _medalIndex) => (
                         <span
                           key={medal.id}
                           className="text-sm"
-                          title={`${t(medal.medalKey as any)} - ${medal.season}`}
+                                                                                                             title={`${t(medal.medalKey as any)} - ${medal.season}`}
                         >
                           {getMedalIcon(medal.medalKey)}
                         </span>

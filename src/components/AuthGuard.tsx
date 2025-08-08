@@ -1,79 +1,61 @@
-import React, { ReactNode } from 'react'
+import React from 'react'
 import { useUser } from '../contexts/UserContext'
-import { useLanguage } from '../contexts/LanguageContext'
-import { Link } from 'react-router-dom'
-import { Lock, LogIn, UserPlus } from 'lucide-react'
+import { useNavigate } from 'react-router-dom'
+import { Gamepad2, LogIn } from 'lucide-react'
 
 interface AuthGuardProps {
-  children: ReactNode
-  requireAuth?: boolean
-  blurContent?: boolean
-  showLoginPrompt?: boolean
-  customMessage?: string
-  className?: string
+  children: React.ReactNode
+  fallback?: React.ReactNode
 }
 
-const AuthGuard: React.FC<AuthGuardProps> = ({
-  children,
-  requireAuth = true,
-  blurContent = true,
-  showLoginPrompt = true,
-  customMessage,
-  className = ''
-}) => {
-  const { isAuthenticated } = useUser()
-  const { t } = useLanguage()
+const AuthGuard: React.FC<AuthGuardProps> = ({ children, fallback }) => {
+  const { isAuthenticated, isLoading } = useUser()
+  const navigate = useNavigate()
 
-  if (!isAuthenticated && requireAuth) {
+  // Zeige Loading während Auth-Status geladen wird
+  if (isLoading) {
     return (
-      <div className={`simple-tile text-center py-12 ${className}`}>
-        <LogIn className="w-16 h-16 text-slate-600 mx-auto mb-4" />
-        <h3 className="text-xl font-semibold text-slate-300 mb-2">
-          {t('auth.loginRequired')}
-        </h3>
-        <p className="text-slate-400 mb-6">
-          {customMessage || t('auth.loginRequiredMessage')}
-        </p>
-        {showLoginPrompt && (
-          <Link 
-            to="/auth" 
-            className="btn-primary inline-flex items-center gap-2"
-          >
-            <LogIn className="w-4 h-4" />
-            {t('auth.loginHere')}
-          </Link>
-        )}
-      </div>
-    )
-  }
-
-  if (!isAuthenticated && !requireAuth && blurContent) {
-    return (
-      <div className={`relative ${className}`}>
-        <div className="filter blur-sm pointer-events-none">
-          {children}
-        </div>
-        {showLoginPrompt && (
-          <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">
-            <div className="simple-tile text-center p-8">
-              <Lock className="w-12 h-12 text-slate-400 mx-auto mb-4" />
-              <h3 className="text-lg font-semibold text-slate-300 mb-4">
-                {customMessage || t('auth.enhancedExperienceMessage')}
-              </h3>
-              <Link 
-                to="/auth" 
-                className="btn-primary inline-flex items-center gap-2"
-              >
-                <LogIn className="w-4 h-4" />
-                {t('auth.loginHere')}
-              </Link>
-            </div>
+      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900 flex items-center justify-center">
+        <div className="text-center">
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-600 rounded-full mb-4 animate-pulse">
+            <Gamepad2 className="w-8 h-8 text-white" />
           </div>
-        )}
+          <p className="text-slate-300">Authentifizierung wird überprüft...</p>
+        </div>
       </div>
     )
   }
 
+  // Wenn nicht authentifiziert, zeige Fallback oder Login-Aufforderung
+  if (!isAuthenticated) {
+    if (fallback) {
+      return <>{fallback}</>
+    }
+
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900 flex items-center justify-center px-4">
+        <div className="simple-tile p-8 text-center max-w-md w-full">
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-600 rounded-full mb-6">
+            <LogIn className="w-8 h-8 text-white" />
+          </div>
+          <h2 className="text-2xl font-bold text-slate-100 mb-4">
+            Anmeldung erforderlich
+          </h2>
+          <p className="text-slate-300 mb-6">
+            Du musst angemeldet sein, um diese Seite zu besuchen.
+          </p>
+          <button
+            onClick={() => navigate('/auth')}
+            className="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors"
+          >
+            Jetzt anmelden
+          </button>
+        </div>
+      </div>
+    )
+  }
+
+  // Wenn authentifiziert, zeige geschützten Inhalt
   return <>{children}</>
 }
 

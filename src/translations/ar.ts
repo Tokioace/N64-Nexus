@@ -16,6 +16,7 @@ const ar = {
   'nav.fanart': 'فن المعجبين',
   'nav.newsfeed': 'تغذية الأخبار',
   'nav.community': 'المجتمع',
+  'nav.map': 'Battle64 Map',
 
   // Home Screen - الشاشة الرئيسية
   'home.subtitle': 'مجتمع N64 لجيل الألفية',
@@ -32,6 +33,86 @@ const ar = {
   'home.friends.subtitle': 'الشبكة الاجتماعية',
   'home.fanart.subtitle': 'الإبداع',
   'home.newsfeed.subtitle': 'التحديثات',
+  'home.map.subtitle': 'المعارك المحلية',
+
+  // Battle64 Map - خريطة باتل64
+  'map.title': 'Battle64 Map',
+  'map.subtitle': 'معارك العالم الحقيقي والمطابقة الجغرافية',
+  'map.hostEvent': 'استضافة معركة محلية لـ4 لاعبين',
+  'map.selectGame': 'اختر اللعبة',
+  'map.chooseGame': 'اختر لعبة...',
+  'map.eventTitle': 'عنوان الحدث',
+  'map.eventTitlePlaceholder': 'بطولة سباق نهاية الأسبوع',
+  'map.description': 'الوصف',
+  'map.descriptionPlaceholder': 'البروجيكتور متاح، أحضروا أذرع التحكم الخاصة بكم!',
+  'map.date': 'التاريخ',
+  'map.time': 'الوقت',
+  'map.region': 'المنطقة/المدينة',
+  'map.regionPlaceholder': 'الرياض',
+  'map.postalCode': 'الرمز البريدي',
+  'map.postalCodePlaceholder': '11564',
+  'map.maxPlayers': 'أقصى عدد لاعبين',
+  'map.players': 'لاعبين',
+  'map.privacy': 'الخصوصية',
+  'map.publicEvent': 'حدث عام',
+  'map.privateEvent': 'حدث خاص (رمز الدعوة)',
+  'map.inviteCodePlaceholder': 'أدخل رمز الدعوة',
+  'map.createEvent': 'إنشاء حدث',
+  'map.worldMap': 'خريطة العالم',
+  'map.activeEvents': 'أحداث نشطة',
+  'map.upcomingEvents': 'الأحداث القادمة',
+  'map.activeUsers': 'المستخدمون النشطون',
+  'map.yourLocation': 'موقعك',
+  'map.nearbyEvents': 'الأحداث القريبة (30 كم)',
+  'map.noNearbyEvents': 'لم يتم العثور على أحداث قريبة',
+  'map.globalStats': 'الإحصائيات العالمية',
+  'map.totalUsers': 'إجمالي المستخدمين',
+  'map.totalEvents': 'إجمالي الأحداث',
+  'map.eventDetails': 'تفاصيل الحدث',
+  'map.hostedBy': 'استضافة بواسطة',
+  'map.joinEvent': 'انضم للحدث',
+  'map.countryDetails': 'تفاصيل البلد',
+  'map.countryForum': 'منتدى البلد',
+  'map.welcome': 'مرحباً بك في Battle64 Map',
+  'map.welcomeDescription': 'اكتشف وانضم إلى معارك N64 الحقيقية في منطقتك!',
+  'map.clickCountry': 'انقر على بلد لرؤية المجتمع المحلي',
+  'map.viewEvents': 'عرض الأحداث والبطولات القادمة',
+  'map.hostYourOwn': 'استضف معركتك المحلية الخاصة',
+  'map.allEvents': 'جميع الأحداث',
+  'map.noEvents': 'لم يتم العثور على أحداث',
+  'map.filters': 'المرشحات',
+  'map.game': 'اللعبة',
+  'map.allGames': 'جميع الألعاب',
+  'map.distance': 'المسافة',
+  'map.noLimit': 'بلا حدود',
+  'map.locationRequired': 'مطلوب الوصول إلى الموقع للانضمام إلى الأحداث',
+  'map.eventTooFar': 'الحدث على بعد {distance}كم، لكن حدك هو {limit}كم',
+  'map.away': 'بعيدًا',
+  'map.countryStats': 'إحصائيات البلد',
+  'map.clickToHost': 'انقر على الخريطة لاستضافة حدث',
+  'map.tooFarToJoin': 'بعيد جداً للانضمام',
+  'map.youJoined': 'لقد انضممت إلى الحدث!',
+  'map.hostedSuccessfully': 'تم إنشاء الحدث بنجاح!',
+  'map.radiusDisplay': 'إظهار نطاق البحث',
+  'map.yourRadius': 'نصف قطرك: {radius}كم',
+  'map.pulsing': 'حدث مباشر',
+  'map.joinableEvent': 'حدث قابل للانضمام',
+  'map.nightMode': 'الوضع الليلي',
+  'map.dayMode': 'الوضع النهاري',
+  'map.enableNightMode': 'تفعيل الوضع الليلي',
+  'map.disableNightMode': 'إلغاء الوضع الليلي',
+  'map.showMenu': 'إظهار القائمة',
+  'map.hideMenu': 'إخفاء القائمة',
+  'map.hostingTooFar': 'الموقع بعيد جداً عن موقعك لإنشاء حدث',
+  'map.updateLocation': 'تحديث الموقع',
+  'map.youAreHere': 'أنت هنا',
+  'map.showLegend': 'إظهار وسيلة الإيضاح',
+  'map.hideLegend': 'إخفاء وسيلة الإيضاح',
+  'event.type.casual': 'مباراة عادية',
+  'event.type.tournament': 'بطولة',
+  'event.type.speedrun': 'جلسة سبيدران',
+  'event.type.meetup': 'لقاء',
+  'event.category': 'فئة الحدث',
 
   // Common - عام
   'common.welcome': 'مرحباً',
@@ -48,6 +129,7 @@ const ar = {
   'common.back': 'رجوع',
   'common.next': 'التالي',
   'common.previous': 'السابق',
+  'common.more': 'more',
   'common.search': 'بحث',
   'common.filter': 'تصفية',
   'common.sort': 'ترتيب',
@@ -101,6 +183,7 @@ const ar = {
   // Events - الأحداث
   'events.title': 'الأحداث',
   'events.subtitle': 'البطولات والتحديات وأحداث المجتمع',
+  'events.practiceChampionshipSubtitle': 'Practice Beta Championship #1',
   'events.upcoming': 'الأحداث القادمة',
   'events.active': 'الأحداث النشطة',
   'events.completed': 'الأحداث المكتملة',
@@ -116,6 +199,9 @@ const ar = {
   'events.timeRemaining': 'الوقت المتبقي',
   'events.ended': 'انتهى',
   'events.notStarted': 'لم يبدأ بعد',
+  'events.game': 'اللعبة',
+  'events.track': 'المسار',
+  'events.time': 'الوقت',
 
   // Forum - المنتدى
   'forum.title': 'المنتدى',
@@ -230,7 +316,7 @@ const ar = {
   'media.urlInput': 'إدخال رابط',
   'media.title': 'العنوان',
   'media.titleRequired': 'العنوان *',
-  'media.titlePlaceholder': 'مثال: محاولة رقم قياسي عالمي 120 نجمة',
+  'media.titlePlaceholder': 'مثال: محاولة الرقم القياسي العالمي 120 نجمة',
   'media.game': 'اللعبة',
   'media.streamTitle': 'عنوان البث',
   'media.description': 'الوصف',
@@ -247,7 +333,7 @@ const ar = {
   'media.uploadedOn': 'رفع في',
 
   // Placeholders - النصوص التوضيحية
-  'placeholder.speedrunTitle': 'مثال: ماريو 64 سباق سريع 120 نجمة',
+  'placeholder.speedrunTitle': 'مثال: ماريو 64 120 نجمة سرعة',
   'placeholder.speedrunUrl': 'https://twitch.tv/قناتك',
   'placeholder.speedrunGame': 'مثال: سوبر ماريو 64',
   'placeholder.mediaSearch': 'البحث بالعنوان أو الوصف أو العلامات...',
@@ -332,7 +418,7 @@ const ar = {
   'minigames.available': 'متاح',
   'minigames.games': 'الألعاب',
   'minigames.bestScore': 'أفضل نتيجة',
-  'minigames.globalLeaderboard': 'لوحة المتصدرين العالمية',
+  'minigames.globalLeaderboard': 'قائمة المتصدرين العالمية',
   'minigames.globalLeaderboardDesc': 'شاهد أفضل اللاعبين حول العالم',
   'minigames.viewLeaderboards': 'عرض لوحات المتصدرين',
   'minigames.tournamentsTitle': 'البطولات',
@@ -550,8 +636,9 @@ const ar = {
   'events.notificationsActive': 'الإشعارات نشطة',
   'events.enableNotifications': 'تفعيل الإشعارات',
   'events.participating': 'مشارك',
-  'events.join': 'انضمام',
+  'events.join': 'انضم',
   'events.leaderboard': 'لوحة المتصدرين',
+  'events.currentEvent': 'الحدث الحالي',
 
   'notifications.enabled': 'تم تفعيل الإشعارات',
   'notifications.denied': 'تم رفض الإشعارات',
@@ -672,7 +759,7 @@ const ar = {
   'chat.rules.noLinks': 'لا للروابط الخارجية بدون إذن',
 
   // Event submission - إرسال الأحداث
-  'placeholder.raceTime': 'أدخل الوقت (مثال 1:23:45)...',
+  'placeholder.raceTime': 'أدخل الوقت (مثال: 1:23:45)...',
   'events.timeFormat': 'التنسيق: ساعات:دقائق:ثواني',
   'events.selectDocumentation': 'اختر التوثيق',
   'events.photo': 'صورة',
@@ -778,6 +865,28 @@ const ar = {
   'rank.nextRank': 'الترتيب التالي',
   'rank.maxRank': 'تم الوصول للترتيب الأقصى',
 
+  // Cool Rank Titles (20 Levels) - ألقاب الترتيب الرائعة
+  'Pixel Rookie': 'مبتدئ البكسل',
+  'Button Masher': 'محطم الأزرار',
+  'Cartridge Hunter': 'صياد الخراطيش',
+  'Console Explorer': 'مستكشف الكونسول',
+  'Retro Enthusiast': 'عاشق الألعاب القديمة',
+  'Speed Demon': 'شيطان السرعة',
+  'High Score Hero': 'بطل النقاط العالية',
+  'Gem Collector': 'جامع الأحجار الكريمة',
+  'Fortress Conqueror': 'فاتح الحصون',
+  'Retro Kingdom Elite': 'نخبة المملكة الكلاسيكية',
+  'Galaxy Guardian': 'حارس المجرة',
+  'Time Trial Master': 'سيد التجارب الزمنية',
+  'Portal Zone Warrior': 'محارب منطقة البوابات',
+  'Boss Battle Champion': 'بطل معارك الزعماء',
+  'Secret Level Sage': 'حكيم المستويات السرية',
+  'Golden Controller God': 'إله الكونترولر الذهبي',
+  'Dimension Destroyer': 'مدمر الأبعاد',
+  'Reality Bender': 'ثاني الواقع',
+  'Retro Overlord': 'السيد الكلاسيكي الأعظم',
+  'Ultimate Gaming Legend': 'أسطورة الألعاب النهائية',
+
   // Profile activity - نشاط الملف الشخصي
   'profile.activityHistory': 'تاريخ النشاط',
   'profile.achievedOn': 'تم تحقيقه في',
@@ -867,6 +976,13 @@ const ar = {
 
   // Mobile event winner - فائز الحدث للهاتف المحمول
   'events.mobile.winner': 'الفائز',
+  
+  // Best Lap Showcase
+  'events.bestLap.title': 'أفضل لفة',
+  'events.bestLap.photoAlt': 'لقطة شاشة لأفضل لفة بواسطة {username} بوقت {time}',
+  'events.bestLap.livestreamTitle': 'البث المباشر لأفضل لفة',
+  'events.bestLap.livestreamDesc': 'شاهد البث المباشر لحامل الرقم القياسي',
+  'events.bestLap.watchStream': 'مشاهدة البث',
 
   // Live chat - الدردشة المباشرة
   'ui.liveChat': 'الدردشة المباشرة',
@@ -892,6 +1008,10 @@ const ar = {
   'home.hoursRemaining': '{hours} ساعة متبقية',
   'home.replies': '{count} ردود',
   'home.verifiedStatus': '✓ محقق',
+  'home.watchStream': 'مشاهدة البث',
+  'home.clickToViewFull': 'انقر للعرض بالحجم الكامل',
+  'home.clickToWatch': 'انقر للمشاهدة',
+  'home.noMediaSubmitted': 'لم يتم إرسال وسائط',
 
   // News items - عناصر الأخبار
   'news.mariokartRecord': '🏆 تم كسر الرقم القياسي العالمي لـ Mario Kart 64 Speedrun!',
@@ -911,7 +1031,346 @@ const ar = {
   'news.speedrunCategory': '🔥 فئة سباق جديدة: Any%',
   'news.speedrunCategoryContent': 'لقد أضفنا فئة Any% جديدة لـ Banjo-Kazooie. انضم الآن!',
   'news.monthlyChallenge': '🏆 فائز التحدي الشهري',
-  'news.monthlyChallengeContent': 'تهانينا لـ N64Master لفوزه بتحدي أكتوبر الشهري!'
+  'news.monthlyChallengeContent': 'تهانينا لـ N64Master لفوزه بتحدي أكتوبر الشهري!',
+
+  // Live Events - Mario Kart 64 Luigi's Raceway
+  'events.mk64LuigisRaceway.title': '🏁 ماريو كارت 64: تحدي السرعة في حلبة لويجي',
+  'events.mk64LuigisRaceway.description': 'أظهر سرعتك في حلبة لويجي الأسطورية! شهر من المنافسة الشديدة بأسلوب جران توريزمو 7.',
+  'events.mk64LuigisRaceway.category': 'سباق ضد الوقت',
+  'events.mk64LuigisRaceway.rule1': '🎮 حلبة لويجي - هذه الحلبة فقط مسموحة',
+  'events.mk64LuigisRaceway.rule2': '🌍 إصدارات PAL و NTSC مسموحة',
+  'events.mk64LuigisRaceway.rule3': '🚫 لا يُسمح بالأخطاء أو الطرق المختصرة',
+  'events.mk64LuigisRaceway.rule4': '📹 مطلوب إثبات بالفيديو أو لقطة الشاشة',
+  'events.mk64LuigisRaceway.rule5': '⏱️ أفضل وقت لكل لاعب يُحتسب',
+  'events.mk64LuigisRaceway.prize1': '🥇 المركز الأول: 500 نقطة Battle64 + ميدالية ذهبية + لقب حصري',
+  'events.mk64LuigisRaceway.prize2': '🥈 المركز الثاني: 300 نقطة Battle64 + ميدالية فضية',
+  'events.mk64LuigisRaceway.prize3': '🥉 المركز الثالث: 200 نقطة Battle64 + ميدالية برونزية',
+  'events.mk64LuigisRaceway.prizeTop10': '🏆 أفضل 10: نقاط بأسلوب F1 (25-18-15-12-10-8-6-4-2-1)',
+  'events.mk64LuigisRaceway.prizeParticipation': '🎯 جائزة المشاركة: 5 نقاط Battle64 لكل مشارك',
+
+  // Live Events - San Francisco Rush Downtown
+  'events.sfrDowntown.title': '🏙️ سان فرانسيسكو راش: بطولة سباق وسط المدينة',
+  'events.sfrDowntown.description': 'اسرع في شوارع وسط مدينة سان فرانسيسكو! حدث سباق متطرف لمدة شهر كامل.',
+  'events.sfrDowntown.category': 'سباق الحلبة',
+  'events.sfrDowntown.rule1': '🏙️ حلبة وسط المدينة - هذه الحلبة فقط مسموحة',
+  'events.sfrDowntown.rule2': '🎮 يُفضل جهاز N64 الأصلي',
+  'events.sfrDowntown.rule3': '🚗 جميع المركبات مسموحة',
+  'events.sfrDowntown.rule4': '📱 مطلوب إثبات بالفيديو أو لقطة الشاشة',
+  'events.sfrDowntown.rule5': '🏁 أسرع وقت لفة يفوز',
+  'events.sfrDowntown.prize1': '🥇 المركز الأول: 500 نقطة Battle64 + لقب بطل راش',
+  'events.sfrDowntown.prize2': '🥈 المركز الثاني: 300 نقطة Battle64 + سيد وسط المدينة',
+  'events.sfrDowntown.prize3': '🥉 المركز الثالث: 200 نقطة Battle64 + متسابق الشارع',
+  'events.sfrDowntown.prizeTop10': '🏆 أفضل 10: نقاط بأسلوب F1 (25-18-15-12-10-8-6-4-2-1)',
+  'events.sfrDowntown.prizeParticipation': '🎯 جائزة المشاركة: 5 نقاط Battle64 لكل مشارك',
+
+  // Live Events - Diddy Kong Racing Ancient Lake
+  'events.dkrAncientLake.title': '🦍 ديدي كونغ ريسنغ: سباق ضد الوقت في البحيرة القديمة',
+  'events.dkrAncientLake.description': 'اغزُ البحيرة القديمة الغامضة! منافسة أسطورية في كلاسيكية Rare لعشاق N64 الحقيقيين.',
+  'events.dkrAncientLake.category': 'سباق ضد الوقت',
+  'events.dkrAncientLake.rule1': '🏞️ البحيرة القديمة - هذه الحلبة فقط مسموحة',
+  'events.dkrAncientLake.rule2': '🏎️ جميع المركبات مسموحة (سيارة، زورق هوائي، طائرة)',
+  'events.dkrAncientLake.rule3': '🎮 إصدارات PAL و NTSC مقبولة',
+  'events.dkrAncientLake.rule4': '📹 مطلوب إثبات بالفيديو أو لقطة الشاشة',
+  'events.dkrAncientLake.rule5': '⚡ أفضل لفة مفردة تُحتسب',
+  'events.dkrAncientLake.prize1': '🥇 المركز الأول: 500 نقطة Battle64 + لقب بطل كونغ',
+  'events.dkrAncientLake.prize2': '🥈 المركز الثاني: 300 نقطة Battle64 + سيد البحيرة',
+  'events.dkrAncientLake.prize3': '🥉 المركز الثالث: 200 نقطة Battle64 + متسابق قديم',
+  'events.dkrAncientLake.prizeTop10': '🏆 أفضل 10: نقاط بأسلوب F1 (25-18-15-12-10-8-6-4-2-1)',
+  'events.dkrAncientLake.prizeParticipation': '🎯 المشاركة: 5 نقاط Battle64 لكل مشارك',
+
+  // Home Ranking Section
+  'home.yourRanking': 'ترتيبك',
+
+  // Ranking System
+  'ranking.globalRank': 'الترتيب العالمي',
+  'ranking.totalPoints': 'إجمالي النقاط',
+  'ranking.currentLevel': 'المستوى الحالي',
+  'ranking.rankProgress': 'RankPR',
+  'ranking.allTime': 'كل الأوقات',
+  'ranking.seasonRank': 'ترتيب الموسم',
+  'ranking.currentSeason': 'الموسم الحالي',
+  'ranking.levelProgress': 'تقدم المستوى',
+  'ranking.totalXP': 'إجمالي الخبرة',
+  'ranking.achievements': 'الإنجازات',
+  'ranking.verifiedRecords': 'الأرقام القياسية المؤكدة',
+  'ranking.gamesOwned': 'الألعاب المملوكة',
+
+  // Profile Ranking
+  'profile.ranking': 'الترتيب',
+  'profile.globalRanking': 'الترتيب العالمي',
+  'profile.rankingStats': 'إحصائيات الترتيب',
+
+  // FanArt Comments
+  'fanart.addComment': 'إضافة تعليق...',
+
+  // Interaction System
+  'interaction.like': 'إعجاب',
+  'interaction.unlike': 'إلغاء الإعجاب',
+  'interaction.comments': 'تعليقات',
+  'interaction.addComment': 'إضافة تعليق',
+  'interaction.writeComment': 'اكتب تعليقاً...',
+  'interaction.loginToLike': 'تسجيل الدخول للإعجاب',
+  'interaction.loginToComment': 'تسجيل الدخول للتعليق',
+  'interaction.viewCount': 'View count',
+  'interaction.showComments': 'Show comments',
+
+  // Time
+  'time.justNow': 'الآن',
+
+  // Media types
+  'media.photo': 'صورة',
+  'media.video': 'فيديو',
+  'media.noMediaTooltip': 'No media yet – upload your video or screenshot to verify run',
+
+  // Event Card specific translations
+  'events.likes': 'إعجابات',
+  'events.views': 'مشاهدات', 
+  'events.comments': 'تعليقات',
+
+  // PWA Installation Prompt
+  'pwa.installTitle': 'تثبيت Battle64',
+  'pwa.installDescription': 'احصل على تجربة التطبيق الكاملة مع الوصول دون اتصال والتحميل السريع!',
+  'pwa.install': 'تثبيت التطبيق',
+  'pwa.gotIt': 'فهمت!',
+  'pwa.iosStep1': 'اضغط على زر المشاركة',
+  'pwa.iosStep2': 'ثم "إضافة إلى الشاشة الرئيسية"',
+  'common.later': 'لاحقاً',
+
+  // Offline Functionality
+  'offline.workingOffline': 'العمل في وضع عدم الاتصال',
+  'offline.backOnline': 'العودة متصلاً!',
+  'offline.cachedDataAvailable': 'البيانات المخزنة متاحة',
+  'offline.cachedData': 'البيانات المخزنة',
+
+  // Enhanced Chat
+  'chat.communityChat': 'دردشة المجتمع',
+  'chat.activeUsers': 'المستخدمون النشطون',
+  'chat.loading': 'تحميل الرسائل...',
+  'chat.noMessages': 'لا توجد رسائل حتى الآن',
+  'chat.startConversation': 'كن أول من يبدأ المحادثة!',
+  'chat.typeMessage': 'اكتب رسالة...',
+  'chat.emoji': 'إضافة رمز تعبيري',
+  'chat.scrollToBottom': 'انتقل للأسفل',
+  'chat.errorLoading': 'خطأ في تحميل الرسائل',
+  'time.today': 'اليوم',
+  'time.yesterday': 'أمس',
+
+  // Realtime Events
+  'events.nowLive': 'الحدث مباشر الآن!',
+  'realtime.connected': 'الاتصال المباشر نشط',
+  'realtime.disconnected': 'الاتصال المباشر منقطع',
+  'realtime.reconnecting': 'إعادة الاتصال...',
+  'realtime.newUpdate': 'تحديثات مباشرة جديدة متاحة',
+  'realtime.leaderboard.updated': 'تم تحديث لوحة المتصدرين',
+  'realtime.points.updated': 'تم تحديث النقاط',
+  'realtime.participant.joined': 'انضم مشارك جديد',
+  'realtime.participant.left': 'غادر المشارك',
+  'realtime.event.started': 'بدأ الحدث',
+  'realtime.event.finished': 'انتهى الحدث',
+
+  // PWA Installation
+  'pwa.install.button': 'تثبيت التطبيق',
+  'pwa.install.banner.title': 'تثبيت Battle64 كتطبيق',
+  'pwa.install.banner.description': 'وصول أسرع وأداء أفضل',
+  'pwa.install.modal.title': 'تثبيت التطبيق على الجهاز',
+  'pwa.install.modal.description': 'قم بتثبيت Battle64 للحصول على تجربة تطبيق أصلي مع الوصول دون اتصال والإشعارات الفورية.',
+  'pwa.install.ios.title': 'إضافة إلى الشاشة الرئيسية',
+  'pwa.install.ios.step1': 'اضغط على زر المشاركة في أسفل المتصفح',
+  'pwa.install.ios.step2': 'مرر لأسفل واختر "إضافة إلى الشاشة الرئيسية"',
+  'pwa.install.ios.step3': 'اضغط على "إضافة" لتثبيت التطبيق',
+
+  // Battle Map
+  'battleMap.title': 'خريطة Battle64',
+  'battleMap.liveEvents': 'الأحداث المباشرة',
+  'battleMap.participants': 'المشاركون',
+  'battleMap.nearbyPlayers': 'اللاعبون القريبون',
+  'battleMap.joinEvent': 'انضمام للحدث',
+  'battleMap.leaveEvent': 'مغادرة الحدث',
+  'battleMap.distance': 'المسافة',
+  'battleMap.radius': 'نطاق',
+  'battleMap.location.share': 'مشاركة الموقع',
+  'battleMap.location.required': 'الوصول للموقع مطلوب',
+  'battleMap.location.notSupported': 'تحديد الموقع الجغرافي غير مدعوم في هذا المتصفح',
+  'battleMap.yourLocation': 'موقعك',
+  'battleMap.noEvents': 'لا توجد أحداث مباشرة قريبة',
+  'battleMap.participantCount': 'المشاركون',
+
+  // Live Leaderboard
+  'leaderboard.live': 'لوحة المتصدرين المباشرة',
+  'leaderboard.updating': 'جاري التحديث...',
+  'leaderboard.lastUpdate': 'آخر تحديث',
+  'leaderboard.points.live': 'النقاط المباشرة',
+  'leaderboard.rank.changed': 'تغير الترتيب',
+  'leaderboard.newRecord': 'رقم قياسي جديد!',
+
+  // GDPR Realtime
+  'gdpr.realtime.title': 'الميزات المباشرة',
+  'gdpr.realtime.description': 'تفعيل التحديثات المباشرة للوحة المتصدرين والأحداث والدردشة',
+  'gdpr.realtime.enable': 'تفعيل التحديثات المباشرة',
+  'gdpr.realtime.disable': 'إلغاء التحديثات المباشرة',
+  'gdpr.location.title': 'الوصول للموقع',
+  'gdpr.location.description': 'شارك موقعك للأحداث المحلية والمشاركين القريبين',
+  'gdpr.location.enable': 'تفعيل الموقع',
+  'gdpr.location.disable': 'إلغاء الموقع',
+
+  // Offline Mode
+  'offline.title': 'وضع عدم الاتصال',
+  'offline.description': 'أنت غير متصل. بعض الميزات محدودة.',
+  'offline.cached': 'عرض المحتوى المحفوظ',
+  'offline.retry': 'إعادة المحاولة',
+
+  // Common - New additions
+  'common.understood': 'مفهوم',
+  'common.success': 'نجح',
+  // Settings
+  'settings.privacy.title': 'إعدادات الخصوصية',
+  'settings.notifications.title': 'إعدادات الإشعارات',
+  'settings.notifications.description': 'إدارة تفضيلات الإشعارات',
+
+  // GDPR Notice
+  'gdpr.notice.title': 'إشعار الخصوصية',
+  'gdpr.notice.description': 'نحن نحترم خصوصيتك ونتبع إرشادات GDPR لحماية البيانات',
+
+  // الشروط القانونية والامتثال
+  'legal.ageVerification': 'التحقق من العمر',
+  'legal.birthDate': 'تاريخ الميلاد',
+  'legal.birthDateRequired': 'تاريخ الميلاد مطلوب',
+  'legal.mustBe18': 'يجب أن تكون 18 سنة أو أكثر لاستخدام Battle64',
+  'legal.ageConfirmation': 'أنا أكبر من 18 سنة وأوافق على شروط الخدمة',
+  'legal.ageConfirmationRequired': 'تأكيد العمر مطلوب',
+  'legal.termsOfService': 'شروط الخدمة',
+  'legal.privacyPolicy': 'سياسة الخصوصية',
+  'legal.termsAcceptance': 'أوافق على شروط الخدمة',
+  'legal.privacyAcceptance': 'أوافق على سياسة الخصوصية',
+  'legal.copyrightAcknowledgment': 'أؤكد أنني أملك حقوق أي محتوى أرفعه ولن أنتهك أي حقوق طبع ونشر',
+  'legal.allAgreementsRequired': 'جميع الاتفاقيات القانونية مطلوبة',
+  'legal.nintendoDisclaimer': 'Battle64 غير مرتبط بنينتندو. جميع العلامات التجارية المذكورة هي ملك لأصحابها المعنيين.',
+  'legal.adultOnlyPlatform': 'Battle64 مخصص للمستخدمين 18 سنة فأكثر فقط',
+  'legal.readTerms': 'اقرأ شروط الخدمة',
+  'legal.readPrivacy': 'اقرأ سياسة الخصوصية',
+  
+  // محتوى شروط الخدمة
+  'terms.title': 'شروط الخدمة',
+  'terms.lastUpdated': 'آخر تحديث: {date}',
+  'terms.section1.title': '1. قبول الشروط',
+  'terms.section1.content': 'بإنشاء حساب واستخدام Battle64، فإنك توافق على شروط الخدمة هذه. إذا كنت لا توافق، فلا يمكنك استخدام منصتنا.',
+  'terms.section2.title': '2. متطلبات العمر',
+  'terms.section2.content': 'Battle64 مخصص حصرياً للمستخدمين 18 سنة فأكثر. بالتسجيل، تؤكد أن عمرك 18 سنة على الأقل.',
+  'terms.section3.title': '3. مسؤولية المستخدم',
+  'terms.section3.content': 'أنت تستخدم Battle64 على مسؤوليتك الخاصة. أنت مسؤول عن جميع المحتوى الذي ترفعه وجميع التفاعلات مع المستخدمين الآخرين.',
+  'terms.section4.title': '4. اللقاءات والتفاعلات',
+  'terms.section4.content': 'اللقاءات والتفاعلات في العالم الحقيقي بين المستخدمين خارج نطاق مسؤولية Battle64. كن حذراً عند مقابلة الغرباء.',
+  'terms.section5.title': '5. مسؤولية المحتوى',
+  'terms.section5.content': 'المستخدمون مسؤولون عن المحتوى الذي يرفعونه. Battle64 غير مسؤول عن المحتوى المُنشأ من قبل المستخدمين.',
+  'terms.section6.title': '6. المحتوى المحظور',
+  'terms.section6.content': 'يشمل المحتوى المحظور العنف والعري وخطاب الكراهية والمواد غير القانونية وانتهاك حقوق الطبع والنشر. المخالفات تؤدي إلى تعليق الحساب.',
+  'terms.section7.title': '7. حقوق طبع ونشر نينتندو',
+  'terms.section7.content': 'Battle64 غير مرتبط بنينتندو. لا ترفع شعارات نينتندو أو أغلفة N64 الأصلية أو ملفات ROM.',
+  'terms.section8.title': '8. إنهاء الحساب',
+  'terms.section8.content': 'نحتفظ بالحق في إنهاء الحسابات لانتهاك شروط الخدمة دون إشعار مسبق.',
+  
+  // محتوى سياسة الخصوصية
+  'privacy.title': 'سياسة الخصوصية',
+  'privacy.lastUpdated': 'آخر تحديث: {date}',
+  'privacy.section1.title': '1. البيانات التي نجمعها',
+  'privacy.section1.content': 'نحن نخزن بيانات الملف الشخصي والأحداث وسباقات السرعة ورفع الوسائط وتحليلات الاستخدام لتقديم خدمتنا.',
+  'privacy.section2.title': '2. تخزين البيانات',
+  'privacy.section2.content': 'يتم تخزين البيانات عبر Supabase مع خوادم في الولايات المتحدة والاتحاد الأوروبي. بياناتك مشفرة وآمنة.',
+  'privacy.section3.title': '3. مشاركة البيانات',
+  'privacy.section3.content': 'لا نشارك بياناتك الشخصية مع أطراف ثالثة، إلا عند طلب القانون.',
+  'privacy.section4.title': '4. ملفات تعريف الارتباط',
+  'privacy.section4.content': 'نستخدم ملفات تعريف ارتباط ضرورية للوظائف وملفات اختيارية للتحليلات بموافقتك.',
+  'privacy.section5.title': '5. حقوقك (GDPR)',
+  'privacy.section5.content': 'لديك الحق في الوصول إلى بياناتك وتعديلها وحذفها. يمكنك حذف حسابك في أي وقت.',
+  'privacy.section6.title': '6. الاحتفاظ بالبيانات',
+  'privacy.section6.content': 'نحتفظ ببياناتك أثناء نشاط حسابك. الحسابات المحذوفة يتم حذف جميع بياناتها نهائياً.',
+  'privacy.section7.title': '7. التواصل',
+  'privacy.section7.content': 'لاستفسارات الخصوصية، اتصل بنا على privacy@battle64.com',
+  
+  // موافقة ملفات تعريف الارتباط
+  'cookies.title': 'موافقة ملفات تعريف الارتباط',
+  'cookies.description': 'نستخدم ملفات تعريف الارتباط لتحسين تجربتك. يرجى اختيار تفضيلاتك.',
+  'cookies.necessary': 'ملفات تعريف الارتباط الضرورية',
+  'cookies.necessaryDescription': 'ضرورية للوظائف الأساسية للموقع',
+  'cookies.analytics': 'ملفات تعريف الارتباط التحليلية',
+  'cookies.analyticsDescription': 'تساعدنا على فهم كيفية استخدامك لموقعنا',
+  'cookies.marketing': 'ملفات تعريف الارتباط التسويقية',
+  'cookies.marketingDescription': 'تُستخدم لعرض إعلانات ذات صلة لك',
+  'cookies.preferences': 'ملفات تعريف الارتباط للتفضيلات',
+  'cookies.preferencesDescription': 'تتذكر إعداداتك وتفضيلاتك',
+  'cookies.acceptAll': 'قبول الكل',
+  'cookies.acceptSelected': 'قبول المحدد',
+  'cookies.rejectAll': 'رفض الكل',
+  'cookies.managePreferences': 'إدارة تفضيلات ملفات تعريف الارتباط',
+  
+  // الإبلاغ والإشراف
+  'report.title': 'الإبلاغ عن المحتوى',
+  'report.reason': 'سبب الإبلاغ',
+  'report.description': 'الوصف (اختياري)',
+  'report.reasons.spam': 'رسائل غير مرغوبة',
+  'report.reasons.inappropriate': 'محتوى غير مناسب',
+  'report.reasons.harassment': 'مضايقة',
+  'report.reasons.copyright': 'انتهاك حقوق الطبع والنشر',
+  'report.reasons.nsfw': 'محتوى NSFW',
+  'report.reasons.hate': 'خطاب كراهية',
+  'report.reasons.other': 'أخرى',
+  'report.submit': 'إرسال البلاغ',
+  'report.success': 'تم الإبلاغ عن المحتوى بنجاح',
+  'report.error': 'فشل في إرسال البلاغ',
+  'report.alreadyReported': 'لقد أبلغت عن هذا المحتوى بالفعل',
+  
+  // إشراف المحتوى
+  'moderation.contentHidden': 'تم إخفاء هذا المحتوى بسبب بلاغات متعددة',
+  'moderation.underReview': 'هذا المحتوى قيد المراجعة',
+  'moderation.removed': 'تم حذف هذا المحتوى من قبل المشرفين',
+  'moderation.appealProcess': 'إذا كنت تعتقد أن هذا خطأ، اتصل بالدعم',
+  
+  // لوحة المدير
+  'admin.dashboard': 'لوحة الإدارة',
+  'admin.reports': 'البلاغات',
+  'admin.pendingReports': 'البلاغات المعلقة',
+  'admin.reviewedReports': 'البلاغات المراجعة',
+  'admin.reportDetails': 'تفاصيل البلاغ',
+  'admin.reportedBy': 'أبلغ بواسطة',
+  'admin.reportedAt': 'تاريخ الإبلاغ',
+  'admin.contentType': 'نوع المحتوى',
+  'admin.reviewReport': 'مراجعة البلاغ',
+  'admin.dismissReport': 'رفض البلاغ',
+  'admin.takeAction': 'اتخاذ إجراء',
+  'admin.hideContent': 'إخفاء المحتوى',
+  'admin.removeContent': 'حذف المحتوى',
+  'admin.warnUser': 'تحذير المستخدم',
+  'admin.suspendUser': 'تعليق المستخدم',
+  'admin.banUser': 'حظر المستخدم',
+  'admin.actionReason': 'سبب الإجراء',
+  'admin.actionNotes': 'ملاحظات إضافية',
+  'admin.confirmAction': 'تأكيد الإجراء',
+  
+  // حذف الحساب (GDPR)
+  'account.delete': 'حذف الحساب',
+  'account.deleteWarning': 'هل أنت متأكد من أنك تريد حذف حسابك؟ سيتم حذف جميع المحتوى الخاص بك نهائياً.',
+  'account.deleteConfirmation': 'اكتب "DELETE" لتأكيد حذف الحساب',
+  'account.deleteSuccess': 'تم حذف الحساب بنجاح',
+  'account.deleteError': 'فشل في حذف الحساب',
+  'account.dataExport': 'تصدير بياناتي',
+  'account.dataExportDescription': 'تحميل جميع بياناتك بتنسيق JSON',
+  'account.dataExportSuccess': 'تم طلب تصدير البيانات. ستتلقى بريداً إلكترونياً يحتوي على بياناتك.',
+  
+  // أمان الرفع
+  'upload.rightsConfirmation': 'تأكيد حقوق المحتوى',
+  'upload.confirmRights': 'أؤكد أنني أملك حقوق هذا المحتوى ولن أنتهك أي حقوق طبع ونشر',
+  'upload.copyrightWarning': 'رفع محتوى محمي بحقوق الطبع والنشر بدون إذن قد يؤدي إلى تعليق الحساب',
+  'upload.contentWarning': 'تحذير المحتوى',
+  'upload.nsfwDetected': 'تم اكتشاف محتوى قد يكون غير مناسب',
+  'upload.manualReview': 'سيتم مراجعة هذا الرفع يدوياً قبل النشر',
+  'upload.approvalPending': 'الرفع في انتظار الموافقة',
+  
+  // روابط التذييل
+  'footer.terms': 'الشروط',
+  'footer.privacy': 'الخصوصية',
+  'footer.contact': 'التواصل',
+  'footer.imprint': 'البيانات القانونية',
+  'footer.copyright': '© 2024 Battle64. غير مرتبط بنينتندو.'
 }
 
 export default ar

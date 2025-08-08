@@ -1,4 +1,5 @@
 import { PointsConfig } from '../types'
+import { logger } from '../lib/logger'
 
 // Helper functions to award points from anywhere in the app
 export const awardPointsForAction = async (
@@ -10,11 +11,11 @@ export const awardPointsForAction = async (
     const success = await awardPoints(action, description)
     if (success) {
       // You could add a toast notification here
-      console.log(`Points awarded for ${action}: ${description || 'No description'}`)
+      logger.log(`Points awarded for ${action}: ${description || 'No description'}`)
     }
     return success
   } catch (error) {
-    console.error('Error awarding points:', error)
+    logger.error('Error awarding points:', error)
     return false
   }
 }

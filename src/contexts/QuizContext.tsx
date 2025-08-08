@@ -1,7 +1,9 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { createContext, useContext, useState, ReactNode } from 'react'
 import { QuizQuestion, QuizResult, QuizContextType } from '../types'
 import { useLanguage } from './LanguageContext'
 import { usePoints } from './PointsContext'
+import { logger } from '../lib/logger'
 
 const QuizContext = createContext<QuizContextType | undefined>(undefined)
 
@@ -38,7 +40,7 @@ export const QuizProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const [isQuizActive, setIsQuizActive] = useState(false)
   const [quizResult, setQuizResult] = useState<QuizResult | null>(null)
 
-  const startQuiz = (difficulty?: string, category?: string) => {
+  const startQuiz = (_difficulty?: string, _category?: string) => {
     const questions = getQuizQuestions(t)
     setCurrentQuestion(questions[0])
     setCurrentQuestionIndex(0)
@@ -55,7 +57,7 @@ export const QuizProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       try {
         await awardPoints('quiz.answerCorrect', `Correct answer: ${currentQuestion.question}`)
       } catch (error) {
-        console.error('Failed to award points for correct answer:', error)
+        logger.error('Failed to award points for correct answer:', error)
       }
     }
   }
@@ -88,7 +90,7 @@ export const QuizProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       try {
         await awardPoints('quiz.fullPerfect', `Perfect quiz completed: ${score}/${actualQuestionCount}`)
       } catch (error) {
-        console.error('Failed to award points for perfect quiz:', error)
+        logger.error('Failed to award points for perfect quiz:', error)
       }
     }
     
@@ -127,6 +129,7 @@ export const QuizProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   )
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useQuiz = () => {
   const context = useContext(QuizContext)
   if (context === undefined) {

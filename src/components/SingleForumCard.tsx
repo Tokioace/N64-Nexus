@@ -1,6 +1,8 @@
 import React, { useState, useRef } from 'react'
-import { MessageCircle, X } from 'lucide-react'
+import { MessageCircle, Users, Clock } from 'lucide-react'
 import { useLanguage, getLocaleString } from '../contexts/LanguageContext'
+import { useNavigate } from 'react-router-dom'
+import { InteractionBar } from './InteractionComponents'
 
 interface ForumThread {
   id: string
@@ -9,6 +11,8 @@ interface ForumThread {
   replies: number
   lastActivity: Date
   category: string
+  lastPostContent?: string
+  lastPostAuthor?: string
 }
 
 interface SingleForumCardProps {
@@ -18,6 +22,7 @@ interface SingleForumCardProps {
 
 const SingleForumCard: React.FC<SingleForumCardProps> = ({ forumThreads, className = '' }) => {
   const { t, currentLanguage } = useLanguage()
+  const navigate = useNavigate()
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isFlipping, setIsFlipping] = useState(false)
   const [flipDirection, setFlipDirection] = useState<'left' | 'right'>('left')
@@ -80,8 +85,16 @@ const SingleForumCard: React.FC<SingleForumCardProps> = ({ forumThreads, classNa
     touchEndX.current = 0
   }
 
+  const handleCardClick = (thread: ForumThread) => {
+    // Navigate to the specific forum thread
+    navigate(`/forum/thread/${thread.id}`)
+  }
+
   const renderForumCard = (thread: ForumThread, index: number, isAnimating: boolean = false) => (
-    <div className={`swipeable-card bg-gradient-to-br from-cyan-600/10 to-blue-600/10 border-l-4 border-cyan-400 relative transition-all duration-300 ${isAnimating ? 'scale-95 opacity-80' : 'scale-100 opacity-100'}`}>
+    <div 
+      className={`swipeable-card bg-gradient-to-br from-cyan-600/10 to-blue-600/10 border-l-4 border-cyan-400 relative transition-all duration-300 cursor-pointer hover:scale-105 ${isAnimating ? 'scale-95 opacity-80' : 'scale-100 opacity-100'}`}
+      onClick={() => handleCardClick(thread)}
+    >
       <div className="swipeable-card-header">
         <div className="flex items-center gap-2">
           <MessageCircle className="w-5 h-5 text-cyan-400" />
@@ -92,19 +105,52 @@ const SingleForumCard: React.FC<SingleForumCardProps> = ({ forumThreads, classNa
         </div>
       </div>
       
+      {/* Meta symbols in corner */}
+      <div className="absolute bottom-3 right-3 flex items-center gap-1">
+        <div className="text-slate-400" title={`${thread.replies} Antworten`}>
+          <Users className="w-4 h-4" />
+        </div>
+        <div className="text-slate-400" title={formatTime(thread.lastActivity)}>
+          <Clock className="w-4 h-4" />
+        </div>
+      </div>
+      
       <div className="swipeable-card-content">
-        <div className="p-3 h-full flex flex-col">
-          <div className="flex-1">
-            <h4 className="text-sm sm:text-base font-semibold text-slate-100 mb-2 leading-tight">
+        <div className="p-2 sm:p-3 h-full flex flex-col">
+          <div className="flex-1 min-w-0">
+            <h4 className="text-sm sm:text-base font-semibold text-slate-100 mb-2 leading-tight break-words">
               {thread.title}
             </h4>
-            <div className="text-xs text-slate-300 mb-2">
-              <span className="text-blue-400">{thread.author}</span> • {thread.category}
+            <div className="text-xs text-slate-300 mb-2 break-words">
+              <span className="text-blue-400 break-words">{thread.author}</span> • <span className="break-words">{thread.category}</span>
             </div>
+            {/* Show last post content if available */}
+            {thread.lastPostContent && (
+              <div className="text-xs text-slate-400 mb-2 line-clamp-2 break-words">
+                <span className="text-cyan-400 break-words">Letzte Antwort von {thread.lastPostAuthor || 'Unbekannt'}:</span>
+                <br />
+                <span className="break-words">
+                  {thread.lastPostContent.length > 60 
+                    ? `${thread.lastPostContent.substring(0, 60)}...` 
+                    : thread.lastPostContent
+                  }
+                </span>
+              </div>
+            )}
           </div>
-          <div className="flex items-center justify-between text-xs text-slate-400 mt-auto">
-            <span>{thread.replies} Antworten</span>
-            <span>{formatTime(thread.lastActivity)}</span>
+          <div className="flex items-center justify-between text-xs text-slate-400 mt-auto gap-2">
+            <span className="whitespace-nowrap">{thread.replies} Antworten</span>
+            <span className="whitespace-nowrap">{formatTime(thread.lastActivity)}</span>
+          </div>
+          
+          {/* Interaction Bar */}
+          <div className="mt-2 sm:mt-3 pt-2 sm:pt-3 border-t border-slate-600/30">
+            <InteractionBar 
+              contentType="forum"
+              contentId={thread.id}
+              showComments={false}
+              compact={true}
+            />
           </div>
         </div>
       </div>

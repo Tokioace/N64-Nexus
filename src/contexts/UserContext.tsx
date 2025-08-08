@@ -1,264 +1,183 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react'
 import { User, UserContextType, UserRegistrationData, UserCollection, PersonalRecord } from '../types'
-import { safeLocalStorage, safeJSONStorage } from '../utils/storage'
+import { authService } from '../services/authService'
+import { supabase } from '../lib/supabase'
+import { logger } from '../lib/logger'
 
 const UserContext = createContext<UserContextType | undefined>(undefined)
 
-// Mock users database - in a real app, this would be handled by a backend
-const mockUsers: User[] = [
-  {
-    id: '1',
-    username: 'RetroGamer64',
-    email: 'retro@battle64.com',
-    level: 15,
-    xp: 2500,
-    region: 'PAL',
-    platform: 'N64',
-    joinDate: new Date('2024-03-01'),
-    avatar: '🎮',
-    bio: 'Leidenschaftlicher N64-Sammler und Speedrunner. Spezialisiert auf Mario 64 und Zelda-Spiele.',
-    location: 'Berlin, Germany',
-    isPublic: true,
-    collections: [
-      {
-        id: 'c1',
-        userId: '1',
-        gameId: 'mario64',
-        gameName: 'Super Mario 64',
-        platform: 'N64',
-        region: 'PAL',
-        condition: 'mint',
-        completeness: 'complete',
-        acquisitionDate: new Date('2023-12-15'),
-        notes: 'Erste Auflage, perfekter Zustand',
-        isWishlist: false
-      },
-      {
-        id: 'c2',
-        userId: '1',
-        gameId: 'zelda_oot',
-        gameName: 'The Legend of Zelda: Ocarina of Time',
-        platform: 'N64',
-        region: 'PAL',
-        condition: 'very-good',
-        completeness: 'complete',
-        acquisitionDate: new Date('2024-01-10'),
-        isWishlist: false
-      }
-    ],
-    personalRecords: [
-      {
-        id: 'pr1',
-        userId: '1',
-        gameId: 'mario64',
-        gameName: 'Super Mario 64',
-        category: '120 Stars',
-        time: '1:39:42',
-        platform: 'N64',
-        region: 'PAL',
-        achievedDate: new Date('2024-07-15'),
-        verified: true,
-        notes: 'PB! Endlich unter 1:40!'
-      }
-    ]
-  },
-  {
-    id: '2',
-    username: 'SpeedDemon64',
-    email: 'speed@battle64.com',
-    level: 22,
-    xp: 4200,
-    region: 'NTSC',
-    platform: 'N64',
-    joinDate: new Date('2024-01-15'),
-    avatar: '⚡',
-    bio: 'NTSC Speedrunner aus den USA. Halte mehrere Weltrekorde!',
-    location: 'California, USA',
-    isPublic: true,
-    collections: [],
-    personalRecords: [
-      {
-        id: 'pr2',
-        userId: '2',
-        gameId: 'mario_kart_64',
-        gameName: 'Mario Kart 64',
-        category: "Luigi's Raceway",
-        time: '1:29.789',
-        platform: 'N64',
-        region: 'NTSC',
-        achievedDate: new Date('2024-07-22'),
-        verified: false,
-        notes: 'Neuer persönlicher Rekord!'
-      }
-    ]
-  }
-]
-
-// Local storage keys
-const STORAGE_KEY_USERS = 'battle64_users'
-const STORAGE_KEY_CURRENT_USER = 'battle64_current_user'
-
 export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null)
-  const [users, setUsers] = useState<User[]>(mockUsers)
   const [isAuthenticated, setIsAuthenticated] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
 
-  // Load data from localStorage on mount
+  // Initialisierung und Auth State Listener
   useEffect(() => {
-    const savedUsers = safeLocalStorage.getItem(STORAGE_KEY_USERS)
-    const savedCurrentUser = safeLocalStorage.getItem(STORAGE_KEY_CURRENT_USER)
-    
-    if (savedUsers) {
+    let mounted = true
+
+    const initializeAuth = async () => {
       try {
-        const parsedUsers = JSON.parse(savedUsers).map((u: any) => ({
-          ...u,
-          joinDate: new Date(u.joinDate),
-          collections: u.collections?.map((c: any) => ({
-            ...c,
-            acquisitionDate: new Date(c.acquisitionDate)
-          })) || [],
-          personalRecords: u.personalRecords?.map((pr: any) => ({
-            ...pr,
-            achievedDate: new Date(pr.achievedDate)
-          })) || []
-        }))
-        setUsers(parsedUsers)
+        // Prüfe aktuelle Session
+        const session = await authService.getCurrentSession()
+        
+        if (session?.user && mounted) {
+          const currentUser = await authService.getCurrentUser()
+          if (currentUser && mounted) {
+            setUser(currentUser)
+            setIsAuthenticated(true)
+          }
+        }
       } catch (error) {
-        console.error('Error loading users from localStorage:', error)
-        setUsers(mockUsers)
+        if (import.meta.env.DEV) {
+          logger.error('Auth initialization error:', error)
+        }
+      } finally {
+        if (mounted) {
+          setIsLoading(false)
+        }
       }
     }
 
-    if (savedCurrentUser) {
-      try {
-        const parsedUser = JSON.parse(savedCurrentUser)
-        const userWithDates = {
-          ...parsedUser,
-          joinDate: new Date(parsedUser.joinDate),
-          collections: parsedUser.collections?.map((c: any) => ({
-            ...c,
-            acquisitionDate: new Date(c.acquisitionDate)
-          })) || [],
-          personalRecords: parsedUser.personalRecords?.map((pr: any) => ({
-            ...pr,
-            achievedDate: new Date(pr.achievedDate)
-          })) || []
-        }
-        setUser(userWithDates)
-        setIsAuthenticated(true)
-      } catch (error) {
-        console.error('Error loading current user from localStorage:', error)
+    // Auth State Change Listener
+    const { data: { subscription } } = authService.onAuthStateChange(async (newUser) => {
+      if (mounted) {
+        setUser(newUser)
+        setIsAuthenticated(!!newUser)
       }
+    })
+
+    initializeAuth()
+
+    return () => {
+      mounted = false
+      subscription.unsubscribe()
     }
   }, [])
 
-  // Save users to localStorage whenever users array changes
-  useEffect(() => {
-    safeJSONStorage.set(STORAGE_KEY_USERS, users)
-  }, [users])
-
-  // Save current user to localStorage whenever user changes
-  useEffect(() => {
-    if (user) {
-      safeJSONStorage.set(STORAGE_KEY_CURRENT_USER, user)
-    } else {
-      safeLocalStorage.removeItem(STORAGE_KEY_CURRENT_USER)
-    }
-  }, [user])
-
   const login = async (email: string, password: string): Promise<boolean> => {
     try {
-      // In a real app, this would call an API
-      const foundUser = users.find(u => u.email === email)
+      const result = await authService.login(email, password)
       
-      if (foundUser) {
-        // Remove password from user object before setting state
-        const { password: _, ...userWithoutPassword } = foundUser
-        setUser(userWithoutPassword as User)
+      if (result.success && result.user) {
+        setUser(result.user)
         setIsAuthenticated(true)
         return true
       }
+      
       return false
     } catch (error) {
-      console.error('Login error:', error)
+      if (import.meta.env.DEV) {
+        logger.error('Login error in context:', error)
+      }
       return false
     }
   }
 
   const register = async (data: UserRegistrationData): Promise<boolean> => {
     try {
-      // Check if username or email already exists
-      const existingUser = users.find(u => u.email === data.email || u.username === data.username)
-      if (existingUser) {
-        return false
-      }
-
-      // Create new user
-      const newUser: User = {
-        id: Date.now().toString(),
-        username: data.username,
-        email: data.email,
-        level: 1,
-        xp: 0,
-        region: data.region,
-        platform: data.platform,
-        joinDate: new Date(),
-        avatar: '🎮',
-        bio: '',
-        location: '',
-        isPublic: true,
-        collections: [],
-        personalRecords: []
-      }
-
-      // Add to users array
-      const updatedUsers = [...users, newUser]
-      setUsers(updatedUsers)
+      const result = await authService.register(data)
       
-      // Set as current user
-      setUser(newUser)
-      setIsAuthenticated(true)
+      if (result.success && result.user) {
+        setUser(result.user)
+        setIsAuthenticated(true)
+        return true
+      }
       
-      return true
+      return false
     } catch (error) {
-      console.error('Registration error:', error)
+      if (import.meta.env.DEV) {
+        logger.error('Registration error in context:', error)
+      }
       return false
     }
   }
 
-  const logout = () => {
-    setUser(null)
-    setIsAuthenticated(false)
-    safeLocalStorage.removeItem(STORAGE_KEY_CURRENT_USER)
+  const logout = async (): Promise<void> => {
+    try {
+      await authService.logout()
+      setUser(null)
+      setIsAuthenticated(false)
+    } catch (error) {
+      if (import.meta.env.DEV) {
+        logger.error('Logout error in context:', error)
+      }
+      throw error
+    }
+  }
+
+  const deleteAccount = async (): Promise<boolean> => {
+    try {
+      const result = await authService.deleteAccount()
+      
+      if (result.success) {
+        // Clear user state immediately
+        setUser(null)
+        setIsAuthenticated(false)
+        
+        // Clear any stored data
+        localStorage.removeItem('battle64_cookie_consent')
+        
+        return true
+      }
+      
+      return false
+    } catch (error) {
+      if (import.meta.env.DEV) {
+        logger.error('Delete account error in context:', error)
+      }
+      return false
+    }
   }
 
   const updateProfile = async (updates: Partial<User>): Promise<boolean> => {
     if (!user) return false
 
     try {
+      // Update Profile in Supabase
+      const { error } = await supabase
+        .from('profiles')
+        .update({
+          username: updates.username,
+          level: updates.level,
+          xp: updates.xp,
+          region: updates.region,
+          platform: updates.platform,
+          avatar: updates.avatar,
+          bio: updates.bio,
+          location: updates.location,
+          is_public: updates.isPublic,
+          updated_at: new Date().toISOString()
+        })
+        .eq('id', user.id)
+
+      if (error) {
+        if (import.meta.env.DEV) {
+          logger.error('Profile update error:', error)
+        }
+        return false
+      }
+
+      // Update lokalen State
       const updatedUser = { ...user, ...updates }
-      
-      // Update in users array
-      const updatedUsers = users.map(u => u.id === user.id ? updatedUser : u)
-      setUsers(updatedUsers)
-      
-      // Update current user
       setUser(updatedUser)
       
       return true
     } catch (error) {
-      console.error('Profile update error:', error)
+      if (import.meta.env.DEV) {
+        logger.error('Profile update error:', error)
+      }
       return false
     }
   }
 
-  const addXP = (amount: number) => {
+  const addXP = async (amount: number): Promise<void> => {
     if (!user) return
 
     const newXP = user.xp + amount
     const newLevel = Math.floor(newXP / 1000) + 1
     
-    updateProfile({
+    await updateProfile({
       xp: newXP,
       level: newLevel
     })
@@ -268,18 +187,55 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     if (!user) return false
 
     try {
-      const newItem: UserCollection = {
-        ...item,
-        id: Date.now().toString(),
-        userId: user.id
+      const { data, error } = await supabase
+        .from('collections')
+        .insert({
+          user_id: user.id,
+          game_id: item.gameId,
+          game_name: item.gameName,
+          platform: item.platform,
+          region: item.region,
+          condition: item.condition,
+          completeness: item.completeness,
+          acquisition_date: item.acquisitionDate.toISOString(),
+          notes: item.notes || '',
+          is_wishlist: item.isWishlist || false
+        })
+        .select()
+        .single()
+
+      if (error) {
+        if (import.meta.env.DEV) {
+          logger.error('Add to collection error:', error)
+        }
+        return false
       }
 
-      const updatedCollections = [...user.collections, newItem]
-      await updateProfile({ collections: updatedCollections })
+      // Update lokalen State
+      const newItem: UserCollection = {
+        id: data.id,
+        userId: data.user_id,
+        gameId: data.game_id,
+        gameName: data.game_name,
+        platform: data.platform,
+        region: data.region,
+        condition: data.condition,
+        completeness: data.completeness,
+        acquisitionDate: new Date(data.acquisition_date),
+        notes: data.notes,
+        isWishlist: data.is_wishlist
+      }
+
+      setUser({
+        ...user,
+        collections: [...user.collections, newItem]
+      })
       
       return true
     } catch (error) {
-      console.error('Add to collection error:', error)
+      if (import.meta.env.DEV) {
+        logger.error('Add to collection error:', error)
+      }
       return false
     }
   }
@@ -288,12 +244,30 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     if (!user) return false
 
     try {
-      const updatedCollections = user.collections.filter(c => c.id !== itemId)
-      await updateProfile({ collections: updatedCollections })
+      const { error } = await supabase
+        .from('collections')
+        .delete()
+        .eq('id', itemId)
+        .eq('user_id', user.id)
+
+      if (error) {
+        if (import.meta.env.DEV) {
+          logger.error('Remove from collection error:', error)
+        }
+        return false
+      }
+
+      // Update lokalen State
+      setUser({
+        ...user,
+        collections: user.collections.filter(c => c.id !== itemId)
+      })
       
       return true
     } catch (error) {
-      console.error('Remove from collection error:', error)
+      if (import.meta.env.DEV) {
+        logger.error('Remove from collection error:', error)
+      }
       return false
     }
   }
@@ -302,21 +276,58 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     if (!user) return false
 
     try {
-      const newRecord: PersonalRecord = {
-        ...record,
-        id: Date.now().toString(),
-        userId: user.id
+      const { data, error } = await supabase
+        .from('personal_records')
+        .insert({
+          user_id: user.id,
+          game_id: record.gameId,
+          game_name: record.gameName,
+          category: record.category,
+          time: record.time,
+          platform: record.platform,
+          region: record.region,
+          achieved_date: record.achievedDate.toISOString(),
+          verified: record.verified || false,
+          notes: record.notes || ''
+        })
+        .select()
+        .single()
+
+      if (error) {
+        if (import.meta.env.DEV) {
+          logger.error('Add personal record error:', error)
+        }
+        return false
       }
 
-      const updatedRecords = [...user.personalRecords, newRecord]
-      await updateProfile({ personalRecords: updatedRecords })
-      
+      // Update lokalen State
+      const newRecord: PersonalRecord = {
+        id: data.id,
+        userId: data.user_id,
+        gameId: data.game_id,
+        gameName: data.game_name,
+        category: data.category,
+        time: data.time,
+        platform: data.platform,
+        region: data.region,
+        achievedDate: new Date(data.achieved_date),
+        verified: data.verified,
+        notes: data.notes
+      }
+
+      setUser({
+        ...user,
+        personalRecords: [...user.personalRecords, newRecord]
+      })
+
       // Award XP for new personal record
-      addXP(50)
+      await addXP(50)
       
       return true
     } catch (error) {
-      console.error('Add personal record error:', error)
+      if (import.meta.env.DEV) {
+        logger.error('Add personal record error:', error)
+      }
       return false
     }
   }
@@ -325,33 +336,160 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     if (!user) return false
 
     try {
-      const updatedRecords = user.personalRecords.map(r => 
-        r.id === recordId ? { ...r, ...updates } : r
-      )
-      await updateProfile({ personalRecords: updatedRecords })
+      const { error } = await supabase
+        .from('personal_records')
+        .update({
+          game_id: updates.gameId,
+          game_name: updates.gameName,
+          category: updates.category,
+          time: updates.time,
+          platform: updates.platform,
+          region: updates.region,
+          achieved_date: updates.achievedDate?.toISOString(),
+          verified: updates.verified,
+          notes: updates.notes,
+          updated_at: new Date().toISOString()
+        })
+        .eq('id', recordId)
+        .eq('user_id', user.id)
+
+      if (error) {
+        if (import.meta.env.DEV) {
+          logger.error('Update personal record error:', error)
+        }
+        return false
+      }
+
+      // Update lokalen State
+      setUser({
+        ...user,
+        personalRecords: user.personalRecords.map(r => 
+          r.id === recordId ? { ...r, ...updates } : r
+        )
+      })
       
       return true
     } catch (error) {
-      console.error('Update personal record error:', error)
+      if (import.meta.env.DEV) {
+        logger.error('Update personal record error:', error)
+      }
       return false
     }
   }
 
   const getUserProfile = async (userId: string): Promise<User | null> => {
     try {
-      const foundUser = users.find(u => u.id === userId)
-      return foundUser || null
+      // Hole Profil-Daten
+      const { data: profile, error: profileError } = await supabase
+        .from('profiles')
+        .select('*')
+        .eq('id', userId)
+        .single()
+
+      if (profileError || !profile) {
+        return null
+      }
+
+      // Hole Collections
+      const { data: collections = [] } = await supabase
+        .from('collections')
+        .select('*')
+        .eq('user_id', userId)
+
+      // Hole Personal Records
+      const { data: personalRecords = [] } = await supabase
+        .from('personal_records')
+        .select('*')
+        .eq('user_id', userId)
+
+      // Hole Auth User Info (für E-Mail und Join Date)
+      const { data: { user: authUser } } = await supabase.auth.getUser()
+      const email = authUser?.id === userId ? authUser.email : ''
+      const joinDate = authUser?.id === userId ? new Date(authUser.created_at) : new Date(profile.created_at)
+
+      return {
+        id: profile.id,
+        username: profile.username,
+        email: email || '',
+        level: profile.level,
+        xp: profile.xp,
+        region: profile.region,
+        platform: profile.platform,
+        joinDate,
+        avatar: profile.avatar,
+        bio: profile.bio,
+        location: profile.location,
+        isPublic: profile.is_public,
+        collections: (collections || []).map(c => ({
+          id: c.id,
+          userId: c.user_id,
+          gameId: c.game_id,
+          gameName: c.game_name,
+          platform: c.platform,
+          region: c.region,
+          condition: c.condition,
+          completeness: c.completeness,
+          acquisitionDate: new Date(c.acquisition_date),
+          notes: c.notes,
+          isWishlist: c.is_wishlist
+        })),
+        personalRecords: (personalRecords || []).map(pr => ({
+          id: pr.id,
+          userId: pr.user_id,
+          gameId: pr.game_id,
+          gameName: pr.game_name,
+          category: pr.category,
+          time: pr.time,
+          platform: pr.platform,
+          region: pr.region,
+          achievedDate: new Date(pr.achieved_date),
+          verified: pr.verified,
+          notes: pr.notes
+        }))
+      }
     } catch (error) {
-      console.error('Get user profile error:', error)
+      if (import.meta.env.DEV) {
+        logger.error('Get user profile error:', error)
+      }
       return null
     }
   }
 
   const getAllUsers = async (): Promise<User[]> => {
     try {
-      return users.filter(u => u.isPublic)
+      const { data: profiles, error } = await supabase
+        .from('profiles')
+        .select('*')
+        .eq('is_public', true)
+
+      if (error) {
+        if (import.meta.env.DEV) {
+          logger.error('Get all users error:', error)
+        }
+        return []
+      }
+
+      // Konvertiere zu User-Format (ohne Collections und Personal Records für Performance)
+      return profiles.map(profile => ({
+        id: profile.id,
+        username: profile.username,
+        email: '', // E-Mail nicht öffentlich
+        level: profile.level,
+        xp: profile.xp,
+        region: profile.region,
+        platform: profile.platform,
+        joinDate: new Date(profile.created_at),
+        avatar: profile.avatar,
+        bio: profile.bio,
+        location: profile.location,
+        isPublic: profile.is_public,
+        collections: [], // Leer für Performance
+        personalRecords: [] // Leer für Performance
+      }))
     } catch (error) {
-      console.error('Get all users error:', error)
+      if (import.meta.env.DEV) {
+        logger.error('Get all users error:', error)
+      }
       return []
     }
   }
@@ -359,9 +497,11 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const value: UserContextType = {
     user,
     isAuthenticated,
+    isLoading,
     login,
     register,
     logout,
+    deleteAccount,
     updateProfile,
     addXP,
     addToCollection,
@@ -379,6 +519,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   )
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useUser = () => {
   const context = useContext(UserContext)
   if (context === undefined) {
