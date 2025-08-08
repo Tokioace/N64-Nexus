@@ -1238,7 +1238,29 @@ const de = {
   'footer.privacy': 'Datenschutz',
   'footer.contact': 'Kontakt',
   'footer.imprint': 'Impressum',
-  'footer.copyright': '© 2024 Battle64. Nicht mit Nintendo verbunden.'
+  'footer.copyright': '© 2024 Battle64. Nicht mit Nintendo verbunden.',
+
+  // Admin Dashboard (zusätzlich)
+  'admin.title': 'Admin-Dashboard',
+  'admin.subtitle': 'Zentrale Übersicht zu Moderation, Sicherheit und Systemzustand',
+  'admin.moderationOverview': 'Moderationsübersicht',
+  'admin.tasks': 'Aufgaben',
+  'admin.tasks.autoDone': 'Automatisch erledigt',
+  'admin.tasks.pending': 'Offene Punkte',
+  'admin.tasks.problematic': 'Auffällige Nutzer/Inhalte',
+  'admin.tasks.bugsFixed': 'Von System behobene Bugs',
+  'admin.noReport': 'Kein Report verfügbar',
+  'admin.totalViolations': 'Verstöße gesamt',
+  'admin.usersWarned': 'Verwarnte Nutzer',
+  'admin.usersBanned': 'Gesperrte Nutzer',
+  'admin.newBugs': 'Neue Bugs',
+  'admin.illegalContent': 'Erkannte illegale Inhalte',
+  'admin.none': 'Keine',
+  'admin.appHealth': 'App-Zustand',
+  'admin.health.errors': 'Fehler',
+  'admin.health.cache': 'Cache-Einträge',
+  'admin.health.sessions': 'Sessions',
+  'admin.health.uptime': 'Uptime'
 }
 
 export default de

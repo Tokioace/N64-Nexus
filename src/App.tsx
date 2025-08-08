@@ -21,7 +21,8 @@ import Layout from './components/Layout'
 import PWAInstallPrompt from './components/PWAInstallPrompt'
 import OfflineIndicator from './components/OfflineIndicator'
 import CookieConsent from './components/CookieConsent'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { bugMonitorService } from './services/bugMonitorService'
 
 // Import lazy components for code splitting
 import {
@@ -44,6 +45,9 @@ import {
   Battle64Map
 } from './components/LazyComponents'
 
+import AdminDashboardPage from './pages/AdminDashboardPage'
+import AdminGuard from './components/AdminGuard'
+
 interface CookiePreferences {
   necessary: boolean
   analytics: boolean
@@ -51,8 +55,22 @@ interface CookiePreferences {
   preferences: boolean
 }
 
+function AdminRoute() {
+  return (
+    <AdminGuard>
+      <ErrorBoundary>
+        <AdminDashboardPage />
+      </ErrorBoundary>
+    </AdminGuard>
+  )
+}
+
 function App() {
   const [cookiePreferences, setCookiePreferences] = useState<CookiePreferences | null>(null)
+
+  useEffect(() => {
+    bugMonitorService.init()
+  }, [])
 
   const handleCookieAccept = (preferences: CookiePreferences) => {
     setCookiePreferences(preferences)
@@ -114,10 +132,11 @@ function App() {
                         <Route path="/newsfeed" element={<NewsFeedPage />} />
                         <Route path="/fanart" element={<FanArtPage />} />
                         <Route path="/map" element={<Battle64Map />} />
-                        <Route path="/typography-showcase" element={<TypographyShowcase />} />
-                        </Routes>
-                        </Layout>
-                      </MapProvider>
+                                                 <Route path="/typography-showcase" element={<TypographyShowcase />} />
+                         <Route path="/admin" element={<AdminRoute />} />
+                         </Routes>
+                         </Layout>
+</MapProvider>
                     </ForumProvider>
                   </MediaProvider>
                 </EventProvider>

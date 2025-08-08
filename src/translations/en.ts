@@ -1239,7 +1239,29 @@ const en = {
 
   // GDPR Notice
   'gdpr.notice.title': 'Privacy Notice',
-  'gdpr.notice.description': 'We respect your privacy and follow GDPR guidelines for data protection'
+  'gdpr.notice.description': 'We respect your privacy and follow GDPR guidelines for data protection',
+
+  // Admin Dashboard
+  'admin.title': 'Admin Dashboard',
+  'admin.subtitle': 'Centralized moderation, security and system health overview',
+  'admin.moderationOverview': 'Moderation Overview',
+  'admin.tasks': 'Tasks',
+  'admin.tasks.autoDone': 'Automatically completed',
+  'admin.tasks.pending': 'Pending actions',
+  'admin.tasks.problematic': 'Problematic users/content',
+  'admin.tasks.bugsFixed': 'Bugs fixed by system',
+  'admin.noReport': 'No report available',
+  'admin.totalViolations': 'Total violations',
+  'admin.usersWarned': 'Users warned',
+  'admin.usersBanned': 'Users banned',
+  'admin.newBugs': 'New bugs',
+  'admin.illegalContent': 'Detected illegal content',
+  'admin.none': 'None',
+  'admin.appHealth': 'App Health',
+  'admin.health.errors': 'Errors',
+  'admin.health.cache': 'Cache items',
+  'admin.health.sessions': 'Sessions',
+  'admin.health.uptime': 'Uptime'
 }
 
 export default en
