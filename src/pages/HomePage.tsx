@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { logger } from '../lib/logger'
 import { useUser } from '../contexts/UserContext'
-import { useEvent } from '../contexts/EventContext'
 import { useLanguage } from '../contexts/LanguageContext'
+import { useForum } from '../contexts/ForumContext'
 import EventFeedWidget from '../components/EventFeedWidget'
 import PointsWidget from '../components/PointsWidget'
 import N64FanLeaderboard from '../components/N64FanLeaderboard'
@@ -12,30 +12,7 @@ import SingleFanArtCard from '../components/SingleFanArtCard'
 import SingleMediaCard from '../components/SingleMediaCard'
 import SingleRecordCard from '../components/SingleRecordCard'
 import SingleMarketplaceCard from '../components/SingleMarketplaceCard'
-import { GameEvent } from '../types'
-import {
-  Trophy,
-  TrendingUp,
-  MessageSquare,
-  Palette,
-  Camera,
-  Award,
-  ShoppingCart,
-  Clock,
-  User,
-  Eye,
-  Heart,
-  Star,
-  Gamepad2
-} from 'lucide-react'
-
-interface NewsItem {
-  id: string
-  title: string
-  content: string
-  date: Date
-  type: 'event_winner' | 'n64_history' | 'community_news' | 'event_announcement'
-}
+import Battle64MapTile from '../components/Battle64MapTile'
 
 interface ForumThread {
   id: string
@@ -44,6 +21,8 @@ interface ForumThread {
   replies: number
   lastActivity: Date
   category: string
+  lastPostContent?: string
+  lastPostAuthor?: string
 }
 
 interface FanArtItem {
@@ -54,6 +33,8 @@ interface FanArtItem {
   likes: number
   views: number
   game: string
+  createdAt?: Date
+  date?: Date // Add date property for backward compatibility
 }
 
 interface MediaItem {
@@ -74,8 +55,7 @@ interface PersonalRecord {
   id: string
   game: string
   category: string
-  time?: string
-  score?: number
+  time: string
   date: Date
   verified: boolean
   platform: string
@@ -89,148 +69,279 @@ interface MarketplaceItem {
   condition: string
   seller: string
   date: Date
-  image?: string
   category: string
+  images?: string[]
+  image?: string
+  createdAt?: string // Add createdAt property for backward compatibility
+}
+
+// Simple error boundary component with better error handling
+const SafeComponent: React.FC<{ children: React.ReactNode; fallback?: React.ReactNode; name: string }> = ({ 
+  children, 
+  fallback, 
+  name 
+}) => {
+  const [hasError, setHasError] = React.useState(false)
+  const [error, setError] = React.useState<Error | null>(null)
+  
+  React.useEffect(() => {
+    // Reset error state when children change
+    setHasError(false)
+    setError(null)
+  }, [children])
+  
+  if (hasError) {
+    return fallback || (
+      <div className="simple-tile bg-slate-800/50 border-slate-600 p-4 rounded-lg">
+        <p className="text-slate-400 text-sm">
+          ⚠️ Error loading {name}
+        </p>
+        <button 
+          onClick={() => {
+            setHasError(false)
+            setError(null)
+          }}
+          className="mt-2 text-xs text-blue-400 hover:text-blue-300 underline"
+        >
+          Try again
+        </button>
+      </div>
+    )
+  }
+  
+  try {
+    return (
+      <React.Suspense fallback={
+        <div className="simple-tile bg-slate-800/50 border-slate-600 p-4 rounded-lg">
+          <div className="animate-pulse">
+            <div className="h-4 bg-slate-600 rounded w-3/4 mb-2"></div>
+            <div className="h-3 bg-slate-700 rounded w-1/2"></div>
+          </div>
+        </div>
+      }>
+        {children}
+      </React.Suspense>
+    )
+  } catch (error) {
+            logger.error(`Error in ${name}:`, error)
+    setHasError(true)
+    setError(error as Error)
+    return null
+  }
 }
 
 const HomePage: React.FC = () => {
-  const { user } = useUser()
-  const { events, activeEvents, getLeaderboard } = useEvent()
+  const { user, isLoading: userLoading } = useUser()
   const { t, currentLanguage } = useLanguage()
-  const [currentTime, setCurrentTime] = useState(new Date())
-  const [isEventExpanded, setIsEventExpanded] = useState(false)
+  const { threads, posts } = useForum()
+  const [isDataLoading, setIsDataLoading] = React.useState(true)
 
-  // Update current time every minute
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentTime(new Date())
-    }, 60000)
-    return () => clearInterval(timer)
-  }, [])
-
-  // Mock data for demonstration - in real app this would come from API/context
-  const newsItems: NewsItem[] = [
-    {
-      id: '1',
-      title: t('news.mariokartRecord'),
-      content: t('news.mariokartRecordContent'),
-      date: new Date(Date.now() - 3600000),
-      type: 'event_winner'
-    },
-    {
-      id: '2',
-      title: t('news.controllerUpdate'),
-      content: t('news.controllerUpdateContent'),
-      date: new Date(Date.now() - 7200000),
-      type: 'community_news'
-    },
-    {
-      id: '3',
-      title: t('news.goldeneyelive'),
-      content: t('news.goldeneyeliveContent'),
-      date: new Date(Date.now() - 1800000),
-      type: 'event_announcement'
-    },
-    {
-      id: '4',
-      title: t('news.collectorFeature'),
-      content: t('news.collectorFeatureContent'),
-      date: new Date(Date.now() - 86400000),
-      type: 'n64_history'
-    },
-    {
-      id: '5',
-      title: t('news.mario120challenge'),
-      content: t('news.mario120challengeContent'),
-      date: new Date(Date.now() - 172800000),
-      type: 'event_winner'
-    },
-    {
-      id: '6',
-      title: t('news.appUpdate'),
-      content: t('news.appUpdateContent'),
-      date: new Date(Date.now() - 259200000),
-      type: 'community_news'
-    },
-    {
-      id: '7',
-      title: t('news.retroConvention'),
-      content: t('news.retroConventionContent'),
-      date: new Date(Date.now() - 345600000),
-      type: 'event_announcement'
-    },
-    {
-      id: '8',
-      title: t('news.speedrunCategory'),
-      content: t('news.speedrunCategoryContent'),
-      date: new Date(Date.now() - 432000000),
-      type: 'n64_history'
-    },
-    {
-      id: '9',
-      title: t('news.monthlyChallenge'),
-      content: t('news.monthlyChallengeContent'),
-      date: new Date(Date.now() - 518400000),
-      type: 'event_winner'
-    },
-    {
-      id: '10',
-      title: t('news.communityStats'),
-      content: t('news.communityStatsContent'),
-      date: new Date(Date.now() - 604800000),
-      type: 'community_news'
-    }
-  ]
-
-  const forumThreads: ForumThread[] = [
-    { id: '1', title: t('forum.thread.controllerQuestion'), author: 'SpeedRunner123', replies: 23, lastActivity: new Date(Date.now() - 1800000), category: t('category.hardware') },
-    { id: '2', title: t('forum.thread.mariokartShortcuts'), author: 'MKExplorer', replies: 45, lastActivity: new Date(Date.now() - 3600000), category: t('category.glitches') },
-    { id: '3', title: t('forum.thread.ootRandomizer'), author: 'ZeldaFan64', replies: 67, lastActivity: new Date(Date.now() - 7200000), category: t('category.events') },
-    { id: '4', title: t('forum.thread.perfectDarkGuide'), author: 'PerfectAgent', replies: 12, lastActivity: new Date(Date.now() - 10800000), category: t('category.guides') },
-    { id: '5', title: t('forum.thread.emulatorVsHardware'), author: 'RetroGamer', replies: 89, lastActivity: new Date(Date.now() - 14400000), category: t('category.discussion') },
-    { id: '6', title: t('forum.thread.marioBLJ'), author: 'BLJMaster', replies: 34, lastActivity: new Date(Date.now() - 18000000), category: t('category.tutorials') },
-    { id: '7', title: t('forum.thread.banjoRoute'), author: 'BearBirdRunner', replies: 56, lastActivity: new Date(Date.now() - 21600000), category: t('category.routes') },
-    { id: '8', title: t('forum.thread.goldeneye'), author: 'SecretAgent', replies: 78, lastActivity: new Date(Date.now() - 25200000), category: t('category.challenges') },
-    { id: '9', title: t('forum.thread.collecting'), author: 'Collector64', replies: 23, lastActivity: new Date(Date.now() - 28800000), category: t('category.collecting') },
-    { id: '10', title: t('forum.thread.paperMario'), author: 'PaperSpeedster', replies: 41, lastActivity: new Date(Date.now() - 32400000), category: t('category.tips') }
-  ]
-
-  const fanArtItems: FanArtItem[] = [
-    { id: '1', title: 'Mario in Peach\'s Castle', artist: 'PixelArtist64', imageUrl: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRkY2QjZCIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIiBmaWxsPSIjRkZGRkZGIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiPk1hcmlvIEFydDwvdGV4dD48L3N2Zz4=', likes: 234, views: 1250, game: 'Super Mario 64' },
-    { id: '2', title: 'Link vs Ganondorf Epic Battle', artist: 'ZeldaDrawer', imageUrl: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjNEVDREMxIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIiBmaWxsPSIjRkZGRkZGIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiPlplbGRhIEFydDwvdGV4dD48L3N2Zz4=', likes: 189, views: 980, game: 'Ocarina of Time' },
-    { id: '3', title: 'Banjo & Kazooie Adventure', artist: 'RetroSketch', imageUrl: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjNDVCN0QxIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIiBmaWxsPSIjRkZGRkZGIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiPkJhbmpvIEFydDwvdGV4dD48L3N2Zz4=', likes: 156, views: 750, game: 'Banjo-Kazooie' },
-    { id: '4', title: 'Rainbow Road Nostalgia', artist: 'KartArtist', imageUrl: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjOTZDRUI0Ii8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIiBmaWxsPSIjRkZGRkZGIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiPkthcnQgQXJ0PC90ZXh0Pjwvc3ZnPg==', likes: 298, views: 1400, game: 'Mario Kart 64' },
-    { id: '5', title: 'GoldenEye 007 Facility Map', artist: 'SpyArtist', imageUrl: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRkZFQUE3Ii8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIiBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiPkdvbGRlbkV5ZSBBcnQ8L3RleHQ+PC9zdmc+', likes: 167, views: 890, game: 'GoldenEye 007' },
-    { id: '6', title: 'Diddy Kong Racing Team', artist: 'RareArtFan', imageUrl: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRERBMEREIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIiBmaWxsPSIjRkZGRkZGIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiPkRpZGR5IEFydDwvdGV4dD48L3N2Zz4=', likes: 134, views: 620, game: 'Diddy Kong Racing' },
-    { id: '7', title: 'Star Fox 64 Arwing Squadron', artist: 'SpaceArtist', imageUrl: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjNzRCOUZGIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIiBmaWxsPSIjRkZGRkZGIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiPlN0YXJGb3ggQXJ0PC90ZXh0Pjwvc3ZnPg==', likes: 201, views: 1100, game: 'Star Fox 64' },
-    { id: '8', title: 'Smash Bros N64 All Stars', artist: 'FighterArt', imageUrl: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRkQ3OUE4Ii8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIiBmaWxsPSIjRkZGRkZGIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiPlNtYXNoIEFydDwvdGV4dD48L3N2Zz4=', likes: 345, views: 1800, game: 'Super Smash Bros' },
-    { id: '9', title: 'Yoshi\'s Story Cute Style', artist: 'YoshiLover', imageUrl: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjMDBCODk0Ii8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIiBmaWxsPSIjRkZGRkZGIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiPllvc2hpIEFydDwvdGV4dD48L3N2Zz4=', likes: 123, views: 560, game: 'Yoshi\'s Story' },
-    { id: '10', title: 'F-Zero X Speed Demon', artist: 'RacingArt64', imageUrl: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRTE3MDU1Ii8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIiBmaWxsPSIjRkZGRkZGIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiPkYtWmVybyBBcnQ8L3RleHQ+PC9zdmc+', likes: 178, views: 820, game: 'F-Zero X' }
-  ]
-
-  const mediaItems: MediaItem[] = [
+  // Load FanArt data from localStorage or use mock data
+  const [fanArtItems, setFanArtItems] = useState<FanArtItem[]>([])
+  
+  // Load Marketplace data from localStorage
+  const [marketplaceItems, setMarketplaceItems] = useState<MarketplaceItem[]>([])
+  
+  // Load other data from localStorage or use mock data
+  const [mediaItems] = useState<MediaItem[]>([
     { id: '1', title: 'Mario 64 16 Star WR Run', description: 'New world record attempt with frame-perfect BLJ execution', type: 'speedrun', uploader: 'SpeedDemon64', date: new Date(Date.now() - 3600000), views: 5430, likes: 234, verified: true, game: 'Super Mario 64', thumbnailUrl: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRkY2QjZCIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIiBmaWxsPSIjRkZGRkZGIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiPk1hcmlvIFZpZGVvPC90ZXh0Pjwvc3ZnPg==' },
     { id: '2', title: 'OoT Any% New PB!', description: 'Personal best with improved routing and glitch execution', type: 'speedrun', uploader: 'ZeldaRunner', date: new Date(Date.now() - 7200000), views: 3210, likes: 156, verified: true, game: 'Ocarina of Time' },
     { id: '3', title: 'Perfect Dark Agent Speedrun', description: 'Agent difficulty completion with stealth tactics', type: 'speedrun', uploader: 'SecretRunner', date: new Date(Date.now() - 10800000), views: 2890, likes: 89, verified: true, game: 'Perfect Dark' },
     { id: '4', title: 'Mario Kart 64 Epic Comeback', description: 'Amazing last-lap comeback on Rainbow Road', type: 'screenshot', uploader: 'KartMaster', date: new Date(Date.now() - 14400000), views: 1560, likes: 78, verified: false, game: 'Mario Kart 64' },
     { id: '5', title: 'Live: GoldenEye Tournament', description: 'Live tournament stream with community commentary', type: 'stream', uploader: 'EventStream', date: new Date(Date.now() - 18000000), views: 8920, likes: 445, verified: true, game: 'GoldenEye 007' }
-  ]
+  ])
 
-  const personalRecords: PersonalRecord[] = [
+  const [personalRecords] = useState<PersonalRecord[]>([
     { id: '1', game: 'Super Mario 64', category: '16 Star', time: '15:42.33', date: new Date(Date.now() - 3600000), verified: true, platform: 'N64' },
     { id: '2', game: 'Mario Kart 64', category: 'Rainbow Road', time: '6:14.82', date: new Date(Date.now() - 7200000), verified: true, platform: 'N64' },
     { id: '3', game: 'GoldenEye 007', category: 'Facility Agent', time: '0:58.91', date: new Date(Date.now() - 10800000), verified: true, platform: 'N64' },
     { id: '4', game: 'Ocarina of Time', category: 'Any%', time: '16:58.12', date: new Date(Date.now() - 14400000), verified: true, platform: 'N64' },
     { id: '5', game: 'Perfect Dark', category: 'DataDyne Central', time: '1:23.45', date: new Date(Date.now() - 18000000), verified: true, platform: 'N64' }
-  ]
+  ])
 
-  const marketplaceItems: MarketplaceItem[] = [
-    { id: '1', title: 'Super Mario 64 - Mint Condition', description: 'Original cartridge in mint condition with manual', price: 89.99, condition: 'Mint', seller: 'RetroCollector', date: new Date(Date.now() - 3600000), category: 'Games' },
-    { id: '2', title: 'N64 Controller - Original Nintendo', description: 'Official Nintendo controller in very good condition', price: 34.50, condition: 'Very Good', seller: 'ControllerKing', date: new Date(Date.now() - 7200000), category: 'Accessories' },
-    { id: '3', title: 'GoldenEye 007 - Complete in Box', description: 'Complete game with box, manual, and cartridge', price: 125.00, condition: 'Good', seller: 'GameVault', date: new Date(Date.now() - 10800000), category: 'Games' },
-    { id: '4', title: 'Ocarina of Time - Gold Cartridge', description: 'Rare gold cartridge edition in mint condition', price: 199.99, condition: 'Mint', seller: 'ZeldaFanatic', date: new Date(Date.now() - 14400000), category: 'Collectibles' },
-    { id: '5', title: 'N64 Console - Jungle Green', description: 'Special edition jungle green N64 console', price: 149.99, condition: 'Very Good', seller: 'ConsoleDealer', date: new Date(Date.now() - 18000000), category: 'Consoles' }
-  ]
+  // Load FanArt data from localStorage on component mount
+  useEffect(() => {
+    const loadFanArtData = () => {
+      try {
+        const savedFanArt = localStorage.getItem('fanart_items')
+        if (savedFanArt && savedFanArt.trim() !== '') {
+          let parsedFanArt
+          try {
+            parsedFanArt = JSON.parse(savedFanArt) as FanArtItem[]
+            // Validate that parsed data is an array
+            if (!Array.isArray(parsedFanArt)) {
+              throw new Error('Invalid fanart data format')
+            }
+          } catch (parseError) {
+            logger.error('Error parsing fanart data:', parseError)
+            // Clear corrupted data and use fallback
+            localStorage.removeItem('fanart_items')
+            throw parseError
+          }
+          
+          // Sort by date (newest first) and convert date strings back to Date objects
+          const sortedFanArt = parsedFanArt
+            .filter(item => item && item.id) // Filter out invalid items
+            .map((item: FanArtItem) => ({
+              ...item,
+              createdAt: item.createdAt ? new Date(item.createdAt) : new Date(),
+              date: item.date ? new Date(item.date) : new Date()
+            }))
+            .sort((a: FanArtItem, b: FanArtItem) => {
+              const dateA = a.createdAt || a.date || new Date(0)
+              const dateB = b.createdAt || b.date || new Date(0)
+              return dateB.getTime() - dateA.getTime()
+            })
+          setFanArtItems(sortedFanArt)
+        } else {
+          // Use fallback mock data if no saved data exists
+          setFanArtItems([
+            { id: '1', title: 'Mario in Peach\'s Castle', artist: 'PixelArtist64', imageUrl: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRkY2QjZCIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIiBmaWxsPSIjRkZGRkZGIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiPk1hcmlvIEFydDwvdGV4dD48L3N2Zz4=', likes: 234, views: 1250, game: 'Super Mario 64', createdAt: new Date() },
+            { id: '2', title: 'Link vs Ganondorf Epic Battle', artist: 'ZeldaDrawer', imageUrl: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjNEVDREMxIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIiBmaWxsPSIjRkZGRkZGIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiPlplbGRhIEFydDwvdGV4dD48L3N2Zz4=', likes: 189, views: 980, game: 'Ocarina of Time', createdAt: new Date(Date.now() - 86400000) },
+            { id: '3', title: 'Banjo & Kazooie Adventure', artist: 'RetroSketch', imageUrl: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjNDVCN0QxIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIiBmaWxsPSIjRkZGRkZGIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiPkJhbmpvIEFydDwvdGV4dD48L3N2Zz4=', likes: 156, views: 750, game: 'Banjo-Kazooie', createdAt: new Date(Date.now() - 172800000) }
+          ])
+        }
+      } catch (error) {
+        logger.error('Error loading fanart data:', error)
+        // Use fallback data on error and clear corrupted localStorage
+        localStorage.removeItem('fanart_items')
+        setFanArtItems([
+          { id: '1', title: 'Mario in Peach\'s Castle', artist: 'PixelArtist64', imageUrl: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRkY2QjZCIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIiBmaWxsPSIjRkZGRkZGIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiPk1hcmlvIEFydDwvdGV4dD48L3N2Zz4=', likes: 234, views: 1250, game: 'Super Mario 64', createdAt: new Date() }
+        ])
+      }
+    }
+
+    const loadMarketplaceData = () => {
+      try {
+        const savedMarketplace = localStorage.getItem('marketplace_items')
+        if (savedMarketplace && savedMarketplace.trim() !== '') {
+          let parsedMarketplace
+          try {
+            parsedMarketplace = JSON.parse(savedMarketplace) as MarketplaceItem[]
+            // Validate that parsed data is an array
+            if (!Array.isArray(parsedMarketplace)) {
+              throw new Error('Invalid marketplace data format')
+            }
+          } catch (parseError) {
+            logger.error('Error parsing marketplace data:', parseError)
+            // Clear corrupted data and use fallback
+            localStorage.removeItem('marketplace_items')
+            throw parseError
+          }
+          
+          // Sort by date (newest first) and convert date strings back to Date objects
+          const sortedMarketplace = parsedMarketplace
+            .filter(item => item && item.id) // Filter out invalid items
+            .map((item: MarketplaceItem) => ({
+              ...item,
+              date: item.date ? new Date(item.date) : (item.createdAt ? new Date(item.createdAt) : new Date())
+            }))
+            .sort((a: MarketplaceItem, b: MarketplaceItem) => b.date.getTime() - a.date.getTime())
+          setMarketplaceItems(sortedMarketplace)
+        } else {
+          // Use fallback mock data if no saved data exists
+          setMarketplaceItems([
+            { id: '1', title: 'Super Mario 64 - Mint Condition', description: 'Original cartridge in mint condition with manual', price: 89.99, condition: 'Mint', seller: 'RetroCollector', date: new Date(Date.now() - 3600000), category: 'Games', images: ['data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRTVFN0VCIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIiBmaWxsPSIjNkI3MjgwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiPk1hcmlvIDY0PC90ZXh0Pjwvc3ZnPg=='] },
+            { id: '2', title: 'N64 Controller - Original Nintendo', description: 'Official Nintendo controller in very good condition', price: 34.50, condition: 'Very Good', seller: 'ControllerKing', date: new Date(Date.now() - 7200000), category: 'Accessories', images: ['data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRTVFN0VCIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIiBmaWxsPSIjNkI3MjgwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiPkNvbnRyb2xsZXI8L3RleHQ+PC9zdmc+'] },
+            { id: '3', title: 'GoldenEye 007 - Complete in Box', description: 'Complete game with box, manual, and cartridge', price: 125.00, condition: 'Good', seller: 'GameVault', date: new Date(Date.now() - 10800000), category: 'Games', images: ['data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRTVFN0VCIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIiBmaWxsPSIjNkI3MjgwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiPkdvbGRlbkV5ZTwvdGV4dD48L3N2Zz4='] }
+          ])
+        }
+      } catch (error) {
+        logger.error('Error loading marketplace data:', error)
+        // Use fallback data on error and clear corrupted localStorage
+        localStorage.removeItem('marketplace_items')
+        setMarketplaceItems([
+          { id: '1', title: 'Super Mario 64 - Mint Condition', description: 'Original cartridge in mint condition with manual', price: 89.99, condition: 'Mint', seller: 'RetroCollector', date: new Date(Date.now() - 3600000), category: 'Games' }
+        ])
+      }
+    }
+
+    const loadData = async () => {
+      setIsDataLoading(true)
+      try {
+        await Promise.all([
+          new Promise(resolve => { loadFanArtData(); resolve(void 0) }),
+          new Promise(resolve => { loadMarketplaceData(); resolve(void 0) })
+        ])
+      } catch (error) {
+        logger.error('Error loading homepage data:', error)
+      } finally {
+        setIsDataLoading(false)
+      }
+    }
+
+    loadData()
+
+    // Listen for data updates
+    const handleStorageChange = (e: StorageEvent) => {
+      if (e.key === 'fanart_items') {
+        loadFanArtData()
+      } else if (e.key === 'marketplace_items') {
+        loadMarketplaceData()
+      }
+    }
+
+    window.addEventListener('storage', handleStorageChange)
+    return () => window.removeEventListener('storage', handleStorageChange)
+  }, [])
+
+  // Convert forum threads to the format expected by SingleForumCard with enhanced data
+  const forumThreads: ForumThread[] = React.useMemo(() => {
+    try {
+      if (!threads || !Array.isArray(threads)) {
+        logger.warn('Invalid threads data:', threads)
+        return []
+      }
+      
+      return threads
+        .filter(thread => thread && thread.id && thread.title) // Filter out invalid threads
+        .sort((a, b) => {
+          try {
+            const dateA = new Date(a.lastUpdated || a.createdAt || 0).getTime()
+            const dateB = new Date(b.lastUpdated || b.createdAt || 0).getTime()
+            return dateB - dateA
+          } catch (error) {
+            logger.warn('Error sorting threads:', error)
+            return 0
+          }
+        })
+        .slice(0, 10) // Take top 10 most recent
+        .map(thread => {
+          try {
+            // Find the latest post for this thread
+            const threadPosts = Array.isArray(posts) 
+              ? posts.filter(post => post && post.threadId === thread.id)
+              : []
+            const latestPost = threadPosts
+              .sort((a, b) => {
+                try {
+                  return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+                } catch (error) {
+                  return 0
+                }
+              })[0]
+            
+            return {
+              id: thread.id,
+              title: thread.title || 'Untitled Thread',
+              author: thread.authorName || thread.authorId || 'Unknown', // Use authorName instead of authorId
+              replies: thread.postCount || 0, // Use postCount for replies
+              lastActivity: new Date(thread.lastUpdated || thread.createdAt || Date.now()), // Use lastUpdated
+              category: thread.categoryId || 'general', // Use categoryId instead of category
+              lastPostContent: latestPost?.content,
+              lastPostAuthor: latestPost?.authorName || latestPost?.authorId
+            }
+          } catch (error) {
+            logger.error('Error processing thread:', thread, error)
+            return null
+          }
+        })
+        .filter(Boolean) as ForumThread[] // Remove null entries
+    } catch (error) {
+              logger.error('Error processing forum threads:', error)
+      return []
+    }
+  }, [threads, posts])
 
   const formatTime = (date: Date) => {
     return date.toLocaleTimeString(currentLanguage === 'de' ? 'de-DE' : 'en-US', {
@@ -248,260 +359,186 @@ const HomePage: React.FC = () => {
     })
   }
 
-  const getActiveEvent = () => {
-    return activeEvents.length > 0 ? activeEvents[0] : null
+  // Show loading state while data is loading
+  if (userLoading || isDataLoading) {
+    return (
+      <div className="container-lg space-responsive responsive-max-width responsive-overflow-hidden">
+        <div className="text-center mb-6 responsive-max-width">
+          <div className="battle64-header-container">
+            <img 
+              src="/mascot.png" 
+              alt={t('alt.battle64Mascot')} 
+              className="battle64-mascot mx-auto block"
+              style={{
+                marginTop: 'clamp(0.5rem, 1vw, 1rem)',
+                marginBottom: 'clamp(0.5rem, 1vw, 0.75rem)'
+              }}
+            />
+          </div>
+          <div className="mt-2">
+            <div className="animate-pulse">
+              <div className="h-8 bg-slate-600 rounded w-64 mx-auto mb-4"></div>
+              <div className="h-4 bg-slate-700 rounded w-96 mx-auto mb-2"></div>
+              <div className="h-3 bg-slate-700 rounded w-32 mx-auto"></div>
+            </div>
+          </div>
+        </div>
+        
+        {/* Loading skeleton for content */}
+        <div className="space-y-6">
+          {[1, 2, 3, 4].map(i => (
+            <div key={i} className="simple-tile bg-slate-800/50 border-slate-600 p-4 rounded-lg">
+              <div className="animate-pulse">
+                <div className="h-6 bg-slate-600 rounded w-1/3 mb-3"></div>
+                <div className="h-4 bg-slate-700 rounded w-full mb-2"></div>
+                <div className="h-4 bg-slate-700 rounded w-2/3"></div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    )
   }
-
-  const getEventTimeRemaining = (event: GameEvent) => {
-    const now = new Date()
-    const endTime = new Date(event.endDate)
-    const timeLeft = endTime.getTime() - now.getTime()
-    
-    if (timeLeft <= 0) return t('home.ended')
-    
-    const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24))
-    const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
-    
-    if (days > 0) return t('home.daysRemaining', { days: days.toString(), hours: hours.toString() })
-    return t('home.hoursRemaining', { hours: hours.toString() })
-  }
-
-  const activeEvent = getActiveEvent()
-
-  // Render functions for each card type
-  const renderNewsItem = (item: NewsItem, index: number) => (
-    <div className="h-full flex flex-col">
-      <div className="flex-1">
-        <h4 className="text-sm font-semibold text-slate-100 mb-2 line-clamp-2">{item.title}</h4>
-        <p className="text-xs text-slate-300 mb-3 line-clamp-3">{item.content}</p>
-      </div>
-      <div className="flex items-center justify-between text-xs text-slate-400">
-        <span>{formatTime(item.date)}</span>
-        <span className="capitalize">{item.type.replace('_', ' ')}</span>
-      </div>
-    </div>
-  )
-
-  const renderForumThread = (thread: ForumThread, index: number) => (
-    <div className="h-full flex flex-col">
-      <div className="flex-1">
-        <h4 className="text-sm font-semibold text-slate-100 mb-2 line-clamp-2">{thread.title}</h4>
-        <div className="text-xs text-slate-300 mb-2">
-          <span className="text-blue-400">{thread.author}</span> • {thread.category}
-        </div>
-      </div>
-      <div className="flex items-center justify-between text-xs text-slate-400">
-        <span>{t('home.replies', { count: thread.replies.toString() })}</span>
-        <span>{formatTime(thread.lastActivity)}</span>
-      </div>
-    </div>
-  )
-
-  const renderFanArtItem = (item: FanArtItem, index: number) => (
-    <div className="h-full flex flex-col">
-      <div className="flex-1 mb-2">
-        <div className="w-full h-16 bg-slate-700 rounded mb-2 flex items-center justify-center">
-          <Palette className="w-6 h-6 text-slate-400" />
-        </div>
-        <h4 className="text-sm font-semibold text-slate-100 mb-1 line-clamp-1">{item.title}</h4>
-        <p className="text-xs text-blue-400 mb-1">{item.artist}</p>
-        <p className="text-xs text-slate-400">{item.game}</p>
-      </div>
-      <div className="flex items-center justify-between text-xs text-slate-400">
-        <div className="flex items-center gap-2">
-          <span className="flex items-center gap-1">
-            <Heart className="w-3 h-3" /> {item.likes}
-          </span>
-          <span className="flex items-center gap-1">
-            <Eye className="w-3 h-3" /> {item.views}
-          </span>
-        </div>
-      </div>
-    </div>
-  )
-
-  const renderMediaItem = (item: MediaItem, index: number) => (
-    <div className="h-full flex flex-col">
-      <div className="flex-1 mb-2">
-        <div className="w-full h-16 bg-slate-700 rounded mb-2 flex items-center justify-center">
-          <Camera className="w-6 h-6 text-slate-400" />
-        </div>
-        <h4 className="text-sm font-semibold text-slate-100 mb-1 line-clamp-1">{item.title}</h4>
-        <p className="text-xs text-green-400 mb-1">{item.uploader}</p>
-        <p className="text-xs text-slate-400 capitalize">{item.type}</p>
-      </div>
-      <div className="flex items-center justify-between text-xs text-slate-400">
-        <span className="flex items-center gap-1">
-          <Eye className="w-3 h-3" /> {item.views}
-        </span>
-        <span>{formatTime(item.date)}</span>
-      </div>
-    </div>
-  )
-
-  const renderRecordItem = (record: PersonalRecord, index: number) => (
-    <div className="h-full flex flex-col">
-      <div className="flex-1">
-        <div className="flex items-center gap-1 mb-2">
-          <Trophy className="w-4 h-4 text-yellow-400" />
-          <h4 className="leaderboard-time-compact text-slate-100 line-clamp-1">{record.time}</h4>
-        </div>
-        <p className="text-xs text-slate-300 mb-1 line-clamp-1">{record.game}</p>
-        <p className="text-xs text-slate-400 mb-2 line-clamp-1">{record.category}</p>
-        <p className="text-xs text-blue-400">{record.platform}</p>
-      </div>
-      <div className="flex items-center justify-between text-xs text-slate-400">
-        <span>{formatTime(record.date)}</span>
-        {record.verified && <span className="text-green-400">{t('home.verifiedStatus')}</span>}
-      </div>
-    </div>
-  )
-
-  const renderMarketplaceItem = (item: MarketplaceItem, index: number) => (
-    <div className="h-full flex flex-col">
-      <div className="flex-1 mb-2">
-        <div className="w-full h-16 bg-slate-700 rounded mb-2 flex items-center justify-center">
-          <ShoppingCart className="w-6 h-6 text-slate-400" />
-        </div>
-        <h4 className="text-sm font-semibold text-slate-100 mb-1 line-clamp-1">{item.title}</h4>
-        <p className="text-xs text-green-400 mb-1">€{item.price.toFixed(2)}</p>
-        <p className="text-xs text-slate-400 mb-1">{item.condition}</p>
-        <p className="text-xs text-blue-400">{item.seller}</p>
-      </div>
-      <div className="text-xs text-slate-400">
-        <span>{formatTime(item.date)}</span>
-      </div>
-    </div>
-  )
 
   return (
     <div className="container-lg space-responsive responsive-max-width responsive-overflow-hidden">
-      {/* Welcome Section with Mascot */}
-      <div className="text-center mb-responsive responsive-max-width">
-        <div className="battle64-header-container mb-responsive">
+      {/* Mascot Section with Welcome Content directly underneath */}
+      <div className="text-center mb-6 responsive-max-width">
+        <div className="battle64-header-container">
           {/* Mascot Image */}
           <img 
             src="/mascot.png" 
             alt={t('alt.battle64Mascot')} 
-            className="battle64-mascot"
+            className="battle64-mascot mx-auto block"
+            style={{
+              marginTop: 'clamp(0.5rem, 1vw, 1rem)',
+              marginBottom: 'clamp(0.5rem, 1vw, 0.75rem)' // Reduced margin for tighter spacing
+            }}
           />
         </div>
         
-        {/* Welcome Back Text */}
-        <p className="battle64-welcome-text">
-          {user ? `${t('home.welcome')}, ${user.username}!` : t('home.welcome')}
-        </p>
-        
-        <p className="text-responsive-base text-slate-400 responsive-word-break" style={{ 
-          maxWidth: 'min(42rem, 90vw)', 
-          margin: '0 auto', 
-          marginTop: 'clamp(1rem, 2vw, 1.5rem)',
-          padding: '0 clamp(0.5rem, 2vw, 1rem)'
-        }}>
-          {t('home.subtitle')}
-        </p>
-        <div className="text-responsive-sm text-slate-500 responsive-flex-center" style={{ marginTop: 'clamp(1rem, 2vw, 1.5rem)' }}>
-          <span>{formatDate(currentTime)}</span>
-          <span className="hidden sm:inline">•</span>
-          <span>{formatTime(currentTime)}</span>
+        {/* Welcome Section - Now directly under mascot */}
+        <div className="mt-2">
+          {/* Welcome Back Text */}
+          <p className="battle64-welcome-text">
+            {user ? `${t('home.welcome')}, ${user.username}!` : t('home.welcome')}
+          </p>
+          
+          <p className="text-responsive-base text-slate-400 responsive-word-break" style={{ 
+            maxWidth: 'min(42rem, 90vw)', 
+            margin: '0 auto', 
+            marginTop: 'clamp(0.5rem, 1.5vw, 1rem)',
+            padding: '0 clamp(0.5rem, 2vw, 1rem)'
+          }}>
+            {t('home.subtitle')}
+          </p>
+          <div className="text-responsive-sm text-slate-500 responsive-flex-center" style={{ marginTop: 'clamp(0.5rem, 1.5vw, 1rem)' }}>
+            <span>{formatDate(new Date())}</span>
+            <span className="hidden sm:inline">•</span>
+            <span>{formatTime(new Date())}</span>
+          </div>
         </div>
       </div>
 
       {/* LIVE EVENTS SECTION - TOP PRIORITY */}
-      <div className="mb-responsive responsive-max-width">
-        {activeEvents.length > 0 ? (
-          <EventFeedWidget
-            eventTitle={activeEvents[0].title}
-            eventGame={activeEvents[0].game || 'N64'}
-            participants={activeEvents[0].participants || 0}
-            timeRemaining={getEventTimeRemaining(activeEvents[0])}
-            leaderboard={getLeaderboard(activeEvents[0].id)}
-            isExpanded={isEventExpanded}
-            onToggleExpanded={() => setIsEventExpanded(!isEventExpanded)}
-          />
-        ) : (
-          <div className="n64-tile n64-tile-large bg-gradient-to-br from-red-600/20 to-pink-600/20 border-l-4 border-red-400 responsive-max-width">
-            <div className="flex items-center gap-2 sm:gap-3 mb-4">
-              <Trophy className="w-5 h-5 sm:w-6 sm:h-6 text-yellow-400 flex-shrink-0" />
-              <h2 className="text-responsive-lg font-bold text-slate-100 responsive-word-break">🔴 {t('home.liveEvents')}</h2>
-            </div>
-            <div className="text-center py-4 sm:py-8">
-              <Gamepad2 className="w-8 h-8 sm:w-12 sm:h-12 text-slate-500 mx-auto mb-3" />
-              <p className="text-responsive-sm text-slate-400 mb-4 responsive-word-break">{t('home.noLiveEvent')}</p>
-              <Link 
-                to="/events" 
-                className="inline-block px-3 py-2 sm:px-4 sm:py-2 rounded-lg bg-red-500/20 text-red-400 hover:bg-red-500/30 transition-colors text-responsive-sm w-full sm:w-auto text-center"
-              >
-                {t('home.showAllEvents')}
-              </Link>
-            </div>
-          </div>
-        )}
-      </div>
+      <SafeComponent name="EventFeedWidget">
+        <div className="mb-responsive responsive-max-width">
+          <EventFeedWidget />
+        </div>
+      </SafeComponent>
 
       {/* POINTS WIDGET SECTION */}
       {user && (
-        <div className="mb-responsive responsive-max-width">
-          <PointsWidget />
-        </div>
+        <SafeComponent name="PointsWidget">
+          <div className="mb-responsive responsive-max-width">
+            <PointsWidget />
+          </div>
+        </SafeComponent>
       )}
+
+
 
       {/* NEWS CARDS SECTION */}
       <div className="space-y-6">
         {/* Single News Card - One card at a time with dismiss functionality */}
-        <div className="space-y-4">
-          <h2 className="text-responsive-xl font-bold text-slate-100 text-center mb-6">
-            {t('home.newsTitle')}
-          </h2>
-          <SingleNewsCard 
-            newsItems={newsItems.slice(0, 8)}
-            className="w-full"
-          />
-        </div>
+        <SafeComponent name="SingleNewsCard">
+          <div className="space-y-4">
+            <h2 className="text-responsive-lg font-bold text-slate-100 mb-responsive">
+              {t('home.newsTitle')}
+            </h2>
+            <SingleNewsCard 
+              newsItems={posts.slice(0, 8).map(post => ({
+                id: post.id,
+                title: post.content.substring(0, 50) + '...', // Use first 50 chars of content as title
+                content: post.content,
+                date: new Date(post.createdAt),
+                type: 'community_news' as const
+              }))}
+              className="w-full"
+            />
+          </div>
+        </SafeComponent>
+
+        {/* Battle64 Map Tile */}
+        <SafeComponent name="Battle64MapTile">
+          <Battle64MapTile className="w-full" />
+        </SafeComponent>
 
         {/* Forum Posts - Single card interface */}
-        <SingleForumCard 
-          forumThreads={forumThreads}
-          className="w-full"
-        />
+        <SafeComponent name="SingleForumCard">
+          <SingleForumCard 
+            forumThreads={forumThreads}
+            className="w-full"
+          />
+        </SafeComponent>
 
         {/* Other Content - FanArts and Media */}
         <div className="responsive-grid-2">
-          <SingleFanArtCard 
-            fanArtItems={fanArtItems}
-            className="responsive-max-width"
-          />
+          <SafeComponent name="SingleFanArtCard">
+            <SingleFanArtCard 
+              fanArtItems={fanArtItems}
+              className="responsive-max-width"
+            />
+          </SafeComponent>
           
-          <SingleMediaCard 
-            mediaItems={mediaItems}
-            className="responsive-max-width"
-          />
+          <SafeComponent name="SingleMediaCard">
+            <SingleMediaCard 
+              mediaItems={mediaItems}
+              className="responsive-max-width"
+            />
+          </SafeComponent>
         </div>
 
         {/* Records and Marketplace */}
         <div className="responsive-grid-2">
-          <SingleRecordCard 
-            personalRecords={personalRecords}
-            className="responsive-max-width"
-          />
+          <SafeComponent name="SingleRecordCard">
+            <SingleRecordCard 
+              personalRecords={personalRecords}
+              className="responsive-max-width"
+            />
+          </SafeComponent>
           
-          <SingleMarketplaceCard 
-            marketplaceItems={marketplaceItems}
-            className="responsive-max-width"
-          />
+          <SafeComponent name="SingleMarketplaceCard">
+            <SingleMarketplaceCard 
+              marketplaceItems={marketplaceItems}
+              className="responsive-max-width"
+            />
+          </SafeComponent>
         </div>
 
         {/* N64Fan Leaderboard - Compact */}
         {user && (
-          <div className="responsive-max-width">
-            <div className="simple-tile">
-              <N64FanLeaderboard 
-                maxEntries={5}
-                showFilters={false}
-                compact={true}
-              />
+          <SafeComponent name="N64FanLeaderboard">
+            <div className="responsive-max-width">
+              <div className="simple-tile">
+                <N64FanLeaderboard 
+                  maxEntries={5}
+                  showFilters={false}
+                  compact={true}
+                />
+              </div>
             </div>
-          </div>
+          </SafeComponent>
         )}
       </div>
 

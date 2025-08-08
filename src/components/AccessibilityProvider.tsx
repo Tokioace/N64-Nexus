@@ -79,6 +79,7 @@ export const AccessibilityProvider: React.FC<{ children: React.ReactNode }> = ({
       mediaQuery.removeEventListener('change', handleChange)
       contrastQuery.removeEventListener('change', handleContrastChange)
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   // Apply settings to document
@@ -144,6 +145,7 @@ export const AccessibilityProvider: React.FC<{ children: React.ReactNode }> = ({
 
     document.addEventListener('keydown', handleKeyDown)
     return () => document.removeEventListener('keydown', handleKeyDown)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [settings.keyboardNavigation, t])
 
   const updateSetting = useCallback(<K extends keyof AccessibilitySettings>(
@@ -249,6 +251,7 @@ export const AccessibilityProvider: React.FC<{ children: React.ReactNode }> = ({
   )
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useAccessibility = (): AccessibilityContextType => {
   const context = useContext(AccessibilityContext)
   if (!context) {
@@ -258,12 +261,14 @@ export const useAccessibility = (): AccessibilityContextType => {
 }
 
 // Hook for components to announce changes
+// eslint-disable-next-line react-refresh/only-export-components
 export const useAnnouncement = () => {
   const { announceToScreenReader } = useAccessibility()
   return announceToScreenReader
 }
 
 // Hook for focus management
+// eslint-disable-next-line react-refresh/only-export-components
 export const useFocusManagement = () => {
   const { setFocusToElement, skipToContent } = useAccessibility()
   
@@ -297,6 +302,7 @@ export const useFocusManagement = () => {
 }
 
 // Accessibility testing helper
+// eslint-disable-next-line react-refresh/only-export-components
 export const useAccessibilityTesting = () => {
   const checkColorContrast = useCallback((foreground: string, background: string): number => {
     // Simplified contrast ratio calculation

@@ -1,6 +1,8 @@
 import React, { useState, useRef } from 'react'
-import { Palette, Heart, Eye, X } from 'lucide-react'
+import { Palette, Image, Calendar } from 'lucide-react'
 import { useLanguage } from '../contexts/LanguageContext'
+import { useNavigate } from 'react-router-dom'
+import { InteractionBar } from './InteractionComponents'
 
 interface FanArtItem {
   id: string
@@ -10,6 +12,8 @@ interface FanArtItem {
   likes: number
   views: number
   game: string
+  createdAt?: Date
+  likedBy?: string[] // Array of user IDs who liked this artwork
 }
 
 interface SingleFanArtCardProps {
@@ -19,6 +23,7 @@ interface SingleFanArtCardProps {
 
 const SingleFanArtCard: React.FC<SingleFanArtCardProps> = ({ fanArtItems, className = '' }) => {
   const { t } = useLanguage()
+  const navigate = useNavigate()
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isFlipping, setIsFlipping] = useState(false)
   const [flipDirection, setFlipDirection] = useState<'left' | 'right'>('left')
@@ -28,7 +33,7 @@ const SingleFanArtCard: React.FC<SingleFanArtCardProps> = ({ fanArtItems, classN
   const goToNext = () => {
     if (isFlipping || currentIndex >= fanArtItems.length - 1) return
     
-    setFlipDirection('left')
+    setFlipDirection('right') // Changed from 'left' to 'right' for forward navigation
     setIsFlipping(true)
     
     setTimeout(() => {
@@ -40,7 +45,7 @@ const SingleFanArtCard: React.FC<SingleFanArtCardProps> = ({ fanArtItems, classN
   const goToPrevious = () => {
     if (isFlipping || currentIndex <= 0) return
     
-    setFlipDirection('right')
+    setFlipDirection('left') // Changed from 'right' to 'left' for backward navigation
     setIsFlipping(true)
     
     setTimeout(() => {
@@ -74,6 +79,11 @@ const SingleFanArtCard: React.FC<SingleFanArtCardProps> = ({ fanArtItems, classN
     touchEndX.current = 0
   }
 
+  const handleCardClick = (item: FanArtItem) => {
+    // Navigate to FanArt page and scroll to the specific post
+    navigate('/fanart', { state: { highlightPostId: item.id } })
+  }
+
   if (fanArtItems.length === 0) {
     return (
       <div className={`${className} flex justify-center`}>
@@ -95,7 +105,10 @@ const SingleFanArtCard: React.FC<SingleFanArtCardProps> = ({ fanArtItems, classN
   }
 
   const renderFanArtCard = (item: FanArtItem, index: number, isAnimating: boolean = false) => (
-    <div className={`swipeable-card bg-gradient-to-br from-rose-600/10 to-pink-600/10 border-l-4 border-rose-400 relative transition-all duration-300 ${isAnimating ? 'scale-95 opacity-80' : 'scale-100 opacity-100'}`}>
+    <div 
+      className={`swipeable-card bg-gradient-to-br from-rose-600/10 to-pink-600/10 border-l-4 border-rose-400 relative transition-all duration-300 cursor-pointer hover:scale-105 ${isAnimating ? 'scale-95 opacity-80' : 'scale-100 opacity-100'}`}
+      onClick={() => handleCardClick(item)}
+    >
       <div className="swipeable-card-header">
         <div className="flex items-center gap-2">
           <Palette className="w-5 h-5 text-rose-400" />
@@ -106,11 +119,39 @@ const SingleFanArtCard: React.FC<SingleFanArtCardProps> = ({ fanArtItems, classN
         </div>
       </div>
       
+      {/* Meta symbols in corner */}
+      <div className="absolute bottom-3 right-3 flex items-center gap-1">
+        <div className="text-slate-400" title="Fan Art">
+          <Image className="w-4 h-4" />
+        </div>
+        {item.createdAt && (
+          <div className="text-slate-400" title={item.createdAt.toLocaleDateString()}>
+            <Calendar className="w-4 h-4" />
+          </div>
+        )}
+      </div>
+      
       <div className="swipeable-card-content">
         <div className="p-3 h-full flex flex-col">
           <div className="flex-1 mb-2">
-            <div className="w-full h-16 bg-slate-700 rounded mb-2 flex items-center justify-center">
-              <Palette className="w-6 h-6 text-slate-400" />
+            {/* Display actual image */}
+            <div className="w-full h-16 bg-slate-700 rounded mb-2 overflow-hidden">
+              {item.imageUrl ? (
+                <img 
+                  src={item.imageUrl} 
+                  alt={item.title}
+                  className="w-full h-full object-cover"
+                  onError={(e) => {
+                    // Fallback to placeholder if image fails to load
+                    const target = e.target as HTMLImageElement
+                    target.style.display = 'none'
+                    target.nextElementSibling?.classList.remove('hidden')
+                  }}
+                />
+              ) : null}
+              <div className={`w-full h-full flex items-center justify-center ${item.imageUrl ? 'hidden' : ''}`}>
+                <Palette className="w-6 h-6 text-slate-400" />
+              </div>
             </div>
             <h4 className="text-sm sm:text-base font-semibold text-slate-100 mb-1 leading-tight">
               {item.title}
@@ -119,14 +160,19 @@ const SingleFanArtCard: React.FC<SingleFanArtCardProps> = ({ fanArtItems, classN
             <p className="text-xs text-slate-400">{item.game}</p>
           </div>
           <div className="flex items-center justify-between text-xs text-slate-400 mt-auto">
-            <div className="flex items-center gap-2">
-              <span className="flex items-center gap-1">
-                <Heart className="w-3 h-3" /> {item.likes}
-              </span>
-              <span className="flex items-center gap-1">
-                <Eye className="w-3 h-3" /> {item.views}
-              </span>
+            <div className="flex-1">
+              <InteractionBar 
+                contentType="fanart"
+                contentId={item.id}
+                showComments={false}
+                compact={true}
+              />
             </div>
+            {item.createdAt && (
+              <span className="text-xs">
+                {item.createdAt.toLocaleDateString()}
+              </span>
+            )}
           </div>
         </div>
       </div>
@@ -146,10 +192,10 @@ const SingleFanArtCard: React.FC<SingleFanArtCardProps> = ({ fanArtItems, classN
           {/* Background card for smooth transition */}
           {isFlipping && (
             <div className="absolute inset-0 z-10">
-              {flipDirection === 'left' && currentIndex < fanArtItems.length - 1 && 
+              {flipDirection === 'right' && currentIndex < fanArtItems.length - 1 && 
                 renderFanArtCard(fanArtItems[currentIndex + 1], currentIndex + 1, false)
               }
-              {flipDirection === 'right' && currentIndex > 0 && 
+              {flipDirection === 'left' && currentIndex > 0 && 
                 renderFanArtCard(fanArtItems[currentIndex - 1], currentIndex - 1, false)
               }
             </div>
@@ -159,9 +205,9 @@ const SingleFanArtCard: React.FC<SingleFanArtCardProps> = ({ fanArtItems, classN
           <div 
             className={`relative z-20 transition-transform duration-200 ease-out ${
               isFlipping 
-                ? flipDirection === 'left' 
-                  ? 'transform -translate-x-full opacity-0' 
-                  : 'transform translate-x-full opacity-0'
+                ? flipDirection === 'right' 
+                  ? 'transform translate-x-full opacity-0' // Move right when going forward
+                  : 'transform -translate-x-full opacity-0' // Move left when going backward
                 : 'transform translate-x-0 opacity-100'
             }`}
           >

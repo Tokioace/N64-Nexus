@@ -10,6 +10,287 @@ html {
   position: relative;
 }
 
+/* PWA and Mobile Optimizations */
+@media (display-mode: standalone) {
+  /* PWA-specific styles */
+  body {
+    user-select: none; /* Prevent text selection in PWA mode */
+    -webkit-touch-callout: none; /* Disable callout on iOS */
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+  }
+
+  /* Allow text selection in input fields and content areas */
+  input, textarea, [contenteditable="true"], .selectable {
+    user-select: text !important;
+    -webkit-user-select: text !important;
+    -khtml-user-select: text !important;
+    -moz-user-select: text !important;
+    -ms-user-select: text !important;
+  }
+}
+
+/* Landscape orientation optimizations */
+@media screen and (orientation: landscape) and (max-height: 500px) {
+  /* Compact header in landscape */
+  .mobile-header {
+    padding: 0.5rem 1rem;
+    min-height: 3rem;
+  }
+
+  /* Reduce vertical spacing in landscape */
+  .landscape-compact {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  /* Optimize chat for landscape */
+  .chat-landscape {
+    max-height: 60vh;
+  }
+
+  /* Optimize forms for landscape */
+  .form-landscape {
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  /* Hide less important elements in landscape */
+  .hide-landscape {
+    display: none;
+  }
+}
+
+/* Mobile-first responsive design */
+@media (max-width: 768px) {
+  /* Touch-friendly buttons */
+  .btn-mobile {
+    min-height: 44px; /* iOS minimum touch target */
+    min-width: 44px;
+    padding: 0.75rem 1rem;
+  }
+
+  /* Mobile navigation */
+  .mobile-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(15, 23, 42, 0.95);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(148, 163, 184, 0.2);
+    padding: 0.5rem;
+    z-index: 50;
+  }
+
+  /* Mobile-optimized cards */
+  .card-mobile {
+    margin: 0.5rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Mobile typography */
+  .text-mobile-sm {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
+
+  .text-mobile-base {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+
+  /* Mobile spacing */
+  .space-mobile {
+    padding: 1rem;
+  }
+
+  /* Mobile-friendly modals */
+  .modal-mobile {
+    margin: 1rem;
+    max-height: calc(100vh - 2rem);
+    overflow-y: auto;
+  }
+}
+
+/* Tablet optimizations */
+@media (min-width: 768px) and (max-width: 1024px) {
+  /* Tablet-specific grid layouts */
+  .grid-tablet {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  /* Tablet navigation */
+  .nav-tablet {
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 1rem;
+  }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  /* Sharper borders and shadows */
+  .border-sharp {
+    border-width: 0.5px;
+  }
+
+  .shadow-sharp {
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  }
+}
+
+/* Dark mode optimizations */
+@media (prefers-color-scheme: dark) {
+  /* Enhanced dark mode colors */
+  .auto-dark {
+    background-color: #0f172a;
+    color: #f1f5f9;
+  }
+
+  .auto-dark-card {
+    background-color: #1e293b;
+    border-color: #334155;
+  }
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Safe area insets for notched devices */
+@supports (padding: max(0px)) {
+  .safe-area-top {
+    padding-top: max(1rem, env(safe-area-inset-top));
+  }
+
+  .safe-area-bottom {
+    padding-bottom: max(1rem, env(safe-area-inset-bottom));
+  }
+
+  .safe-area-left {
+    padding-left: max(1rem, env(safe-area-inset-left));
+  }
+
+  .safe-area-right {
+    padding-right: max(1rem, env(safe-area-inset-right));
+  }
+}
+
+/* Battle64 Map Styles */
+.battle64-map {
+  touch-action: pan-x pan-y;
+  overflow: hidden;
+}
+
+/* Enhanced responsive popup styles */
+.responsive-popup .leaflet-popup-content-wrapper {
+  max-width: 90vw !important;
+  border-radius: 8px !important;
+}
+
+.responsive-popup .leaflet-popup-content {
+  margin: 0 !important;
+  line-height: 1.4 !important;
+}
+
+/* Battle64 Map Night Mode Styles */
+.night-mode-popup .leaflet-popup-content-wrapper {
+  background: #1e293b !important;
+  color: #ffffff !important;
+  border: 1px solid #eab308 !important;
+  box-shadow: 0 4px 20px rgba(234, 179, 8, 0.3) !important;
+}
+
+.night-mode-popup .leaflet-popup-tip {
+  background: #1e293b !important;
+  border: 1px solid #eab308 !important;
+}
+
+/* Enhanced night mode labels for better city visibility */
+.night-mode-labels {
+  filter: brightness(1.3) contrast(1.2) saturate(0.8) !important;
+  mix-blend-mode: screen !important;
+}
+
+/* Additional night mode map enhancements */
+.battle64-map.night-mode {
+  filter: brightness(0.95) contrast(1.05);
+}
+
+.battle64-map.night-mode .leaflet-tile {
+  filter: brightness(0.9) contrast(1.1);
+}
+
+/* Night mode city labels with enhanced readability */
+.night-mode-labels .leaflet-tile {
+  filter: brightness(1.4) contrast(1.3) hue-rotate(5deg) !important;
+  text-shadow: 0 0 3px rgba(255, 255, 255, 0.8) !important;
+}
+
+/* Leaflet controls responsive positioning */
+.leaflet-control-zoom {
+  margin-left: 10px !important;
+  margin-top: 10px !important;
+}
+
+@media (max-width: 640px) {
+  .leaflet-control-zoom {
+    margin-left: 5px !important;
+    margin-top: 5px !important;
+  }
+  
+  .leaflet-control-zoom a {
+    width: 32px !important;
+    height: 32px !important;
+    line-height: 32px !important;
+    font-size: 16px !important;
+  }
+}
+
+/* Battle Map mobile overlay improvements */
+@media (max-width: 768px) {
+  .battle64-map {
+    border-radius: 0 !important;
+  }
+}
+
+/* Prevent horizontal scroll on mobile */
+@media (max-width: 640px) {
+  .battle64-map .leaflet-container {
+    max-width: 100vw !important;
+  }
+}
+
+/* Optional CRT scanlines effect */
+.night-mode-scanlines::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.1) 2px,
+    rgba(0, 0, 0, 0.1) 4px
+  );
+  pointer-events: none;
+  z-index: 1000;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -401,10 +682,10 @@ code {
   width: 100%;
   max-width: 100%;
   padding: clamp(1rem, 3vw, 1.5rem);
+  margin-bottom: 1.5rem;
   box-sizing: border-box;
   position: relative;
   overflow: hidden;
-  box-sizing: border-box;
 }
 
 /* Simple responsive tile for cleaner layouts */
@@ -413,6 +694,7 @@ code {
   border: 1px solid #2C2F4A;
   border-radius: 0.5rem;
   padding: clamp(1rem, 3vw, 1.5rem);
+  margin-bottom: 1rem;
   width: 100%;
   max-width: 100%;
   box-sizing: border-box;
@@ -655,9 +937,11 @@ code {
 
 /* Mobile Responsive Improvements */
 @media (max-width: 320px) {
-  .event-tile {
+  .event-tile, .n64-tile, .simple-tile {
     @apply p-3;
     min-height: auto;
+    margin-bottom: 1rem;
+    border-radius: 0.5rem;
   }
   
   .event-button-group button {
@@ -673,6 +957,47 @@ code {
   .event-icon {
     width: 18px !important;
     height: 18px !important;
+  }
+}
+
+/* Forum Mobile Optimizations */
+@media (max-width: 768px) {
+  .simple-tile {
+    padding: clamp(0.75rem, 3vw, 1rem);
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+  }
+  
+  .simple-tile * {
+    max-width: 100%;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+  
+  .simple-tile pre {
+    white-space: pre-wrap;
+    word-break: break-all;
+    overflow-x: auto;
+  }
+  
+  .simple-tile img {
+    max-width: 100% !important;
+    height: auto !important;
+    object-fit: contain;
+  }
+}
+
+/* Prevent border overlapping in horizontal mode */
+@media (orientation: landscape) and (max-height: 500px) {
+  .n64-tile, .simple-tile {
+    margin-bottom: 0.75rem;
+    padding: 0.75rem;
+  }
+  
+  .n64-tile-large {
+    min-height: 120px;
+    padding: 0.75rem;
   }
 }
 
@@ -876,6 +1201,64 @@ code {
   box-sizing: border-box;
 }
 
+/* Event card specific optimization for ultra-compact layout */
+.simple-tile:has(.event-card-content) {
+  padding-bottom: 0.25rem !important; /* Ultra-compact bottom padding */
+  padding-top: 0.75rem !important; /* Slightly reduced top padding */
+  min-height: unset !important; /* Remove any inherited min-height */
+  height: auto !important; /* Ensure dynamic height based on content */
+  border-radius: 0.75rem; /* Slightly more rounded for elegant look */
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* Subtle shadow */
+  margin-bottom: 0.625rem !important; /* Tighter spacing between cards */
+  overflow-x: hidden !important;
+  max-width: 100% !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+@media (max-width: 640px) {
+  .simple-tile:has(.event-card-content) {
+    padding-bottom: 0.125rem !important; /* Ultra-compact on mobile */
+    padding-top: 0.5rem !important; /* Reduce top padding on mobile */
+    padding-left: 0.75rem !important;
+    padding-right: 0.75rem !important;
+    margin-bottom: 0.5rem !important; /* Tighter spacing on mobile */
+  }
+}
+
+/* Ensure parent container has relative positioning for absolute interaction bar */
+.event-card-content {
+  position: relative !important;
+  min-height: 120px !important; /* Ensure adequate height for absolutely positioned meta bar */
+}
+
+/* Interaction Bar Optimization for Event Cards - Ultra-compact, bottom-left positioned */
+.event-card-content .interaction-bar {
+  margin-bottom: 0 !important; /* No bottom margin */
+  justify-content: flex-start !important; /* Left align */
+}
+
+/* Remove any unwanted spacing from interaction icons and ensure white color */
+.event-card-content .interaction-bar button {
+  padding: 0 !important;
+  margin: 0 !important;
+  border: none !important;
+  background: transparent !important;
+  line-height: 1 !important;
+  color: #FFFFFF !important; /* Force white color */
+}
+
+.event-card-content .interaction-bar svg {
+  display: block !important;
+  flex-shrink: 0 !important;
+  color: #FFFFFF !important; /* Force white color */
+}
+
+/* Ensure all text in interaction bar is white */
+.event-card-content .interaction-bar span {
+  color: #FFFFFF !important; /* Force white color for all numbers */
+}
+
 /* Enhanced Event Tile Styles for Better Readability */
 .event-tile {
   @apply rounded-lg p-4 sm:p-5 lg:p-6 shadow-lg w-full;
@@ -959,6 +1342,8 @@ code {
 .simple-tile-label {
   @apply text-center text-xs sm:text-sm lg:text-base;
 }
+
+
 
 /* Navigation Styles - Fully Responsive */
 .sidebar {
@@ -1745,19 +2130,19 @@ code {
 
 /* Responsive Swipeable Card Styles - N64 Theme */
 .swipeable-card {
-  @apply rounded-lg shadow-lg transition-all duration-300 hover:shadow-xl backdrop-blur-sm;
+  @apply rounded-lg shadow-lg transition-all duration-300 hover:shadow-xl backdrop-blur-sm cursor-pointer;
   background: rgba(24, 26, 44, 0.8);
   border: 1px solid rgba(44, 47, 74, 0.8);
   width: 100%;
   max-width: min(400px, 90vw);
   height: auto;
-  min-height: clamp(200px, 25vh, 300px);
+  min-height: clamp(320px, 38vh, 420px);
   position: relative;
   overflow: hidden;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  aspect-ratio: 16/10;
+  aspect-ratio: 16/10.5;
 }
 
 /* Responsive card container */
@@ -1839,21 +2224,35 @@ input[type="submit"] {
 }
 
 .swipeable-card-header {
-  @apply p-2 sm:p-3 flex-shrink-0;
+  @apply p-3 flex-shrink-0;
   border-bottom: 1px solid rgba(44, 47, 74, 0.5);
   display: flex;
   justify-content: space-between;
   align-items: center;
+  min-height: 50px;
 }
 
 .swipeable-card-content {
-  @apply flex-1 overflow-hidden relative;
-  min-height: 120px;
+  @apply flex-1 relative;
+  min-height: 160px;
+  overflow: visible;
+  display: flex;
+  flex-direction: column;
 }
 
 @media (max-width: 768px) {
   .swipeable-card-content {
-    min-height: 100px;
+    min-height: 160px;
+  }
+  
+  .swipeable-card {
+    min-height: clamp(300px, 35vh, 380px);
+    aspect-ratio: 16/10;
+  }
+  
+  .swipeable-card-header {
+    padding: 0.75rem;
+    min-height: 45px;
   }
 }
 
@@ -1898,6 +2297,30 @@ input[type="submit"] {
   max-width: 100%;
   overflow-x: auto;
   padding: 0 1rem;
+}
+
+/* Improved text clamping for consistent card heights */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Enhanced hover effect for news cards */
+.swipeable-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  border-color: rgba(59, 130, 246, 0.5);
 }
 
 @media (max-width: 768px) {
@@ -1957,8 +2380,8 @@ input[type="submit"] {
   }
   
   .battle64-mascot {
-    height: clamp(6rem, 20vw, 8rem);
-    max-width: 95vw;
+    height: clamp(8rem, 22vw, 12rem);
+    max-width: 90vw;
   }
 }
 
@@ -2276,30 +2699,33 @@ input[type="submit"] {
   margin: 0 auto;
 }
 
-/* Fully responsive mascot image */
+/* Fully responsive mascot image - Prominent positioning like in mobile photo */
 .battle64-mascot {
   flex-shrink: 0;
   image-rendering: pixelated;
   image-rendering: -moz-crisp-edges;
   image-rendering: crisp-edges;
-  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
-  transition: transform 0.3s ease;
+  filter: drop-shadow(3px 3px 6px rgba(0, 0, 0, 0.4));
+  transition: transform 0.3s ease, filter 0.3s ease;
   object-fit: contain;
   width: auto;
-  height: clamp(8rem, 15vw, 20rem);
-  max-width: min(90vw, 400px);
-  transform: scaleX(1.2);
+  height: clamp(10rem, 18vw, 24rem);
+  max-width: min(85vw, 450px);
+  transform: scaleX(1.1);
+  display: block;
+  margin: 0 auto;
 }
 
 .battle64-mascot:hover {
-  transform: scaleX(1.25) scaleY(1.03) rotate(0.5deg);
+  transform: scaleX(1.15) scaleY(1.05) rotate(0.8deg);
+  filter: drop-shadow(4px 4px 8px rgba(0, 0, 0, 0.5)) brightness(1.05);
 }
 
 
 /* Special rules for the retro page - consistent with main mascot */
 .retro-page .battle64-mascot {
-  height: clamp(8rem, 15vw, 20rem);
-  max-width: min(90vw, 400px);
+  height: clamp(10rem, 18vw, 24rem);
+  max-width: min(85vw, 450px);
 }
 
 /* Welcome text styling - fully responsive */
@@ -2315,10 +2741,555 @@ input[type="submit"] {
   word-wrap: break-word;
 }
 
+/* Prevent "Millennials" from breaking */
+.battle64-welcome-text,
+.typography-body-center {
+  hyphens: none;
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+}
+
+/* Specific handling for subtitle text to prevent awkward breaks */
+.typography-body-center {
+  word-break: keep-all;
+  overflow-wrap: break-word;
+  white-space: nowrap;
+}
+
+/* Mobile-specific subtitle handling */
+@media (max-width: 640px) {
+  .typography-body-center {
+    white-space: normal;
+    word-break: normal;
+    line-break: strict;
+    /* Prevent breaking of important words like "Millennials" */
+    text-wrap: balance;
+    -webkit-text-wrap: balance;
+  }
+  
+  /* Ensure "Millennials" stays together */
+  .typography-body-center::after {
+    content: "";
+    display: inline-block;
+    width: 0;
+    white-space: nowrap;
+  }
+}
+
+/* Event name responsive handling */
+.event-title,
+.simple-tile-label {
+  word-break: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  -ms-hyphens: auto;
+  line-height: 1.3;
+}
+
+/* Long event names should scale down on mobile */
+@media (max-width: 640px) {
+  .event-title {
+    font-size: clamp(0.75rem, 3vw, 0.875rem);
+    line-height: 1.2;
+  }
+  
+  .simple-tile-label {
+    font-size: clamp(0.7rem, 2.5vw, 0.8rem);
+    line-height: 1.25;
+  }
+}
+
 /* Chat Responsiveness Fixes */
 .chatWrapper {
   max-width: 100%;
   overflow-x: hidden;
   padding: 1rem;
   box-sizing: border-box;
+}
+
+/* RankingBar Shimmer Animation */
+@keyframes shimmer {
+  0% { 
+    transform: translateX(-100%) skewX(-12deg); 
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% { 
+    transform: translateX(400%) skewX(-12deg); 
+    opacity: 0;
+  }
+}
+
+.shimmer-effect {
+  animation: shimmer 2s ease-in-out infinite;
+}
+
+/* Mobile tile optimization */
+.mobile-tile-optimized {
+  padding: clamp(0.75rem, 3vw, 1rem);
+  margin-bottom: clamp(0.5rem, 2vw, 0.75rem);
+  border-radius: clamp(0.375rem, 1.5vw, 0.5rem);
+  min-height: clamp(80px, 18vw, 120px);
+  transition: all 0.2s ease-in-out;
+}
+
+/* Enhanced spacing for mobile tiles */
+@media (max-width: 640px) {
+  .mobile-tile-optimized {
+    padding: clamp(0.75rem, 4vw, 1.25rem);
+    gap: clamp(0.25rem, 1vw, 0.5rem);
+  }
+  
+  .mobile-tile-optimized .simple-tile-icon {
+    margin-bottom: clamp(0.25rem, 1.5vw, 0.5rem);
+  }
+  
+  .mobile-tile-optimized .simple-tile-label {
+    gap: clamp(0.125rem, 0.5vw, 0.25rem);
+  }
+}
+
+/* Soft red fanart tile */
+.fanart-tile-soft-red {
+  background: linear-gradient(135deg, #2A1B1F 0%, #3D2429 100%);
+  border-color: #E65C5C;
+}
+
+.fanart-tile-soft-red:hover {
+  background: linear-gradient(135deg, #3D2429 0%, #4A2B32 100%);
+  border-color: #FF6F61;
+  box-shadow: 0 4px 20px rgba(230, 92, 92, 0.15);
+}
+
+/* Improved card spacing for leaderboards and news */
+.swipeable-card,
+.leaderboard-entry,
+.news-card {
+  padding-bottom: clamp(1rem, 3vw, 1.5rem) !important;
+  margin-bottom: clamp(0.75rem, 2vw, 1rem);
+}
+
+/* Enhanced card content spacing */
+.card-content,
+.simple-tile-content {
+  padding: clamp(0.75rem, 2.5vw, 1.25rem);
+  gap: clamp(0.5rem, 1.5vw, 0.75rem);
+}
+
+/* Better spacing for card elements */
+.card-header,
+.simple-tile-header {
+  margin-bottom: clamp(0.5rem, 2vw, 0.75rem);
+  padding-bottom: clamp(0.375rem, 1.5vw, 0.5rem);
+}
+
+/* Responsive card text */
+@media (max-width: 768px) {
+  .card-title {
+    font-size: clamp(0.875rem, 3.5vw, 1rem);
+    line-height: 1.3;
+  }
+  
+  .card-subtitle,
+  .card-description {
+    font-size: clamp(0.75rem, 3vw, 0.875rem);
+    line-height: 1.4;
+  }
+}
+
+/* Enhanced mobile responsiveness for Portrait and Landscape */
+@media (max-width: 768px) and (orientation: portrait) {
+  .retro-page {
+    padding: clamp(0.5rem, 2vw, 1rem);
+  }
+  
+  .grid {
+    gap: clamp(0.5rem, 2vw, 0.75rem);
+    padding: 0 clamp(0.25rem, 1vw, 0.5rem);
+  }
+  
+  .mobile-tile-optimized {
+    min-height: clamp(90px, 20vw, 130px);
+    padding: clamp(0.875rem, 4vw, 1.375rem);
+  }
+}
+
+@media (max-width: 768px) and (orientation: landscape) {
+  .retro-page {
+    padding: clamp(0.25rem, 1.5vw, 0.75rem);
+  }
+  
+  .grid {
+    gap: clamp(0.375rem, 1.5vw, 0.625rem);
+  }
+  
+  .mobile-tile-optimized {
+    min-height: clamp(70px, 15vw, 100px);
+    padding: clamp(0.625rem, 3vw, 1rem);
+  }
+  
+  /* Adjust mascot size for landscape */
+  .battle64-mascot {
+    height: clamp(8rem, 15vw, 16rem) !important;
+  }
+}
+
+/* Tablet-specific adjustments */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .mobile-tile-optimized {
+    padding: clamp(1rem, 2.5vw, 1.25rem);
+    min-height: clamp(100px, 12vw, 140px);
+  }
+  
+  .grid {
+    gap: clamp(1rem, 2.5vw, 1.25rem);
+  }
+}
+
+/* Desktop preservation - ensure no negative impact */
+@media (min-width: 1025px) {
+  .mobile-tile-optimized {
+    /* Fallback to original simple-tile styles on desktop */
+    padding: 1rem;
+    min-height: 100px;
+  }
+  
+  .grid {
+    gap: 1.25rem;
+  }
+  
+  /* Ensure desktop ranking bar maintains its styling */
+  .ranking-bar-container {
+    backdrop-filter: blur(8px);
+  }
+}
+
+/* Safe area handling for modern mobile devices */
+@supports (padding: max(0px)) {
+  .retro-page {
+    padding-left: max(1rem, env(safe-area-inset-left));
+    padding-right: max(1rem, env(safe-area-inset-right));
+    padding-bottom: max(1rem, env(safe-area-inset-bottom));
+  }
+  
+  .mobile-menu-button {
+    top: max(0.5rem, env(safe-area-inset-top));
+    left: max(0.5rem, env(safe-area-inset-left));
+  }
+}
+
+/* Prevent content overflow and ensure proper touch targets */
+@media (max-width: 768px) {
+  .simple-tile-small,
+  .mobile-tile-optimized {
+    min-height: 44px; /* iOS minimum touch target */
+    touch-action: manipulation;
+  }
+  
+  /* Prevent horizontal scroll */
+  body {
+    overflow-x: hidden;
+  }
+  
+  .retro-page {
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+}
+
+/* RTL language support for mobile optimizations */
+.rtl-layout .mobile-tile-optimized {
+  direction: rtl;
+  text-align: right;
+}
+
+.rtl-layout .simple-tile-icon {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+.rtl-layout .simple-tile-label {
+  text-align: right;
+  direction: rtl;
+}
+
+/* RTL Grid adjustments */
+.rtl-layout .grid {
+  direction: rtl;
+}
+
+.rtl-layout .grid > * {
+  direction: ltr; /* Reset direction for tile content */
+}
+
+/* RTL Ranking bar adjustments */
+.rtl-layout .ranking-bar-container .flex {
+  flex-direction: row-reverse;
+}
+
+/* Ensure proper text rendering for all languages */
+.typography-body-center,
+.battle64-welcome-text,
+.simple-tile-label {
+  font-feature-settings: "kern" 1, "liga" 1;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Event card title optimizations for all screen sizes */
+.event-card-content h3 {
+  font-size: clamp(13px, 3.5vw, 16px) !important;
+  line-height: 1.3 !important;
+  word-break: break-word !important;
+  overflow-wrap: break-word !important;
+  hyphens: auto !important;
+  max-width: 100% !important;
+}
+
+.event-card-content p {
+  font-size: clamp(11px, 3vw, 14px) !important;
+  line-height: 1.2 !important;
+  word-break: break-word !important;
+  overflow-wrap: break-word !important;
+  max-width: 100% !important;
+}
+
+/* Ensure live status and timer stay compact */
+.event-card-content .flex-shrink-0 span {
+  font-size: clamp(10px, 2.5vw, 12px) !important;
+  white-space: nowrap !important;
+}
+
+/* Ultra-compact interaction bar for all screen sizes - all white, optimized icon sizes */
+.event-card-content .interaction-bar {
+  font-size: clamp(10px, 2.5vw, 12px) !important;
+  line-height: 1 !important;
+  color: #FFFFFF !important; /* Force white color */
+  position: absolute !important;
+  bottom: 12px !important; /* 12px from bottom edge */
+  left: 12px !important; /* 12px from left edge */
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.event-card-content .interaction-bar svg {
+  width: clamp(14px, 3.5vw, 16px) !important; /* 15-20% larger icons */
+  height: clamp(14px, 3.5vw, 16px) !important; /* 15-20% larger icons */
+  color: #FFFFFF !important; /* Force white color */
+  stroke: #FFFFFF !important; /* Force white stroke */
+  fill: #FFFFFF !important; /* Force white fill where applicable */
+}
+
+/* Additional white color enforcement for interaction bar elements */
+.event-card-content .interaction-bar * {
+  color: #FFFFFF !important;
+}
+
+/* Ensure Heart icon is always white in event cards, even when filled */
+.event-card-content .interaction-bar svg path {
+  stroke: #FFFFFF !important;
+  fill: #FFFFFF !important;
+}
+
+/* Override any fill colors for heart icon specifically */
+.event-card-content .interaction-bar button svg path[fill="#FFFFFF"] {
+  fill: #FFFFFF !important;
+}
+
+.event-card-content .interaction-bar button svg path[fill="none"] {
+  fill: none !important;
+  stroke: #FFFFFF !important;
+}
+
+
+
+/* Ensure event card content never overflows horizontally */
+.event-card-content {
+  overflow-x: hidden !important;
+  max-width: 100% !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+/* Prevent any child elements from causing horizontal overflow */
+.event-card-content * {
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+/* Ensure the header section doesn't overflow */
+.event-card-content .flex {
+  overflow: hidden !important;
+  min-width: 0 !important;
+}
+
+/* Ensure grid layout doesn't overflow */
+.event-card-content .grid {
+  overflow: hidden !important;
+  max-width: 100% !important;
+}
+
+/* Ensure all text elements wrap properly and don't overflow */
+.event-card-content h3,
+.event-card-content p,
+.event-card-content span {
+  overflow-wrap: break-word !important;
+  word-break: break-word !important;
+  hyphens: auto !important;
+  max-width: 100% !important;
+  overflow: hidden !important;
+}
+
+/* Specific fixes for event card leaderboard grid */
+.event-card-content .grid-cols-3 {
+  overflow: hidden !important;
+  max-width: 100% !important;
+  gap: clamp(0.25rem, 1vw, 0.75rem) !important;
+}
+
+.event-card-content .grid-cols-3 > div {
+  min-width: 0 !important;
+  overflow: hidden !important;
+  max-width: 100% !important;
+}
+
+/* Ensure truncate class works properly */
+.event-card-content .truncate {
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+  max-width: 100% !important;
+}
+
+
+
+/* Ensure images and media don't cause overflow */
+.event-card-content img,
+.event-card-content video {
+  max-width: 100% !important;
+  height: auto !important;
+  object-fit: cover !important;
+}
+
+/* Override inline styles that might cause overflow */
+.event-card-content h3[style*="overflow: visible"],
+.event-card-content p[style*="overflow: visible"] {
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+/* Ensure the title section doesn't overflow */
+.event-card-content .min-w-0 {
+  min-width: 0 !important;
+  overflow: hidden !important;
+  flex: 1 !important;
+}
+
+/* Ensure right-aligned status section doesn't overflow */
+.event-card-content .flex-shrink-0 {
+  flex-shrink: 0 !important;
+  min-width: 0 !important;
+  overflow: hidden !important;
+  max-width: 40% !important; /* Limit width to prevent overflow */
+}
+
+/* Ensure bottom section (participants and join button) doesn't overflow */
+.event-card-content .flex.items-center.justify-between {
+  overflow: hidden !important;
+  flex-wrap: wrap !important;
+  gap: 0.5rem !important;
+}
+
+.event-card-content .flex.items-center.justify-between > * {
+  min-width: 0 !important;
+  overflow: hidden !important;
+}
+
+/* Ensure join button doesn't overflow */
+.event-card-content a[href="/events"] {
+  flex-shrink: 0 !important;
+  min-width: 0 !important;
+  max-width: 50% !important;
+  overflow: hidden !important;
+}
+
+/* Ensure interaction bar doesn't overflow and is responsive */
+.event-card-content .interaction-bar {
+  overflow: hidden !important;
+  max-width: calc(100% - 24px) !important; /* Account for left padding */
+  flex-wrap: nowrap !important; /* Prevent wrapping */
+  white-space: nowrap !important;
+}
+
+/* Responsive adjustments for very small screens */
+@media (max-width: 320px) {
+  .event-card-content .interaction-bar {
+    bottom: 8px !important; /* Slightly less padding on very small screens */
+    left: 8px !important;
+  }
+  
+  .event-card-content .interaction-bar svg {
+    width: 12px !important; /* Smaller icons on very small screens */
+    height: 12px !important;
+  }
+}
+
+/* Responsive adjustments for small screens */
+@media (max-width: 480px) {
+  .event-card-content .interaction-bar {
+    gap: 4px !important; /* Tighter spacing on small screens */
+  }
+}
+
+/* Leaflet Map Styles */
+.custom-div-icon {
+  background: transparent !important;
+  border: none !important;
+}
+
+.leaflet-popup-content-wrapper {
+  border-radius: 8px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.leaflet-popup-tip {
+  background: white;
+}
+
+/* Battle64 Map specific styles */
+.leaflet-container {
+  font-family: 'Inter', sans-serif;
+}
+
+.leaflet-popup-content {
+  margin: 8px 12px;
+  line-height: 1.4;
+}
+
+/* Night mode map popup styles */
+.night-mode-popup .leaflet-popup-content-wrapper {
+  background: rgba(15, 23, 42, 0.95) !important;
+  color: white !important;
+  border: 1px solid rgba(234, 179, 8, 0.5) !important;
+  border-radius: 8px !important;
+  backdrop-filter: blur(8px) !important;
+}
+
+.night-mode-popup .leaflet-popup-tip {
+  background: rgba(15, 23, 42, 0.95) !important;
+  border: 1px solid rgba(234, 179, 8, 0.5) !important;
+}
+
+.night-mode-popup .leaflet-popup-close-button {
+  color: rgba(234, 179, 8, 0.8) !important;
+}
+
+.night-mode-popup .leaflet-popup-close-button:hover {
+  color: #eab308 !important;
 }

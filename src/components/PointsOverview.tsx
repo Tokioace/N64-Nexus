@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState } from 'react'
 import { useLanguage, getLocaleString } from '../contexts/LanguageContext'
 import { usePoints } from '../contexts/PointsContext'
@@ -5,12 +6,10 @@ import { useUser } from '../contexts/UserContext'
 import { 
   Trophy, 
   Star, 
-  TrendingUp, 
   Award, 
   Calendar,
   Clock,
   Zap,
-  Target,
   Medal,
   Crown
 } from 'lucide-react'

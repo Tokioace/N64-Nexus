@@ -1,8 +1,9 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState } from 'react'
 import { useUser } from '../contexts/UserContext'
 import { useLanguage, getLocaleString } from '../contexts/LanguageContext'
 import { UserCollection } from '../types'
-import { Plus, Edit, Trash2, Package, Star, Calendar, MapPin, Gamepad2 } from 'lucide-react'
+import { Plus, Edit, Trash2, Package, Star, Calendar, Gamepad2 } from 'lucide-react'
 
 interface CollectionManagerProps {
   isOwnProfile?: boolean
@@ -12,6 +13,7 @@ const UserCollectionManager: React.FC<CollectionManagerProps> = ({ isOwnProfile 
   const { user, addToCollection, removeFromCollection } = useUser()
   const { t, currentLanguage } = useLanguage()
   const [showAddModal, setShowAddModal] = useState(false)
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [editingItem, setEditingItem] = useState<UserCollection | null>(null)
   const [filter, setFilter] = useState<'all' | 'collection' | 'wishlist'>('all')
   

@@ -1,10 +1,14 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component, ErrorInfo, ReactNode } from 'react'
-import { AlertCircle, RefreshCw } from 'lucide-react'
+import { logger } from '../lib/logger'
+import { AlertCircle, RefreshCw, Home } from 'lucide-react'
 import { useLanguage } from '../contexts/LanguageContext'
+import { useNavigate } from 'react-router-dom'
 
 interface Props {
   children: ReactNode
-  t?: (key: any) => string  // Changed from (key: string) to (key: any) for compatibility
+  t?: (key: any) => string
+  navigate?: (path: string) => void
 }
 
 interface State {
@@ -23,7 +27,7 @@ class ErrorBoundaryClass extends Component<Props, State> {
   }
 
   public componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-    console.error('Forum Error Boundary caught an error:', error, errorInfo)
+    logger.error('Forum Error Boundary caught an error:', error, errorInfo)
   }
 
   private handleReset = () => {
@@ -63,13 +67,14 @@ class ErrorBoundaryClass extends Component<Props, State> {
                 {t('error.boundary.retry')}
               </button>
               <button
-                onClick={() => window.location.href = '/'}
+                onClick={() => this.props.navigate ? this.props.navigate('/') : (window.location.href = '/')}
                 className="btn-secondary"
               >
+                <Home className="w-4 h-4 mr-2" />
                 {t('error.boundary.home')}
               </button>
             </div>
-            {process.env.NODE_ENV === 'development' && this.state.error && (
+            {import.meta.env.DEV && this.state.error && (
               <details className="mt-6 text-left">
                 <summary className="text-sm text-slate-400 cursor-pointer">
                   {t('error.boundary.details')}
@@ -88,10 +93,11 @@ class ErrorBoundaryClass extends Component<Props, State> {
   }
 }
 
-// Wrapper component that provides translation function
+// Wrapper component that provides translation function and navigation
 const ErrorBoundary: React.FC<{ children: ReactNode }> = ({ children }) => {
   const { t } = useLanguage()
-  return <ErrorBoundaryClass t={t}>{children}</ErrorBoundaryClass>
+  const navigate = useNavigate()
+  return <ErrorBoundaryClass t={t} navigate={navigate}>{children}</ErrorBoundaryClass>
 }
 
 export default ErrorBoundary

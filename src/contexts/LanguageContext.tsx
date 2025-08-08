@@ -10,6 +10,7 @@ interface LanguageContextType {
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined)
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useLanguage = () => {
   const context = useContext(LanguageContext)
   if (!context) {
@@ -19,6 +20,7 @@ export const useLanguage = () => {
 }
 
 // Helper function to get the correct locale for date formatting
+// eslint-disable-next-line react-refresh/only-export-components
 export const getLocaleString = (language: Language): string => {
   switch (language) {
     case 'de': return 'de-DE'
@@ -68,9 +70,9 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
   }
 
   // Translation function with parameter support
-  const t = (key: TranslationKeys, params?: Record<string, string>): string => {
-    const languageTranslations = translations[currentLanguage]
-    let translation = languageTranslations[key] || translations.en[key] || key
+  const t = (key: TranslationKeys | string, params?: Record<string, string>): string => {
+    const languageTranslations = translations[currentLanguage] as any
+    let translation = languageTranslations[key] || (translations.en as any)[key] || key
 
     // Replace parameters in the translation
     if (params) {

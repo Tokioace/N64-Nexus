@@ -119,29 +119,29 @@ const ForumCategoryPage: React.FC = () => {
       <div className="mb-6">
         <Link 
           to="/forum" 
-          className="inline-flex items-center gap-2 text-slate-400 hover:text-slate-200 transition-colors"
+          className="inline-flex items-center gap-2 text-slate-400 hover:text-slate-200 transition-colors py-2 px-1 -mx-1 rounded-lg hover:bg-slate-700/50 min-h-[44px]"
         >
-          <ArrowLeft className="w-4 h-4" />
-          {t('common.back')} zum Forum
+          <ArrowLeft className="w-4 h-4 flex-shrink-0" />
+          <span className="text-sm sm:text-base">{t('common.back')} zum Forum</span>
         </Link>
       </div>
 
       {/* Category Header */}
       <div className="simple-tile mb-6">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <div className="p-3 rounded-lg border border-slate-600">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <div className="flex items-center gap-3 sm:gap-4 min-w-0">
+            <div className="p-2 sm:p-3 rounded-lg border border-slate-600 flex-shrink-0">
               {getIconComponent(selectedCategory.icon)}
             </div>
-            <div>
-              <h1 className="text-3xl font-bold text-slate-100">
+            <div className="min-w-0">
+              <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-slate-100 break-words">
                 {selectedCategory.name}
               </h1>
-              <p className="text-slate-400 mt-1">
+              <p className="text-slate-400 mt-1 text-sm sm:text-base break-words">
                 {selectedCategory.description}
               </p>
               <div className="flex items-center gap-4 mt-2 text-sm text-slate-500">
-                <span>{selectedCategory.threadCount} {t('forum.threads')}</span>
+                <span className="whitespace-nowrap">{selectedCategory.threadCount} {t('forum.threads')}</span>
               </div>
             </div>
           </div>
@@ -150,10 +150,10 @@ const ForumCategoryPage: React.FC = () => {
           {isAuthenticated && (
             <Link
               to={`/forum/category/${categoryId}/new-thread`}
-              className="flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors"
+              className="flex items-center justify-center gap-2 px-3 sm:px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors text-sm sm:text-base whitespace-nowrap"
             >
-              <Plus className="w-4 h-4" />
-                              <span>{t('forum.newThread')}</span>
+              <Plus className="w-4 h-4 flex-shrink-0" />
+              <span>{t('forum.newThread')}</span>
             </Link>
           )}
         </div>
@@ -187,71 +187,78 @@ const ForumCategoryPage: React.FC = () => {
               to={`/forum/thread/${thread.id}`}
               className="simple-tile block hover:border-blue-500/50 transition-all"
             >
-              <div className="flex items-center gap-4">
-                {/* Thread Icons */}
-                <div className="flex items-center gap-1">
-                  {thread.isPinned && (
-                    <Pin className="w-4 h-4 text-yellow-400" />
-                  )}
-                  {thread.isLocked ? (
-                    <Lock className="w-4 h-4 text-red-400" />
-                  ) : (
-                    <MessageSquare className="w-4 h-4 text-slate-400" />
-                  )}
-                </div>
-
-                {/* Thread Info */}
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2 mb-1">
-                    <h3 className="font-semibold text-slate-100 truncate">
-                      {thread.title}
-                    </h3>
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+                <div className="flex items-start gap-3 flex-1 min-w-0">
+                  {/* Thread Icons */}
+                  <div className="flex items-center gap-1 flex-shrink-0 pt-1">
                     {thread.isPinned && (
-                      <span className="px-2 py-1 bg-yellow-600/20 text-yellow-400 text-xs rounded-full">
-                        Angepinnt
-                      </span>
+                      <Pin className="w-4 h-4 text-yellow-400" />
                     )}
-                    {thread.isLocked && (
-                      <span className="px-2 py-1 bg-red-600/20 text-red-400 text-xs rounded-full">
-                        Geschlossen
-                      </span>
+                    {thread.isLocked ? (
+                      <Lock className="w-4 h-4 text-red-400" />
+                    ) : (
+                      <MessageSquare className="w-4 h-4 text-slate-400" />
                     )}
                   </div>
-                  <div className="flex items-center gap-4 text-sm text-slate-400">
-                    <div className="flex items-center gap-1">
-                      <User className="w-3 h-3" />
-                      <span>{thread.authorName}</span>
+
+                  {/* Thread Info */}
+                  <div className="flex-1 min-w-0">
+                    <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2 mb-1">
+                      <h3 className="font-semibold text-slate-100 break-words text-sm sm:text-base">
+                        {thread.title}
+                      </h3>
+                      <div className="flex items-center gap-2 flex-wrap">
+                        {thread.isPinned && (
+                          <span className="px-2 py-1 bg-yellow-600/20 text-yellow-400 text-xs rounded-full whitespace-nowrap">
+                            Angepinnt
+                          </span>
+                        )}
+                        {thread.isLocked && (
+                          <span className="px-2 py-1 bg-red-600/20 text-red-400 text-xs rounded-full whitespace-nowrap">
+                            Geschlossen
+                          </span>
+                        )}
+                      </div>
                     </div>
-                    <div className="flex items-center gap-1">
-                      <Clock className="w-3 h-3" />
-                      <span>{formatDate(thread.createdAt)}</span>
+                    <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 text-xs sm:text-sm text-slate-400">
+                      <div className="flex items-center gap-1">
+                        <User className="w-3 h-3 flex-shrink-0" />
+                        <span className="break-words">{thread.authorName}</span>
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <Clock className="w-3 h-3 flex-shrink-0" />
+                        <span className="whitespace-nowrap">{formatDate(thread.createdAt)}</span>
+                      </div>
                     </div>
                   </div>
                 </div>
 
-                {/* Thread Stats */}
-                <div className="flex items-center gap-6 text-sm">
-                  <div className="flex items-center gap-1 text-slate-400">
-                    <MessageSquare className="w-4 h-4" />
-                    <span>{thread.postCount}</span>
+                {/* Thread Stats & Last Post */}
+                <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6">
+                  {/* Thread Stats */}
+                  <div className="flex items-center gap-4 text-xs sm:text-sm">
+                    <div className="flex items-center gap-1 text-white">
+                      <MessageSquare className="w-4 h-4 text-white flex-shrink-0" />
+                      <span className="whitespace-nowrap">{thread.postCount}</span>
+                    </div>
+                    <div className="flex items-center gap-1 text-white">
+                      <Eye className="w-4 h-4 text-white flex-shrink-0" />
+                      <span className="whitespace-nowrap">{thread.views}</span>
+                    </div>
                   </div>
-                  <div className="flex items-center gap-1 text-slate-400">
-                    <Eye className="w-4 h-4" />
-                    <span>{thread.views}</span>
-                  </div>
-                </div>
 
-                {/* Last Post */}
-                {thread.lastPost && (
-                  <div className="text-right text-sm text-slate-400 min-w-0">
-                    <div className="truncate">
-                      {t('forum.createdBy')} {thread.lastPost.authorName}
+                  {/* Last Post */}
+                  {thread.lastPost && (
+                    <div className="text-left sm:text-right text-xs sm:text-sm text-slate-400 min-w-0">
+                      <div className="break-words sm:truncate">
+                        {t('forum.createdBy')} {thread.lastPost.authorName}
+                      </div>
+                      <div className="text-xs whitespace-nowrap">
+                        {formatDate(thread.lastPost.createdAt)}
+                      </div>
                     </div>
-                    <div className="text-xs">
-                      {formatDate(thread.lastPost.createdAt)}
-                    </div>
-                  </div>
-                )}
+                  )}
+                </div>
               </div>
             </Link>
           ))}

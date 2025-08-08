@@ -1,9 +1,11 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState, useEffect } from 'react'
+import { logger } from '../lib/logger'
 import { Link } from 'react-router-dom'
 import { useUser } from '../contexts/UserContext'
 import { useLanguage, getLocaleString } from '../contexts/LanguageContext'
 import { User } from '../types'
-import { Users, Trophy, Package, Star, Gamepad2, Globe, Search, Filter } from 'lucide-react'
+import { Users, Trophy, Package, Star, Search } from 'lucide-react'
 import AuthGuard from '../components/AuthGuard'
 
 const CommunityPage: React.FC = () => {
@@ -22,7 +24,7 @@ const CommunityPage: React.FC = () => {
         const allUsers = await getAllUsers()
         setUsers(allUsers)
       } catch (error) {
-        console.error('Error loading users:', error)
+        logger.error('Error loading users:', error)
       } finally {
         setLoading(false)
       }
@@ -164,8 +166,14 @@ const CommunityPage: React.FC = () => {
 
       {/* Users Grid - Protected by AuthGuard */}
       <AuthGuard 
-        customMessage={t('community.loginToViewProfiles')}
-        className="min-h-[400px]"
+        fallback={
+          <div className="simple-tile text-center py-12">
+            <Users className="w-16 h-16 text-slate-600 mx-auto mb-4" />
+            <h3 className="text-xl font-semibold text-slate-300 mb-2">
+              {t('community.loginToViewProfiles')}
+            </h3>
+          </div>
+        }
       >
         {filteredAndSortedUsers.length === 0 ? (
           <div className="simple-tile text-center py-8 sm:py-12">

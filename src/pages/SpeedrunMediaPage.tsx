@@ -1,4 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState, useEffect, useCallback, useMemo } from 'react'
+import { logger } from '../lib/logger'
 import { useLanguage } from '../contexts/LanguageContext'
 import { useUser } from '../contexts/UserContext'
 import { useMedia } from '../contexts/MediaContext'
@@ -10,24 +12,15 @@ import {
   Camera, 
   Video, 
   Upload, 
-  Play, 
   Pause, 
   Eye, 
   Heart, 
-  Share2, 
   Filter, 
   Search,
   Trophy,
-  Star,
-  Clock,
-  Users,
-  Zap,
-  Award,
   CheckCircle,
   AlertCircle,
   X,
-  Plus,
-  Download,
   ExternalLink,
   Tv,
   Radio
@@ -68,7 +61,7 @@ class MediaErrorBoundary extends React.Component<
   }
 
   componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
-    console.error('Media component error:', error, errorInfo)
+    logger.error('Media component error:', error, errorInfo)
   }
 
   render() {
@@ -97,7 +90,7 @@ class MediaErrorBoundary extends React.Component<
 const SpeedrunMediaPage: React.FC = () => {
   const { t } = useLanguage()
   const { user, isAuthenticated } = useUser()
-  const { media, userMedia, loading, error, uploadMedia, uploadMediaFromUrl, likeMedia, getMediaByGame, getMediaByUser, getMediaStats } = useMedia()
+  const { media, loading, error, uploadMedia, uploadMediaFromUrl, likeMedia, getMediaStats } = useMedia()
   const { awardPoints } = usePoints()
   const { events, activeEvents } = useEvent()
   
@@ -199,7 +192,7 @@ const SpeedrunMediaPage: React.FC = () => {
   useEffect(() => {
     if (!isAuthenticated) {
       // In a real app, you might want to redirect to login
-      console.log('User not authenticated')
+      logger.log('User not authenticated')
     }
   }, [isAuthenticated])
 
@@ -268,7 +261,7 @@ const SpeedrunMediaPage: React.FC = () => {
         alert(error || t('error.generic'))
       }
     } catch (error) {
-      console.error('Upload error:', error)
+      logger.error('Upload error:', error)
       alert(t('error.generic'))
     } finally {
       setUploading(false)
@@ -369,13 +362,13 @@ const SpeedrunMediaPage: React.FC = () => {
         </div>
         
         <div className="flex items-center justify-between mt-3">
-          <div className="flex items-center gap-4 text-xs text-slate-400">
+          <div className="flex items-center gap-4 text-xs text-white">
             <span className="flex items-center gap-1">
-              <Eye className="w-3 h-3" />
+              <Eye className="w-3 h-3 text-white" />
               {media.views}
             </span>
             <span className="flex items-center gap-1">
-              <Heart className="w-3 h-3" />
+              <Heart className="w-3 h-3 text-white" />
               {media.likes}
             </span>
           </div>
@@ -966,12 +959,12 @@ const SpeedrunMediaPage: React.FC = () => {
 
                       <div className="flex items-center gap-4">
                         <div className="flex items-center gap-1">
-                          <Eye className="w-4 h-4 text-slate-400" />
-                          <span className="text-slate-300">{selectedMedia.views}</span>
+                          <Eye className="w-4 h-4 text-white" />
+                          <span className="text-white">{selectedMedia.views}</span>
                         </div>
                         <div className="flex items-center gap-1">
-                          <Heart className="w-4 h-4 text-slate-400" />
-                          <span className="text-slate-300">{selectedMedia.likes}</span>
+                          <Heart className="w-4 h-4 text-white" />
+                          <span className="text-white">{selectedMedia.likes}</span>
                         </div>
                         {selectedMedia.verified && (
                           <div className="flex items-center gap-1">

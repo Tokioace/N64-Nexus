@@ -1,6 +1,8 @@
-import React, { useState } from 'react'
-import { Newspaper, X, Calendar, User, MessageCircle } from 'lucide-react'
+import React from 'react'
+import { Newspaper, X, Calendar, Tag } from 'lucide-react'
+import { useNavigate } from 'react-router-dom'
 import { useLanguage, getLocaleString } from '../contexts/LanguageContext'
+import { InteractionBar } from './InteractionComponents'
 
 interface NewsItem {
   id: string
@@ -19,12 +21,21 @@ interface NewsCardProps {
 
 const NewsCard: React.FC<NewsCardProps> = ({ newsItem, index, onDismiss, isAnimating = false }) => {
   const { t, currentLanguage } = useLanguage()
+  const navigate = useNavigate()
   
   const formatTime = (date: Date) => {
     return date.toLocaleTimeString(getLocaleString(currentLanguage), {
       hour: '2-digit',
       minute: '2-digit'
     })
+  }
+
+  const handleCardClick = (e: React.MouseEvent) => {
+    // Don't navigate if clicking the dismiss button
+    if ((e.target as HTMLElement).closest('button')) {
+      return
+    }
+    navigate('/newsfeed')
   }
 
   const getTypeColor = (type: string) => {
@@ -57,20 +68,7 @@ const NewsCard: React.FC<NewsCardProps> = ({ newsItem, index, onDismiss, isAnima
     }
   }
 
-  const getTypeIcon = (type: string) => {
-    switch (type) {
-      case 'event_winner':
-        return '🏆'
-      case 'n64_history':
-        return '🎮'
-      case 'community_news':
-        return '📢'
-      case 'event_announcement':
-        return '📅'
-      default:
-        return '📰'
-    }
-  }
+
 
   const getTypeTranslation = (type: string) => {
     switch (type) {
@@ -88,7 +86,10 @@ const NewsCard: React.FC<NewsCardProps> = ({ newsItem, index, onDismiss, isAnima
   }
 
   return (
-    <div className={`swipeable-card ${getCardClass(newsItem.type)} relative transition-all duration-300 ${isAnimating ? 'scale-95 opacity-80' : 'scale-100 opacity-100'}`}>
+    <div 
+      className={`swipeable-card ${getCardClass(newsItem.type)} relative transition-all duration-300 ${isAnimating ? 'scale-95 opacity-80' : 'scale-100 opacity-100'}`}
+      onClick={handleCardClick}
+    >
       {/* Event Winner Label */}
       {newsItem.type === 'event_winner' && (
         <div className="news-event-winner-label">
@@ -123,8 +124,8 @@ const NewsCard: React.FC<NewsCardProps> = ({ newsItem, index, onDismiss, isAnima
       
       <div className="swipeable-card-header">
         <div className="flex items-center gap-2">
-          <Newspaper className="w-5 h-5 text-accent-blue" />
-          <h3 className="text-responsive-base font-bold text-text-primary">
+          <Newspaper className="w-4 h-4 text-accent-blue" />
+          <h3 className="text-sm font-bold text-text-primary">
             {t('news.title')} #{index + 1}
           </h3>
         </div>
@@ -135,20 +136,40 @@ const NewsCard: React.FC<NewsCardProps> = ({ newsItem, index, onDismiss, isAnima
         </div>
       </div>
       
+      {/* Meta symbols in corner */}
+      <div className="absolute bottom-3 right-3 flex items-center gap-1">
+        <div className={`${getTypeColor(newsItem.type)}`} title={getTypeTranslation(newsItem.type)}>
+          <Tag className="w-4 h-4" />
+        </div>
+        <div className="text-slate-400" title={formatTime(newsItem.date)}>
+          <Calendar className="w-4 h-4" />
+        </div>
+      </div>
+      
       <div className="swipeable-card-content">
-        <div className="p-4 h-full flex flex-col">
-          <div className="flex-1">
-            <h4 className="text-base sm:text-lg font-semibold text-text-primary mb-3 leading-tight">
+        <div className="p-4 h-full flex flex-col justify-between">
+          <div className="flex-1 space-y-3 pb-2">
+            <h4 className="text-base font-semibold text-text-primary leading-tight line-clamp-2">
               {newsItem.title}
             </h4>
-            <p className="text-base text-text-secondary mb-4 leading-relaxed line-clamp-2">
+            <p className="text-sm text-text-secondary leading-relaxed line-clamp-3">
               {newsItem.content}
             </p>
           </div>
-          <div className="border-t border-slate-600/30 pt-3 mt-auto">
-            <div className="flex items-center justify-between text-sm text-text-muted">
+          <div className="border-t border-slate-600/30 pt-4 mt-3 flex-shrink-0 min-h-[60px]">
+            <div className="flex items-center justify-between text-xs text-text-muted mb-4">
               <span className="font-medium">{formatTime(newsItem.date)}</span>
               <span className="text-accent-blue font-medium">{t('ui.newsDetails')}</span>
+            </div>
+            
+            {/* Interaction Bar */}
+            <div className="pb-1">
+              <InteractionBar 
+                contentType="news"
+                contentId={newsItem.id}
+                showComments={false}
+                compact={true}
+              />
             </div>
           </div>
         </div>

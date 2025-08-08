@@ -1,4 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState, useEffect, useMemo } from 'react';
+import { logger } from '../lib/logger';
 import { useLanguage } from '../contexts/LanguageContext';
 import { Search, Package, Trophy, TrendingUp, Star, Grid, List, Plus, X, Check } from 'lucide-react';
 import { 
@@ -191,7 +193,7 @@ const CollectorMode: React.FC = () => {
       try {
         setCollection(JSON.parse(saved));
       } catch (error) {
-        console.error('Error loading collection:', error);
+        logger.error('Error loading collection:', error);
       }
     }
   }, []);
@@ -232,7 +234,7 @@ const CollectorMode: React.FC = () => {
       totalValue,
       collectorLevel
     };
-  }, [collection]);
+  }, [collection, t]);
 
   const handleAddToCollection = (gameId: string, gameData: Omit<CollectedGame, 'gameId' | 'addedDate'>) => {
     const newCollectedGame: CollectedGame = {

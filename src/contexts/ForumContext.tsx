@@ -1,8 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { createContext, useContext, useState, useEffect, ReactNode, useMemo, useCallback } from 'react'
 import { ForumCategory, ForumThread, ForumPost, ForumStats } from '../types'
 import { useUser } from './UserContext'
 import { useLanguage } from './LanguageContext'
 import { usePoints } from './PointsContext'
+import { logger } from '../lib/logger'
 
 interface ForumContextType {
   categories: ForumCategory[]
@@ -18,6 +20,7 @@ interface ForumContextType {
   getCategories: () => void
   getThreadsByCategory: (categoryId: string) => void
   getPostsByThread: (threadId: string) => void
+  getThreadById: (threadId: string) => ForumThread | null
   createThread: (categoryId: string, title: string, content: string, imageUrl?: string) => Promise<boolean>
   createPost: (threadId: string, content: string, imageUrl?: string) => Promise<boolean>
   selectCategory: (category: ForumCategory | null) => void
@@ -124,6 +127,13 @@ const mockThreads: ForumThread[] = [
       authorId: '1',
       authorName: 'Oli',
       createdAt: new Date('2024-01-15T10:30:00')
+    },
+    interactions: {
+      likes: 0,
+      views: 0,
+      comments: [],
+      likedBy: [],
+      viewedBy: []
     }
   },
   {
@@ -143,6 +153,117 @@ const mockThreads: ForumThread[] = [
       authorId: '3',
       authorName: 'Mario64Fan',
       createdAt: new Date('2024-01-14T18:45:00')
+    },
+    interactions: {
+      likes: 0,
+      views: 0,
+      comments: [],
+      likedBy: [],
+      viewedBy: []
+    }
+  },
+  {
+    id: '3',
+    title: 'Banjo-Kazooie: Optimized 100% Route',
+    categoryId: '1',
+    authorId: '4',
+    authorName: 'SpeedrunMaster',
+    createdAt: new Date('2024-01-13T11:20:00'),
+    lastUpdated: new Date('2024-01-15T16:30:00'),
+    postCount: 8,
+    views: 67,
+    isPinned: false,
+    isLocked: false,
+    lastPost: {
+      id: '8',
+      authorId: '2',
+      authorName: 'Delia',
+      createdAt: new Date('2024-01-15T16:30:00')
+    },
+    interactions: {
+      likes: 0,
+      views: 0,
+      comments: [],
+      likedBy: [],
+      viewedBy: []
+    }
+  },
+  {
+    id: '4',
+    title: 'Tata Tuga Volcano Event - Tipps und Tricks',
+    categoryId: '2',
+    authorId: '5',
+    authorName: 'EventHunter',
+    createdAt: new Date('2024-01-14T08:45:00'),
+    lastUpdated: new Date('2024-01-15T14:20:00'),
+    postCount: 15,
+    views: 203,
+    isPinned: false,
+    isLocked: false,
+    lastPost: {
+      id: '12',
+      authorId: '3',
+      authorName: 'Mario64Fan',
+      createdAt: new Date('2024-01-15T14:20:00')
+    },
+    interactions: {
+      likes: 0,
+      views: 0,
+      comments: [],
+      likedBy: [],
+      viewedBy: []
+    }
+  },
+  {
+    id: '5',
+    title: 'Super Mario 64 Easter Eggs Diskussion',
+    categoryId: '3',
+    authorId: '3',
+    authorName: 'Mario64Fan',
+    createdAt: new Date('2024-01-11T19:30:00'),
+    lastUpdated: new Date('2024-01-14T21:15:00'),
+    postCount: 23,
+    views: 156,
+    isPinned: false,
+    isLocked: false,
+    lastPost: {
+      id: '15',
+      authorId: '6',
+      authorName: 'RetroGamer',
+      createdAt: new Date('2024-01-14T21:15:00')
+    },
+    interactions: {
+      likes: 0,
+      views: 0,
+      comments: [],
+      likedBy: [],
+      viewedBy: []
+    }
+  },
+  {
+    id: '6',
+    title: 'Goldene Ocarina - Suche Tauschpartner',
+    categoryId: '4',
+    authorId: '4',
+    authorName: 'Collector99',
+    createdAt: new Date('2024-01-12T16:00:00'),
+    lastUpdated: new Date('2024-01-13T19:15:00'),
+    postCount: 5,
+    views: 89,
+    isPinned: false,
+    isLocked: false,
+    lastPost: {
+      id: '18',
+      authorId: '7',
+      authorName: 'TradeMaster',
+      createdAt: new Date('2024-01-13T19:15:00')
+    },
+    interactions: {
+      likes: 0,
+      views: 0,
+      comments: [],
+      likedBy: [],
+      viewedBy: []
     }
   }
 ]
@@ -156,7 +277,14 @@ const mockPosts: ForumPost[] = [
     content: 'Hey Leute! Ich wollte meine aktuelle Strategie für Toad\'s Turnpike mit euch teilen. Der Schlüssel liegt in der perfekten Kurvenfahrt und dem Timing der Boosts...',
     createdAt: new Date('2024-01-10T14:30:00'),
     isEdited: false,
-    isDeleted: false
+    isDeleted: false,
+    interactions: {
+      likes: 0,
+      views: 0,
+      comments: [],
+      likedBy: [],
+      viewedBy: []
+    }
   },
   {
     id: '2',
@@ -166,7 +294,14 @@ const mockPosts: ForumPost[] = [
     content: 'Danke für den Tipp! Ich habe das mal ausprobiert und konnte meine Zeit um 3 Sekunden verbessern. Besonders der Boost am Ende hat geholfen.',
     createdAt: new Date('2024-01-11T16:20:00'),
     isEdited: false,
-    isDeleted: false
+    isDeleted: false,
+    interactions: {
+      likes: 0,
+      views: 0,
+      comments: [],
+      likedBy: [],
+      viewedBy: []
+    }
   },
   {
     id: '3',
@@ -176,7 +311,14 @@ const mockPosts: ForumPost[] = [
     content: 'Welche Charaktere eignen sich am besten für diese Strategie? Ich spiele meist mit Yoshi.',
     createdAt: new Date('2024-01-12T09:15:00'),
     isEdited: false,
-    isDeleted: false
+    isDeleted: false,
+    interactions: {
+      likes: 0,
+      views: 0,
+      comments: [],
+      likedBy: [],
+      viewedBy: []
+    }
   },
   {
     id: '4',
@@ -186,7 +328,14 @@ const mockPosts: ForumPost[] = [
     content: 'Hier ist mein Tutorial für den Rainbow Road Shortcut. Timing ist alles!',
     createdAt: new Date('2024-01-12T09:15:00'),
     isEdited: false,
-    isDeleted: false
+    isDeleted: false,
+    interactions: {
+      likes: 0,
+      views: 0,
+      comments: [],
+      likedBy: [],
+      viewedBy: []
+    }
   },
   {
     id: '5',
@@ -196,7 +345,167 @@ const mockPosts: ForumPost[] = [
     content: 'Super Tutorial! Ich schaffe den Sprung aber nur in 50% der Fälle. Habt ihr Tipps?',
     createdAt: new Date('2024-01-13T14:30:00'),
     isEdited: false,
-    isDeleted: false
+    isDeleted: false,
+    interactions: {
+      likes: 0,
+      views: 0,
+      comments: [],
+      likedBy: [],
+      viewedBy: []
+    }
+  },
+  {
+    id: '6',
+    threadId: '3',
+    authorId: '4',
+    authorName: 'SpeedrunMaster',
+    content: 'Nach monatelanger Optimierung habe ich endlich die perfekte 100% Route für Banjo-Kazooie gefunden. Hier sind die wichtigsten Punkte...',
+    createdAt: new Date('2024-01-13T11:20:00'),
+    isEdited: false,
+    isDeleted: false,
+    interactions: {
+      likes: 0,
+      views: 0,
+      comments: [],
+      likedBy: [],
+      viewedBy: []
+    }
+  },
+  {
+    id: '7',
+    threadId: '3',
+    authorId: '1',
+    authorName: 'Oli',
+    content: 'Interessante Route! Wie viel Zeit sparst du mit der neuen Strategie in Bubblegloop Swamp?',
+    createdAt: new Date('2024-01-14T15:45:00'),
+    isEdited: false,
+    isDeleted: false,
+    interactions: {
+      likes: 0,
+      views: 0,
+      comments: [],
+      likedBy: [],
+      viewedBy: []
+    }
+  },
+  {
+    id: '8',
+    threadId: '3',
+    authorId: '2',
+    authorName: 'Delia',
+    content: 'Etwa 2-3 Minuten! Der Trick mit dem Talon Trot über die Brücke ist genial.',
+    createdAt: new Date('2024-01-15T16:30:00'),
+    isEdited: false,
+    isDeleted: false,
+    interactions: {
+      likes: 0,
+      views: 0,
+      comments: [],
+      likedBy: [],
+      viewedBy: []
+    }
+  },
+  {
+    id: '9',
+    threadId: '4',
+    authorId: '5',
+    authorName: 'EventHunter',
+    content: 'Das Tata Tuga Volcano Event ist live! Hier sind meine besten Tipps für maximale Punkte...',
+    createdAt: new Date('2024-01-14T08:45:00'),
+    isEdited: false,
+    isDeleted: false,
+    interactions: {
+      likes: 0,
+      views: 0,
+      comments: [],
+      likedBy: [],
+      viewedBy: []
+    }
+  },
+  {
+    id: '10',
+    threadId: '4',
+    authorId: '2',
+    authorName: 'Delia',
+    content: 'Danke für die Tipps! Welche Charaktere sind am besten für die Lava-Sprünge geeignet?',
+    createdAt: new Date('2024-01-14T12:30:00'),
+    isEdited: false,
+    isDeleted: false,
+    interactions: {
+      likes: 0,
+      views: 0,
+      comments: [],
+      likedBy: [],
+      viewedBy: []
+    }
+  },
+  {
+    id: '11',
+    threadId: '5',
+    authorId: '3',
+    authorName: 'Mario64Fan',
+    content: 'Ich habe kürzlich ein interessantes Easter Egg in Super Mario 64 entdeckt. Hat schon mal jemand die geheime Nachricht in der Schlossmauer gesehen?',
+    createdAt: new Date('2024-01-11T19:30:00'),
+    isEdited: false,
+    isDeleted: false,
+    interactions: {
+      likes: 0,
+      views: 0,
+      comments: [],
+      likedBy: [],
+      viewedBy: []
+    }
+  },
+  {
+    id: '12',
+    threadId: '5',
+    authorId: '6',
+    authorName: 'RetroGamer',
+    content: 'Oh ja! Das ist das "L is Real 2401" Easter Egg. Es gibt so viele Theorien dazu...',
+    createdAt: new Date('2024-01-14T21:15:00'),
+    isEdited: false,
+    isDeleted: false,
+    interactions: {
+      likes: 0,
+      views: 0,
+      comments: [],
+      likedBy: [],
+      viewedBy: []
+    }
+  },
+  {
+    id: '13',
+    threadId: '6',
+    authorId: '4',
+    authorName: 'Collector99',
+    content: 'Ich suche jemanden, der eine goldene Ocarina gegen seltene Mario Kart Items tauschen möchte. Habe mehrere Power-Ups anzubieten!',
+    createdAt: new Date('2024-01-12T16:00:00'),
+    isEdited: false,
+    isDeleted: false,
+    interactions: {
+      likes: 0,
+      views: 0,
+      comments: [],
+      likedBy: [],
+      viewedBy: []
+    }
+  },
+  {
+    id: '14',
+    threadId: '6',
+    authorId: '7',
+    authorName: 'TradeMaster',
+    content: 'Ich hätte Interesse! Welche Power-Ups hast du denn? Schick mir eine PM.',
+    createdAt: new Date('2024-01-13T19:15:00'),
+    isEdited: false,
+    isDeleted: false,
+    interactions: {
+      likes: 0,
+      views: 0,
+      comments: [],
+      likedBy: [],
+      viewedBy: []
+    }
   }
 ]
 
@@ -256,6 +565,10 @@ export const ForumProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     }, 50) // Reduced delay
   }, [])
 
+  const getThreadById = useCallback((threadId: string) => {
+    return mockThreads.find(thread => thread.id === threadId) || null
+  }, [])
+
   const createThread = useCallback(async (categoryId: string, title: string, content: string, imageUrl?: string): Promise<boolean> => {
     if (!user) return false
     
@@ -288,7 +601,14 @@ export const ForumProvider: React.FC<{ children: ReactNode }> = ({ children }) =
         postCount: 1,
         views: 0,
         isPinned: false,
-        isLocked: false
+        isLocked: false,
+        interactions: {
+          likes: 0,
+          views: 0,
+          comments: [],
+          likedBy: [],
+          viewedBy: []
+        }
       }
 
       const newPost: ForumPost = {
@@ -300,7 +620,14 @@ export const ForumProvider: React.FC<{ children: ReactNode }> = ({ children }) =
         imageUrl,
         createdAt: new Date(),
         isEdited: false,
-        isDeleted: false
+        isDeleted: false,
+        interactions: {
+          likes: 0,
+          views: 0,
+          comments: [],
+          likedBy: [],
+          viewedBy: []
+        }
       }
 
       // Reduced delay for better performance
@@ -312,17 +639,17 @@ export const ForumProvider: React.FC<{ children: ReactNode }> = ({ children }) =
       try {
         await awardPoints('forum.post', `Thread created: ${title}`)
       } catch (error) {
-        console.error('Failed to award points for forum thread:', error)
+        logger.error('Failed to award points for forum thread:', error)
       }
       
       setLoading(false)
       return true
-    } catch (err) {
+    } catch {
       setError(t('error.generic'))
       setLoading(false)
       return false
     }
-  }, [user, t])
+  }, [user, t, awardPoints])
 
   const createPost = useCallback(async (threadId: string, content: string, imageUrl?: string): Promise<boolean> => {
     if (!user) return false
@@ -349,7 +676,14 @@ export const ForumProvider: React.FC<{ children: ReactNode }> = ({ children }) =
         imageUrl,
         createdAt: new Date(),
         isEdited: false,
-        isDeleted: false
+        isDeleted: false,
+        interactions: {
+          likes: 0,
+          views: 0,
+          comments: [],
+          likedBy: [],
+          viewedBy: []
+        }
       }
 
       // Reduced delay for better performance
@@ -376,17 +710,17 @@ export const ForumProvider: React.FC<{ children: ReactNode }> = ({ children }) =
       try {
         await awardPoints('forum.reply', `Reply posted in thread`)
       } catch (error) {
-        console.error('Failed to award points for forum reply:', error)
+        logger.error('Failed to award points for forum reply:', error)
       }
       
       setLoading(false)
       return true
-    } catch (err) {
+    } catch {
       setError(t('error.generic'))
       setLoading(false)
       return false
     }
-  }, [user, t])
+  }, [user, t, awardPoints])
 
   const selectCategory = useCallback((category: ForumCategory | null) => {
     setSelectedCategory(category)
@@ -401,6 +735,7 @@ export const ForumProvider: React.FC<{ children: ReactNode }> = ({ children }) =
       getPostsByThread(thread.id)
       incrementThreadViews(thread.id)
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [getPostsByThread])
 
   const incrementThreadViews = useCallback((threadId: string) => {
@@ -428,6 +763,7 @@ export const ForumProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     getCategories,
     getThreadsByCategory,
     getPostsByThread,
+    getThreadById,
     createThread,
     createPost,
     selectCategory,
@@ -445,6 +781,7 @@ export const ForumProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     getCategories,
     getThreadsByCategory,
     getPostsByThread,
+    getThreadById,
     createThread,
     createPost,
     selectCategory,
@@ -459,6 +796,7 @@ export const ForumProvider: React.FC<{ children: ReactNode }> = ({ children }) =
   )
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useForum = () => {
   const context = useContext(ForumContext)
   if (context === undefined) {

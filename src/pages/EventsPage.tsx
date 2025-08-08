@@ -1,9 +1,13 @@
-import React, { useState } from 'react'
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import React, { useState, useEffect } from 'react'
+import { logger } from '../lib/logger'
 import { useEvent } from '../contexts/EventContext'
 import { useUser } from '../contexts/UserContext'
 import { useLanguage } from '../contexts/LanguageContext'
+import { useRealtimeEvents } from '../hooks/useRealtimeSub'
 import RaceSubmissionModal, { RaceSubmissionData } from '../components/RaceSubmissionModal'
 import EventLeaderboard from '../components/EventLeaderboard'
+import BestLapShowcase from '../components/BestLapShowcase'
 import { 
   Trophy, 
   Calendar, 
@@ -12,7 +16,6 @@ import {
   Target,
   Award,
   Gamepad2,
-  MapPin,
   Star,
   Bell,
   BellOff,
@@ -23,7 +26,7 @@ import {
 } from 'lucide-react'
 
 const EventsPage: React.FC = () => {
-  const { events, activeEvents, joinEvent, leaveEvent, loading, userParticipations, submitRaceTime, getLeaderboard } = useEvent()
+  const { events, joinEvent, loading, userParticipations, submitRaceTime, getLeaderboard } = useEvent()
   const { user } = useUser()
   const { t } = useLanguage()
   const [selectedTab, setSelectedTab] = useState<'active' | 'upcoming' | 'completed'>('active')
@@ -31,6 +34,30 @@ const EventsPage: React.FC = () => {
   const [notificationsEnabled, setNotificationsEnabled] = useState(false)
   const [showSubmissionModal, setShowSubmissionModal] = useState<string | null>(null)
   const [showLeaderboard, setShowLeaderboard] = useState<string | null>(null)
+
+  // Realtime events subscription
+  useRealtimeEvents((payload) => {
+    logger.info('Live event update received:', payload)
+    
+    // Log the realtime update (refetch would be handled by the context if available)
+    console.log('Event update received, consider refreshing data')
+    
+    // Show notification for live event status changes
+    if (payload.eventType === 'UPDATE' && payload.new?.status !== payload.old?.status) {
+      const eventName = payload.new?.title || 'Event'
+      const status = payload.new?.status
+      
+      if (status === 'live') {
+        // Show notification that event went live
+        if ('Notification' in window && Notification.permission === 'granted') {
+          new Notification(`🔴 ${eventName} ist jetzt LIVE!`, {
+            body: t('events.nowLive'),
+            icon: '/android-chrome-192x192.png'
+          })
+        }
+      }
+    }
+  })
 
   const getEventStatus = (event: any) => {
     const now = new Date()
@@ -94,21 +121,21 @@ const EventsPage: React.FC = () => {
   }
 
   const handleRaceSubmission = async (data: RaceSubmissionData): Promise<boolean> => {
-    console.log('EventsPage: handleRaceSubmission called with:', data)
+          logger.log('EventsPage: handleRaceSubmission called with:', data)
     
     // Pass current user information to submitRaceTime
     const currentUser = user ? { id: user.id, username: user.username } : undefined
     const success = await submitRaceTime(data, currentUser)
-    console.log('EventsPage: submitRaceTime returned:', success)
+          logger.log('EventsPage: submitRaceTime returned:', success)
     
     if (success) {
       setShowSubmissionModal(null)
       // Show leaderboard after successful submission
       setShowLeaderboard(data.eventId)
-      console.log('EventsPage: Showing success alert')
+              logger.log('EventsPage: Showing success alert')
       alert(t('events.submissionSuccess'))
     } else {
-      console.log('EventsPage: Submission failed')
+              logger.log('EventsPage: Submission failed')
     }
     return success
   }
@@ -136,7 +163,7 @@ const EventsPage: React.FC = () => {
         setNotificationsEnabled(false)
         alert(t('notifications.disabled'))
       }
-    } catch (error) {
+    } catch {
       alert(t('notifications.error'))
     }
   }
@@ -338,6 +365,18 @@ const EventsPage: React.FC = () => {
                   </div>
                 </div>
                 
+                {/* Best Lap Showcase - Always visible for active events */}
+                {status === 'active' && event.bestLap && (
+                  <div className="mt-6">
+                    <BestLapShowcase
+                      eventTitle={event.title}
+                      eventGame={event.game}
+                      bestLap={event.bestLap}
+                      className="w-full"
+                    />
+                  </div>
+                )}
+
                 {/* Event Details */}
                 {showDetails && (
                   <div className="event-tile-separator mt-6 pt-6 responsive-max-width">
@@ -454,6 +493,8 @@ const EventsPage: React.FC = () => {
               <EventLeaderboard 
                 eventId={showLeaderboard}
                 eventTitle={events.find(e => e.id === showLeaderboard)?.title || 'Event'}
+                eventGame={events.find(e => e.id === showLeaderboard)?.game}
+                bestLap={events.find(e => e.id === showLeaderboard)?.bestLap}
                 entries={getLeaderboard(showLeaderboard).map(participation => ({
                   id: participation.id,
                   userId: participation.userId,

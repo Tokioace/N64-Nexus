@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react'
-import { ShoppingBag, X } from 'lucide-react'
+import { ShoppingBag, Star, Package } from 'lucide-react'
 import { useLanguage, getLocaleString } from '../contexts/LanguageContext'
+import { useNavigate } from 'react-router-dom'
 
 interface MarketplaceItem {
   id: string
@@ -11,6 +12,7 @@ interface MarketplaceItem {
   seller: string
   date: Date
   image?: string
+  images?: string[]
   category: string
 }
 
@@ -21,6 +23,7 @@ interface SingleMarketplaceCardProps {
 
 const SingleMarketplaceCard: React.FC<SingleMarketplaceCardProps> = ({ marketplaceItems, className = '' }) => {
   const { t, currentLanguage } = useLanguage()
+  const navigate = useNavigate()
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isFlipping, setIsFlipping] = useState(false)
   const [flipDirection, setFlipDirection] = useState<'left' | 'right'>('left')
@@ -83,6 +86,11 @@ const SingleMarketplaceCard: React.FC<SingleMarketplaceCardProps> = ({ marketpla
     touchEndX.current = 0
   }
 
+  const handleCardClick = (item: MarketplaceItem) => {
+    // Navigate to marketplace page and highlight the specific item
+    navigate('/marktplatz', { state: { highlightItemId: item.id } })
+  }
+
   if (marketplaceItems.length === 0) {
     return (
       <div className={`${className} flex justify-center`}>
@@ -104,6 +112,7 @@ const SingleMarketplaceCard: React.FC<SingleMarketplaceCardProps> = ({ marketpla
   }
 
   const currentItem = marketplaceItems[currentIndex]
+  const itemImage = currentItem.images?.[0] || currentItem.image
 
   return (
     <div className={`${className} flex justify-center`}>
@@ -130,6 +139,16 @@ const SingleMarketplaceCard: React.FC<SingleMarketplaceCardProps> = ({ marketpla
                   <div className="swipeable-card-content">
                     <div className="p-4 h-full flex flex-col">
                       <div className="flex-1">
+                        {/* Image for next item */}
+                        {(marketplaceItems[currentIndex + 1].images?.[0] || marketplaceItems[currentIndex + 1].image) && (
+                          <div className="w-full h-12 bg-slate-700 rounded mb-2 overflow-hidden">
+                            <img 
+                              src={marketplaceItems[currentIndex + 1].images?.[0] || marketplaceItems[currentIndex + 1].image} 
+                              alt={marketplaceItems[currentIndex + 1].title}
+                              className="w-full h-full object-cover"
+                            />
+                          </div>
+                        )}
                         <h4 className="text-base sm:text-lg font-semibold text-text-primary mb-2 leading-tight">
                           {marketplaceItems[currentIndex + 1].title}
                         </h4>
@@ -167,6 +186,16 @@ const SingleMarketplaceCard: React.FC<SingleMarketplaceCardProps> = ({ marketpla
                   <div className="swipeable-card-content">
                     <div className="p-4 h-full flex flex-col">
                       <div className="flex-1">
+                        {/* Image for previous item */}
+                        {(marketplaceItems[currentIndex - 1].images?.[0] || marketplaceItems[currentIndex - 1].image) && (
+                          <div className="w-full h-12 bg-slate-700 rounded mb-2 overflow-hidden">
+                            <img 
+                              src={marketplaceItems[currentIndex - 1].images?.[0] || marketplaceItems[currentIndex - 1].image} 
+                              alt={marketplaceItems[currentIndex - 1].title}
+                              className="w-full h-full object-cover"
+                            />
+                          </div>
+                        )}
                         <h4 className="text-base sm:text-lg font-semibold text-text-primary mb-2 leading-tight">
                           {marketplaceItems[currentIndex - 1].title}
                         </h4>
@@ -194,15 +223,16 @@ const SingleMarketplaceCard: React.FC<SingleMarketplaceCardProps> = ({ marketpla
           )}
           
           <div 
-            className={`relative z-20 transition-transform duration-200 ease-out ${
+            className={`relative z-20 transition-transform duration-200 ease-out cursor-pointer hover:scale-105 ${
               isFlipping 
                 ? flipDirection === 'left' 
                   ? 'transform -translate-x-full opacity-0' 
                   : 'transform translate-x-full opacity-0'
                 : 'transform translate-x-0 opacity-100'
             }`}
+            onClick={() => handleCardClick(currentItem)}
           >
-            <div className="swipeable-card bg-gradient-to-br from-purple-600/20 to-purple-800/20 border-l-4 border-accent-purple">
+            <div className="swipeable-card bg-gradient-to-br from-purple-600/20 to-purple-800/20 border-l-4 border-accent-purple relative">
               <div className="swipeable-card-header">
                 <div className="flex items-center gap-2">
                   <ShoppingBag className="w-5 h-5 text-accent-purple" />
@@ -212,9 +242,34 @@ const SingleMarketplaceCard: React.FC<SingleMarketplaceCardProps> = ({ marketpla
                   {currentItem.category}
                 </div>
               </div>
+              
+              {/* Meta symbols in corner */}
+              <div className="absolute bottom-3 right-3 flex items-center gap-1">
+                <div className="text-slate-400" title={currentItem.condition}>
+                  <Package className="w-4 h-4" />
+                </div>
+                <div className="text-slate-400" title={currentItem.seller}>
+                  <Star className="w-4 h-4" />
+                </div>
+              </div>
               <div className="swipeable-card-content">
                 <div className="p-4 h-full flex flex-col">
                   <div className="flex-1">
+                    {/* Display actual image */}
+                    {itemImage && (
+                      <div className="w-full h-12 bg-slate-700 rounded mb-2 overflow-hidden">
+                        <img 
+                          src={itemImage} 
+                          alt={currentItem.title}
+                          className="w-full h-full object-cover"
+                          onError={(e) => {
+                            // Hide image if it fails to load
+                            const target = e.target as HTMLImageElement
+                            target.parentElement!.style.display = 'none'
+                          }}
+                        />
+                      </div>
+                    )}
                     <h4 className="text-base sm:text-lg font-semibold text-text-primary mb-2 leading-tight">
                       {currentItem.title}
                     </h4>

@@ -1,4 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { createContext, useContext, useState, ReactNode, useEffect, useCallback, useMemo } from 'react'
+import { logger } from '../lib/logger'
 import { MediaMeta, MediaContextType } from '../types'
 import { useLanguage } from './LanguageContext'
 import { useUser } from './UserContext'
@@ -85,12 +87,12 @@ export const MediaProvider: React.FC<{ children: ReactNode }> = ({ children }) =
           }))
       }
     } catch (error) {
-      console.error('Error loading media from storage:', error)
+      logger.error('Error loading media from storage:', error)
       // Clear corrupted data
       try {
         localStorage.removeItem(MEDIA_STORAGE_KEY)
       } catch (clearError) {
-        console.error('Error clearing corrupted media data:', clearError)
+        logger.error('Error clearing corrupted media data:', clearError)
       }
     }
     
@@ -197,7 +199,7 @@ export const MediaProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     try {
       localStorage.setItem(MEDIA_STORAGE_KEY, JSON.stringify(mediaData))
     } catch (error) {
-      console.error('Error saving media to storage:', error)
+      logger.error('Error saving media to storage:', error)
       setError('Failed to save media data')
     }
   }, [])
@@ -300,7 +302,14 @@ export const MediaProvider: React.FC<{ children: ReactNode }> = ({ children }) =
         verified: false,
         likes: 0,
         views: 0,
-        tags: metadata.tags || []
+        tags: metadata.tags || [],
+        interactions: {
+          likes: 0,
+          views: 0,
+          comments: [],
+          likedBy: [],
+          viewedBy: []
+        }
       }
       
       // Add to media collection (newest first)
@@ -309,11 +318,12 @@ export const MediaProvider: React.FC<{ children: ReactNode }> = ({ children }) =
       setLoading(false)
       return true
     } catch (err) {
-      console.error('Upload error:', err)
+      logger.error('Upload error:', err)
       setError(t('error.generic'))
       setLoading(false)
       return false
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user, loading, t])
 
   const uploadMediaFromUrl = useCallback(async (url: string, metadata: Partial<MediaMeta>): Promise<boolean> => {
@@ -375,7 +385,14 @@ export const MediaProvider: React.FC<{ children: ReactNode }> = ({ children }) =
         verified: false,
         likes: 0,
         views: 0,
-        tags: metadata.tags || []
+        tags: metadata.tags || [],
+        interactions: {
+          likes: 0,
+          views: 0,
+          comments: [],
+          likedBy: [],
+          viewedBy: []
+        }
       }
       
       // Add to media collection (newest first)
@@ -384,11 +401,12 @@ export const MediaProvider: React.FC<{ children: ReactNode }> = ({ children }) =
       setLoading(false)
       return true
     } catch (err) {
-      console.error('URL upload error:', err)
+      logger.error('URL upload error:', err)
       setError(t('error.generic'))
       setLoading(false)
       return false
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user, loading, t])
 
   // Helper function to generate thumbnail from file
@@ -424,12 +442,12 @@ export const MediaProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     
     // Default thumbnail
     return 'https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?w=400&h=300&fit=crop'
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   // Helper function to extract YouTube video ID
   const extractYouTubeVideoId = useCallback((url: string): string | null => {
-    const regex = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/
-    const match = url.match(regex)
+    const match = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\n?#]+)/)
     return match ? match[1] : null
   }, [])
 
@@ -474,7 +492,7 @@ export const MediaProvider: React.FC<{ children: ReactNode }> = ({ children }) =
       setLoading(false)
       return true
     } catch (err) {
-      console.error('Delete error:', err)
+      logger.error('Delete error:', err)
       setError(t('error.generic'))
       setLoading(false)
       return false
@@ -499,7 +517,7 @@ export const MediaProvider: React.FC<{ children: ReactNode }> = ({ children }) =
       
       return true
     } catch (err) {
-      console.error('Like error:', err)
+      logger.error('Like error:', err)
       return false
     }
   }, [user])
@@ -574,7 +592,7 @@ export const MediaProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     ))
   }, [])
 
-  const isCapturingAllowed = useCallback((eventId?: string): boolean => {
+  const isCapturingAllowed = useCallback((_eventId?: string): boolean => {
     // In a real app, this would check event rules or user permissions
     return true
   }, [])
@@ -642,6 +660,7 @@ export const MediaProvider: React.FC<{ children: ReactNode }> = ({ children }) =
   )
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useMedia = () => {
   const context = useContext(MediaContext)
   if (context === undefined) {

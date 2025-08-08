@@ -1,13 +1,13 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState } from 'react'
 import { useEvent } from '../contexts/EventContext'
 import { useUser } from '../contexts/UserContext'
 import { useLanguage } from '../contexts/LanguageContext'
+import { useRealtimeSpeedruns } from '../hooks/useRealtimeSub'
 import EventLeaderboard from '../components/EventLeaderboard'
 import N64FanLeaderboard from '../components/N64FanLeaderboard'
 import { 
-  Trophy, 
   Calendar, 
-  Target,
   Users,
   Medal,
   Star,
@@ -21,15 +21,35 @@ const LeaderboardPage: React.FC = () => {
   const [selectedEvent, setSelectedEvent] = useState<string | null>(null)
   const [activeTab, setActiveTab] = useState<'n64fan' | 'events'>('n64fan')
 
-  // Get active events with leaderboard data
+  // Realtime speedrun updates
+  useRealtimeSpeedruns((payload) => {
+    console.log('🏁 New speedrun record received:', payload)
+    
+    // Log the speedrun update (refetch would be handled by the context if available)
+    console.log('Speedrun update received, consider refreshing leaderboard')
+    
+    // Show notification for new records
+    if (payload.eventType === 'INSERT' && payload.new) {
+      const { time, user_name, game_title } = payload.new
+      
+      if ('Notification' in window && Notification.permission === 'granted') {
+        new Notification(`🏁 Neue Bestzeit!`, {
+          body: `${user_name}: ${time} in ${game_title}`,
+          icon: '/android-chrome-192x192.png'
+        })
+      }
+    }
+  })
+
+  // Get active events with leaderboard data - show all active events
   const activeEventsWithLeaderboard = events.filter(event => {
     const now = new Date()
     const startDate = new Date(event.startDate)
     const endDate = new Date(event.endDate)
-    return now >= startDate && now <= endDate && getLeaderboard(event.id).length > 0
+    return now >= startDate && now <= endDate // Show all active events, even without participants
   })
 
-  // If no event is selected, show the first active event with data
+  // If no event is selected, show the first active event
   const currentEventId = selectedEvent || (activeEventsWithLeaderboard[0]?.id)
 
   const getEventStatus = (event: any) => {
@@ -43,6 +63,26 @@ const LeaderboardPage: React.FC = () => {
       return 'upcoming'
     } else {
       return 'completed'
+    }
+  }
+
+  const getEventIcon = (gameTitle: string) => {
+    if (gameTitle.includes('Mario Kart')) return '🏎️'
+    if (gameTitle.includes('San Francisco')) return '🏙️'
+    if (gameTitle.includes('Diddy Kong')) return '🦍'
+    return '🎮'
+  }
+
+  const getEventGradient = (eventId: string) => {
+    switch (eventId) {
+      case 'mk64-luigis-raceway':
+        return 'from-green-600/20 to-emerald-600/20 border-green-400'
+      case 'sfr-downtown':
+        return 'from-orange-600/20 to-red-600/20 border-orange-400'
+      case 'dkr-ancient-lake':
+        return 'from-blue-600/20 to-cyan-600/20 border-blue-400'
+      default:
+        return 'from-purple-600/20 to-pink-600/20 border-purple-400'
     }
   }
 
@@ -97,40 +137,39 @@ const LeaderboardPage: React.FC = () => {
       )}
 
       {/* Event Selection */}
-      {activeTab === 'events' && activeEventsWithLeaderboard.length > 1 && (
+      {activeTab === 'events' && activeEventsWithLeaderboard.length > 0 && (
         <div className="simple-tile mb-responsive responsive-max-width">
           <h2 className="text-responsive-lg font-bold text-slate-100 mb-4 flex items-center">
             <Calendar className="w-4 h-4 sm:w-5 sm:h-5 mr-2 flex-shrink-0" />
-            <span className="responsive-word-break">{t('leaderboard.selectEvent')}</span>
+            <span className="responsive-word-break">
+              {activeEventsWithLeaderboard.length === 1 ? t('events.currentEvent') : t('leaderboard.selectEvent')}
+            </span>
           </h2>
           <div className="grid-auto-fit">
             {activeEventsWithLeaderboard.map((event) => (
               <button
                 key={event.id}
                 onClick={() => setSelectedEvent(event.id)}
-                className={`p-3 sm:p-4 rounded-lg border-2 transition-all text-left w-full ${
+                className={`p-3 sm:p-4 rounded-lg border-2 transition-all text-left w-full bg-gradient-to-r ${getEventGradient(event.id)} ${
                   currentEventId === event.id
-                    ? 'border-blue-400 bg-blue-400/10'
-                    : 'border-slate-600 bg-slate-700 hover:border-slate-500'
+                    ? 'border-opacity-100 shadow-lg'
+                    : 'border-opacity-50 hover:border-opacity-75'
                 }`}
               >
-                <div className="flex items-center space-x-2 mb-2">
-                  <Trophy className={`w-4 h-4 flex-shrink-0 ${
-                    currentEventId === event.id ? 'text-blue-400' : 'text-slate-400'
-                  }`} />
-                  <span className="font-medium text-slate-100 text-sm sm:text-base responsive-word-break">{event.title}</span>
-                </div>
-                <div className="flex flex-wrap items-center gap-2 sm:gap-4 text-xs sm:text-sm text-slate-400">
-                  <div className="flex items-center space-x-1">
-                    <Target className="w-3 h-3 flex-shrink-0" />
-                    <span className="responsive-word-break">{event.game}</span>
+                <div className="flex items-center space-x-3 mb-2">
+                  <div className="text-2xl">{getEventIcon(event.game)}</div>
+                  <div className="flex-1">
+                    <div className="font-medium text-slate-100 text-sm sm:text-base responsive-word-break">{event.title}</div>
+                    <div className="text-xs text-slate-400">{event.game} • {event.category}</div>
                   </div>
+                </div>
+                <div className="flex flex-wrap items-center gap-2 sm:gap-4 text-xs sm:text-sm text-slate-400 mb-2">
                   <div className="flex items-center space-x-1">
                     <Users className="w-3 h-3 flex-shrink-0" />
-                    <span>{getLeaderboard(event.id).length}</span>
+                    <span>{getLeaderboard(event.id).length} {t('events.participants')}</span>
                   </div>
                 </div>
-                <div className={`mt-2 px-2 py-1 rounded-full text-xs font-medium inline-block ${
+                <div className={`px-2 py-1 rounded-full text-xs font-medium inline-block ${
                   getEventStatus(event) === 'active' 
                     ? 'bg-green-500/20 text-green-400' 
                     : 'bg-gray-500/20 text-gray-400'

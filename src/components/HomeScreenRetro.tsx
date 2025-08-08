@@ -6,7 +6,6 @@ import {
   Trophy,
   Target,
   Camera,
-  Star,
   Users as UsersIcon,
   User,
   Package,
@@ -15,11 +14,12 @@ import {
   MessageCircle,
   Palette,
   Newspaper,
-  BarChart3
+  BarChart3,
+  MapPin
 } from 'lucide-react'
 
 const HomeScreenRetro: React.FC = () => {
-  const { user, isAuthenticated } = useUser()
+  const { user } = useUser()
   const { t } = useLanguage()
 
   return (
@@ -27,11 +27,14 @@ const HomeScreenRetro: React.FC = () => {
       {/* Header with Mascot */}
       <div className="text-center mb-6">
         <div className="battle64-header-container mb-2">
-          {/* Mascot Image */}
+          {/* Mascot Image - Positioned so antennas are just below ranking card */}
           <img 
             src="/mascot.png" 
             alt={t('alt.battle64Mascot')} 
             className="battle64-mascot h-48 sm:h-56 md:h-64 lg:h-80 w-auto object-contain"
+            style={{
+              marginTop: 'clamp(0.5rem, 1vw, 1rem)' // Reduced margin so antennas show under ranking card
+            }}
           />
         </div>
         
@@ -46,10 +49,10 @@ const HomeScreenRetro: React.FC = () => {
       </div>
 
       {/* Main Grid */}
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 max-w-6xl mx-auto">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-5 max-w-6xl mx-auto px-2 sm:px-0">
         
         {/* Quiz Tile */}
-        <Link to="/quiz" className="simple-tile simple-tile-small">
+        <Link to="/quiz" className="simple-tile simple-tile-small mobile-tile-optimized">
           <div className="simple-tile-icon">
             <Target className="w-7 h-7 text-purple-400 mx-auto" />
           </div>
@@ -60,7 +63,7 @@ const HomeScreenRetro: React.FC = () => {
         </Link>
 
         {/* Events Tile */}
-        <Link to="/events" className="simple-tile simple-tile-small">
+        <Link to="/events" className="simple-tile simple-tile-small mobile-tile-optimized">
           <div className="simple-tile-icon">
             <Trophy className="w-7 h-7 text-yellow-500 mx-auto" />
           </div>
@@ -70,8 +73,19 @@ const HomeScreenRetro: React.FC = () => {
           </div>
         </Link>
 
+        {/* Battle64 Map Tile */}
+        <Link to="/map" className="simple-tile simple-tile-small mobile-tile-optimized">
+          <div className="simple-tile-icon">
+            <MapPin className="w-7 h-7 text-yellow-400 mx-auto" />
+          </div>
+          <div className="simple-tile-label">
+            <div className="font-medium text-text-primary text-sm">{t('nav.map')}</div>
+            <div className="text-xs text-text-muted">{t('home.map.subtitle')}</div>
+          </div>
+        </Link>
+
         {/* Media Tile */}
-        <Link to="/speedrun-media" className="simple-tile simple-tile-small">
+        <Link to="/speedrun-media" className="simple-tile simple-tile-small mobile-tile-optimized">
           <div className="simple-tile-icon">
             <Camera className="w-7 h-7 text-blue-400 mx-auto" />
           </div>
@@ -82,7 +96,7 @@ const HomeScreenRetro: React.FC = () => {
         </Link>
 
         {/* Collector Mode Tile */}
-        <Link to="/collector" className="simple-tile simple-tile-small">
+        <Link to="/collector" className="simple-tile simple-tile-small mobile-tile-optimized">
           <div className="simple-tile-icon">
             <Package className="w-7 h-7 text-green-400 mx-auto" />
           </div>
@@ -93,7 +107,7 @@ const HomeScreenRetro: React.FC = () => {
         </Link>
 
         {/* Forum Tile */}
-        <Link to="/forum" className="simple-tile simple-tile-small">
+        <Link to="/forum" className="simple-tile simple-tile-small mobile-tile-optimized">
           <div className="simple-tile-icon">
             <MessageSquare className="w-7 h-7 text-cyan-400 mx-auto" />
           </div>
@@ -104,7 +118,7 @@ const HomeScreenRetro: React.FC = () => {
         </Link>
 
         {/* Profile Tile */}
-        <Link to="/profile" className="simple-tile simple-tile-small">
+        <Link to="/profile" className="simple-tile simple-tile-small mobile-tile-optimized">
           <div className="simple-tile-icon">
             <User className="w-7 h-7 text-slate-400 mx-auto" />
           </div>
@@ -115,7 +129,7 @@ const HomeScreenRetro: React.FC = () => {
         </Link>
 
         {/* Leaderboard Tile */}
-        <Link to="/leaderboard" className="simple-tile simple-tile-small">
+        <Link to="/leaderboard" className="simple-tile simple-tile-small mobile-tile-optimized">
           <div className="simple-tile-icon">
             <BarChart3 className="w-7 h-7 text-orange-400 mx-auto" />
           </div>
@@ -126,7 +140,7 @@ const HomeScreenRetro: React.FC = () => {
         </Link>
 
         {/* Minigames Tile */}
-        <Link to="/minigames" className="simple-tile simple-tile-small">
+        <Link to="/minigames" className="simple-tile simple-tile-small mobile-tile-optimized">
           <div className="simple-tile-icon">
             <Target className="w-7 h-7 text-red-400 mx-auto" />
           </div>
@@ -137,7 +151,7 @@ const HomeScreenRetro: React.FC = () => {
         </Link>
 
         {/* Marketplace Tile */}
-        <Link to="/marktplatz" className="simple-tile simple-tile-small">
+        <Link to="/marktplatz" className="simple-tile simple-tile-small mobile-tile-optimized">
           <div className="simple-tile-icon">
             <ShoppingCart className="w-7 h-7 text-emerald-400 mx-auto" />
           </div>
@@ -148,7 +162,7 @@ const HomeScreenRetro: React.FC = () => {
         </Link>
 
         {/* Community Tile */}
-        <Link to="/community" className="simple-tile simple-tile-small">
+        <Link to="/community" className="simple-tile simple-tile-small mobile-tile-optimized">
           <div className="simple-tile-icon">
             <UsersIcon className="w-7 h-7 text-indigo-400 mx-auto" />
           </div>
@@ -159,7 +173,7 @@ const HomeScreenRetro: React.FC = () => {
         </Link>
 
         {/* Chat Tile */}
-        <Link to="/chat" className="simple-tile simple-tile-small">
+        <Link to="/chat" className="simple-tile simple-tile-small mobile-tile-optimized">
           <div className="simple-tile-icon">
             <MessageCircle className="w-7 h-7 text-violet-400 mx-auto" />
           </div>
@@ -170,7 +184,7 @@ const HomeScreenRetro: React.FC = () => {
         </Link>
 
         {/* Fanart Tile */}
-        <Link to="/fanart" className="simple-tile simple-tile-small">
+        <Link to="/fanart" className="simple-tile simple-tile-small mobile-tile-optimized fanart-tile-soft-red">
           <div className="simple-tile-icon">
             <Palette className="w-7 h-7 text-pink-400 mx-auto" />
           </div>
@@ -181,13 +195,13 @@ const HomeScreenRetro: React.FC = () => {
         </Link>
 
         {/* Newsfeed Tile */}
-        <Link to="/newsfeed" className="simple-tile simple-tile-small">
+        <Link to="/newsfeed" className="simple-tile simple-tile-small mobile-tile-optimized">
           <div className="simple-tile-icon">
             <Newspaper className="w-7 h-7 text-orange-500 mx-auto" />
           </div>
           <div className="simple-tile-label">
             <div className="font-medium text-text-primary text-sm">{t('nav.newsfeed')}</div>
-            <div className="text-xs text-text-muted">{t('home.newsfeed')}</div>
+            <div className="text-xs text-text-muted">{t('home.newsfeed.subtitle')}</div>
           </div>
         </Link>
 

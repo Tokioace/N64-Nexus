@@ -1,9 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react'
+import { logger } from '../lib/logger'
 import { useUser } from '../contexts/UserContext'
 import { useLanguage } from '../contexts/LanguageContext'
 import { usePoints } from '../contexts/PointsContext'
 import { Send, Users, MessageCircle, Star, Info, Search, Plus, ArrowLeft, MoreVertical } from 'lucide-react'
 import { User } from '../types'
+import { moderationService } from '../services/moderationService'
+import { isRateLimited } from '../utils/rateLimiter'
 
 interface ChatMessage {
   id: string
@@ -62,7 +65,7 @@ const ChatPage: React.FC = () => {
         const users = await getAllUsers()
         setAllUsers(users.filter(u => u.id !== user?.id)) // Exclude current user
       } catch (error) {
-        console.error('Error loading users:', error)
+        logger.error('Error loading users:', error)
       }
     }
 
@@ -121,6 +124,19 @@ const ChatPage: React.FC = () => {
     e.preventDefault()
     if (!newMessage.trim() || !isAuthenticated || !user) return
 
+    if (isRateLimited(`chat:${user.id}`, 20)) {
+      logger.warn('Rate limited chat message')
+      return
+    }
+
+    const analysis = await moderationService.analyzeText(newMessage)
+    if (analysis.shouldHide) {
+      await moderationService.flagContent('chat', '00000000-0000-0000-0000-000000000000', analysis.violations[0]?.type || 'spam', analysis.violations[0]?.confidence, true)
+      await moderationService.recordViolation(user.id, 'text', analysis.violations.map(v => v.type).join(','))
+      setNewMessage('')
+      return
+    }
+
     const now = Date.now()
     const canEarnPoints = now - lastPointsTime > 60000 // 1 minute cooldown
 
@@ -171,7 +187,7 @@ const ChatPage: React.FC = () => {
         await awardPoints('chat.messages', 'Chat message sent')
         setLastPointsTime(now)
       } catch (error) {
-        console.error('Error awarding chat points:', error)
+        logger.error('Error awarding chat points:', error)
       }
     }
   }
