@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import { QuizProvider } from './contexts/QuizContext'
 import { UserProvider } from './contexts/UserContext'
@@ -21,7 +22,6 @@ import Layout from './components/Layout'
 import PWAInstallPrompt from './components/PWAInstallPrompt'
 import OfflineIndicator from './components/OfflineIndicator'
 import CookieConsent from './components/CookieConsent'
-import React, { useEffect, useState } from 'react'
 import { bugMonitorService } from './services/bugMonitorService'
 
 // Import lazy components for code splitting
