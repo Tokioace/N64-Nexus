@@ -44,10 +44,17 @@ import {
   Battle64Map
 } from './components/LazyComponents'
 
-function App() {
-  const [cookiePreferences, setCookiePreferences] = useState(null)
+interface CookiePreferences {
+  necessary: boolean
+  analytics: boolean
+  marketing: boolean
+  preferences: boolean
+}
 
-  const handleCookieAccept = (preferences: any) => {
+function App() {
+  const [cookiePreferences, setCookiePreferences] = useState<CookiePreferences | null>(null)
+
+  const handleCookieAccept = (preferences: CookiePreferences) => {
     setCookiePreferences(preferences)
     // Here you would typically initialize analytics, marketing scripts, etc.
     // based on the user's preferences
