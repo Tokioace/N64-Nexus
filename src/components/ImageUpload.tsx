@@ -28,24 +28,52 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
 
   const handleFileSelect = async (file: File) => {
     setError('')
-    
-    const validation = validateImageFile(file, t)
-    if (!validation.isValid) {
-      setError(validation.error || t('error.invalidFile'))
-      return
-    }
 
-    const metaCheck = await moderationService.analyzeImageMetadata(file.name)
-    if (metaCheck.shouldHide) {
-      setError(t('moderation.contentHidden'))
-      return
-    }
+    try {
+      if (!file) {
+        setError(t('error.invalidFile'))
+        return
+      }
 
-    const reader = new FileReader()
-    reader.onload = () => {
-      onImageSelect(reader.result as string, file)
+      console.log('Uploading file:', file.name, file.size + ' bytes', file.type)
+
+      const validation = validateImageFile(file, t)
+      if (!validation.isValid) {
+        setError(validation.error || t('error.invalidFile'))
+        return
+      }
+
+      const metaCheck = await moderationService.analyzeImageMetadata(file.name)
+      if (metaCheck?.shouldHide) {
+        console.warn('Moderation flagged image. Violations:', metaCheck.violations)
+        if (import.meta.env?.DEV) {
+          console.warn('DEV mode: bypassing moderation block for image upload preview')
+        } else {
+          setError(t('error.moderationBlocked'))
+          return
+        }
+      }
+
+      const reader = new FileReader()
+      reader.onload = () => {
+        try {
+          const result = reader.result as string
+          console.log('Image preview URL generated')
+          onImageSelect(result, file)
+        } catch (e) {
+          console.error('Failed to process image preview', e)
+          setError(t('error.imagePreviewFailed'))
+        }
+      }
+      reader.onerror = () => {
+        console.error('FileReader encountered an error')
+        setError(t('error.uploadFailed'))
+      }
+      reader.readAsDataURL(file)
+    } catch (e) {
+      console.error('Unexpected image upload error', e)
+      setError(t('error.uploadFailed'))
     }
-    reader.readAsDataURL(file)
   }
 
   const handleDrop = (e: React.DragEvent) => {
@@ -111,6 +139,10 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
             src={currentImage}
             alt={t('alt.uploadPreview')}
             className="w-full max-w-md h-auto rounded-lg border border-slate-600"
+            onError={() => {
+              console.warn('Image preview failed to load. Image URL:', currentImage)
+              setError(t('imageUpload.noPreview'))
+            }}
           />
           <button
             type="button"
@@ -168,7 +200,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
       <input
         ref={fileInputRef}
         type="file"
-        accept="image/*"
+        accept="image/jpeg,image/png,image/gif,image/webp"
         onChange={handleFileInputChange}
         className="hidden"
         disabled={disabled}
