@@ -74,7 +74,7 @@ class ErrorBoundaryClass extends Component<Props, State> {
                 {t('error.boundary.home')}
               </button>
             </div>
-            {process.env.NODE_ENV === 'development' && this.state.error && (
+            {import.meta.env.DEV && this.state.error && (
               <details className="mt-6 text-left">
                 <summary className="text-sm text-slate-400 cursor-pointer">
                   {t('error.boundary.details')}
