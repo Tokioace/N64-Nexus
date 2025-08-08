@@ -34,4 +34,4 @@ export const translations = {
   ko
 }
 
-export type TranslationKeys = keyof typeof de
+export type TranslationKeys = keyof typeof en | keyof typeof de | keyof typeof fr | keyof typeof it | keyof typeof es | keyof typeof el | keyof typeof tr | keyof typeof zh | keyof typeof ja | keyof typeof ru | keyof typeof pt | keyof typeof hi | keyof typeof ar | keyof typeof ko

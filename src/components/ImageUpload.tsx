@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react'
 import { Upload, X, Image as ImageIcon, AlertCircle } from 'lucide-react'
 import { validateImageFile } from '../utils/forumValidation'
 import { useLanguage } from '../contexts/LanguageContext'
+import { moderationService } from '../services/moderationService'
 
 interface ImageUploadProps {
   onImageSelect: (imageUrl: string, file: File) => void
@@ -25,12 +26,18 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
   const [error, setError] = useState<string>('')
   const fileInputRef = useRef<HTMLInputElement>(null)
 
-  const handleFileSelect = (file: File) => {
+  const handleFileSelect = async (file: File) => {
     setError('')
     
     const validation = validateImageFile(file, t)
     if (!validation.isValid) {
       setError(validation.error || t('error.invalidFile'))
+      return
+    }
+
+    const metaCheck = await moderationService.analyzeImageMetadata(file.name)
+    if (metaCheck.shouldHide) {
+      setError(t('moderation.contentHidden'))
       return
     }
 

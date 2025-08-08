@@ -780,3 +780,69 @@ INSERT INTO events (id, title, game, track, start_time, end_time, status, create
 -- COMPLETION MESSAGE
 -- =====================================================
 SELECT 'Battle64 database setup completed successfully!' as message;
+
+-- =====================================================
+-- SECURITY & BUG MONITORING TABLES
+-- =====================================================
+CREATE TABLE IF NOT EXISTS security_events (
+    id uuid PRIMARY KEY DEFAULT uuid_generate_v4(),
+    event_type text CHECK (event_type IN ('login_failed','suspicious_activity','rate_limit','token_revoked','ddos_pattern')) NOT NULL,
+    description text,
+    created_at timestamptz DEFAULT now()
+);
+
+CREATE TABLE IF NOT EXISTS bug_reports (
+    id uuid PRIMARY KEY DEFAULT uuid_generate_v4(),
+    message text NOT NULL,
+    stack text,
+    url text,
+    created_at timestamptz DEFAULT now()
+);
+
+CREATE TABLE IF NOT EXISTS user_violations (
+    id uuid PRIMARY KEY DEFAULT uuid_generate_v4(),
+    user_id uuid REFERENCES profiles(id) ON DELETE CASCADE NOT NULL,
+    violation_type text CHECK (violation_type IN ('text','media','link')) NOT NULL,
+    details text,
+    severity integer CHECK (severity IN (1,2)) NOT NULL, -- 1=warn,2=ban
+    action text CHECK (action IN ('warned','banned')) NOT NULL,
+    created_at timestamptz DEFAULT now()
+);
+
+-- Enable RLS
+ALTER TABLE security_events ENABLE ROW LEVEL SECURITY;
+ALTER TABLE bug_reports ENABLE ROW LEVEL SECURITY;
+ALTER TABLE user_violations ENABLE ROW LEVEL SECURITY;
+
+-- OWNER UID constant (replace with your real owner uuid)
+-- SELECT 'Set OWNER UID in application env VITE_OWNER_UID';
+
+-- Policies: only owner can read, anyone authenticated can insert where applicable
+CREATE POLICY IF NOT EXISTS "owner can read security events" ON security_events
+    FOR SELECT USING (auth.uid() = '00000000-0000-0000-0000-000000000000');
+CREATE POLICY IF NOT EXISTS "insert security events" ON security_events
+    FOR INSERT WITH CHECK (auth.uid() IS NOT NULL);
+
+CREATE POLICY IF NOT EXISTS "owner can read bug reports" ON bug_reports
+    FOR SELECT USING (auth.uid() = '00000000-0000-0000-0000-000000000000');
+CREATE POLICY IF NOT EXISTS "insert bug reports" ON bug_reports
+    FOR INSERT WITH CHECK (true);
+
+CREATE POLICY IF NOT EXISTS "owner can read user violations" ON user_violations
+    FOR SELECT USING (auth.uid() = '00000000-0000-0000-0000-000000000000');
+CREATE POLICY IF NOT EXISTS "insert user violations" ON user_violations
+    FOR INSERT WITH CHECK (auth.uid() IS NOT NULL);
+
+-- Retention function to delete records older than 30 days
+CREATE OR REPLACE FUNCTION cleanup_old_admin_data()
+RETURNS void AS $$
+BEGIN
+    DELETE FROM security_events WHERE created_at < now() - interval '30 days';
+    DELETE FROM bug_reports WHERE created_at < now() - interval '30 days';
+    DELETE FROM user_violations WHERE created_at < now() - interval '30 days';
+    DELETE FROM reports WHERE created_at < now() - interval '30 days';
+    DELETE FROM content_flags WHERE created_at < now() - interval '30 days';
+END;
+$$ LANGUAGE plpgsql;
+
+-- Note: schedule this function daily using Supabase cron or external scheduler
