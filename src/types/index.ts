@@ -17,6 +17,11 @@ export interface User {
   personalRecords: PersonalRecord[]
   // New points system fields
   points?: UserPoints
+  // Legal compliance fields
+  birthDate?: Date // Required for 18+ verification
+  termsAccepted?: boolean
+  privacyAccepted?: boolean
+  copyrightAcknowledged?: boolean
 }
 
 export interface UserRegistrationData {
@@ -26,6 +31,12 @@ export interface UserRegistrationData {
   confirmPassword: string
   region: 'PAL' | 'NTSC'
   platform: 'N64' | 'PC'
+  // Legal compliance fields (required for registration)
+  birthDate: string // Date string from form input
+  termsAccepted: boolean
+  privacyAccepted: boolean
+  copyrightAcknowledged: boolean
+  ageConfirmed: boolean // "I am over 18 years old" checkbox
 }
 
 export interface UserCollection {
@@ -67,6 +78,7 @@ export interface UserContextType {
   register: (data: UserRegistrationData) => Promise<boolean>
   logout: () => void
   updateProfile: (updates: Partial<User>) => Promise<boolean>
+  deleteAccount: () => Promise<boolean> // GDPR-compliant account deletion
   addXP: (amount: number) => void
   addToCollection: (item: Omit<UserCollection, 'id' | 'userId'>) => Promise<boolean>
   removeFromCollection: (itemId: string) => Promise<boolean>
@@ -531,4 +543,127 @@ export interface InteractionContextType {
   // Loading states
   loading: boolean
   error: string | null
+}
+
+// Content Moderation & Reporting Types
+export interface ContentReport {
+  id: string
+  contentType: 'speedrun' | 'fanart' | 'chat' | 'forum' | 'profile' | 'event'
+  contentId: string
+  reason: string
+  description?: string
+  reportedBy: string
+  reportedByUsername?: string
+  status: 'pending' | 'reviewed' | 'dismissed' | 'action_taken'
+  reviewedBy?: string
+  reviewedAt?: Date
+  actionTaken?: string
+  createdAt: Date
+  updatedAt: Date
+}
+
+export interface ContentFlag {
+  id: string
+  contentType: 'speedrun' | 'fanart' | 'chat' | 'forum' | 'profile' | 'event'
+  contentId: string
+  flagType: 'nsfw' | 'spam' | 'hate_speech' | 'copyright' | 'inappropriate'
+  confidenceScore?: number // AI confidence score (0.00-1.00)
+  autoHidden: boolean
+  manualReviewRequired: boolean
+  createdAt: Date
+}
+
+export interface AdminAction {
+  id: string
+  adminId: string
+  adminUsername?: string
+  actionType: 'content_hidden' | 'content_removed' | 'user_warned' | 'user_suspended' | 'user_banned' | 'report_reviewed'
+  targetType: 'user' | 'content' | 'report'
+  targetId: string
+  reason: string
+  notes?: string
+  createdAt: Date
+}
+
+export interface ReportingContextType {
+  // Report content
+  reportContent: (contentType: string, contentId: string, reason: string, description?: string) => Promise<boolean>
+  
+  // Admin functions
+  getReports: (status?: string) => Promise<ContentReport[]>
+  reviewReport: (reportId: string, action: 'dismiss' | 'take_action', actionDetails?: string) => Promise<boolean>
+  hideContent: (contentType: string, contentId: string, reason: string) => Promise<boolean>
+  unhideContent: (contentType: string, contentId: string) => Promise<boolean>
+  
+  // Content flags
+  getContentFlags: (contentType?: string, contentId?: string) => Promise<ContentFlag[]>
+  isContentHidden: (contentType: string, contentId: string) => Promise<boolean>
+  
+  // Admin actions audit
+  getAdminActions: (adminId?: string) => Promise<AdminAction[]>
+  
+  // Statistics
+  getReportStats: () => Promise<{
+    totalReports: number
+    pendingReports: number
+    resolvedReports: number
+    reportsByType: Record<string, number>
+  }>
+  
+  loading: boolean
+  error: string | null
+}
+
+// Legal & Compliance Types
+export interface LegalAgreement {
+  type: 'terms' | 'privacy' | 'copyright'
+  version: string
+  acceptedAt: Date
+  ipAddress?: string
+}
+
+export interface CookieConsent {
+  necessary: boolean
+  analytics: boolean
+  marketing: boolean
+  preferences: boolean
+  consentDate: Date
+  consentVersion: string
+}
+
+export interface LegalContextType {
+  // Cookie consent
+  cookieConsent: CookieConsent | null
+  updateCookieConsent: (consent: Partial<CookieConsent>) => void
+  hasCookieConsent: () => boolean
+  
+  // Legal agreements
+  acceptLegalAgreement: (type: 'terms' | 'privacy' | 'copyright') => Promise<boolean>
+  getLegalAgreements: () => Promise<LegalAgreement[]>
+  
+  // Age verification
+  verifyAge: (birthDate: Date) => boolean
+  
+  // GDPR data export
+  requestDataExport: () => Promise<boolean>
+  
+  loading: boolean
+  error: string | null
+}
+
+// Upload Security Types
+export interface UploadSecurityCheck {
+  isNSFW: boolean
+  confidence: number
+  flaggedContent: string[]
+  approved: boolean
+  requiresManualReview: boolean
+}
+
+export interface SecureUploadData {
+  file: File
+  contentType: string
+  rightsConfirmed: boolean
+  copyrightAcknowledged: boolean
+  contentWarnings?: string[]
 }
