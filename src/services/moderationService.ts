@@ -47,7 +47,10 @@ export const moderationService = {
     const text = [filename, title, description].filter(Boolean).join(' ').toLowerCase()
     const violations: ModerationResult['violations'] = []
 
-    if (NINTENDO_TERMS.some(t => text.includes(t))) violations.push({ type: 'copyright', confidence: 0.85, detail: 'Nintendo terms detected' })
+    // Copyright heuristics should NOT auto-hide by themselves
+    if (NINTENDO_TERMS.some(t => text.includes(t))) {
+      violations.push({ type: 'copyright', confidence: 0.6, detail: 'Nintendo-related terms detected in metadata' })
+    }
 
     try {
       if (MODERATION_API_URL) {
@@ -63,7 +66,16 @@ export const moderationService = {
       if (import.meta.env.DEV) logger.warn('External moderation API failed', err)
     }
 
-    return { violations, shouldHide: violations.length > 0 }
+    // Only auto-hide for severe categories with sufficient confidence
+    const shouldAutoHide = violations.some(v => (
+      (v.type === 'nsfw' || v.type === 'violence' || v.type === 'phishing') && (v.confidence ?? 0) >= 0.8
+    ))
+
+    if (import.meta.env.DEV) {
+      logger.info('Image moderation analysis', { filename, title, description, violations, shouldAutoHide })
+    }
+
+    return { violations, shouldHide: shouldAutoHide }
   },
 
   async flagContent(contentType: string, contentId: string, flagType: string, confidence?: number, autoHidden?: boolean) {

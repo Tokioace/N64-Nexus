@@ -868,7 +868,8 @@ const en = {
   'imageUpload.dropHere': 'Drop here',
   'imageUpload.uploadImage': 'Upload Image',
   'imageUpload.clickOrDrag': 'Click or drag here',
-  'imageUpload.supportedFormats': 'Supported formats: JPG, PNG, GIF',
+  'imageUpload.supportedFormats': 'Supported formats: JPG, JPEG, PNG, WEBP, GIF',
+  'imageUpload.noPreview': 'Preview not available',
   'aria.toggleMobileMenu': 'Toggle mobile navigation',
   'aria.dismissNews': 'Dismiss news',
   'leaderboard.seasonLeaderboard': 'Season Leaderboard',
@@ -1000,6 +1001,9 @@ const en = {
   'ui.liveChat': 'Live Chat',
   'media.error': 'Media error',
   'error.invalidFile': 'Invalid file',
+  'error.uploadFailed': 'Upload failed',
+  'error.imagePreviewFailed': 'No preview available for this image',
+  'error.moderationBlocked': 'Moderation blocked this image',
   'alt.uploadPreview': 'Upload preview',
 
 

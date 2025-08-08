@@ -727,7 +727,8 @@ const de = {
   'imageUpload.dropHere': 'Hier ablegen',
   'imageUpload.uploadImage': 'Bild hochladen',
   'imageUpload.clickOrDrag': 'Klicken oder hierher ziehen',
-  'imageUpload.supportedFormats': 'Unterstützte Formate: JPG, PNG, GIF',
+  'imageUpload.supportedFormats': 'Unterstützte Formate: JPG, JPEG, PNG, WEBP, GIF',
+  'imageUpload.noPreview': 'Keine Vorschau möglich',
   'aria.toggleMobileMenu': 'Mobile Navigation umschalten',
   'aria.dismissNews': 'Nachricht schließen',
   'leaderboard.seasonLeaderboard': 'Saison-Bestenliste',
@@ -858,7 +859,6 @@ const de = {
   'events.bestLap.watchStream': 'Stream ansehen',
   'ui.liveChat': 'Live-Chat',
   'media.error': 'Medien-Fehler',
-  'error.invalidFile': 'Ungültige Datei',
   'alt.uploadPreview': 'Upload-Vorschau',
 
   // Accessibility keys
@@ -1260,7 +1260,16 @@ const de = {
   'admin.health.errors': 'Fehler',
   'admin.health.cache': 'Cache-Einträge',
   'admin.health.sessions': 'Sessions',
-  'admin.health.uptime': 'Uptime'
-}
+  'admin.health.uptime': 'Uptime',
+  'error.invalidFile': 'Ungültige Datei',
+  'error.uploadFailed': 'Upload fehlgeschlagen',
+  'error.imagePreviewFailed': 'Keine Vorschau für dieses Bild möglich',
+  'error.moderationBlocked': 'Moderation blockiert dieses Bild',
+  'validation.imageTooLarge': 'Bild ist zu groß (max. 5 MB)',
+  'validation.imageFilesOnly': 'Nur Bilddateien sind erlaubt',
+  'validation.supportedFormats': 'Unterstützte Formate: JPG, JPEG, PNG, WEBP, GIF',
+  'validation.emptyFile': 'Die ausgewählte Datei ist leer',
+  'validation.unsupportedFormat': 'Nicht unterstütztes Bildformat. Erlaubt: JPG, JPEG, PNG, WEBP, GIF',
+  }
 
 export default de

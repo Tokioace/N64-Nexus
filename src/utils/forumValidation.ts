@@ -34,17 +34,34 @@ export const validatePostContent = (content: string, t: (key: string) => string)
 }
 
 export const validateImageFile = (file: File, t: (key: any) => string): { isValid: boolean; error?: string } => {
+  if (!file) {
+    return { isValid: false, error: t('error.invalidFile') }
+  }
+
+  // Empty file check
+  if (file.size === 0) {
+    return { isValid: false, error: t('validation.emptyFile') }
+  }
+
   // Check file size (max 5MB)
   if (file.size > 5 * 1024 * 1024) {
     return { isValid: false, error: t('validation.imageTooLarge') }
   }
   
   // Check file type
-  if (!file.type.startsWith('image/')) {
+  if (!file.type || !file.type.startsWith('image/')) {
     return { isValid: false, error: t('validation.imageFilesOnly') }
   }
+
+  // Check by file extension as well
+  const allowedExtensions = ['jpg', 'jpeg', 'png', 'webp', 'gif']
+  const filename = (file.name || '').toLowerCase()
+  const ext = filename.includes('.') ? filename.split('.').pop() : ''
+  if (!ext || !allowedExtensions.includes(ext)) {
+    return { isValid: false, error: t('validation.unsupportedFormat') }
+  }
   
-  // Check for supported formats
+  // Check for supported MIME types
   const supportedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp']
   if (!supportedTypes.includes(file.type)) {
     return { isValid: false, error: t('validation.supportedFormats') }
