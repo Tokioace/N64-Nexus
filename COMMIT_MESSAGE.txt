@@ -1,16 +1,7 @@
-fix: Add missing PointsProvider to resolve app startup errors
+fix(vercel): serve static assets before SPA fallback + routes-only config to stop 401 and mount crash
 
-- Added PointsProvider import to src/App.tsx
-- Wrapped PointsProvider in React context hierarchy 
-- Fixes runtime errors in Layout and other components using usePoints hook
-- Ensures all context providers are properly configured
-- App now starts successfully without provider errors
-
-Resolves issues with:
-- Layout component points display
-- PointsWidget functionality  
-- AchievementsPanel rendering
-- N64FanLeaderboard component
-- PointsOverview page
-
-Co-authored-by: Cursor AI Assistant
+- Replace mixed rewrites/headers with routes-only configuration
+- Filesystem-first serving, then fallback to /index.html
+- Add caching headers for sw.js, manifest.json, assets/static/icons/splash via routes
+- Prevent 401 on vendor chunks (icons-vendor, map-vendor, manifest) that caused React import to be undefined and forwardRef crash
+- Build verified; app mounts past loader
