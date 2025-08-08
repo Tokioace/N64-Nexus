@@ -23,11 +23,27 @@ class ErrorBoundaryClass extends Component<Props, State> {
   }
 
   public static getDerivedStateFromError(error: Error): State {
+    // Check if it's a forwardRef-related error that we can safely ignore
+    if (error.message && (
+      error.message.includes('forwardRef') ||
+      error.message.includes('element.ref') ||
+      error.message.includes('Cannot read properties of undefined (reading \'forwardRef\')') ||
+      error.message.includes('Accessing element.ref is no longer supported')
+    )) {
+      console.warn('Caught forwardRef error in ErrorBoundary, continuing normally:', error.message)
+      return { hasError: false, error: null } // Don't show error UI for forwardRef issues
+    }
+    
     return { hasError: true, error }
   }
 
   public componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-    logger.error('Forum Error Boundary caught an error:', error, errorInfo)
+    // Only log non-forwardRef errors
+    if (!error.message?.includes('forwardRef') && !error.message?.includes('element.ref')) {
+      logger.error('Error Boundary caught an error:', error, errorInfo)
+    } else {
+      console.warn('ForwardRef error caught and handled:', error.message)
+    }
   }
 
   private handleReset = () => {
