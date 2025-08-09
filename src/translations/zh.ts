@@ -18,6 +18,39 @@ const zh = {
   'nav.community': '社区',
   'nav.map': 'Battle64 Map',
 
+  // Accessibility
+  'a11y.skipToMain': '跳转到主要内容',
+  'a11y.skipToNav': '跳转到导航',
+  'a11y.skipToSearch': '跳转到搜索',
+  'a11y.newPage': '新页面已加载',
+  'a11y.loading': '正在加载内容',
+  'a11y.error': '发生错误',
+  'a11y.success': '操作成功完成',
+
+  // Common fallback texts
+  'common.unknown': '未知',
+  'common.unknownGame': '未知游戏',
+  'common.unknownCategory': '未知类别',
+  'common.unknownItem': '未知物品',
+  'common.unknownMedia': '未知媒体',
+  'common.unknownUser': '未知用户',
+  'common.noDescription': '无可用描述',
+  'common.noDataAvailable': '无可用数据',
+  'common.userLocation': '用户位置',
+  'common.marketplaceItem': '市场物品',
+  'common.verified': '已验证',
+  'common.unverified': '未验证',
+  'common.pending': '待处理',
+  'common.approved': '已批准',
+  'common.rejected': '已拒绝',
+  'common.draft': '草稿',
+  'common.published': '已发布',
+  'common.archived': '已存档',
+  
+  // Account deletion
+  'account.deletion.confirmText': '请输入"DELETE"确认',
+  'account.deletion.placeholder': 'DELETE',
+  'account.deletion.typeDelete': '请输入"DELETE"确认:',
   // Home Screen
   'home.subtitle': '千禧一代的N64社区',
   'home.welcome': '欢迎回来',

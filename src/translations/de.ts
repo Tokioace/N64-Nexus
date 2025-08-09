@@ -51,9 +51,7 @@ const de = {
   'account.deletion.confirmText': 'Bitte geben Sie "DELETE" zur Bestätigung ein',
   'account.deletion.placeholder': 'DELETE',
   'account.deletion.typeDelete': 'Geben Sie "DELETE" zur Bestätigung ein:',
-  
-  // Error messages
-  'error.unknown': 'Unbekannter Fehler',
+
   'error.networkError': 'Netzwerkfehler aufgetreten',
   'error.serverError': 'Serverfehler aufgetreten',
   'error.validationError': 'Validierungsfehler',
@@ -328,17 +326,7 @@ const de = {
   'language.arabic': 'Arabisch',
   'language.korean': 'Koreanisch',
 
-  // Error messages
-  'error.generic': 'Ein Fehler ist aufgetreten',
-  'error.networkError': 'Netzwerkfehler',
-  'error.notFound': 'Seite nicht gefunden',
-  'error.unauthorized': 'Nicht autorisiert',
-  'error.forbidden': 'Zugriff verweigert',
-  'error.serverError': 'Serverfehler',
-  'error.tryAgain': 'Bitte versuche es erneut',
-  'error.goHome': 'Zur Startseite',
-  'error.contactSupport': 'Support kontaktieren',
-  'error.somethingWentWrong': 'Etwas ist schief gelaufen',
+
 
   // Missing keys added automatically
   'news.title': 'Nachrichten',
@@ -635,7 +623,6 @@ const de = {
   'community.noPlayersFound': 'Keine Spieler gefunden',
   'community.tryOtherFilters': 'Versuche andere Filter',
   'community.recentRecord': 'Neuester Rekord',
-  'time.remaining': 'verbleibend',
   'events.joinSuccess': 'Erfolgreich dem Event beigetreten!',
   'events.submissionSuccess': 'Einsendung erfolgreich übermittelt!',
   'events.tabs.active': 'Aktive Events',
@@ -1155,8 +1142,6 @@ const de = {
   'chat.emoji': 'Emoji hinzufügen',
   'chat.scrollToBottom': 'Nach unten scrollen',
   'chat.errorLoading': 'Fehler beim Laden der Nachrichten',
-  'time.today': 'Heute',
-  'time.yesterday': 'Gestern',
 
   // Realtime Events
   'events.nowLive': 'Event ist jetzt live!',

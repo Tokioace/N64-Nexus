@@ -18,6 +18,39 @@ const tr = {
   'nav.community': 'Topluluk',
   'nav.map': 'Battle64 Map',
 
+  // Accessibility
+  'a11y.skipToMain': 'Ana içeriğe geç',
+  'a11y.skipToNav': 'Navigasyona geç',
+  'a11y.skipToSearch': 'Aramaya geç',
+  'a11y.newPage': 'Yeni sayfa yüklendi',
+  'a11y.loading': 'İçerik yükleniyor',
+  'a11y.error': 'Hata oluştu',
+  'a11y.success': 'İşlem başarıyla tamamlandı',
+
+  // Common fallback texts
+  'common.unknown': 'Bilinmeyen',
+  'common.unknownGame': 'Bilinmeyen Oyun',
+  'common.unknownCategory': 'Bilinmeyen Kategori',
+  'common.unknownItem': 'Bilinmeyen Öğe',
+  'common.unknownMedia': 'Bilinmeyen Medya',
+  'common.unknownUser': 'Bilinmeyen Kullanıcı',
+  'common.noDescription': 'Açıklama mevcut değil',
+  'common.noDataAvailable': 'Veri mevcut değil',
+  'common.userLocation': 'Kullanıcı konumu',
+  'common.marketplaceItem': 'Pazar yeri öğesi',
+  'common.verified': 'Doğrulandı',
+  'common.unverified': 'Doğrulanmadı',
+  'common.pending': 'Bekliyor',
+  'common.approved': 'Onaylandı',
+  'common.rejected': 'Reddedildi',
+  'common.draft': 'Taslak',
+  'common.published': 'Yayınlandı',
+  'common.archived': 'Arşivlendi',
+  
+  // Account deletion
+  'account.deletion.confirmText': 'Lütfen onaylamak için "DELETE" yazın',
+  'account.deletion.placeholder': 'DELETE',
+  'account.deletion.typeDelete': 'Onaylamak için "DELETE" yazın:',
   // Home Screen
   'home.subtitle': 'Milenyum Kuşağı için N64 Topluluğu',
   'home.welcome': 'Tekrar hoş geldin',

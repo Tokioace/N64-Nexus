@@ -18,6 +18,39 @@ const el = {
   'nav.community': 'Κοινότητα',
   'nav.map': 'Battle64 Map',
 
+  // Accessibility
+  'a11y.skipToMain': 'Μετάβαση στο κυρίως περιεχόμενο',
+  'a11y.skipToNav': 'Μετάβαση στην πλοήγηση',
+  'a11y.skipToSearch': 'Μετάβαση στην αναζήτηση',
+  'a11y.newPage': 'Νέα σελίδα φορτώθηκε',
+  'a11y.loading': 'Φόρτωση περιεχομένου',
+  'a11y.error': 'Προέκυψε σφάλμα',
+  'a11y.success': 'Η ενέργεια ολοκληρώθηκε επιτυχώς',
+
+  // Common fallback texts
+  'common.unknown': 'Άγνωστο',
+  'common.unknownGame': 'Άγνωστο Παιχνίδι',
+  'common.unknownCategory': 'Άγνωστη Κατηγορία',
+  'common.unknownItem': 'Άγνωστο Αντικείμενο',
+  'common.unknownMedia': 'Άγνωστα Μέσα',
+  'common.unknownUser': 'Άγνωστος Χρήστης',
+  'common.noDescription': 'Δεν υπάρχει διαθέσιμη περιγραφή',
+  'common.noDataAvailable': 'Δεν υπάρχουν διαθέσιμα δεδομένα',
+  'common.userLocation': 'Τοποθεσία χρήστη',
+  'common.marketplaceItem': 'Αντικείμενο αγοράς',
+  'common.verified': 'Επαληθευμένο',
+  'common.unverified': 'Μη επαληθευμένο',
+  'common.pending': 'Εκκρεμεί',
+  'common.approved': 'Εγκεκριμένο',
+  'common.rejected': 'Απορρίφθηκε',
+  'common.draft': 'Πρόχειρο',
+  'common.published': 'Δημοσιευμένο',
+  'common.archived': 'Αρχειοθετημένο',
+  
+  // Account deletion
+  'account.deletion.confirmText': 'Παρακαλώ πληκτρολογήστε "DELETE" για επιβεβαίωση',
+  'account.deletion.placeholder': 'DELETE',
+  'account.deletion.typeDelete': 'Πληκτρολογήστε "DELETE" για επιβεβαίωση:',
   // Home Screen
   'home.subtitle': 'Η Κοινότητα N64 για τους Millennials',
   'home.welcome': 'Καλώς ήρθες πίσω',

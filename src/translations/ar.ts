@@ -18,6 +18,39 @@ const ar = {
   'nav.community': 'المجتمع',
   'nav.map': 'Battle64 Map',
 
+  // Accessibility
+  'a11y.skipToMain': 'انتقل إلى المحتوى الرئيسي',
+  'a11y.skipToNav': 'انتقل إلى التنقل',
+  'a11y.skipToSearch': 'انتقل إلى البحث',
+  'a11y.newPage': 'تم تحميل صفحة جديدة',
+  'a11y.loading': 'جاري تحميل المحتوى',
+  'a11y.error': 'حدث خطأ',
+  'a11y.success': 'تم إنجاز الإجراء بنجاح',
+
+  // Common fallback texts
+  'common.unknown': 'غير معروف',
+  'common.unknownGame': 'لعبة غير معروفة',
+  'common.unknownCategory': 'فئة غير معروفة',
+  'common.unknownItem': 'عنصر غير معروف',
+  'common.unknownMedia': 'وسائط غير معروفة',
+  'common.unknownUser': 'مستخدم غير معروف',
+  'common.noDescription': 'لا يوجد وصف متاح',
+  'common.noDataAvailable': 'لا توجد بيانات متاحة',
+  'common.userLocation': 'موقع المستخدم',
+  'common.marketplaceItem': 'عنصر السوق',
+  'common.verified': 'تم التحقق',
+  'common.unverified': 'لم يتم التحقق',
+  'common.pending': 'في الانتظار',
+  'common.approved': 'تمت الموافقة',
+  'common.rejected': 'تم الرفض',
+  'common.draft': 'مسودة',
+  'common.published': 'تم النشر',
+  'common.archived': 'تم الأرشفة',
+  
+  // Account deletion
+  'account.deletion.confirmText': 'يرجى كتابة "DELETE" للتأكيد',
+  'account.deletion.placeholder': 'DELETE',
+  'account.deletion.typeDelete': 'اكتب "DELETE" للتأكيد:',
   // Home Screen - الشاشة الرئيسية
   'home.subtitle': 'مجتمع N64 لجيل الألفية',
   'home.welcome': 'مرحباً بعودتك',

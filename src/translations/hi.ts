@@ -18,6 +18,39 @@ const hi = {
   'nav.community': 'कम्युनिटी',
   'nav.map': 'Battle64 Map',
 
+  // Accessibility
+  'a11y.skipToMain': 'मुख्य सामग्री पर जाएं',
+  'a11y.skipToNav': 'नेवीगेशन पर जाएं',
+  'a11y.skipToSearch': 'खोज पर जाएं',
+  'a11y.newPage': 'नया पेज लोड हुआ',
+  'a11y.loading': 'सामग्री लोड हो रही है',
+  'a11y.error': 'त्रुटि हुई',
+  'a11y.success': 'कार्य सफलतापूर्वक पूरा हुआ',
+
+  // Common fallback texts
+  'common.unknown': 'अज्ञात',
+  'common.unknownGame': 'अज्ञात गेम',
+  'common.unknownCategory': 'अज्ञात श्रेणी',
+  'common.unknownItem': 'अज्ञात आइटम',
+  'common.unknownMedia': 'अज्ञात मीडिया',
+  'common.unknownUser': 'अज्ञात उपयोगकर्ता',
+  'common.noDescription': 'कोई विवरण उपलब्ध नहीं',
+  'common.noDataAvailable': 'कोई डेटा उपलब्ध नहीं',
+  'common.userLocation': 'उपयोगकर्ता स्थान',
+  'common.marketplaceItem': 'मार्केटप्लेस आइटम',
+  'common.verified': 'सत्यापित',
+  'common.unverified': 'असत्यापित',
+  'common.pending': 'लंबित',
+  'common.approved': 'अनुमोदित',
+  'common.rejected': 'अस्वीकृत',
+  'common.draft': 'मसौदा',
+  'common.published': 'प्रकाशित',
+  'common.archived': 'संग्रहीत',
+  
+  // Account deletion
+  'account.deletion.confirmText': 'कृपया पुष्टि के लिए "DELETE" टाइप करें',
+  'account.deletion.placeholder': 'DELETE',
+  'account.deletion.typeDelete': 'पुष्टि के लिए "DELETE" टाइप करें:',
   // Home Screen
   'home.subtitle': 'मिलेनियल्स के लिए N64 कम्युनिटी',
   'home.welcome': 'वापस स्वागत है',

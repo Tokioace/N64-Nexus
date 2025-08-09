@@ -18,6 +18,39 @@ const ja = {
   'nav.community': 'コミュニティ',
   'nav.map': 'Battle64 Map',
 
+  // Accessibility
+  'a11y.skipToMain': 'メインコンテンツにスキップ',
+  'a11y.skipToNav': 'ナビゲーションにスキップ',
+  'a11y.skipToSearch': '検索にスキップ',
+  'a11y.newPage': '新しいページが読み込まれました',
+  'a11y.loading': 'コンテンツを読み込み中',
+  'a11y.error': 'エラーが発生しました',
+  'a11y.success': 'アクションが正常に完了しました',
+
+  // Common fallback texts
+  'common.unknown': '不明',
+  'common.unknownGame': '不明なゲーム',
+  'common.unknownCategory': '不明なカテゴリ',
+  'common.unknownItem': '不明なアイテム',
+  'common.unknownMedia': '不明なメディア',
+  'common.unknownUser': '不明なユーザー',
+  'common.noDescription': '説明がありません',
+  'common.noDataAvailable': 'データがありません',
+  'common.userLocation': 'ユーザーの場所',
+  'common.marketplaceItem': 'マーケットプレイスアイテム',
+  'common.verified': '認証済み',
+  'common.unverified': '未認証',
+  'common.pending': '保留中',
+  'common.approved': '承認済み',
+  'common.rejected': '拒否済み',
+  'common.draft': '下書き',
+  'common.published': '公開済み',
+  'common.archived': 'アーカイブ済み',
+  
+  // Account deletion
+  'account.deletion.confirmText': '確認のため"DELETE"と入力してください',
+  'account.deletion.placeholder': 'DELETE',
+  'account.deletion.typeDelete': '確認のため"DELETE"と入力してください:',
   // Home Screen
   'home.subtitle': 'ミレニアル世代のためのN64コミュニティ',
   'home.welcome': 'おかえりなさい',

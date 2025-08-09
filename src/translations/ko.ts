@@ -18,6 +18,39 @@ const ko = {
   'nav.community': '커뮤니티',
   'nav.map': 'Battle64 Map',
 
+  // Accessibility
+  'a11y.skipToMain': '주요 콘텐츠로 건너뛰기',
+  'a11y.skipToNav': '내비게이션으로 건너뛰기',
+  'a11y.skipToSearch': '검색으로 건너뛰기',
+  'a11y.newPage': '새 페이지가 로드되었습니다',
+  'a11y.loading': '콘텐츠 로딩 중',
+  'a11y.error': '오류가 발생했습니다',
+  'a11y.success': '작업이 성공적으로 완료되었습니다',
+
+  // Common fallback texts
+  'common.unknown': '알 수 없음',
+  'common.unknownGame': '알 수 없는 게임',
+  'common.unknownCategory': '알 수 없는 카테고리',
+  'common.unknownItem': '알 수 없는 아이템',
+  'common.unknownMedia': '알 수 없는 미디어',
+  'common.unknownUser': '알 수 없는 사용자',
+  'common.noDescription': '설명이 없습니다',
+  'common.noDataAvailable': '사용 가능한 데이터가 없습니다',
+  'common.userLocation': '사용자 위치',
+  'common.marketplaceItem': '마켓플레이스 아이템',
+  'common.verified': '인증됨',
+  'common.unverified': '미인증',
+  'common.pending': '대기 중',
+  'common.approved': '승인됨',
+  'common.rejected': '거부됨',
+  'common.draft': '초안',
+  'common.published': '게시됨',
+  'common.archived': '보관됨',
+  
+  // Account deletion
+  'account.deletion.confirmText': '확인하려면 "DELETE"를 입력하세요',
+  'account.deletion.placeholder': 'DELETE',
+  'account.deletion.typeDelete': '확인하려면 "DELETE"를 입력하세요:',
   // Home Screen
   'home.subtitle': '밀레니얼 세대를 위한 N64 커뮤니티',
   'home.welcome': '다시 오신 것을 환영합니다',

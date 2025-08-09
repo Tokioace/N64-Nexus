@@ -51,16 +51,6 @@ const es = {
   'account.deletion.confirmText': 'Por favor escriba "DELETE" para confirmar',
   'account.deletion.placeholder': 'DELETE',
   'account.deletion.typeDelete': 'Escriba "DELETE" para confirmar:',
-  
-  // Error messages
-  'error.unknown': 'Error desconocido',
-  'error.networkError': 'Error de red ocurrido',
-  'error.serverError': 'Error del servidor ocurrido',
-  'error.validationError': 'Error de validación',
-  'error.accessDenied': 'Acceso denegado',
-  'error.notFound': 'No encontrado',
-  'error.timeout': 'Tiempo de espera agotado',
-
   // Home Screen
   'home.subtitle': 'La Comunidad N64 para Millennials',
   'home.welcome': 'Bienvenido de vuelta',
