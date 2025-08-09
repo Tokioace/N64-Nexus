@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite --mode development",
-    "build": "npx tsc && vite build --mode production",
+    "build": "npx vite build --mode production",
+    "build:with-ts": "npx tsc && vite build --mode production",
     "build:dev": "npx tsc && vite build --mode development",
     "build:staging": "npx tsc && vite build --mode staging",
     "build:prod": "npx tsc && vite build --mode production",
