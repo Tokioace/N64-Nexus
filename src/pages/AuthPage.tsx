@@ -3,7 +3,7 @@ import { useUser } from '../contexts/UserContext'
 import { useLanguage } from '../contexts/LanguageContext'
 import { useNavigate, Link, useLocation } from 'react-router-dom'
 import { UserRegistrationData } from '../types'
-import { User, Mail, Lock, Gamepad2, Globe, Eye, EyeOff, Calendar, AlertCircle } from 'lucide-react'
+import { User, Mail, Lock, Gamepad2, Globe, Eye, EyeOff, Calendar, AlertCircle, Loader2 } from 'lucide-react'
 import PasswordResetModal from '../components/PasswordResetModal'
 
 const AuthPage: React.FC = () => {
@@ -17,6 +17,7 @@ const AuthPage: React.FC = () => {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   const [showPasswordReset, setShowPasswordReset] = useState(false)
+  const [registrationPending, setRegistrationPending] = useState(false) // New state for email verification pending
 
   // Login form state
   const [loginData, setLoginData] = useState({
@@ -74,6 +75,7 @@ const AuthPage: React.FC = () => {
     e.preventDefault()
     setLoading(true)
     setError('')
+    setRegistrationPending(false)
 
     // Age verification
     if (!registrationData.birthDate) {
@@ -126,12 +128,9 @@ const AuthPage: React.FC = () => {
           // User is immediately confirmed and logged in
           navigate('/')
         } else {
-          // Email confirmation required
+          // Email confirmation required - show pending state
+          setRegistrationPending(true)
           setError('') // Clear any previous errors
-          setError(result.error || 'Registrierung erfolgreich! Bitte bestätigen Sie Ihre E-Mail-Adresse.')
-          // Show success message instead of error
-          const successMessage = result.error || 'Registrierung erfolgreich! Bitte bestätigen Sie Ihre E-Mail-Adresse.'
-          setError(`✅ ${successMessage}`)
         }
       } else {
         setError(result.error || t('auth.registrationFailed'))
@@ -189,9 +188,26 @@ const AuthPage: React.FC = () => {
           </div>
 
           {/* Error Message */}
-          {error && (
+          {error && !registrationPending && (
             <div className="mb-4 p-3 bg-red-600/20 border border-red-600/30 rounded-lg text-red-400 text-sm">
               {error}
+            </div>
+          )}
+
+          {/* Registration Pending Message */}
+          {registrationPending && !isLogin && (
+            <div className="mb-4 p-4 bg-blue-600/20 border border-blue-600/30 rounded-lg">
+              <div className="flex items-center space-x-3">
+                <Loader2 className="w-5 h-5 text-blue-400 animate-spin flex-shrink-0" />
+                <div>
+                  <p className="text-blue-200 font-medium text-sm mb-1">
+                    {t('auth.waitingEmailConfirmation')}
+                  </p>
+                  <p className="text-blue-300 text-xs">
+                    {t('auth.emailConfirmationSent').replace('{email}', registrationData.email)} {t('auth.clickEmailLink')}
+                  </p>
+                </div>
+              </div>
             </div>
           )}
 
@@ -486,10 +502,22 @@ const AuthPage: React.FC = () => {
 
               <button
                 type="submit"
-                disabled={loading}
-                className="w-full py-3 bg-blue-600 hover:bg-blue-700 disabled:bg-slate-600 disabled:cursor-not-allowed text-white font-medium rounded-lg transition-colors"
+                disabled={loading || registrationPending}
+                className="w-full py-3 bg-blue-600 hover:bg-blue-700 disabled:bg-slate-600 disabled:cursor-not-allowed text-white font-medium rounded-lg transition-colors flex items-center justify-center"
               >
-                {loading ? t('auth.registering') : t('auth.createAccountButton')}
+                {loading ? (
+                  <>
+                    <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                    {t('auth.processingRegistration')}
+                  </>
+                ) : registrationPending ? (
+                  <>
+                    <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                    {t('auth.waitingEmailConfirmation')}
+                  </>
+                ) : (
+                  t('auth.createAccountButton')
+                )}
               </button>
             </form>
           )}
