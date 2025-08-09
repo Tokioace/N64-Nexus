@@ -1458,6 +1458,24 @@ const de = {
   'map.liveBattles': 'Live Battles',
   'map.smartMatchmaking': 'Smart Matchmaking',
   'map.resetView': 'Ansicht zurücksetzen',
-  }
+  
+  // Legal & Privacy translation keys - added 2025-08-09
+  'cookies.alwaysActive': 'Immer Aktiv',
+  'account.deletionPage.gdprCompliant': 'DSGVO-konforme Kontolöschung',
+  'account.deletionPage.gdprInformation': 'DSGVO-Informationen',
+  'account.deletionPage.rightsUnderGdpr': 'Ihre Rechte unter der DSGVO',
+  'account.deletionPage.rightToErasure': 'Recht auf Löschung:',
+  'account.deletionPage.rightToErasureText': 'Sie haben das Recht, Ihre personenbezogenen Daten gemäß Artikel 17 der DSGVO löschen zu lassen.',
+  'account.deletionPage.dataRetention': 'Datenspeicherung:',
+  'account.deletionPage.dataRetentionText': 'Nach der Löschung werden Ihre Daten innerhalb von 30 Tagen dauerhaft aus unseren Systemen entfernt.',
+  'account.deletionPage.backupRemoval': 'Backup-Entfernung:',
+  'account.deletionPage.backupRemovalText': 'Ihre Daten werden auch während des nächsten Backup-Zyklus aus allen Backups entfernt.',
+  'account.deletionPage.legalObligations': 'Rechtliche Verpflichtungen:',
+  'account.deletionPage.legalObligationsText': 'Einige Daten können aufbewahrt werden, wenn dies gesetzlich vorgeschrieben ist (z.B. Finanzunterlagen für Steuerzwecke).',
+
+  // Final hardcoded text fixes - added 2025-08-09
+  'account.deletionPage.deleting': 'Löscht...',
+  'account.deletionPage.deleteAccountPermanently': 'Konto dauerhaft löschen',
+}
 
 export default de

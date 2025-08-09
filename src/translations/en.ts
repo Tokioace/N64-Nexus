@@ -1462,6 +1462,24 @@ const en = {
   'map.liveBattles': 'Live Battles',
   'map.smartMatchmaking': 'Smart Matchmaking',
   'map.resetView': 'Reset View',
+
+  // Legal & Privacy translation keys - added 2025-08-09
+  'cookies.alwaysActive': 'Always Active',
+  'account.deletionPage.gdprCompliant': 'GDPR-compliant account deletion',
+  'account.deletionPage.gdprInformation': 'GDPR Information',
+  'account.deletionPage.rightsUnderGdpr': 'Your Rights Under GDPR',
+  'account.deletionPage.rightToErasure': 'Right to Erasure:',
+  'account.deletionPage.rightToErasureText': 'You have the right to have your personal data deleted under Article 17 of the GDPR.',
+  'account.deletionPage.dataRetention': 'Data Retention:',
+  'account.deletionPage.dataRetentionText': 'After deletion, your data will be permanently removed from our systems within 30 days.',
+  'account.deletionPage.backupRemoval': 'Backup Removal:',
+  'account.deletionPage.backupRemovalText': 'Your data will also be removed from all backups during the next backup cycle.',
+  'account.deletionPage.legalObligations': 'Legal Obligations:',
+  'account.deletionPage.legalObligationsText': 'Some data may be retained if required by law (e.g., financial records for tax purposes).',
+
+  // Final hardcoded text fixes - added 2025-08-09
+  'account.deletionPage.deleting': 'Deleting...',
+  'account.deletionPage.deleteAccountPermanently': 'Delete Account Permanently',
 }
 
 export default en

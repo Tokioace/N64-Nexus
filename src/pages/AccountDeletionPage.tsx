@@ -177,7 +177,7 @@ const AccountDeletionPage: React.FC = () => {
           disabled={loading || confirmationText !== 'DELETE'}
           className="flex-1 py-3 px-4 bg-red-600 hover:bg-red-700 disabled:bg-slate-600 disabled:cursor-not-allowed text-white rounded-lg transition-colors"
         >
-          {loading ? 'Deleting...' : 'Delete Account Permanently'}
+          {loading ? t('account.deletionPage.deleting') : t('account.deletionPage.deleteAccountPermanently')}
         </button>
       </div>
     </div>
@@ -240,7 +240,7 @@ const AccountDeletionPage: React.FC = () => {
               {t('account.delete')}
             </h1>
             <p className="text-slate-400">
-              GDPR-compliant account deletion
+              {t('account.deletionPage.gdprCompliant')}
             </p>
           </div>
         </div>
@@ -262,22 +262,22 @@ const AccountDeletionPage: React.FC = () => {
               <div className="flex items-center space-x-3 mb-4">
                 <Shield className="w-5 h-5 text-blue-400" />
                 <h3 className="text-lg font-semibold text-slate-200">
-                  Your Rights Under GDPR
+                  {t('account.deletionPage.rightsUnderGdpr')}
                 </h3>
               </div>
               
               <div className="space-y-3 text-sm text-slate-400">
                 <p>
-                  <strong className="text-slate-300">Right to Erasure:</strong> You have the right to have your personal data deleted under Article 17 of the GDPR.
+                  <strong className="text-slate-300">{t('account.deletionPage.rightToErasure')}</strong> {t('account.deletionPage.rightToErasureText')}
                 </p>
                 <p>
-                  <strong className="text-slate-300">Data Retention:</strong> After deletion, your data will be permanently removed from our systems within 30 days.
+                  <strong className="text-slate-300">{t('account.deletionPage.dataRetention')}</strong> {t('account.deletionPage.dataRetentionText')}
                 </p>
                 <p>
-                  <strong className="text-slate-300">Backup Removal:</strong> Your data will also be removed from all backups during the next backup cycle.
+                  <strong className="text-slate-300">{t('account.deletionPage.backupRemoval')}</strong> {t('account.deletionPage.backupRemovalText')}
                 </p>
                 <p>
-                  <strong className="text-slate-300">Legal Obligations:</strong> Some data may be retained if required by law (e.g., financial records for tax purposes).
+                  <strong className="text-slate-300">{t('account.deletionPage.legalObligations')}</strong> {t('account.deletionPage.legalObligationsText')}
                 </p>
               </div>
               

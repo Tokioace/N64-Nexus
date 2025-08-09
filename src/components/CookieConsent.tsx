@@ -133,7 +133,7 @@ const CookieConsent: React.FC<CookieConsentProps> = ({ onAccept, onReject }) => 
                     </h4>
                   </div>
                   <div className="text-xs text-slate-400 bg-slate-600 px-2 py-1 rounded">
-                    Always Active
+                    {t('cookies.alwaysActive')}
                   </div>
                 </div>
                 <p className="text-sm text-slate-400 leading-relaxed">
