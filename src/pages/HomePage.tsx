@@ -13,6 +13,7 @@ import SingleMediaCard from '../components/SingleMediaCard'
 import SingleRecordCard from '../components/SingleRecordCard'
 import SingleMarketplaceCard from '../components/SingleMarketplaceCard'
 import Battle64MapTile from '../components/Battle64MapTile'
+import { LegacyMarketplaceItem } from '../types'
 
 interface ForumThread {
   id: string
@@ -61,19 +62,8 @@ interface PersonalRecord {
   platform: string
 }
 
-interface MarketplaceItem {
-  id: string
-  title: string
-  description: string
-  price: number
-  condition: string
-  seller: string
-  date: Date
-  category: string
-  images?: string[]
-  image?: string
-  createdAt?: string
-}
+// Use the legacy interface for HomePage compatibility
+type MarketplaceItem = LegacyMarketplaceItem
 
 // 🔧 Safe component wrapper with error boundaries
 const SafeComponent: React.FC<{ children: React.ReactNode; fallback?: React.ReactNode; name: string }> = ({ 

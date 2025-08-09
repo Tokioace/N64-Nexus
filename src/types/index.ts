@@ -651,6 +651,48 @@ export interface LegalContextType {
   error: string | null
 }
 
+// Marketplace Types
+export interface MarketplaceSeller {
+  id: string
+  name: string
+  rating: number
+  verified: boolean
+}
+
+export interface MarketplaceItem {
+  id: string
+  title: string
+  description: string
+  price: number
+  currency: string
+  condition: 'mint' | 'very-good' | 'good' | 'fair'
+  images: string[]
+  seller: MarketplaceSeller
+  category: string
+  createdAt: string
+  views: number
+  likes: number
+  comments: number
+  isActive: boolean
+  // Legacy compatibility - for components that expect string seller
+  date?: Date
+}
+
+// Legacy marketplace item interface for backward compatibility
+export interface LegacyMarketplaceItem {
+  id: string
+  title: string
+  description: string
+  price: number
+  condition: string
+  seller: string
+  date: Date
+  category: string
+  images?: string[]
+  image?: string
+  createdAt?: string
+}
+
 // Upload Security Types
 export interface UploadSecurityCheck {
   isNSFW: boolean

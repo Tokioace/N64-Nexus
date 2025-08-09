@@ -4,28 +4,7 @@ import { logger } from '../lib/logger';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useLocation } from 'react-router-dom';
 import { Search, Plus, Package, Clock, Star, Grid, List, Eye, MessageCircle, Heart, ShoppingCart } from 'lucide-react';
-
-interface MarketplaceOffer {
-  id: string;
-  title: string;
-  description: string;
-  price: number;
-  currency: string;
-  condition: 'mint' | 'very-good' | 'good' | 'fair';
-  images: string[];
-  seller: {
-    id: string;
-    name: string;
-    rating: number;
-    verified: boolean;
-  };
-  category: string;
-  createdAt: string;
-  views: number;
-  likes: number;
-  comments: number;
-  isActive: boolean;
-}
+import { MarketplaceItem as MarketplaceOffer } from '../types';
 
 interface CreateOfferModalProps {
   isOpen: boolean;
