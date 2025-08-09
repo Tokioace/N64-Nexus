@@ -108,9 +108,7 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
 
   // Update translations when language changes
   useEffect(() => {
-    setIsLoading(true)
     setTranslations(getTranslations(currentLanguage))
-    setIsLoading(false)
   }, [currentLanguage])
 
   const setLanguage = (language: Language) => {
@@ -119,23 +117,11 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
   }
 
   const t = (key: TranslationKeys, params?: Record<string, string>): string => {
-    // Navigate through nested keys (e.g., "nav.home")
-    const keys = key.split('.')
-    let value = translations
-    
-    for (const k of keys) {
-      if (value && typeof value === 'object' && k in value) {
-        value = value[k]
-      } else {
-        // Key not found, return the key itself as fallback
-        return key
-      }
-    }
-    
-    let result = typeof value === 'string' ? value : key
+    // Direct key lookup (translations are flat objects with keys like 'nav.home')
+    let result = translations[key] || key
     
     // Replace parameters if provided
-    if (params) {
+    if (params && typeof result === 'string') {
       Object.entries(params).forEach(([paramKey, paramValue]) => {
         result = result.replace(new RegExp(`{{${paramKey}}}`, 'g'), paramValue)
       })
