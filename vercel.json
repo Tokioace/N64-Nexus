@@ -5,11 +5,6 @@
   "outputDirectory": "dist",
   "installCommand": "npm install",
   "regions": ["fra1"],
-  "functions": {
-    "src/api/**/*.{js,ts}": {
-      "runtime": "@vercel/node@20.x"
-    }
-  },
   "rewrites": [
     {
       "source": "/(.*)",
