@@ -104,7 +104,16 @@ const SingleFanArtCard: React.FC<SingleFanArtCardProps> = ({ fanArtItems, classN
     )
   }
 
-  const renderFanArtCard = (item: FanArtItem, index: number, isAnimating: boolean = false) => (
+  const renderFanArtCard = (item: FanArtItem | undefined, index: number, isAnimating: boolean = false) => {
+    if (!item) {
+      return (
+        <div className="swipeable-card bg-gradient-to-br from-rose-600/10 to-pink-600/10 border-l-4 border-rose-400 p-4">
+          <p className="text-slate-400 text-center">No fan art available</p>
+        </div>
+      )
+    }
+    
+    return (
     <div 
       className={`swipeable-card bg-gradient-to-br from-rose-600/10 to-pink-600/10 border-l-4 border-rose-400 relative transition-all duration-300 cursor-pointer hover:scale-105 ${isAnimating ? 'scale-95 opacity-80' : 'scale-100 opacity-100'}`}
       onClick={() => handleCardClick(item)}
@@ -177,7 +186,8 @@ const SingleFanArtCard: React.FC<SingleFanArtCardProps> = ({ fanArtItems, classN
         </div>
       </div>
     </div>
-  )
+    )
+  }
 
   return (
     <div className={`${className} flex justify-center`}>
