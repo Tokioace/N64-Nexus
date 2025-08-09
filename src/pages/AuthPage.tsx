@@ -204,8 +204,7 @@ const AuthPage: React.FC = () => {
                     {t('auth.waitingEmailConfirmation')}
                   </p>
                   <p className="text-blue-300 text-xs">
-                    Wir haben eine Bestätigungsmail an <strong>{registrationData.email}</strong> gesendet. 
-                    Bitte klicken Sie auf den Link in der E-Mail, um Ihre Registrierung abzuschließen.
+                    {t('auth.emailConfirmationSent').replace('{email}', registrationData.email)} {t('auth.clickEmailLink')}
                   </p>
                 </div>
               </div>

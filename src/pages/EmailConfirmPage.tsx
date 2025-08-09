@@ -20,7 +20,7 @@ const EmailConfirmPage: React.FC = () => {
 
         if (!token_hash || type !== 'email') {
           setStatus('error')
-          setMessage('Ungültiger Bestätigungslink')
+          setMessage(t('auth.invalidConfirmationLink'))
           return
         }
 
@@ -33,7 +33,7 @@ const EmailConfirmPage: React.FC = () => {
         if (error) {
           console.error('Email confirmation error:', error)
           setStatus('error')
-          setMessage('E-Mail-Bestätigung fehlgeschlagen. Der Link ist möglicherweise abgelaufen.')
+          setMessage(t('auth.confirmationLinkExpired'))
           return
         }
 
@@ -74,7 +74,7 @@ const EmailConfirmPage: React.FC = () => {
             if (profileError) {
               console.error('Profile creation error:', profileError)
               setStatus('error')
-              setMessage('Fehler beim Erstellen des Profils')
+              setMessage(t('auth.unexpectedError'))
               return
             }
           } else {
@@ -83,7 +83,7 @@ const EmailConfirmPage: React.FC = () => {
 
           setUsername(userUsername)
           setStatus('success')
-          setMessage('E-Mail erfolgreich bestätigt! Sie werden zur Startseite weitergeleitet...')
+          setMessage(t('auth.emailConfirmedSuccessfully'))
           
           // Redirect to home page after 4 seconds
           setTimeout(() => {
@@ -91,12 +91,12 @@ const EmailConfirmPage: React.FC = () => {
           }, 4000)
         } else {
           setStatus('error')
-          setMessage('E-Mail-Bestätigung fehlgeschlagen')
+          setMessage(t('auth.emailConfirmationFailed'))
         }
       } catch (error) {
         console.error('Confirmation error:', error)
         setStatus('error')
-        setMessage('Ein unerwarteter Fehler ist aufgetreten')
+        setMessage(t('auth.unexpectedError'))
       }
     }
 
@@ -111,10 +111,10 @@ const EmailConfirmPage: React.FC = () => {
             <>
               <Loader2 className="w-16 h-16 text-blue-400 mx-auto mb-4 animate-spin" />
               <h1 className="text-2xl font-bold text-slate-100 mb-2">
-                E-Mail wird bestätigt...
+                {t('auth.emailBeingConfirmed')}
               </h1>
               <p className="text-slate-400">
-                Bitte warten Sie einen Moment.
+                {t('auth.pleaseWaitMoment')}
               </p>
             </>
           )}
@@ -137,17 +137,17 @@ const EmailConfirmPage: React.FC = () => {
                 <div className="flex items-center justify-center mb-3">
                   <Gamepad2 className="w-6 h-6 text-green-400 mr-2" />
                   <p className="text-green-200 font-medium">
-                    Ihr Konto wurde erfolgreich aktiviert!
+                    {t('auth.accountActivatedSuccessfully')}
                   </p>
                 </div>
-                                 <p className="text-slate-300 text-sm mb-3">
-                   {t('auth.checkOutEvents')} und werden Sie Teil der Community.
-                 </p>
+                <p className="text-slate-300 text-sm mb-3">
+                  {t('auth.checkOutEvents')} {t('auth.joinCommunityMessage')}
+                </p>
                 <button
                   onClick={() => navigate('/events')}
                   className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors text-sm"
                 >
-                  Events entdecken
+                  {t('auth.exploreEvents')}
                 </button>
               </div>
             </>
@@ -157,21 +157,21 @@ const EmailConfirmPage: React.FC = () => {
             <>
               <XCircle className="w-16 h-16 text-red-400 mx-auto mb-4" />
               <h1 className="text-2xl font-bold text-slate-100 mb-2">
-                Bestätigung fehlgeschlagen
+                {t('auth.confirmationFailed')}
               </h1>
               <p className="text-slate-400 mb-4">
                 {message}
               </p>
               <div className="bg-red-600/20 border border-red-600/30 rounded-lg p-4 mb-6">
                 <p className="text-red-200 text-sm">
-                  Versuchen Sie sich erneut zu registrieren oder kontaktieren Sie den Support.
+                  {t('auth.tryRegisterAgain')}
                 </p>
               </div>
               <button
                 onClick={() => navigate('/auth')}
                 className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg transition-colors"
               >
-                Zur Anmeldung
+                {t('auth.goToLogin')}
               </button>
             </>
           )}
