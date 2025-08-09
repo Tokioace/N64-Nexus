@@ -51,7 +51,6 @@ const en = {
   // Account deletion
   'account.deletion.confirmText': 'Please type "DELETE" to confirm',
   'account.deletion.placeholder': 'DELETE',
-  'account.deletion.typeDelete': 'Type "DELETE" to confirm:',
 
   'error.networkError': 'Network error occurred',
   'error.serverError': 'Server error occurred',

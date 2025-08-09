@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useMap } from '../contexts/MapContext'
 import { useUser } from '../contexts/UserContext'
+import { useLanguage } from '../contexts/LanguageContext'
 
 import { 
   Play, 
@@ -26,6 +27,7 @@ interface LiveBattleViewerProps {
 const LiveBattleViewer: React.FC<LiveBattleViewerProps> = ({ isOpen, onClose, battleId }) => {
   const { user } = useUser()
   const { liveBattles, joinAsSpectator } = useMap()
+  const { t } = useLanguage()
   const [selectedBattle, setSelectedBattle] = useState<string | null>(battleId || null)
   const [isFullscreen, setIsFullscreen] = useState(false)
   const [isMuted, setIsMuted] = useState(false)
