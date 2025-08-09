@@ -132,9 +132,17 @@ const SafeComponent: React.FC<{ children: React.ReactNode; fallback?: React.Reac
 
 const HomePage: React.FC = () => {
   const { user, isLoading: userLoading } = useUser()
-  const { t, currentLanguage } = useLanguage()
+  const { t, currentLanguage, isLoading: langLoading } = useLanguage()
   const { threads, posts } = useForum()
   const [isDataLoading, setIsDataLoading] = React.useState(true)
+
+  // Debug translation loading
+  console.log('🏠 HomePage render:', { 
+    currentLanguage, 
+    langLoading, 
+    homeWelcome: t('home.welcome'),
+    navHome: t('nav.home')
+  })
 
   // Load FanArt data from localStorage or use mock data
   const [fanArtItems, setFanArtItems] = useState<FanArtItem[]>([])
