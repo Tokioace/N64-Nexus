@@ -34,7 +34,7 @@ interface FanArtItem {
   views: number
   game: string
   createdAt?: Date
-  date?: Date // Add date property for backward compatibility
+  date?: Date
 }
 
 interface MediaItem {
@@ -72,10 +72,10 @@ interface MarketplaceItem {
   category: string
   images?: string[]
   image?: string
-  createdAt?: string // Add createdAt property for backward compatibility
+  createdAt?: string
 }
 
-// Simple error boundary component with better error handling
+// 🔧 Safe component wrapper with error boundaries
 const SafeComponent: React.FC<{ children: React.ReactNode; fallback?: React.ReactNode; name: string }> = ({ 
   children, 
   fallback, 
@@ -85,7 +85,6 @@ const SafeComponent: React.FC<{ children: React.ReactNode; fallback?: React.Reac
   const [error, setError] = React.useState<Error | null>(null)
   
   React.useEffect(() => {
-    // Reset error state when children change
     setHasError(false)
     setError(null)
   }, [children])
@@ -123,7 +122,7 @@ const SafeComponent: React.FC<{ children: React.ReactNode; fallback?: React.Reac
       </React.Suspense>
     )
   } catch (error) {
-            logger.error(`Error in ${name}:`, error)
+    logger.error(`Error in ${name}:`, error)
     setHasError(true)
     setError(error as Error)
     return null
@@ -132,17 +131,15 @@ const SafeComponent: React.FC<{ children: React.ReactNode; fallback?: React.Reac
 
 const HomePage: React.FC = () => {
   const { user, isLoading: userLoading } = useUser()
-  const { t, currentLanguage } = useLanguage()
+  const { t, currentLanguage, isLoading: langLoading } = useLanguage()
   const { threads, posts } = useForum()
   const [isDataLoading, setIsDataLoading] = React.useState(true)
 
-  // Load FanArt data from localStorage or use mock data
+  // 🔧 FIXED: Safe state management with defensive programming
   const [fanArtItems, setFanArtItems] = useState<FanArtItem[]>([])
-  
-  // Load Marketplace data from localStorage
   const [marketplaceItems, setMarketplaceItems] = useState<MarketplaceItem[]>([])
   
-  // Load other data from localStorage or use mock data
+  // Static data with proper typing
   const [mediaItems] = useState<MediaItem[]>([
     { id: '1', title: 'Mario 64 16 Star WR Run', description: 'New world record attempt with frame-perfect BLJ execution', type: 'speedrun', uploader: 'SpeedDemon64', date: new Date(Date.now() - 3600000), views: 5430, likes: 234, verified: true, game: 'Super Mario 64', thumbnailUrl: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRkY2QjZCIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIiBmaWxsPSIjRkZGRkZGIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiPk1hcmlvIFZpZGVvPC90ZXh0Pjwvc3ZnPg==' },
     { id: '2', title: 'OoT Any% New PB!', description: 'Personal best with improved routing and glitch execution', type: 'speedrun', uploader: 'ZeldaRunner', date: new Date(Date.now() - 7200000), views: 3210, likes: 156, verified: true, game: 'Ocarina of Time' },
@@ -159,7 +156,7 @@ const HomePage: React.FC = () => {
     { id: '5', game: 'Perfect Dark', category: 'DataDyne Central', time: '1:23.45', date: new Date(Date.now() - 18000000), verified: true, platform: 'N64' }
   ])
 
-  // Load FanArt data from localStorage on component mount
+  // 🔧 FIXED: Safe data loading with proper error handling
   useEffect(() => {
     const loadFanArtData = () => {
       try {
@@ -168,20 +165,17 @@ const HomePage: React.FC = () => {
           let parsedFanArt
           try {
             parsedFanArt = JSON.parse(savedFanArt) as FanArtItem[]
-            // Validate that parsed data is an array
             if (!Array.isArray(parsedFanArt)) {
               throw new Error('Invalid fanart data format')
             }
           } catch (parseError) {
             logger.error('Error parsing fanart data:', parseError)
-            // Clear corrupted data and use fallback
             localStorage.removeItem('fanart_items')
             throw parseError
           }
           
-          // Sort by date (newest first) and convert date strings back to Date objects
           const sortedFanArt = parsedFanArt
-            .filter(item => item && item.id) // Filter out invalid items
+            .filter(item => item && item.id)
             .map((item: FanArtItem) => ({
               ...item,
               createdAt: item.createdAt ? new Date(item.createdAt) : new Date(),
@@ -194,7 +188,6 @@ const HomePage: React.FC = () => {
             })
           setFanArtItems(sortedFanArt)
         } else {
-          // Use fallback mock data if no saved data exists
           setFanArtItems([
             { id: '1', title: 'Mario in Peach\'s Castle', artist: 'PixelArtist64', imageUrl: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRkY2QjZCIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIiBmaWxsPSIjRkZGRkZGIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiPk1hcmlvIEFydDwvdGV4dD48L3N2Zz4=', likes: 234, views: 1250, game: 'Super Mario 64', createdAt: new Date() },
             { id: '2', title: 'Link vs Ganondorf Epic Battle', artist: 'ZeldaDrawer', imageUrl: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjNEVDREMxIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIiBmaWxsPSIjRkZGRkZGIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiPlplbGRhIEFydDwvdGV4dD48L3N2Zz4=', likes: 189, views: 980, game: 'Ocarina of Time', createdAt: new Date(Date.now() - 86400000) },
@@ -203,7 +196,6 @@ const HomePage: React.FC = () => {
         }
       } catch (error) {
         logger.error('Error loading fanart data:', error)
-        // Use fallback data on error and clear corrupted localStorage
         localStorage.removeItem('fanart_items')
         setFanArtItems([
           { id: '1', title: 'Mario in Peach\'s Castle', artist: 'PixelArtist64', imageUrl: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRkY2QjZCIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIiBmaWxsPSIjRkZGRkZGIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiPk1hcmlvIEFydDwvdGV4dD48L3N2Zz4=', likes: 234, views: 1250, game: 'Super Mario 64', createdAt: new Date() }
@@ -218,20 +210,17 @@ const HomePage: React.FC = () => {
           let parsedMarketplace
           try {
             parsedMarketplace = JSON.parse(savedMarketplace) as MarketplaceItem[]
-            // Validate that parsed data is an array
             if (!Array.isArray(parsedMarketplace)) {
               throw new Error('Invalid marketplace data format')
             }
           } catch (parseError) {
             logger.error('Error parsing marketplace data:', parseError)
-            // Clear corrupted data and use fallback
             localStorage.removeItem('marketplace_items')
             throw parseError
           }
           
-          // Sort by date (newest first) and convert date strings back to Date objects
           const sortedMarketplace = parsedMarketplace
-            .filter(item => item && item.id) // Filter out invalid items
+            .filter(item => item && item.id)
             .map((item: MarketplaceItem) => ({
               ...item,
               date: item.date ? new Date(item.date) : (item.createdAt ? new Date(item.createdAt) : new Date())
@@ -239,7 +228,6 @@ const HomePage: React.FC = () => {
             .sort((a: MarketplaceItem, b: MarketplaceItem) => b.date.getTime() - a.date.getTime())
           setMarketplaceItems(sortedMarketplace)
         } else {
-          // Use fallback mock data if no saved data exists
           setMarketplaceItems([
             { id: '1', title: 'Super Mario 64 - Mint Condition', description: 'Original cartridge in mint condition with manual', price: 89.99, condition: 'Mint', seller: 'RetroCollector', date: new Date(Date.now() - 3600000), category: 'Games', images: ['data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRTVFN0VCIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIiBmaWxsPSIjNkI3MjgwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiPk1hcmlvIDY0PC90ZXh0Pjwvc3ZnPg=='] },
             { id: '2', title: 'N64 Controller - Original Nintendo', description: 'Official Nintendo controller in very good condition', price: 34.50, condition: 'Very Good', seller: 'ControllerKing', date: new Date(Date.now() - 7200000), category: 'Accessories', images: ['data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRTVFN0VCIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIiBmaWxsPSIjNkI3MjgwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiPkNvbnRyb2xsZXI8L3RleHQ+PC9zdmc+'] },
@@ -248,7 +236,6 @@ const HomePage: React.FC = () => {
         }
       } catch (error) {
         logger.error('Error loading marketplace data:', error)
-        // Use fallback data on error and clear corrupted localStorage
         localStorage.removeItem('marketplace_items')
         setMarketplaceItems([
           { id: '1', title: 'Super Mario 64 - Mint Condition', description: 'Original cartridge in mint condition with manual', price: 89.99, condition: 'Mint', seller: 'RetroCollector', date: new Date(Date.now() - 3600000), category: 'Games' }
@@ -272,7 +259,6 @@ const HomePage: React.FC = () => {
 
     loadData()
 
-    // Listen for data updates
     const handleStorageChange = (e: StorageEvent) => {
       if (e.key === 'fanart_items') {
         loadFanArtData()
@@ -285,7 +271,7 @@ const HomePage: React.FC = () => {
     return () => window.removeEventListener('storage', handleStorageChange)
   }, [])
 
-  // Convert forum threads to the format expected by SingleForumCard with enhanced data
+  // 🔧 FIXED: Safe forum threads processing
   const forumThreads: ForumThread[] = React.useMemo(() => {
     try {
       if (!threads || !Array.isArray(threads)) {
@@ -294,7 +280,7 @@ const HomePage: React.FC = () => {
       }
       
       return threads
-        .filter(thread => thread && thread.id && thread.title) // Filter out invalid threads
+        .filter(thread => thread && thread.id && thread.title)
         .sort((a, b) => {
           try {
             const dateA = new Date(a.lastUpdated || a.createdAt || 0).getTime()
@@ -305,10 +291,9 @@ const HomePage: React.FC = () => {
             return 0
           }
         })
-        .slice(0, 10) // Take top 10 most recent
+        .slice(0, 10)
         .map(thread => {
           try {
-            // Find the latest post for this thread
             const threadPosts = Array.isArray(posts) 
               ? posts.filter(post => post && post.threadId === thread.id)
               : []
@@ -324,10 +309,10 @@ const HomePage: React.FC = () => {
             return {
               id: thread.id,
               title: thread.title || 'Untitled Thread',
-              author: thread.authorName || thread.authorId || 'Unknown', // Use authorName instead of authorId
-              replies: thread.postCount || 0, // Use postCount for replies
-              lastActivity: new Date(thread.lastUpdated || thread.createdAt || Date.now()), // Use lastUpdated
-              category: thread.categoryId || 'general', // Use categoryId instead of category
+              author: thread.authorName || thread.authorId || 'Unknown',
+              replies: thread.postCount || 0,
+              lastActivity: new Date(thread.lastUpdated || thread.createdAt || Date.now()),
+              category: thread.categoryId || 'general',
               lastPostContent: latestPost?.content,
               lastPostAuthor: latestPost?.authorName || latestPost?.authorId
             }
@@ -336,9 +321,9 @@ const HomePage: React.FC = () => {
             return null
           }
         })
-        .filter(Boolean) as ForumThread[] // Remove null entries
+        .filter(Boolean) as ForumThread[]
     } catch (error) {
-              logger.error('Error processing forum threads:', error)
+      logger.error('Error processing forum threads:', error)
       return []
     }
   }, [threads, posts])
@@ -359,7 +344,6 @@ const HomePage: React.FC = () => {
     })
   }
 
-  // Show loading state while data is loading
   if (userLoading || isDataLoading) {
     return (
       <div className="container-lg space-responsive responsive-max-width responsive-overflow-hidden">
@@ -384,7 +368,6 @@ const HomePage: React.FC = () => {
           </div>
         </div>
         
-        {/* Loading skeleton for content */}
         <div className="space-y-6">
           {[1, 2, 3, 4].map(i => (
             <div key={i} className="simple-tile bg-slate-800/50 border-slate-600 p-4 rounded-lg">
@@ -402,24 +385,21 @@ const HomePage: React.FC = () => {
 
   return (
     <div className="container-lg space-responsive responsive-max-width responsive-overflow-hidden">
-      {/* Mascot Section with Welcome Content directly underneath */}
+      {/* Mascot Section with Welcome Content */}
       <div className="text-center mb-6 responsive-max-width">
         <div className="battle64-header-container">
-          {/* Mascot Image */}
           <img 
             src="/mascot.png" 
             alt={t('alt.battle64Mascot')} 
             className="battle64-mascot mx-auto block"
             style={{
               marginTop: 'clamp(0.5rem, 1vw, 1rem)',
-              marginBottom: 'clamp(0.5rem, 1vw, 0.75rem)' // Reduced margin for tighter spacing
+              marginBottom: 'clamp(0.5rem, 1vw, 0.75rem)'
             }}
           />
         </div>
         
-        {/* Welcome Section - Now directly under mascot */}
         <div className="mt-2">
-          {/* Welcome Back Text */}
           <p className="battle64-welcome-text">
             {user ? `${t('home.welcome')}, ${user.username}!` : t('home.welcome')}
           </p>
@@ -440,7 +420,7 @@ const HomePage: React.FC = () => {
         </div>
       </div>
 
-      {/* LIVE EVENTS SECTION - TOP PRIORITY */}
+      {/* LIVE EVENTS SECTION */}
       <SafeComponent name="EventFeedWidget">
         <div className="mb-responsive responsive-max-width">
           <EventFeedWidget />
@@ -456,11 +436,9 @@ const HomePage: React.FC = () => {
         </SafeComponent>
       )}
 
-
-
-      {/* NEWS CARDS SECTION */}
+      {/* CONTENT SECTIONS */}
       <div className="space-y-6">
-        {/* Single News Card - One card at a time with dismiss functionality */}
+        {/* News Cards Section */}
         <SafeComponent name="SingleNewsCard">
           <div className="space-y-4">
             <h2 className="text-responsive-lg font-bold text-slate-100 mb-responsive">
@@ -469,7 +447,7 @@ const HomePage: React.FC = () => {
             <SingleNewsCard 
               newsItems={posts.slice(0, 8).map(post => ({
                 id: post.id,
-                title: post.content.substring(0, 50) + '...', // Use first 50 chars of content as title
+                title: post.content.substring(0, 50) + '...',
                 content: post.content,
                 date: new Date(post.createdAt),
                 type: 'community_news' as const
@@ -484,7 +462,7 @@ const HomePage: React.FC = () => {
           <Battle64MapTile className="w-full" />
         </SafeComponent>
 
-        {/* Forum Posts - Single card interface */}
+        {/* Forum Posts */}
         <SafeComponent name="SingleForumCard">
           <SingleForumCard 
             forumThreads={forumThreads}
@@ -492,7 +470,7 @@ const HomePage: React.FC = () => {
           />
         </SafeComponent>
 
-        {/* Other Content - FanArts and Media */}
+        {/* FanArts and Media */}
         <div className="responsive-grid-2">
           <SafeComponent name="SingleFanArtCard">
             <SingleFanArtCard 
@@ -509,7 +487,7 @@ const HomePage: React.FC = () => {
           </SafeComponent>
         </div>
 
-        {/* Records and Marketplace */}
+        {/* Records and Marketplace - 🔧 FIXED with defensive programming */}
         <div className="responsive-grid-2">
           <SafeComponent name="SingleRecordCard">
             <SingleRecordCard 
@@ -526,7 +504,7 @@ const HomePage: React.FC = () => {
           </SafeComponent>
         </div>
 
-        {/* N64Fan Leaderboard - Compact */}
+        {/* N64Fan Leaderboard */}
         {user && (
           <SafeComponent name="N64FanLeaderboard">
             <div className="responsive-max-width">

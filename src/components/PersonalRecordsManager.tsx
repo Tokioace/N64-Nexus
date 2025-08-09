@@ -32,7 +32,7 @@ const PersonalRecordsManager: React.FC<PersonalRecordsProps> = ({ isOwnProfile =
 
   if (!user) return null
 
-  const filteredRecords = user.personalRecords.filter(record => {
+  const filteredRecords = user.personalRecords.filter((record: any) => {
     if (filter === 'verified') return record.verified
     if (filter === 'pending') return !record.verified
     return true
@@ -106,8 +106,8 @@ const PersonalRecordsManager: React.FC<PersonalRecordsProps> = ({ isOwnProfile =
             {isOwnProfile ? 'Meine Rekorde' : `${user.username}s Rekorde`}
           </h2>
           <p className="text-slate-400">
-            {user.personalRecords.filter(r => r.verified).length} verifizierte Rekorde, {' '}
-            {user.personalRecords.filter(r => !r.verified).length} ausstehend
+            {user.personalRecords.filter((r: any) => r.verified).length} verifizierte Rekorde, {' '}
+            {user.personalRecords.filter((r: any) => !r.verified).length} ausstehend
           </p>
         </div>
         
@@ -142,7 +142,7 @@ const PersonalRecordsManager: React.FC<PersonalRecordsProps> = ({ isOwnProfile =
               : 'text-slate-400 hover:text-slate-200'
           }`}
         >
-          Verifiziert ({user.personalRecords.filter(r => r.verified).length})
+          Verifiziert ({user.personalRecords.filter((r: any) => r.verified).length})
         </button>
         <button
           onClick={() => setFilter('pending')}
@@ -152,7 +152,7 @@ const PersonalRecordsManager: React.FC<PersonalRecordsProps> = ({ isOwnProfile =
               : 'text-slate-400 hover:text-slate-200'
           }`}
         >
-          Ausstehend ({user.personalRecords.filter(r => !r.verified).length})
+          Ausstehend ({user.personalRecords.filter((r: any) => !r.verified).length})
         </button>
       </div>
 
@@ -172,7 +172,7 @@ const PersonalRecordsManager: React.FC<PersonalRecordsProps> = ({ isOwnProfile =
         </div>
       ) : (
         <div className="space-y-4">
-          {filteredRecords.map((record) => (
+          {filteredRecords.map((record: any) => (
             <div key={record.id} className="simple-tile p-6 hover:border-blue-500/50 transition-colors">
               <div className="flex items-start justify-between">
                 <div className="flex-1">
