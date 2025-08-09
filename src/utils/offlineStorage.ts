@@ -1,4 +1,5 @@
 import { logger } from '../lib/logger'
+import { useLanguage } from '../contexts/LanguageContext'
 
 // IndexedDB wrapper for offline storage
 class OfflineStorage {

@@ -17,7 +17,6 @@ const ko = {
   'nav.newsfeed': '뉴스피드',
   'nav.community': '커뮤니티',
   'nav.map': 'Battle64 Map',
-
   // Accessibility
   'a11y.skipToMain': '주요 콘텐츠로 건너뛰기',
   'a11y.skipToNav': '내비게이션으로 건너뛰기',
@@ -26,7 +25,6 @@ const ko = {
   'a11y.loading': '콘텐츠 로딩 중',
   'a11y.error': '오류가 발생했습니다',
   'a11y.success': '작업이 성공적으로 완료되었습니다',
-
   // Common fallback texts
   'common.unknown': '알 수 없음',
   'common.unknownGame': '알 수 없는 게임',
@@ -46,11 +44,10 @@ const ko = {
   'common.draft': '초안',
   'common.published': '게시됨',
   'common.archived': '보관됨',
-  
   // Account deletion
-  'account.deletion.confirmText': '확인하려면 "DELETE"를 입력하세요',
-  'account.deletion.placeholder': 'DELETE',
-  'account.deletion.typeDelete': '확인하려면 "DELETE"를 입력하세요:',
+  'account.deletion.confirmText': '확인하려면 \"DELETE\"를 입력하세요',
+  'account.deletion.placeholder': '삭제',
+  'account.deletion.typeDelete': '확인하려면 \"DELETE\"를 입력하세요:',
   // Home Screen
   'home.subtitle': '밀레니얼 세대를 위한 N64 커뮤니티',
   'home.welcome': '다시 오신 것을 환영합니다',
@@ -67,13 +64,12 @@ const ko = {
   'home.fanart.subtitle': '창의성',
   'home.newsfeed.subtitle': '업데이트',
   'home.map.subtitle': '로컬 배틀',
-
   // Battle64 Map
   'map.title': 'Battle64 Map',
   'map.subtitle': '실제 배틀 & 지오 매칭',
   'map.hostEvent': '로컬 4플레이어 배틀 주최',
   'map.selectGame': '게임 선택',
-  'map.chooseGame': '게임을 선택하세요...',
+  'map.chooseGame': '게임을 선택하세요',
   'map.eventTitle': '이벤트 제목',
   'map.eventTitlePlaceholder': '주말 레이싱 토너먼트',
   'map.description': '설명',
@@ -146,15 +142,14 @@ const ko = {
   'event.type.speedrun': '스피드런 세션',
   'event.type.meetup': '모임',
   'event.category': '이벤트 카테고리',
-
   // Common
   'common.welcome': '환영합니다',
-  'common.loading': '로딩 중...',
+  'common.loading': '로딩 중',
   'common.error': '오류',
   'common.save': '저장',
   'common.cancel': '취소',
   'common.upload': '업로드',
-  'common.uploading': '업로드 중...',
+  'common.uploading': '업로드 중',
   'common.remove': '제거',
   'common.delete': '삭제',
   'common.edit': '편집',
@@ -180,7 +175,6 @@ const ko = {
   'common.ok': '확인',
   'common.retry': '재시도',
   'common.note': '참고',
-
   // Authentication
   'auth.login': '로그인',
   'auth.logout': '로그아웃',
@@ -194,7 +188,6 @@ const ko = {
   'auth.loginRequiredMessage': '이 페이지를 보려면 로그인해야 합니다.',
   'auth.loginRequiredForEvents': '이벤트에 참여하려면 로그인하세요!',
   'auth.loginRequiredForImageUpload': '이미지를 업로드하려면 로그인해야 합니다',
-
   // Quiz
   'quiz.title': 'N64 퀴즈',
   'quiz.start': '퀴즈 시작',
@@ -212,7 +205,6 @@ const ko = {
   'quiz.category': '카테고리',
   'quiz.restart': '다시 시작',
   'quiz.wrong': '틀렸습니다!',
-
   // Events
   'events.title': '이벤트',
   'events.subtitle': '토너먼트, 챌린지 및 커뮤니티 이벤트',
@@ -235,7 +227,6 @@ const ko = {
   'events.game': '게임',
   'events.track': '트랙',
   'events.time': '시간',
-
   // Forum
   'forum.title': '포럼',
   'forum.subtitle': '커뮤니티 토론',
@@ -244,14 +235,13 @@ const ko = {
   'forum.threads': '스레드',
   'forum.posts': '게시물',
   'forum.mostActive': '가장 활발한',
-  'forum.loading': '로딩 중...',
+  'forum.loading': '로딩 중',
   'forum.communityNexus': '커뮤니티 허브',
   'forum.discussWithCommunity': '커뮤니티와 토론하기',
   'forum.createThread': '스레드 만들기',
   'forum.newThread': '새 스레드',
   'forum.reply': '답글',
   'forum.backToForum': '포럼으로 돌아가기',
-
   // Language selector
   'language.german': '독일어',
   'language.english': '영어',
@@ -267,7 +257,6 @@ const ko = {
   'language.hindi': '힌디어',
   'language.arabic': '아랍어',
   'language.korean': '한국어',
-
   // Error messages
   'error.generic': '오류가 발생했습니다',
   'error.networkError': '네트워크 오류',
@@ -279,7 +268,6 @@ const ko = {
   'error.goHome': '홈으로 가기',
   'error.contactSupport': '지원팀에 문의',
   'error.somethingWentWrong': '문제가 발생했습니다',
-
   // Missing keys added automatically
   'news.title': '뉴스',
   'news.subtitle': '최신 업데이트 및 공지사항',
@@ -301,7 +289,7 @@ const ko = {
   'news.noResults': '결과 없음',
   'news.noResultsDescription': '뉴스를 찾을 수 없습니다',
   'news.pagination': '{total} 페이지 중 {current} 페이지',
-  'news.search.placeholder': '뉴스 검색...',
+  'news.search.placeholder': '뉴스 검색',
   'news.filter.all': '전체',
   'news.filter.events': '이벤트',
   'news.filter.winners': '우승자',
@@ -357,21 +345,13 @@ const ko = {
   'media.allGames': '모든 게임',
   'media.noEvent': '이벤트 없음',
   'media.uploadedBy': '업로드한 사람',
-  'media.uploadedOn': '업로드 날짜',
-  'placeholder.speedrunTitle': '예: 마리오 64 120 스타 스피드런',
-  'placeholder.speedrunUrl': 'https://twitch.tv/당신의-채널',
-  'placeholder.speedrunGame': '예: 슈퍼 마리오 64',
-  'placeholder.mediaSearch': '제목, 설명 또는 태그로 검색...',
-  'placeholder.mediaUrl': 'https://youtube.com/watch?v=...',
-  'placeholder.mediaDescription': '당신의 업적을 설명하세요...',
-  'placeholder.mediaTags': '세계기록, Any%, 글리치리스 (쉼표로 구분)',
+  'media.uploadedOn': '업로드 날짜', 설명 또는 태그로 검색', Any%, 글리치리스 (쉼표로 구분)',
   'success.uploaded': '성공적으로 업로드됨',
   'validation.allFieldsRequired': '모든 필드가 필요합니다',
-
   // Additional missing keys
   'marketplace.subtitle': 'N64 거래 및 교환소',
   'marketplace.createOffer': '제안 만들기',
-  'marketplace.searchPlaceholder': '아이템 검색...',
+  'marketplace.searchPlaceholder': '아이템 검색',
   'marketplace.category': '카테고리',
   'marketplace.allCategories': '모든 카테고리',
   'marketplace.categoryGames': '게임',
@@ -416,11 +396,11 @@ const ko = {
   'minigames.correctAnswers': '정답',
   'minigames.cheatCode': '치트 코드',
   'minigames.completed': '완료됨',
-  'minigames.typeCheatCode': '치트 코드 입력...',
-  'minigames.sound.mario64': '"와후!" - 마리오 점프 소리',
-  'minigames.sound.zelda': '"헤이! 들어!" - 나비 소리',
-  'minigames.sound.goldeneye': '"퓨 퓨" - 소음기 총소리',
-  'minigames.sound.mariokart': '"시작이야!" - 레이스 시작',
+  'minigames.typeCheatCode': '치트 코드 입력',
+  'minigames.sound.mario64': '\"와후!\" - 마리오 점프 소리',
+  'minigames.sound.zelda': '\"헤이! 들어!\" - 나비 소리',
+  'minigames.sound.goldeneye': '\"퓨 퓨\" - 소음기 총소리',
+  'minigames.sound.mariokart': '\"시작이야!\" - 레이스 시작',
   'minigames.sound': '사운드',
   'minigames.whichGame': '이 소리는 어떤 게임에서 나온 것인가요?',
   'minigames.you': '당신',
@@ -428,8 +408,8 @@ const ko = {
   'minigames.readyForDuel': '대결 준비가 되셨나요?',
   'minigames.startDuel': '대결 시작',
   'minigames.result': '결과',
-  'minigames.opponentAnswering': '답변 중...',
-  'minigames.gameLoading': '게임 로딩 중...',
+  'minigames.opponentAnswering': '답변 중',
+  'minigames.gameLoading': '게임 로딩 중',
   'minigames.gameEnded': '게임 종료',
   'minigames.yourScore': '당신의 점수',
   'minigames.title': '미니게임',
@@ -454,7 +434,6 @@ const ko = {
   'news.n64HistoryContent': '닌텐도 64의 27년을 되돌아보기',
   'aria.gridView': '그리드 보기',
   'aria.listView': '목록 보기',
-
   // Additional missing keys
   'fanart.artworksFound': '작품을 찾았습니다',
   'fanart.ratings': '평점',
@@ -506,12 +485,7 @@ const ko = {
   'category.collecting': '수집',
   'category.tips': '팁',
   'validation.titleTooLong': '제목이 너무 깁니다',
-  'validation.contentTooLong': '내용이 너무 깁니다',
-  'placeholder.threadTitle': '스레드에 제목을 지어주세요...',
-  'placeholder.threadContent': '게시물을 작성하세요...',
-  'placeholder.replyContent': '답글을 작성하세요...',
-  'placeholder.marketplacePrice': '가격을 입력하세요...',
-  'ui.login': '로그인',
+  'validation.contentTooLong': '내용이 너무 깁니다',  'ui.login': '로그인',
   'alt.postAttachment': '게시물 첨부파일',
   'alt.battle64Mascot': 'Battle64 마스코트',
   'news.communityStats': '커뮤니티 통계',
@@ -529,9 +503,9 @@ const ko = {
   'events.status.live': '라이브',
   'events.status.completed': '완료됨',
   'marketplace.title': '제목',
-  'marketplace.titlePlaceholder': '아이템 이름을 입력하세요...',
+  'marketplace.titlePlaceholder': '아이템 이름을 입력하세요',
   'marketplace.description': '설명',
-  'marketplace.descriptionPlaceholder': '아이템을 설명하세요...',
+  'marketplace.descriptionPlaceholder': '아이템을 설명하세요',
   'marketplace.price': '가격',
   'marketplace.condition': '상태',
   'marketplace.conditionNew': '새 제품',
@@ -546,7 +520,6 @@ const ko = {
   'minigames.hard': '어려움',
   'minigames.backToMenu': '메뉴로 돌아가기',
   'minigames.highScore': '최고 점수',
-
   // Final remaining missing keys
   'collection.gamesCollected': '수집된 게임',
   'collection.completeness': '완성도',
@@ -618,13 +591,13 @@ const ko = {
   'fanart.chooseImage': '이미지 선택',
   'fanart.imageFormats': '지원 형식: JPG, PNG, GIF',
   'fanart.artworkTitle': '작품 제목',
-  'fanart.titlePlaceholder': '작품에 제목을 지어주세요...',
+  'fanart.titlePlaceholder': '작품에 제목을 지어주세요',
   'fanart.selectGame': '게임 선택',
-  'fanart.chooseGame': '게임을 선택하세요...',
+  'fanart.chooseGame': '게임을 선택하세요',
   'fanart.tags': '태그',
-  'fanart.tagsPlaceholder': '태그 추가...',
+  'fanart.tagsPlaceholder': '태그 추가',
   'fanart.tagsHint': '쉼표로 구분',
-  'fanart.uploading': '업로드 중...',
+  'fanart.uploading': '업로드 중',
   'fanart.allCategories': '모든 카테고리',
   'fanart.subtitle': 'N64에서 영감을 받은 작품을 공유하세요',
   'fanart.filterBy': '필터링',
@@ -633,13 +606,9 @@ const ko = {
   'common.rare': '희귀',
   'common.veryRare': '매우 희귀',
   'common.ultraRare': '울트라 희귀',
-  'common.hide': '숨기기',
-  'placeholder.searchGames': '게임 검색...',
-  'placeholder.searchPlayers': '플레이어 검색...',
-  'ui.grid': '그리드',
+  'common.hide': '숨기기',  'ui.grid': '그리드',
   'ui.list': '목록',
   'alt.preview': '미리보기',
-
   // Final batch of missing keys
   'collection.cartOnly': '카트리지만',
   'collection.boxOnly': '박스만',
@@ -661,11 +630,7 @@ const ko = {
   'media.noUploads': '업로드 없음',
   'media.noUploadsDesc': '아직 미디어를 업로드하지 않았습니다.',
   'media.eventUpload': '이벤트 업로드',
-  'label.notes': '메모',
-  'placeholder.notes': '메모 추가...',
-  'placeholder.additionalInfo': '추가 정보...',
-  'placeholder.password': '비밀번호 입력...',
-  'validation.contentRequired': '내용이 필요합니다',
+  'label.notes': '메모',  'validation.contentRequired': '내용이 필요합니다',
   'validation.postTooLong': '게시물이 너무 깁니다',
   'auth.invalidCredentials': '잘못된 자격 증명',
   'auth.errorOccurred': '오류가 발생했습니다',
@@ -675,27 +640,27 @@ const ko = {
   'auth.registrationFailed': '회원가입 실패',
   'auth.welcomeBack': '다시 오신 것을 환영합니다',
   'auth.createAccount': '계정 만들기',
-  'auth.emailPlaceholder': '이메일 입력...',
-  'auth.loggingIn': '로그인 중...',
-  'auth.usernamePlaceholder': '사용자명 입력...',
+  'auth.emailPlaceholder': '이메일 입력',
+  'auth.loggingIn': '로그인 중',
+  'auth.usernamePlaceholder': '사용자명 입력',
   'auth.platform': '플랫폼',
   'auth.region': '지역',
-  'auth.registering': '회원가입 중...',
+  'auth.registering': '회원가입 중',
   'auth.createAccountButton': '계정 만들기',
   'auth.noAccountYet': '아직 계정이 없으신가요?',
   'auth.registerNow': '지금 가입하기',
   'auth.alreadyHaveAccount': '이미 계정이 있으신가요?',
   'auth.loginHere': '여기서 로그인',
-  'auth.processingRegistration': '회원가입 처리 중...',
-  'auth.waitingEmailConfirmation': '이메일 확인 대기 중...',
+  'auth.processingRegistration': '회원가입 처리 중',
+  'auth.waitingEmailConfirmation': '이메일 확인 대기 중',
   'auth.registrationSucceeded': '회원가입 성공!',
   'auth.welcomeToCommunity': 'Battle64 커뮤니티에 오신 것을 환영합니다',
   'auth.checkOutEvents': '우리의 이벤트를 확인해보세요',
   'auth.emailConfirmationSent': '{email}로 확인 이메일을 보냈습니다.',
   'auth.clickEmailLink': '이메일의 링크를 클릭하여 가입을 완료해주세요.',
-  'auth.emailBeingConfirmed': '이메일 확인 중...',
+  'auth.emailBeingConfirmed': '이메일 확인 중',
   'auth.pleaseWaitMoment': '잠시만 기다려주세요.',
-  'auth.emailConfirmedSuccessfully': '이메일 확인이 성공했습니다! 홈페이지로 리디렉션됩니다...',
+  'auth.emailConfirmedSuccessfully': '이메일 확인이 성공했습니다! 홈페이지로 리디렉션됩니다',
   'auth.confirmationFailed': '확인 실패',
   'auth.accountActivatedSuccessfully': '계정이 성공적으로 활성화되었습니다!',
   'auth.joinCommunityMessage': '그리고 커뮤니티에 참여하세요.',
@@ -706,23 +671,21 @@ const ko = {
   'auth.unexpectedError': '예상치 못한 오류가 발생했습니다',
   'auth.tryRegisterAgain': '다시 가입을 시도하거나 지원팀에 문의하세요.',
   'auth.goToLogin': '로그인으로 이동',
-
   // Browser Redirect
   'browserRedirect.title': '브라우저 리디렉션',
-  'browserRedirect.message': '선호하는 브라우저로 리디렉션하고 있습니다...',
+  'browserRedirect.message': '선호하는 브라우저로 리디렉션하고 있습니다',
   'browserRedirect.detectedBrowser': '감지된 브라우저',
   'browserRedirect.version': '버전',
-  'browserRedirect.redirectingIn': '{seconds}초 후 리디렉션...',
+  'browserRedirect.redirectingIn': '{seconds}초 후 리디렉션',
   'browserRedirect.redirectNow': '지금 리디렉션',
   'browserRedirect.troubleshoot': '자동 리디렉션이 작동하지 않나요?',
-  'browserRedirect.manualInstructions': '"지금 리디렉션"을 클릭하거나 주소창에서 URL을 복사하세요.',
-
+  'browserRedirect.manualInstructions': '\"지금 리디렉션\"을 클릭하거나 주소창에서 URL을 복사하세요.',
   'chat.title': '커뮤니티 채팅',
   'chat.onlineUsers': '온라인 사용자',
   'chat.chats': '채팅',
   'chat.newChat': '새 채팅',
-  'chat.searchUsers': '사용자 검색...',
-  'chat.messagePlaceholder': '메시지를 입력하세요...',
+  'chat.searchUsers': '사용자 검색',
+  'chat.messagePlaceholder': '메시지를 입력하세요',
   'chat.joinPrompt': '채팅에 참여하려면 가입하세요!',
   'chat.privateChat': '개인 채팅',
   'chat.description': '커뮤니티와 N64 게임에 대해 토론하세요',
@@ -736,18 +699,11 @@ const ko = {
   'chat.rules.noSpam': '스팸이나 반복 메시지 금지',
   'chat.rules.shareExperience': 'N64 경험을 공유하세요',
   'chat.rules.noLinks': '허가 없이 외부 링크 금지',
-
-  // Professional translations - final batch
-  'placeholder.raceTime': '시간 입력 (예: 1:23:45)...',
-  'events.timeFormat': '형식: 시간:분:초',
+  // Professional translations - final batch  'events.timeFormat': '형식: 시간:분:초',
   'events.selectDocumentation': '문서 선택',
   'events.photo': '사진',
   'events.video': '비디오',
-  'events.livestreamUrlLabel': '라이브스트림 URL',
-  'placeholder.livestreamUrl': 'https://twitch.tv/당신의-채널...',
-  'events.streamingPlatforms': '스트리밍 플랫폼',
-  'placeholder.setupController': '컨트롤러 설정 설명...',
-  'events.status.upcoming': '예정됨',
+  'events.livestreamUrlLabel': '라이브스트림 URL',  'events.streamingPlatforms': '스트리밍 플랫폼',  'events.status.upcoming': '예정됨',
   'card.fanarts': '팬아트',
   'card.forumPosts': '포럼 게시물',
   'card.marketplace': '마켓플레이스',
@@ -783,10 +739,7 @@ const ko = {
   'label.gameName': '게임 이름',
   'label.required': '(필수)',
   'label.platform': '플랫폼',
-  'label.region': '지역',
-  'placeholder.gameName': '게임 이름 입력...',
-  'news.noNewsAvailable': '사용 가능한 뉴스가 없습니다',
-
+  'label.region': '지역',  'news.noNewsAvailable': '사용 가능한 뉴스가 없습니다',
   // Final remaining missing keys - professional translations
   'imageUpload.dropHere': '여기에 드롭',
   'imageUpload.uploadImage': '이미지 업로드',
@@ -821,7 +774,6 @@ const ko = {
   'rank.current': '현재',
   'rank.nextRank': '다음 랭크',
   'rank.maxRank': '최대 랭크 달성',
-
   // Cool Rank Titles (20 Levels)
   'Pixel Rookie': '픽셀 루키',
   'Button Masher': '버튼 매셔',
@@ -872,12 +824,6 @@ const ko = {
   'events.raceTime': '레이스 시간',
   'label.category': '카테고리',
   'label.proofUrl': '증명 URL',
-  'placeholder.category': '카테고리 선택...',
-  'placeholder.time': '시간 입력...',
-  'placeholder.score': '점수 입력...',
-  'placeholder.proofUrl': '증명 URL 입력...',
-  'placeholder.recordNotes': '기록 메모...',
-
   // Final TypeScript error fixes - professional translations
   'achievement.progress': '진행률',
   'achievement.requirements': '요구사항',
@@ -913,7 +859,6 @@ const ko = {
   'eventLeaderboard.documentation': '문서',
   'eventLeaderboard.viewMedia': '미디어 보기',
   'events.mobile.winner': '우승자',
-  
   // Best Lap Showcase
   'events.bestLap.title': '베스트 랩',
   'events.bestLap.photoAlt': '{username}의 {time} 기록으로 달성한 베스트 랩 스크린샷',
@@ -924,13 +869,11 @@ const ko = {
   'media.error': '미디어 오류',
   'error.invalidFile': '잘못된 파일',
   'alt.uploadPreview': '업로드 미리보기',
-
   // Accessibility keys
   'accessibility.skipToContent': '메인 콘텐츠로 건너뛰기',
   'accessibility.skipToNavigation': '네비게이션으로 건너뛰기',
   'accessibility.skippedToContent': '메인 콘텐츠로 건너뛰었습니다',
   'accessibility.skippedToNavigation': '네비게이션으로 건너뛰었습니다',
-
   // Homepage specific translations - 홈페이지 전용 번역
   'home.noLiveEvent': '활성 라이브 이벤트가 없습니다 - 다음 이벤트가 곧 시작됩니다!',
   'home.showAllEvents': '📅 모든 이벤트 보기',
@@ -943,7 +886,6 @@ const ko = {
   'home.clickToViewFull': '클릭하여 전체 크기로 보기',
   'home.clickToWatch': '클릭하여 시청',
   'home.noMediaSubmitted': '제출된 미디어 없음',
-
   // News items - 뉴스 항목
   'news.mariokartRecord': '🏆 Mario Kart 64 스피드런 세계 기록 경신!',
   'news.mariokartRecordContent': 'SpeedDemon64가 와리오 스타디움에서 1:42.33의 새로운 세계 기록을 세웠습니다!',
@@ -963,7 +905,6 @@ const ko = {
   'news.speedrunCategoryContent': 'Banjo-Kazooie에 새로운 Any% 카테고리를 추가했습니다. 지금 참여하세요!',
   'news.monthlyChallenge': '🏆 월간 챌린지 우승자',
   'news.monthlyChallengeContent': 'N64Master님, 10월 월간 챌린지 우승을 축하드립니다!',
-
   // Live Events - Mario Kart 64 Luigi's Raceway
   'events.mk64LuigisRaceway.title': '🏁 마리오 카트 64: 루이지 레이스웨이 스피드런 챌린지',
   'events.mk64LuigisRaceway.description': '전설적인 루이지 레이스웨이에서 당신의 속도를 보여주세요! 그란 투리스모 7 스타일의 한 달간 치열한 경쟁.',
@@ -978,7 +919,6 @@ const ko = {
   'events.mk64LuigisRaceway.prize3': '🥉 3위: Battle64 포인트 200 + 동메달',
   'events.mk64LuigisRaceway.prizeTop10': '🏆 상위 10위: F1 스타일 포인트 (25-18-15-12-10-8-6-4-2-1)',
   'events.mk64LuigisRaceway.prizeParticipation': '🎯 참가상: 모든 참가자에게 Battle64 포인트 5',
-
   // Live Events - San Francisco Rush Downtown
   'events.sfrDowntown.title': '🏙️ 샌프란시스코 러시: 다운타운 레이싱 챔피언십',
   'events.sfrDowntown.description': '샌프란시스코 다운타운 거리를 질주하세요! 한 달간의 익스트림 레이싱 액션.',
@@ -993,7 +933,6 @@ const ko = {
   'events.sfrDowntown.prize3': '🥉 3위: Battle64 포인트 200 + 스트리트 레이서',
   'events.sfrDowntown.prizeTop10': '🏆 상위 10위: F1 스타일 포인트 (25-18-15-12-10-8-6-4-2-1)',
   'events.sfrDowntown.prizeParticipation': '🎯 참가상: 모든 참가자에게 Battle64 포인트 5',
-
   // Live Events - Diddy Kong Racing Ancient Lake
   'events.dkrAncientLake.title': '🦍 디디 콩 레이싱: 고대 호수 타임 어택',
   'events.dkrAncientLake.description': '신비로운 고대 호수를 정복하세요! 진정한 N64 팬을 위한 레어 클래식의 전설적인 경쟁.',
@@ -1008,10 +947,8 @@ const ko = {
   'events.dkrAncientLake.prize3': '🥉 3위: Battle64 포인트 200 + 고대 레이서',
   'events.dkrAncientLake.prizeTop10': '🏆 상위 10위: F1 스타일 포인트 (25-18-15-12-10-8-6-4-2-1)',
   'events.dkrAncientLake.prizeParticipation': '🎯 참가상: 모든 참가자에게 Battle64 포인트 5점',
-
   // Home Ranking Section
   'home.yourRanking': '당신의 랭킹',
-
   // Ranking System
   'ranking.globalRank': '글로벌 순위',
   'ranking.totalPoints': '총 포인트',
@@ -1025,72 +962,62 @@ const ko = {
   'ranking.achievements': '업적',
   'ranking.verifiedRecords': '검증된 기록',
   'ranking.gamesOwned': '보유 게임',
-
   // Profile Ranking
   'profile.ranking': '랭킹',
   'profile.globalRanking': '글로벌 랭킹',
   'profile.rankingStats': '랭킹 통계',
-
   // FanArt Comments
-  'fanart.addComment': '댓글 추가...',
-
+  'fanart.addComment': '댓글 추가',
   // Interaction System
   'interaction.like': '좋아요',
   'interaction.unlike': '좋아요 취소',
   'interaction.comments': '댓글',
   'interaction.addComment': '댓글 추가',
-  'interaction.writeComment': '댓글을 작성하세요...',
+  'interaction.writeComment': '댓글을 작성하세요',
   'interaction.loginToLike': '좋아요를 위해 로그인',
   'interaction.loginToComment': '댓글을 위해 로그인',
   'interaction.viewCount': 'View count',
   'interaction.showComments': 'Show comments',
-
   // Time
   'time.justNow': '방금 전',
-
   // Media types
   'media.photo': '사진',
   'media.video': '동영상',
   'media.noMediaTooltip': 'No media yet – upload your video or screenshot to verify run',
-
   // Event Card specific translations
   'events.likes': '좋아요',
-  'events.views': '조회수', 
+  'events.views': '조회수',
   'events.comments': '댓글',
-
   // PWA Installation Prompt
   'pwa.installTitle': 'Battle64 설치',
   'pwa.installDescription': '오프라인 액세스와 빠른 로딩으로 완전한 앱 경험을 얻으세요!',
   'pwa.install': '앱 설치',
   'pwa.gotIt': '알겠습니다!',
   'pwa.iosStep1': '공유 버튼을 탭하세요',
-  'pwa.iosStep2': '그런 다음 "홈 화면에 추가"를 탭하세요',
+  'pwa.iosStep2': '그런 다음 \"홈 화면에 추가\"를 탭하세요',
   'common.later': '나중에',
-
   // Offline Functionality
   'offline.workingOffline': '오프라인으로 작업 중',
   'offline.backOnline': '다시 온라인!',
   'offline.cachedDataAvailable': '캐시된 데이터 사용 가능',
   'offline.cachedData': '캐시된 데이터',
-
   // Enhanced Chat
   'chat.communityChat': '커뮤니티 채팅',
   'chat.activeUsers': '활성 사용자',
-  'chat.loading': '메시지 로딩 중...',
+  'chat.loading': '메시지 로딩 중',
   'chat.noMessages': '아직 메시지가 없습니다',
   'chat.startConversation': '첫 번째로 대화를 시작하세요!',
-  'chat.typeMessage': '메시지를 입력하세요...',
+  'chat.typeMessage': '메시지를 입력하세요',
   'chat.emoji': '이모지 추가',
   'chat.scrollToBottom': '맨 아래로',
   'chat.errorLoading': '메시지 로딩 오류',
   'time.today': '오늘',
   'time.yesterday': '어제',
-
   // Realtime Events
   'events.nowLive': '이벤트가 현재 라이브 중입니다!',
   'realtime.connected': '실시간 연결 활성화',
   'realtime.disconnected': '실시간 연결 중단됨',
-  'realtime.reconnecting': '재연결 중...',
+  'realtime.reconnecting': '재연결 중',
   'realtime.newUpdate': '새로운 실시간 업데이트 사용 가능',
   'realtime.leaderboard.updated': '순위표가 업데이트됨',
   'realtime.points.updated': '포인트가 업데이트됨',
@@ -1098,7 +1025,6 @@ const ko = {
   'realtime.participant.left': '참가자가 떠남',
   'realtime.event.started': '이벤트 시작됨',
   'realtime.event.finished': '이벤트 종료됨',
-
   // PWA Installation
   'pwa.install.button': '앱 설치',
   'pwa.install.banner.title': 'Battle64를 앱으로 설치',
@@ -1107,9 +1033,8 @@ const ko = {
   'pwa.install.modal.description': '오프라인 접근과 푸시 알림이 있는 네이티브 앱 경험을 위해 Battle64를 설치하세요.',
   'pwa.install.ios.title': '홈 화면에 추가',
   'pwa.install.ios.step1': '브라우저 하단의 공유 버튼을 탭하세요',
-  'pwa.install.ios.step2': '아래로 스크롤하여 "홈 화면에 추가"를 선택하세요',
-  'pwa.install.ios.step3': '"추가"를 탭하여 앱을 설치하세요',
-
+  'pwa.install.ios.step2': '아래로 스크롤하여 \"홈 화면에 추가\"를 선택하세요',
+  'pwa.install.ios.step3': '\"추가\"를 탭하여 앱을 설치하세요',
   // Battle Map
   'battleMap.title': 'Battle64 지도',
   'battleMap.liveEvents': '실시간 이벤트',
@@ -1125,15 +1050,13 @@ const ko = {
   'battleMap.yourLocation': '귀하의 위치',
   'battleMap.noEvents': '근처에 실시간 이벤트 없음',
   'battleMap.participantCount': '참가자',
-
   // Live Leaderboard
   'leaderboard.live': '실시간 순위표',
-  'leaderboard.updating': '업데이트 중...',
+  'leaderboard.updating': '업데이트 중',
   'leaderboard.lastUpdate': '마지막 업데이트',
   'leaderboard.points.live': '실시간 포인트',
   'leaderboard.rank.changed': '순위 변경됨',
   'leaderboard.newRecord': '새 기록!',
-
   // GDPR Realtime
   'gdpr.realtime.title': '실시간 기능',
   'gdpr.realtime.description': '순위표, 이벤트, 채팅의 실시간 업데이트 활성화',
@@ -1143,13 +1066,11 @@ const ko = {
   'gdpr.location.description': '지역 이벤트와 근처 참가자를 위해 위치를 공유하세요',
   'gdpr.location.enable': '위치 활성화',
   'gdpr.location.disable': '위치 비활성화',
-
   // Offline Mode
   'offline.title': '오프라인 모드',
   'offline.description': '오프라인 상태입니다. 일부 기능이 제한됩니다.',
   'offline.cached': '캐시된 콘텐츠 표시',
   'offline.retry': '다시 시도',
-
   // Common - New additions
   'common.understood': '이해했습니다',
   'common.success': '성공',
@@ -1157,11 +1078,9 @@ const ko = {
   'settings.privacy.title': '개인정보 설정',
   'settings.notifications.title': '알림 설정',
   'settings.notifications.description': '알림 기본 설정 관리',
-
   // GDPR Notice
   'gdpr.notice.title': '개인정보 보호 고지',
   'gdpr.notice.description': '귀하의 개인정보를 존중하며 데이터 보호를 위한 GDPR 지침을 따릅니다',
-
   // 법적 조항 및 규정 준수
   'legal.ageVerification': '연령 인증',
   'legal.birthDate': '생년월일',
@@ -1179,7 +1098,6 @@ const ko = {
   'legal.adultOnlyPlatform': 'Battle64는 18세 이상 사용자 전용입니다',
   'legal.readTerms': '서비스 약관 읽기',
   'legal.readPrivacy': '개인정보 처리방침 읽기',
-  
   // 서비스 약관 내용
   'terms.title': '서비스 약관',
   'terms.lastUpdated': '마지막 업데이트: {date}',
@@ -1199,7 +1117,6 @@ const ko = {
   'terms.section7.content': 'Battle64는 닌텐도와 관련이 없습니다. 닌텐도 로고, 오리지널 N64 표지 또는 ROM을 업로드하지 마십시오.',
   'terms.section8.title': '8. 계정 해지',
   'terms.section8.content': '서비스 약관 위반 시 사전 통지 없이 계정을 해지할 권리를 보유합니다.',
-  
   // 개인정보 처리방침 내용
   'privacy.title': '개인정보 처리방침',
   'privacy.lastUpdated': '마지막 업데이트: {date}',
@@ -1217,7 +1134,6 @@ const ko = {
   'privacy.section6.content': '계정이 활성화되어 있는 동안 데이터를 보관합니다. 삭제된 계정은 모든 데이터가 영구적으로 삭제됩니다.',
   'privacy.section7.title': '7. 연락처',
   'privacy.section7.content': '개인정보 보호 문의는 privacy@battle64.com으로 연락해 주십시오',
-  
   // 쿠키 동의
   'cookies.title': '쿠키 동의',
   'cookies.description': '경험 향상을 위해 쿠키를 사용합니다. 설정을 선택해 주십시오.',
@@ -1233,7 +1149,6 @@ const ko = {
   'cookies.acceptSelected': '선택한 것 수락',
   'cookies.rejectAll': '모두 거부',
   'cookies.managePreferences': '쿠키 설정 관리',
-  
   // 신고 및 조정
   'report.title': '콘텐츠 신고',
   'report.reason': '신고 사유',
@@ -1249,13 +1164,11 @@ const ko = {
   'report.success': '콘텐츠 신고가 성공했습니다',
   'report.error': '신고 제출에 실패했습니다',
   'report.alreadyReported': '이미 이 콘텐츠를 신고했습니다',
-  
   // 콘텐츠 조정
   'moderation.contentHidden': '여러 신고로 인해 이 콘텐츠가 숨겨졌습니다',
   'moderation.underReview': '이 콘텐츠는 검토 중입니다',
   'moderation.removed': '이 콘텐츠는 운영자에 의해 삭제되었습니다',
   'moderation.appealProcess': '이것이 오류라고 생각되시면 지원팀에 문의하십시오',
-  
   // 관리자 대시보드
   'admin.dashboard': '관리자 대시보드',
   'admin.reports': '신고',
@@ -1276,17 +1189,15 @@ const ko = {
   'admin.actionReason': '조치 사유',
   'admin.actionNotes': '추가 메모',
   'admin.confirmAction': '조치 확인',
-  
   // 계정 삭제 (GDPR)
   'account.delete': '계정 삭제',
   'account.deleteWarning': '정말로 계정을 삭제하시겠습니까? 모든 콘텐츠가 영구적으로 삭제됩니다.',
-  'account.deleteConfirmation': '계정 삭제를 확인하려면 "DELETE"를 입력하십시오',
+  'account.deleteConfirmation': '계정 삭제를 확인하려면 \"DELETE\"를 입력하십시오',
   'account.deleteSuccess': '계정이 성공적으로 삭제되었습니다',
   'account.deleteError': '계정 삭제에 실패했습니다',
   'account.dataExport': '내 데이터 내보내기',
   'account.dataExportDescription': '모든 데이터를 JSON 형식으로 다운로드',
   'account.dataExportSuccess': '데이터 내보내기가 요청되었습니다. 데이터가 포함된 이메일을 받게 됩니다.',
-  
   // 업로드 보안
   'upload.rightsConfirmation': '콘텐츠 권리 확인',
   'upload.confirmRights': '이 콘텐츠에 대한 권리를 소유하고 있으며 저작권을 침해하지 않음을 확인합니다',
@@ -1295,13 +1206,183 @@ const ko = {
   'upload.nsfwDetected': '잠재적으로 부적절한 콘텐츠가 감지되었습니다',
   'upload.manualReview': '이 업로드는 게시 전에 수동으로 검토됩니다',
   'upload.approvalPending': '업로드 승인 대기 중',
-  
   // 바닥글 링크
   'footer.terms': '약관',
   'footer.privacy': '개인정보보호',
   'footer.contact': '연락처',
   'footer.imprint': '법적 고지',
-  'footer.copyright': '© 2024 Battle64. 닌텐도와 관련이 없습니다.'
+  'footer.copyright': '© 2024 Battle64. 닌텐도와 관련이 없습니다.',
+  // Additional missing translations
+  'platform.pc': 'PC',
+  'region.pal': 'PAL',
+  'region.ntsc': 'NTSC',
+  'currency.eur': 'EUR',
+  'currency.usd': 'USD',
+  'currency.gbp': 'GBP',
+  // Equalized translation keys - added 2025-08-09
+  'account.deletion.confirmDelete': '삭제',
+  'account.deletion.dataWillBeDeleted': '다음 데이터가 영구적으로 삭제됩니다:',
+  'account.deletion.errorConfirmText': '확인하려면 \"삭제\"를 입력하세요',
+  'account.deletion.errorGeneric': '계정 삭제 오류',
+  'account.deletion.errorUnexpected': '계정 삭제 중 예상치 못한 오류',
+  'account.deletion.forumPosts': '포럼 게시물 및 댓글',
+  'account.deletion.gameCollection': '게임 컬렉션',
+  'account.deletion.gdprNotice': 'GDPR 고지',
+  'account.deletion.gdprText': '삭제 후, 귀하의 모든 개인 데이터는 일반 데이터 보호 규정에 따라 당사 시스템에서 완전히 제거됩니다.',
+  'account.deletion.profileData': '프로필 및 모든 개인 데이터',
+  'account.deletion.recordsAchievements': '모든 기록 및 업적',
+  'account.deletion.title': '계정 삭제',
+  'account.deletion.warning': '이 작업은 되돌릴 수 없습니다!',
+  'account.deletionPage.cannotUndo': 'account.deletionPage.cannotUndo',
+  'account.deletionPage.contentActivity': 'account.deletionPage.contentActivity',
+  'account.deletionPage.contentActivityItems': 'account.deletionPage.contentActivityItems',
+  'account.deletionPage.continueWithDeletion': 'account.deletionPage.continueWithDeletion',
+  'account.deletionPage.exportDataFirst': 'account.deletionPage.exportDataFirst',
+  'account.deletionPage.finalConfirmation': 'account.deletionPage.finalConfirmation',
+  'account.deletionPage.personalData': 'account.deletionPage.personalData',
+  'account.deletionPage.personalDataItems': 'account.deletionPage.personalDataItems',
+  'account.deletionPage.pleaseTypeDelete': 'account.deletionPage.pleaseTypeDelete',
+  'account.deletionPage.typeDeleteConfirm': 'account.deletionPage.typeDeleteConfirm',
+  'account.deletionPage.warning': 'account.deletionPage.warning',
+  'account.deletionPage.whatWillBeDeleted': 'account.deletionPage.whatWillBeDeleted',
+  'admin.appHealth': 'admin.appHealth',
+  'admin.health.cache': 'admin.health.cache',
+  'admin.health.errors': 'admin.health.오류s',
+  'admin.health.sessions': 'admin.health.sessions',
+  'admin.health.uptime': 'admin.health.uptime',
+  'admin.illegalContent': 'admin.illegalContent',
+  'admin.moderationOverview': 'admin.moderationOverview',
+  'admin.newBugs': 'admin.newBugs',
+  'admin.noReport': 'admin.noReport',
+  'admin.none': 'admin.none',
+  'admin.subtitle': 'admin.subtitle',
+  'admin.tasks': 'admin.tasks',
+  'admin.tasks.autoDone': 'admin.tasks.autoDone',
+  'admin.tasks.bugsFixed': 'admin.tasks.bugsFixed',
+  'admin.tasks.pending': 'admin.tasks.pending',
+  'admin.tasks.problematic': 'admin.tasks.problematic',
+  'admin.title': 'admin.title',
+  'admin.totalViolations': 'admin.totalViolations',
+  'admin.usersBanned': 'admin.usersBanned',
+  'admin.usersWarned': 'admin.usersWarned',
+  'auth.safariRedirectSuccess': 'auth.safariRedirectSuccess',
+  'error.accessDenied': '접근 거부됨',
+  'error.imagePreviewFailed': '오류.imagePreviewFailed',
+  'error.moderationBlocked': '오류.moderationBlocked',
+  'error.timeout': '요청 시간 초과',
+  'error.uploadFailed': '오류.uploadFailed',
+  'error.validationError': '유효성 검사 오류',
+  'imageUpload.noPreview': 'imageUpload.noPreview',
+  'loading.content': '콘텐츠 로딩 중',
+  'loading.data': '데이터 로딩 중',
+  'loading.general': '로딩 중',
+  'loading.image': '이미지 로딩 중',
+  'loading.page': '페이지 로딩 중',
+  'loading.video': '비디오 로딩 중',
+  'map.battleDashboard': 'map.battleDashboard',
+  'map.liveBattles': 'map.liveBattles',
+  'map.resetView': 'map.resetView',
+  'map.smartMatchmaking': 'map.smartMatchmaking',
+  'password.reset.checkSpam': 'password.reset.checkSpam',
+  'password.reset.emailLabel': 'password.reset.emailLabel',
+  'password.reset.emailPlaceholder': 'password.reset.emailPlaceholder',
+  'password.reset.emailSent': 'password.reset.emailSent',
+  'password.reset.errorUnexpected': 'password.reset.오류Unexpected',
+  'password.reset.errorUnknown': 'password.reset.오류Unknown',
+  'password.reset.instructions': 'password.reset.instructions',
+  'password.reset.sendButton': 'password.reset.sendButton',
+  'password.reset.sending': 'password.reset.sending',
+  'password.reset.successMessage': 'password.reset.successMessage',
+  'password.reset.title': 'password.reset.title',
+  'password.reset.understood': 'password.reset.understood',
+  'safari.copied': 'safari.copied',
+  'safari.copyURL': 'safari.copyURL',
+  'safari.manualInstructions': 'safari.manualInstructions',
+  'safari.manualStepsTitle': 'safari.manualStepsTitle',
+  'safari.openInSafari': 'safari.openInSafari',
+  'safari.redirectMessage': 'safari.redirectMessage',
+  'safari.redirectTitle': 'safari.redirectTitle',
+  'safari.step1': 'safari.step1',
+  'safari.step2': 'safari.step2',
+  'safari.step3': 'safari.step3',
+  'status.completed': '완료',
+  'status.connected': '연결됨',
+  'status.connecting': '연결 중',
+  'status.disconnected': '연결 끊김',
+  'status.failed': '실패',
+  'status.inProgress': '진행 중',
+  'status.offline': '오프라인',
+  'status.online': '온라인',
+  'status.synced': '동기화됨',
+  'status.syncing': '동기화 중',
+  'time.ago': 'time.ago',
+  'time.always': 'time.always',
+  'time.elapsed': 'time.elapsed',
+  'time.lastMonth': 'time.lastMonth',
+  'time.lastWeek': 'time.lastWeek',
+  'time.lastYear': 'time.lastYear',
+  'time.never': 'time.never',
+  'time.now': 'time.now',
+  'time.thisMonth': 'time.thisMonth',
+  'time.thisWeek': 'time.thisWeek',
+  'time.thisYear': 'time.thisYear',
+  'time.tomorrow': 'time.tomorrow',
+  'units.bytes': 'units.bytes',
+  'units.days': 'units.days',
+  'units.gb': 'units.gb',
+  'units.hours': 'units.hours',
+  'units.kb': 'units.kb',
+  'units.mb': 'units.mb',
+  'units.minutes': 'units.minutes',
+  'units.months': 'units.months',
+  'units.seconds': 'units.seconds',
+  'units.weeks': 'units.weeks',
+  'units.years': 'units.years',
+  'validation.emptyFile': 'validation.emptyFile',
+  'validation.imageFilesOnly': 'validation.imageFilesOnly',
+  'validation.imageTooLarge': 'validation.imageTooLarge',
+  'validation.supportedFormats': 'validation.supportedFormats',
+  'validation.unsupportedFormat': 'validation.unsupportedFormat',
+  // Legal & Privacy translation keys - added 2025-08-09
+  'cookies.alwaysActive': '항상 활성',
+  'account.deletionPage.gdprCompliant': 'GDPR 준수 계정 삭제',
+  'account.deletionPage.gdprInformation': 'GDPR 정보',
+  'account.deletionPage.rightsUnderGdpr': 'GDPR에 따른 귀하의 권리',
+  'account.deletionPage.rightToErasure': '삭제권：',
+  'account.deletionPage.rightToErasureText': 'GDPR 제17조에 따라 개인 데이터를 삭제할 권리가 있습니다.',
+  'account.deletionPage.dataRetention': '데이터 보관：',
+  'account.deletionPage.dataRetentionText': '삭제 후 30일 이내에 시스템에서 데이터가 영구적으로 제거됩니다.',
+  'account.deletionPage.backupRemoval': '백업 제거：',
+  'account.deletionPage.backupRemovalText': '다음 백업 주기 동안 모든 백업에서도 데이터가 제거됩니다.',
+  'account.deletionPage.legalObligations': '법적 의무：',
+  'account.deletionPage.legalObligationsText': '법률에서 요구하는 경우 일부 데이터가 보관될 수 있습니다（예: 세무 목적의 재무 기록）.',
+  // Final hardcoded text fixes - added 2025-08-09
+  'account.deletionPage.deleting': '삭제 중',
+  'account.deletionPage.deleteAccountPermanently': '계정 영구 삭제',
+  // Nintendo-specific translation keys - added 2025-08-09
+  'terms.nintendoCopyrightNotice': '닌텐도 저작권 고지：',
+  'terms.nintendoFullDisclaimer': 'Battle64는 독립적인 레트로 게임 커뮤니티이며 Nintendo Co., Ltd.와 제휴, 승인 또는 후원 관계에 있지 않습니다. Nintendo 64, N64 및 관련된 모든 캐릭터, 이름, 마크, 엠블럼 및 이미지는 Nintendo의 상표입니다. 다른 모든 상표는 각각의 소유자의 재산입니다.',
+  'marketplace.n64ControllerTitle': 'N64 컨트롤러 - 닌텐도 정품',
+  'marketplace.n64ControllerDescription': '닌텐도 정품 컨트롤러, 매우 좋은 상태',
+  'marketplace.n64ControllerDescriptionDE': '원래 N64 컨트롤러, 좋은 상태. 모든 버튼이 완벽하게 작동합니다.',
+  'upload.video': '레이스 비디오를 업로드하세요',
+  'upload.screenshot': '완주 시간의 스크린샷을 업로드하세요',
+  'cookies.showDetails': '세부정보 보기',
+  'cookies.hideDetails': '세부정보 숨기기',
+  'records.pendingCount': '{count}개 대기중',
+  'records.verifiedCount': '{count}개의 검증된 기록',
+  'records.userRecords': '{username}의 기록',
+  'records.myRecords': '내 기록',
+  'marketplace.goldeneye.description': '박스, 설명서, 카트리지가 포함된 완전한 게임',
+  'marketplace.goldeneye.title': '골든아이 007 - 박스 포함 완품',
+  'marketplace.mario64.description': '설명서가 포함된 최상급 상태의 정품 카트리지',
+  'marketplace.mario64.title': '슈퍼 마리오 64 - 최상급 상태',
+  'fanart.banjo.adventure': '반조와 카주이의 모험',
+  'fanart.zelda.battle': '링크 대 가논돌프 서사적 전투',
+  'fanart.mario.castle': '피치 성의 마리오',
+  'forum.untitledThread': '제목 없는 스레드',
+  'error.invalidDataFormat': '잘못된 데이터 형식',
+  'common.user': '사용자'
 }
 
 export default ko

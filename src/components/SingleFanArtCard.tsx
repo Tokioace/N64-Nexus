@@ -130,7 +130,7 @@ const SingleFanArtCard: React.FC<SingleFanArtCardProps> = ({ fanArtItems, classN
       
       {/* Meta symbols in corner */}
       <div className="absolute bottom-3 right-3 flex items-center gap-1">
-        <div className="text-slate-400" title="Fan Art">
+        <div className="text-slate-400" title={t('nav.fanart')}>
           <Image className="w-4 h-4" />
         </div>
         {item.createdAt && (

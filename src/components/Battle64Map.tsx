@@ -748,7 +748,7 @@ const Battle64Map: React.FC = () => {
           
           // Simple region detection based on coordinates (for demo purposes)
           let country = 'Germany'
-          let region = 'Unknown'
+          let region = t('common.unknown')
           let postalCode = '00000'
           
           // Basic coordinate-based region detection
@@ -1030,7 +1030,7 @@ const Battle64Map: React.FC = () => {
                   <button
                     onClick={() => setShowBattleStats(true)}
                     className="p-1.5 sm:p-2 bg-slate-700/80 text-slate-300 hover:bg-slate-600/80 hover:text-yellow-400 rounded-lg transition-all"
-                    title="Battle Dashboard"
+                    title={t('map.battleDashboard')}
                   >
                     <Award className="w-3 h-3 sm:w-4 sm:h-4" />
                   </button>
@@ -1044,7 +1044,7 @@ const Battle64Map: React.FC = () => {
                       ? 'bg-red-600/20 text-red-400 hover:bg-red-600/30 animate-pulse'
                       : 'bg-slate-700/80 text-slate-300 hover:bg-slate-600/80'
                   }`}
-                  title="Live Battles"
+                  title={t('map.liveBattles')}
                 >
                   <Eye className="w-3 h-3 sm:w-4 sm:h-4" />
                   {liveBattles.length > 0 && (
@@ -1059,7 +1059,7 @@ const Battle64Map: React.FC = () => {
                   <button
                     onClick={() => setShowMatchmaking(true)}
                     className="p-1.5 sm:p-2 bg-slate-700/80 text-slate-300 hover:bg-slate-600/80 hover:text-blue-400 rounded-lg transition-all"
-                    title="Smart Matchmaking"
+                    title={t('map.smartMatchmaking')}
                   >
                     <Zap className="w-3 h-3 sm:w-4 sm:h-4" />
                   </button>
@@ -1573,7 +1573,7 @@ const Battle64Map: React.FC = () => {
                   ? 'bg-slate-900/90 border-yellow-500/50 text-yellow-400 hover:bg-slate-800/90' 
                   : 'bg-slate-800/90 border-slate-600 text-slate-300 hover:bg-slate-700/90'
               }`}
-              title="Reset View"
+              title={t('map.resetView')}
               style={{ touchAction: 'manipulation' }}
             >
               <Home className="w-4 h-4" />

@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react'
 import { User, UserRegistrationData, UserCollection, PersonalRecord, AuthUser, DatabaseCollection, DatabasePersonalRecord, DatabaseProfile } from '../types'
 import { logger } from '../lib/logger'
+import { useLanguage } from '../contexts/LanguageContext'
 
 interface UserContextType {
   user: User | null
@@ -23,6 +24,8 @@ interface UserContextType {
 const UserContext = createContext<UserContextType | undefined>(undefined)
 
 export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+  const { t } = useLanguage()
+
   const [user, setUser] = useState<User | null>(null)
   const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [isLoading, setIsLoading] = useState(false)

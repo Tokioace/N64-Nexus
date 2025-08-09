@@ -360,7 +360,7 @@ const EventsPage: React.FC = () => {
                     >
                       <Info className="event-icon" />
                       <span className="hidden sm:inline lg:inline">{showDetails ? t('common.hide') : t('common.details')}</span>
-                      <span className="sm:hidden lg:hidden">{showDetails ? 'Hide' : 'Info'}</span>
+                      <span className="sm:hidden lg:hidden">{showDetails ? t('common.hide') : 'Info'}</span>
                     </button>
                   </div>
                 </div>

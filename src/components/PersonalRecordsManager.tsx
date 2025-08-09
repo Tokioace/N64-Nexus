@@ -103,11 +103,11 @@ const PersonalRecordsManager: React.FC<PersonalRecordsProps> = ({ isOwnProfile =
       <div className="flex items-center justify-between">
         <div>
           <h2 className="text-2xl font-bold text-slate-100">
-            {isOwnProfile ? 'Meine Rekorde' : `${user.username}s Rekorde`}
+            {isOwnProfile ? t('records.myRecords') : t('records.userRecords', { username: user.username })}
           </h2>
           <p className="text-slate-400">
-            {user.personalRecords.filter((r: any) => r.verified).length} verifizierte Rekorde, {' '}
-            {user.personalRecords.filter((r: any) => !r.verified).length} ausstehend
+                          {t('records.verifiedCount', { count: user.personalRecords.filter((r: any) => r.verified).length.toString() })}, {' '}
+              {t('records.pendingCount', { count: user.personalRecords.filter((r: any) => !r.verified).length.toString() })}
           </p>
         </div>
         
@@ -335,7 +335,7 @@ const PersonalRecordsManager: React.FC<PersonalRecordsProps> = ({ isOwnProfile =
                     className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-slate-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
                   >
                     <option value="N64">N64</option>
-                    <option value="PC">PC</option>
+                    <option value="PC">{t('platform.pc')}</option>
                   </select>
                 </div>
 
@@ -348,8 +348,8 @@ const PersonalRecordsManager: React.FC<PersonalRecordsProps> = ({ isOwnProfile =
                     onChange={(e) => setNewRecord({ ...newRecord, region: e.target.value as 'PAL' | 'NTSC' })}
                     className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-slate-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
                   >
-                    <option value="PAL">PAL</option>
-                    <option value="NTSC">NTSC</option>
+                    <option value="PAL">{t('region.pal')}</option>
+                    <option value="NTSC">{t('region.ntsc')}</option>
                   </select>
                 </div>
               </div>

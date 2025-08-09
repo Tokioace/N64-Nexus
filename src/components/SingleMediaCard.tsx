@@ -240,7 +240,7 @@ const SingleMediaCard: React.FC<SingleMediaCardProps> = ({ mediaItems, className
                       </div>
                       <div className="border-t border-slate-600/30 pt-3 mt-auto">
                         <div className="flex items-center justify-between text-sm text-text-muted">
-                          <span>{mediaItems[currentIndex - 1]?.uploader || 'Unknown'}</span>
+                          <span>{mediaItems[currentIndex - 1]?.uploader || t('common.unknown')}</span>
                           <span className="font-medium">{mediaItems[currentIndex - 1]?.date ? formatTime(mediaItems[currentIndex - 1].date) : '--:--'}</span>
                         </div>
                       </div>

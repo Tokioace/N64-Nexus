@@ -11,11 +11,14 @@ import { ForumProvider } from '../../contexts/ForumContext'
 import { PointsProvider } from '../../contexts/PointsContext'
 import { InteractionProvider } from '../../contexts/InteractionContext'
 import { MapProvider } from '../../contexts/MapContext'
+// import { useLanguage } from '../contexts/LanguageContext' // Disabled to prevent circular reference
 
 /**
  * Custom render function that wraps components with all necessary providers
  */
 const AllTheProviders: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  // const { t } = useLanguage() // Disabled to prevent circular reference
+
   return (
     <BrowserRouter>
       <LanguageProvider>

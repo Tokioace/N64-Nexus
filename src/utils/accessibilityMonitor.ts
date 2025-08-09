@@ -4,6 +4,7 @@
  */
 
 import { logger } from '../lib/logger'
+import { useLanguage } from '../contexts/LanguageContext'
 
 interface AccessibilityViolation {
   id: string

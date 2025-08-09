@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from 'react'
 import { supabase } from '../lib/supabase'
 import { useRealtimeSpeedruns } from './useRealtimeSub'
 import { logger } from '../lib/logger'
+import { useLanguage } from '../contexts/LanguageContext'
 
 interface LeaderboardEntry {
   rank: number

@@ -1,5 +1,6 @@
 import { lazy, Suspense } from 'react'
 import { Loader2 } from 'lucide-react'
+import { useLanguage } from '../contexts/LanguageContext'
 
 // Loading component
 const LoadingSpinner = () => (
