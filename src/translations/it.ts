@@ -1318,6 +1318,14 @@ const it = {
   'footer.contact': 'Contatto',
   'footer.imprint': 'Note Legali',
   'footer.copyright': '© 2024 Battle64. Non affiliato con Nintendo.'
+
+  // Additional missing translations
+  'platform.pc': 'PC',
+  'region.pal': 'PAL',
+  'region.ntsc': 'NTSC',
+  'currency.eur': 'EUR',
+  'currency.usd': 'USD',
+  'currency.gbp': 'GBP',
 }
 
 export default it

@@ -20,8 +20,8 @@ const AccountDeletionModal: React.FC<AccountDeletionModalProps> = ({
   const [confirmText, setConfirmText] = useState('')
 
   const handleDelete = async () => {
-    if (confirmText !== 'LÖSCHEN') {
-      setError('Bitte gib "LÖSCHEN" ein, um zu bestätigen')
+    if (confirmText !== t('account.deletion.confirmDelete')) {
+      setError(t('account.deletion.errorConfirmText'))
       return
     }
 
@@ -34,10 +34,10 @@ const AccountDeletionModal: React.FC<AccountDeletionModalProps> = ({
       if (result.success) {
         onSuccess()
       } else {
-        setError(result.error || 'Fehler beim Löschen des Kontos')
+        setError(result.error || t('account.deletion.errorGeneric'))
       }
     } catch {
-      setError('Unerwarteter Fehler beim Löschen des Kontos')
+      setError(t('account.deletion.errorUnexpected'))
     } finally {
       setLoading(false)
     }
@@ -61,7 +61,7 @@ const AccountDeletionModal: React.FC<AccountDeletionModalProps> = ({
               <AlertTriangle className="w-5 h-5 text-white" />
             </div>
             <h2 className="text-xl font-bold text-slate-100">
-              Konto löschen
+              {t('account.deletion.title')}
             </h2>
           </div>
           <button
@@ -77,13 +77,13 @@ const AccountDeletionModal: React.FC<AccountDeletionModalProps> = ({
           <div className="flex items-start">
             <AlertTriangle className="w-5 h-5 text-red-400 mr-2 flex-shrink-0 mt-0.5" />
             <div className="text-red-400 text-sm">
-              <p className="font-medium mb-2">Diese Aktion kann nicht rückgängig gemacht werden!</p>
-              <p>Folgende Daten werden dauerhaft gelöscht:</p>
+              <p className="font-medium mb-2">{t('account.deletion.warning')}</p>
+              <p>{t('account.deletion.dataWillBeDeleted')}</p>
               <ul className="list-disc list-inside mt-2 space-y-1">
-                <li>Dein Profil und alle persönlichen Daten</li>
-                <li>Deine Spielesammlung</li>
-                <li>Alle deine Rekorde und Erfolge</li>
-                <li>Forum-Beiträge und Kommentare</li>
+                <li>{t('account.deletion.profileData')}</li>
+                <li>{t('account.deletion.gameCollection')}</li>
+                <li>{t('account.deletion.recordsAchievements')}</li>
+                <li>{t('account.deletion.forumPosts')}</li>
               </ul>
             </div>
           </div>
@@ -92,8 +92,7 @@ const AccountDeletionModal: React.FC<AccountDeletionModalProps> = ({
         {/* DSGVO Information */}
         <div className="bg-blue-600/20 border border-blue-600/30 rounded-lg p-4 mb-6">
           <p className="text-blue-400 text-sm">
-            <strong>DSGVO-Hinweis:</strong> Nach der Löschung werden alle deine personenbezogenen 
-            Daten gemäß der Datenschutz-Grundverordnung vollständig aus unseren Systemen entfernt.
+            <strong>{t('account.deletion.gdprNotice')}:</strong> {t('account.deletion.gdprText')}
           </p>
         </div>
 
@@ -107,14 +106,14 @@ const AccountDeletionModal: React.FC<AccountDeletionModalProps> = ({
         {/* Confirmation Input */}
         <div className="mb-6">
           <label className="block text-sm font-medium text-slate-300 mb-2">
-            Gib "LÖSCHEN" ein, um zu bestätigen:
+            {t('account.deletion.typeDelete')}
           </label>
           <input
             type="text"
             value={confirmText}
             onChange={(e) => setConfirmText(e.target.value)}
             className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-slate-100 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
-            placeholder="LÖSCHEN"
+            placeholder={t('account.deletion.confirmDelete')}
           />
         </div>
 
@@ -125,7 +124,7 @@ const AccountDeletionModal: React.FC<AccountDeletionModalProps> = ({
             onClick={handleClose}
             className="flex-1 py-3 bg-slate-600 hover:bg-slate-700 text-slate-200 font-medium rounded-lg transition-colors"
           >
-            Abbrechen
+            {t('common.cancel')}
           </button>
           <button
             onClick={handleDelete}

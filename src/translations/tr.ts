@@ -1304,6 +1304,14 @@ const tr = {
   'footer.contact': 'İletişim',
   'footer.imprint': 'Yasal Bilgiler',
   'footer.copyright': '© 2024 Battle64. Nintendo ile bağlantılı değildir.'
+
+  // Additional missing translations
+  'platform.pc': 'PC',
+  'region.pal': 'PAL',
+  'region.ntsc': 'NTSC',
+  'currency.eur': 'EUR',
+  'currency.usd': 'USD',
+  'currency.gbp': 'GBP',
 }
 
 export default tr

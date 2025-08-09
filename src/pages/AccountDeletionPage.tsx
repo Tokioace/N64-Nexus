@@ -29,8 +29,8 @@ const AccountDeletionPage: React.FC = () => {
   }
 
   const handleDeleteAccount = async () => {
-    if (confirmationText !== 'DELETE') {
-      setError('Please type "DELETE" to confirm')
+    if (confirmationText !== t('account.deletion.confirmDelete')) {
+      setError(t('account.deletionPage.pleaseTypeDelete'))
       return
     }
 
@@ -65,7 +65,7 @@ const AccountDeletionPage: React.FC = () => {
         <div className="flex items-center space-x-3 mb-4">
           <AlertTriangle className="w-6 h-6 text-red-400 flex-shrink-0" />
           <h2 className="text-xl font-bold text-red-200">
-            Account Deletion Warning
+            {t('account.deletionPage.warning')}
           </h2>
         </div>
         <p className="text-red-100 leading-relaxed">
@@ -75,28 +75,25 @@ const AccountDeletionPage: React.FC = () => {
 
       <div className="space-y-4">
         <h3 className="text-lg font-semibold text-slate-200">
-          What will be deleted:
+          {t('account.deletionPage.whatWillBeDeleted')}
         </h3>
         
         <div className="grid md:grid-cols-2 gap-4">
           <div className="p-4 bg-slate-700/30 border border-slate-600 rounded-lg">
-            <h4 className="font-medium text-slate-200 mb-2">Personal Data</h4>
+            <h4 className="font-medium text-slate-200 mb-2">{t('account.deletionPage.personalData')}</h4>
             <ul className="space-y-1 text-slate-400 text-sm">
-              <li>• Profile information</li>
-              <li>• Account credentials</li>
-              <li>• Birth date and verification</li>
-              <li>• Email address</li>
+              {t('account.deletionPage.personalDataItems').split('|').map((item, index) => (
+                <li key={index}>• {item}</li>
+              ))}
             </ul>
           </div>
           
           <div className="p-4 bg-slate-700/30 border border-slate-600 rounded-lg">
-            <h4 className="font-medium text-slate-200 mb-2">Content & Activity</h4>
+            <h4 className="font-medium text-slate-200 mb-2">{t('account.deletionPage.contentActivity')}</h4>
             <ul className="space-y-1 text-slate-400 text-sm">
-              <li>• Speedrun records</li>
-              <li>• Forum posts and comments</li>
-              <li>• Media uploads</li>
-              <li>• Collections and wishlists</li>
-              <li>• Event participations</li>
+              {t('account.deletionPage.contentActivityItems').split('|').map((item, index) => (
+                <li key={index}>• {item}</li>
+              ))}
             </ul>
           </div>
         </div>
@@ -105,7 +102,7 @@ const AccountDeletionPage: React.FC = () => {
       <div className="bg-blue-600/20 border border-blue-600/30 rounded-lg p-4">
         <div className="flex items-center space-x-3 mb-3">
           <Download className="w-5 h-5 text-blue-400" />
-          <h4 className="font-medium text-blue-200">Export Your Data First</h4>
+          <h4 className="font-medium text-blue-200">{t('account.deletionPage.exportDataFirst')}</h4>
         </div>
         <p className="text-blue-100 text-sm mb-4">
           {t('account.dataExportDescription')}
@@ -123,13 +120,13 @@ const AccountDeletionPage: React.FC = () => {
           to="/profile"
           className="flex-1 py-3 px-4 bg-slate-600 hover:bg-slate-700 text-slate-200 rounded-lg transition-colors text-center"
         >
-          Cancel
+          {t('common.cancel')}
         </Link>
         <button
           onClick={() => setStep('confirmation')}
           className="flex-1 py-3 px-4 bg-red-600 hover:bg-red-700 text-white rounded-lg transition-colors"
         >
-          Continue with Deletion
+          {t('account.deletionPage.continueWithDeletion')}
         </button>
       </div>
     </div>
@@ -141,23 +138,23 @@ const AccountDeletionPage: React.FC = () => {
         <div className="flex items-center space-x-3 mb-4">
           <Trash2 className="w-6 h-6 text-red-400 flex-shrink-0" />
           <h2 className="text-xl font-bold text-red-200">
-            Final Confirmation
+            {t('account.deletionPage.finalConfirmation')}
           </h2>
         </div>
         <p className="text-red-100 leading-relaxed mb-4">
-          This action cannot be undone. Your account and all associated data will be permanently deleted within 30 days.
+          {t('account.deletionPage.cannotUndo')}
         </p>
         
         <div className="bg-red-700/30 border border-red-600/50 rounded-lg p-4">
           <p className="text-red-100 text-sm font-medium mb-2">
-            Type "DELETE" to confirm:
+            {t('account.deletionPage.typeDeleteConfirm')}
           </p>
           <input
             type="text"
             value={confirmationText}
             onChange={(e) => setConfirmationText(e.target.value)}
             className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded text-slate-100 focus:outline-none focus:ring-2 focus:ring-red-500"
-            placeholder="DELETE"
+            placeholder={t('account.deletion.confirmDelete')}
           />
         </div>
       </div>

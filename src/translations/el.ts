@@ -1352,6 +1352,14 @@ const el = {
   'footer.contact': 'Επικοινωνία',
   'footer.imprint': 'Νομικές Πληροφορίες',
   'footer.copyright': '© 2024 Battle64. Δεν συνδέεται με τη Nintendo.'
+
+  // Additional missing translations
+  'platform.pc': 'PC',
+  'region.pal': 'PAL',
+  'region.ntsc': 'NTSC',
+  'currency.eur': 'EUR',
+  'currency.usd': 'USD',
+  'currency.gbp': 'GBP',
 }
 
 export default el

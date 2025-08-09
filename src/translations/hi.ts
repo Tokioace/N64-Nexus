@@ -1302,6 +1302,14 @@ const hi = {
   'footer.contact': 'संपर्क',
   'footer.imprint': 'कानूनी जानकारी',
   'footer.copyright': '© 2024 Battle64. Nintendo से संबद्ध नहीं।'
+
+  // Additional missing translations
+  'platform.pc': 'पीसी',
+  'region.pal': 'PAL',
+  'region.ntsc': 'NTSC',
+  'currency.eur': 'EUR',
+  'currency.usd': 'USD',
+  'currency.gbp': 'GBP',
 }
 
 export default hi

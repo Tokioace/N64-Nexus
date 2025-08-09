@@ -1352,6 +1352,14 @@ const ja = {
   'footer.contact': 'お問い合わせ',
   'footer.imprint': '法的表示',
   'footer.copyright': '© 2024 Battle64. 任天堂とは関係ありません。'
+
+  // Additional missing translations
+  'platform.pc': 'PC',
+  'region.pal': 'PAL',
+  'region.ntsc': 'NTSC',
+  'currency.eur': 'EUR',
+  'currency.usd': 'USD',
+  'currency.gbp': 'GBP',
 }
 
 export default ja

@@ -1352,6 +1352,14 @@ const zh = {
   'footer.contact': '联系',
   'footer.imprint': '版权声明',
   'footer.copyright': '© 2024 Battle64. 与任天堂无关联。'
+
+  // Additional missing translations
+  'platform.pc': '电脑',
+  'region.pal': 'PAL',
+  'region.ntsc': 'NTSC',
+  'currency.eur': 'EUR',
+  'currency.usd': 'USD',
+  'currency.gbp': 'GBP',
 }
 
 export default zh

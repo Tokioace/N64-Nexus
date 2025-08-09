@@ -109,9 +109,9 @@ const CreateOfferModal: React.FC<CreateOfferModalProps> = ({ isOpen, onClose, on
                     onChange={(e) => setFormData(prev => ({ ...prev, currency: e.target.value }))}
                     className="px-2 sm:px-4 py-2 sm:py-3 bg-slate-700 border border-slate-600 rounded-r-lg text-slate-100 focus:outline-none focus:ring-2 focus:ring-blue-500 text-responsive-sm"
                   >
-                    <option value="EUR">EUR</option>
-                    <option value="USD">USD</option>
-                    <option value="GBP">GBP</option>
+                    <option value="EUR">{t('currency.eur')}</option>
+                    <option value="USD">{t('currency.usd')}</option>
+                    <option value="GBP">{t('currency.gbp')}</option>
                   </select>
                 </div>
               </div>

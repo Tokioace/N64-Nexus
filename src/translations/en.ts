@@ -1387,7 +1387,81 @@ const en = {
   'admin.health.errors': 'Errors',
   'admin.health.cache': 'Cache items',
   'admin.health.sessions': 'Sessions',
-  'admin.health.uptime': 'Uptime'
+  'admin.health.uptime': 'Uptime',
+
+  // Missing translations for hardcoded text
+  'error.generic': 'An error occurred',
+  'error.unauthorized': 'Unauthorized',
+  'error.forbidden': 'Access forbidden',
+  'error.tryAgain': 'Try again',
+  'error.goHome': 'Go to homepage',
+  'error.contactSupport': 'Contact support',
+  'error.somethingWentWrong': 'Something went wrong',
+  
+  // Account deletion specific translations
+  'account.deletion.title': 'Delete Account',
+  'account.deletion.warning': 'This action cannot be undone!',
+  'account.deletion.dataWillBeDeleted': 'The following data will be permanently deleted:',
+  'account.deletion.profileData': 'Your profile and all personal data',
+  'account.deletion.gameCollection': 'Your game collection',
+  'account.deletion.recordsAchievements': 'All your records and achievements',
+  'account.deletion.forumPosts': 'Forum posts and comments',
+  'account.deletion.gdprNotice': 'GDPR Notice',
+  'account.deletion.gdprText': 'After deletion, all your personal data will be completely removed from our systems in accordance with the General Data Protection Regulation.',
+  'account.deletion.confirmDelete': 'DELETE',
+  'account.deletion.typeDelete': 'Type "DELETE" to confirm:',
+  'account.deletion.errorConfirmText': 'Please type "DELETE" to confirm',
+  'account.deletion.errorGeneric': 'Error deleting account',
+  'account.deletion.errorUnexpected': 'Unexpected error while deleting account',
+  
+  // Password reset translations
+  'password.reset.title': 'Reset Password',
+  'password.reset.emailSent': 'Email Sent',
+  'password.reset.instructions': 'Enter your email address and we will send you a link to reset your password.',
+  'password.reset.emailLabel': 'Email Address',
+  'password.reset.emailPlaceholder': 'your@email.com',
+  'password.reset.sendButton': 'Send Email',
+  'password.reset.sending': 'Sending...',
+  'password.reset.successMessage': 'We have sent you an email with instructions to reset your password.',
+  'password.reset.checkSpam': 'Please also check your spam folder if you do not receive the email.',
+  'password.reset.understood': 'Understood',
+  'password.reset.errorUnknown': 'Unknown error',
+  'password.reset.errorUnexpected': 'Unexpected error during password reset',
+  
+  // Account deletion page translations
+  'account.deletionPage.warning': 'Account Deletion Warning',
+  'account.deletionPage.whatWillBeDeleted': 'What will be deleted:',
+  'account.deletionPage.personalData': 'Personal Data',
+  'account.deletionPage.personalDataItems': 'Profile information|Account credentials|Birth date and verification|Email address',
+  'account.deletionPage.contentActivity': 'Content & Activity',
+  'account.deletionPage.contentActivityItems': 'Speedrun records|Forum posts and comments|Media uploads|Collections and wishlists|Event participations',
+  'account.deletionPage.exportDataFirst': 'Export Your Data First',
+  'account.deletionPage.finalConfirmation': 'Final Confirmation',
+  'account.deletionPage.cannotUndo': 'This action cannot be undone. Your account and all associated data will be permanently deleted within 30 days.',
+  'account.deletionPage.typeDeleteConfirm': 'Type "DELETE" to confirm:',
+  'account.deletionPage.continueWithDeletion': 'Continue with Deletion',
+  'account.deletionPage.pleaseTypeDelete': 'Please type "DELETE" to confirm',
+  
+  // Platform and region options
+  'platform.pc': 'PC',
+  'region.pal': 'PAL',
+  'region.ntsc': 'NTSC',
+  'currency.eur': 'EUR',
+  'currency.usd': 'USD', 
+  'currency.gbp': 'GBP',
+  
+  // Validation messages
+  'validation.imageTooLarge': 'Image is too large (max. 5 MB)',
+  'validation.imageFilesOnly': 'Only image files are allowed',
+  'validation.supportedFormats': 'Supported formats: JPG, JPEG, PNG, WEBP, GIF',
+  'validation.emptyFile': 'The selected file is empty',
+  'validation.unsupportedFormat': 'Unsupported image format. Allowed: JPG, JPEG, PNG, WEBP, GIF',
+  
+  // Battle64 Map specific
+  'map.battleDashboard': 'Battle Dashboard',
+  'map.liveBattles': 'Live Battles',
+  'map.smartMatchmaking': 'Smart Matchmaking',
+  'map.resetView': 'Reset View',
 }
 
 export default en

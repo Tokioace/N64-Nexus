@@ -1435,6 +1435,14 @@ const ar = {
   'footer.contact': 'التواصل',
   'footer.imprint': 'البيانات القانونية',
   'footer.copyright': '© 2024 Battle64. غير مرتبط بنينتندو.'
+
+  // Additional missing translations
+  'platform.pc': 'كمبيوتر',
+  'region.pal': 'PAL',
+  'region.ntsc': 'NTSC',
+  'currency.eur': 'EUR',
+  'currency.usd': 'USD',
+  'currency.gbp': 'GBP',
 }
 
 export default ar

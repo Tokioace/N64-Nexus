@@ -1360,6 +1360,21 @@ const fr = {
   'footer.contact': 'Contact',
   'footer.imprint': 'Mentions Légales',
   'footer.copyright': '© 2024 Battle64. Non affilié à Nintendo.'
+
+  // Additional missing translations
+  'error.generic': 'Une erreur s'est produite',
+  'error.unauthorized': 'Non autorisé',
+  'error.forbidden': 'Accès interdit',
+  'error.tryAgain': 'Réessayer',
+  'error.goHome': 'Aller à l'accueil',
+  'error.contactSupport': 'Contacter le support',
+  'error.somethingWentWrong': 'Quelque chose s'est mal passé',
+  'platform.pc': 'PC',
+  'region.pal': 'PAL',
+  'region.ntsc': 'NTSC',
+  'currency.eur': 'EUR',
+  'currency.usd': 'USD',
+  'currency.gbp': 'GBP',
 }
 
 export default fr

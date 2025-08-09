@@ -1391,6 +1391,73 @@ const de = {
   'validation.supportedFormats': 'Unterstützte Formate: JPG, JPEG, PNG, WEBP, GIF',
   'validation.emptyFile': 'Die ausgewählte Datei ist leer',
   'validation.unsupportedFormat': 'Nicht unterstütztes Bildformat. Erlaubt: JPG, JPEG, PNG, WEBP, GIF',
+  
+  // Missing translations for hardcoded text
+  'error.generic': 'Ein Fehler ist aufgetreten',
+  'error.unauthorized': 'Nicht autorisiert',
+  'error.forbidden': 'Zugriff verweigert',
+  'error.tryAgain': 'Erneut versuchen',
+  'error.goHome': 'Zur Startseite',
+  'error.contactSupport': 'Support kontaktieren',
+  'error.somethingWentWrong': 'Etwas ist schiefgelaufen',
+  
+  // Account deletion specific translations
+  'account.deletion.title': 'Konto löschen',
+  'account.deletion.warning': 'Diese Aktion kann nicht rückgängig gemacht werden!',
+  'account.deletion.dataWillBeDeleted': 'Folgende Daten werden dauerhaft gelöscht:',
+  'account.deletion.profileData': 'Dein Profil und alle persönlichen Daten',
+  'account.deletion.gameCollection': 'Deine Spielesammlung',
+  'account.deletion.recordsAchievements': 'Alle deine Rekorde und Erfolge',
+  'account.deletion.forumPosts': 'Forum-Beiträge und Kommentare',
+  'account.deletion.gdprNotice': 'DSGVO-Hinweis',
+  'account.deletion.gdprText': 'Nach der Löschung werden alle deine personenbezogenen Daten gemäß der Datenschutz-Grundverordnung vollständig aus unseren Systemen entfernt.',
+  'account.deletion.confirmDelete': 'LÖSCHEN',
+  'account.deletion.typeDelete': 'Gib "LÖSCHEN" ein, um zu bestätigen:',
+  'account.deletion.errorConfirmText': 'Bitte gib "LÖSCHEN" ein, um zu bestätigen',
+  'account.deletion.errorGeneric': 'Fehler beim Löschen des Kontos',
+  'account.deletion.errorUnexpected': 'Unerwarteter Fehler beim Löschen des Kontos',
+  
+  // Password reset translations
+  'password.reset.title': 'Passwort zurücksetzen',
+  'password.reset.emailSent': 'E-Mail gesendet',
+  'password.reset.instructions': 'Gib deine E-Mail-Adresse ein und wir senden dir einen Link zum Zurücksetzen deines Passworts.',
+  'password.reset.emailLabel': 'E-Mail-Adresse',
+  'password.reset.emailPlaceholder': 'deine@email.com',
+  'password.reset.sendButton': 'E-Mail senden',
+  'password.reset.sending': 'Wird gesendet...',
+  'password.reset.successMessage': 'Wir haben dir eine E-Mail mit Anweisungen zum Zurücksetzen deines Passworts gesendet.',
+  'password.reset.checkSpam': 'Bitte überprüfe auch deinen Spam-Ordner, falls du die E-Mail nicht erhältst.',
+  'password.reset.understood': 'Verstanden',
+  'password.reset.errorUnknown': 'Unbekannter Fehler',
+  'password.reset.errorUnexpected': 'Unerwarteter Fehler beim Passwort-Reset',
+  
+  // Account deletion page translations
+  'account.deletionPage.warning': 'Account Deletion Warning',
+  'account.deletionPage.whatWillBeDeleted': 'What will be deleted:',
+  'account.deletionPage.personalData': 'Personal Data',
+  'account.deletionPage.personalDataItems': 'Profile information|Account credentials|Birth date and verification|Email address',
+  'account.deletionPage.contentActivity': 'Content & Activity',
+  'account.deletionPage.contentActivityItems': 'Speedrun records|Forum posts and comments|Media uploads|Collections and wishlists|Event participations',
+  'account.deletionPage.exportDataFirst': 'Export Your Data First',
+  'account.deletionPage.finalConfirmation': 'Final Confirmation',
+  'account.deletionPage.cannotUndo': 'This action cannot be undone. Your account and all associated data will be permanently deleted within 30 days.',
+  'account.deletionPage.typeDeleteConfirm': 'Type "DELETE" to confirm:',
+  'account.deletionPage.continueWithDeletion': 'Continue with Deletion',
+  'account.deletionPage.pleaseTypeDelete': 'Please type "DELETE" to confirm',
+  
+  // Platform and region options
+  'platform.pc': 'PC',
+  'region.pal': 'PAL',
+  'region.ntsc': 'NTSC',
+  'currency.eur': 'EUR',
+  'currency.usd': 'USD', 
+  'currency.gbp': 'GBP',
+  
+  // Battle64 Map specific
+  'map.battleDashboard': 'Battle Dashboard',
+  'map.liveBattles': 'Live Battles',
+  'map.smartMatchmaking': 'Smart Matchmaking',
+  'map.resetView': 'Ansicht zurücksetzen',
   }
 
 export default de

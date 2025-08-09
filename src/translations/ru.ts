@@ -1288,6 +1288,14 @@ const ru = {
   'footer.contact': 'Контакт',
   'footer.imprint': 'Выходные Данные',
   'footer.copyright': '© 2024 Battle64. Не связан с Nintendo.'
+
+  // Additional missing translations
+  'platform.pc': 'ПК',
+  'region.pal': 'PAL',
+  'region.ntsc': 'NTSC',
+  'currency.eur': 'EUR',
+  'currency.usd': 'USD',
+  'currency.gbp': 'GBP',
 }
 
 export default ru
