@@ -14,7 +14,7 @@ const AccountDeletionModal: React.FC<AccountDeletionModalProps> = ({
   onClose, 
   onSuccess 
 }) => {
-  // const { t } = useLanguage() // Keep for future use
+  const { t } = useLanguage()
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   const [confirmText, setConfirmText] = useState('')
