@@ -54,7 +54,7 @@ const isRTLLanguage = (language: Language): boolean => {
 // Translation cache
 const translationCache: Partial<Record<Language, Record<string, string>>> = {}
 
-// Lazy load translations - using import() with template literal in a way that Vite can tree-shake
+// Lazy load translations - using import() without file extension to let Vite handle it
 const loadTranslations = async (language: Language): Promise<Record<string, string>> => {
   if (translationCache[language]) {
     console.log(`✅ Using cached translations for ${language}`)
@@ -64,8 +64,8 @@ const loadTranslations = async (language: Language): Promise<Record<string, stri
   try {
     console.log(`🔄 Loading translations for ${language}...`)
     
-    // Use dynamic import with explicit path construction to enable proper code splitting
-    const translationModule = await import(/* @vite-ignore */ `../translations/${language}.ts`)
+    // Use dynamic import without .ts extension - Vite will handle the correct path
+    const translationModule = await import(`../translations/${language}`)
     
     translationCache[language] = translationModule.default
     console.log(`✅ Translations loaded for ${language}:`, Object.keys(translationModule.default).length, 'keys')
