@@ -17,7 +17,6 @@ const tr = {
   'nav.newsfeed': 'Haber Akışı',
   'nav.community': 'Topluluk',
   'nav.map': 'Battle64 Map',
-
   // Accessibility
   'a11y.skipToMain': 'Ana içeriğe geç',
   'a11y.skipToNav': 'Navigasyona geç',
@@ -26,7 +25,6 @@ const tr = {
   'a11y.loading': 'İçerik yükleniyor',
   'a11y.error': 'Hata oluştu',
   'a11y.success': 'İşlem başarıyla tamamlandı',
-
   // Common fallback texts
   'common.unknown': 'Bilinmeyen',
   'common.unknownGame': 'Bilinmeyen Oyun',
@@ -46,11 +44,10 @@ const tr = {
   'common.draft': 'Taslak',
   'common.published': 'Yayınlandı',
   'common.archived': 'Arşivlendi',
-  
   // Account deletion
-  'account.deletion.confirmText': 'Lütfen onaylamak için "DELETE" yazın',
-  'account.deletion.placeholder': 'DELETE',
-  'account.deletion.typeDelete': 'Onaylamak için "DELETE" yazın:',
+  'account.deletion.confirmText': 'Lütfen onaylamak için \"DELETE\" yazın',
+  'account.deletion.placeholder': 'SİL',
+  'account.deletion.typeDelete': 'Onaylamak için \"DELETE\" yazın:',
   // Home Screen
   'home.subtitle': 'Milenyum Kuşağı için N64 Topluluğu',
   'home.welcome': 'Tekrar hoş geldin',
@@ -67,13 +64,12 @@ const tr = {
   'home.fanart.subtitle': 'Yaratıcılık',
   'home.newsfeed.subtitle': 'Güncellemeler',
   'home.map.subtitle': 'Yerel Savaşlar',
-
   // Battle64 Map
   'map.title': 'Battle64 Map',
   'map.subtitle': 'Gerçek Dünya Savaşları ve Coğrafi Eşleştirme',
   'map.hostEvent': '4-Oyunculu Yerel Savaş Düzenle',
   'map.selectGame': 'Oyun Seç',
-  'map.chooseGame': 'Bir oyun seçin...',
+  'map.chooseGame': 'Bir oyun seçin',
   'map.eventTitle': 'Etkinlik Başlığı',
   'map.eventTitlePlaceholder': 'Hafta Sonu Yarış Turnuvası',
   'map.description': 'Açıklama',
@@ -146,15 +142,14 @@ const tr = {
   'event.type.speedrun': 'Speedrun oturumu',
   'event.type.meetup': 'Buluşma',
   'event.category': 'Etkinlik kategorisi',
-
   // Common
   'common.welcome': 'Hoş geldin',
-  'common.loading': 'Yükleniyor...',
+  'common.loading': 'Yükleniyor',
   'common.error': 'Hata',
   'common.save': 'Kaydet',
   'common.cancel': 'İptal',
   'common.upload': 'Yükle',
-  'common.uploading': 'Yükleniyor...',
+  'common.uploading': 'Yükleniyor',
   'common.remove': 'Kaldır',
   'common.delete': 'Sil',
   'common.edit': 'Düzenle',
@@ -180,7 +175,6 @@ const tr = {
   'common.ok': 'Tamam',
   'common.retry': 'Tekrar dene',
   'common.note': 'Not',
-
   // Authentication
   'auth.login': 'Giriş Yap',
   'auth.logout': 'Çıkış Yap',
@@ -194,7 +188,6 @@ const tr = {
   'auth.loginRequiredMessage': 'Bu sayfayı görmek için giriş yapmalısınız.',
   'auth.loginRequiredForEvents': 'Etkinliklere katılmak için lütfen giriş yapın!',
   'auth.loginRequiredForImageUpload': 'Resim yüklemek için giriş yapmalısınız',
-
   // Quiz
   'quiz.title': 'N64 Sınavı',
   'quiz.start': 'Quiz\'i Başlat',
@@ -212,7 +205,6 @@ const tr = {
   'quiz.category': 'Kategori',
   'quiz.restart': 'Yeniden Başlat',
   'quiz.wrong': 'Yanlış!',
-
   // Events
   'events.title': 'Etkinlikler',
   'events.subtitle': 'Turnuvalar, Meydan Okumalar ve Topluluk Etkinlikleri',
@@ -235,7 +227,6 @@ const tr = {
   'events.game': 'Oyun',
   'events.track': 'Pist',
   'events.time': 'Süre',
-
   // Forum
   'forum.title': 'Tartışma Forumu',
   'forum.subtitle': 'Topluluk Tartışmaları',
@@ -244,14 +235,13 @@ const tr = {
   'forum.threads': 'Konular',
   'forum.posts': 'Gönderiler',
   'forum.mostActive': 'En Aktif',
-  'forum.loading': 'Yükleniyor...',
+  'forum.loading': 'Yükleniyor',
   'forum.communityNexus': 'Topluluk Merkezi',
   'forum.discussWithCommunity': 'Toplulukla tartış',
   'forum.createThread': 'Konu oluştur',
   'forum.newThread': 'Yeni konu',
   'forum.reply': 'Yanıtla',
   'forum.backToForum': 'Forum\'a Dön',
-
   // Language selector
   'language.german': 'Almanca',
   'language.english': 'İngilizce',
@@ -267,7 +257,6 @@ const tr = {
   'language.hindi': 'Hintçe',
   'language.arabic': 'Arapça',
   'language.korean': 'Korece',
-
   // Error messages
   'error.generic': 'Bir hata oluştu',
   'error.networkError': 'Ağ hatası',
@@ -279,7 +268,6 @@ const tr = {
   'error.goHome': 'Ana Sayfaya Git',
   'error.contactSupport': 'Destek ile İletişime Geç',
   'error.somethingWentWrong': 'Bir şeyler yanlış gitti',
-
   // News
   'news.title': 'Haberler',
   'news.subtitle': 'En Son Güncellemeler ve Duyurular',
@@ -301,7 +289,7 @@ const tr = {
   'news.noResults': 'Sonuç Bulunamadı',
   'news.noResultsDescription': 'Haber bulunamadı',
   'news.pagination': 'Sayfa {current} / {total}',
-  'news.search.placeholder': 'Haberlerde ara...',
+  'news.search.placeholder': 'Haberlerde ara',
   'news.filter.all': 'Tümü',
   'news.filter.events': 'Etkinlikler',
   'news.filter.winners': 'Kazananlar',
@@ -357,21 +345,13 @@ const tr = {
   'media.allGames': 'Tüm Oyunlar',
   'media.noEvent': 'Etkinlik Yok',
   'media.uploadedBy': 'Yükleyen',
-  'media.uploadedOn': 'Yüklenme Tarihi',
-  'placeholder.speedrunTitle': 'örn. Mario 64 120 Yıldız Speedrun',
-  'placeholder.speedrunUrl': 'https://twitch.tv/kanaliniz',
-  'placeholder.speedrunGame': 'örn. Super Mario 64',
-  'placeholder.mediaSearch': 'Başlık, açıklama veya etiketlere göre ara...',
-  'placeholder.mediaUrl': 'https://youtube.com/watch?v=...',
-  'placeholder.mediaDescription': 'Başarınızı açıklayın...',
-  'placeholder.mediaTags': 'Dünya rekoru, Any%, Glitchsiz (virgülle ayrılmış)',
+  'media.uploadedOn': 'Yüklenme Tarihi', açıklama veya etiketlere göre ara', Any%, Glitchsiz (virgülle ayrılmış)',
   'success.uploaded': 'Başarıyla yüklendi',
   'validation.allFieldsRequired': 'Tüm alanlar gereklidir',
-
   // Marketplace
   'marketplace.subtitle': 'N64 Ticaret ve Takas Merkezi',
   'marketplace.createOffer': 'Teklif oluştur',
-  'marketplace.searchPlaceholder': 'Ürün ara...',
+  'marketplace.searchPlaceholder': 'Ürün ara',
   'marketplace.category': 'Kategori',
   'marketplace.allCategories': 'Tüm Kategoriler',
   'marketplace.categoryGames': 'Oyunlar',
@@ -417,11 +397,11 @@ const tr = {
   'minigames.correctAnswers': 'Doğru Cevaplar',
   'minigames.cheatCode': 'Hile Kodu',
   'minigames.completed': 'Tamamlandı',
-  'minigames.typeCheatCode': 'Hile kodu gir...',
-  'minigames.sound.mario64': '"Wahoo!" - Mario zıplama sesi',
-  'minigames.sound.zelda': '"Hey! Listen!" - Navi sesi',
-  'minigames.sound.goldeneye': '"Pew Pew" - Susturuculu atış',
-  'minigames.sound.mariokart': '"Here we go!" - Yarış başlangıcı',
+  'minigames.typeCheatCode': 'Hile kodu gir',
+  'minigames.sound.mario64': '\"Wahoo!\" - Mario zıplama sesi',
+  'minigames.sound.zelda': '\"Hey! Listen!\" - Navi sesi',
+  'minigames.sound.goldeneye': '\"Pew Pew\" - Susturuculu atış',
+  'minigames.sound.mariokart': '\"Here we go!\" - Yarış başlangıcı',
   'minigames.sound': 'Ses',
   'minigames.whichGame': 'Bu ses hangi oyundan?',
   'minigames.you': 'Sen',
@@ -429,8 +409,8 @@ const tr = {
   'minigames.readyForDuel': 'Düelloya hazır mısın?',
   'minigames.startDuel': 'Düelloyu başlat',
   'minigames.result': 'Sonuç',
-  'minigames.opponentAnswering': 'cevaplıyor...',
-  'minigames.gameLoading': 'Oyun yükleniyor...',
+  'minigames.opponentAnswering': 'cevaplıyor',
+  'minigames.gameLoading': 'Oyun yükleniyor',
   'minigames.gameEnded': 'Oyun bitti',
   'minigames.yourScore': 'Puanın',
   'minigames.title': 'Mini Oyunlar',
@@ -455,7 +435,6 @@ const tr = {
   'news.n64HistoryContent': '27 yıllık Nintendo 64 geçmişine bakış',
   'aria.gridView': 'Izgara görünümü',
   'aria.listView': 'Liste görünümü',
-
   // Additional missing keys
   'fanart.artworksFound': 'sanat eseri bulundu',
   'fanart.ratings': 'değerlendirmeler',
@@ -507,12 +486,7 @@ const tr = {
   'category.collecting': 'Koleksiyonculuk',
   'category.tips': 'İpuçları',
   'validation.titleTooLong': 'Başlık çok uzun',
-  'validation.contentTooLong': 'İçerik çok uzun',
-  'placeholder.threadTitle': 'Konunuza bir başlık verin...',
-  'placeholder.threadContent': 'Gönderinizi yazın...',
-  'placeholder.replyContent': 'Yanıtınızı yazın...',
-  'placeholder.marketplacePrice': 'Fiyat girin...',
-  'ui.login': 'Giriş',
+  'validation.contentTooLong': 'İçerik çok uzun',  'ui.login': 'Giriş',
   'alt.postAttachment': 'Gönderi eki',
   'alt.battle64Mascot': 'Battle64 maskotu',
   'news.communityStats': 'Topluluk İstatistikleri',
@@ -530,9 +504,9 @@ const tr = {
   'events.status.live': 'Canlı',
   'events.status.completed': 'Tamamlandı',
   'marketplace.title': 'Başlık',
-  'marketplace.titlePlaceholder': 'Ürün adını girin...',
+  'marketplace.titlePlaceholder': 'Ürün adını girin',
   'marketplace.description': 'Açıklama',
-  'marketplace.descriptionPlaceholder': 'Ürününüzü açıklayın...',
+  'marketplace.descriptionPlaceholder': 'Ürününüzü açıklayın',
   'marketplace.price': 'Fiyat',
   'marketplace.condition': 'Durum',
   'marketplace.conditionNew': 'Yeni',
@@ -547,7 +521,6 @@ const tr = {
   'minigames.hard': 'Zor',
   'minigames.backToMenu': 'Menüye Dön',
   'minigames.highScore': 'Yüksek Skor',
-
   // Final remaining missing keys
   'collection.gamesCollected': 'Toplanan Oyunlar',
   'collection.completeness': 'Tamamlanma',
@@ -619,13 +592,13 @@ const tr = {
   'fanart.chooseImage': 'Resim Seç',
   'fanart.imageFormats': 'Desteklenen formatlar: JPG, PNG, GIF',
   'fanart.artworkTitle': 'Sanat Eseri Başlığı',
-  'fanart.titlePlaceholder': 'Sanat eserinize bir başlık verin...',
+  'fanart.titlePlaceholder': 'Sanat eserinize bir başlık verin',
   'fanart.selectGame': 'Oyun Seç',
-  'fanart.chooseGame': 'Bir oyun seçin...',
+  'fanart.chooseGame': 'Bir oyun seçin',
   'fanart.tags': 'Etiketler',
-  'fanart.tagsPlaceholder': 'Etiket ekleyin...',
+  'fanart.tagsPlaceholder': 'Etiket ekleyin',
   'fanart.tagsHint': 'Virgülle ayrılmış',
-  'fanart.uploading': 'Yükleniyor...',
+  'fanart.uploading': 'Yükleniyor',
   'fanart.allCategories': 'Tüm Kategoriler',
   'fanart.subtitle': 'N64 esintili sanat eserlerinizi paylaşın',
   'fanart.filterBy': 'Şuna göre filtrele',
@@ -634,13 +607,9 @@ const tr = {
   'common.rare': 'Nadir',
   'common.veryRare': 'Çok Nadir',
   'common.ultraRare': 'Ultra Nadir',
-  'common.hide': 'Gizle',
-  'placeholder.searchGames': 'Oyun ara...',
-  'placeholder.searchPlayers': 'Oyuncu ara...',
-  'ui.grid': 'Izgara',
+  'common.hide': 'Gizle',  'ui.grid': 'Izgara',
   'ui.list': 'Liste',
   'alt.preview': 'Önizleme',
-
   // Final batch of missing keys
   'collection.cartOnly': 'Sadece Kartuş',
   'collection.boxOnly': 'Sadece Kutu',
@@ -662,11 +631,7 @@ const tr = {
   'media.noUploads': 'Yükleme Yok',
   'media.noUploadsDesc': 'You haven\'t uploaded any media yet.',
   'media.eventUpload': 'Etkinlik Yüklemesi',
-  'label.notes': 'Notlar',
-  'placeholder.notes': 'Not ekleyin...',
-  'placeholder.additionalInfo': 'Ek bilgi...',
-  'placeholder.password': 'Şifre girin...',
-  'validation.contentRequired': 'İçerik gerekli',
+  'label.notes': 'Notlar',  'validation.contentRequired': 'İçerik gerekli',
   'validation.postTooLong': 'Gönderi çok uzun',
   'auth.invalidCredentials': 'Geçersiz kimlik bilgileri',
   'auth.errorOccurred': 'Bir hata oluştu',
@@ -676,27 +641,27 @@ const tr = {
   'auth.registrationFailed': 'Kayıt başarısız',
   'auth.welcomeBack': 'Tekrar Hoş Geldin',
   'auth.createAccount': 'Hesap Oluştur',
-  'auth.emailPlaceholder': 'E-posta girin...',
-  'auth.loggingIn': 'Giriş yapılıyor...',
-  'auth.usernamePlaceholder': 'Kullanıcı adı girin...',
+  'auth.emailPlaceholder': 'E-posta girin',
+  'auth.loggingIn': 'Giriş yapılıyor',
+  'auth.usernamePlaceholder': 'Kullanıcı adı girin',
   'auth.platform': 'Platform',
   'auth.region': 'Bölge',
-  'auth.registering': 'Kayıt olunuyor...',
+  'auth.registering': 'Kayıt olunuyor',
   'auth.createAccountButton': 'Hesap Oluştur',
   'auth.noAccountYet': 'Henüz hesabınız yok mu?',
   'auth.registerNow': 'Şimdi kayıt ol',
   'auth.alreadyHaveAccount': 'Zaten hesabınız var mı?',
   'auth.loginHere': 'Buradan giriş yapın',
-  'auth.processingRegistration': 'Kayıt işleniyor...',
-  'auth.waitingEmailConfirmation': 'E-posta onayı bekleniyor...',
+  'auth.processingRegistration': 'Kayıt işleniyor',
+  'auth.waitingEmailConfirmation': 'E-posta onayı bekleniyor',
   'auth.registrationSucceeded': 'Kayıt başarılı!',
   'auth.welcomeToCommunity': 'Battle64 Topluluğuna hoş geldiniz',
   'auth.checkOutEvents': 'Etkinliklerimizi inceleyin',
   'auth.emailConfirmationSent': '{email} adresine onay e-postası gönderdik.',
   'auth.clickEmailLink': 'Kaydınızı tamamlamak için lütfen e-postadaki bağlantıya tıklayın.',
-  'auth.emailBeingConfirmed': 'E-posta onaylanıyor...',
+  'auth.emailBeingConfirmed': 'E-posta onaylanıyor',
   'auth.pleaseWaitMoment': 'Lütfen bir dakika bekleyin.',
-  'auth.emailConfirmedSuccessfully': 'E-posta başarıyla onaylandı! Ana sayfaya yönlendirileceksiniz...',
+  'auth.emailConfirmedSuccessfully': 'E-posta başarıyla onaylandı! Ana sayfaya yönlendirileceksiniz',
   'auth.confirmationFailed': 'Onay başarısız',
   'auth.accountActivatedSuccessfully': 'Hesabınız başarıyla etkinleştirildi!',
   'auth.joinCommunityMessage': 've topluluğa katılın.',
@@ -707,23 +672,21 @@ const tr = {
   'auth.unexpectedError': 'Beklenmedik bir hata oluştu',
   'auth.tryRegisterAgain': 'Tekrar kayıt olmayı deneyin veya destek ile iletişime geçin.',
   'auth.goToLogin': 'Girişe Git',
-
   // Browser Redirect
   'browserRedirect.title': 'Tarayıcı Yönlendirmesi',
-  'browserRedirect.message': 'Sizi tercih ettiğiniz tarayıcıya yönlendiriyoruz...',
+  'browserRedirect.message': 'Sizi tercih ettiğiniz tarayıcıya yönlendiriyoruz',
   'browserRedirect.detectedBrowser': 'Algılanan Tarayıcı',
   'browserRedirect.version': 'Sürüm',
-  'browserRedirect.redirectingIn': '{seconds} saniye içinde yönlendiriliyor...',
+  'browserRedirect.redirectingIn': '{seconds} saniye içinde yönlendiriliyor',
   'browserRedirect.redirectNow': 'Şimdi Yönlendir',
   'browserRedirect.troubleshoot': 'Otomatik yönlendirme çalışmıyor mu?',
-  'browserRedirect.manualInstructions': '"Şimdi Yönlendir"e tıklayın veya adres çubuğundan URL\'yi kopyalayın.',
-
+  'browserRedirect.manualInstructions': '\"Şimdi Yönlendir\"e tıklayın veya adres çubuğundan URL\'yi kopyalayın.',
   'chat.title': 'Topluluk Sohbeti',
   'chat.onlineUsers': 'çevrimiçi kullanıcı',
   'chat.chats': 'Sohbetler',
   'chat.newChat': 'Yeni Sohbet',
-  'chat.searchUsers': 'Kullanıcı ara...',
-  'chat.messagePlaceholder': 'Mesaj yazın...',
+  'chat.searchUsers': 'Kullanıcı ara',
+  'chat.messagePlaceholder': 'Mesaj yazın',
   'chat.joinPrompt': 'Katılmak için sohbete katılın!',
   'chat.privateChat': 'Özel Sohbet',
   'chat.description': 'Toplulukla N64 oyunlarını tartışın',
@@ -737,18 +700,11 @@ const tr = {
   'chat.rules.noSpam': 'Spam veya tekrarlanan mesajlar yasak',
   'chat.rules.shareExperience': 'N64 deneyimlerinizi paylaşın',
   'chat.rules.noLinks': 'İzinsiz dış bağlantı yasak',
-
-  // Professional translations - final batch
-  'placeholder.raceTime': 'Zamanı girin (örn. 1:23:45)...',
-  'events.timeFormat': 'Format: Saat:Dakika:Saniye',
+  // Professional translations - final batch  'events.timeFormat': 'Format: Saat:Dakika:Saniye',
   'events.selectDocumentation': 'Belgelendirme Seç',
   'events.photo': 'Fotoğraf',
   'events.video': 'Video',
-  'events.livestreamUrlLabel': 'Canlı Yayın URL\'si',
-  'placeholder.livestreamUrl': 'https://twitch.tv/kanaliniz...',
-  'events.streamingPlatforms': 'Yayın Platformları',
-  'placeholder.setupController': 'Kontrol cihazı kurulumunu açıklayın...',
-  'events.status.upcoming': 'Yaklaşan',
+  'events.livestreamUrlLabel': 'Canlı Yayın URL\'si',  'events.streamingPlatforms': 'Yayın Platformları',  'events.status.upcoming': 'Yaklaşan',
   'card.fanarts': 'Hayran Sanatları',
   'card.forumPosts': 'Forum Gönderileri',
   'card.marketplace': 'Pazar Yeri',
@@ -784,10 +740,7 @@ const tr = {
   'label.gameName': 'Oyun Adı',
   'label.required': '(gerekli)',
   'label.platform': 'Platform',
-  'label.region': 'Bölge',
-  'placeholder.gameName': 'Oyun adını girin...',
-  'news.noNewsAvailable': 'Mevcut haber yok',
-
+  'label.region': 'Bölge',  'news.noNewsAvailable': 'Mevcut haber yok',
   // Final remaining missing keys - professional translations
   'imageUpload.dropHere': 'Buraya bırakın',
   'imageUpload.uploadImage': 'Resim Yükle',
@@ -822,7 +775,6 @@ const tr = {
   'rank.current': 'Mevcut',
   'rank.nextRank': 'Sonraki Rütbe',
   'rank.maxRank': 'Maksimum rütbeye ulaşıldı',
-
   // Cool Rank Titles (20 Levels)
   'Pixel Rookie': 'Piksel Çaylağı',
   'Button Masher': 'Düğme Avcısı',
@@ -873,12 +825,6 @@ const tr = {
   'events.raceTime': 'Yarış Süresi',
   'label.category': 'Kategori',
   'label.proofUrl': 'Kanıt URL\'si',
-  'placeholder.category': 'Kategori seçin...',
-  'placeholder.time': 'Süre girin...',
-  'placeholder.score': 'Puan girin...',
-  'placeholder.proofUrl': 'Kanıt URL\'si girin...',
-  'placeholder.recordNotes': 'Rekor notları...',
-
   // Final TypeScript error fixes - professional translations
   'achievement.progress': 'İlerleme',
   'achievement.requirements': 'Gereksinimler',
@@ -914,7 +860,6 @@ const tr = {
   'eventLeaderboard.documentation': 'Dokümantasyon',
   'eventLeaderboard.viewMedia': 'Medyayı Görüntüle',
   'events.mobile.winner': 'Kazanan',
-  
   // Best Lap Showcase
   'events.bestLap.title': 'En İyi Tur',
   'events.bestLap.photoAlt': '{username} tarafından {time} zamanıyla yapılan en iyi tur ekran görüntüsü',
@@ -925,14 +870,11 @@ const tr = {
   'media.error': 'Medya hatası',
   'error.invalidFile': 'Geçersiz dosya',
   'alt.uploadPreview': 'Yükleme önizlemesi',
-
-
   // Accessibility keys
   'accessibility.skipToContent': 'Ana içeriğe geç',
   'accessibility.skipToNavigation': 'Navigasyona geç',
   'accessibility.skippedToContent': 'Ana içeriğe geçildi',
   'accessibility.skippedToNavigation': 'Navigasyona geçildi',
-
   // Homepage specific translations - Ana sayfa özel çevirileri
   'home.noLiveEvent': 'Aktif canlı etkinlik yok - Bir sonraki etkinlik yakında başlıyor!',
   'home.showAllEvents': '📅 Tüm etkinlikleri göster',
@@ -945,7 +887,6 @@ const tr = {
   'home.clickToViewFull': 'Tam boyut görmek için tıklayın',
   'home.clickToWatch': 'İzlemek için tıklayın',
   'home.noMediaSubmitted': 'Medya gönderilmedi',
-
   // News items - Haber öğeleri
   'news.mariokartRecord': '🏆 Mario Kart 64 Speedrun Dünya Rekoru Kırıldı!',
   'news.mariokartRecordContent': 'SpeedDemon64, Wario Stadium\'da 1:42.33 zamanıyla yeni dünya rekoru kırdı!',
@@ -965,7 +906,6 @@ const tr = {
   'news.speedrunCategoryContent': 'Banjo-Kazooie için yeni bir Any% kategorisi ekledik. Şimdi katılın!',
   'news.monthlyChallenge': '🏆 Aylık Meydan Okuma Kazananı',
   'news.monthlyChallengeContent': 'N64Master\'ın Ekim Aylık Meydan Okuma\'sını kazanması için tebrikler!',
-
   // Live Events - Mario Kart 64 Luigi's Raceway
   'events.mk64LuigisRaceway.title': '🏁 Mario Kart 64: Luigi\'s Raceway Hız Meydan Okuması',
   'events.mk64LuigisRaceway.description': 'İkonik Luigi\'s Raceway pistinde hızınızı gösterin! Gran Turismo 7 tarzında bir aylık yoğun rekabet.',
@@ -980,7 +920,6 @@ const tr = {
   'events.mk64LuigisRaceway.prize3': '🥉 3. Yer: 200 Battle64 Puanı + Bronz Madalya',
   'events.mk64LuigisRaceway.prizeTop10': '🏆 İlk 10: F1 Tarzı Puanlar (25-18-15-12-10-8-6-4-2-1)',
   'events.mk64LuigisRaceway.prizeParticipation': '🎯 Katılım: Her katılımcı için 5 Battle64 Puanı',
-
   // Live Events - San Francisco Rush Downtown
   'events.sfrDowntown.title': '🏙️ San Francisco Rush: Downtown Yarış Şampiyonası',
   'events.sfrDowntown.description': 'San Francisco Downtown sokaklarında yarışın! Tam bir ay sürecek ekstrem yarış aksiyonu.',
@@ -995,7 +934,6 @@ const tr = {
   'events.sfrDowntown.prize3': '🥉 3. Yer: 200 Battle64 Puanı + Sokak Yarışçısı',
   'events.sfrDowntown.prizeTop10': '🏆 İlk 10: F1 Tarzı Puanlar (25-18-15-12-10-8-6-4-2-1)',
   'events.sfrDowntown.prizeParticipation': '🎯 Katılım: Her katılımcı için 5 Battle64 Puanı',
-
   // Live Events - Diddy Kong Racing Ancient Lake
   'events.dkrAncientLake.title': '🦍 Diddy Kong Racing: Ancient Lake Zaman Denemesi',
   'events.dkrAncientLake.description': 'Mistik Ancient Lake\'i fethein! Gerçek N64 fanları için Rare klasiğinde efsanevi bir rekabet.',
@@ -1010,10 +948,8 @@ const tr = {
   'events.dkrAncientLake.prize3': '🥉 3. Yer: 200 Battle64 Puanı + Antik Yarışçı',
   'events.dkrAncientLake.prizeTop10': '🏆 İlk 10: F1 Tarzı Puanlar (25-18-15-12-10-8-6-4-2-1)',
   'events.dkrAncientLake.prizeParticipation': '🎯 Katılım: Her katılımcıya 5 Battle64 Puanı',
-
   // Home Ranking Section
   'home.yourRanking': 'Sıralamanız',
-
   // Ranking System
   'ranking.globalRank': 'Küresel Sıralama',
   'ranking.totalPoints': 'Toplam Puan',
@@ -1027,72 +963,62 @@ const tr = {
   'ranking.achievements': 'Başarımlar',
   'ranking.verifiedRecords': 'Doğrulanmış Kayıtlar',
   'ranking.gamesOwned': 'Sahip Olunan Oyunlar',
-
   // Profile Ranking
   'profile.ranking': 'Sıralama',
   'profile.globalRanking': 'Küresel Sıralama',
   'profile.rankingStats': 'Sıralama İstatistikleri',
-
   // FanArt Comments
-  'fanart.addComment': 'Yorum ekle...',
-
+  'fanart.addComment': 'Yorum ekle',
   // Interaction System
   'interaction.like': 'Beğen',
   'interaction.unlike': 'Beğeniyi kaldır',
   'interaction.comments': 'yorumlar',
   'interaction.addComment': 'Yorum ekle',
-  'interaction.writeComment': 'Yorum yazın...',
+  'interaction.writeComment': 'Yorum yazın',
   'interaction.loginToLike': 'Beğenmek için giriş yapın',
   'interaction.loginToComment': 'Yorum yapmak için giriş yapın',
   'interaction.viewCount': 'Görüntülenme sayısı',
   'interaction.showComments': 'Yorumları göster',
-
   // Time
   'time.justNow': 'şimdi',
-
   // Media types
   'media.photo': 'Fotoğraf',
   'media.video': 'Video',
   'media.noMediaTooltip': 'Henüz medya yok – koşunuzu doğrulamak için video veya ekran görüntüsü yükleyin',
-
   // Event Card specific translations
   'events.likes': 'Beğeniler',
-  'events.views': 'Görüntülemeler', 
+  'events.views': 'Görüntülemeler',
   'events.comments': 'Yorumlar',
-
   // PWA Installation Prompt
   'pwa.installTitle': 'Battle64 Yükle',
   'pwa.installDescription': 'Çevrimdışı erişim ve hızlı yükleme ile tam uygulama deneyimi yaşayın!',
   'pwa.install': 'Uygulamayı Yükle',
   'pwa.gotIt': 'Anladım!',
   'pwa.iosStep1': 'Paylaş düğmesine dokunun',
-  'pwa.iosStep2': 'Sonra "Ana Ekrana Ekle"yi seçin',
+  'pwa.iosStep2': 'Sonra \"Ana Ekrana Ekle\"yi seçin',
   'common.later': 'Daha sonra',
-
   // Offline Functionality
   'offline.workingOffline': 'Çevrimdışı çalışıyor',
   'offline.backOnline': 'Tekrar çevrimiçi!',
   'offline.cachedDataAvailable': 'Önbelleğe alınmış veriler mevcut',
   'offline.cachedData': 'Önbelleğe alınmış veriler',
-
   // Enhanced Chat
   'chat.communityChat': 'Topluluk Sohbeti',
   'chat.activeUsers': 'aktif kullanıcılar',
-  'chat.loading': 'Mesajlar yükleniyor...',
+  'chat.loading': 'Mesajlar yükleniyor',
   'chat.noMessages': 'Henüz mesaj yok',
   'chat.startConversation': 'Konuşmayı başlatan ilk kişi olun!',
-  'chat.typeMessage': 'Bir mesaj yazın...',
+  'chat.typeMessage': 'Bir mesaj yazın',
   'chat.emoji': 'Emoji ekle',
   'chat.scrollToBottom': 'Aşağı kaydır',
   'chat.errorLoading': 'Mesaj yükleme hatası',
   'time.today': 'Bugün',
   'time.yesterday': 'Dün',
-
   // Realtime Events
   'events.nowLive': 'Etkinlik şu anda canlı!',
   'realtime.connected': 'Canlı bağlantı aktif',
   'realtime.disconnected': 'Canlı bağlantı kesildi',
-  'realtime.reconnecting': 'Yeniden bağlanıyor...',
+  'realtime.reconnecting': 'Yeniden bağlanıyor',
   'realtime.newUpdate': 'Yeni canlı güncellemeler mevcut',
   'realtime.leaderboard.updated': 'Liderlik tablosu güncellendi',
   'realtime.points.updated': 'Puanlar güncellendi',
@@ -1100,7 +1026,6 @@ const tr = {
   'realtime.participant.left': 'Katılımcı ayrıldı',
   'realtime.event.started': 'Etkinlik başladı',
   'realtime.event.finished': 'Etkinlik bitti',
-
   // PWA Installation
   'pwa.install.button': 'Uygulama Yükle',
   'pwa.install.banner.title': 'Battle64\'ü Uygulama Olarak Yükle',
@@ -1109,9 +1034,8 @@ const tr = {
   'pwa.install.modal.description': 'Çevrimdışı erişim ve push bildirimleri ile yerel uygulama deneyimi için Battle64\'ü yükleyin.',
   'pwa.install.ios.title': 'Ana Ekrana Ekle',
   'pwa.install.ios.step1': 'Tarayıcının altındaki Paylaş düğmesine dokunun',
-  'pwa.install.ios.step2': 'Aşağı kaydırın ve "Ana ekrana ekle"yi seçin',
-  'pwa.install.ios.step3': 'Uygulamayı yüklemek için "Ekle"ye dokunun',
-
+  'pwa.install.ios.step2': 'Aşağı kaydırın ve \"Ana ekrana ekle\"yi seçin',
+  'pwa.install.ios.step3': 'Uygulamayı yüklemek için \"Ekle\"ye dokunun',
   // Battle Map
   'battleMap.title': 'Battle64 Haritası',
   'battleMap.liveEvents': 'Canlı Etkinlikler',
@@ -1127,15 +1051,13 @@ const tr = {
   'battleMap.yourLocation': 'Konumunuz',
   'battleMap.noEvents': 'Yakında canlı etkinlik yok',
   'battleMap.participantCount': 'Katılımcılar',
-
   // Live Leaderboard
   'leaderboard.live': 'Canlı Liderlik Tablosu',
-  'leaderboard.updating': 'Güncelleniyor...',
+  'leaderboard.updating': 'Güncelleniyor',
   'leaderboard.lastUpdate': 'Son Güncelleme',
   'leaderboard.points.live': 'Canlı Puanlar',
   'leaderboard.rank.changed': 'Sıralama Değişti',
   'leaderboard.newRecord': 'Yeni Rekor!',
-
   // GDPR Realtime
   'gdpr.realtime.title': 'Canlı Özellikler',
   'gdpr.realtime.description': 'Liderlik tabloları, etkinlikler ve sohbet için canlı güncellemeleri etkinleştir',
@@ -1145,13 +1067,11 @@ const tr = {
   'gdpr.location.description': 'Yerel etkinlikler ve yakındaki katılımcılar için konumunuzu paylaşın',
   'gdpr.location.enable': 'Konumu Etkinleştir',
   'gdpr.location.disable': 'Konumu Devre Dışı Bırak',
-
   // Offline Mode
   'offline.title': 'Çevrimdışı Modu',
   'offline.description': 'Çevrimdışısınız. Bazı özellikler sınırlı.',
   'offline.cached': 'Önbelleğe alınmış içerik gösteriliyor',
   'offline.retry': 'Tekrar Dene',
-
   // Common - New additions
   'common.understood': 'Anlaşıldı',
   'common.success': 'Başarılı',
@@ -1159,11 +1079,9 @@ const tr = {
   'settings.privacy.title': 'Gizlilik Ayarları',
   'settings.notifications.title': 'Bildirim Ayarları',
   'settings.notifications.description': 'Bildirim tercihlerinizi yönetin',
-
   // GDPR Notice
   'gdpr.notice.title': 'Gizlilik Bildirimi',
   'gdpr.notice.description': 'Gizliliğinizi saygı duyuyoruz ve veri korunması için GDPR yönergelerini takip ediyoruz',
-
   // Yasal Şartlar ve Uyumluluk
   'legal.ageVerification': 'Yaş Doğrulama',
   'legal.birthDate': 'Doğum Tarihi',
@@ -1181,7 +1099,6 @@ const tr = {
   'legal.adultOnlyPlatform': 'Battle64 sadece 18 yaş ve üzeri kullanıcılar içindir',
   'legal.readTerms': 'Hizmet Şartlarını Oku',
   'legal.readPrivacy': 'Gizlilik Politikasını Oku',
-  
   // Hizmet Şartları İçeriği
   'terms.title': 'Hizmet Şartları',
   'terms.lastUpdated': 'Son güncelleme: {date}',
@@ -1201,7 +1118,6 @@ const tr = {
   'terms.section7.content': 'Battle64, Nintendo ile bağlantılı değildir. Nintendo logoları, orijinal N64 kapakları veya ROM dosyalarını yüklemeyin.',
   'terms.section8.title': '8. Hesap Sonlandırma',
   'terms.section8.content': 'Hizmet Şartları ihlali nedeniyle önceden haber vermeksizin hesapları sonlandırma hakkını saklı tutarız.',
-  
   // Gizlilik Politikası İçeriği
   'privacy.title': 'Gizlilik Politikası',
   'privacy.lastUpdated': 'Son güncelleme: {date}',
@@ -1219,7 +1135,6 @@ const tr = {
   'privacy.section6.content': 'Hesabınız aktif olduğu sürece verilerinizi saklarız. Silinen hesapların tüm verileri kalıcı olarak silinir.',
   'privacy.section7.title': '7. İletişim',
   'privacy.section7.content': 'Gizlilik soruları için privacy@battle64.com adresinden bize ulaşın',
-  
   // Çerez Onayı
   'cookies.title': 'Çerez Onayı',
   'cookies.description': 'Deneyiminizi geliştirmek için çerezler kullanırız. Lütfen tercihlerinizi seçin.',
@@ -1235,7 +1150,6 @@ const tr = {
   'cookies.acceptSelected': 'Seçilenleri Kabul Et',
   'cookies.rejectAll': 'Tümünü Reddet',
   'cookies.managePreferences': 'Çerez Tercihlerini Yönet',
-  
   // Raporlama ve Moderasyon
   'report.title': 'İçeriği Bildir',
   'report.reason': 'Bildirim nedeni',
@@ -1251,13 +1165,11 @@ const tr = {
   'report.success': 'İçerik başarıyla bildirildi',
   'report.error': 'Bildirim gönderme başarısız',
   'report.alreadyReported': 'Bu içeriği zaten bildirdiniz',
-  
   // İçerik Moderasyonu
   'moderation.contentHidden': 'Bu içerik birden fazla bildirim nedeniyle gizlendi',
   'moderation.underReview': 'Bu içerik inceleme altında',
   'moderation.removed': 'Bu içerik moderatörler tarafından kaldırıldı',
   'moderation.appealProcess': 'Bunun bir hata olduğunu düşünüyorsanız, destek ile iletişime geçin',
-  
   // Yönetici Paneli
   'admin.dashboard': 'Yönetici Paneli',
   'admin.reports': 'Bildiriler',
@@ -1278,17 +1190,15 @@ const tr = {
   'admin.actionReason': 'İşlem Nedeni',
   'admin.actionNotes': 'Ek Notlar',
   'admin.confirmAction': 'İşlemi Onayla',
-  
   // Hesap Silme (GDPR)
   'account.delete': 'Hesabı Sil',
   'account.deleteWarning': 'Hesabınızı silmek istediğinizden emin misiniz? Tüm içeriğiniz kalıcı olarak silinecektir.',
-  'account.deleteConfirmation': 'Hesap silmeyi onaylamak için "DELETE" yazın',
+  'account.deleteConfirmation': 'Hesap silmeyi onaylamak için \"DELETE\" yazın',
   'account.deleteSuccess': 'Hesap başarıyla silindi',
   'account.deleteError': 'Hesap silme başarısız',
   'account.dataExport': 'Verilerimi Dışa Aktar',
   'account.dataExportDescription': 'Tüm verilerinizi JSON formatında indirin',
   'account.dataExportSuccess': 'Veri dışa aktarma talep edildi. Verilerinizi içeren bir e-posta alacaksınız.',
-  
   // Yükleme Güvenliği
   'upload.rightsConfirmation': 'İçerik Hakları Onayı',
   'upload.confirmRights': 'Bu içeriğin haklarına sahip olduğumu ve herhangi bir telif hakkını ihlal etmeyeceğimi onaylıyorum',
@@ -1297,14 +1207,12 @@ const tr = {
   'upload.nsfwDetected': 'Potansiyel olarak uygunsuz içerik tespit edildi',
   'upload.manualReview': 'Bu yükleme yayınlanmadan önce manuel olarak incelenecek',
   'upload.approvalPending': 'Yükleme onay bekliyor',
-  
   // Alt Bilgi Bağlantıları
   'footer.terms': 'Şartlar',
   'footer.privacy': 'Gizlilik',
   'footer.contact': 'İletişim',
   'footer.imprint': 'Yasal Bilgiler',
   'footer.copyright': '© 2024 Battle64. Nintendo ile bağlantılı değildir.',
-
   // Additional missing translations
   'platform.pc': 'PC',
   'region.pal': 'PAL',
@@ -1312,11 +1220,10 @@ const tr = {
   'currency.eur': 'EUR',
   'currency.usd': 'USD',
   'currency.gbp': 'GBP',
-
   // Equalized translation keys - added 2025-08-09
   'account.deletion.confirmDelete': 'SİL',
   'account.deletion.dataWillBeDeleted': 'Aşağıdaki veriler kalıcı olarak silinecektir:',
-  'account.deletion.errorConfirmText': 'Onaylamak için "SİL" yazın',
+  'account.deletion.errorConfirmText': 'Onaylamak için \"SİL\" yazın',
   'account.deletion.errorGeneric': 'Hesap silinirken hata',
   'account.deletion.errorUnexpected': 'Hesap silinirken beklenmeyen hata',
   'account.deletion.forumPosts': 'Forum gönderileri ve yorumları',
@@ -1341,7 +1248,7 @@ const tr = {
   'account.deletionPage.whatWillBeDeleted': 'account.deletionPage.whatWillBeDeleted',
   'admin.appHealth': 'admin.appHealth',
   'admin.health.cache': 'admin.health.cache',
-  'admin.health.errors': 'admin.health.errors',
+  'admin.health.errors': 'admin.health.Hatas',
   'admin.health.sessions': 'admin.health.sessions',
   'admin.health.uptime': 'admin.health.uptime',
   'admin.illegalContent': 'admin.illegalContent',
@@ -1361,18 +1268,18 @@ const tr = {
   'admin.usersWarned': 'admin.usersWarned',
   'auth.safariRedirectSuccess': 'auth.safariRedirectSuccess',
   'error.accessDenied': 'Erişim reddedildi',
-  'error.imagePreviewFailed': 'error.imagePreviewFailed',
-  'error.moderationBlocked': 'error.moderationBlocked',
+  'error.imagePreviewFailed': 'Hata.imagePreviewFailed',
+  'error.moderationBlocked': 'Hata.moderationBlocked',
   'error.timeout': 'İstek zaman aşımı',
-  'error.uploadFailed': 'error.uploadFailed',
+  'error.uploadFailed': 'Hata.uploadFailed',
   'error.validationError': 'Doğrulama hatası',
   'imageUpload.noPreview': 'imageUpload.noPreview',
-  'loading.content': 'İçerik yükleniyor...',
-  'loading.data': 'Veriler yükleniyor...',
-  'loading.general': 'Yükleniyor...',
-  'loading.image': 'Resim yükleniyor...',
-  'loading.page': 'Sayfa yükleniyor...',
-  'loading.video': 'Video yükleniyor...',
+  'loading.content': 'İçerik yükleniyor',
+  'loading.data': 'Veriler yükleniyor',
+  'loading.general': 'Yükleniyor',
+  'loading.image': 'Resim yükleniyor',
+  'loading.page': 'Sayfa yükleniyor',
+  'loading.video': 'Video yükleniyor',
   'map.battleDashboard': 'map.battleDashboard',
   'map.liveBattles': 'map.liveBattles',
   'map.resetView': 'map.resetView',
@@ -1381,8 +1288,8 @@ const tr = {
   'password.reset.emailLabel': 'password.reset.emailLabel',
   'password.reset.emailPlaceholder': 'password.reset.emailPlaceholder',
   'password.reset.emailSent': 'password.reset.emailSent',
-  'password.reset.errorUnexpected': 'password.reset.errorUnexpected',
-  'password.reset.errorUnknown': 'password.reset.errorUnknown',
+  'password.reset.errorUnexpected': 'password.reset.HataUnexpected',
+  'password.reset.errorUnknown': 'password.reset.HataUnknown',
   'password.reset.instructions': 'password.reset.instructions',
   'password.reset.sendButton': 'password.reset.sendButton',
   'password.reset.sending': 'password.reset.sending',
@@ -1401,14 +1308,14 @@ const tr = {
   'safari.step3': 'safari.step3',
   'status.completed': 'Tamamlandı',
   'status.connected': 'Bağlı',
-  'status.connecting': 'Bağlanıyor...',
+  'status.connecting': 'Bağlanıyor',
   'status.disconnected': 'Bağlantı kesildi',
   'status.failed': 'Başarısız',
   'status.inProgress': 'Devam ediyor',
   'status.offline': 'Çevrimdışı',
   'status.online': 'Çevrimiçi',
   'status.synced': 'Senkronize edildi',
-  'status.syncing': 'Senkronize ediliyor...',
+  'status.syncing': 'Senkronize ediliyor',
   'time.ago': 'time.ago',
   'time.always': 'time.always',
   'time.elapsed': 'time.elapsed',
@@ -1437,7 +1344,6 @@ const tr = {
   'validation.imageTooLarge': 'validation.imageTooLarge',
   'validation.supportedFormats': 'validation.supportedFormats',
   'validation.unsupportedFormat': 'validation.unsupportedFormat',
-
   // Legal & Privacy translation keys - added 2025-08-09
   'cookies.alwaysActive': 'Her Zaman Aktif',
   'account.deletionPage.gdprCompliant': 'GDPR uyumlu hesap silme',
@@ -1451,11 +1357,9 @@ const tr = {
   'account.deletionPage.backupRemovalText': 'Verileriniz bir sonraki yedekleme döngüsünde tüm yedeklerden de kaldırılacaktır.',
   'account.deletionPage.legalObligations': 'Yasal Yükümlülükler:',
   'account.deletionPage.legalObligationsText': 'Yasaların gerektirdiği durumlarda bazı veriler saklanabilir (örneğin, vergi amaçlı mali kayıtlar).',
-
   // Final hardcoded text fixes - added 2025-08-09
-  'account.deletionPage.deleting': 'Siliniyor...',
+  'account.deletionPage.deleting': 'Siliniyor',
   'account.deletionPage.deleteAccountPermanently': 'Hesabı kalıcı olarak sil',
-
   // Nintendo-specific translation keys - added 2025-08-09
   'terms.nintendoCopyrightNotice': 'Nintendo Telif Hakkı Bildirimi:',
   'terms.nintendoFullDisclaimer': 'Battle64 bağımsız bir retro oyun topluluğudur ve Nintendo Co., Ltd. ile bağlantılı değildir, onaylanmamıştır veya sponsorlanmamıştır. Nintendo 64, N64 ve ilgili tüm karakterler, isimler, markalar, amblemler ve görüntüler Nintendo\'nun ticari markalarıdır. Diğer tüm ticari markalar ilgili sahiplerinin mülkiyetindedir.',
@@ -1479,7 +1383,7 @@ const tr = {
   'fanart.mario.castle': 'Peach\'in Kalesinde Mario',
   'forum.untitledThread': 'Başlıksız Konu',
   'error.invalidDataFormat': 'Geçersiz veri formatı',
-  'common.user': 'Kullanıcı',
+  'common.user': 'Kullanıcı'
 }
 
 export default tr

@@ -17,16 +17,14 @@ const it = {
   'nav.newsfeed': 'Notizie',
   'nav.community': 'Comunità',
   'nav.map': 'Battle64 Map',
-
   // Accessibility
   'a11y.skipToMain': 'Vai al contenuto principale',
   'a11y.skipToNav': 'Vai alla navigazione',
   'a11y.skipToSearch': 'Vai alla ricerca',
   'a11y.newPage': 'Nuova pagina caricata',
   'a11y.loading': 'Caricamento contenuto',
-  'a11y.error': 'Errore verificato',
+  'a11y.error': 'Erroree verificato',
   'a11y.success': 'Azione completata con successo',
-
   // Common fallback texts
   'common.unknown': 'Sconosciuto',
   'common.unknownGame': 'Gioco Sconosciuto',
@@ -46,11 +44,10 @@ const it = {
   'common.draft': 'Bozza',
   'common.published': 'Pubblicato',
   'common.archived': 'Archiviato',
-  
   // Account deletion
-  'account.deletion.confirmText': 'Per favore digita "DELETE" per confermare',
-  'account.deletion.placeholder': 'DELETE',
-  'account.deletion.typeDelete': 'Digita "DELETE" per confermare:',
+  'account.deletion.confirmText': 'Per favore digita \"DELETE\" per confermare',
+  'account.deletion.placeholder': 'ELIMINA',
+  'account.deletion.typeDelete': 'Digita \"DELETE\" per confermare:',
   // Home Screen
   'home.subtitle': 'La Comunità N64 per i Millennials',
   'home.welcome': 'Bentornato',
@@ -67,13 +64,12 @@ const it = {
   'home.fanart.subtitle': 'Creatività',
   'home.newsfeed.subtitle': 'Aggiornamenti',
   'home.map.subtitle': 'Battaglie Locali',
-
   // Battle64 Map
   'map.title': 'Battle64 Map',
   'map.subtitle': 'Battaglie Reali e Geo-Matching',
   'map.hostEvent': 'Organizza Battaglia Locale a 4 Giocatori',
   'map.selectGame': 'Seleziona Gioco',
-  'map.chooseGame': 'Scegli un gioco...',
+  'map.chooseGame': 'Scegli un gioco',
   'map.eventTitle': 'Titolo Evento',
   'map.eventTitlePlaceholder': 'Torneo di Corse del Weekend',
   'map.description': 'Descrizione',
@@ -146,15 +142,14 @@ const it = {
   'event.type.speedrun': 'Sessione Speedrun',
   'event.type.meetup': 'Incontro',
   'event.category': 'Categoria evento',
-
   // Common
   'common.welcome': 'Benvenuto',
-  'common.loading': 'Caricamento...',
-  'common.error': 'Errore',
+  'common.loading': 'Caricamento',
+  'common.error': 'Erroree',
   'common.save': 'Salva',
   'common.cancel': 'Annulla',
   'common.upload': 'Carica',
-  'common.uploading': 'Caricamento...',
+  'common.uploading': 'Caricamento',
   'common.remove': 'Rimuovi',
   'common.delete': 'Elimina',
   'common.edit': 'Modifica',
@@ -180,7 +175,6 @@ const it = {
   'common.ok': 'OK',
   'common.retry': 'Riprova',
   'common.note': 'Nota',
-
   // Authentication
   'auth.login': 'Accedi',
   'auth.logout': 'Esci',
@@ -194,7 +188,6 @@ const it = {
   'auth.loginRequiredMessage': 'Devi essere loggato per vedere questa pagina.',
   'auth.loginRequiredForEvents': 'Per favore accedi per partecipare agli eventi!',
   'auth.loginRequiredForImageUpload': 'Devi essere loggato per caricare immagini',
-
   // Quiz
   'quiz.title': 'Quiz N64',
   'quiz.start': 'Inizia Quiz',
@@ -212,7 +205,6 @@ const it = {
   'quiz.category': 'Categoria',
   'quiz.restart': 'Ricomincia',
   'quiz.wrong': 'Sbagliato!',
-
   // Events
   'events.title': 'Eventi',
   'events.subtitle': 'Tornei, Sfide e Eventi della Comunità',
@@ -235,7 +227,6 @@ const it = {
   'events.game': 'Gioco',
   'events.track': 'Pista',
   'events.time': 'Tempo',
-
   // Forum
   'forum.title': 'Forum',
   'forum.subtitle': 'Discussioni della Comunità',
@@ -244,14 +235,13 @@ const it = {
   'forum.threads': 'Thread',
   'forum.posts': 'Post',
   'forum.mostActive': 'Più Attivo',
-  'forum.loading': 'Caricamento...',
+  'forum.loading': 'Caricamento',
   'forum.communityNexus': 'Nexus della Comunità',
   'forum.discussWithCommunity': 'Discuti con la comunità',
   'forum.createThread': 'Crea thread',
   'forum.newThread': 'Nuovo thread',
   'forum.reply': 'Rispondi',
   'forum.backToForum': 'Torna al Forum',
-
   // Language selector
   'language.german': 'Tedesco',
   'language.english': 'Inglese',
@@ -267,21 +257,17 @@ const it = {
   'language.hindi': 'Hindi',
   'language.arabic': 'Arabo',
   'language.korean': 'Coreano',
-
-
-
   // Error messages
-  'error.generic': 'Si è verificato un errore',
-  'error.networkError': 'Errore di rete',
+  'error.generic': 'Si è verificato un Erroree',
+  'error.networkError': 'Erroree di rete',
   'error.notFound': 'Pagina non trovata',
   'error.unauthorized': 'Non autorizzato',
   'error.forbidden': 'Accesso negato',
-  'error.serverError': 'Errore del server',
+  'error.serverError': 'Erroree del server',
   'error.tryAgain': 'Per favore riprova',
   'error.goHome': 'Vai alla Home',
   'error.contactSupport': 'Contatta il Supporto',
   'error.somethingWentWrong': 'Qualcosa è andato storto',
-
   // Missing keys added automatically
   'news.title': 'Notizie',
   'news.subtitle': 'Ultimi aggiornamenti e annunci',
@@ -303,7 +289,7 @@ const it = {
   'news.noResults': 'Nessun risultato',
   'news.noResultsDescription': 'Nessuna notizia trovata',
   'news.pagination': 'Pagina {current} di {total}',
-  'news.search.placeholder': 'Cerca notizie...',
+  'news.search.placeholder': 'Cerca notizie',
   'news.filter.all': 'Tutte',
   'news.filter.events': 'Eventi',
   'news.filter.winners': 'Vincitori',
@@ -359,21 +345,13 @@ const it = {
   'media.allGames': 'Tutti i Giochi',
   'media.noEvent': 'Nessun Evento',
   'media.uploadedBy': 'Caricato da',
-  'media.uploadedOn': 'Caricato il',
-  'placeholder.speedrunTitle': 'es. Mario 64 120 Stelle Speedrun',
-  'placeholder.speedrunUrl': 'https://twitch.tv/tuo-canale',
-  'placeholder.speedrunGame': 'es. Super Mario 64',
-  'placeholder.mediaSearch': 'Cerca per titolo, descrizione o tag...',
-  'placeholder.mediaUrl': 'https://youtube.com/watch?v=...',
-  'placeholder.mediaDescription': 'Descrivi il tuo traguardo...',
-  'placeholder.mediaTags': 'Record mondiale, Any%, Glitchless (separati da virgola)',
+  'media.uploadedOn': 'Caricato il', descrizione o tag', Any%, Glitchless (separati da virgola)',
   'success.uploaded': 'Caricato con successo',
   'validation.allFieldsRequired': 'Tutti i campi sono obbligatori',
-
   // Additional missing keys
   'marketplace.subtitle': 'Commercio e Scambi N64',
   'marketplace.createOffer': 'Crea Offerta',
-  'marketplace.searchPlaceholder': 'Cerca articoli...',
+  'marketplace.searchPlaceholder': 'Cerca articoli',
   'marketplace.category': 'Categoria',
   'marketplace.allCategories': 'Tutte le Categorie',
   'marketplace.categoryGames': 'Giochi',
@@ -418,11 +396,11 @@ const it = {
   'minigames.correctAnswers': 'Risposte corrette',
   'minigames.cheatCode': 'Codice Trucco',
   'minigames.completed': 'Completato',
-  'minigames.typeCheatCode': 'Inserisci codice trucco...',
-  'minigames.sound.mario64': '"Wahoo!" - Suono salto di Mario',
-  'minigames.sound.zelda': '"Hey! Listen!" - Suono di Navi',
-  'minigames.sound.goldeneye': '"Pew Pew" - Colpo silenziato',
-  'minigames.sound.mariokart': '"Here we go!" - Inizio gara',
+  'minigames.typeCheatCode': 'Inserisci codice trucco',
+  'minigames.sound.mario64': '\"Wahoo!\" - Suono salto di Mario',
+  'minigames.sound.zelda': '\"Hey! Listen!\" - Suono di Navi',
+  'minigames.sound.goldeneye': '\"Pew Pew\" - Colpo silenziato',
+  'minigames.sound.mariokart': '\"Here we go!\" - Inizio gara',
   'minigames.sound': 'Suono',
   'minigames.whichGame': 'Da quale gioco proviene questo suono?',
   'minigames.you': 'Tu',
@@ -430,8 +408,8 @@ const it = {
   'minigames.readyForDuel': 'Pronto per il duello?',
   'minigames.startDuel': 'Inizia duello',
   'minigames.result': 'Risultato',
-  'minigames.opponentAnswering': 'sta rispondendo...',
-  'minigames.gameLoading': 'Gioco in caricamento...',
+  'minigames.opponentAnswering': 'sta rispondendo',
+  'minigames.gameLoading': 'Gioco in caricamento',
   'minigames.gameEnded': 'Gioco terminato',
   'minigames.yourScore': 'Il tuo punteggio',
   'minigames.title': 'Minigiochi',
@@ -456,14 +434,13 @@ const it = {
   'news.n64HistoryContent': 'Uno sguardo indietro a 27 anni di Nintendo 64',
   'aria.gridView': 'Vista griglia',
   'aria.listView': 'Vista lista',
-
   // Additional missing keys
   'fanart.artworksFound': 'opere d\'arte trovate',
   'fanart.ratings': 'valutazioni',
   'fanart.yourRating': 'La Tua Valutazione',
   'fanart.noArtworksFound': 'Nessuna opera d\'arte trovata',
   'fanart.noArtworksDescription': 'Non sono ancora state caricate opere d\'arte.',
-  'error.title': 'Errore',
+  'error.title': 'Erroree',
   'error.threadCreationFailed': 'Creazione thread fallita',
   'forum.categoryNotFound': 'Categoria non trovata',
   'forum.firstThread': 'Primo Thread',
@@ -508,12 +485,7 @@ const it = {
   'category.collecting': 'Collezionismo',
   'category.tips': 'Consigli',
   'validation.titleTooLong': 'Titolo troppo lungo',
-  'validation.contentTooLong': 'Contenuto troppo lungo',
-  'placeholder.threadTitle': 'Dai un titolo al tuo thread...',
-  'placeholder.threadContent': 'Scrivi il tuo post...',
-  'placeholder.replyContent': 'Scrivi la tua risposta...',
-  'placeholder.marketplacePrice': 'Inserisci prezzo...',
-  'ui.login': 'Accedi',
+  'validation.contentTooLong': 'Contenuto troppo lungo',  'ui.login': 'Accedi',
   'alt.postAttachment': 'Allegato del post',
   'alt.battle64Mascot': 'Mascotte Battle64',
   'news.communityStats': 'Statistiche Comunità',
@@ -531,9 +503,9 @@ const it = {
   'events.status.live': 'Dal Vivo',
   'events.status.completed': 'Completato',
   'marketplace.title': 'Titolo',
-  'marketplace.titlePlaceholder': 'Inserisci nome articolo...',
+  'marketplace.titlePlaceholder': 'Inserisci nome articolo',
   'marketplace.description': 'Descrizione',
-  'marketplace.descriptionPlaceholder': 'Descrivi il tuo articolo...',
+  'marketplace.descriptionPlaceholder': 'Descrivi il tuo articolo',
   'marketplace.price': 'Prezzo',
   'marketplace.condition': 'Condizione',
   'marketplace.conditionNew': 'Nuovo',
@@ -548,7 +520,6 @@ const it = {
   'minigames.hard': 'Difficile',
   'minigames.backToMenu': 'Torna al Menu',
   'minigames.highScore': 'Punteggio Massimo',
-
   // Final remaining missing keys
   'collection.gamesCollected': 'Giochi Collezionati',
   'collection.completeness': 'Completezza',
@@ -614,7 +585,7 @@ const it = {
   'notifications.denied': 'Notifiche rifiutate',
   'notifications.notSupported': 'Notifiche non supportate',
   'notifications.disabled': 'Notifiche disabilitate',
-  'notifications.error': 'Errore notifiche',
+  'notifications.error': 'Erroree notifiche',
   'fanart.uploadArt': 'Carica Opera d\'Arte',
   'fanart.uploadImage': 'Carica Immagine',
   'fanart.chooseImage': 'Scegli Immagine',
@@ -622,11 +593,11 @@ const it = {
   'fanart.artworkTitle': 'Titolo Opera d\'Arte',
   'fanart.titlePlaceholder': 'Dai un titolo alla tua opera d\'arte...',
   'fanart.selectGame': 'Seleziona Gioco',
-  'fanart.chooseGame': 'Scegli un gioco...',
+  'fanart.chooseGame': 'Scegli un gioco',
   'fanart.tags': 'Tag',
-  'fanart.tagsPlaceholder': 'Aggiungi tag...',
+  'fanart.tagsPlaceholder': 'Aggiungi tag',
   'fanart.tagsHint': 'Separati da virgole',
-  'fanart.uploading': 'Caricamento...',
+  'fanart.uploading': 'Caricamento',
   'fanart.allCategories': 'Tutte le Categorie',
   'fanart.subtitle': 'Condividi le tue opere d\'arte ispirate al N64',
   'fanart.filterBy': 'Filtra per',
@@ -635,13 +606,9 @@ const it = {
   'common.rare': 'Raro',
   'common.veryRare': 'Molto Raro',
   'common.ultraRare': 'Ultra Raro',
-  'common.hide': 'Nascondi',
-  'placeholder.searchGames': 'Cerca giochi...',
-  'placeholder.searchPlayers': 'Cerca giocatori...',
-  'ui.grid': 'Griglia',
+  'common.hide': 'Nascondi',  'ui.grid': 'Griglia',
   'ui.list': 'Lista',
   'alt.preview': 'Anteprima',
-
   // Final batch of missing keys
   'collection.cartOnly': 'Solo Cartuccia',
   'collection.boxOnly': 'Solo Scatola',
@@ -663,41 +630,37 @@ const it = {
   'media.noUploads': 'Nessun Caricamento',
   'media.noUploadsDesc': 'Non hai ancora caricato alcun media.',
   'media.eventUpload': 'Caricamento Evento',
-  'label.notes': 'Note',
-  'placeholder.notes': 'Aggiungi note...',
-  'placeholder.additionalInfo': 'Informazioni aggiuntive...',
-  'placeholder.password': 'Inserisci password...',
-  'validation.contentRequired': 'Contenuto richiesto',
+  'label.notes': 'Note',  'validation.contentRequired': 'Contenuto richiesto',
   'validation.postTooLong': 'Post troppo lungo',
   'auth.invalidCredentials': 'Credenziali non valide',
-  'auth.errorOccurred': 'Si è verificato un errore',
+  'auth.errorOccurred': 'Si è verificato un Erroree',
   'auth.passwordsDontMatch': 'Le password non corrispondono',
   'auth.passwordTooShort': 'Password troppo corta',
   'auth.usernameTooShort': 'Nome utente troppo corto',
   'auth.registrationFailed': 'Registrazione fallita',
   'auth.welcomeBack': 'Bentornato',
   'auth.createAccount': 'Crea Account',
-  'auth.emailPlaceholder': 'Inserisci email...',
-  'auth.loggingIn': 'Accesso in corso...',
-  'auth.usernamePlaceholder': 'Inserisci nome utente...',
+  'auth.emailPlaceholder': 'Inserisci email',
+  'auth.loggingIn': 'Accesso in corso',
+  'auth.usernamePlaceholder': 'Inserisci nome utente',
   'auth.platform': 'Piattaforma',
   'auth.region': 'Regione',
-  'auth.registering': 'Registrazione in corso...',
+  'auth.registering': 'Registrazione in corso',
   'auth.createAccountButton': 'Crea Account',
   'auth.noAccountYet': 'Non hai ancora un account?',
   'auth.registerNow': 'Registrati ora',
   'auth.alreadyHaveAccount': 'Hai già un account?',
   'auth.loginHere': 'Accedi qui',
-  'auth.processingRegistration': 'Elaborazione registrazione...',
-  'auth.waitingEmailConfirmation': 'In attesa di conferma via email...',
+  'auth.processingRegistration': 'Elaborazione registrazione',
+  'auth.waitingEmailConfirmation': 'In attesa di conferma via email',
   'auth.registrationSucceeded': 'Registrazione completata!',
   'auth.welcomeToCommunity': 'Benvenuto nella Comunità Battle64',
   'auth.checkOutEvents': 'Scopri i nostri eventi',
   'auth.emailConfirmationSent': 'Abbiamo inviato un\'email di conferma a {email}.',
   'auth.clickEmailLink': 'Clicca sul link nell\'email per completare la registrazione.',
-  'auth.emailBeingConfirmed': 'Email in conferma...',
+  'auth.emailBeingConfirmed': 'Email in conferma',
   'auth.pleaseWaitMoment': 'Attendi un momento.',
-  'auth.emailConfirmedSuccessfully': 'Email confermata con successo! Sarai reindirizzato alla homepage...',
+  'auth.emailConfirmedSuccessfully': 'Email confermata con successo! Sarai reindirizzato alla homepage',
   'auth.confirmationFailed': 'Conferma fallita',
   'auth.accountActivatedSuccessfully': 'Il tuo account è stato attivato con successo!',
   'auth.joinCommunityMessage': 'e unisciti alla comunità.',
@@ -705,20 +668,18 @@ const it = {
   'auth.invalidConfirmationLink': 'Link di conferma non valido',
   'auth.confirmationLinkExpired': 'Conferma email fallita. Il link potrebbe essere scaduto.',
   'auth.emailConfirmationFailed': 'Conferma email fallita',
-  'auth.unexpectedError': 'Si è verificato un errore imprevisto',
+  'auth.unexpectedError': 'Si è verificato un Erroree imprevisto',
   'auth.tryRegisterAgain': 'Prova a registrarti di nuovo o contatta il supporto.',
   'auth.goToLogin': 'Vai al Login',
-
   // Browser Redirect
   'browserRedirect.title': 'Reindirizzamento Browser',
-  'browserRedirect.message': 'Ti stiamo reindirizzando al tuo browser preferito...',
+  'browserRedirect.message': 'Ti stiamo reindirizzando al tuo browser preferito',
   'browserRedirect.detectedBrowser': 'Browser Rilevato',
   'browserRedirect.version': 'Versione',
-  'browserRedirect.redirectingIn': 'Reindirizzamento tra {seconds} secondi...',
+  'browserRedirect.redirectingIn': 'Reindirizzamento tra {seconds} secondi',
   'browserRedirect.redirectNow': 'Reindirizza Ora',
   'browserRedirect.troubleshoot': 'Il reindirizzamento automatico non funziona?',
-  'browserRedirect.manualInstructions': 'Clicca su "Reindirizza Ora" o copia l\'URL dalla barra degli indirizzi.',
-
+  'browserRedirect.manualInstructions': 'Clicca su \"Reindirizza Ora\" o copia l\'URL dalla barra degli indirizzi.',
   // Safari Redirect
   'auth.safariRedirectSuccess': '🎉 Sei tornato con successo su Safari! La tua registrazione è stata confermata.',
   'safari.redirectTitle': 'Torna a Safari',
@@ -731,13 +692,12 @@ const it = {
   'safari.step2': 'Apri Safari',
   'safari.step3': 'Incolla l\'URL nella barra degli indirizzi',
   'safari.manualInstructions': 'Per favore apri Safari manualmente e incolla l\'URL.',
-
   'chat.title': 'Chat della Comunità',
   'chat.onlineUsers': 'utenti online',
   'chat.chats': 'Chat',
   'chat.newChat': 'Nuova Chat',
-  'chat.searchUsers': 'Cerca utenti...',
-  'chat.messagePlaceholder': 'Scrivi un messaggio...',
+  'chat.searchUsers': 'Cerca utenti',
+  'chat.messagePlaceholder': 'Scrivi un messaggio',
   'chat.joinPrompt': 'Unisciti alla chat per partecipare!',
   'chat.privateChat': 'Chat Privata',
   'chat.description': 'Discuti di giochi N64 con la comunità',
@@ -751,18 +711,11 @@ const it = {
   'chat.rules.noSpam': 'Niente spam o messaggi ripetuti',
   'chat.rules.shareExperience': 'Condividi le tue esperienze N64',
   'chat.rules.noLinks': 'Niente link esterni senza permesso',
-
-  // Professional translations - final batch
-  'placeholder.raceTime': 'Inserisci tempo (es. 1:23:45)...',
-  'events.timeFormat': 'Formato: Ore:Minuti:Secondi',
+  // Professional translations - final batch  'events.timeFormat': 'Formato: Ore:Minuti:Secondi',
   'events.selectDocumentation': 'Seleziona Documentazione',
   'events.photo': 'Foto',
   'events.video': 'Video',
-  'events.livestreamUrlLabel': 'URL Livestream',
-  'placeholder.livestreamUrl': 'https://twitch.tv/tuo-canale...',
-  'events.streamingPlatforms': 'Piattaforme di Streaming',
-  'placeholder.setupController': 'Descrivi la configurazione del controller...',
-  'events.status.upcoming': 'In Arrivo',
+  'events.livestreamUrlLabel': 'URL Livestream',  'events.streamingPlatforms': 'Piattaforme di Streaming',  'events.status.upcoming': 'In Arrivo',
   'card.fanarts': 'Fan Art',
   'card.forumPosts': 'Post del Forum',
   'card.marketplace': 'Mercato',
@@ -798,10 +751,7 @@ const it = {
   'label.gameName': 'Nome del Gioco',
   'label.required': '(richiesto)',
   'label.platform': 'Piattaforma',
-  'label.region': 'Regione',
-  'placeholder.gameName': 'Inserisci nome del gioco...',
-  'news.noNewsAvailable': 'Nessuna notizia disponibile',
-
+  'label.region': 'Regione',  'news.noNewsAvailable': 'Nessuna notizia disponibile',
   // Final remaining missing keys - professional translations
   'imageUpload.dropHere': 'Rilascia qui',
   'imageUpload.uploadImage': 'Carica Immagine',
@@ -836,7 +786,6 @@ const it = {
   'rank.current': 'Attuale',
   'rank.nextRank': 'Prossimo Rango',
   'rank.maxRank': 'Rango massimo raggiunto',
-
   // Cool Rank Titles (20 Levels)
   'Pixel Rookie': 'Rookie Pixel',
   'Button Masher': 'Schiacciabottoni',
@@ -881,18 +830,12 @@ const it = {
   'events.timeRequired': 'Tempo richiesto',
   'events.livestreamUrlRequired': 'URL livestream richiesto',
   'events.invalidTimeFormat': 'Formato tempo non valido',
-  'events.uploadError': 'Errore di caricamento',
+  'events.uploadError': 'Erroree di caricamento',
   'events.livestreamSubmissionDesc': 'Invio livestream',
   'events.raceSubmission': 'Invio Gara',
   'events.raceTime': 'Tempo di Gara',
   'label.category': 'Categoria',
   'label.proofUrl': 'URL Prova',
-  'placeholder.category': 'Seleziona categoria...',
-  'placeholder.time': 'Inserisci tempo...',
-  'placeholder.score': 'Inserisci punteggio...',
-  'placeholder.proofUrl': 'Inserisci URL prova...',
-  'placeholder.recordNotes': 'Note record...',
-
   // Final TypeScript error fixes - professional translations
   'achievement.progress': 'Progresso',
   'achievement.requirements': 'Requisiti',
@@ -928,7 +871,6 @@ const it = {
   'eventLeaderboard.documentation': 'Documentazione',
   'eventLeaderboard.viewMedia': 'Visualizza Media',
   'events.mobile.winner': 'Vincitore',
-  
   // Best Lap Showcase
   'events.bestLap.title': 'Miglior Giro',
   'events.bestLap.photoAlt': 'Screenshot del miglior giro di {username} con tempo {time}',
@@ -936,17 +878,14 @@ const it = {
   'events.bestLap.livestreamDesc': 'Guarda il livestream del detentore del record',
   'events.bestLap.watchStream': 'Guarda Stream',
   'ui.liveChat': 'Chat dal Vivo',
-  'media.error': 'Errore media',
+  'media.error': 'Erroree media',
   'error.invalidFile': 'File non valido',
   'alt.uploadPreview': 'Anteprima caricamento',
-
-
   // Accessibility keys
   'accessibility.skipToContent': 'Vai al contenuto principale',
   'accessibility.skipToNavigation': 'Vai alla navigazione',
   'accessibility.skippedToContent': 'Saltato al contenuto principale',
   'accessibility.skippedToNavigation': 'Saltato alla navigazione',
-
   // Homepage specific translations
   'home.noLiveEvent': 'Nessun evento live attivo - Il prossimo evento inizia presto!',
   'home.showAllEvents': '📅 Mostra tutti gli eventi',
@@ -959,7 +898,6 @@ const it = {
   'home.clickToViewFull': 'Clicca per vedere a dimensione piena',
   'home.clickToWatch': 'Clicca per guardare',
   'home.noMediaSubmitted': 'Nessun media inviato',
-
   // News items
   'news.mariokartRecord': '🏆 Record Mondiale Mario Kart 64 Speedrun Battuto!',
   'news.mariokartRecordContent': 'SpeedDemon64 ha stabilito un nuovo record mondiale su Wario Stadium con un tempo di 1:42.33!',
@@ -979,7 +917,6 @@ const it = {
   'news.speedrunCategoryContent': 'Abbiamo aggiunto una nuova categoria Any% per Banjo-Kazooie. Unisciti ora!',
   'news.monthlyChallenge': '🏆 Vincitore della Sfida Mensile',
   'news.monthlyChallengeContent': 'Congratulazioni a N64Master per aver vinto la Sfida Mensile di ottobre!',
-
   // Live Events - Mario Kart 64 Luigi's Raceway
   'events.mk64LuigisRaceway.title': '🏁 Mario Kart 64: Sfida di Velocità su Luigi\'s Raceway',
   'events.mk64LuigisRaceway.description': 'Mostra la tua velocità sull\'iconico circuito Luigi\'s Raceway! Un mese di competizione intensa in stile Gran Turismo 7.',
@@ -994,7 +931,6 @@ const it = {
   'events.mk64LuigisRaceway.prize3': '🥉 3° Posto: 200 Punti Battle64 + Medaglia di Bronzo',
   'events.mk64LuigisRaceway.prizeTop10': '🏆 Top 10: Punti stile F1 (25-18-15-12-10-8-6-4-2-1)',
   'events.mk64LuigisRaceway.prizeParticipation': '🎯 Partecipazione: 5 Punti Battle64 per ogni partecipante',
-
   // Live Events - San Francisco Rush Downtown
   'events.sfrDowntown.title': '🏙️ San Francisco Rush: Campionato di Gara Downtown',
   'events.sfrDowntown.description': 'Corri per le strade del Downtown di San Francisco! Azione di gara estrema per un mese intero.',
@@ -1009,7 +945,6 @@ const it = {
   'events.sfrDowntown.prize3': '🥉 3° Posto: 200 Punti Battle64 + Corridore di Strada',
   'events.sfrDowntown.prizeTop10': '🏆 Top 10: Punti stile F1 (25-18-15-12-10-8-6-4-2-1)',
   'events.sfrDowntown.prizeParticipation': '🎯 Partecipazione: 5 Punti Battle64 per ogni partecipante',
-
   // Live Events - Diddy Kong Racing Ancient Lake
   'events.dkrAncientLake.title': '🦍 Diddy Kong Racing: Prova a Tempo su Ancient Lake',
   'events.dkrAncientLake.description': 'Conquista il mistico Ancient Lake! Una competizione leggendaria nel classico Rare per veri fan di N64.',
@@ -1024,10 +959,8 @@ const it = {
   'events.dkrAncientLake.prize3': '🥉 3° Posto: 200 Punti Battle64 + Corridore Antico',
   'events.dkrAncientLake.prizeTop10': '🏆 Top 10: Punti stile F1 (25-18-15-12-10-8-6-4-2-1)',
   'events.dkrAncientLake.prizeParticipation': '🎯 Partecipazione: 5 Punti Battle64 per ogni partecipante',
-
   // Home Ranking Section
   'home.yourRanking': 'La Tua Classifica',
-
   // Ranking System
   'ranking.globalRank': 'Rango Globale',
   'ranking.totalPoints': 'Punti Totali',
@@ -1041,72 +974,62 @@ const it = {
   'ranking.achievements': 'Traguardi',
   'ranking.verifiedRecords': 'Record Verificati',
   'ranking.gamesOwned': 'Giochi Posseduti',
-
   // Profile Ranking
   'profile.ranking': 'Classifica',
   'profile.globalRanking': 'Classifica Globale',
   'profile.rankingStats': 'Statistiche Classifica',
-
   // FanArt Comments
-  'fanart.addComment': 'Aggiungi un commento...',
-
+  'fanart.addComment': 'Aggiungi un commento',
   // Interaction System
   'interaction.like': 'Mi piace',
   'interaction.unlike': 'Rimuovi mi piace',
   'interaction.comments': 'commenti',
   'interaction.addComment': 'Aggiungi commento',
-  'interaction.writeComment': 'Scrivi un commento...',
+  'interaction.writeComment': 'Scrivi un commento',
   'interaction.loginToLike': 'Accedi per mettere mi piace',
   'interaction.loginToComment': 'Accedi per commentare',
   'interaction.viewCount': 'Numero di visualizzazioni',
   'interaction.showComments': 'Mostra commenti',
-
   // Time
   'time.justNow': 'proprio ora',
-
   // Media types
   'media.photo': 'Foto',
   'media.video': 'Video',
   'media.noMediaTooltip': 'Nessun media ancora – carica il tuo video o screenshot per verificare la corsa',
-
   // Event Card specific translations
   'events.likes': 'Mi piace',
-  'events.views': 'Visualizzazioni', 
+  'events.views': 'Visualizzazioni',
   'events.comments': 'Commenti',
-
   // PWA Installation Prompt
   'pwa.installTitle': 'Installa Battle64',
   'pwa.installDescription': 'Ottieni l\'esperienza completa dell\'app con accesso offline e caricamento più veloce!',
   'pwa.install': 'Installa App',
   'pwa.gotIt': 'Capito!',
   'pwa.iosStep1': 'Tocca il pulsante Condividi',
-  'pwa.iosStep2': 'Poi "Aggiungi alla schermata Home"',
+  'pwa.iosStep2': 'Poi \"Aggiungi alla schermata Home\"',
   'common.later': 'Più tardi',
-
   // Offline Functionality
   'offline.workingOffline': 'Funzionamento offline',
   'offline.backOnline': 'Di nuovo online!',
   'offline.cachedDataAvailable': 'Dati cache disponibili',
   'offline.cachedData': 'Dati cache',
-
   // Enhanced Chat
   'chat.communityChat': 'Chat della Comunità',
   'chat.activeUsers': 'utenti attivi',
-  'chat.loading': 'Caricamento messaggi...',
+  'chat.loading': 'Caricamento messaggi',
   'chat.noMessages': 'Nessun messaggio ancora',
   'chat.startConversation': 'Sii il primo a iniziare la conversazione!',
-  'chat.typeMessage': 'Scrivi un messaggio...',
+  'chat.typeMessage': 'Scrivi un messaggio',
   'chat.emoji': 'Aggiungi emoji',
   'chat.scrollToBottom': 'Vai in fondo',
-  'chat.errorLoading': 'Errore caricamento messaggi',
+  'chat.errorLoading': 'Erroree caricamento messaggi',
   'time.today': 'Oggi',
   'time.yesterday': 'Ieri',
-
   // Realtime Events
   'events.nowLive': 'L\'evento è ora dal vivo!',
   'realtime.connected': 'Connessione live attiva',
   'realtime.disconnected': 'Connessione live interrotta',
-  'realtime.reconnecting': 'Riconnessione...',
+  'realtime.reconnecting': 'Riconnessione',
   'realtime.newUpdate': 'Nuovi aggiornamenti live disponibili',
   'realtime.leaderboard.updated': 'Classifica aggiornata',
   'realtime.points.updated': 'Punti aggiornati',
@@ -1114,7 +1037,6 @@ const it = {
   'realtime.participant.left': 'Partecipante uscito',
   'realtime.event.started': 'Evento iniziato',
   'realtime.event.finished': 'Evento terminato',
-
   // PWA Installation
   'pwa.install.button': 'Installa App',
   'pwa.install.banner.title': 'Installa Battle64 come App',
@@ -1123,9 +1045,8 @@ const it = {
   'pwa.install.modal.description': 'Installa Battle64 per un\'esperienza app nativa con accesso offline e notifiche push.',
   'pwa.install.ios.title': 'Aggiungi alla Schermata Home',
   'pwa.install.ios.step1': 'Tocca il pulsante Condividi in fondo al browser',
-  'pwa.install.ios.step2': 'Scorri verso il basso e seleziona "Aggiungi alla schermata Home"',
-  'pwa.install.ios.step3': 'Tocca "Aggiungi" per installare l\'app',
-
+  'pwa.install.ios.step2': 'Scorri verso il basso e seleziona \"Aggiungi alla schermata Home\"',
+  'pwa.install.ios.step3': 'Tocca \"Aggiungi\" per installare l\'app',
   // Battle Map
   'battleMap.title': 'Mappa Battle64',
   'battleMap.liveEvents': 'Eventi Live',
@@ -1141,15 +1062,13 @@ const it = {
   'battleMap.yourLocation': 'La Tua Posizione',
   'battleMap.noEvents': 'Nessun evento live nelle vicinanze',
   'battleMap.participantCount': 'Partecipanti',
-
   // Live Leaderboard
   'leaderboard.live': 'Classifica Live',
-  'leaderboard.updating': 'Aggiornamento...',
+  'leaderboard.updating': 'Aggiornamento',
   'leaderboard.lastUpdate': 'Ultimo Aggiornamento',
   'leaderboard.points.live': 'Punti Live',
   'leaderboard.rank.changed': 'Posizione Cambiata',
   'leaderboard.newRecord': 'Nuovo Record!',
-
   // GDPR Realtime
   'gdpr.realtime.title': 'Funzionalità Live',
   'gdpr.realtime.description': 'Abilita aggiornamenti live per classifiche, eventi e chat',
@@ -1159,13 +1078,11 @@ const it = {
   'gdpr.location.description': 'Condividi la tua posizione per eventi locali e partecipanti vicini',
   'gdpr.location.enable': 'Abilita Posizione',
   'gdpr.location.disable': 'Disabilita Posizione',
-
   // Offline Mode
   'offline.title': 'Modalità Offline',
   'offline.description': 'Sei offline. Alcune funzionalità sono limitate.',
   'offline.cached': 'Mostra contenuto in cache',
   'offline.retry': 'Riprova',
-
   // Common - New additions
   'common.understood': 'Capito',
   'common.success': 'Successo',
@@ -1173,11 +1090,9 @@ const it = {
   'settings.privacy.title': 'Impostazioni Privacy',
   'settings.notifications.title': 'Impostazioni Notifiche',
   'settings.notifications.description': 'Gestisci le tue preferenze di notifica',
-
   // GDPR Notice
   'gdpr.notice.title': 'Informativa sulla Privacy',
   'gdpr.notice.description': 'Rispettiamo la tua privacy e seguiamo le linee guida GDPR per la protezione dei dati',
-
   // Termini Legali e Conformità
   'legal.ageVerification': 'Verifica dell\'Età',
   'legal.birthDate': 'Data di Nascita',
@@ -1195,7 +1110,6 @@ const it = {
   'legal.adultOnlyPlatform': 'Battle64 è solo per utenti di 18 anni e oltre',
   'legal.readTerms': 'Leggi i Termini di Servizio',
   'legal.readPrivacy': 'Leggi l\'Informativa sulla Privacy',
-  
   // Contenuto dei Termini di Servizio
   'terms.title': 'Termini di Servizio',
   'terms.lastUpdated': 'Ultimo aggiornamento: {date}',
@@ -1215,7 +1129,6 @@ const it = {
   'terms.section7.content': 'Battle64 non è affiliato con Nintendo. Non caricare loghi Nintendo, copertine N64 originali o ROM.',
   'terms.section8.title': '8. Terminazione dell\'Account',
   'terms.section8.content': 'Ci riserviamo il diritto di terminare account per violazioni dei Termini di Servizio senza preavviso.',
-  
   // Contenuto dell\'Informativa sulla Privacy
   'privacy.title': 'Informativa sulla Privacy',
   'privacy.lastUpdated': 'Ultimo aggiornamento: {date}',
@@ -1233,7 +1146,6 @@ const it = {
   'privacy.section6.content': 'Conserviamo i tuoi dati finché il tuo account è attivo. Gli account eliminati hanno tutti i dati rimossi permanentemente.',
   'privacy.section7.title': '7. Contatto',
   'privacy.section7.content': 'Per domande sulla privacy, contattaci a privacy@battle64.com',
-  
   // Consenso Cookie
   'cookies.title': 'Consenso Cookie',
   'cookies.description': 'Utilizziamo cookie per migliorare la tua esperienza. Scegli le tue preferenze.',
@@ -1249,7 +1161,6 @@ const it = {
   'cookies.acceptSelected': 'Accetta Selezionati',
   'cookies.rejectAll': 'Rifiuta Tutto',
   'cookies.managePreferences': 'Gestisci Preferenze Cookie',
-  
   // Segnalazioni e Moderazione
   'report.title': 'Segnala Contenuto',
   'report.reason': 'Motivo della segnalazione',
@@ -1265,13 +1176,11 @@ const it = {
   'report.success': 'Contenuto segnalato con successo',
   'report.error': 'Impossibile inviare la segnalazione',
   'report.alreadyReported': 'Hai già segnalato questo contenuto',
-  
   // Moderazione Contenuto
   'moderation.contentHidden': 'Questo contenuto è stato nascosto a causa di multiple segnalazioni',
   'moderation.underReview': 'Questo contenuto è sotto revisione',
   'moderation.removed': 'Questo contenuto è stato rimosso dai moderatori',
-  'moderation.appealProcess': 'Se ritieni che sia un errore, contatta il supporto',
-  
+  'moderation.appealProcess': 'Se ritieni che sia un Erroree, contatta il supporto',
   // Dashboard Admin
   'admin.dashboard': 'Dashboard Admin',
   'admin.reports': 'Segnalazioni',
@@ -1292,17 +1201,15 @@ const it = {
   'admin.actionReason': 'Motivo dell\'Azione',
   'admin.actionNotes': 'Note Aggiuntive',
   'admin.confirmAction': 'Conferma Azione',
-  
   // Eliminazione Account (GDPR)
   'account.delete': 'Elimina Account',
   'account.deleteWarning': 'Sei sicuro di voler eliminare il tuo account? Tutto il tuo contenuto sarà rimosso permanentemente.',
-  'account.deleteConfirmation': 'Digita "DELETE" per confermare l\'eliminazione dell\'account',
+  'account.deleteConfirmation': 'Digita \"DELETE\" per confermare l\'eliminazione dell\'account',
   'account.deleteSuccess': 'Account eliminato con successo',
   'account.deleteError': 'Impossibile eliminare l\'account',
   'account.dataExport': 'Esporta i Miei Dati',
   'account.dataExportDescription': 'Scarica tutti i tuoi dati in formato JSON',
   'account.dataExportSuccess': 'Esportazione dati richiesta. Riceverai un\'email con i tuoi dati.',
-  
   // Sicurezza Caricamenti
   'upload.rightsConfirmation': 'Conferma Diritti Contenuto',
   'upload.confirmRights': 'Confermo di possedere i diritti su questo contenuto e di non violare alcun copyright',
@@ -1311,14 +1218,12 @@ const it = {
   'upload.nsfwDetected': 'Rilevato contenuto potenzialmente inappropriato',
   'upload.manualReview': 'Questo caricamento sarà revisionato manualmente prima della pubblicazione',
   'upload.approvalPending': 'Caricamento in attesa di approvazione',
-  
   // Link Footer
   'footer.terms': 'Termini',
   'footer.privacy': 'Privacy',
   'footer.contact': 'Contatto',
   'footer.imprint': 'Note Legali',
   'footer.copyright': '© 2024 Battle64. Non affiliato con Nintendo.',
-
   // Additional missing translations
   'platform.pc': 'PC',
   'region.pal': 'PAL',
@@ -1326,13 +1231,12 @@ const it = {
   'currency.eur': 'EUR',
   'currency.usd': 'USD',
   'currency.gbp': 'GBP',
-
   // Equalized translation keys - added 2025-08-09
   'account.deletion.confirmDelete': 'ELIMINA',
   'account.deletion.dataWillBeDeleted': 'I seguenti dati saranno eliminati permanentemente:',
-  'account.deletion.errorConfirmText': 'Digita "ELIMINA" per confermare',
-  'account.deletion.errorGeneric': 'Errore durante l\'eliminazione dell\'account',
-  'account.deletion.errorUnexpected': 'Errore imprevisto durante l\'eliminazione dell\'account',
+  'account.deletion.errorConfirmText': 'Digita \"ELIMINA\" per confermare',
+  'account.deletion.errorGeneric': 'Erroree durante l\'eliminazione dell\'account',
+  'account.deletion.errorUnexpected': 'Erroree imprevisto durante l\'eliminazione dell\'account',
   'account.deletion.forumPosts': 'Post e commenti del forum',
   'account.deletion.gameCollection': 'La tua collezione di giochi',
   'account.deletion.gdprNotice': 'Avviso GDPR',
@@ -1355,7 +1259,7 @@ const it = {
   'account.deletionPage.whatWillBeDeleted': 'account.deletionPage.whatWillBeDeleted',
   'admin.appHealth': 'admin.appHealth',
   'admin.health.cache': 'admin.health.cache',
-  'admin.health.errors': 'admin.health.errors',
+  'admin.health.errors': 'admin.health.Errores',
   'admin.health.sessions': 'admin.health.sessions',
   'admin.health.uptime': 'admin.health.uptime',
   'admin.illegalContent': 'admin.illegalContent',
@@ -1374,18 +1278,18 @@ const it = {
   'admin.usersBanned': 'admin.usersBanned',
   'admin.usersWarned': 'admin.usersWarned',
   'error.accessDenied': 'Accesso negato',
-  'error.imagePreviewFailed': 'error.imagePreviewFailed',
-  'error.moderationBlocked': 'error.moderationBlocked',
+  'error.imagePreviewFailed': 'Errore.imagePreviewFailed',
+  'error.moderationBlocked': 'Errore.moderationBlocked',
   'error.timeout': 'Timeout della richiesta',
-  'error.uploadFailed': 'error.uploadFailed',
-  'error.validationError': 'Errore di validazione',
+  'error.uploadFailed': 'Errore.uploadFailed',
+  'error.validationError': 'Erroree di validazione',
   'imageUpload.noPreview': 'imageUpload.noPreview',
-  'loading.content': 'Caricamento contenuto...',
-  'loading.data': 'Caricamento dati...',
-  'loading.general': 'Caricamento...',
-  'loading.image': 'Caricamento immagine...',
-  'loading.page': 'Caricamento pagina...',
-  'loading.video': 'Caricamento video...',
+  'loading.content': 'Caricamento contenuto',
+  'loading.data': 'Caricamento dati',
+  'loading.general': 'Caricamento',
+  'loading.image': 'Caricamento immagine',
+  'loading.page': 'Caricamento pagina',
+  'loading.video': 'Caricamento video',
   'map.battleDashboard': 'map.battleDashboard',
   'map.liveBattles': 'map.liveBattles',
   'map.resetView': 'map.resetView',
@@ -1394,8 +1298,8 @@ const it = {
   'password.reset.emailLabel': 'password.reset.emailLabel',
   'password.reset.emailPlaceholder': 'password.reset.emailPlaceholder',
   'password.reset.emailSent': 'password.reset.emailSent',
-  'password.reset.errorUnexpected': 'password.reset.errorUnexpected',
-  'password.reset.errorUnknown': 'password.reset.errorUnknown',
+  'password.reset.errorUnexpected': 'password.reset.ErroreUnexpected',
+  'password.reset.errorUnknown': 'password.reset.ErroreUnknown',
   'password.reset.instructions': 'password.reset.instructions',
   'password.reset.sendButton': 'password.reset.sendButton',
   'password.reset.sending': 'password.reset.sending',
@@ -1404,14 +1308,14 @@ const it = {
   'password.reset.understood': 'password.reset.understood',
   'status.completed': 'Completato',
   'status.connected': 'Connesso',
-  'status.connecting': 'Connessione...',
+  'status.connecting': 'Connessione',
   'status.disconnected': 'Disconnesso',
   'status.failed': 'Fallito',
   'status.inProgress': 'In corso',
   'status.offline': 'Offline',
   'status.online': 'Online',
   'status.synced': 'Sincronizzato',
-  'status.syncing': 'Sincronizzazione...',
+  'status.syncing': 'Sincronizzazione',
   'time.ago': 'time.ago',
   'time.always': 'time.always',
   'time.elapsed': 'time.elapsed',
@@ -1440,7 +1344,6 @@ const it = {
   'validation.imageTooLarge': 'validation.imageTooLarge',
   'validation.supportedFormats': 'validation.supportedFormats',
   'validation.unsupportedFormat': 'validation.unsupportedFormat',
-
   // Legal & Privacy translation keys - added 2025-08-09
   'cookies.alwaysActive': 'Sempre Attivo',
   'account.deletionPage.gdprCompliant': 'Eliminazione account conforme al GDPR',
@@ -1454,11 +1357,9 @@ const it = {
   'account.deletionPage.backupRemovalText': 'I tuoi dati saranno anche rimossi da tutti i backup durante il prossimo ciclo di backup.',
   'account.deletionPage.legalObligations': 'Obblighi Legali:',
   'account.deletionPage.legalObligationsText': 'Alcuni dati possono essere conservati se richiesto dalla legge (ad esempio, registri finanziari per scopi fiscali).',
-
   // Final hardcoded text fixes - added 2025-08-09
-  'account.deletionPage.deleting': 'Eliminazione...',
+  'account.deletionPage.deleting': 'Eliminazione',
   'account.deletionPage.deleteAccountPermanently': 'Elimina account permanentemente',
-
   // Nintendo-specific translation keys - added 2025-08-09
   'terms.nintendoCopyrightNotice': 'Avviso Copyright Nintendo:',
   'terms.nintendoFullDisclaimer': 'Battle64 è una comunità di giochi retro indipendente e non è affiliata, approvata o sponsorizzata da Nintendo Co., Ltd. Nintendo 64, N64, e tutti i personaggi, nomi, marchi, emblemi e immagini correlati sono marchi di Nintendo. Tutti gli altri marchi sono proprietà dei rispettivi proprietari.',
@@ -1482,7 +1383,7 @@ const it = {
   'fanart.mario.castle': 'Mario nel castello di Peach',
   'forum.untitledThread': 'Thread senza titolo',
   'error.invalidDataFormat': 'Formato dati non valido',
-  'common.user': 'Utente',
+  'common.user': 'Utente'
 }
 
 export default it

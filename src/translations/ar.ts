@@ -17,7 +17,6 @@ const ar = {
   'nav.newsfeed': 'تغذية الأخبار',
   'nav.community': 'المجتمع',
   'nav.map': 'Battle64 Map',
-
   // Accessibility
   'a11y.skipToMain': 'انتقل إلى المحتوى الرئيسي',
   'a11y.skipToNav': 'انتقل إلى التنقل',
@@ -26,7 +25,6 @@ const ar = {
   'a11y.loading': 'جاري تحميل المحتوى',
   'a11y.error': 'حدث خطأ',
   'a11y.success': 'تم إنجاز الإجراء بنجاح',
-
   // Common fallback texts
   'common.unknown': 'غير معروف',
   'common.unknownGame': 'لعبة غير معروفة',
@@ -46,11 +44,10 @@ const ar = {
   'common.draft': 'مسودة',
   'common.published': 'تم النشر',
   'common.archived': 'تم الأرشفة',
-  
   // Account deletion
-  'account.deletion.confirmText': 'يرجى كتابة "DELETE" للتأكيد',
-  'account.deletion.placeholder': 'DELETE',
-  'account.deletion.typeDelete': 'اكتب "حذف" للتأكيد:',
+  'account.deletion.confirmText': 'يرجى كتابة \"DELETE\" للتأكيد',
+  'account.deletion.placeholder': 'حذف',
+  'account.deletion.typeDelete': 'اكتب \"حذف\" للتأكيد:',
   // Home Screen - الشاشة الرئيسية
   'home.subtitle': 'مجتمع N64 لجيل الألفية',
   'home.welcome': 'مرحباً بعودتك',
@@ -67,13 +64,12 @@ const ar = {
   'home.fanart.subtitle': 'الإبداع',
   'home.newsfeed.subtitle': 'التحديثات',
   'home.map.subtitle': 'المعارك المحلية',
-
   // Battle64 Map - خريطة باتل64
   'map.title': 'Battle64 Map',
   'map.subtitle': 'معارك العالم الحقيقي والمطابقة الجغرافية',
   'map.hostEvent': 'استضافة معركة محلية لـ4 لاعبين',
   'map.selectGame': 'اختر اللعبة',
-  'map.chooseGame': 'اختر لعبة...',
+  'map.chooseGame': 'اختر لعبة',
   'map.eventTitle': 'عنوان الحدث',
   'map.eventTitlePlaceholder': 'بطولة سباق نهاية الأسبوع',
   'map.description': 'الوصف',
@@ -146,15 +142,14 @@ const ar = {
   'event.type.speedrun': 'جلسة سبيدران',
   'event.type.meetup': 'لقاء',
   'event.category': 'فئة الحدث',
-
   // Common - عام
   'common.welcome': 'مرحباً',
-  'common.loading': 'جاري التحميل...',
+  'common.loading': 'جاري التحميل',
   'common.error': 'خطأ',
   'common.save': 'حفظ',
   'common.cancel': 'إلغاء',
   'common.upload': 'رفع',
-  'common.uploading': 'جاري الرفع...',
+  'common.uploading': 'جاري الرفع',
   'common.remove': 'إزالة',
   'common.delete': 'حذف',
   'common.edit': 'تحرير',
@@ -180,7 +175,6 @@ const ar = {
   'common.ok': 'موافق',
   'common.retry': 'إعادة المحاولة',
   'common.note': 'ملاحظة',
-
   // Authentication - المصادقة
   'auth.login': 'تسجيل الدخول',
   'auth.logout': 'تسجيل الخروج',
@@ -194,7 +188,6 @@ const ar = {
   'auth.loginRequiredMessage': 'يجب عليك تسجيل الدخول لعرض هذه الصفحة.',
   'auth.loginRequiredForEvents': 'يرجى تسجيل الدخول للمشاركة في الأحداث!',
   'auth.loginRequiredForImageUpload': 'يجب عليك تسجيل الدخول لرفع الصور',
-
   // Quiz - الاختبار
   'quiz.title': 'اختبار N64',
   'quiz.start': 'بدء الاختبار',
@@ -212,7 +205,6 @@ const ar = {
   'quiz.category': 'الفئة',
   'quiz.restart': 'إعادة البدء',
   'quiz.wrong': 'خطأ!',
-
   // Events - الأحداث
   'events.title': 'الأحداث',
   'events.subtitle': 'البطولات والتحديات وأحداث المجتمع',
@@ -235,7 +227,6 @@ const ar = {
   'events.game': 'اللعبة',
   'events.track': 'المسار',
   'events.time': 'الوقت',
-
   // Forum - المنتدى
   'forum.title': 'المنتدى',
   'forum.subtitle': 'نقاشات المجتمع',
@@ -244,14 +235,13 @@ const ar = {
   'forum.threads': 'المواضيع',
   'forum.posts': 'المشاركات',
   'forum.mostActive': 'الأكثر نشاطاً',
-  'forum.loading': 'جاري التحميل...',
+  'forum.loading': 'جاري التحميل',
   'forum.communityNexus': 'مركز المجتمع',
   'forum.discussWithCommunity': 'ناقش مع المجتمع',
   'forum.createThread': 'إنشاء موضوع',
   'forum.newThread': 'موضوع جديد',
   'forum.reply': 'رد',
   'forum.backToForum': 'العودة للمنتدى',
-
   // Language selector - محدد اللغة
   'language.german': 'الألمانية',
   'language.english': 'الإنجليزية',
@@ -267,7 +257,6 @@ const ar = {
   'language.hindi': 'الهندية',
   'language.arabic': 'العربية',
   'language.korean': 'الكورية',
-
   // Error messages - رسائل الخطأ
   'error.generic': 'حدث خطأ',
   'error.networkError': 'خطأ في الشبكة',
@@ -279,7 +268,6 @@ const ar = {
   'error.goHome': 'الذهاب للرئيسية',
   'error.contactSupport': 'اتصل بالدعم',
   'error.somethingWentWrong': 'حدث خطأ ما',
-
   // News - الأخبار
   'news.title': 'الأخبار',
   'news.subtitle': 'آخر التحديثات والإعلانات',
@@ -301,7 +289,7 @@ const ar = {
   'news.noResults': 'لا توجد نتائج',
   'news.noResultsDescription': 'لا توجد أخبار',
   'news.pagination': 'صفحة {current} من {total}',
-  'news.search.placeholder': 'البحث في الأخبار...',
+  'news.search.placeholder': 'البحث في الأخبار',
   'news.filter.all': 'الكل',
   'news.filter.events': 'الأحداث',
   'news.filter.winners': 'الفائزون',
@@ -310,7 +298,6 @@ const ar = {
   'news.filter.history': 'التاريخ',
   'news.filter.updates': 'التحديثات',
   'news.filter.games': 'الألعاب',
-
   // Achievements - الإنجازات
   'achievement.speedrunMaster': 'سيد السباق السريع',
   'achievement.speedrunMasterDesc': 'إتقان فن السباق السريع',
@@ -323,7 +310,6 @@ const ar = {
   'achievement.recordHolder': 'حامل الرقم القياسي',
   'achievement.recordHolderDesc': 'احتفظ برقم قياسي عالمي',
   'achievement.today': 'اليوم',
-
   // Profile - الملف الشخصي
   'profile.level': 'المستوى',
   'profile.joinDate': 'تاريخ الانضمام',
@@ -341,7 +327,6 @@ const ar = {
   'profile.profileCreated': 'تم إنشاء الملف الشخصي',
   'profile.region': 'المنطقة',
   'profile.points': 'النقاط',
-
   // Media - الوسائط
   'media.upload': 'رفع',
   'media.uploadMethod': 'طريقة الرفع',
@@ -364,26 +349,15 @@ const ar = {
   'media.noEvent': 'لا يوجد حدث',
   'media.uploadedBy': 'رفع بواسطة',
   'media.uploadedOn': 'رفع في',
-
   // Placeholders - النصوص التوضيحية
-  'placeholder.speedrunTitle': 'مثال: ماريو 64 120 نجمة سرعة',
-  'placeholder.speedrunUrl': 'https://twitch.tv/قناتك',
-  'placeholder.speedrunGame': 'مثال: سوبر ماريو 64',
-  'placeholder.mediaSearch': 'البحث بالعنوان أو الوصف أو العلامات...',
-  'placeholder.mediaUrl': 'https://youtube.com/watch?v=...',
-  'placeholder.mediaDescription': 'صف إنجازك...',
-  'placeholder.mediaTags': 'رقم قياسي عالمي، Any%، Glitchless (مفصولة بفواصل)',
-
   // Success messages - رسائل النجاح
   'success.uploaded': 'تم الرفع بنجاح',
-
   // Validation - التحقق
   'validation.allFieldsRequired': 'جميع الحقول مطلوبة',
-
   // Marketplace - السوق
   'marketplace.subtitle': 'تجارة وبورصة N64',
   'marketplace.createOffer': 'إنشاء عرض',
-  'marketplace.searchPlaceholder': 'البحث عن العناصر...',
+  'marketplace.searchPlaceholder': 'البحث عن العناصر',
   'marketplace.category': 'الفئة',
   'marketplace.allCategories': 'جميع الفئات',
   'marketplace.categoryGames': 'الألعاب',
@@ -404,7 +378,6 @@ const ar = {
   'marketplace.conditionGood': 'جيد',
   'marketplace.conditionFair': 'مقبول',
   'marketplace.publishOffer': 'نشر العرض',
-
   // Minigames - الألعاب المصغرة
   'minigames.memoryMatch.title': 'مطابقة الذاكرة',
   'minigames.memoryMatch.description': 'اختبر ذاكرتك',
@@ -430,11 +403,11 @@ const ar = {
   'minigames.correctAnswers': 'الإجابات الصحيحة',
   'minigames.cheatCode': 'كود الغش',
   'minigames.completed': 'مكتمل',
-  'minigames.typeCheatCode': 'اكتب كود الغش...',
-  'minigames.sound.mario64': '"واهو!" - صوت قفزة ماريو',
-  'minigames.sound.zelda': '"مهلاً! استمع!" - صوت نافي',
-  'minigames.sound.goldeneye': '"بيو بيو" - طلقة صامتة',
-  'minigames.sound.mariokart': '"هيا بنا!" - بداية السباق',
+  'minigames.typeCheatCode': 'اكتب كود الغش',
+  'minigames.sound.mario64': '\"واهو!\" - صوت قفزة ماريو',
+  'minigames.sound.zelda': '\"مهلاً! استمع!\" - صوت نافي',
+  'minigames.sound.goldeneye': '\"بيو بيو\" - طلقة صامتة',
+  'minigames.sound.mariokart': '\"هيا بنا!\" - بداية السباق',
   'minigames.sound': 'الصوت',
   'minigames.whichGame': 'من أي لعبة هذا الصوت؟',
   'minigames.you': 'أنت',
@@ -442,8 +415,8 @@ const ar = {
   'minigames.readyForDuel': 'مستعد للمبارزة؟',
   'minigames.startDuel': 'بدء المبارزة',
   'minigames.result': 'النتيجة',
-  'minigames.opponentAnswering': 'يجيب...',
-  'minigames.gameLoading': 'جاري تحميل اللعبة...',
+  'minigames.opponentAnswering': 'يجيب',
+  'minigames.gameLoading': 'جاري تحميل اللعبة',
   'minigames.gameEnded': 'انتهت اللعبة',
   'minigames.yourScore': 'نتيجتك',
   'minigames.title': 'الألعاب المصغرة',
@@ -460,7 +433,6 @@ const ar = {
   'minigames.moreGamesTitle': 'المزيد من الألعاب',
   'minigames.moreGamesComingSoon': 'المزيد من الألعاب المصغرة المثيرة قريباً!',
   'minigames.allGamesFree': 'جميع الألعاب مجانية للعب',
-
   // Additional news entries - إدخالات أخبار إضافية
   'news.luigiEvent': 'حدث لويجي',
   'news.luigiEventContent': 'حدث لويجي الخاص يبدأ اليوم!',
@@ -468,22 +440,18 @@ const ar = {
   'news.eventWinnerContent': 'تهانينا لفائز الحدث!',
   'news.n64History': 'تاريخ N64',
   'news.n64HistoryContent': 'نظرة على 27 عاماً من نينتندو 64',
-
   // ARIA labels - تسميات إمكانية الوصول
   'aria.gridView': 'عرض الشبكة',
   'aria.listView': 'عرض القائمة',
-
   // Fan Art - فن المعجبين
   'fanart.artworksFound': 'أعمال فنية موجودة',
   'fanart.ratings': 'التقييمات',
   'fanart.yourRating': 'تقييمك',
   'fanart.noArtworksFound': 'لا توجد أعمال فنية',
   'fanart.noArtworksDescription': 'لم يتم رفع أي أعمال فنية بعد.',
-
   // Error handling - معالجة الأخطاء
   'error.title': 'خطأ',
   'error.threadCreationFailed': 'فشل إنشاء الموضوع',
-
   // Forum categories and threads - فئات ومواضيع المنتدى
   'forum.categoryNotFound': 'الفئة غير موجودة',
   'forum.firstThread': 'الموضوع الأول',
@@ -507,7 +475,6 @@ const ar = {
   'forum.threadClosed': 'الموضوع مغلق',
   'forum.welcomeMessage': 'مرحباً بعودتك، {username}!',
   'forum.publicNotice': 'جميع المشاركات مرئية للعامة.',
-
   // Sample forum threads - مواضيع منتدى عينة
   'forum.thread.controllerQuestion': 'أي وحدة تحكم الأفضل للسباقات السريعة؟',
   'forum.thread.mariokartShortcuts': 'ماريو كارت 64: اكتشاف طرق مختصرة جديدة!',
@@ -519,7 +486,6 @@ const ar = {
   'forum.thread.goldeneye': 'GoldenEye 007: المنشأة تحت 1:00',
   'forum.thread.collecting': 'جمع N64: الألعاب النادرة والأسعار',
   'forum.thread.paperMario': 'Paper Mario: نصائح سباق سريع خالي من الأخطاء',
-
   // Categories - الفئات
   'category.hardware': 'الأجهزة',
   'category.glitches': 'الأخطاء',
@@ -531,34 +497,23 @@ const ar = {
   'category.challenges': 'التحديات',
   'category.collecting': 'الجمع',
   'category.tips': 'النصائح',
-
   // Validation messages - رسائل التحقق
   'validation.titleTooLong': 'العنوان طويل جداً',
   'validation.contentTooLong': 'المحتوى طويل جداً',
-
   // More placeholders - المزيد من النصوص التوضيحية
-  'placeholder.threadTitle': 'أعط موضوعك عنواناً...',
-  'placeholder.threadContent': 'اكتب مشاركتك...',
-  'placeholder.replyContent': 'اكتب ردك...',
-  'placeholder.marketplacePrice': 'أدخل السعر...',
-
   // UI elements - عناصر واجهة المستخدم
   'ui.login': 'تسجيل الدخول',
-
   // Alt text - النص البديل
   'alt.postAttachment': 'مرفق المشاركة',
   'alt.battle64Mascot': 'تميمة Battle64',
-
   // Community stats - إحصائيات المجتمع
   'news.communityStats': 'إحصائيات المجتمع',
   'news.communityStatsContent': 'الأرقام الحالية وتطورات مجتمعنا',
   'community.members': 'الأعضاء',
-
   // Home page elements - عناصر الصفحة الرئيسية
   'home.ended': 'انتهى',
   'home.liveEvents': 'الأحداث المباشرة',
   'home.footer.tagline': 'مجتمع N64 النهائي',
-
   // Leaderboard - لوحة المتصدرين
   'leaderboard.pageTitle': 'لوحة المتصدرين',
   'leaderboard.pageSubtitle': 'أفضل اللاعبين في المجتمع',
@@ -566,22 +521,19 @@ const ar = {
   'leaderboard.selectEvent': 'اختر الحدث',
   'leaderboard.noData': 'لا توجد بيانات متاحة',
   'leaderboard.noDataDesc': 'لا توجد بيانات متاحة لهذا الحدث بعد.',
-
   // Event status - حالة الأحداث
   'events.status.live': 'مباشر',
   'events.status.completed': 'مكتمل',
-
   // Marketplace fields - حقول السوق
   'marketplace.title': 'العنوان',
-  'marketplace.titlePlaceholder': 'أدخل اسم العنصر...',
+  'marketplace.titlePlaceholder': 'أدخل اسم العنصر',
   'marketplace.description': 'الوصف',
-  'marketplace.descriptionPlaceholder': 'صف عنصرك...',
+  'marketplace.descriptionPlaceholder': 'صف عنصرك',
   'marketplace.price': 'السعر',
   'marketplace.condition': 'الحالة',
   'marketplace.conditionNew': 'جديد',
   'marketplace.conditionLikeNew': 'مثل الجديد',
   'marketplace.conditionPoor': 'سيء',
-
   // Minigame categories - فئات الألعاب المصغرة
   'minigames.allCategories': 'جميع الفئات',
   'minigames.puzzle': 'الألغاز',
@@ -592,7 +544,6 @@ const ar = {
   'minigames.hard': 'صعب',
   'minigames.backToMenu': 'العودة للقائمة',
   'minigames.highScore': 'أعلى نتيجة',
-
   // Collection - المجموعة
   'collection.gamesCollected': 'الألعاب المجمعة',
   'collection.completeness': 'الاكتمال',
@@ -606,7 +557,6 @@ const ar = {
   'collection.addGame': 'إضافة لعبة',
   'collection.inCollectionStatus': 'في المجموعة',
   'collection.noGamesFound': 'لا توجد ألعاب',
-
   // Community page - صفحة المجتمع
   'community.title': 'المجتمع',
   'community.subtitle': 'اكتشف عشاق N64 آخرين',
@@ -623,24 +573,19 @@ const ar = {
   'community.noPlayersFound': 'لا يوجد لاعبون',
   'community.tryOtherFilters': 'جرب مرشحات أخرى',
   'community.recentRecord': 'رقم قياسي حديث',
-
   // Time - الوقت
   'time.remaining': 'متبقي',
-
   // Event actions - إجراءات الأحداث
   'events.joinSuccess': 'تم الانضمام للحدث بنجاح!',
   'events.submissionSuccess': 'تم إرسال المشاركة بنجاح!',
-
   // Event tabs - تبويبات الأحداث
   'events.tabs.active': 'الأحداث النشطة',
   'events.tabs.upcoming': 'الأحداث القادمة',
   'events.tabs.completed': 'الأحداث المكتملة',
-
   // Event statistics - إحصائيات الأحداث
   'events.stats.activeEvents': 'الأحداث النشطة',
   'events.stats.upcomingEvents': 'الأحداث القادمة',
   'events.stats.totalParticipants': 'إجمالي المشاركين',
-
   // No events messages - رسائل عدم وجود أحداث
   'events.noEvents.active': 'لا توجد أحداث نشطة',
   'events.noEvents.upcoming': 'لا توجد أحداث قادمة',
@@ -648,7 +593,6 @@ const ar = {
   'events.noEventsDesc.active': 'لا توجد أحداث نشطة حالياً.',
   'events.noEventsDesc.upcoming': 'لا توجد أحداث مخططة حالياً.',
   'events.noEventsDesc.completed': 'لم يتم إكمال أي أحداث بعد.',
-
   // Mobile event labels - تسميات الأحداث للهاتف المحمول
   'events.mobile.live': 'مباشر',
   'events.mobile.soon': 'قريباً',
@@ -657,13 +601,11 @@ const ar = {
   'events.mobile.submit': 'إرسال',
   'events.mobile.join': 'انضمام',
   'events.mobile.board': 'اللوحة',
-
   // Event details - تفاصيل الحدث
   'events.details.startDate': 'تاريخ البداية',
   'events.details.endDate': 'تاريخ النهاية',
   'events.details.rules': 'القواعد',
   'events.details.prizes': 'الجوائز',
-
   // Notifications - الإشعارات
   'events.notificationPrompt': 'تفعيل الإشعارات للأحداث؟',
   'events.notificationsActive': 'الإشعارات نشطة',
@@ -672,30 +614,27 @@ const ar = {
   'events.join': 'انضم',
   'events.leaderboard': 'لوحة المتصدرين',
   'events.currentEvent': 'الحدث الحالي',
-
   'notifications.enabled': 'تم تفعيل الإشعارات',
   'notifications.denied': 'تم رفض الإشعارات',
   'notifications.notSupported': 'الإشعارات غير مدعومة',
   'notifications.disabled': 'الإشعارات معطلة',
   'notifications.error': 'خطأ في الإشعارات',
-
   // Fan Art upload - رفع فن المعجبين
   'fanart.uploadArt': 'رفع عمل فني',
   'fanart.uploadImage': 'رفع صورة',
   'fanart.chooseImage': 'اختر صورة',
   'fanart.imageFormats': 'الصيغ المدعومة: JPG، PNG، GIF',
   'fanart.artworkTitle': 'عنوان العمل الفني',
-  'fanart.titlePlaceholder': 'أعط عملك الفني عنواناً...',
+  'fanart.titlePlaceholder': 'أعط عملك الفني عنواناً',
   'fanart.selectGame': 'اختر لعبة',
-  'fanart.chooseGame': 'اختر لعبة...',
+  'fanart.chooseGame': 'اختر لعبة',
   'fanart.tags': 'العلامات',
-  'fanart.tagsPlaceholder': 'أضف علامات...',
+  'fanart.tagsPlaceholder': 'أضف علامات',
   'fanart.tagsHint': 'مفصولة بفواصل',
-  'fanart.uploading': 'جاري الرفع...',
+  'fanart.uploading': 'جاري الرفع',
   'fanart.allCategories': 'جميع الفئات',
   'fanart.subtitle': 'شارك أعمالك الفنية المستوحاة من N64',
   'fanart.filterBy': 'تصفية حسب',
-
   // Common rarity levels - مستويات الندرة الشائعة
   'common.common': 'شائع',
   'common.uncommon': 'غير شائع',
@@ -703,18 +642,12 @@ const ar = {
   'common.veryRare': 'نادر جداً',
   'common.ultraRare': 'نادر جداً جداً',
   'common.hide': 'إخفاء',
-
   // Search placeholders - نصوص البحث التوضيحية
-  'placeholder.searchGames': 'البحث عن الألعاب...',
-  'placeholder.searchPlayers': 'البحث عن اللاعبين...',
-
   // UI view modes - أوضاع عرض واجهة المستخدم
   'ui.grid': 'الشبكة',
   'ui.list': 'القائمة',
-
   // Alt text for images - النص البديل للصور
   'alt.preview': 'معاينة',
-
   // Collection management - إدارة المجموعة
   'collection.cartOnly': 'الخرطوشة فقط',
   'collection.boxOnly': 'الصندوق فقط',
@@ -733,22 +666,15 @@ const ar = {
   'collection.addToCollection': 'إضافة للمجموعة',
   'collection.collectorMode': 'وضع الجامع',
   'collection.manageCollection': 'إدارة المجموعة',
-
   // Media management - إدارة الوسائط
   'media.noUploads': 'لا توجد رفوعات',
   'media.noUploadsDesc': 'لم ترفع أي وسائط بعد.',
   'media.eventUpload': 'رفع حدث',
-
   // Labels and form fields - التسميات وحقول النماذج
   'label.notes': 'الملاحظات',
-  'placeholder.notes': 'أضف ملاحظات...',
-  'placeholder.additionalInfo': 'معلومات إضافية...',
-  'placeholder.password': 'أدخل كلمة المرور...',
-
   // Validation messages - رسائل التحقق
   'validation.contentRequired': 'المحتوى مطلوب',
   'validation.postTooLong': 'المشاركة طويلة جداً',
-
   // Authentication errors - أخطاء المصادقة
   'auth.invalidCredentials': 'بيانات اعتماد غير صحيحة',
   'auth.errorOccurred': 'حدث خطأ',
@@ -758,27 +684,27 @@ const ar = {
   'auth.registrationFailed': 'فشل التسجيل',
   'auth.welcomeBack': 'مرحباً بعودتك',
   'auth.createAccount': 'إنشاء حساب',
-  'auth.emailPlaceholder': 'أدخل البريد الإلكتروني...',
-  'auth.loggingIn': 'جاري تسجيل الدخول...',
-  'auth.usernamePlaceholder': 'أدخل اسم المستخدم...',
+  'auth.emailPlaceholder': 'أدخل البريد الإلكتروني',
+  'auth.loggingIn': 'جاري تسجيل الدخول',
+  'auth.usernamePlaceholder': 'أدخل اسم المستخدم',
   'auth.platform': 'المنصة',
   'auth.region': 'المنطقة',
-  'auth.registering': 'جاري التسجيل...',
+  'auth.registering': 'جاري التسجيل',
   'auth.createAccountButton': 'إنشاء حساب',
   'auth.noAccountYet': 'ليس لديك حساب بعد؟',
   'auth.registerNow': 'سجل الآن',
   'auth.alreadyHaveAccount': 'لديك حساب بالفعل؟',
   'auth.loginHere': 'سجل الدخول هنا',
-  'auth.processingRegistration': 'معالجة التسجيل...',
-  'auth.waitingEmailConfirmation': 'في انتظار تأكيد البريد الإلكتروني...',
+  'auth.processingRegistration': 'معالجة التسجيل',
+  'auth.waitingEmailConfirmation': 'في انتظار تأكيد البريد الإلكتروني',
   'auth.registrationSucceeded': 'التسجيل ناجح!',
   'auth.welcomeToCommunity': 'مرحباً بك في مجتمع Battle64',
   'auth.checkOutEvents': 'تحقق من فعالياتنا',
   'auth.emailConfirmationSent': 'لقد أرسلنا بريد تأكيد إلى {email}.',
   'auth.clickEmailLink': 'يرجى النقر على الرابط في البريد الإلكتروني لإكمال التسجيل.',
-  'auth.emailBeingConfirmed': 'جاري تأكيد البريد الإلكتروني...',
+  'auth.emailBeingConfirmed': 'جاري تأكيد البريد الإلكتروني',
   'auth.pleaseWaitMoment': 'يرجى الانتظار لحظة.',
-  'auth.emailConfirmedSuccessfully': 'تم تأكيد البريد الإلكتروني بنجاح! سيتم إعادة توجيهك إلى الصفحة الرئيسية...',
+  'auth.emailConfirmedSuccessfully': 'تم تأكيد البريد الإلكتروني بنجاح! سيتم إعادة توجيهك إلى الصفحة الرئيسية',
   'auth.confirmationFailed': 'فشل التأكيد',
   'auth.accountActivatedSuccessfully': 'تم تفعيل حسابك بنجاح!',
   'auth.joinCommunityMessage': 'وانضم إلى المجتمع.',
@@ -789,25 +715,22 @@ const ar = {
   'auth.unexpectedError': 'حدث خطأ غير متوقع',
   'auth.tryRegisterAgain': 'حاول التسجيل مرة أخرى أو اتصل بالدعم.',
   'auth.goToLogin': 'الذهاب لتسجيل الدخول',
-
   // Browser Redirect
   'browserRedirect.title': 'إعادة توجيه المتصفح',
-  'browserRedirect.message': 'نحن نعيد توجيهك إلى متصفحك المفضل...',
+  'browserRedirect.message': 'نحن نعيد توجيهك إلى متصفحك المفضل',
   'browserRedirect.detectedBrowser': 'المتصفح المكتشف',
   'browserRedirect.version': 'الإصدار',
-  'browserRedirect.redirectingIn': 'إعادة التوجيه خلال {seconds} ثانية...',
+  'browserRedirect.redirectingIn': 'إعادة التوجيه خلال {seconds} ثانية',
   'browserRedirect.redirectNow': 'إعادة التوجيه الآن',
   'browserRedirect.troubleshoot': 'إعادة التوجيه التلقائي لا تعمل؟',
-  'browserRedirect.manualInstructions': 'انقر على "إعادة التوجيه الآن" أو انسخ الرابط من شريط العناوين.',
-
-
+  'browserRedirect.manualInstructions': 'انقر على \"إعادة التوجيه الآن\" أو انسخ الرابط من شريط العناوين.',
   // Chat system - نظام الدردشة
   'chat.title': 'دردشة المجتمع',
   'chat.onlineUsers': 'المستخدمون المتصلون',
   'chat.chats': 'الدردشات',
   'chat.newChat': 'دردشة جديدة',
-  'chat.searchUsers': 'البحث عن المستخدمين...',
-  'chat.messagePlaceholder': 'اكتب رسالة...',
+  'chat.searchUsers': 'البحث عن المستخدمين',
+  'chat.messagePlaceholder': 'اكتب رسالة',
   'chat.joinPrompt': 'انضم للدردشة للمشاركة!',
   'chat.privateChat': 'دردشة خاصة',
   'chat.description': 'ناقش ألعاب N64 مع المجتمع',
@@ -821,19 +744,11 @@ const ar = {
   'chat.rules.noSpam': 'لا للبريد المزعج أو الرسائل المتكررة',
   'chat.rules.shareExperience': 'شارك تجاربك مع N64',
   'chat.rules.noLinks': 'لا للروابط الخارجية بدون إذن',
-
-  // Event submission - إرسال الأحداث
-  'placeholder.raceTime': 'أدخل الوقت (مثال: 1:23:45)...',
-  'events.timeFormat': 'التنسيق: ساعات:دقائق:ثواني',
+  // Event submission - إرسال الأحداث  'events.timeFormat': 'التنسيق: ساعات:دقائق:ثواني',
   'events.selectDocumentation': 'اختر التوثيق',
   'events.photo': 'صورة',
   'events.video': 'فيديو',
-  'events.livestreamUrlLabel': 'رابط البث المباشر',
-  'placeholder.livestreamUrl': 'https://twitch.tv/قناتك...',
-  'events.streamingPlatforms': 'منصات البث',
-  'placeholder.setupController': 'وصف إعداد وحدة التحكم...',
-  'events.status.upcoming': 'قادم',
-
+  'events.livestreamUrlLabel': 'رابط البث المباشر',  'events.streamingPlatforms': 'منصات البث',  'events.status.upcoming': 'قادم',
   // Card navigation - تنقل البطاقات
   'card.fanarts': 'فن المعجبين',
   'card.forumPosts': 'منشورات المنتدى',
@@ -845,14 +760,11 @@ const ar = {
   'card.noRecords': 'لا توجد أرقام قياسية متاحة',
   'aria.previousCard': 'البطاقة السابقة',
   'aria.nextCard': 'البطاقة التالية',
-
   // Media types - أنواع الوسائط
   'media.livestream': 'البث المباشر',
   'media.type': 'نوع الوسائط',
-
   // Profile page - صفحة الملف الشخصي
   'profile.title': 'الملف الشخصي',
-
   // Collection status and conditions - حالة وشروط المجموعة
   'collection.confirmRemove': 'هل أنت متأكد من أنك تريد إزالة هذه اللعبة من مجموعتك؟',
   'collection.veryGood': 'ممتاز جداً',
@@ -873,27 +785,21 @@ const ar = {
   'collection.noGamesYet': 'لا توجد ألعاب {type} بعد',
   'collection.added': 'مُضاف',
   'collection.acquired': 'مُكتسب',
-
   // Form labels - تسميات النماذج
   'label.gameName': 'اسم اللعبة',
   'label.required': '(مطلوب)',
   'label.platform': 'المنصة',
   'label.region': 'المنطقة',
-  'placeholder.gameName': 'أدخل اسم اللعبة...',
-
   // News availability - توفر الأخبار
   'news.noNewsAvailable': 'لا توجد أخبار متاحة',
-
   // Image upload - رفع الصور
   'imageUpload.dropHere': 'أفلت هنا',
   'imageUpload.uploadImage': 'رفع صورة',
   'imageUpload.clickOrDrag': 'انقر أو اسحب هنا',
   'imageUpload.supportedFormats': 'الصيغ المدعومة: JPG، PNG، GIF',
-
   // Accessibility navigation - تنقل إمكانية الوصول
   'aria.toggleMobileMenu': 'تبديل قائمة الهاتف المحمول',
   'aria.dismissNews': 'إغلاق الأخبار',
-
   // Leaderboard filtering - تصفية لوحة المتصدرين
   'leaderboard.seasonLeaderboard': 'لوحة متصدري الموسم',
   'leaderboard.filterType': 'نوع التصفية',
@@ -906,14 +812,12 @@ const ar = {
   'leaderboard.timeframeMonth': 'الشهر',
   'leaderboard.regionPlatform': 'المنطقة/المنصة',
   'leaderboard.yourRank': 'ترتيبك',
-
   // UI filters and regions - مرشحات واجهة المستخدم والمناطق
   'ui.filter': 'تصفية',
   'ui.allRegions': 'جميع المناطق',
   'ui.pal': 'PAL',
   'ui.ntsc': 'NTSC',
   'ui.newsDetails': 'التفاصيل',
-
   // Points system - نظام النقاط
   'points.total': 'الإجمالي',
   'points.season': 'الموسم',
@@ -922,13 +826,11 @@ const ar = {
   'points.startEarning': 'ابدأ في كسب النقاط',
   'points.history': 'التاريخ',
   'points.noActivity': 'لا يوجد نشاط',
-
   // Ranking system - نظام الترتيب
   'rank.pointsToNext': 'نقاط للترتيب التالي',
   'rank.current': 'الحالي',
   'rank.nextRank': 'الترتيب التالي',
   'rank.maxRank': 'تم الوصول للترتيب الأقصى',
-
   // Cool Rank Titles (20 Levels) - ألقاب الترتيب الرائعة
   'Pixel Rookie': 'مبتدئ البكسل',
   'Button Masher': 'محطم الأزرار',
@@ -950,16 +852,13 @@ const ar = {
   'Reality Bender': 'ثاني الواقع',
   'Retro Overlord': 'السيد الكلاسيكي الأعظم',
   'Ultimate Gaming Legend': 'أسطورة الألعاب النهائية',
-
   // Profile activity - نشاط الملف الشخصي
   'profile.activityHistory': 'تاريخ النشاط',
   'profile.achievedOn': 'تم تحقيقه في',
   'profile.medals.title': 'الميداليات',
-
   // Medal system - نظام الميداليات
   'medal.season': 'الموسم',
   'medal.bonusXP': 'XP إضافي',
-
   // News types - أنواع الأخبار
   'news.type.eventWinner': 'فائز الحدث',
   'news.type.n64History': 'تاريخ N64',
@@ -967,7 +866,6 @@ const ar = {
   'news.type.eventAnnouncement': 'إعلان الحدث',
   'news.type.general': 'عام',
   'news.eventWinnerLabel': 'فائز الحدث',
-
   // Records management - إدارة الأرقام القياسية
   'records.add': 'إضافة رقم قياسي',
   'records.addFirst': 'إضافة أول رقم قياسي',
@@ -975,7 +873,6 @@ const ar = {
   'records.time': 'الوقت',
   'records.points': 'النقاط',
   'records.addButton': 'إضافة رقم قياسي',
-
   // Event verification - التحقق من الأحداث
   'events.verified': 'موثق',
   'events.fileTooBig': 'الملف كبير جداً',
@@ -987,26 +884,17 @@ const ar = {
   'events.livestreamSubmissionDesc': 'إرسال بث مباشر',
   'events.raceSubmission': 'إرسال سباق',
   'events.raceTime': 'وقت السباق',
-
   // Form categories and fields - فئات وحقول النماذج
   'label.category': 'الفئة',
   'label.proofUrl': 'رابط الإثبات',
-  'placeholder.category': 'اختر فئة...',
-  'placeholder.time': 'أدخل الوقت...',
-  'placeholder.score': 'أدخل النتيجة...',
-  'placeholder.proofUrl': 'أدخل رابط الإثبات...',
-  'placeholder.recordNotes': 'ملاحظات الرقم القياسي...',
-
   // Achievement system - نظام الإنجازات
   'achievement.progress': 'التقدم',
   'achievement.requirements': 'المتطلبات',
   'achievement.unlocked': 'مفتوح',
   'achievement.unlockedOn': 'فُتح في',
   'achievement.notUnlocked': 'لم يُفتح بعد',
-
   // Enhanced auth experience - تجربة مصادقة محسنة
   'auth.enhancedExperienceMessage': 'سجل الدخول للحصول على تجربة محسنة',
-
   // Home page elements - عناصر الصفحة الرئيسية
   'home.winner': 'الفائز',
   'home.topLeaderboard': 'أفضل لوحة متصدرين',
@@ -1016,7 +904,6 @@ const ar = {
   'home.newsfeed': 'تغذية الأخبار',
   'home.footer.retro': 'الألعاب الكلاسيكية',
   'home.footer.n64': 'مجتمع نينتندو 64',
-
   // Event leaderboard - لوحة متصدري الأحداث
   'eventLeaderboard.time': 'الوقت',
   'eventLeaderboard.screenshotFrom': 'لقطة شاشة من {username}',
@@ -1037,33 +924,26 @@ const ar = {
   'eventLeaderboard.view': 'عرض',
   'eventLeaderboard.documentation': 'التوثيق',
   'eventLeaderboard.viewMedia': 'عرض الوسائط',
-
   // Mobile event winner - فائز الحدث للهاتف المحمول
   'events.mobile.winner': 'الفائز',
-  
   // Best Lap Showcase
   'events.bestLap.title': 'أفضل لفة',
   'events.bestLap.photoAlt': 'لقطة شاشة لأفضل لفة بواسطة {username} بوقت {time}',
   'events.bestLap.livestreamTitle': 'البث المباشر لأفضل لفة',
   'events.bestLap.livestreamDesc': 'شاهد البث المباشر لحامل الرقم القياسي',
   'events.bestLap.watchStream': 'مشاهدة البث',
-
   // Live chat - الدردشة المباشرة
   'ui.liveChat': 'الدردشة المباشرة',
-
   // Media errors - أخطاء الوسائط
   'media.error': 'خطأ في الوسائط',
   'error.invalidFile': 'ملف غير صحيح',
-
   // Upload preview - معاينة الرفع
   'alt.uploadPreview': 'معاينة الرفع',
-
   // Accessibility keys - مفاتيح إمكانية الوصول
   'accessibility.skipToContent': 'الانتقال إلى المحتوى الرئيسي',
   'accessibility.skipToNavigation': 'الانتقال إلى التنقل',
   'accessibility.skippedToContent': 'تم الانتقال إلى المحتوى الرئيسي',
   'accessibility.skippedToNavigation': 'تم الانتقال إلى التنقل',
-
   // Homepage specific translations - ترجمات خاصة بالصفحة الرئيسية
   'home.noLiveEvent': 'لا يوجد حدث مباشر نشط - الحدث التالي يبدأ قريباً!',
   'home.showAllEvents': '📅 عرض جميع الأحداث',
@@ -1076,7 +956,6 @@ const ar = {
   'home.clickToViewFull': 'انقر للعرض بالحجم الكامل',
   'home.clickToWatch': 'انقر للمشاهدة',
   'home.noMediaSubmitted': 'لم يتم إرسال وسائط',
-
   // News items - عناصر الأخبار
   'news.mariokartRecord': '🏆 تم كسر الرقم القياسي العالمي لـ Mario Kart 64 Speedrun!',
   'news.mariokartRecordContent': 'سجل SpeedDemon64 رقماً قياسياً عالمياً جديداً في Wario Stadium بوقت 1:42.33!',
@@ -1096,7 +975,6 @@ const ar = {
   'news.speedrunCategoryContent': 'لقد أضفنا فئة Any% جديدة لـ Banjo-Kazooie. انضم الآن!',
   'news.monthlyChallenge': '🏆 فائز التحدي الشهري',
   'news.monthlyChallengeContent': 'تهانينا لـ N64Master لفوزه بتحدي أكتوبر الشهري!',
-
   // Live Events - Mario Kart 64 Luigi's Raceway
   'events.mk64LuigisRaceway.title': '🏁 ماريو كارت 64: تحدي السرعة في حلبة لويجي',
   'events.mk64LuigisRaceway.description': 'أظهر سرعتك في حلبة لويجي الأسطورية! شهر من المنافسة الشديدة بأسلوب جران توريزمو 7.',
@@ -1111,7 +989,6 @@ const ar = {
   'events.mk64LuigisRaceway.prize3': '🥉 المركز الثالث: 200 نقطة Battle64 + ميدالية برونزية',
   'events.mk64LuigisRaceway.prizeTop10': '🏆 أفضل 10: نقاط بأسلوب F1 (25-18-15-12-10-8-6-4-2-1)',
   'events.mk64LuigisRaceway.prizeParticipation': '🎯 جائزة المشاركة: 5 نقاط Battle64 لكل مشارك',
-
   // Live Events - San Francisco Rush Downtown
   'events.sfrDowntown.title': '🏙️ سان فرانسيسكو راش: بطولة سباق وسط المدينة',
   'events.sfrDowntown.description': 'اسرع في شوارع وسط مدينة سان فرانسيسكو! حدث سباق متطرف لمدة شهر كامل.',
@@ -1126,7 +1003,6 @@ const ar = {
   'events.sfrDowntown.prize3': '🥉 المركز الثالث: 200 نقطة Battle64 + متسابق الشارع',
   'events.sfrDowntown.prizeTop10': '🏆 أفضل 10: نقاط بأسلوب F1 (25-18-15-12-10-8-6-4-2-1)',
   'events.sfrDowntown.prizeParticipation': '🎯 جائزة المشاركة: 5 نقاط Battle64 لكل مشارك',
-
   // Live Events - Diddy Kong Racing Ancient Lake
   'events.dkrAncientLake.title': '🦍 ديدي كونغ ريسنغ: سباق ضد الوقت في البحيرة القديمة',
   'events.dkrAncientLake.description': 'اغزُ البحيرة القديمة الغامضة! منافسة أسطورية في كلاسيكية Rare لعشاق N64 الحقيقيين.',
@@ -1141,10 +1017,8 @@ const ar = {
   'events.dkrAncientLake.prize3': '🥉 المركز الثالث: 200 نقطة Battle64 + متسابق قديم',
   'events.dkrAncientLake.prizeTop10': '🏆 أفضل 10: نقاط بأسلوب F1 (25-18-15-12-10-8-6-4-2-1)',
   'events.dkrAncientLake.prizeParticipation': '🎯 المشاركة: 5 نقاط Battle64 لكل مشارك',
-
   // Home Ranking Section
   'home.yourRanking': 'ترتيبك',
-
   // Ranking System
   'ranking.globalRank': 'الترتيب العالمي',
   'ranking.totalPoints': 'إجمالي النقاط',
@@ -1158,72 +1032,62 @@ const ar = {
   'ranking.achievements': 'الإنجازات',
   'ranking.verifiedRecords': 'الأرقام القياسية المؤكدة',
   'ranking.gamesOwned': 'الألعاب المملوكة',
-
   // Profile Ranking
   'profile.ranking': 'الترتيب',
   'profile.globalRanking': 'الترتيب العالمي',
   'profile.rankingStats': 'إحصائيات الترتيب',
-
   // FanArt Comments
-  'fanart.addComment': 'إضافة تعليق...',
-
+  'fanart.addComment': 'إضافة تعليق',
   // Interaction System
   'interaction.like': 'إعجاب',
   'interaction.unlike': 'إلغاء الإعجاب',
   'interaction.comments': 'تعليقات',
   'interaction.addComment': 'إضافة تعليق',
-  'interaction.writeComment': 'اكتب تعليقاً...',
+  'interaction.writeComment': 'اكتب تعليقاً',
   'interaction.loginToLike': 'تسجيل الدخول للإعجاب',
   'interaction.loginToComment': 'تسجيل الدخول للتعليق',
   'interaction.viewCount': 'View count',
   'interaction.showComments': 'Show comments',
-
   // Time
   'time.justNow': 'الآن',
-
   // Media types
   'media.photo': 'صورة',
   'media.video': 'فيديو',
   'media.noMediaTooltip': 'No media yet – upload your video or screenshot to verify run',
-
   // Event Card specific translations
   'events.likes': 'إعجابات',
-  'events.views': 'مشاهدات', 
+  'events.views': 'مشاهدات',
   'events.comments': 'تعليقات',
-
   // PWA Installation Prompt
   'pwa.installTitle': 'تثبيت Battle64',
   'pwa.installDescription': 'احصل على تجربة التطبيق الكاملة مع الوصول دون اتصال والتحميل السريع!',
   'pwa.install': 'تثبيت التطبيق',
   'pwa.gotIt': 'فهمت!',
   'pwa.iosStep1': 'اضغط على زر المشاركة',
-  'pwa.iosStep2': 'ثم "إضافة إلى الشاشة الرئيسية"',
+  'pwa.iosStep2': 'ثم \"إضافة إلى الشاشة الرئيسية\"',
   'common.later': 'لاحقاً',
-
   // Offline Functionality
   'offline.workingOffline': 'العمل في وضع عدم الاتصال',
   'offline.backOnline': 'العودة متصلاً!',
   'offline.cachedDataAvailable': 'البيانات المخزنة متاحة',
   'offline.cachedData': 'البيانات المخزنة',
-
   // Enhanced Chat
   'chat.communityChat': 'دردشة المجتمع',
   'chat.activeUsers': 'المستخدمون النشطون',
-  'chat.loading': 'تحميل الرسائل...',
+  'chat.loading': 'تحميل الرسائل',
   'chat.noMessages': 'لا توجد رسائل حتى الآن',
   'chat.startConversation': 'كن أول من يبدأ المحادثة!',
-  'chat.typeMessage': 'اكتب رسالة...',
+  'chat.typeMessage': 'اكتب رسالة',
   'chat.emoji': 'إضافة رمز تعبيري',
   'chat.scrollToBottom': 'انتقل للأسفل',
   'chat.errorLoading': 'خطأ في تحميل الرسائل',
   'time.today': 'اليوم',
   'time.yesterday': 'أمس',
-
   // Realtime Events
   'events.nowLive': 'الحدث مباشر الآن!',
   'realtime.connected': 'الاتصال المباشر نشط',
   'realtime.disconnected': 'الاتصال المباشر منقطع',
-  'realtime.reconnecting': 'إعادة الاتصال...',
+  'realtime.reconnecting': 'إعادة الاتصال',
   'realtime.newUpdate': 'تحديثات مباشرة جديدة متاحة',
   'realtime.leaderboard.updated': 'تم تحديث لوحة المتصدرين',
   'realtime.points.updated': 'تم تحديث النقاط',
@@ -1231,7 +1095,6 @@ const ar = {
   'realtime.participant.left': 'غادر المشارك',
   'realtime.event.started': 'بدأ الحدث',
   'realtime.event.finished': 'انتهى الحدث',
-
   // PWA Installation
   'pwa.install.button': 'تثبيت التطبيق',
   'pwa.install.banner.title': 'تثبيت Battle64 كتطبيق',
@@ -1240,9 +1103,8 @@ const ar = {
   'pwa.install.modal.description': 'قم بتثبيت Battle64 للحصول على تجربة تطبيق أصلي مع الوصول دون اتصال والإشعارات الفورية.',
   'pwa.install.ios.title': 'إضافة إلى الشاشة الرئيسية',
   'pwa.install.ios.step1': 'اضغط على زر المشاركة في أسفل المتصفح',
-  'pwa.install.ios.step2': 'مرر لأسفل واختر "إضافة إلى الشاشة الرئيسية"',
-  'pwa.install.ios.step3': 'اضغط على "إضافة" لتثبيت التطبيق',
-
+  'pwa.install.ios.step2': 'مرر لأسفل واختر \"إضافة إلى الشاشة الرئيسية\"',
+  'pwa.install.ios.step3': 'اضغط على \"إضافة\" لتثبيت التطبيق',
   // Battle Map
   'battleMap.title': 'خريطة Battle64',
   'battleMap.liveEvents': 'الأحداث المباشرة',
@@ -1258,15 +1120,13 @@ const ar = {
   'battleMap.yourLocation': 'موقعك',
   'battleMap.noEvents': 'لا توجد أحداث مباشرة قريبة',
   'battleMap.participantCount': 'المشاركون',
-
   // Live Leaderboard
   'leaderboard.live': 'لوحة المتصدرين المباشرة',
-  'leaderboard.updating': 'جاري التحديث...',
+  'leaderboard.updating': 'جاري التحديث',
   'leaderboard.lastUpdate': 'آخر تحديث',
   'leaderboard.points.live': 'النقاط المباشرة',
   'leaderboard.rank.changed': 'تغير الترتيب',
   'leaderboard.newRecord': 'رقم قياسي جديد!',
-
   // GDPR Realtime
   'gdpr.realtime.title': 'الميزات المباشرة',
   'gdpr.realtime.description': 'تفعيل التحديثات المباشرة للوحة المتصدرين والأحداث والدردشة',
@@ -1276,13 +1136,11 @@ const ar = {
   'gdpr.location.description': 'شارك موقعك للأحداث المحلية والمشاركين القريبين',
   'gdpr.location.enable': 'تفعيل الموقع',
   'gdpr.location.disable': 'إلغاء الموقع',
-
   // Offline Mode
   'offline.title': 'وضع عدم الاتصال',
   'offline.description': 'أنت غير متصل. بعض الميزات محدودة.',
   'offline.cached': 'عرض المحتوى المحفوظ',
   'offline.retry': 'إعادة المحاولة',
-
   // Common - New additions
   'common.understood': 'مفهوم',
   'common.success': 'نجح',
@@ -1290,11 +1148,9 @@ const ar = {
   'settings.privacy.title': 'إعدادات الخصوصية',
   'settings.notifications.title': 'إعدادات الإشعارات',
   'settings.notifications.description': 'إدارة تفضيلات الإشعارات',
-
   // GDPR Notice
   'gdpr.notice.title': 'إشعار الخصوصية',
   'gdpr.notice.description': 'نحن نحترم خصوصيتك ونتبع إرشادات GDPR لحماية البيانات',
-
   // الشروط القانونية والامتثال
   'legal.ageVerification': 'التحقق من العمر',
   'legal.birthDate': 'تاريخ الميلاد',
@@ -1312,7 +1168,6 @@ const ar = {
   'legal.adultOnlyPlatform': 'Battle64 مخصص للمستخدمين 18 سنة فأكثر فقط',
   'legal.readTerms': 'اقرأ شروط الخدمة',
   'legal.readPrivacy': 'اقرأ سياسة الخصوصية',
-  
   // محتوى شروط الخدمة
   'terms.title': 'شروط الخدمة',
   'terms.lastUpdated': 'آخر تحديث: {date}',
@@ -1332,7 +1187,6 @@ const ar = {
   'terms.section7.content': 'Battle64 غير مرتبط بنينتندو. لا ترفع شعارات نينتندو أو أغلفة N64 الأصلية أو ملفات ROM.',
   'terms.section8.title': '8. إنهاء الحساب',
   'terms.section8.content': 'نحتفظ بالحق في إنهاء الحسابات لانتهاك شروط الخدمة دون إشعار مسبق.',
-  
   // محتوى سياسة الخصوصية
   'privacy.title': 'سياسة الخصوصية',
   'privacy.lastUpdated': 'آخر تحديث: {date}',
@@ -1350,7 +1204,6 @@ const ar = {
   'privacy.section6.content': 'نحتفظ ببياناتك أثناء نشاط حسابك. الحسابات المحذوفة يتم حذف جميع بياناتها نهائياً.',
   'privacy.section7.title': '7. التواصل',
   'privacy.section7.content': 'لاستفسارات الخصوصية، اتصل بنا على privacy@battle64.com',
-  
   // موافقة ملفات تعريف الارتباط
   'cookies.title': 'موافقة ملفات تعريف الارتباط',
   'cookies.description': 'نستخدم ملفات تعريف الارتباط لتحسين تجربتك. يرجى اختيار تفضيلاتك.',
@@ -1366,7 +1219,6 @@ const ar = {
   'cookies.acceptSelected': 'قبول المحدد',
   'cookies.rejectAll': 'رفض الكل',
   'cookies.managePreferences': 'إدارة تفضيلات ملفات تعريف الارتباط',
-  
   // الإبلاغ والإشراف
   'report.title': 'الإبلاغ عن المحتوى',
   'report.reason': 'سبب الإبلاغ',
@@ -1382,13 +1234,11 @@ const ar = {
   'report.success': 'تم الإبلاغ عن المحتوى بنجاح',
   'report.error': 'فشل في إرسال البلاغ',
   'report.alreadyReported': 'لقد أبلغت عن هذا المحتوى بالفعل',
-  
   // إشراف المحتوى
   'moderation.contentHidden': 'تم إخفاء هذا المحتوى بسبب بلاغات متعددة',
   'moderation.underReview': 'هذا المحتوى قيد المراجعة',
   'moderation.removed': 'تم حذف هذا المحتوى من قبل المشرفين',
   'moderation.appealProcess': 'إذا كنت تعتقد أن هذا خطأ، اتصل بالدعم',
-  
   // لوحة المدير
   'admin.dashboard': 'لوحة الإدارة',
   'admin.reports': 'البلاغات',
@@ -1409,17 +1259,15 @@ const ar = {
   'admin.actionReason': 'سبب الإجراء',
   'admin.actionNotes': 'ملاحظات إضافية',
   'admin.confirmAction': 'تأكيد الإجراء',
-  
   // حذف الحساب (GDPR)
   'account.delete': 'حذف الحساب',
   'account.deleteWarning': 'هل أنت متأكد من أنك تريد حذف حسابك؟ سيتم حذف جميع المحتوى الخاص بك نهائياً.',
-  'account.deleteConfirmation': 'اكتب "DELETE" لتأكيد حذف الحساب',
+  'account.deleteConfirmation': 'اكتب \"DELETE\" لتأكيد حذف الحساب',
   'account.deleteSuccess': 'تم حذف الحساب بنجاح',
   'account.deleteError': 'فشل في حذف الحساب',
   'account.dataExport': 'تصدير بياناتي',
   'account.dataExportDescription': 'تحميل جميع بياناتك بتنسيق JSON',
   'account.dataExportSuccess': 'تم طلب تصدير البيانات. ستتلقى بريداً إلكترونياً يحتوي على بياناتك.',
-  
   // أمان الرفع
   'upload.rightsConfirmation': 'تأكيد حقوق المحتوى',
   'upload.confirmRights': 'أؤكد أنني أملك حقوق هذا المحتوى ولن أنتهك أي حقوق طبع ونشر',
@@ -1428,14 +1276,12 @@ const ar = {
   'upload.nsfwDetected': 'تم اكتشاف محتوى قد يكون غير مناسب',
   'upload.manualReview': 'سيتم مراجعة هذا الرفع يدوياً قبل النشر',
   'upload.approvalPending': 'الرفع في انتظار الموافقة',
-  
   // روابط التذييل
   'footer.terms': 'الشروط',
   'footer.privacy': 'الخصوصية',
   'footer.contact': 'التواصل',
   'footer.imprint': 'البيانات القانونية',
   'footer.copyright': '© 2024 Battle64. غير مرتبط بنينتندو.',
-
   // Additional missing translations
   'platform.pc': 'كمبيوتر',
   'region.pal': 'PAL',
@@ -1443,11 +1289,10 @@ const ar = {
   'currency.eur': 'EUR',
   'currency.usd': 'USD',
   'currency.gbp': 'GBP',
-
   // Equalized translation keys - added 2025-08-09
   'account.deletion.confirmDelete': 'حذف',
   'account.deletion.dataWillBeDeleted': 'سيتم حذف البيانات التالية نهائياً:',
-  'account.deletion.errorConfirmText': 'يرجى كتابة "حذف" للتأكيد',
+  'account.deletion.errorConfirmText': 'يرجى كتابة \"حذف\" للتأكيد',
   'account.deletion.errorGeneric': 'خطأ في حذف الحساب',
   'account.deletion.errorUnexpected': 'خطأ غير متوقع أثناء حذف الحساب',
   'account.deletion.forumPosts': 'منشورات وتعليقات المنتدى',
@@ -1472,7 +1317,7 @@ const ar = {
   'account.deletionPage.whatWillBeDeleted': 'account.deletionPage.whatWillBeDeleted',
   'admin.appHealth': 'admin.appHealth',
   'admin.health.cache': 'admin.health.cache',
-  'admin.health.errors': 'admin.health.errors',
+  'admin.health.errors': 'admin.health.خطأs',
   'admin.health.sessions': 'admin.health.sessions',
   'admin.health.uptime': 'admin.health.uptime',
   'admin.illegalContent': 'admin.illegalContent',
@@ -1492,18 +1337,18 @@ const ar = {
   'admin.usersWarned': 'admin.usersWarned',
   'auth.safariRedirectSuccess': 'auth.safariRedirectSuccess',
   'error.accessDenied': 'تم رفض الوصول',
-  'error.imagePreviewFailed': 'error.imagePreviewFailed',
-  'error.moderationBlocked': 'error.moderationBlocked',
+  'error.imagePreviewFailed': 'خطأ.imagePreviewFailed',
+  'error.moderationBlocked': 'خطأ.moderationBlocked',
   'error.timeout': 'انتهت مهلة الطلب',
-  'error.uploadFailed': 'error.uploadFailed',
+  'error.uploadFailed': 'خطأ.uploadFailed',
   'error.validationError': 'خطأ في التحقق',
   'imageUpload.noPreview': 'imageUpload.noPreview',
-  'loading.content': 'جاري تحميل المحتوى...',
-  'loading.data': 'جاري تحميل البيانات...',
-  'loading.general': 'جاري التحميل...',
-  'loading.image': 'جاري تحميل الصورة...',
-  'loading.page': 'جاري تحميل الصفحة...',
-  'loading.video': 'جاري تحميل الفيديو...',
+  'loading.content': 'جاري تحميل المحتوى',
+  'loading.data': 'جاري تحميل البيانات',
+  'loading.general': 'جاري التحميل',
+  'loading.image': 'جاري تحميل الصورة',
+  'loading.page': 'جاري تحميل الصفحة',
+  'loading.video': 'جاري تحميل الفيديو',
   'map.battleDashboard': 'map.battleDashboard',
   'map.liveBattles': 'map.liveBattles',
   'map.resetView': 'map.resetView',
@@ -1512,8 +1357,8 @@ const ar = {
   'password.reset.emailLabel': 'password.reset.emailLabel',
   'password.reset.emailPlaceholder': 'password.reset.emailPlaceholder',
   'password.reset.emailSent': 'password.reset.emailSent',
-  'password.reset.errorUnexpected': 'password.reset.errorUnexpected',
-  'password.reset.errorUnknown': 'password.reset.errorUnknown',
+  'password.reset.errorUnexpected': 'password.reset.خطأUnexpected',
+  'password.reset.errorUnknown': 'password.reset.خطأUnknown',
   'password.reset.instructions': 'password.reset.instructions',
   'password.reset.sendButton': 'password.reset.sendButton',
   'password.reset.sending': 'password.reset.sending',
@@ -1532,14 +1377,14 @@ const ar = {
   'safari.step3': 'safari.step3',
   'status.completed': 'مكتمل',
   'status.connected': 'متصل',
-  'status.connecting': 'جاري الاتصال...',
+  'status.connecting': 'جاري الاتصال',
   'status.disconnected': 'منقطع',
   'status.failed': 'فشل',
   'status.inProgress': 'قيد التنفيذ',
   'status.offline': 'غير متصل',
   'status.online': 'متصل',
   'status.synced': 'مُزامن',
-  'status.syncing': 'جاري المزامنة...',
+  'status.syncing': 'جاري المزامنة',
   'time.ago': 'time.ago',
   'time.always': 'time.always',
   'time.elapsed': 'time.elapsed',
@@ -1568,7 +1413,6 @@ const ar = {
   'validation.imageTooLarge': 'validation.imageTooLarge',
   'validation.supportedFormats': 'validation.supportedFormats',
   'validation.unsupportedFormat': 'validation.unsupportedFormat',
-
   // Legal & Privacy translation keys - added 2025-08-09
   'cookies.alwaysActive': 'نشط دائماً',
   'account.deletionPage.gdprCompliant': 'حذف حساب متوافق مع GDPR',
@@ -1582,11 +1426,9 @@ const ar = {
   'account.deletionPage.backupRemovalText': 'سيتم أيضاً إزالة بياناتك من جميع النسخ الاحتياطية خلال دورة النسخ الاحتياطي التالية.',
   'account.deletionPage.legalObligations': 'الالتزامات القانونية:',
   'account.deletionPage.legalObligationsText': 'قد يتم الاحتفاظ ببعض البيانات إذا كان القانون يتطلب ذلك (مثل السجلات المالية لأغراض ضريبية).',
-
   // Final hardcoded text fixes - added 2025-08-09
-  'account.deletionPage.deleting': 'جاري الحذف...',
+  'account.deletionPage.deleting': 'جاري الحذف',
   'account.deletionPage.deleteAccountPermanently': 'حذف الحساب نهائياً',
-
   // Nintendo-specific translation keys - added 2025-08-09
   'terms.nintendoCopyrightNotice': 'إشعار حقوق الطبع والنشر لـ Nintendo:',
   'terms.nintendoFullDisclaimer': 'Battle64 هو مجتمع ألعاب كلاسيكية مستقل وغير مرتبط أو معتمد أو مدعوم من Nintendo Co., Ltd. Nintendo 64 و N64 وجميع الشخصيات والأسماء والعلامات والرموز والصور ذات الصلة هي علامات تجارية لـ Nintendo. جميع العلامات التجارية الأخرى هي ملكية لأصحابها المعنيين.',

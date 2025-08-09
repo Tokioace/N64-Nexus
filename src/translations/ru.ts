@@ -16,7 +16,6 @@ const ru = {
   'nav.newsfeed': 'Новостная лента',
   'nav.community': 'Сообщество',
   'nav.map': 'Battle64 Map',
-
   // Accessibility
   'a11y.skipToMain': 'Перейти к основному содержимому',
   'a11y.skipToNav': 'Перейти к навигации',
@@ -25,7 +24,6 @@ const ru = {
   'a11y.loading': 'Загрузка содержимого',
   'a11y.error': 'Произошла ошибка',
   'a11y.success': 'Действие успешно выполнено',
-
   // Common fallback texts
   'common.unknown': 'Неизвестно',
   'common.unknownGame': 'Неизвестная игра',
@@ -45,11 +43,10 @@ const ru = {
   'common.draft': 'Черновик',
   'common.published': 'Опубликовано',
   'common.archived': 'В архиве',
-  
   // Account deletion
-  'account.deletion.confirmText': 'Пожалуйста, введите "DELETE" для подтверждения',
-  'account.deletion.placeholder': 'DELETE',
-  'account.deletion.typeDelete': 'Введите "DELETE" для подтверждения:',
+  'account.deletion.confirmText': 'Пожалуйста, введите \"DELETE\" для подтверждения',
+  'account.deletion.placeholder': 'УДАЛИТЬ',
+  'account.deletion.typeDelete': 'Введите \"DELETE\" для подтверждения:',
   'home.subtitle': 'N64 сообщество для миллениалов',
   'home.welcome': 'Добро пожаловать обратно',
   'home.quiz.subtitle': 'N64 знания',
@@ -65,13 +62,12 @@ const ru = {
   'home.fanart.subtitle': 'Творчество',
   'home.newsfeed.subtitle': 'Обновления',
   'home.map.subtitle': 'Локальные Битвы',
-
   // Battle64 Map
   'map.title': 'Battle64 Map',
   'map.subtitle': 'Реальные Битвы и Гео-Матчинг',
   'map.hostEvent': 'Организовать Локальную Битву на 4 Игрока',
   'map.selectGame': 'Выбрать Игру',
-  'map.chooseGame': 'Выберите игру...',
+  'map.chooseGame': 'Выберите игру',
   'map.eventTitle': 'Название События',
   'map.eventTitlePlaceholder': 'Гоночный Турнир Выходного Дня',
   'map.description': 'Описание',
@@ -144,14 +140,13 @@ const ru = {
   'event.type.speedrun': 'Спидран сессия',
   'event.type.meetup': 'Встреча',
   'event.category': 'Категория события',
-
   'common.welcome': 'Добро пожаловать',
-  'common.loading': 'Загрузка...',
+  'common.loading': 'Загрузка',
   'common.error': 'Ошибка',
   'common.save': 'Сохранить',
   'common.cancel': 'Отмена',
   'common.upload': 'Загрузить',
-  'common.uploading': 'Загрузка...',
+  'common.uploading': 'Загрузка',
   'common.remove': 'Удалить',
   'common.delete': 'Удалить',
   'common.edit': 'Редактировать',
@@ -233,7 +228,7 @@ const ru = {
   'forum.threads': 'Темы',
   'forum.posts': 'Сообщения',
   'forum.mostActive': 'Самые активные',
-  'forum.loading': 'Загрузка...',
+  'forum.loading': 'Загрузка',
   'forum.communityNexus': 'Центр сообщества',
   'forum.discussWithCommunity': 'Обсудить с сообществом',
   'forum.createThread': 'Создать тему',
@@ -264,7 +259,6 @@ const ru = {
   'error.goHome': 'Перейти на главную',
   'error.contactSupport': 'Связаться с поддержкой',
   'error.somethingWentWrong': 'Что-то пошло не так',
-
   // Missing keys added automatically
   'news.title': 'Nachrichten',
   'news.subtitle': 'Neueste Updates und Ankündigungen',
@@ -286,7 +280,7 @@ const ru = {
   'news.noResults': 'Keine Ergebnisse',
   'news.noResultsDescription': 'Keine Nachrichten gefunden',
   'news.pagination': 'Seite {current} von {total}',
-  'news.search.placeholder': 'Поиск новостей...',
+  'news.search.placeholder': 'Поиск новостей',
   'news.filter.all': 'Alle',
   'news.filter.events': 'Events',
   'news.filter.winners': 'Gewinner',
@@ -342,21 +336,13 @@ const ru = {
   'media.allGames': 'Alle Spiele',
   'media.noEvent': 'Kein Event',
   'media.uploadedBy': 'Hochgeladen von',
-  'media.uploadedOn': 'Hochgeladen am',
-  'placeholder.speedrunTitle': 'напр. Mario 64 120 Звёзд Спидран',
-  'placeholder.speedrunUrl': 'https://twitch.tv/ваш-канал',
-  'placeholder.speedrunGame': 'напр. Super Mario 64',
-  'placeholder.mediaSearch': 'Поиск по названию, описанию или тегам...',
-  'placeholder.mediaUrl': 'https://youtube.com/watch?v=...',
-  'placeholder.mediaDescription': 'Опишите ваше достижение...',
-  'placeholder.mediaTags': 'Мировой рекорд, Any%, Glitchless (через запятую)',
+  'media.uploadedOn': 'Hochgeladen am', описанию или тегам', Any%, Glitchless (через запятую)',
   'success.uploaded': 'Успешно загружено',
   'validation.allFieldsRequired': 'Все поля обязательны',
-
   // Additional missing keys
   'marketplace.subtitle': 'N64 Торговля и Обмен',
   'marketplace.createOffer': 'Создать Предложение',
-  'marketplace.searchPlaceholder': 'Поиск товаров...',
+  'marketplace.searchPlaceholder': 'Поиск товаров',
   'marketplace.category': 'Kategorie',
   'marketplace.allCategories': 'Alle Kategorien',
   'marketplace.categoryGames': 'Spiele',
@@ -378,7 +364,7 @@ const ru = {
   'marketplace.conditionFair': 'Akzeptabel',
   'marketplace.publishOffer': 'Angebot veröffentlichen',
   'minigames.memoryMatch.title': 'Memory Match',
-  'minigames.memoryMatch.description': 'Teste dein Gedächtnis',
+  'minigames.memoryMatch.description': 'Тестe dein Gedächtnis',
   'minigames.reactionTest.title': 'Reaktionstest',
   'minigames.reactionTest.description': 'Wie schnell sind deine Reflexe?',
   'minigames.triviaRush.title': 'Trivia Rush',
@@ -401,11 +387,11 @@ const ru = {
   'minigames.correctAnswers': 'Richtige Antworten',
   'minigames.cheatCode': 'Cheat Code',
   'minigames.completed': 'Abgeschlossen',
-  'minigames.typeCheatCode': 'Cheat Code eingeben...',
-  'minigames.sound.mario64': '"Wahoo!" - Mario Sprunggeräusch',
-  'minigames.sound.zelda': '"Hey! Listen!" - Navi Sound',
-  'minigames.sound.goldeneye': '"Pew Pew" - Silenced Shot',
-  'minigames.sound.mariokart': '"Here we go!" - Rennstart',
+  'minigames.typeCheatCode': 'Cheat Code eingeben',
+  'minigames.sound.mario64': '\"Wahoo!\" - Mario Sprunggeräusch',
+  'minigames.sound.zelda': '\"Hey! Listen!\" - Navi Sound',
+  'minigames.sound.goldeneye': '\"Pew Pew\" - Silenced Shot',
+  'minigames.sound.mariokart': '\"Here we go!\" - Rennstart',
   'minigames.sound': 'Sound',
   'minigames.whichGame': 'Aus welchem Spiel ist dieser Sound?',
   'minigames.you': 'Du',
@@ -413,8 +399,8 @@ const ru = {
   'minigames.readyForDuel': 'Bereit für das Duell?',
   'minigames.startDuel': 'Duell starten',
   'minigames.result': 'Ergebnis',
-  'minigames.opponentAnswering': 'antwortet...',
-  'minigames.gameLoading': 'Spiel lädt...',
+  'minigames.opponentAnswering': 'antwortet',
+  'minigames.gameLoading': 'Spiel lädt',
   'minigames.gameEnded': 'Spiel beendet',
   'minigames.yourScore': 'Deine Punktzahl',
   'minigames.title': 'Minispiele',
@@ -439,14 +425,13 @@ const ru = {
   'news.n64HistoryContent': 'Ein Rückblick auf 27 Jahre Nintendo 64',
   'aria.gridView': 'Rasteransicht',
   'aria.listView': 'Listenansicht',
-
   // Additional missing keys
   'fanart.artworksFound': 'artworks found',
   'fanart.ratings': 'ratings',
   'fanart.yourRating': 'Your Rating',
   'fanart.noArtworksFound': 'No artworks found',
   'fanart.noArtworksDescription': 'No artworks have been uploaded yet.',
-  'error.title': 'Error',
+  'error.title': 'Ошибка',
   'error.threadCreationFailed': 'Thread creation failed',
   'forum.categoryNotFound': 'Category not found',
   'forum.firstThread': 'First Thread',
@@ -491,12 +476,7 @@ const ru = {
   'category.collecting': 'Collecting',
   'category.tips': 'Tips',
   'validation.titleTooLong': 'Заголовок слишком длинный',
-  'validation.contentTooLong': 'Содержимое слишком длинное',
-  'placeholder.threadTitle': 'Дайте название вашей теме...',
-  'placeholder.threadContent': 'Напишите ваш пост...',
-  'placeholder.replyContent': 'Напишите ваш ответ...',
-  'placeholder.marketplacePrice': 'Введите цену...',
-  'ui.login': 'Login',
+  'validation.contentTooLong': 'Содержимое слишком длинное',  'ui.login': 'Login',
   'alt.postAttachment': 'Post attachment',
   'alt.battle64Mascot': 'Battle64 mascot',
   'news.communityStats': 'Community Stats',
@@ -514,9 +494,9 @@ const ru = {
   'events.status.live': 'Live',
   'events.status.completed': 'Completed',
   'marketplace.title': 'Название',
-  'marketplace.titlePlaceholder': 'Введите название товара...',
+  'marketplace.titlePlaceholder': 'Введите название товара',
   'marketplace.description': 'Описание',
-  'marketplace.descriptionPlaceholder': 'Опишите ваш товар...',
+  'marketplace.descriptionPlaceholder': 'Опишите ваш товар',
   'marketplace.price': 'Цена',
   'marketplace.condition': 'Состояние',
   'marketplace.conditionNew': 'Новое',
@@ -531,7 +511,6 @@ const ru = {
   'minigames.hard': 'Сложно',
   'minigames.backToMenu': 'Back to Menu',
   'minigames.highScore': 'Рекорд',
-
   // Final remaining missing keys
   'collection.gamesCollected': 'Games Collected',
   'collection.completeness': 'Completeness',
@@ -597,19 +576,19 @@ const ru = {
   'notifications.denied': 'Notifications denied',
   'notifications.notSupported': 'Notifications not supported',
   'notifications.disabled': 'Notifications disabled',
-  'notifications.error': 'Notification error',
+  'notifications.error': 'Notification Ошибка',
   'fanart.uploadArt': 'Upload Artwork',
   'fanart.uploadImage': 'Upload Image',
   'fanart.chooseImage': 'Choose Image',
   'fanart.imageFormats': 'Supported formats: JPG, PNG, GIF',
   'fanart.artworkTitle': 'Artwork Title',
-  'fanart.titlePlaceholder': 'Give your artwork a title...',
+  'fanart.titlePlaceholder': 'Give your artwork a title',
   'fanart.selectGame': 'Select Game',
-  'fanart.chooseGame': 'Choose a game...',
+  'fanart.chooseGame': 'Choose a game',
   'fanart.tags': 'Теги',
-  'fanart.tagsPlaceholder': 'Add tags...',
+  'fanart.tagsPlaceholder': 'Add tags',
   'fanart.tagsHint': 'Separated by commas',
-  'fanart.uploading': 'Uploading...',
+  'fanart.uploading': 'UpЗагрузка...',
   'fanart.allCategories': 'All Categories',
   'fanart.subtitle': 'Share your N64-inspired artwork',
   'fanart.filterBy': 'Filter by',
@@ -618,13 +597,9 @@ const ru = {
   'common.rare': 'Rare',
   'common.veryRare': 'Very Rare',
   'common.ultraRare': 'Ultra Rare',
-  'common.hide': 'Hide',
-  'placeholder.searchGames': 'Поиск игр...',
-  'placeholder.searchPlayers': 'Поиск игроков...',
-  'ui.grid': 'Grid',
+  'common.hide': 'Hide',  'ui.grid': 'Grid',
   'ui.list': 'List',
   'alt.preview': 'Preview',
-
   // Final batch of missing keys
   'collection.cartOnly': 'Cart Only',
   'collection.boxOnly': 'Box Only',
@@ -646,11 +621,7 @@ const ru = {
   'media.noUploads': 'No Uploads',
   'media.noUploadsDesc': 'You haven\'t uploaded any media yet.',
   'media.eventUpload': 'Event Upload',
-  'label.notes': 'Notes',
-  'placeholder.notes': 'Добавить заметки...',
-  'placeholder.additionalInfo': 'Дополнительная информация...',
-  'placeholder.password': 'Введите пароль...',
-  'validation.contentRequired': 'Содержимое обязательно',
+  'label.notes': 'Notes',  'validation.contentRequired': 'Содержимое обязательно',
   'validation.postTooLong': 'Пост слишком длинный',
   'auth.invalidCredentials': 'Неверные учетные данные',
   'auth.errorOccurred': 'Произошла ошибка',
@@ -660,27 +631,27 @@ const ru = {
   'auth.registrationFailed': 'Регистрация не удалась',
   'auth.welcomeBack': 'Добро пожаловать обратно',
   'auth.createAccount': 'Создать аккаунт',
-  'auth.emailPlaceholder': 'Введите email...',
-  'auth.loggingIn': 'Вход в систему...',
-  'auth.usernamePlaceholder': 'Введите имя пользователя...',
+  'auth.emailPlaceholder': 'Введите email',
+  'auth.loggingIn': 'Вход в систему',
+  'auth.usernamePlaceholder': 'Введите имя пользователя',
   'auth.platform': 'Платформа',
   'auth.region': 'Регион',
-  'auth.registering': 'Регистрация...',
+  'auth.registering': 'Регистрация',
   'auth.createAccountButton': 'Создать аккаунт',
   'auth.noAccountYet': 'Еще нет аккаунта?',
   'auth.registerNow': 'Зарегистрироваться сейчас',
   'auth.alreadyHaveAccount': 'Уже есть аккаунт?',
   'auth.loginHere': 'Войти здесь',
-  'auth.processingRegistration': 'Обработка регистрации...',
-  'auth.waitingEmailConfirmation': 'Ожидание подтверждения по электронной почте...',
+  'auth.processingRegistration': 'Обработка регистрации',
+  'auth.waitingEmailConfirmation': 'Ожидание подтверждения по электронной почте',
   'auth.registrationSucceeded': 'Регистрация успешна!',
   'auth.welcomeToCommunity': 'Добро пожаловать в сообщество Battle64',
   'auth.checkOutEvents': 'Посмотрите наши события',
   'auth.emailConfirmationSent': 'Мы отправили письмо подтверждения на {email}.',
   'auth.clickEmailLink': 'Пожалуйста, нажмите на ссылку в письме, чтобы завершить регистрацию.',
-  'auth.emailBeingConfirmed': 'Подтверждение электронной почты...',
+  'auth.emailBeingConfirmed': 'Подтверждение электронной почты',
   'auth.pleaseWaitMoment': 'Пожалуйста, подождите.',
-  'auth.emailConfirmedSuccessfully': 'Электронная почта успешно подтверждена! Вы будете перенаправлены на главную страницу...',
+  'auth.emailConfirmedSuccessfully': 'Электронная почта успешно подтверждена! Вы будете перенаправлены на главную страницу',
   'auth.confirmationFailed': 'Подтверждение не удалось',
   'auth.accountActivatedSuccessfully': 'Ваш аккаунт успешно активирован!',
   'auth.joinCommunityMessage': 'и присоединяйтесь к сообществу.',
@@ -691,23 +662,21 @@ const ru = {
   'auth.unexpectedError': 'Произошла неожиданная ошибка',
   'auth.tryRegisterAgain': 'Попробуйте зарегистрироваться снова или обратитесь в службу поддержки.',
   'auth.goToLogin': 'Перейти к Входу',
-
   // Browser Redirect
   'browserRedirect.title': 'Перенаправление Браузера',
-  'browserRedirect.message': 'Мы перенаправляем вас обратно в ваш предпочитаемый браузер...',
+  'browserRedirect.message': 'Мы перенаправляем вас обратно в ваш предпочитаемый браузер',
   'browserRedirect.detectedBrowser': 'Обнаруженный Браузер',
   'browserRedirect.version': 'Версия',
-  'browserRedirect.redirectingIn': 'Перенаправление через {seconds} секунд...',
+  'browserRedirect.redirectingIn': 'Перенаправление через {seconds} секунд',
   'browserRedirect.redirectNow': 'Перенаправить Сейчас',
   'browserRedirect.troubleshoot': 'Автоматическое перенаправление не работает?',
-  'browserRedirect.manualInstructions': 'Нажмите "Перенаправить Сейчас" или скопируйте URL из адресной строки.',
-
+  'browserRedirect.manualInstructions': 'Нажмите \"Перенаправить Сейчас\" или скопируйте URL из адресной строки.',
   'chat.title': 'Community Chat',
   'chat.onlineUsers': 'online users',
   'chat.chats': 'Chats',
   'chat.newChat': 'New Chat',
-  'chat.searchUsers': 'Search users...',
-  'chat.messagePlaceholder': 'Type a message...',
+  'chat.searchUsers': 'Search users',
+  'chat.messagePlaceholder': 'Type a message',
   'chat.joinPrompt': 'Join the chat to participate!',
   'chat.privateChat': 'Private Chat',
   'chat.description': 'Discuss N64 games with the community',
@@ -721,18 +690,12 @@ const ru = {
   'chat.rules.noSpam': 'No spam or repeated messages',
   'chat.rules.shareExperience': 'Share your N64 experiences',
   'chat.rules.noLinks': 'No external links without permission',
-
-  // Professional translations - final batch
-  'placeholder.raceTime': 'Введите время (например, 1:23:45)...',
+  // Professional translations - final batch 1:23:45)',
   'events.timeFormat': 'Формат: Часы:Минуты:Секунды',
   'events.selectDocumentation': 'Выбрать Документацию',
   'events.photo': 'Фото',
   'events.video': 'Видео',
-  'events.livestreamUrlLabel': 'URL Прямой Трансляции',
-  'placeholder.livestreamUrl': 'https://twitch.tv/ваш-канал...',
-  'events.streamingPlatforms': 'Стриминговые Платформы',
-  'placeholder.setupController': 'Опишите настройку контроллера...',
-  'events.status.upcoming': 'Предстоящий',
+  'events.livestreamUrlLabel': 'URL Прямой Трансляции',  'events.streamingPlatforms': 'Стриминговые Платформы',  'events.status.upcoming': 'Предстоящий',
   'card.fanarts': 'Фан-Арт',
   'card.forumPosts': 'Сообщения Форума',
   'card.marketplace': 'Торговая Площадка',
@@ -768,10 +731,7 @@ const ru = {
   'label.gameName': 'Название Игры',
   'label.required': '(обязательно)',
   'label.platform': 'Платформа',
-  'label.region': 'Регион',
-  'placeholder.gameName': 'Введите название игры...',
-  'news.noNewsAvailable': 'Нет доступных новостей',
-
+  'label.region': 'Регион',  'news.noNewsAvailable': 'Нет доступных новостей',
   // Final remaining missing keys - professional translations
   'imageUpload.dropHere': 'Drop here',
   'imageUpload.uploadImage': 'Upload Image',
@@ -806,7 +766,6 @@ const ru = {
   'rank.current': 'Current',
   'rank.nextRank': 'Next Rank',
   'rank.maxRank': 'Maximum rank reached',
-
   // Cool Rank Titles (20 Levels)
   'Pixel Rookie': 'Пиксельный Новичок',
   'Button Masher': 'Нажиматель Кнопок',
@@ -857,12 +816,6 @@ const ru = {
   'events.raceTime': 'Race Time',
   'label.category': 'Category',
   'label.proofUrl': 'Proof URL',
-  'placeholder.category': 'Выберите категорию...',
-  'placeholder.time': 'Введите время...',
-  'placeholder.score': 'Введите счёт...',
-  'placeholder.proofUrl': 'Введите URL доказательства...',
-  'placeholder.recordNotes': 'Заметки о рекорде...',
-
   // Final TypeScript error fixes - professional translations
   'achievement.progress': 'Прогресс',
   'achievement.requirements': 'Requirements',
@@ -898,7 +851,6 @@ const ru = {
   'eventLeaderboard.documentation': 'Documentation',
   'eventLeaderboard.viewMedia': 'View Media',
   'events.mobile.winner': 'Winner',
-  
   // Best Lap Showcase
   'events.bestLap.title': 'Лучший Круг',
   'events.bestLap.photoAlt': 'Скриншот лучшего круга от {username} со временем {time}',
@@ -906,17 +858,14 @@ const ru = {
   'events.bestLap.livestreamDesc': 'Смотрите стрим рекордсмена',
   'events.bestLap.watchStream': 'Смотреть Стрим',
   'ui.liveChat': 'Live Chat',
-  'media.error': 'Media error',
+  'media.error': 'Media Ошибка',
   'error.invalidFile': 'Invalid file',
   'alt.uploadPreview': 'Upload preview',
-
-
   // Accessibility keys
   'accessibility.skipToContent': 'Перейти к основному содержанию',
   'accessibility.skipToNavigation': 'Перейти к навигации',
   'accessibility.skippedToContent': 'Переход к основному содержанию',
   'accessibility.skippedToNavigation': 'Переход к навигации',
-
   // Homepage specific translations - Переводы для главной страницы
   'home.noLiveEvent': 'Нет активных событий в прямом эфире - Следующее событие начнется скоро!',
   'home.showAllEvents': '📅 Показать все события',
@@ -929,7 +878,6 @@ const ru = {
   'home.clickToViewFull': 'Нажмите для просмотра в полном размере',
   'home.clickToWatch': 'Нажмите для просмотра',
   'home.noMediaSubmitted': 'Медиа не отправлено',
-
   // News items - Новости
   'news.mariokartRecord': '🏆 Мировой рекорд Mario Kart 64 Speedrun побит!',
   'news.mariokartRecordContent': 'SpeedDemon64 установил новый мировой рекорд на Wario Stadium со временем 1:42.33!',
@@ -949,7 +897,6 @@ const ru = {
   'news.speedrunCategoryContent': 'Мы добавили новую категорию Any% для Banjo-Kazooie. Присоединяйтесь сейчас!',
   'news.monthlyChallenge': '🏆 Победитель месячного вызова',
   'news.monthlyChallengeContent': 'Поздравляем N64Master с победой в месячном вызове октября!',
-
   // Live Events - Mario Kart 64 Luigi's Raceway
   'events.mk64LuigisRaceway.title': '🏁 Mario Kart 64: Спидран-вызов на трассе Luigi\'s Raceway',
   'events.mk64LuigisRaceway.description': 'Покажите свою скорость на культовой трассе Luigi\'s Raceway! Месяц интенсивных соревнований в стиле Gran Turismo 7.',
@@ -964,7 +911,6 @@ const ru = {
   'events.mk64LuigisRaceway.prize3': '🥉 3-е место: 200 очков Battle64 + бронзовая медаль',
   'events.mk64LuigisRaceway.prizeTop10': '🏆 Топ-10: очки в стиле F1 (25-18-15-12-10-8-6-4-2-1)',
   'events.mk64LuigisRaceway.prizeParticipation': '🎯 Участие: 5 очков Battle64 каждому участнику',
-
   // Live Events - San Francisco Rush Downtown
   'events.sfrDowntown.title': '🏙️ San Francisco Rush: Чемпионат гонок Downtown',
   'events.sfrDowntown.description': 'Гоните по улицам Downtown Сан-Франциско! Экстремальные гонки на целый месяц.',
@@ -979,7 +925,6 @@ const ru = {
   'events.sfrDowntown.prize3': '🥉 3-е место: 200 очков Battle64 + Уличный гонщик',
   'events.sfrDowntown.prizeTop10': '🏆 Топ-10: очки в стиле F1 (25-18-15-12-10-8-6-4-2-1)',
   'events.sfrDowntown.prizeParticipation': '🎯 Участие: 5 очков Battle64 каждому участнику',
-
   // Live Events - Diddy Kong Racing Ancient Lake
   'events.dkrAncientLake.title': '🦍 Diddy Kong Racing: Гонка на время на Ancient Lake',
   'events.dkrAncientLake.description': 'Покорите мистическое Ancient Lake! Легендарное соревнование в классике от Rare для истинных фанатов N64.',
@@ -994,10 +939,8 @@ const ru = {
   'events.dkrAncientLake.prize3': '🥉 3-е место: 200 очков Battle64 + Древний гонщик',
   'events.dkrAncientLake.prizeTop10': '🏆 Топ-10: очки в стиле F1 (25-18-15-12-10-8-6-4-2-1)',
   'events.dkrAncientLake.prizeParticipation': '🎯 Участие: 5 очков Battle64 для каждого участника',
-
   // Home Ranking Section
   'home.yourRanking': 'Ваш Рейтинг',
-
   // Ranking System
   'ranking.globalRank': 'Глобальный Рейтинг',
   'ranking.totalPoints': 'Общие Очки',
@@ -1011,72 +954,62 @@ const ru = {
   'ranking.achievements': 'Достижения',
   'ranking.verifiedRecords': 'Проверенные Рекорды',
   'ranking.gamesOwned': 'Игры в Собственности',
-
   // Profile Ranking
   'profile.ranking': 'Рейтинг',
   'profile.globalRanking': 'Глобальный Рейтинг',
   'profile.rankingStats': 'Статистика Рейтинга',
-
   // FanArt Comments
-  'fanart.addComment': 'Добавить комментарий...',
-
+  'fanart.addComment': 'Добавить комментарий',
   // Interaction System
   'interaction.like': 'Нравится',
   'interaction.unlike': 'Убрать лайк',
   'interaction.comments': 'комментарии',
   'interaction.addComment': 'Добавить комментарий',
-  'interaction.writeComment': 'Написать комментарий...',
+  'interaction.writeComment': 'Написать комментарий',
   'interaction.loginToLike': 'Войдите, чтобы лайкнуть',
   'interaction.loginToComment': 'Войдите, чтобы комментировать',
   'interaction.viewCount': 'View count',
   'interaction.showComments': 'Show comments',
-
   // Time
   'time.justNow': 'только что',
-
   // Media types
   'media.photo': 'Фото',
   'media.video': 'Видео',
   'media.noMediaTooltip': 'No media yet – upload your video or screenshot to verify run',
-
   // Event Card specific translations
   'events.likes': 'Лайки',
-  'events.views': 'Просмотры', 
+  'events.views': 'Просмотры',
   'events.comments': 'Комментарии',
-
   // PWA Installation Prompt
   'pwa.installTitle': 'Установить Battle64',
   'pwa.installDescription': 'Получите полный опыт приложения с офлайн-доступом и быстрой загрузкой!',
   'pwa.install': 'Установить приложение',
   'pwa.gotIt': 'Понятно!',
-  'pwa.iosStep1': 'Нажмите кнопку "Поделиться"',
-  'pwa.iosStep2': 'Затем "Добавить на экран "Домой""',
+  'pwa.iosStep1': 'Нажмите кнопку \"Поделиться\"',
+  'pwa.iosStep2': 'Затем \"Добавить на экран \"Домой\"\"',
   'common.later': 'Позже',
-
   // Offline Functionality
   'offline.workingOffline': 'Работа в автономном режиме',
   'offline.backOnline': 'Снова онлайн!',
   'offline.cachedDataAvailable': 'Доступны кешированные данные',
   'offline.cachedData': 'Кешированные данные',
-
   // Enhanced Chat
   'chat.communityChat': 'Чат Сообщества',
   'chat.activeUsers': 'активных пользователей',
-  'chat.loading': 'Загрузка сообщений...',
+  'chat.loading': 'Загрузка сообщений',
   'chat.noMessages': 'Пока нет сообщений',
   'chat.startConversation': 'Будьте первым, кто начнет разговор!',
-  'chat.typeMessage': 'Введите сообщение...',
+  'chat.typeMessage': 'Введите сообщение',
   'chat.emoji': 'Добавить эмодзи',
   'chat.scrollToBottom': 'Перейти вниз',
   'chat.errorLoading': 'Ошибка загрузки сообщений',
   'time.today': 'Сегодня',
   'time.yesterday': 'Вчера',
-
   // Realtime Events
   'events.nowLive': 'Событие сейчас в прямом эфире!',
   'realtime.connected': 'Прямое соединение активно',
   'realtime.disconnected': 'Прямое соединение прервано',
-  'realtime.reconnecting': 'Переподключение...',
+  'realtime.reconnecting': 'Переподключение',
   'realtime.newUpdate': 'Доступны новые обновления в реальном времени',
   'realtime.leaderboard.updated': 'Таблица лидеров обновлена',
   'realtime.points.updated': 'Очки обновлены',
@@ -1084,7 +1017,6 @@ const ru = {
   'realtime.participant.left': 'Участник покинул',
   'realtime.event.started': 'Событие началось',
   'realtime.event.finished': 'Событие завершено',
-
   // PWA Installation
   'pwa.install.button': 'Установить Приложение',
   'pwa.install.banner.title': 'Установить Battle64 как Приложение',
@@ -1093,9 +1025,8 @@ const ru = {
   'pwa.install.modal.description': 'Установите Battle64 для получения нативного опыта приложения с офлайн-доступом и push-уведомлениями.',
   'pwa.install.ios.title': 'Добавить на Главный Экран',
   'pwa.install.ios.step1': 'Нажмите кнопку Поделиться внизу браузера',
-  'pwa.install.ios.step2': 'Прокрутите вниз и выберите "Добавить на экран Домой"',
-  'pwa.install.ios.step3': 'Нажмите "Добавить" для установки приложения',
-
+  'pwa.install.ios.step2': 'Прокрутите вниз и выберите \"Добавить на экран Домой\"',
+  'pwa.install.ios.step3': 'Нажмите \"Добавить\" для установки приложения',
   // Battle Map
   'battleMap.title': 'Карта Battle64',
   'battleMap.liveEvents': 'Прямые События',
@@ -1111,15 +1042,13 @@ const ru = {
   'battleMap.yourLocation': 'Ваше Местоположение',
   'battleMap.noEvents': 'Нет прямых событий рядом',
   'battleMap.participantCount': 'Участники',
-
   // Live Leaderboard
   'leaderboard.live': 'Прямая Таблица Лидеров',
-  'leaderboard.updating': 'Обновление...',
+  'leaderboard.updating': 'Обновление',
   'leaderboard.lastUpdate': 'Последнее Обновление',
   'leaderboard.points.live': 'Очки в Реальном Времени',
   'leaderboard.rank.changed': 'Позиция Изменена',
   'leaderboard.newRecord': 'Новый Рекорд!',
-
   // GDPR Realtime
   'gdpr.realtime.title': 'Прямые Функции',
   'gdpr.realtime.description': 'Включить обновления в реальном времени для таблиц лидеров, событий и чата',
@@ -1129,13 +1058,11 @@ const ru = {
   'gdpr.location.description': 'Поделитесь своим местоположением для локальных событий и ближайших участников',
   'gdpr.location.enable': 'Включить Местоположение',
   'gdpr.location.disable': 'Отключить Местоположение',
-
   // Offline Mode
   'offline.title': 'Офлайн Режим',
   'offline.description': 'Вы офлайн. Некоторые функции ограничены.',
   'offline.cached': 'Показ кешированного контента',
   'offline.retry': 'Повторить',
-
   // Common - New additions
   'common.understood': 'Понятно',
   'common.success': 'Успех',
@@ -1143,11 +1070,9 @@ const ru = {
   'settings.privacy.title': 'Настройки Конфиденциальности',
   'settings.notifications.title': 'Настройки Уведомлений',
   'settings.notifications.description': 'Управление настройками уведомлений',
-
   // GDPR Notice
   'gdpr.notice.title': 'Уведомление о Конфиденциальности',
   'gdpr.notice.description': 'Мы уважаем вашу конфиденциальность и следуем руководящим принципам GDPR по защите данных',
-
   // Правовые Условия и Соответствие
   'legal.ageVerification': 'Проверка Возраста',
   'legal.birthDate': 'Дата Рождения',
@@ -1165,7 +1090,6 @@ const ru = {
   'legal.adultOnlyPlatform': 'Battle64 предназначен только для пользователей 18 лет и старше',
   'legal.readTerms': 'Прочитать Условия Обслуживания',
   'legal.readPrivacy': 'Прочитать Политику Конфиденциальности',
-  
   // Содержание Условий Обслуживания
   'terms.title': 'Условия Обслуживания',
   'terms.lastUpdated': 'Последнее обновление: {date}',
@@ -1185,7 +1109,6 @@ const ru = {
   'terms.section7.content': 'Battle64 не связан с Nintendo. Не загружайте логотипы Nintendo, оригинальные обложки N64 или ROM-файлы.',
   'terms.section8.title': '8. Прекращение Учетной Записи',
   'terms.section8.content': 'Мы оставляем за собой право прекратить учетные записи за нарушения Условий Обслуживания без предварительного уведомления.',
-  
   // Содержание Политики Конфиденциальности
   'privacy.title': 'Политика Конфиденциальности',
   'privacy.lastUpdated': 'Последнее обновление: {date}',
@@ -1203,7 +1126,6 @@ const ru = {
   'privacy.section6.content': 'Мы храним ваши данные, пока ваша учетная запись активна. Удаленные учетные записи имеют все данные, удаленные навсегда.',
   'privacy.section7.title': '7. Контакт',
   'privacy.section7.content': 'По вопросам конфиденциальности обращайтесь к нам по адресу privacy@battle64.com',
-  
   // Согласие на Cookie
   'cookies.title': 'Согласие на Cookie',
   'cookies.description': 'Мы используем cookie для улучшения вашего опыта. Пожалуйста, выберите ваши предпочтения.',
@@ -1219,7 +1141,6 @@ const ru = {
   'cookies.acceptSelected': 'Принять Выбранные',
   'cookies.rejectAll': 'Отклонить Все',
   'cookies.managePreferences': 'Управление Предпочтениями Cookie',
-  
   // Жалобы и Модерация
   'report.title': 'Пожаловаться на Контент',
   'report.reason': 'Причина жалобы',
@@ -1235,13 +1156,11 @@ const ru = {
   'report.success': 'Контент успешно пожалован',
   'report.error': 'Не удалось отправить жалобу',
   'report.alreadyReported': 'Вы уже пожаловались на этот контент',
-  
   // Модерация Контента
   'moderation.contentHidden': 'Этот контент был скрыт из-за множественных жалоб',
   'moderation.underReview': 'Этот контент находится на рассмотрении',
   'moderation.removed': 'Этот контент был удален модераторами',
   'moderation.appealProcess': 'Если вы считаете, что это ошибка, обратитесь в службу поддержки',
-  
   // Панель Администратора
   'admin.dashboard': 'Панель Администратора',
   'admin.reports': 'Жалобы',
@@ -1262,17 +1181,15 @@ const ru = {
   'admin.actionReason': 'Причина Действия',
   'admin.actionNotes': 'Дополнительные Заметки',
   'admin.confirmAction': 'Подтвердить Действие',
-  
   // Удаление Учетной Записи (GDPR)
   'account.delete': 'Удалить Учетную Запись',
   'account.deleteWarning': 'Вы уверены, что хотите удалить свою учетную запись? Весь ваш контент будет удален навсегда.',
-  'account.deleteConfirmation': 'Введите "DELETE" для подтверждения удаления учетной записи',
+  'account.deleteConfirmation': 'Введите \"DELETE\" для подтверждения удаления учетной записи',
   'account.deleteSuccess': 'Учетная запись успешно удалена',
   'account.deleteError': 'Не удалось удалить учетную запись',
   'account.dataExport': 'Экспортировать Мои Данные',
   'account.dataExportDescription': 'Скачайте все ваши данные в формате JSON',
   'account.dataExportSuccess': 'Экспорт данных запрошен. Вы получите электронное письмо с вашими данными.',
-  
   // Безопасность Загрузки
   'upload.rightsConfirmation': 'Подтверждение Прав на Контент',
   'upload.confirmRights': 'Я подтверждаю, что обладаю правами на этот контент и не нарушаю никаких авторских прав',
@@ -1281,14 +1198,12 @@ const ru = {
   'upload.nsfwDetected': 'Обнаружен потенциально неподходящий контент',
   'upload.manualReview': 'Эта загрузка будет вручную проверена перед публикацией',
   'upload.approvalPending': 'Загрузка ожидает одобрения',
-  
   // Ссылки Подвала
   'footer.terms': 'Условия',
   'footer.privacy': 'Конфиденциальность',
   'footer.contact': 'Контакт',
   'footer.imprint': 'Выходные Данные',
   'footer.copyright': '© 2024 Battle64. Не связан с Nintendo.',
-
   // Additional missing translations
   'platform.pc': 'ПК',
   'region.pal': 'PAL',
@@ -1296,11 +1211,10 @@ const ru = {
   'currency.eur': 'EUR',
   'currency.usd': 'USD',
   'currency.gbp': 'GBP',
-
   // Equalized translation keys - added 2025-08-09
   'account.deletion.confirmDelete': 'УДАЛИТЬ',
   'account.deletion.dataWillBeDeleted': 'Следующие данные будут удалены навсегда:',
-  'account.deletion.errorConfirmText': 'Введите "УДАЛИТЬ" для подтверждения',
+  'account.deletion.errorConfirmText': 'Введите \"УДАЛИТЬ\" для подтверждения',
   'account.deletion.errorGeneric': 'Ошибка при удалении аккаунта',
   'account.deletion.errorUnexpected': 'Неожиданная ошибка при удалении аккаунта',
   'account.deletion.forumPosts': 'Сообщения и комментарии на форуме',
@@ -1325,7 +1239,7 @@ const ru = {
   'account.deletionPage.whatWillBeDeleted': 'account.deletionPage.whatWillBeDeleted',
   'admin.appHealth': 'admin.appHealth',
   'admin.health.cache': 'admin.health.cache',
-  'admin.health.errors': 'admin.health.errors',
+  'admin.health.errors': 'admin.health.Ошибкаs',
   'admin.health.sessions': 'admin.health.sessions',
   'admin.health.uptime': 'admin.health.uptime',
   'admin.illegalContent': 'admin.illegalContent',
@@ -1345,18 +1259,18 @@ const ru = {
   'admin.usersWarned': 'admin.usersWarned',
   'auth.safariRedirectSuccess': 'auth.safariRedirectSuccess',
   'error.accessDenied': 'Доступ запрещен',
-  'error.imagePreviewFailed': 'error.imagePreviewFailed',
-  'error.moderationBlocked': 'error.moderationBlocked',
+  'error.imagePreviewFailed': 'Ошибка.imagePreviewFailed',
+  'error.moderationBlocked': 'Ошибка.moderationBlocked',
   'error.timeout': 'Тайм-аут запроса',
-  'error.uploadFailed': 'error.uploadFailed',
+  'error.uploadFailed': 'Ошибка.uploadFailed',
   'error.validationError': 'Ошибка валидации',
   'imageUpload.noPreview': 'imageUpload.noPreview',
-  'loading.content': 'Загрузка контента...',
-  'loading.data': 'Загрузка данных...',
-  'loading.general': 'Загрузка...',
-  'loading.image': 'Загрузка изображения...',
-  'loading.page': 'Загрузка страницы...',
-  'loading.video': 'Загрузка видео...',
+  'loading.content': 'Загрузка контента',
+  'loading.data': 'Загрузка данных',
+  'loading.general': 'Загрузка',
+  'loading.image': 'Загрузка изображения',
+  'loading.page': 'Загрузка страницы',
+  'loading.video': 'Загрузка видео',
   'map.battleDashboard': 'map.battleDashboard',
   'map.liveBattles': 'map.liveBattles',
   'map.resetView': 'map.resetView',
@@ -1365,8 +1279,8 @@ const ru = {
   'password.reset.emailLabel': 'password.reset.emailLabel',
   'password.reset.emailPlaceholder': 'password.reset.emailPlaceholder',
   'password.reset.emailSent': 'password.reset.emailSent',
-  'password.reset.errorUnexpected': 'password.reset.errorUnexpected',
-  'password.reset.errorUnknown': 'password.reset.errorUnknown',
+  'password.reset.errorUnexpected': 'password.reset.ОшибкаUnexpected',
+  'password.reset.errorUnknown': 'password.reset.ОшибкаUnknown',
   'password.reset.instructions': 'password.reset.instructions',
   'password.reset.sendButton': 'password.reset.sendButton',
   'password.reset.sending': 'password.reset.sending',
@@ -1385,14 +1299,14 @@ const ru = {
   'safari.step3': 'safari.step3',
   'status.completed': 'Завершено',
   'status.connected': 'Подключено',
-  'status.connecting': 'Подключение...',
+  'status.connecting': 'Подключение',
   'status.disconnected': 'Отключено',
   'status.failed': 'Не удалось',
   'status.inProgress': 'В процессе',
   'status.offline': 'Не в сети',
   'status.online': 'В сети',
   'status.synced': 'Синхронизировано',
-  'status.syncing': 'Синхронизация...',
+  'status.syncing': 'Синхронизация',
   'time.ago': 'time.ago',
   'time.always': 'time.always',
   'time.elapsed': 'time.elapsed',
@@ -1421,7 +1335,6 @@ const ru = {
   'validation.imageTooLarge': 'validation.imageTooLarge',
   'validation.supportedFormats': 'validation.supportedFormats',
   'validation.unsupportedFormat': 'validation.unsupportedFormat',
-
   // Legal & Privacy translation keys - added 2025-08-09
   'cookies.alwaysActive': 'Всегда Активно',
   'account.deletionPage.gdprCompliant': 'Удаление аккаунта в соответствии с GDPR',
@@ -1435,11 +1348,9 @@ const ru = {
   'account.deletionPage.backupRemovalText': 'Ваши данные также будут удалены из всех резервных копий во время следующего цикла резервного копирования.',
   'account.deletionPage.legalObligations': 'Правовые Обязательства:',
   'account.deletionPage.legalObligationsText': 'Некоторые данные могут быть сохранены, если это требуется законом (например, финансовые записи для налоговых целей).',
-
   // Final hardcoded text fixes - added 2025-08-09
-  'account.deletionPage.deleting': 'Удаление...',
+  'account.deletionPage.deleting': 'Удаление',
   'account.deletionPage.deleteAccountPermanently': 'Удалить аккаунт навсегда',
-
   // Nintendo-specific translation keys - added 2025-08-09
   'terms.nintendoCopyrightNotice': 'Уведомление об авторских правах Nintendo:',
   'terms.nintendoFullDisclaimer': 'Battle64 является независимым сообществом ретро-игр и не связан с Nintendo Co., Ltd., не одобрен и не спонсируется ими. Nintendo 64, N64 и все связанные персонажи, имена, знаки, эмблемы и изображения являются торговыми марками Nintendo. Все остальные торговые марки являются собственностью их соответствующих владельцев.',
@@ -1463,7 +1374,7 @@ const ru = {
   'fanart.mario.castle': 'Марио в замке Пич',
   'forum.untitledThread': 'Безымянная тема',
   'error.invalidDataFormat': 'Неверный формат данных',
-  'common.user': 'Пользователь',
+  'common.user': 'Пользователь'
 }
 
 export default ru
