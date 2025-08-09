@@ -4,6 +4,12 @@ import { supabase } from '../lib/supabase'
 import { useLanguage } from '../contexts/LanguageContext'
 import { CheckCircle, XCircle, Loader2, Gamepad2 } from 'lucide-react'
 
+/**
+ * DEPRECATED: This page is now primarily handled by HomePage.tsx
+ * Email confirmation now redirects to "/?registration=success" for better UX
+ * This page remains as fallback for any legacy email links
+ */
+
 const EmailConfirmPage: React.FC = () => {
   const [searchParams] = useSearchParams()
   const navigate = useNavigate()

@@ -60,7 +60,7 @@ class AuthService {
         email: data.email,
         password: data.password,
         options: {
-          emailRedirectTo: `${window.location.origin}/auth/confirm`,
+          emailRedirectTo: `${window.location.origin}/?registration=success`,
           data: {
             username: data.username,
             region: data.region,

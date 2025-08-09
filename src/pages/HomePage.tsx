@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react'
+import { useSearchParams } from 'react-router-dom'
+import { supabase } from '../lib/supabase'
 import { logger } from '../lib/logger'
 import { useUser } from '../contexts/UserContext'
 import { useLanguage } from '../contexts/LanguageContext'
 import { useForum } from '../contexts/ForumContext'
+import { CheckCircle, X } from 'lucide-react'
 import EventFeedWidget from '../components/EventFeedWidget'
 import PointsWidget from '../components/PointsWidget'
 import N64FanLeaderboard from '../components/N64FanLeaderboard'
@@ -120,10 +123,13 @@ const SafeComponent: React.FC<{ children: React.ReactNode; fallback?: React.Reac
 }
 
 const HomePage: React.FC = () => {
+  const [searchParams, setSearchParams] = useSearchParams()
   const { user, isLoading: userLoading } = useUser()
   const { t, currentLanguage, isLoading: langLoading } = useLanguage()
   const { threads, posts } = useForum()
   const [isDataLoading, setIsDataLoading] = React.useState(true)
+  const [registrationSuccess, setRegistrationSuccess] = useState(false)
+  const [registrationUsername, setRegistrationUsername] = useState('')
 
   // 🔧 FIXED: Safe state management with defensive programming
   const [fanArtItems, setFanArtItems] = useState<FanArtItem[]>([])
@@ -145,6 +151,83 @@ const HomePage: React.FC = () => {
     { id: '4', game: 'Ocarina of Time', category: 'Any%', time: '16:58.12', date: new Date(Date.now() - 14400000), verified: true, platform: 'N64' },
     { id: '5', game: 'Perfect Dark', category: 'DataDyne Central', time: '1:23.45', date: new Date(Date.now() - 18000000), verified: true, platform: 'N64' }
   ])
+
+  // Handle email confirmation
+  useEffect(() => {
+    const handleEmailConfirmation = async () => {
+      const registration = searchParams.get('registration')
+      const tokenHash = searchParams.get('token_hash')
+      const type = searchParams.get('type')
+
+      if (registration === 'success' && tokenHash && type === 'email') {
+        try {
+          // Verify the email confirmation token
+          const { data, error } = await supabase.auth.verifyOtp({
+            token_hash: tokenHash,
+            type: 'email'
+          })
+
+          if (error) {
+            logger.error('Email confirmation error:', error)
+            return
+          }
+
+          if (data.user) {
+            // Check if profile already exists
+            const { data: existingProfile } = await supabase
+              .from('profiles')
+              .select('id, username')
+              .eq('id', data.user.id)
+              .single()
+
+            let userUsername = 'User'
+
+            if (!existingProfile) {
+              // Create profile for confirmed user
+              const userData = data.user.user_metadata
+              userUsername = userData.username || 'User'
+              
+              const { error: profileError } = await supabase
+                .from('profiles')
+                .insert({
+                  id: data.user.id,
+                  username: userUsername,
+                  level: 1,
+                  xp: 0,
+                  region: userData.region || 'PAL',
+                  platform: userData.platform || 'N64',
+                  birth_date: userData.birth_date,
+                  terms_accepted: userData.terms_accepted || false,
+                  privacy_accepted: userData.privacy_accepted || false,
+                  copyright_acknowledged: userData.copyright_acknowledged || false,
+                  avatar: '🎮',
+                  bio: '',
+                  location: '',
+                  is_public: true
+                })
+
+              if (profileError) {
+                logger.error('Profile creation error:', profileError)
+                return
+              }
+            } else {
+              userUsername = existingProfile.username
+            }
+
+            setRegistrationUsername(userUsername)
+            setRegistrationSuccess(true)
+            
+            // Clean up URL parameters
+            setSearchParams({})
+          }
+        } catch (error) {
+          logger.error('Email confirmation error:', error)
+        }
+      }
+    }
+
+    handleEmailConfirmation()
+  }, [searchParams, setSearchParams])
 
   // 🔧 FIXED: Safe data loading with proper error handling
   useEffect(() => {
@@ -377,6 +460,40 @@ const HomePage: React.FC = () => {
 
   return (
     <div className="container-lg space-responsive responsive-max-width responsive-overflow-hidden">
+      {/* Registration Success Notification */}
+      {registrationSuccess && (
+        <div className="fixed top-4 right-4 z-50 bg-gradient-to-r from-green-600 to-blue-600 text-white p-6 rounded-xl shadow-2xl border border-green-500/30 max-w-md">
+          <div className="flex items-start gap-3">
+            <CheckCircle className="w-6 h-6 text-green-200 flex-shrink-0 mt-0.5" />
+            <div className="flex-1">
+              <h3 className="font-bold text-lg mb-1">
+                {t('auth.registrationSucceeded')}
+              </h3>
+              <p className="text-green-100 mb-2">
+                {t('auth.welcomeToCommunity')}, <span className="font-bold">{registrationUsername}</span>!
+              </p>
+              <p className="text-green-200 text-sm mb-3">
+                {t('auth.accountActivatedSuccessfully')}
+              </p>
+              <div className="flex gap-2">
+                <button
+                  onClick={() => window.location.href = '/events'}
+                  className="bg-white/20 hover:bg-white/30 text-white px-3 py-1 rounded-lg transition-colors text-sm"
+                >
+                  {t('auth.exploreEvents')}
+                </button>
+                <button
+                  onClick={() => setRegistrationSuccess(false)}
+                  className="bg-white/10 hover:bg-white/20 text-white px-2 py-1 rounded-lg transition-colors text-sm"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Mascot Section with Welcome Content */}
       <div className="text-center mb-6 responsive-max-width">
         <div className="battle64-header-container">
