@@ -18,6 +18,97 @@ const de = {
   'nav.community': 'Gemeinschaft',
   'nav.map': 'Battle64 Map',
 
+  // Accessibility
+  'a11y.skipToMain': 'Zum Hauptinhalt springen',
+  'a11y.skipToNav': 'Zur Navigation springen',
+  'a11y.skipToSearch': 'Zur Suche springen',
+  'a11y.newPage': 'Neue Seite geladen',
+  'a11y.loading': 'Inhalt wird geladen',
+  'a11y.error': 'Fehler aufgetreten',
+  'a11y.success': 'Aktion erfolgreich abgeschlossen',
+
+  // Common fallback texts
+  'common.unknown': 'Unbekannt',
+  'common.unknownGame': 'Unbekanntes Spiel',
+  'common.unknownCategory': 'Unbekannte Kategorie',
+  'common.unknownItem': 'Unbekannter Artikel',
+  'common.unknownMedia': 'Unbekannte Medien',
+  'common.unknownUser': 'Unbekannter Benutzer',
+  'common.noDescription': 'Keine Beschreibung verfügbar',
+  'common.noDataAvailable': 'Keine Daten verfügbar',
+  'common.userLocation': 'Benutzerstandort',
+  'common.marketplaceItem': 'Marktplatz-Artikel',
+  'common.verified': 'Verifiziert',
+  'common.unverified': 'Nicht verifiziert',
+  'common.pending': 'Ausstehend',
+  'common.approved': 'Genehmigt',
+  'common.rejected': 'Abgelehnt',
+  'common.draft': 'Entwurf',
+  'common.published': 'Veröffentlicht',
+  'common.archived': 'Archiviert',
+  
+  // Account deletion
+  'account.deletion.confirmText': 'Bitte geben Sie "DELETE" zur Bestätigung ein',
+  'account.deletion.placeholder': 'DELETE',
+  'account.deletion.typeDelete': 'Geben Sie "DELETE" zur Bestätigung ein:',
+
+  'error.networkError': 'Netzwerkfehler aufgetreten',
+  'error.serverError': 'Serverfehler aufgetreten',
+  'error.validationError': 'Validierungsfehler',
+  'error.accessDenied': 'Zugriff verweigert',
+  'error.notFound': 'Nicht gefunden',
+  'error.timeout': 'Zeitüberschreitung der Anfrage',
+  
+  // Loading states
+  'loading.general': 'Lädt...',
+  'loading.data': 'Daten werden geladen...',
+  'loading.content': 'Inhalt wird geladen...',
+  'loading.page': 'Seite wird geladen...',
+  'loading.image': 'Bild wird geladen...',
+  'loading.video': 'Video wird geladen...',
+  
+  // Status messages
+  'status.online': 'Online',
+  'status.offline': 'Offline',
+  'status.connecting': 'Verbinde...',
+  'status.connected': 'Verbunden',
+  'status.disconnected': 'Getrennt',
+  'status.syncing': 'Synchronisiere...',
+  'status.synced': 'Synchronisiert',
+  'status.failed': 'Fehlgeschlagen',
+  'status.completed': 'Abgeschlossen',
+  'status.inProgress': 'In Bearbeitung',
+  
+  // Time and date
+  'time.now': 'Jetzt',
+  'time.today': 'Heute',
+  'time.yesterday': 'Gestern',
+  'time.tomorrow': 'Morgen',
+  'time.thisWeek': 'Diese Woche',
+  'time.lastWeek': 'Letzte Woche',
+  'time.thisMonth': 'Diesen Monat',
+  'time.lastMonth': 'Letzten Monat',
+  'time.thisYear': 'Dieses Jahr',
+  'time.lastYear': 'Letztes Jahr',
+  'time.never': 'Nie',
+  'time.always': 'Immer',
+  'time.ago': 'vor',
+  'time.remaining': 'verbleibend',
+  'time.elapsed': 'vergangen',
+  
+  // Units
+  'units.seconds': 'Sekunden',
+  'units.minutes': 'Minuten',
+  'units.hours': 'Stunden',
+  'units.days': 'Tage',
+  'units.weeks': 'Wochen',
+  'units.months': 'Monate',
+  'units.years': 'Jahre',
+  'units.bytes': 'Bytes',
+  'units.kb': 'KB',
+  'units.mb': 'MB',
+  'units.gb': 'GB',
+
   // Home Screen
   'home.subtitle': 'Die N64-Community für Millennials',
   'home.welcome': 'Willkommen zurück',
@@ -235,17 +326,7 @@ const de = {
   'language.arabic': 'Arabisch',
   'language.korean': 'Koreanisch',
 
-  // Error messages
-  'error.generic': 'Ein Fehler ist aufgetreten',
-  'error.networkError': 'Netzwerkfehler',
-  'error.notFound': 'Seite nicht gefunden',
-  'error.unauthorized': 'Nicht autorisiert',
-  'error.forbidden': 'Zugriff verweigert',
-  'error.serverError': 'Serverfehler',
-  'error.tryAgain': 'Bitte versuche es erneut',
-  'error.goHome': 'Zur Startseite',
-  'error.contactSupport': 'Support kontaktieren',
-  'error.somethingWentWrong': 'Etwas ist schief gelaufen',
+
 
   // Missing keys added automatically
   'news.title': 'Nachrichten',
@@ -542,7 +623,6 @@ const de = {
   'community.noPlayersFound': 'Keine Spieler gefunden',
   'community.tryOtherFilters': 'Versuche andere Filter',
   'community.recentRecord': 'Neuester Rekord',
-  'time.remaining': 'verbleibend',
   'events.joinSuccess': 'Erfolgreich dem Event beigetreten!',
   'events.submissionSuccess': 'Einsendung erfolgreich übermittelt!',
   'events.tabs.active': 'Aktive Events',
@@ -1062,8 +1142,6 @@ const de = {
   'chat.emoji': 'Emoji hinzufügen',
   'chat.scrollToBottom': 'Nach unten scrollen',
   'chat.errorLoading': 'Fehler beim Laden der Nachrichten',
-  'time.today': 'Heute',
-  'time.yesterday': 'Gestern',
 
   // Realtime Events
   'events.nowLive': 'Event ist jetzt live!',

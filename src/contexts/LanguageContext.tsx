@@ -1,20 +1,20 @@
 import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react'
 
-// Import all translations statically - this ensures they're bundled
-import de from '../translations/de'
+// Static imports for all translations
 import en from '../translations/en'
+import de from '../translations/de'
 import fr from '../translations/fr'
-import it from '../translations/it'
 import es from '../translations/es'
+import it from '../translations/it'
+import pt from '../translations/pt'
+import ru from '../translations/ru'
+import ja from '../translations/ja'
+import ko from '../translations/ko'
+import zh from '../translations/zh'
+import ar from '../translations/ar'
+import hi from '../translations/hi'
 import el from '../translations/el'
 import tr from '../translations/tr'
-import zh from '../translations/zh'
-import ja from '../translations/ja'
-import ru from '../translations/ru'
-import pt from '../translations/pt'
-import hi from '../translations/hi'
-import ar from '../translations/ar'
-import ko from '../translations/ko'
 
 // Define Language type
 export type Language = 'de' | 'en' | 'fr' | 'it' | 'es' | 'el' | 'tr' | 'zh' | 'ja' | 'ru' | 'pt' | 'hi' | 'ar' | 'ko'
@@ -49,131 +49,94 @@ export const getLocaleString = (language: Language): string => {
     case 'fr': return 'fr-FR'
     case 'it': return 'it-IT'
     case 'es': return 'es-ES'
-    case 'pt': return 'pt-PT'
-    case 'ru': return 'ru-RU'
-    case 'zh': return 'zh-CN'
-    case 'ja': return 'ja-JP'
-    case 'ar': return 'ar-SA'
-    case 'hi': return 'hi-IN'
     case 'el': return 'el-GR'
     case 'tr': return 'tr-TR'
+    case 'zh': return 'zh-CN'
+    case 'ja': return 'ja-JP'
+    case 'ru': return 'ru-RU'
+    case 'pt': return 'pt-PT'
+    case 'hi': return 'hi-IN'
+    case 'ar': return 'ar-SA'
     case 'ko': return 'ko-KR'
     default: return 'en-US'
   }
 }
 
-// Helper function to check if language is RTL
-const isRTLLanguage = (language: Language): boolean => {
-  return language === 'ar'
-}
+// RTL languages
+const RTL_LANGUAGES: Language[] = ['ar']
 
-// Static translations object - all bundled but accessed on demand
-const allTranslations: Record<Language, Record<string, string>> = {
-  de,
-  en,
-  fr,
-  it,
-  es,
-  el,
-  tr,
-  zh,
-  ja,
-  ru,
-  pt,
-  hi,
-  ar,
-  ko
-}
-
-// Get translations for a specific language
-const getTranslations = (language: Language): Record<string, string> => {
-  const translations = allTranslations[language]
-  if (!translations) {
-    console.warn(`⚠️ No translations found for language: ${language}, falling back to English`)
-    return allTranslations.en || {}
+// Static translations object
+const getTranslations = (language: Language): Record<string, any> => {
+  switch (language) {
+    case 'en': return en
+    case 'de': return de
+    case 'fr': return fr
+    case 'es': return es
+    case 'it': return it
+    case 'pt': return pt
+    case 'ru': return ru
+    case 'ja': return ja
+    case 'ko': return ko
+    case 'zh': return zh
+    case 'ar': return ar
+    case 'hi': return hi
+    case 'el': return el
+    case 'tr': return tr
+    default: return en
   }
-  console.log(`✅ Retrieved translations for ${language}:`, Object.keys(translations).length, 'keys')
-  return translations
 }
 
-interface LanguageProviderProps {
-  children: ReactNode
+// Get browser language with fallback
+const getBrowserLanguage = (): Language => {
+  if (typeof window === 'undefined') return 'en'
+  
+  const saved = localStorage.getItem('battle64-language')
+  if (saved && ['de', 'en', 'fr', 'it', 'es', 'el', 'tr', 'zh', 'ja', 'ru', 'pt', 'hi', 'ar', 'ko'].includes(saved)) {
+    return saved as Language
+  }
+  
+  const browserLang = navigator.language.split('-')[0]
+  const supportedLanguages: Language[] = ['de', 'en', 'fr', 'it', 'es', 'el', 'tr', 'zh', 'ja', 'ru', 'pt', 'hi', 'ar', 'ko']
+  
+  return supportedLanguages.includes(browserLang as Language) ? browserLang as Language : 'en'
 }
 
-export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) => {
-  // Start with English as default
-  const [currentLanguage, setCurrentLanguage] = useState<Language>('en')
-  const [translations, setTranslations] = useState<Record<string, string>>({})
-  const [isLoading, setIsLoading] = useState(false) // Start as false since we have static imports
+export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+  const [currentLanguage, setCurrentLanguage] = useState<Language>(getBrowserLanguage())
+  const [translations, setTranslations] = useState<Record<string, any>>(() => getTranslations(getBrowserLanguage()))
+  const [isLoading, setIsLoading] = useState(false)
 
-  console.log('🔄 LanguageProvider rendering with translations:', Object.keys(translations).length, 'keys for', currentLanguage)
-
-  // Load translations when language changes - now synchronous since they're statically imported
+  // Update translations when language changes
   useEffect(() => {
-    console.log(`🔄 Setting translations for ${currentLanguage}...`)
-    setIsLoading(true)
-    
-    // Get translations synchronously since they're already loaded
-    const languageTranslations = getTranslations(currentLanguage)
-    setTranslations(languageTranslations)
-    console.log(`✅ Translations set for ${currentLanguage}:`, Object.keys(languageTranslations).length, 'keys')
-    console.log('📝 Sample translations:', Object.entries(languageTranslations).slice(0, 3))
-    
-    setIsLoading(false)
-  }, [currentLanguage])
-
-  // Load saved language on mount
-  useEffect(() => {
-    const savedLanguage = localStorage.getItem('battle64-language') as Language
-    if (savedLanguage && savedLanguage !== currentLanguage) {
-      console.log(`🔄 Loading saved language: ${savedLanguage}`)
-      setCurrentLanguage(savedLanguage)
-    }
+    setTranslations(getTranslations(currentLanguage))
   }, [currentLanguage])
 
   const setLanguage = (language: Language) => {
-    console.log(`🌍 Switching language from ${currentLanguage} to: ${language}`)
     setCurrentLanguage(language)
-    
-    // Apply RTL and language settings
-    const isRTL = isRTLLanguage(language)
-    document.documentElement.dir = isRTL ? 'rtl' : 'ltr'
-    document.documentElement.lang = language
-    
-    // Save to localStorage for persistence
     localStorage.setItem('battle64-language', language)
-    
-    // Add RTL class to body for CSS styling
-    if (isRTL) {
-      document.body.classList.add('rtl-layout')
-    } else {
-      document.body.classList.remove('rtl-layout')
-    }
   }
 
   const t = (key: TranslationKeys, params?: Record<string, string>): string => {
-    let translation = translations[key]
+    // Direct key lookup (translations are flat objects with keys like 'nav.home')
+    let result = translations[key] || key
     
-    if (!translation) {
-      console.warn(`⚠️ Missing translation for key: "${key}" (language: ${currentLanguage})`)
-      return key // Return the key if translation is missing
-    }
-
     // Replace parameters if provided
-    if (params) {
+    if (params && typeof result === 'string') {
       Object.entries(params).forEach(([paramKey, paramValue]) => {
-        translation = translation.replace(`{${paramKey}}`, paramValue)
+        result = result.replace(new RegExp(`{{${paramKey}}}`, 'g'), paramValue)
       })
     }
-
-    return translation
+    
+    return result
   }
+
+  const isRTL = RTL_LANGUAGES.includes(currentLanguage)
 
   const value: LanguageContextType = {
     currentLanguage,
     setLanguage,
     t,
-    isRTL: isRTLLanguage(currentLanguage),
+    isRTL,
     isLoading
   }
 

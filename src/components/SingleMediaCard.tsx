@@ -181,13 +181,13 @@ const SingleMediaCard: React.FC<SingleMediaCardProps> = ({ mediaItems, className
                     <div className="p-4 h-full flex flex-col">
                       <div className="flex-1">
                         <h4 className="text-base sm:text-lg font-semibold text-text-primary mb-2 leading-tight">
-                          {mediaItems[currentIndex + 1]?.title || 'Unknown Media'}
+                          {mediaItems[currentIndex + 1]?.title || t('common.unknownMedia')}
                         </h4>
                         <p className="text-sm text-text-secondary mb-3 line-clamp-2">
-                          {mediaItems[currentIndex + 1]?.description || 'No description available'}
+                                                      {mediaItems[currentIndex + 1]?.description || t('common.noDescription')}
                         </p>
                         <div className="text-sm text-text-muted mb-2">
-                          {mediaItems[currentIndex + 1]?.game || 'Unknown Game'}
+                                                      {mediaItems[currentIndex + 1]?.game || t('common.unknownGame')}
                         </div>
                         <InteractionBar 
                           contentType="media"
@@ -198,7 +198,7 @@ const SingleMediaCard: React.FC<SingleMediaCardProps> = ({ mediaItems, className
                       </div>
                       <div className="border-t border-slate-600/30 pt-3 mt-auto">
                         <div className="flex items-center justify-between text-sm text-text-muted">
-                          <span>{mediaItems[currentIndex + 1]?.uploader || 'Unknown'}</span>
+                          <span>{mediaItems[currentIndex + 1]?.uploader || t('common.unknownUser')}</span>
                           <span className="font-medium">{mediaItems[currentIndex + 1]?.date ? formatTime(mediaItems[currentIndex + 1].date) : '--:--'}</span>
                         </div>
                       </div>
@@ -223,10 +223,10 @@ const SingleMediaCard: React.FC<SingleMediaCardProps> = ({ mediaItems, className
                     <div className="p-4 h-full flex flex-col">
                       <div className="flex-1">
                         <h4 className="text-base sm:text-lg font-semibold text-text-primary mb-2 leading-tight">
-                          {mediaItems[currentIndex - 1]?.title || 'Unknown Media'}
+                          {mediaItems[currentIndex - 1]?.title || t('common.unknownMedia')}
                         </h4>
                         <p className="text-sm text-text-secondary mb-3 line-clamp-2">
-                          {mediaItems[currentIndex - 1]?.description || 'No description available'}
+                                                      {mediaItems[currentIndex - 1]?.description || t('common.noDescription')}
                         </p>
                         <div className="text-sm text-text-muted mb-2">
                           {mediaItems[currentIndex - 1]?.game || 'Unknown Game'}

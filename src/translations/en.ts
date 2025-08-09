@@ -18,6 +18,98 @@ const en = {
   'nav.community': 'Community',
   'nav.map': 'Battle64 Map',
 
+  // Accessibility
+  // Accessibility
+  'a11y.skipToMain': 'Skip to main content',
+  'a11y.skipToNav': 'Skip to navigation',
+  'a11y.skipToSearch': 'Skip to search',
+  'a11y.newPage': 'New page loaded',
+  'a11y.loading': 'Loading content',
+  'a11y.error': 'Error occurred',
+  'a11y.success': 'Action completed successfully',
+
+  // Common fallback texts
+  'common.unknown': 'Unknown',
+  'common.unknownGame': 'Unknown Game',
+  'common.unknownCategory': 'Unknown Category',
+  'common.unknownItem': 'Unknown Item',
+  'common.unknownMedia': 'Unknown Media',
+  'common.unknownUser': 'Unknown User',
+  'common.noDescription': 'No description available',
+  'common.noDataAvailable': 'No data available',
+  'common.userLocation': 'User Location',
+  'common.marketplaceItem': 'Marketplace item',
+  'common.verified': 'Verified',
+  'common.unverified': 'Unverified',
+  'common.pending': 'Pending',
+  'common.approved': 'Approved',
+  'common.rejected': 'Rejected',
+  'common.draft': 'Draft',
+  'common.published': 'Published',
+  'common.archived': 'Archived',
+  
+  // Account deletion
+  'account.deletion.confirmText': 'Please type "DELETE" to confirm',
+  'account.deletion.placeholder': 'DELETE',
+  'account.deletion.typeDelete': 'Type "DELETE" to confirm:',
+
+  'error.networkError': 'Network error occurred',
+  'error.serverError': 'Server error occurred',
+  'error.validationError': 'Validation error',
+  'error.accessDenied': 'Access denied',
+  'error.notFound': 'Not found',
+  'error.timeout': 'Request timeout',
+  
+  // Loading states
+  'loading.general': 'Loading...',
+  'loading.data': 'Loading data...',
+  'loading.content': 'Loading content...',
+  'loading.page': 'Loading page...',
+  'loading.image': 'Loading image...',
+  'loading.video': 'Loading video...',
+  
+  // Status messages
+  'status.online': 'Online',
+  'status.offline': 'Offline',
+  'status.connecting': 'Connecting...',
+  'status.connected': 'Connected',
+  'status.disconnected': 'Disconnected',
+  'status.syncing': 'Syncing...',
+  'status.synced': 'Synced',
+  'status.failed': 'Failed',
+  'status.completed': 'Completed',
+  'status.inProgress': 'In Progress',
+  
+  // Time and date
+  'time.now': 'Now',
+  'time.today': 'Today',
+  'time.yesterday': 'Yesterday',
+  'time.tomorrow': 'Tomorrow',
+  'time.thisWeek': 'This week',
+  'time.lastWeek': 'Last week',
+  'time.thisMonth': 'This month',
+  'time.lastMonth': 'Last month',
+  'time.thisYear': 'This year',
+  'time.lastYear': 'Last year',
+  'time.never': 'Never',
+  'time.always': 'Always',
+  'time.ago': 'ago',
+  'time.remaining': 'remaining',
+  'time.elapsed': 'elapsed',
+  
+  // Units
+  'units.seconds': 'seconds',
+  'units.minutes': 'minutes',
+  'units.hours': 'hours',
+  'units.days': 'days',
+  'units.weeks': 'weeks',
+  'units.months': 'months',
+  'units.years': 'years',
+  'units.bytes': 'bytes',
+  'units.kb': 'KB',
+  'units.mb': 'MB',
+  'units.gb': 'GB',
+
   // Home Screen
   'home.subtitle': 'The N64 Community for Millennials',
   'home.welcome': 'Welcome back',
@@ -376,17 +468,7 @@ const en = {
   'language.arabic': 'Arabic',
   'language.korean': 'Korean',
 
-  // Error messages
-  'error.generic': 'An error occurred',
-  'error.networkError': 'Network error',
-  'error.notFound': 'Page not found',
-  'error.unauthorized': 'Unauthorized',
-  'error.forbidden': 'Access denied',
-  'error.serverError': 'Server error',
-  'error.tryAgain': 'Please try again',
-  'error.goHome': 'Go to Home',
-  'error.contactSupport': 'Contact Support',
-  'error.somethingWentWrong': 'Something went wrong',
+
 
   // Missing keys added automatically
   'news.title': 'Nachrichten',
@@ -683,7 +765,6 @@ const en = {
   'community.noPlayersFound': 'No players found',
   'community.tryOtherFilters': 'Try other filters',
   'community.recentRecord': 'Recent Record',
-  'time.remaining': 'remaining',
   'events.joinSuccess': 'Successfully joined the event!',
   'events.submissionSuccess': 'Submission sent successfully!',
   'events.tabs.active': 'Active Events',
@@ -1208,8 +1289,6 @@ const en = {
   'chat.emoji': 'Add emoji',
   'chat.scrollToBottom': 'Scroll to bottom',
   'chat.errorLoading': 'Error loading messages',
-  'time.today': 'Today',
-  'time.yesterday': 'Yesterday',
 
   // Realtime Events
   'events.nowLive': 'Event is now live!',

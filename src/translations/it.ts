@@ -18,6 +18,39 @@ const it = {
   'nav.community': 'Comunità',
   'nav.map': 'Battle64 Map',
 
+  // Accessibility
+  'a11y.skipToMain': 'Vai al contenuto principale',
+  'a11y.skipToNav': 'Vai alla navigazione',
+  'a11y.skipToSearch': 'Vai alla ricerca',
+  'a11y.newPage': 'Nuova pagina caricata',
+  'a11y.loading': 'Caricamento contenuto',
+  'a11y.error': 'Errore verificato',
+  'a11y.success': 'Azione completata con successo',
+
+  // Common fallback texts
+  'common.unknown': 'Sconosciuto',
+  'common.unknownGame': 'Gioco Sconosciuto',
+  'common.unknownCategory': 'Categoria Sconosciuta',
+  'common.unknownItem': 'Articolo Sconosciuto',
+  'common.unknownMedia': 'Media Sconosciuto',
+  'common.unknownUser': 'Utente Sconosciuto',
+  'common.noDescription': 'Nessuna descrizione disponibile',
+  'common.noDataAvailable': 'Nessun dato disponibile',
+  'common.userLocation': 'Posizione utente',
+  'common.marketplaceItem': 'Articolo del mercato',
+  'common.verified': 'Verificato',
+  'common.unverified': 'Non verificato',
+  'common.pending': 'In attesa',
+  'common.approved': 'Approvato',
+  'common.rejected': 'Rifiutato',
+  'common.draft': 'Bozza',
+  'common.published': 'Pubblicato',
+  'common.archived': 'Archiviato',
+  
+  // Account deletion
+  'account.deletion.confirmText': 'Per favore digita "DELETE" per confermare',
+  'account.deletion.placeholder': 'DELETE',
+  'account.deletion.typeDelete': 'Digita "DELETE" per confermare:',
   // Home Screen
   'home.subtitle': 'La Comunità N64 per i Millennials',
   'home.welcome': 'Bentornato',
