@@ -74,7 +74,7 @@ const AccessibilityEnhancements: React.FC = () => {
       }
       
       // Focus the target element
-      ;(target as HTMLElement).focus()
+      (target as HTMLElement).focus()
       
       // Scroll into view if needed
       target.scrollIntoView({ behavior: 'smooth', block: 'start' })
@@ -129,7 +129,7 @@ const AccessibilityEnhancements: React.FC = () => {
         id="focus-trap-start"
         tabIndex={0}
         className="sr-only"
-        onFocus={(e) => {
+        onFocus={(_e) => {
           // If focus reaches here, redirect to last focusable element
           const focusableElements = document.querySelectorAll(
             'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"]):not([disabled])'

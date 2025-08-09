@@ -68,10 +68,36 @@ export const mockUser = {
   collections: [],
   personalRecords: [],
   points: {
-    total: 1250,
-    daily: 50,
-    weekly: 350,
-    monthly: 1250
+    totalPoints: 1250,
+    seasonPoints: {
+      '2024-season-1': 800,
+      '2024-season-2': 450
+    },
+    currentRank: {
+      key: 'rank.intermediate',
+      minPoints: 1000,
+      currentPoints: 1250
+    },
+    achievementsUnlocked: ['achievement.firstSpeedrun', 'achievement.collectorBronze'],
+    medals: [
+      {
+        id: 'medal-1',
+        season: '2024-season-1',
+        rank: 3,
+        medalKey: 'medal.bronze',
+        bonusXP: 100,
+        awardedDate: new Date('2024-01-15')
+      }
+    ],
+    pointHistory: [
+      {
+        id: 'history-1',
+        date: new Date('2024-01-15'),
+        action: 'points.speedrunUpload',
+        points: 100,
+        description: 'Uploaded Super Mario 64 speedrun'
+      }
+    ]
   },
   termsAccepted: true,
   privacyAccepted: true,
@@ -121,7 +147,7 @@ export const createMockLanguageContext = () => ({
 /**
  * Create a mock user context
  */
-export const createMockUserContext = (user = mockUser) => ({
+export const createMockUserContext = (user: typeof mockUser | null = mockUser) => ({
   user,
   isAuthenticated: !!user,
   isLoading: false,
@@ -137,6 +163,18 @@ export const createMockUserContext = (user = mockUser) => ({
   updatePersonalRecord: vi.fn(),
   getUserProfile: vi.fn(),
   getAllUsers: vi.fn()
+})
+
+/**
+ * Create a mock user with custom properties
+ */
+export const createMockUser = (overrides: Partial<typeof mockUser> = {}) => ({
+  ...mockUser,
+  ...overrides,
+  points: {
+    ...mockUser.points,
+    ...(overrides.points || {})
+  }
 })
 
 /**

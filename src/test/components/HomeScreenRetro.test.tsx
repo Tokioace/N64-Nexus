@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest'
 import { screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { render, mockUser, createMockUserContext } from '../utils/test-utils'
+import { render, mockUser, createMockUserContext, createMockUser } from '../utils/test-utils'
 import HomeScreenRetro from '../../components/HomeScreenRetro'
 import * as UserContext from '../../contexts/UserContext'
 import * as LanguageContext from '../../contexts/LanguageContext'
@@ -120,7 +120,7 @@ describe('HomeScreenRetro', () => {
     })
 
     it('displays user level in welcome message', () => {
-      const userWithDifferentLevel = { ...mockUser, level: 10 }
+      const userWithDifferentLevel = createMockUser({ level: 10 })
       mockUseUser.mockReturnValue(createMockUserContext(userWithDifferentLevel))
       
       render(<HomeScreenRetro />)

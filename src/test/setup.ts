@@ -8,10 +8,14 @@ afterEach(() => {
 })
 
 // Mock IntersectionObserver
-global.IntersectionObserver = vi.fn(() => ({
+global.IntersectionObserver = vi.fn().mockImplementation((callback, options) => ({
+  root: options?.root || null,
+  rootMargin: options?.rootMargin || '0px',
+  thresholds: options?.thresholds || [0],
   disconnect: vi.fn(),
   observe: vi.fn(),
   unobserve: vi.fn(),
+  takeRecords: vi.fn(() => [])
 }))
 
 // Mock ResizeObserver
