@@ -1592,7 +1592,25 @@ const ar = {
   'terms.nintendoFullDisclaimer': 'Battle64 هو مجتمع ألعاب كلاسيكية مستقل وغير مرتبط أو معتمد أو مدعوم من Nintendo Co., Ltd. Nintendo 64 و N64 وجميع الشخصيات والأسماء والعلامات والرموز والصور ذات الصلة هي علامات تجارية لـ Nintendo. جميع العلامات التجارية الأخرى هي ملكية لأصحابها المعنيين.',
   'marketplace.n64ControllerTitle': 'وحدة تحكم N64 - Nintendo الأصلية',
   'marketplace.n64ControllerDescription': 'وحدة تحكم Nintendo الرسمية في حالة جيدة جداً',
-  'marketplace.n64ControllerDescriptionDE': 'وحدة تحكم N64 الأصلية في حالة جيدة. جميع الأزرار تعمل بشكل مثالي.'
+  'marketplace.n64ControllerDescriptionDE': 'وحدة تحكم N64 الأصلية في حالة جيدة. جميع الأزرار تعمل بشكل مثالي.',
+  'upload.video': 'ارفع فيديو لسباقك',
+  'upload.screenshot': 'ارفع لقطة شاشة لوقتك النهائي',
+  'cookies.showDetails': 'إظهار التفاصيل',
+  'cookies.hideDetails': 'إخفاء التفاصيل',
+  'records.pendingCount': '{count} معلقة',
+  'records.verifiedCount': '{count} سجلات محققة',
+  'records.userRecords': 'سجلات {username}',
+  'records.myRecords': 'سجلاتي',
+  'marketplace.goldeneye.description': 'لعبة كاملة مع الصندوق والدليل والخرطوشة',
+  'marketplace.goldeneye.title': 'جولدن آي 007 - كامل في الصندوق',
+  'marketplace.mario64.description': 'خرطوشة أصلية في حالة ممتازة مع الدليل',
+  'marketplace.mario64.title': 'سوبر ماريو 64 - حالة ممتازة',
+  'fanart.banjo.adventure': 'مغامرة بانجو وكازوي',
+  'fanart.zelda.battle': 'معركة ملحمية لينك ضد جانوندورف',
+  'fanart.mario.castle': 'ماريو في قلعة بيتش',
+  'forum.untitledThread': 'موضوع بدون عنوان',
+  'error.invalidDataFormat': 'تنسيق البيانات غير صالح',
+  'common.user': 'المستخدم'
 }
 
 export default ar

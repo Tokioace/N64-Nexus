@@ -1471,7 +1471,25 @@ const fr = {
   'terms.nintendoFullDisclaimer': 'Battle64 est une communauté de jeux rétro indépendante et n\'est pas affiliée, approuvée ou sponsorisée par Nintendo Co., Ltd. Nintendo 64, N64, et tous les personnages, noms, marques, emblèmes et images associés sont des marques de Nintendo. Toutes les autres marques sont la propriété de leurs propriétaires respectifs.',
   'marketplace.n64ControllerTitle': 'Manette N64 - Nintendo Originale',
   'marketplace.n64ControllerDescription': 'Manette Nintendo officielle en très bon état',
-  'marketplace.n64ControllerDescriptionDE': 'Manette N64 originale en bon état. Tous les boutons fonctionnent parfaitement.'
+  'marketplace.n64ControllerDescriptionDE': 'Manette N64 originale en bon état. Tous les boutons fonctionnent parfaitement.',
+  'upload.video': 'Téléchargez une vidéo de votre course',
+  'upload.screenshot': 'Téléchargez une capture d\'écran de votre temps final',
+  'cookies.showDetails': 'Afficher les détails',
+  'cookies.hideDetails': 'Masquer les détails',
+  'records.pendingCount': '{count} en attente',
+  'records.verifiedCount': '{count} records vérifiés',
+  'records.userRecords': 'Records de {username}',
+  'records.myRecords': 'Mes Records',
+  'marketplace.goldeneye.description': 'Jeu complet avec boîte, manuel et cartouche',
+  'marketplace.goldeneye.title': 'GoldenEye 007 - Complet en boîte',
+  'marketplace.mario64.description': 'Cartouche originale en parfait état avec manuel',
+  'marketplace.mario64.title': 'Super Mario 64 - État neuf',
+  'fanart.banjo.adventure': 'Aventure Banjo & Kazooie',
+  'fanart.zelda.battle': 'Combat épique Link vs Ganondorf',
+  'fanart.mario.castle': 'Mario dans le château de Peach',
+  'forum.untitledThread': 'Fil de discussion sans titre',
+  'error.invalidDataFormat': 'Format de données invalide',
+  'common.user': 'Utilisateur',
 }
 
 export default fr

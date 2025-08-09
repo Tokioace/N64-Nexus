@@ -136,21 +136,21 @@ const RaceSubmissionModal: React.FC<RaceSubmissionModalProps> = ({
     {
       type: 'photo' as DocumentationType,
       icon: Camera,
-      title: 'Screenshot',
+      title: t('media.screenshot'),
       description: 'Lade einen Screenshot deiner Endzeit hoch',
       acceptedFiles: 'image/jpeg,image/png,image/gif,image/webp'
     },
     {
       type: 'video' as DocumentationType,
       icon: Video,
-      title: 'Video',
+      title: t('media.video'),
       description: 'Lade ein Video deines Rennens hoch',
       acceptedFiles: 'video/mp4,video/webm,video/avi,video/mov'
     },
     {
       type: 'livestream' as DocumentationType,
       icon: Radio,
-      title: 'Livestream',
+      title: t('media.livestream'),
       description: t('events.livestreamSubmissionDesc'),
       acceptedFiles: ''
     }

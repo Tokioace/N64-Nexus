@@ -3,6 +3,7 @@ import { logger } from '../lib/logger'
 import { generateSmartRedirectURL, detectBrowser } from '../utils/browserDetection'
 import type { User as SupabaseUser, AuthError } from '@supabase/supabase-js'
 import type { User, UserRegistrationData } from '../types'
+import { useLanguage } from '../contexts/LanguageContext'
 
 export interface AuthResult {
   success: boolean

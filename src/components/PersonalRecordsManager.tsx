@@ -106,8 +106,8 @@ const PersonalRecordsManager: React.FC<PersonalRecordsProps> = ({ isOwnProfile =
             {isOwnProfile ? t('records.myRecords') : t('records.userRecords', { username: user.username })}
           </h2>
           <p className="text-slate-400">
-                          {t('records.verifiedCount', { count: user.personalRecords.filter((r: any) => r.verified).length })}, {' '}
-              {t('records.pendingCount', { count: user.personalRecords.filter((r: any) => !r.verified).length })}
+                          {t('records.verifiedCount', { count: user.personalRecords.filter((r: any) => r.verified).length.toString() })}, {' '}
+              {t('records.pendingCount', { count: user.personalRecords.filter((r: any) => !r.verified).length.toString() })}
           </p>
         </div>
         

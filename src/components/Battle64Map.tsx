@@ -748,7 +748,7 @@ const Battle64Map: React.FC = () => {
           
           // Simple region detection based on coordinates (for demo purposes)
           let country = 'Germany'
-          let region = 'Unknown'
+          let region = t('common.unknown')
           let postalCode = '00000'
           
           // Basic coordinate-based region detection

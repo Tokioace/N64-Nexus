@@ -1501,7 +1501,25 @@ const es = {
   'terms.nintendoFullDisclaimer': 'Battle64 es una comunidad independiente de juegos retro y no está afiliada, respaldada o patrocinada por Nintendo Co., Ltd. Nintendo 64, N64, y todos los personajes, nombres, marcas, emblemas e imágenes relacionados son marcas registradas de Nintendo. Todas las demás marcas son propiedad de sus respectivos propietarios.',
   'marketplace.n64ControllerTitle': 'Control N64 - Nintendo Original',
   'marketplace.n64ControllerDescription': 'Control oficial de Nintendo en muy buena condición',
-  'marketplace.n64ControllerDescriptionDE': 'Control N64 original en buena condición. Todos los botones funcionan perfectamente.'
+  'marketplace.n64ControllerDescriptionDE': 'Control N64 original en buena condición. Todos los botones funcionan perfectamente.',
+  'upload.video': 'Sube un video de tu carrera',
+  'upload.screenshot': 'Sube una captura de pantalla de tu tiempo final',
+  'cookies.showDetails': 'Mostrar detalles',
+  'cookies.hideDetails': 'Ocultar detalles',
+  'records.pendingCount': '{count} pendientes',
+  'records.verifiedCount': '{count} récords verificados',
+  'records.userRecords': 'Récords de {username}',
+  'records.myRecords': 'Mis Récords',
+  'marketplace.goldeneye.description': 'Juego completo con caja, manual y cartucho',
+  'marketplace.goldeneye.title': 'GoldenEye 007 - Completo en caja',
+  'marketplace.mario64.description': 'Cartucho original en perfecto estado con manual',
+  'marketplace.mario64.title': 'Super Mario 64 - Estado perfecto',
+  'fanart.banjo.adventure': 'Aventura de Banjo y Kazooie',
+  'fanart.zelda.battle': 'Batalla épica Link vs Ganondorf',
+  'fanart.mario.castle': 'Mario en el castillo de Peach',
+  'forum.untitledThread': 'Hilo sin título',
+  'error.invalidDataFormat': 'Formato de datos inválido',
+  'common.user': 'Usuario',
 }
 
 export default es

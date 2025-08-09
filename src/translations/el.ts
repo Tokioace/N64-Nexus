@@ -1509,7 +1509,25 @@ const el = {
   'terms.nintendoFullDisclaimer': 'Το Battle64 είναι μια ανεξάρτητη κοινότητα retro gaming και δεν συνδέεται, δεν εγκρίνεται ή δεν χρηματοδοτείται από την Nintendo Co., Ltd. Το Nintendo 64, N64, και όλοι οι σχετικοί χαρακτήρες, ονόματα, σήματα, εμβλήματα και εικόνες είναι εμπορικά σήματα της Nintendo. Όλα τα άλλα εμπορικά σήματα είναι ιδιοκτησία των αντίστοιχων κατόχων τους.',
   'marketplace.n64ControllerTitle': 'Χειριστήριο N64 - Αυθεντικό Nintendo',
   'marketplace.n64ControllerDescription': 'Επίσημο χειριστήριο Nintendo σε πολύ καλή κατάσταση',
-  'marketplace.n64ControllerDescriptionDE': 'Αυθεντικό χειριστήριο N64 σε καλή κατάσταση. Όλα τα κουμπιά λειτουργούν τέλεια.'
+  'marketplace.n64ControllerDescriptionDE': 'Αυθεντικό χειριστήριο N64 σε καλή κατάσταση. Όλα τα κουμπιά λειτουργούν τέλεια.',
+  'upload.video': 'Ανεβάστε ένα βίντεο του αγώνα σας',
+  'upload.screenshot': 'Ανεβάστε ένα στιγμιότυπο του χρόνου τερματισμού σας',
+  'cookies.showDetails': 'Εμφάνιση Λεπτομερειών',
+  'cookies.hideDetails': 'Απόκρυψη Λεπτομερειών',
+  'records.pendingCount': '{count} εκκρεμείς',
+  'records.verifiedCount': '{count} επαληθευμένα αρχεία',
+  'records.userRecords': 'Αρχεία του {username}',
+  'records.myRecords': 'Τα Αρχεία Μου',
+  'marketplace.goldeneye.description': 'Πλήρες παιχνίδι με κουτί, εγχειρίδιο και κασέτα',
+  'marketplace.goldeneye.title': 'GoldenEye 007 - Πλήρες στο κουτί',
+  'marketplace.mario64.description': 'Αυθεντική κασέτα σε άριστη κατάσταση με εγχειρίδιο',
+  'marketplace.mario64.title': 'Super Mario 64 - Άριστη κατάσταση',
+  'fanart.banjo.adventure': 'Περιπέτεια Banjo & Kazooie',
+  'fanart.zelda.battle': 'Επική μάχη Link εναντίον Ganondorf',
+  'fanart.mario.castle': 'Ο Μάριο στο κάστρο της Πιτς',
+  'forum.untitledThread': 'Νήμα χωρίς τίτλο',
+  'error.invalidDataFormat': 'Μη έγκυρη μορφή δεδομένων',
+  'common.user': 'Χρήστης',
 }
 
 export default el
