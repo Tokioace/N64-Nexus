@@ -1,125 +1,181 @@
 import React, { useEffect, useState } from 'react'
 import { Routes, Route } from 'react-router-dom'
-import { UserProvider, useUser } from './contexts/UserContext'
-import { LanguageProvider, useLanguage } from './contexts/LanguageContext'
-import { PointsProvider, usePoints } from './contexts/PointsContext'
-import { InteractionProvider, useInteraction } from './contexts/InteractionContext'
-import { EventProvider, useEvent } from './contexts/EventContext'
-import { MapProvider, useMap } from './contexts/MapContext'
-import { MediaProvider, useMedia } from './contexts/MediaContext'
-import { QuizProvider, useQuiz } from './contexts/QuizContext'
-import { ForumProvider, useForum } from './contexts/ForumContext'
+import { QuizProvider } from './contexts/QuizContext'
+import { UserProvider } from './contexts/UserContext'
+import { EventProvider } from './contexts/EventContext'
+import { MediaProvider } from './contexts/MediaContext'
+import { ForumProvider } from './contexts/ForumContext'
+import { LanguageProvider } from './contexts/LanguageContext'
+import { PointsProvider } from './contexts/PointsContext'
+import { InteractionProvider } from './contexts/InteractionContext'
+import { MapProvider } from './contexts/MapContext'
+import HomePage from './pages/HomePage'
+import HomeScreenRetro from './components/HomeScreenRetro'
+import AuthPage from './pages/AuthPage'
+import TermsPage from './pages/TermsPage'
+import PrivacyPage from './pages/PrivacyPage'
+import AccountDeletionPage from './pages/AccountDeletionPage'
+import QuizResultPage from './pages/QuizResultPage'
+import TypographyShowcase from './components/TypographyShowcase'
+import ErrorBoundary from './components/ErrorBoundary'
+import Layout from './components/Layout'
+import PWAInstallPrompt from './components/PWAInstallPrompt'
+import OfflineIndicator from './components/OfflineIndicator'
+import CookieConsent from './components/CookieConsent'
+import { bugMonitorService } from './services/bugMonitorService'
 
-console.log('🚀 App.tsx loading...')
+// Import lazy components for code splitting
+import {
+  CommunityPage,
+  QuizPage,
+  LeaderboardPage,
+  ProfilePage,
+  MinigamesPage,
+  EventsPage,
+  SpeedrunMediaPage,
+  CollectorMode,
+  MarketplacePage,
+  ChatPage,
+  ForumPage,
+  ForumCategoryPage,
+  ForumThreadPage,
+  ForumNewThreadPage,
+  NewsFeedPage,
+  FanArtPage,
+  Battle64Map
+} from './components/LazyComponents'
 
-function AppContent() {
-  const { user, isAuthenticated, isLoading: userLoading } = useUser()
-  const { currentLanguage, t, isLoading: langLoading } = useLanguage()
-  const { userPoints, loading: pointsLoading } = usePoints()
-  const { loading: interactionLoading } = useInteraction()
-  const { loading: eventLoading } = useEvent()
-  const { isLoadingLocation: mapLoading } = useMap()
-  const { loading: mediaLoading } = useMedia()
-  const { isQuizActive: quizActive } = useQuiz()
-  const { loading: forumLoading } = useForum()
-  
-      console.log('🔄 AppContent rendering, state:', { 
-    userAuth: isAuthenticated, 
-    userLoading, 
-    langLoading,
-    pointsLoading,
-    interactionLoading,
-    eventLoading,
-    mapLoading,
-    mediaLoading,
-    quizActive,
-    forumLoading,
-    language: currentLanguage,
-    hasUser: !!user,
-    points: userPoints?.totalPoints || 0
-  })
-  
+import AdminDashboardPage from './pages/AdminDashboardPage'
+import AdminGuard from './components/AdminGuard'
+
+interface CookiePreferences {
+  necessary: boolean
+  analytics: boolean
+  marketing: boolean
+  preferences: boolean
+}
+
+function AdminRoute() {
   return (
-    <div style={{ padding: '20px', color: 'white', background: '#1e293b', minHeight: '100vh' }}>
-      <h1>🎮 Battle64 - Full App Restored!</h1>
-      <p>✅ React + All 9 Context Providers Working!</p>
-      
-      <div style={{ background: '#334155', padding: '15px', borderRadius: '8px', margin: '10px 0' }}>
-        <h3>System Status:</h3>
-        <p>👤 User Loading: {userLoading ? 'Yes' : 'No'}</p>
-        <p>🔐 Authenticated: {isAuthenticated ? 'Yes' : 'No'}</p>
-        <p>👤 User: {user ? user.username || 'Unknown' : 'None'}</p>
-        <p>🌍 Language Loading: {langLoading ? 'Yes' : 'No'}</p>
-        <p>🌍 Current Language: {currentLanguage}</p>
-        <p>📝 Translation Test: {t('welcome', { name: 'Battle64' })}</p>
-        <p>🏆 Points Loading: {pointsLoading ? 'Yes' : 'No'}</p>
-        <p>🏆 Total Points: {userPoints?.totalPoints || 0}</p>
-        <p>🏆 Current Rank: {userPoints?.currentRank?.key || 'N/A'}</p>
-        <p>💬 Interaction Loading: {interactionLoading ? 'Yes' : 'No'}</p>
-        <p>🎪 Event Loading: {eventLoading ? 'Yes' : 'No'}</p>
-        <p>🗺️ Map Loading: {mapLoading ? 'Yes' : 'No'}</p>
-        <p>📸 Media Loading: {mediaLoading ? 'Yes' : 'No'}</p>
-        <p>❓ Quiz Active: {quizActive ? 'Yes' : 'No'}</p>
-        <p>💬 Forum Loading: {forumLoading ? 'Yes' : 'No'}</p>
-        <p>📦 Dependencies: Lazy-loaded after React mounts</p>
-      </div>
-      
-      <Routes>
-        <Route path="/" element={
-          <div>
-            <h2>🏠 Home Page</h2>
-            <p>Welcome to Battle64!</p>
-            <p>🎉 <strong>SUCCESS!</strong> All 9 context providers are working seamlessly!</p>
-            <p>✅ React loads immediately without blocking</p>
-            <p>⚡ Heavy dependencies load in background</p>
-            <p>🚀 Ready for full app functionality!</p>
-            
-            <div style={{ background: '#065f46', padding: '10px', borderRadius: '6px', margin: '15px 0' }}>
-              <h4>🎯 Core Issue Solved:</h4>
-              <ul style={{ margin: '5px 0', paddingLeft: '20px' }}>
-                <li>✅ UserProvider: Lazy-loaded authService, supabase, logger</li>
-                <li>✅ LanguageProvider: Lazy-loaded translations</li>
-                <li>✅ All other providers: Working without blocking</li>
-                <li>✅ TypeScript errors: Fixed</li>
-                <li>✅ Build optimization: Maintained</li>
-              </ul>
-            </div>
-          </div>
-        } />
-        <Route path="*" element={
-          <div>
-            <h2>404 - Page Not Found</h2>
-            <p>The page you're looking for doesn't exist.</p>
-          </div>
-        } />
-      </Routes>
-    </div>
+    <AdminGuard>
+      <ErrorBoundary>
+        <AdminDashboardPage />
+      </ErrorBoundary>
+    </AdminGuard>
   )
 }
 
 function App() {
-  console.log('🔄 App component rendering...')
-  
+  const [cookiePreferences, setCookiePreferences] = useState<CookiePreferences | null>(null)
+
   useEffect(() => {
-    console.log('✅ App component mounted!')
+    bugMonitorService.init()
   }, [])
+
+  const handleCookieAccept = (preferences: CookiePreferences) => {
+    setCookiePreferences(preferences)
+    // Here you would typically initialize analytics, marketing scripts, etc.
+    // based on the user's preferences
+    console.log('Cookie preferences accepted:', preferences)
+  }
+
+  const handleCookieReject = () => {
+    setCookiePreferences({
+      necessary: true,
+      analytics: false,
+      marketing: false,
+      preferences: false
+    })
+    console.log('Cookies rejected - only necessary cookies will be used')
+  }
 
   return (
     <LanguageProvider>
       <UserProvider>
         <PointsProvider>
           <InteractionProvider>
-            <EventProvider>
-              <MapProvider>
+            <QuizProvider>
+              <EventProvider>
                 <MediaProvider>
-                  <QuizProvider>
-                    <ForumProvider>
-                      <AppContent />
-                    </ForumProvider>
-                  </QuizProvider>
+                  <ForumProvider>
+                    <MapProvider>
+                      <ErrorBoundary>
+                        <Layout>
+                          <Routes>
+                            {/* Main Pages */}
+                            <Route path="/" element={<HomePage />} />
+                            <Route path="/retro" element={<HomeScreenRetro />} />
+                            
+                            {/* Authentication */}
+                            <Route path="/auth" element={<AuthPage />} />
+                            
+                            {/* Legal Pages */}
+                            <Route path="/terms" element={<TermsPage />} />
+                            <Route path="/privacy" element={<PrivacyPage />} />
+                            <Route path="/delete-account" element={<AccountDeletionPage />} />
+                            
+                            {/* Core Features */}
+                            <Route path="/community" element={<CommunityPage />} />
+                            <Route path="/quiz" element={<QuizPage />} />
+                            <Route path="/quiz/result" element={<QuizResultPage />} />
+                            <Route path="/leaderboard" element={<LeaderboardPage />} />
+                            <Route path="/profile" element={<ProfilePage />} />
+                            <Route path="/profile/:userId" element={<ProfilePage />} />
+                            <Route path="/minigames" element={<MinigamesPage />} />
+                            
+                            {/* Events & Media */}
+                            <Route path="/events" element={<EventsPage />} />
+                            <Route path="/speedrun-media" element={<SpeedrunMediaPage />} />
+                            
+                            {/* Collection & Trading */}
+                            <Route path="/collector" element={<CollectorMode />} />
+                            <Route path="/marketplace" element={<MarketplacePage />} />
+                            
+                            {/* Communication */}
+                            <Route path="/chat" element={<ChatPage />} />
+                            <Route path="/forum" element={<ForumPage />} />
+                            <Route path="/forum/:categoryId" element={<ForumCategoryPage />} />
+                            <Route path="/forum/:categoryId/:threadId" element={<ForumThreadPage />} />
+                            <Route path="/forum/:categoryId/new" element={<ForumNewThreadPage />} />
+                            
+                            {/* Content */}
+                            <Route path="/news" element={<NewsFeedPage />} />
+                            <Route path="/fanart" element={<FanArtPage />} />
+                            
+                            {/* Map */}
+                            <Route path="/map" element={<Battle64Map />} />
+                            
+                            {/* Admin */}
+                            <Route path="/admin" element={<AdminRoute />} />
+                            
+                            {/* Development/Debug */}
+                            <Route path="/typography" element={<TypographyShowcase />} />
+                            
+                            {/* 404 */}
+                            <Route path="*" element={
+                              <div style={{ padding: '20px', textAlign: 'center' }}>
+                                <h1>404 - Page Not Found</h1>
+                                <p>The page you're looking for doesn't exist.</p>
+                              </div>
+                            } />
+                          </Routes>
+                          
+                          {/* Global Components */}
+                          <PWAInstallPrompt />
+                          <OfflineIndicator />
+                          {cookiePreferences === null && (
+                            <CookieConsent
+                              onAccept={handleCookieAccept}
+                              onReject={handleCookieReject}
+                            />
+                          )}
+                        </Layout>
+                      </ErrorBoundary>
+                    </MapProvider>
+                  </ForumProvider>
                 </MediaProvider>
-              </MapProvider>
-            </EventProvider>
+              </EventProvider>
+            </QuizProvider>
           </InteractionProvider>
         </PointsProvider>
       </UserProvider>
@@ -127,5 +183,4 @@ function App() {
   )
 }
 
-console.log('✅ App component defined')
 export default App
