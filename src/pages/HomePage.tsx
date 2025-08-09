@@ -221,9 +221,11 @@ const HomePage: React.FC = () => {
           
           const sortedMarketplace = parsedMarketplace
             .filter(item => item && item.id)
-            .map((item: MarketplaceItem) => ({
+            .map((item: any) => ({
               ...item,
-              date: item.date ? new Date(item.date) : (item.createdAt ? new Date(item.createdAt) : new Date())
+              date: item.date ? new Date(item.date) : (item.createdAt ? new Date(item.createdAt) : new Date()),
+              // Ensure seller is properly handled - convert object to string for HomePage compatibility
+              seller: typeof item.seller === 'object' && item.seller?.name ? item.seller.name : item.seller
             }))
             .sort((a: MarketplaceItem, b: MarketplaceItem) => b.date.getTime() - a.date.getTime())
           setMarketplaceItems(sortedMarketplace)
