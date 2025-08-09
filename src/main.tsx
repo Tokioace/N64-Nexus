@@ -3,8 +3,12 @@ import ReactDOM from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
 import App from './App.tsx'
 import './index.css'
+import { initPerformanceMonitoring } from './utils/performanceMonitor'
 
 console.log('🚀 main.tsx loading...')
+
+// Initialize performance monitoring early
+initPerformanceMonitoring()
 
 // Clear the loading screen immediately
 const rootElement = document.getElementById('root')

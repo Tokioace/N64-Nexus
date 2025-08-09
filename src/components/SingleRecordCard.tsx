@@ -23,7 +23,7 @@ const SingleRecordCard: React.FC<SingleRecordCardProps> = ({ personalRecords, cl
   const navigate = useNavigate()
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isFlipping, setIsFlipping] = useState(false)
-  const [flipDirection, setFlipDirection] = useState<'left' | 'right'>('left')
+  const [, setFlipDirection] = useState<'left' | 'right'>('left')
   const touchStartX = useRef<number>(0)
   const touchEndX = useRef<number>(0)
 

@@ -1,10 +1,9 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState, useEffect } from 'react'
 import { logger } from '../lib/logger';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useLocation } from 'react-router-dom';
 import { Search, Plus, Package, Clock, Star, Grid, List, Eye, MessageCircle, Heart, ShoppingCart } from 'lucide-react';
-import { MarketplaceItem as MarketplaceOffer } from '../types';
+import { MarketplaceItem as MarketplaceOffer, MarketplaceItemData } from '../types';
 
 interface CreateOfferModalProps {
   isOpen: boolean;
@@ -195,11 +194,11 @@ const MarketplacePage: React.FC = () => {
         if (savedMarketplace) {
           const parsedMarketplace = JSON.parse(savedMarketplace);
           const sortedMarketplace = parsedMarketplace
-            .map((item: any) => ({
+            .map((item: MarketplaceItemData) => ({
               ...item,
               createdAt: item.createdAt || new Date().toISOString()
             }))
-            .sort((a: any, b: any) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+            .sort((a: MarketplaceItemData, b: MarketplaceItemData) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
           setOffers(sortedMarketplace);
         } else {
           // Use mock data and save to localStorage

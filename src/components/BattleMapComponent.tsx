@@ -33,7 +33,7 @@ const BattleMapComponent: React.FC<BattleMapComponentProps> = ({
   const { t } = useLanguage()
   const { user } = useUser()
   const [userLocation, setUserLocation] = useState<{ latitude: number; longitude: number } | null>(null)
-  const [locationPermission, setLocationPermission] = useState<'granted' | 'denied' | 'prompt'>('prompt')
+  const [, setLocationPermission] = useState<'granted' | 'denied' | 'prompt'>('prompt')
   const [gdprSettings, setGdprSettings] = useState({ locationEnabled: false, realtimeEnabled: false })
 
   const {

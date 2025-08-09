@@ -68,7 +68,7 @@ function AdminRoute() {
 }
 
 function App() {
-  const [cookiePreferences, setCookiePreferences] = useState<CookiePreferences | null>(null)
+  const [, setCookiePreferences] = useState<CookiePreferences | null>(null)
 
   useEffect(() => {
     bugMonitorService.init()

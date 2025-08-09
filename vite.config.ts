@@ -7,7 +7,7 @@ import strip from '@rollup/plugin-strip'
 import { VitePWA } from 'vite-plugin-pwa'
 
 // https://vitejs.dev/config/
-export default defineConfig(({ command, mode }) => {
+export default defineConfig(({ mode }) => {
   // Load env file based on `mode` in the current working directory.
   const env = loadEnv(mode, process.cwd(), '')
   
@@ -103,9 +103,13 @@ export default defineConfig(({ command, mode }) => {
                 return 'contexts'
               }
               
-              // Translation chunks
+              // Translation chunks - split each language into its own chunk
               if (id.includes('src/translations/')) {
-                return 'translations'
+                const match = id.match(/translations\/([a-z]+)\.ts$/)
+                if (match) {
+                  return `translation-${match[1]}`
+                }
+                return 'translations-common'
               }
               
               // Utils chunk
@@ -116,6 +120,19 @@ export default defineConfig(({ command, mode }) => {
               // Data chunk
               if (id.includes('src/data/')) {
                 return 'data'
+              }
+              
+              // Component chunks - split large components
+              if (id.includes('src/components/Battle64Map')) {
+                return 'map-component'
+              }
+              
+              // Page chunks - split each page
+              if (id.includes('src/pages/')) {
+                const match = id.match(/pages\/([^/]+)\.tsx?$/)
+                if (match) {
+                  return `page-${match[1].toLowerCase()}`
+                }
               }
             }
             
