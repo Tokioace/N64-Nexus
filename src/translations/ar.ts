@@ -757,6 +757,17 @@ const ar = {
   'auth.tryRegisterAgain': 'حاول التسجيل مرة أخرى أو اتصل بالدعم.',
   'auth.goToLogin': 'الذهاب لتسجيل الدخول',
 
+  // Browser Redirect
+  'browserRedirect.title': 'إعادة توجيه المتصفح',
+  'browserRedirect.message': 'نحن نعيد توجيهك إلى متصفحك المفضل...',
+  'browserRedirect.detectedBrowser': 'المتصفح المكتشف',
+  'browserRedirect.version': 'الإصدار',
+  'browserRedirect.redirectingIn': 'إعادة التوجيه خلال {seconds} ثانية...',
+  'browserRedirect.redirectNow': 'إعادة التوجيه الآن',
+  'browserRedirect.troubleshoot': 'إعادة التوجيه التلقائي لا تعمل؟',
+  'browserRedirect.manualInstructions': 'انقر على "إعادة التوجيه الآن" أو انسخ الرابط من شريط العناوين.',
+
+
   // Chat system - نظام الدردشة
   'chat.title': 'دردشة المجتمع',
   'chat.onlineUsers': 'المستخدمون المتصلون',

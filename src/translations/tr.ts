@@ -674,6 +674,17 @@ const tr = {
   'auth.unexpectedError': 'Beklenmedik bir hata oluştu',
   'auth.tryRegisterAgain': 'Tekrar kayıt olmayı deneyin veya destek ile iletişime geçin.',
   'auth.goToLogin': 'Girişe Git',
+
+  // Browser Redirect
+  'browserRedirect.title': 'Tarayıcı Yönlendirmesi',
+  'browserRedirect.message': 'Sizi tercih ettiğiniz tarayıcıya yönlendiriyoruz...',
+  'browserRedirect.detectedBrowser': 'Algılanan Tarayıcı',
+  'browserRedirect.version': 'Sürüm',
+  'browserRedirect.redirectingIn': '{seconds} saniye içinde yönlendiriliyor...',
+  'browserRedirect.redirectNow': 'Şimdi Yönlendir',
+  'browserRedirect.troubleshoot': 'Otomatik yönlendirme çalışmıyor mu?',
+  'browserRedirect.manualInstructions': '"Şimdi Yönlendir"e tıklayın veya adres çubuğundan URL\'yi kopyalayın.',
+
   'chat.title': 'Topluluk Sohbeti',
   'chat.onlineUsers': 'çevrimiçi kullanıcı',
   'chat.chats': 'Sohbetler',

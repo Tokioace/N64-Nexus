@@ -217,6 +217,30 @@ const es = {
   'auth.unexpectedError': 'Ocurrió un error inesperado',
   'auth.tryRegisterAgain': 'Intenta registrarte nuevamente o contacta soporte.',
   'auth.goToLogin': 'Ir al Inicio de Sesión',
+
+  // Browser Redirect
+  'browserRedirect.title': 'Redirección del Navegador',
+  'browserRedirect.message': 'Te estamos redirigiendo a tu navegador preferido...',
+  'browserRedirect.detectedBrowser': 'Navegador Detectado',
+  'browserRedirect.version': 'Versión',
+  'browserRedirect.redirectingIn': 'Redirigiendo en {seconds} segundos...',
+  'browserRedirect.redirectNow': 'Redirigir Ahora',
+  'browserRedirect.troubleshoot': '¿La redirección automática no funciona?',
+  'browserRedirect.manualInstructions': 'Haz clic en "Redirigir Ahora" o copia la URL de la barra de direcciones.',
+
+  // Safari Redirect
+  'auth.safariRedirectSuccess': '🎉 ¡Has regresado exitosamente a Safari! Tu registro ha sido confirmado.',
+  'safari.redirectTitle': 'Volver a Safari',
+  'safari.redirectMessage': 'Abre el enlace en Safari para completar tu registro.',
+  'safari.openInSafari': 'Abrir en Safari',
+  'safari.copyURL': 'Copiar URL',
+  'safari.copied': '¡Copiado!',
+  'safari.manualStepsTitle': 'Pasos manuales:',
+  'safari.step1': 'Copia la URL de arriba',
+  'safari.step2': 'Abre Safari',
+  'safari.step3': 'Pega la URL en la barra de direcciones',
+  'safari.manualInstructions': 'Por favor abre Safari manualmente y pega la URL.',
+
   'auth.enhancedExperienceMessage': 'Inicia sesión para una experiencia mejorada',
 
   // Quiz

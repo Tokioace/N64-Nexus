@@ -1,5 +1,6 @@
 import { supabase } from '../lib/supabase'
 import { logger } from '../lib/logger'
+import { generateSmartRedirectURL, detectBrowser } from '../utils/browserDetection'
 import type { User as SupabaseUser, AuthError } from '@supabase/supabase-js'
 import type { User, UserRegistrationData } from '../types'
 
@@ -55,12 +56,19 @@ class AuthService {
         }
       }
 
+      // Generate browser-aware redirect URL
+      const baseRedirectURL = `${window.location.origin}/?registration=success`
+      const smartRedirectURL = generateSmartRedirectURL(baseRedirectURL)
+
+      // Detect browser info once to avoid double calls
+      const browserInfo = detectBrowser()
+
       // Registriere Benutzer in Supabase Auth
       const { data: authData, error: authError } = await supabase.auth.signUp({
         email: data.email,
         password: data.password,
         options: {
-          emailRedirectTo: `${window.location.origin}/auth/confirm`,
+          emailRedirectTo: smartRedirectURL,
           data: {
             username: data.username,
             region: data.region,
@@ -68,7 +76,10 @@ class AuthService {
             birth_date: data.birthDate,
             terms_accepted: data.termsAccepted,
             privacy_accepted: data.privacyAccepted,
-            copyright_acknowledged: data.copyrightAcknowledged
+            copyright_acknowledged: data.copyrightAcknowledged,
+            // Store browser info for later use
+            preferred_browser: browserInfo.name,
+            browser_version: browserInfo.version
           }
         }
       })

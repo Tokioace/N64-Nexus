@@ -892,6 +892,17 @@ const ja = {
   'auth.unexpectedError': '予期しないエラーが発生しました',
   'auth.tryRegisterAgain': '再度登録を試すか、サポートにお問い合わせください。',
   'auth.goToLogin': 'ログインへ',
+
+  // Browser Redirect
+  'browserRedirect.title': 'ブラウザリダイレクト',
+  'browserRedirect.message': 'お好みのブラウザにリダイレクトしています...',
+  'browserRedirect.detectedBrowser': '検出されたブラウザ',
+  'browserRedirect.version': 'バージョン',
+  'browserRedirect.redirectingIn': '{seconds}秒後にリダイレクトします...',
+  'browserRedirect.redirectNow': '今すぐリダイレクト',
+  'browserRedirect.troubleshoot': '自動リダイレクトが機能しませんか？',
+  'browserRedirect.manualInstructions': '「今すぐリダイレクト」をクリックするか、アドレスバーからURLをコピーしてください。',
+
   'auth.enhancedExperienceMessage': '拡張された体験のためにサインイン',
 
   // Chat

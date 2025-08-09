@@ -675,6 +675,30 @@ const it = {
   'auth.unexpectedError': 'Si è verificato un errore imprevisto',
   'auth.tryRegisterAgain': 'Prova a registrarti di nuovo o contatta il supporto.',
   'auth.goToLogin': 'Vai al Login',
+
+  // Browser Redirect
+  'browserRedirect.title': 'Reindirizzamento Browser',
+  'browserRedirect.message': 'Ti stiamo reindirizzando al tuo browser preferito...',
+  'browserRedirect.detectedBrowser': 'Browser Rilevato',
+  'browserRedirect.version': 'Versione',
+  'browserRedirect.redirectingIn': 'Reindirizzamento tra {seconds} secondi...',
+  'browserRedirect.redirectNow': 'Reindirizza Ora',
+  'browserRedirect.troubleshoot': 'Il reindirizzamento automatico non funziona?',
+  'browserRedirect.manualInstructions': 'Clicca su "Reindirizza Ora" o copia l\'URL dalla barra degli indirizzi.',
+
+  // Safari Redirect
+  'auth.safariRedirectSuccess': '🎉 Sei tornato con successo su Safari! La tua registrazione è stata confermata.',
+  'safari.redirectTitle': 'Torna a Safari',
+  'safari.redirectMessage': 'Apri il link in Safari per completare la tua registrazione.',
+  'safari.openInSafari': 'Apri in Safari',
+  'safari.copyURL': 'Copia URL',
+  'safari.copied': 'Copiato!',
+  'safari.manualStepsTitle': 'Passi manuali:',
+  'safari.step1': 'Copia l\'URL sopra',
+  'safari.step2': 'Apri Safari',
+  'safari.step3': 'Incolla l\'URL nella barra degli indirizzi',
+  'safari.manualInstructions': 'Per favore apri Safari manualmente e incolla l\'URL.',
+
   'chat.title': 'Chat della Comunità',
   'chat.onlineUsers': 'utenti online',
   'chat.chats': 'Chat',
