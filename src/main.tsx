@@ -4,11 +4,20 @@ import { BrowserRouter } from 'react-router-dom'
 import App from './App.tsx'
 import './index.css'
 import { initPerformanceMonitoring } from './utils/performanceMonitor'
+import { initAccessibilityMonitoring, quickA11yCheck } from './utils/accessibilityMonitor'
 
 console.log('🚀 main.tsx loading...')
 
 // Initialize performance monitoring early
 initPerformanceMonitoring()
+
+// Initialize accessibility monitoring
+initAccessibilityMonitoring().then(() => {
+  // Run quick accessibility check in development
+  if (import.meta.env.DEV) {
+    setTimeout(quickA11yCheck, 2000) // Wait for app to render
+  }
+})
 
 // Clear the loading screen immediately
 const rootElement = document.getElementById('root')

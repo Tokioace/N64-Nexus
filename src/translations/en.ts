@@ -18,6 +18,15 @@ const en = {
   'nav.community': 'Community',
   'nav.map': 'Battle64 Map',
 
+  // Accessibility
+  'a11y.skipToMain': 'Skip to main content',
+  'a11y.skipToNav': 'Skip to navigation',
+  'a11y.skipToSearch': 'Skip to search',
+  'a11y.newPage': 'New page loaded',
+  'a11y.loading': 'Loading content',
+  'a11y.error': 'Error occurred',
+  'a11y.success': 'Action completed successfully',
+
   // Home Screen
   'home.subtitle': 'The N64 Community for Millennials',
   'home.welcome': 'Welcome back',

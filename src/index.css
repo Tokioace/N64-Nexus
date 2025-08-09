@@ -2505,6 +2505,79 @@ input[type="submit"] {
   border: 0;
 }
 
+/* Skip links for keyboard navigation */
+.skip-links {
+  position: absolute;
+  top: -100vh;
+  left: 0;
+  z-index: 9999;
+}
+
+.skip-link {
+  position: absolute;
+  top: 0;
+  left: -100vw;
+  padding: 0.5rem 1rem;
+  background: #000;
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  border: 2px solid #fff;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+  transform: translateY(0);
+}
+
+/* Enhanced focus indicators */
+*:focus-visible {
+  outline: 3px solid #60a5fa;
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Remove default focus outline when focus-visible is supported */
+*:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .simple-tile {
+    border-width: 2px;
+    border-color: currentColor;
+  }
+  
+  button {
+    border: 2px solid currentColor;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  /* Disable parallax and transform animations */
+  .parallax,
+  .animate-bounce,
+  .animate-pulse,
+  .animate-spin {
+    animation: none !important;
+    transform: none !important;
+  }
+}
+
 /* Focus styles for keyboard navigation on leaderboard entries */
 .leaderboard-entry:focus-within {
   outline: 2px solid #3b82f6;
