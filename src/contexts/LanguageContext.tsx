@@ -1,11 +1,17 @@
-import React, { createContext, useContext, useState, ReactNode } from 'react'
-import { Language, translations, TranslationKeys } from '../translations'
+import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react'
+
+// Define Language type
+export type Language = 'de' | 'en' | 'fr' | 'it' | 'es' | 'el' | 'tr' | 'zh' | 'ja' | 'ru' | 'pt' | 'hi' | 'ar' | 'ko'
+
+// Define a minimal translation type
+export type TranslationKeys = string
 
 interface LanguageContextType {
   currentLanguage: Language
   setLanguage: (language: Language) => void
   t: (key: TranslationKeys, params?: Record<string, string>) => string
   isRTL: boolean
+  isLoading: boolean
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined)
@@ -44,70 +50,83 @@ const isRTLLanguage = (language: Language): boolean => {
   return language === 'ar'
 }
 
+// Translation cache
+const translationCache: Partial<Record<Language, Record<string, string>>> = {}
+
+// Lazy load translations
+const loadTranslations = async (language: Language): Promise<Record<string, string>> => {
+  if (translationCache[language]) {
+    return translationCache[language]
+  }
+
+  try {
+    console.log(`🔄 Loading translations for ${language}...`)
+    const module = await import(`../translations/${language}`)
+    translationCache[language] = module.default
+    console.log(`✅ Translations loaded for ${language}`)
+    return module.default
+  } catch (error) {
+    console.warn(`⚠️ Failed to load translations for ${language}, falling back to English`)
+    // Fallback to English
+    if (language !== 'en') {
+      return loadTranslations('en')
+    }
+    // If English also fails, return empty object
+    return {}
+  }
+}
+
 interface LanguageProviderProps {
   children: ReactNode
 }
 
 export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) => {
-  const [currentLanguage, setCurrentLanguage] = useState<Language>('en')
+  const [currentLanguage, setCurrentLanguage] = useState<Language>('de') // Default to German
+  const [translations, setTranslations] = useState<Record<string, string>>({})
+  const [isLoading, setIsLoading] = useState(true)
+
+  // Load translations when language changes
+  useEffect(() => {
+    const loadLanguageTranslations = async () => {
+      setIsLoading(true)
+      try {
+        const languageTranslations = await loadTranslations(currentLanguage)
+        setTranslations(languageTranslations)
+      } catch (error) {
+        console.error('Error loading translations:', error)
+        setTranslations({}) // Fallback to empty translations
+      } finally {
+        setIsLoading(false)
+      }
+    }
+
+    loadLanguageTranslations()
+  }, [currentLanguage])
 
   const setLanguage = (language: Language) => {
+    console.log(`🌍 Switching language to: ${language}`)
     setCurrentLanguage(language)
-    // Save to localStorage for persistence
-    localStorage.setItem('battle64-language', language)
-    
-    // Apply RTL to document
-    const isRTL = isRTLLanguage(language)
-    document.documentElement.dir = isRTL ? 'rtl' : 'ltr'
-    document.documentElement.lang = language
-    
-    // Add RTL class to body for CSS styling
-    if (isRTL) {
-      document.body.classList.add('rtl-layout')
-    } else {
-      document.body.classList.remove('rtl-layout')
-    }
   }
 
-  // Translation function with parameter support
-  const t = (key: TranslationKeys | string, params?: Record<string, string>): string => {
-    const languageTranslations = translations[currentLanguage] as any
-    let translation = languageTranslations[key] || (translations.en as any)[key] || key
+  const t = (key: TranslationKeys, params?: Record<string, string>): string => {
+    let translation = translations[key] || key
 
-    // Replace parameters in the translation
+    // Replace parameters if provided
     if (params) {
       Object.entries(params).forEach(([paramKey, paramValue]) => {
-        translation = translation.replace(new RegExp(`{${paramKey}}`, 'g'), paramValue)
+        translation = translation.replace(`{${paramKey}}`, paramValue)
       })
     }
 
     return translation
   }
 
-  // Load saved language on mount
-  React.useEffect(() => {
-    const savedLanguage = localStorage.getItem('battle64-language') as Language
-    if (savedLanguage && translations[savedLanguage]) {
-      setCurrentLanguage(savedLanguage)
-      
-      // Apply RTL on initial load
-      const isRTL = isRTLLanguage(savedLanguage)
-      document.documentElement.dir = isRTL ? 'rtl' : 'ltr'
-      document.documentElement.lang = savedLanguage
-      
-      if (isRTL) {
-        document.body.classList.add('rtl-layout')
-      } else {
-        document.body.classList.remove('rtl-layout')
-      }
-    }
-  }, [])
-
-  const value = {
+  const value: LanguageContextType = {
     currentLanguage,
     setLanguage,
     t,
-    isRTL: isRTLLanguage(currentLanguage)
+    isRTL: isRTLLanguage(currentLanguage),
+    isLoading
   }
 
   return (
@@ -116,6 +135,3 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
     </LanguageContext.Provider>
   )
 }
-
-// Export types for use in other files
-export type { Language }
