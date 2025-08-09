@@ -56,7 +56,7 @@ const translationCache: Partial<Record<Language, Record<string, string>>> = {}
 // Lazy load translations
 const loadTranslations = async (language: Language): Promise<Record<string, string>> => {
   if (translationCache[language]) {
-    return translationCache[language]
+    return translationCache[language]!
   }
 
   try {
@@ -83,30 +83,75 @@ interface LanguageProviderProps {
 export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) => {
   const [currentLanguage, setCurrentLanguage] = useState<Language>('de') // Default to German
   const [translations, setTranslations] = useState<Record<string, string>>({})
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(false) // Start as false to not block React
 
-  // Load translations when language changes
+  console.log('🔄 Lightweight LanguageProvider rendering...')
+
+  // Load translations when language changes - non-blocking
   useEffect(() => {
+    let mounted = true
+
     const loadLanguageTranslations = async () => {
-      setIsLoading(true)
+      if (mounted) {
+        setIsLoading(true)
+      }
+
       try {
+        console.log(`🔄 Lazy-loading translations for ${currentLanguage}...`)
         const languageTranslations = await loadTranslations(currentLanguage)
-        setTranslations(languageTranslations)
+        
+        if (mounted) {
+          setTranslations(languageTranslations)
+          console.log(`✅ Translations loaded for ${currentLanguage}`)
+        }
       } catch (error) {
         console.error('Error loading translations:', error)
-        setTranslations({}) // Fallback to empty translations
+        if (mounted) {
+          setTranslations({}) // Fallback to empty translations
+        }
       } finally {
-        setIsLoading(false)
+        if (mounted) {
+          setIsLoading(false)
+        }
       }
     }
 
+    // Start loading translations (non-blocking)
     loadLanguageTranslations()
+
+    return () => {
+      mounted = false
+    }
   }, [currentLanguage])
 
   const setLanguage = (language: Language) => {
     console.log(`🌍 Switching language to: ${language}`)
     setCurrentLanguage(language)
+    
+    // Apply RTL and language settings
+    const isRTL = isRTLLanguage(language)
+    document.documentElement.dir = isRTL ? 'rtl' : 'ltr'
+    document.documentElement.lang = language
+    
+    // Save to localStorage for persistence
+    localStorage.setItem('battle64-language', language)
+    
+    // Add RTL class to body for CSS styling
+    if (isRTL) {
+      document.body.classList.add('rtl-layout')
+    } else {
+      document.body.classList.remove('rtl-layout')
+    }
   }
+
+  // Load saved language on mount (non-blocking)
+  useEffect(() => {
+    const savedLanguage = localStorage.getItem('battle64-language') as Language
+    if (savedLanguage) {
+      console.log(`🔄 Loading saved language: ${savedLanguage}`)
+      setCurrentLanguage(savedLanguage)
+    }
+  }, [])
 
   const t = (key: TranslationKeys, params?: Record<string, string>): string => {
     let translation = translations[key] || key

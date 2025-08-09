@@ -32,7 +32,7 @@ const UserCollectionManager: React.FC<CollectionManagerProps> = ({ isOwnProfile 
 
   if (!user) return null
 
-  const filteredCollections = user.collections.filter(item => {
+  const filteredCollections = user.collections.filter((item: any) => {
     if (filter === 'collection') return !item.isWishlist
     if (filter === 'wishlist') return item.isWishlist
     return true
@@ -111,8 +111,8 @@ const UserCollectionManager: React.FC<CollectionManagerProps> = ({ isOwnProfile 
             {isOwnProfile ? t('collection.myCollection') : t('collection.userCollection').replace('{username}', user.username)}
           </h2>
           <p className="text-slate-400">
-            {user.collections.filter(c => !c.isWishlist).length} {t('collection.inCollection')}, {' '}
-            {user.collections.filter(c => c.isWishlist).length} {t('collection.onWishlist')}
+            {user.collections.filter((c: any) => !c.isWishlist).length} {t('collection.inCollection')}, {' '}
+            {user.collections.filter((c: any) => c.isWishlist).length} {t('collection.onWishlist')}
           </p>
         </div>
         
@@ -147,7 +147,7 @@ const UserCollectionManager: React.FC<CollectionManagerProps> = ({ isOwnProfile 
               : 'text-slate-400 hover:text-slate-200'
           }`}
         >
-          {t('collection.collection')} ({user.collections.filter(c => !c.isWishlist).length})
+          {t('collection.collection')} ({user.collections.filter((c: any) => !c.isWishlist).length})
         </button>
         <button
           onClick={() => setFilter('wishlist')}
@@ -157,7 +157,7 @@ const UserCollectionManager: React.FC<CollectionManagerProps> = ({ isOwnProfile 
               : 'text-slate-400 hover:text-slate-200'
           }`}
         >
-          {t('collection.wishlist')} ({user.collections.filter(c => c.isWishlist).length})
+          {t('collection.wishlist')} ({user.collections.filter((c: any) => c.isWishlist).length})
         </button>
       </div>
 
@@ -181,7 +181,7 @@ const UserCollectionManager: React.FC<CollectionManagerProps> = ({ isOwnProfile 
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredCollections.map((item) => (
+          {filteredCollections.map((item: any) => (
             <div key={item.id} className="simple-tile p-6 hover:border-blue-500/50 transition-colors">
               {/* Game Header */}
               <div className="flex items-start justify-between mb-4">
