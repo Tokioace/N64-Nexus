@@ -1317,7 +1317,7 @@ const it = {
   'footer.privacy': 'Privacy',
   'footer.contact': 'Contatto',
   'footer.imprint': 'Note Legali',
-  'footer.copyright': '© 2024 Battle64. Non affiliato con Nintendo.'
+  'footer.copyright': '© 2024 Battle64. Non affiliato con Nintendo.',
 
   // Additional missing translations
   'platform.pc': 'PC',
@@ -1331,12 +1331,12 @@ const it = {
   'account.deletion.confirmDelete': 'ELIMINA',
   'account.deletion.dataWillBeDeleted': 'I seguenti dati saranno eliminati permanentemente:',
   'account.deletion.errorConfirmText': 'Digita "ELIMINA" per confermare',
-  'account.deletion.errorGeneric': 'Errore durante l'eliminazione dell'account',
-  'account.deletion.errorUnexpected': 'Errore imprevisto durante l'eliminazione dell'account',
+  'account.deletion.errorGeneric': 'Errore durante l\'eliminazione dell\'account',
+  'account.deletion.errorUnexpected': 'Errore imprevisto durante l\'eliminazione dell\'account',
   'account.deletion.forumPosts': 'Post e commenti del forum',
   'account.deletion.gameCollection': 'La tua collezione di giochi',
   'account.deletion.gdprNotice': 'Avviso GDPR',
-  'account.deletion.gdprText': 'Dopo l'eliminazione, tutti i tuoi dati personali saranno completamente rimossi dai nostri sistemi in conformità al Regolamento Generale sulla Protezione dei Dati.',
+  'account.deletion.gdprText': 'Dopo l\'eliminazione, tutti i tuoi dati personali saranno completamente rimossi dai nostri sistemi in conformità al Regolamento Generale sulla Protezione dei Dati.',
   'account.deletion.profileData': 'Il tuo profilo e tutti i dati personali',
   'account.deletion.recordsAchievements': 'Tutti i tuoi record e risultati',
   'account.deletion.title': 'Elimina account',

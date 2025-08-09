@@ -1287,7 +1287,7 @@ const ru = {
   'footer.privacy': 'Конфиденциальность',
   'footer.contact': 'Контакт',
   'footer.imprint': 'Выходные Данные',
-  'footer.copyright': '© 2024 Battle64. Не связан с Nintendo.'
+  'footer.copyright': '© 2024 Battle64. Не связан с Nintendo.',
 
   // Additional missing translations
   'platform.pc': 'ПК',

@@ -1434,7 +1434,7 @@ const ar = {
   'footer.privacy': 'الخصوصية',
   'footer.contact': 'التواصل',
   'footer.imprint': 'البيانات القانونية',
-  'footer.copyright': '© 2024 Battle64. غير مرتبط بنينتندو.'
+  'footer.copyright': '© 2024 Battle64. غير مرتبط بنينتندو.',
 
   // Additional missing translations
   'platform.pc': 'كمبيوتر',
@@ -1592,7 +1592,7 @@ const ar = {
   'terms.nintendoFullDisclaimer': 'Battle64 هو مجتمع ألعاب كلاسيكية مستقل وغير مرتبط أو معتمد أو مدعوم من Nintendo Co., Ltd. Nintendo 64 و N64 وجميع الشخصيات والأسماء والعلامات والرموز والصور ذات الصلة هي علامات تجارية لـ Nintendo. جميع العلامات التجارية الأخرى هي ملكية لأصحابها المعنيين.',
   'marketplace.n64ControllerTitle': 'وحدة تحكم N64 - Nintendo الأصلية',
   'marketplace.n64ControllerDescription': 'وحدة تحكم Nintendo الرسمية في حالة جيدة جداً',
-  'marketplace.n64ControllerDescriptionDE': 'وحدة تحكم N64 الأصلية في حالة جيدة. جميع الأزرار تعمل بشكل مثالي.',
+  'marketplace.n64ControllerDescriptionDE': 'وحدة تحكم N64 الأصلية في حالة جيدة. جميع الأزرار تعمل بشكل مثالي.'
 }
 
 export default ar

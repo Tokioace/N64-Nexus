@@ -1301,7 +1301,7 @@ const ko = {
   'footer.privacy': '개인정보보호',
   'footer.contact': '연락처',
   'footer.imprint': '법적 고지',
-  'footer.copyright': '© 2024 Battle64. 닌텐도와 관련이 없습니다.'
+  'footer.copyright': '© 2024 Battle64. 닌텐도와 관련이 없습니다.',
 
   // Additional missing translations
   'platform.pc': 'PC',

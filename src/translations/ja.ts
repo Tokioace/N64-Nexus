@@ -1351,7 +1351,7 @@ const ja = {
   'footer.privacy': 'プライバシー',
   'footer.contact': 'お問い合わせ',
   'footer.imprint': '法的表示',
-  'footer.copyright': '© 2024 Battle64. 任天堂とは関係ありません。'
+  'footer.copyright': '© 2024 Battle64. 任天堂とは関係ありません。',
 
   // Additional missing translations
   'platform.pc': 'PC',

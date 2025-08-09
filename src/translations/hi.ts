@@ -1301,7 +1301,7 @@ const hi = {
   'footer.privacy': 'गोपनीयता',
   'footer.contact': 'संपर्क',
   'footer.imprint': 'कानूनी जानकारी',
-  'footer.copyright': '© 2024 Battle64. Nintendo से संबद्ध नहीं।'
+  'footer.copyright': '© 2024 Battle64. Nintendo से संबद्ध नहीं।',
 
   // Additional missing translations
   'platform.pc': 'पीसी',

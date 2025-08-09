@@ -1316,7 +1316,7 @@ const pt = {
   'footer.privacy': 'Privacidade',
   'footer.contact': 'Contato',
   'footer.imprint': 'Imprensa Legal',
-  'footer.copyright': '© 2024 Battle64. Não afiliado à Nintendo.'
+  'footer.copyright': '© 2024 Battle64. Não afiliado à Nintendo.',
 
   // Additional missing translations
   'platform.pc': 'PC',

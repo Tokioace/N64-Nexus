@@ -1351,7 +1351,7 @@ const el = {
   'footer.privacy': 'Απόρρητο',
   'footer.contact': 'Επικοινωνία',
   'footer.imprint': 'Νομικές Πληροφορίες',
-  'footer.copyright': '© 2024 Battle64. Δεν συνδέεται με τη Nintendo.'
+  'footer.copyright': '© 2024 Battle64. Δεν συνδέεται με τη Nintendo.',
 
   // Additional missing translations
   'platform.pc': 'PC',
@@ -1509,7 +1509,7 @@ const el = {
   'terms.nintendoFullDisclaimer': 'Το Battle64 είναι μια ανεξάρτητη κοινότητα retro gaming και δεν συνδέεται, δεν εγκρίνεται ή δεν χρηματοδοτείται από την Nintendo Co., Ltd. Το Nintendo 64, N64, και όλοι οι σχετικοί χαρακτήρες, ονόματα, σήματα, εμβλήματα και εικόνες είναι εμπορικά σήματα της Nintendo. Όλα τα άλλα εμπορικά σήματα είναι ιδιοκτησία των αντίστοιχων κατόχων τους.',
   'marketplace.n64ControllerTitle': 'Χειριστήριο N64 - Αυθεντικό Nintendo',
   'marketplace.n64ControllerDescription': 'Επίσημο χειριστήριο Nintendo σε πολύ καλή κατάσταση',
-  'marketplace.n64ControllerDescriptionDE': 'Αυθεντικό χειριστήριο N64 σε καλή κατάσταση. Όλα τα κουμπιά λειτουργούν τέλεια.',
+  'marketplace.n64ControllerDescriptionDE': 'Αυθεντικό χειριστήριο N64 σε καλή κατάσταση. Όλα τα κουμπιά λειτουργούν τέλεια.'
 }
 
 export default el

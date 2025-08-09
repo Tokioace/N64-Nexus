@@ -1303,7 +1303,7 @@ const tr = {
   'footer.privacy': 'Gizlilik',
   'footer.contact': 'İletişim',
   'footer.imprint': 'Yasal Bilgiler',
-  'footer.copyright': '© 2024 Battle64. Nintendo ile bağlantılı değildir.'
+  'footer.copyright': '© 2024 Battle64. Nintendo ile bağlantılı değildir.',
 
   // Additional missing translations
   'platform.pc': 'PC',
@@ -1322,7 +1322,7 @@ const tr = {
   'account.deletion.forumPosts': 'Forum gönderileri ve yorumları',
   'account.deletion.gameCollection': 'Oyun koleksiyonunuz',
   'account.deletion.gdprNotice': 'GDPR Bildirimi',
-  'account.deletion.gdprText': 'Silme işleminden sonra, tüm kişisel verileriniz Genel Veri Koruma Yönetmeliği'ne uygun olarak sistemlerimizden tamamen kaldırılacaktır.',
+  'account.deletion.gdprText': 'Silme işleminden sonra, tüm kişisel verileriniz Genel Veri Koruma Yönetmeliği\'ne uygun olarak sistemlerimizden tamamen kaldırılacaktır.',
   'account.deletion.profileData': 'Profiliniz ve tüm kişisel veriler',
   'account.deletion.recordsAchievements': 'Tüm rekorlarınız ve başarılarınız',
   'account.deletion.title': 'Hesabı sil',

@@ -1354,7 +1354,7 @@ const es = {
   'footer.privacy': 'Privacidad',
   'footer.contact': 'Contacto',
   'footer.imprint': 'Aviso Legal',
-  'footer.copyright': '© 2024 Battle64. No afiliado con Nintendo.'
+  'footer.copyright': '© 2024 Battle64. No afiliado con Nintendo.',
 
   // Additional missing translations
   'platform.pc': 'PC',
@@ -1501,7 +1501,7 @@ const es = {
   'terms.nintendoFullDisclaimer': 'Battle64 es una comunidad independiente de juegos retro y no está afiliada, respaldada o patrocinada por Nintendo Co., Ltd. Nintendo 64, N64, y todos los personajes, nombres, marcas, emblemas e imágenes relacionados son marcas registradas de Nintendo. Todas las demás marcas son propiedad de sus respectivos propietarios.',
   'marketplace.n64ControllerTitle': 'Control N64 - Nintendo Original',
   'marketplace.n64ControllerDescription': 'Control oficial de Nintendo en muy buena condición',
-  'marketplace.n64ControllerDescriptionDE': 'Control N64 original en buena condición. Todos los botones funcionan perfectamente.',
+  'marketplace.n64ControllerDescriptionDE': 'Control N64 original en buena condición. Todos los botones funcionan perfectamente.'
 }
 
 export default es
