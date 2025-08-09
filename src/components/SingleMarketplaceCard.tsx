@@ -2,16 +2,24 @@ import React, { useState, useRef, useEffect } from 'react'
 import { ShoppingBag, Star, Package } from 'lucide-react'
 import { useLanguage, getLocaleString } from '../contexts/LanguageContext'
 import { useNavigate } from 'react-router-dom'
-import { LegacyMarketplaceItem } from '../types'
-
 // Support both legacy string seller and new object seller formats
-interface MarketplaceItem extends LegacyMarketplaceItem {
+interface MarketplaceItem {
+  id: string
+  title: string
+  description: string
+  price: number
+  condition: string
   seller: string | {
     id: string
     name: string
     rating: number
     verified: boolean
   }
+  date: Date
+  category: string
+  images?: string[]
+  image?: string
+  createdAt?: string
 }
 
 interface SingleMarketplaceCardProps {
