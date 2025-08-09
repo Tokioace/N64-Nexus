@@ -345,7 +345,7 @@ const ko = {
   'media.allGames': '모든 게임',
   'media.noEvent': '이벤트 없음',
   'media.uploadedBy': '업로드한 사람',
-  'media.uploadedOn': '업로드 날짜', 설명 또는 태그로 검색', Any%, 글리치리스 (쉼표로 구분)',
+  'media.uploadedOn': '업로드 날짜',
   'success.uploaded': '성공적으로 업로드됨',
   'validation.allFieldsRequired': '모든 필드가 필요합니다',
   // Additional missing keys
