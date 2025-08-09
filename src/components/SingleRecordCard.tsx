@@ -187,10 +187,10 @@ const SingleRecordCard: React.FC<SingleRecordCardProps> = ({ personalRecords, cl
           <div className="p-4 h-full flex flex-col">
             <div className="flex-1">
               <h4 className="text-base font-semibold text-slate-100 mb-2 leading-tight">
-                {currentRecord?.game || 'Unknown Game'}
+                {currentRecord?.game || t('common.unknownGame')}
               </h4>
               <p className="text-sm text-slate-300 mb-3">
-                {currentRecord?.category || 'Unknown Category'}
+                {currentRecord?.category || t('common.unknownCategory')}
               </p>
               <div className="text-2xl font-bold text-yellow-400 mb-2 font-mono">
                 {currentRecord?.time || '--:--:--'}

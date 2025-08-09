@@ -212,7 +212,7 @@ const SingleMarketplaceCard: React.FC<SingleMarketplaceCardProps> = ({ marketpla
                           <div className="w-full h-12 bg-slate-700 rounded mb-2 overflow-hidden">
                             <img 
                               src={marketplaceItems[currentIndex + 1].images?.[0] || marketplaceItems[currentIndex + 1].image} 
-                              alt={marketplaceItems[currentIndex + 1]?.title || 'Marketplace item'}
+                              alt={marketplaceItems[currentIndex + 1]?.title || t('common.marketplaceItem')}
                               className="w-full h-full object-cover"
                               onError={(e) => {
                                 const target = e.target as HTMLImageElement
@@ -222,7 +222,7 @@ const SingleMarketplaceCard: React.FC<SingleMarketplaceCardProps> = ({ marketpla
                           </div>
                         )}
                         <h4 className="text-slate-100 font-semibold text-sm mb-1 line-clamp-2">
-                          {marketplaceItems[currentIndex + 1]?.title || 'Unknown Item'}
+                          {marketplaceItems[currentIndex + 1]?.title || t('common.unknownItem')}
                         </h4>
                         <p className="text-slate-300 text-xs mb-2 line-clamp-2">
                           {marketplaceItems[currentIndex + 1]?.description || ''}
@@ -232,7 +232,7 @@ const SingleMarketplaceCard: React.FC<SingleMarketplaceCardProps> = ({ marketpla
                             €{marketplaceItems[currentIndex + 1]?.price?.toFixed(2) || '0.00'}
                           </span>
                           <span className="text-xs text-slate-400">
-                            {marketplaceItems[currentIndex + 1]?.condition || 'Unknown'}
+                            {marketplaceItems[currentIndex + 1]?.condition || t('common.unknown')}
                           </span>
                         </div>
                       </div>
@@ -262,7 +262,7 @@ const SingleMarketplaceCard: React.FC<SingleMarketplaceCardProps> = ({ marketpla
                           <div className="w-full h-12 bg-slate-700 rounded mb-2 overflow-hidden">
                             <img 
                               src={marketplaceItems[currentIndex - 1].images?.[0] || marketplaceItems[currentIndex - 1].image} 
-                              alt={marketplaceItems[currentIndex - 1]?.title || 'Marketplace item'}
+                              alt={marketplaceItems[currentIndex - 1]?.title || t('common.marketplaceItem')}
                               className="w-full h-full object-cover"
                               onError={(e) => {
                                 const target = e.target as HTMLImageElement
@@ -272,7 +272,7 @@ const SingleMarketplaceCard: React.FC<SingleMarketplaceCardProps> = ({ marketpla
                           </div>
                         )}
                         <h4 className="text-slate-100 font-semibold text-sm mb-1 line-clamp-2">
-                          {marketplaceItems[currentIndex - 1]?.title || 'Unknown Item'}
+                          {marketplaceItems[currentIndex - 1]?.title || t('common.unknownItem')}
                         </h4>
                         <p className="text-slate-300 text-xs mb-2 line-clamp-2">
                           {marketplaceItems[currentIndex - 1]?.description || ''}
@@ -282,7 +282,7 @@ const SingleMarketplaceCard: React.FC<SingleMarketplaceCardProps> = ({ marketpla
                             €{marketplaceItems[currentIndex - 1]?.price?.toFixed(2) || '0.00'}
                           </span>
                           <span className="text-xs text-slate-400">
-                            {marketplaceItems[currentIndex - 1]?.condition || 'Unknown'}
+                            {marketplaceItems[currentIndex - 1]?.condition || t('common.unknown')}
                           </span>
                         </div>
                       </div>
