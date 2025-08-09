@@ -50,7 +50,7 @@ const ar = {
   // Account deletion
   'account.deletion.confirmText': 'يرجى كتابة "DELETE" للتأكيد',
   'account.deletion.placeholder': 'DELETE',
-  'account.deletion.typeDelete': 'اكتب "DELETE" للتأكيد:',
+  'account.deletion.typeDelete': 'اكتب "حذف" للتأكيد:',
   // Home Screen - الشاشة الرئيسية
   'home.subtitle': 'مجتمع N64 لجيل الألفية',
   'home.welcome': 'مرحباً بعودتك',
@@ -1586,6 +1586,13 @@ const ar = {
   // Final hardcoded text fixes - added 2025-08-09
   'account.deletionPage.deleting': 'جاري الحذف...',
   'account.deletionPage.deleteAccountPermanently': 'حذف الحساب نهائياً',
+
+  // Nintendo-specific translation keys - added 2025-08-09
+  'terms.nintendoCopyrightNotice': 'إشعار حقوق الطبع والنشر لـ Nintendo:',
+  'terms.nintendoFullDisclaimer': 'Battle64 هو مجتمع ألعاب كلاسيكية مستقل وغير مرتبط أو معتمد أو مدعوم من Nintendo Co., Ltd. Nintendo 64 و N64 وجميع الشخصيات والأسماء والعلامات والرموز والصور ذات الصلة هي علامات تجارية لـ Nintendo. جميع العلامات التجارية الأخرى هي ملكية لأصحابها المعنيين.',
+  'marketplace.n64ControllerTitle': 'وحدة تحكم N64 - Nintendo الأصلية',
+  'marketplace.n64ControllerDescription': 'وحدة تحكم Nintendo الرسمية في حالة جيدة جداً',
+  'marketplace.n64ControllerDescriptionDE': 'وحدة تحكم N64 الأصلية في حالة جيدة. جميع الأزرار تعمل بشكل مثالي.',
 }
 
 export default ar

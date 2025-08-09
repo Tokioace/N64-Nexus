@@ -1503,6 +1503,13 @@ const ja = {
   // Final hardcoded text fixes - added 2025-08-09
   'account.deletionPage.deleting': '削除中...',
   'account.deletionPage.deleteAccountPermanently': 'アカウントを永久削除',
+
+  // Nintendo-specific translation keys - added 2025-08-09
+  'terms.nintendoCopyrightNotice': '任天堂著作権通知：',
+  'terms.nintendoFullDisclaimer': 'Battle64は独立したレトロゲームコミュニティであり、任天堂株式会社との関連、承認、スポンサーシップはありません。Nintendo 64、N64、および関連するすべてのキャラクター、名前、マーク、エンブレム、画像は任天堂の商標です。その他すべての商標は、それぞれの所有者の財産です。',
+  'marketplace.n64ControllerTitle': 'N64コントローラー - 任天堂純正',
+  'marketplace.n64ControllerDescription': '任天堂純正コントローラー、状態良好',
+  'marketplace.n64ControllerDescriptionDE': 'オリジナルN64コントローラー、良好な状態。すべてのボタンが完璧に動作します。',
 }
 
 export default ja

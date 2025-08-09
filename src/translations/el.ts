@@ -1503,6 +1503,13 @@ const el = {
   // Final hardcoded text fixes - added 2025-08-09
   'account.deletionPage.deleting': 'Διαγραφή...',
   'account.deletionPage.deleteAccountPermanently': 'Διαγραφή λογαριασμού οριστικά',
+
+  // Nintendo-specific translation keys - added 2025-08-09
+  'terms.nintendoCopyrightNotice': 'Ειδοποίηση Πνευματικών Δικαιωμάτων Nintendo:',
+  'terms.nintendoFullDisclaimer': 'Το Battle64 είναι μια ανεξάρτητη κοινότητα retro gaming και δεν συνδέεται, δεν εγκρίνεται ή δεν χρηματοδοτείται από την Nintendo Co., Ltd. Το Nintendo 64, N64, και όλοι οι σχετικοί χαρακτήρες, ονόματα, σήματα, εμβλήματα και εικόνες είναι εμπορικά σήματα της Nintendo. Όλα τα άλλα εμπορικά σήματα είναι ιδιοκτησία των αντίστοιχων κατόχων τους.',
+  'marketplace.n64ControllerTitle': 'Χειριστήριο N64 - Αυθεντικό Nintendo',
+  'marketplace.n64ControllerDescription': 'Επίσημο χειριστήριο Nintendo σε πολύ καλή κατάσταση',
+  'marketplace.n64ControllerDescriptionDE': 'Αυθεντικό χειριστήριο N64 σε καλή κατάσταση. Όλα τα κουμπιά λειτουργούν τέλεια.',
 }
 
 export default el

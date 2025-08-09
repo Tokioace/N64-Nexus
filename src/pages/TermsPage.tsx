@@ -169,10 +169,10 @@ const TermsPage: React.FC = () => {
               </p>
               <div className="mt-4 p-4 bg-slate-700/50 border border-slate-600 rounded-lg">
                 <p className="text-slate-300 text-sm font-medium mb-2">
-                  Nintendo Copyright Notice:
+                  {t('terms.nintendoCopyrightNotice')}
                 </p>
                 <p className="text-slate-400 text-sm leading-relaxed">
-                  Battle64 is an independent retro gaming community and is not affiliated with, endorsed by, or sponsored by Nintendo Co., Ltd. Nintendo 64, N64, and all related characters, names, marks, emblems and images are trademarks of Nintendo. All other trademarks are property of their respective owners.
+                  {t('terms.nintendoFullDisclaimer')}
                 </p>
               </div>
             </section>

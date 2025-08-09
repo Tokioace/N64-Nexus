@@ -1503,6 +1503,13 @@ const zh = {
   // Final hardcoded text fixes - added 2025-08-09
   'account.deletionPage.deleting': '删除中...',
   'account.deletionPage.deleteAccountPermanently': '永久删除账户',
+
+  // Nintendo-specific translation keys - added 2025-08-09
+  'terms.nintendoCopyrightNotice': 'Nintendo版权声明：',
+  'terms.nintendoFullDisclaimer': 'Battle64是一个独立的复古游戏社区，与任天堂株式会社没有关联，也未得到其认可或赞助。Nintendo 64、N64以及所有相关角色、名称、标识、徽章和图像都是任天堂的商标。所有其他商标均为其各自所有者的财产。',
+  'marketplace.n64ControllerTitle': 'N64手柄 - 任天堂原装',
+  'marketplace.n64ControllerDescription': '任天堂官方手柄，状况很好',
+  'marketplace.n64ControllerDescriptionDE': '原装N64手柄，状况良好。所有按键都完美工作。',
 }
 
 export default zh

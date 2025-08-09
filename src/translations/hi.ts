@@ -1453,6 +1453,13 @@ const hi = {
   // Final hardcoded text fixes - added 2025-08-09
   'account.deletionPage.deleting': 'हटा रहा है...',
   'account.deletionPage.deleteAccountPermanently': 'खाता स्थायी रूप से हटाएं',
+
+  // Nintendo-specific translation keys - added 2025-08-09
+  'terms.nintendoCopyrightNotice': 'Nintendo कॉपीराइट नोटिस:',
+  'terms.nintendoFullDisclaimer': 'Battle64 एक स्वतंत्र रेट्रो गेमिंग कम्युनिटी है और Nintendo Co., Ltd. से संबद्ध, समर्थित या प्रायोजित नहीं है। Nintendo 64, N64, और सभी संबंधित पात्र, नाम, चिह्न, प्रतीक और छवियां Nintendo के ट्रेडमार्क हैं। अन्य सभी ट्रेडमार्क उनके संबंधित स्वामियों की संपत्ति हैं।',
+  'marketplace.n64ControllerTitle': 'N64 कंट्रोलर - मूल Nintendo',
+  'marketplace.n64ControllerDescription': 'बहुत अच्छी स्थिति में आधिकारिक Nintendo कंट्रोलर',
+  'marketplace.n64ControllerDescriptionDE': 'अच्छी स्थिति में मूल N64 कंट्रोलर। सभी बटन पूरी तरह से काम करते हैं।',
 }
 
 export default hi

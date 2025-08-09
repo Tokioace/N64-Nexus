@@ -1439,6 +1439,13 @@ const ru = {
   // Final hardcoded text fixes - added 2025-08-09
   'account.deletionPage.deleting': 'Удаление...',
   'account.deletionPage.deleteAccountPermanently': 'Удалить аккаунт навсегда',
+
+  // Nintendo-specific translation keys - added 2025-08-09
+  'terms.nintendoCopyrightNotice': 'Уведомление об авторских правах Nintendo:',
+  'terms.nintendoFullDisclaimer': 'Battle64 является независимым сообществом ретро-игр и не связан с Nintendo Co., Ltd., не одобрен и не спонсируется ими. Nintendo 64, N64 и все связанные персонажи, имена, знаки, эмблемы и изображения являются торговыми марками Nintendo. Все остальные торговые марки являются собственностью их соответствующих владельцев.',
+  'marketplace.n64ControllerTitle': 'Контроллер N64 - Оригинальный Nintendo',
+  'marketplace.n64ControllerDescription': 'Официальный контроллер Nintendo в очень хорошем состоянии',
+  'marketplace.n64ControllerDescriptionDE': 'Оригинальный контроллер N64 в хорошем состоянии. Все кнопки работают идеально.',
 }
 
 export default ru

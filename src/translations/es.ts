@@ -1495,6 +1495,13 @@ const es = {
   // Final hardcoded text fixes - added 2025-08-09
   'account.deletionPage.deleting': 'Eliminando...',
   'account.deletionPage.deleteAccountPermanently': 'Eliminar cuenta permanentemente',
+
+  // Nintendo-specific translation keys - added 2025-08-09
+  'terms.nintendoCopyrightNotice': 'Aviso de Derechos de Autor de Nintendo:',
+  'terms.nintendoFullDisclaimer': 'Battle64 es una comunidad independiente de juegos retro y no está afiliada, respaldada o patrocinada por Nintendo Co., Ltd. Nintendo 64, N64, y todos los personajes, nombres, marcas, emblemas e imágenes relacionados son marcas registradas de Nintendo. Todas las demás marcas son propiedad de sus respectivos propietarios.',
+  'marketplace.n64ControllerTitle': 'Control N64 - Nintendo Original',
+  'marketplace.n64ControllerDescription': 'Control oficial de Nintendo en muy buena condición',
+  'marketplace.n64ControllerDescriptionDE': 'Control N64 original en buena condición. Todos los botones funcionan perfectamente.',
 }
 
 export default es

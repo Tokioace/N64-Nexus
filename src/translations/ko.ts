@@ -1453,6 +1453,13 @@ const ko = {
   // Final hardcoded text fixes - added 2025-08-09
   'account.deletionPage.deleting': '삭제 중...',
   'account.deletionPage.deleteAccountPermanently': '계정 영구 삭제',
+
+  // Nintendo-specific translation keys - added 2025-08-09
+  'terms.nintendoCopyrightNotice': '닌텐도 저작권 고지：',
+  'terms.nintendoFullDisclaimer': 'Battle64는 독립적인 레트로 게임 커뮤니티이며 Nintendo Co., Ltd.와 제휴, 승인 또는 후원 관계에 있지 않습니다. Nintendo 64, N64 및 관련된 모든 캐릭터, 이름, 마크, 엠블럼 및 이미지는 Nintendo의 상표입니다. 다른 모든 상표는 각각의 소유자의 재산입니다.',
+  'marketplace.n64ControllerTitle': 'N64 컨트롤러 - 닌텐도 정품',
+  'marketplace.n64ControllerDescription': '닌텐도 정품 컨트롤러, 매우 좋은 상태',
+  'marketplace.n64ControllerDescriptionDE': '원래 N64 컨트롤러, 좋은 상태. 모든 버튼이 완벽하게 작동합니다.',
 }
 
 export default ko

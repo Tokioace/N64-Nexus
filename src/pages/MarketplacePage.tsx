@@ -226,8 +226,8 @@ const MarketplacePage: React.FC = () => {
             },
             {
               id: '2',
-              title: 'N64 Controller - Original Nintendo',
-              description: 'Originaler N64 Controller in gutem Zustand. Alle Knöpfe funktionieren einwandfrei.',
+              title: t('marketplace.n64ControllerTitle'),
+              description: t('marketplace.n64ControllerDescriptionDE'),
               price: 25.00,
               currency: 'EUR',
               condition: 'good',

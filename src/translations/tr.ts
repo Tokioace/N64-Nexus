@@ -1455,6 +1455,13 @@ const tr = {
   // Final hardcoded text fixes - added 2025-08-09
   'account.deletionPage.deleting': 'Siliniyor...',
   'account.deletionPage.deleteAccountPermanently': 'Hesabı kalıcı olarak sil',
+
+  // Nintendo-specific translation keys - added 2025-08-09
+  'terms.nintendoCopyrightNotice': 'Nintendo Telif Hakkı Bildirimi:',
+  'terms.nintendoFullDisclaimer': 'Battle64 bağımsız bir retro oyun topluluğudur ve Nintendo Co., Ltd. ile bağlantılı değildir, onaylanmamıştır veya sponsorlanmamıştır. Nintendo 64, N64 ve ilgili tüm karakterler, isimler, markalar, amblemler ve görüntüler Nintendo\'nun ticari markalarıdır. Diğer tüm ticari markalar ilgili sahiplerinin mülkiyetindedir.',
+  'marketplace.n64ControllerTitle': 'N64 Kontrolcüsü - Orijinal Nintendo',
+  'marketplace.n64ControllerDescription': 'Çok iyi durumda resmi Nintendo kontrolcüsü',
+  'marketplace.n64ControllerDescriptionDE': 'İyi durumda orijinal N64 kontrolcüsü. Tüm düğmeler mükemmel çalışıyor.',
 }
 
 export default tr
