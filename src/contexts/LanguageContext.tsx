@@ -57,6 +57,7 @@ const translationCache: Partial<Record<Language, Record<string, string>>> = {}
 // Lazy load translations - using import() with template literal in a way that Vite can tree-shake
 const loadTranslations = async (language: Language): Promise<Record<string, string>> => {
   if (translationCache[language]) {
+    console.log(`✅ Using cached translations for ${language}`)
     return translationCache[language]!
   }
 
@@ -73,9 +74,11 @@ const loadTranslations = async (language: Language): Promise<Record<string, stri
     console.error(`❌ Failed to load translations for ${language}:`, error)
     // Fallback to English
     if (language !== 'en') {
+      console.log(`🔄 Falling back to English translations...`)
       return loadTranslations('en')
     }
     // If English also fails, return empty object
+    console.error('❌ Even English translations failed to load!')
     return {}
   }
 }
@@ -85,11 +88,12 @@ interface LanguageProviderProps {
 }
 
 export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) => {
-  const [currentLanguage, setCurrentLanguage] = useState<Language>('de') // Default to German
+  // Start with English as default instead of German
+  const [currentLanguage, setCurrentLanguage] = useState<Language>('en')
   const [translations, setTranslations] = useState<Record<string, string>>({})
-  const [isLoading, setIsLoading] = useState(false) // Start as false to not block React
+  const [isLoading, setIsLoading] = useState(true) // Start as true to load initial translations
 
-  console.log('🔄 LanguageProvider rendering with translations:', Object.keys(translations).length, 'keys')
+  console.log('🔄 LanguageProvider rendering with translations:', Object.keys(translations).length, 'keys for', currentLanguage)
 
   // Load translations when language changes - non-blocking
   useEffect(() => {
@@ -107,6 +111,7 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
         if (mounted) {
           setTranslations(languageTranslations)
           console.log(`✅ Translations set for ${currentLanguage}:`, Object.keys(languageTranslations).length, 'keys')
+          console.log('📝 Sample translations:', Object.entries(languageTranslations).slice(0, 3))
         }
       } catch (error) {
         console.error('Error loading translations:', error)
@@ -120,7 +125,7 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
       }
     }
 
-    // Start loading translations (non-blocking)
+    // Start loading translations immediately
     loadLanguageTranslations()
 
     return () => {
@@ -128,8 +133,17 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
     }
   }, [currentLanguage])
 
+  // Load saved language on mount (after English loads first)
+  useEffect(() => {
+    const savedLanguage = localStorage.getItem('battle64-language') as Language
+    if (savedLanguage && savedLanguage !== currentLanguage) {
+      console.log(`🔄 Loading saved language: ${savedLanguage}`)
+      setCurrentLanguage(savedLanguage)
+    }
+  }, [currentLanguage])
+
   const setLanguage = (language: Language) => {
-    console.log(`🌍 Switching language to: ${language}`)
+    console.log(`🌍 Switching language from ${currentLanguage} to: ${language}`)
     setCurrentLanguage(language)
     
     // Apply RTL and language settings
@@ -148,20 +162,11 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
     }
   }
 
-  // Load saved language on mount (non-blocking)
-  useEffect(() => {
-    const savedLanguage = localStorage.getItem('battle64-language') as Language
-    if (savedLanguage) {
-      console.log(`🔄 Loading saved language: ${savedLanguage}`)
-      setCurrentLanguage(savedLanguage)
-    }
-  }, [])
-
   const t = (key: TranslationKeys, params?: Record<string, string>): string => {
     let translation = translations[key]
     
     if (!translation) {
-      console.warn(`⚠️ Missing translation for key: ${key} (language: ${currentLanguage})`)
+      console.warn(`⚠️ Missing translation for key: "${key}" (language: ${currentLanguage})`)
       return key // Return the key if translation is missing
     }
 
