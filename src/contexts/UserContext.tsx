@@ -10,48 +10,72 @@ const UserContext = createContext<UserContextType | undefined>(undefined)
 export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null)
   const [isAuthenticated, setIsAuthenticated] = useState(false)
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(false) // Start as false to not block React
 
-  // Initialisierung und Auth State Listener
+  // Non-blocking initialization - happens after React mounts
   useEffect(() => {
     let mounted = true
 
     const initializeAuth = async () => {
+      // Only set loading to true after React has mounted
+      if (mounted) {
+        setIsLoading(true)
+      }
+
       try {
+        console.log('🔄 Initializing auth (non-blocking)...')
+        
         // Prüfe aktuelle Session
         const session = await authService.getCurrentSession()
         
         if (session?.user && mounted) {
+          console.log('✅ Session found, loading user...')
           const currentUser = await authService.getCurrentUser()
           if (currentUser && mounted) {
             setUser(currentUser)
             setIsAuthenticated(true)
+            console.log('✅ User loaded successfully')
           }
+        } else {
+          console.log('ℹ️ No active session found')
         }
       } catch (error) {
+        console.warn('⚠️ Auth initialization error (non-critical):', error)
         if (import.meta.env.DEV) {
           logger.error('Auth initialization error:', error)
         }
+        // Don't throw - just continue without auth
       } finally {
         if (mounted) {
           setIsLoading(false)
+          console.log('✅ Auth initialization complete')
         }
       }
     }
 
-    // Auth State Change Listener
-    const { data: { subscription } } = authService.onAuthStateChange(async (newUser) => {
-      if (mounted) {
-        setUser(newUser)
-        setIsAuthenticated(!!newUser)
-      }
-    })
+    // Auth State Change Listener - also non-blocking
+    let subscription: any = null
+    try {
+      const { data } = authService.onAuthStateChange(async (newUser) => {
+        if (mounted) {
+          console.log('🔄 Auth state changed:', newUser ? 'logged in' : 'logged out')
+          setUser(newUser)
+          setIsAuthenticated(!!newUser)
+        }
+      })
+      subscription = data.subscription
+    } catch (error) {
+      console.warn('⚠️ Auth listener setup error (non-critical):', error)
+    }
 
+    // Start auth initialization (non-blocking)
     initializeAuth()
 
     return () => {
       mounted = false
-      subscription.unsubscribe()
+      if (subscription) {
+        subscription.unsubscribe()
+      }
     }
   }, [])
 

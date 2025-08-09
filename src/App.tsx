@@ -1,26 +1,30 @@
 import React, { useEffect, useState } from 'react'
 import { Routes, Route } from 'react-router-dom'
+import { UserProvider, useUser } from './contexts/UserContext'
 
 console.log('🚀 App.tsx loading...')
 
-function App() {
-  console.log('🔄 App component rendering...')
+function AppContent() {
+  const { user, isAuthenticated, isLoading } = useUser()
   
-  useEffect(() => {
-    console.log('✅ App component mounted!')
-  }, [])
-
+  console.log('🔄 AppContent rendering, auth state:', { isAuthenticated, isLoading, hasUser: !!user })
+  
   return (
     <div style={{ padding: '20px', color: 'white', background: '#1e293b', minHeight: '100vh' }}>
-      <h1>🎮 Battle64 - No Context Providers!</h1>
-      <p>✅ React working without any context providers!</p>
-      <p>🔍 Testing to confirm UserProvider is the issue...</p>
+      <h1>🎮 Battle64 - Fixed UserProvider!</h1>
+      <p>✅ React + Non-blocking UserProvider working!</p>
+      <div style={{ background: '#334155', padding: '15px', borderRadius: '8px', margin: '10px 0' }}>
+        <h3>Auth Status:</h3>
+        <p>🔄 Loading: {isLoading ? 'Yes' : 'No'}</p>
+        <p>🔐 Authenticated: {isAuthenticated ? 'Yes' : 'No'}</p>
+        <p>👤 User: {user ? user.username || 'Unknown' : 'None'}</p>
+      </div>
       <Routes>
         <Route path="/" element={
           <div>
             <h2>Home Page</h2>
             <p>Welcome to Battle64!</p>
-            <p>If this works, UserProvider is blocking React mounting.</p>
+            <p>Auth initialization happens in background after React mounts.</p>
           </div>
         } />
         <Route path="*" element={
@@ -31,6 +35,20 @@ function App() {
         } />
       </Routes>
     </div>
+  )
+}
+
+function App() {
+  console.log('🔄 App component rendering...')
+  
+  useEffect(() => {
+    console.log('✅ App component mounted!')
+  }, [])
+
+  return (
+    <UserProvider>
+      <AppContent />
+    </UserProvider>
   )
 }
 
