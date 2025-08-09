@@ -41,6 +41,7 @@ export const getLocaleString = (language: Language): string => {
     case 'hi': return 'hi-IN'
     case 'el': return 'el-GR'
     case 'tr': return 'tr-TR'
+    case 'ko': return 'ko-KR'
     default: return 'en-US'
   }
 }
@@ -53,7 +54,7 @@ const isRTLLanguage = (language: Language): boolean => {
 // Translation cache
 const translationCache: Partial<Record<Language, Record<string, string>>> = {}
 
-// Lazy load translations
+// Lazy load translations - using import() with template literal in a way that Vite can tree-shake
 const loadTranslations = async (language: Language): Promise<Record<string, string>> => {
   if (translationCache[language]) {
     return translationCache[language]!
@@ -61,12 +62,15 @@ const loadTranslations = async (language: Language): Promise<Record<string, stri
 
   try {
     console.log(`🔄 Loading translations for ${language}...`)
-    const module = await import(`../translations/${language}`)
-    translationCache[language] = module.default
-    console.log(`✅ Translations loaded for ${language}`)
-    return module.default
+    
+    // Use dynamic import with explicit path construction to enable proper code splitting
+    const translationModule = await import(/* @vite-ignore */ `../translations/${language}.ts`)
+    
+    translationCache[language] = translationModule.default
+    console.log(`✅ Translations loaded for ${language}:`, Object.keys(translationModule.default).length, 'keys')
+    return translationModule.default
   } catch (error) {
-    console.warn(`⚠️ Failed to load translations for ${language}, falling back to English`)
+    console.error(`❌ Failed to load translations for ${language}:`, error)
     // Fallback to English
     if (language !== 'en') {
       return loadTranslations('en')
@@ -85,7 +89,7 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
   const [translations, setTranslations] = useState<Record<string, string>>({})
   const [isLoading, setIsLoading] = useState(false) // Start as false to not block React
 
-  console.log('🔄 Lightweight LanguageProvider rendering...')
+  console.log('🔄 LanguageProvider rendering with translations:', Object.keys(translations).length, 'keys')
 
   // Load translations when language changes - non-blocking
   useEffect(() => {
@@ -97,12 +101,12 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
       }
 
       try {
-        console.log(`🔄 Lazy-loading translations for ${currentLanguage}...`)
+        console.log(`🔄 Loading translations for ${currentLanguage}...`)
         const languageTranslations = await loadTranslations(currentLanguage)
         
         if (mounted) {
           setTranslations(languageTranslations)
-          console.log(`✅ Translations loaded for ${currentLanguage}`)
+          console.log(`✅ Translations set for ${currentLanguage}:`, Object.keys(languageTranslations).length, 'keys')
         }
       } catch (error) {
         console.error('Error loading translations:', error)
@@ -154,7 +158,12 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
   }, [])
 
   const t = (key: TranslationKeys, params?: Record<string, string>): string => {
-    let translation = translations[key] || key
+    let translation = translations[key]
+    
+    if (!translation) {
+      console.warn(`⚠️ Missing translation for key: ${key} (language: ${currentLanguage})`)
+      return key // Return the key if translation is missing
+    }
 
     // Replace parameters if provided
     if (params) {
