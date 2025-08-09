@@ -1,5 +1,21 @@
 import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react'
 
+// Static imports for all translations
+import en from '../translations/en'
+import de from '../translations/de'
+import fr from '../translations/fr'
+import es from '../translations/es'
+import it from '../translations/it'
+import pt from '../translations/pt'
+import ru from '../translations/ru'
+import ja from '../translations/ja'
+import ko from '../translations/ko'
+import zh from '../translations/zh'
+import ar from '../translations/ar'
+import hi from '../translations/hi'
+import el from '../translations/el'
+import tr from '../translations/tr'
+
 // Define Language type
 export type Language = 'de' | 'en' | 'fr' | 'it' | 'es' | 'el' | 'tr' | 'zh' | 'ja' | 'ru' | 'pt' | 'hi' | 'ar' | 'ko'
 
@@ -49,8 +65,26 @@ export const getLocaleString = (language: Language): string => {
 // RTL languages
 const RTL_LANGUAGES: Language[] = ['ar']
 
-// Import the translation loader utility
-import { loadTranslation, preloadTranslations } from '../utils/translationLoader'
+// Static translations object
+const getTranslations = (language: Language): Record<string, any> => {
+  switch (language) {
+    case 'en': return en
+    case 'de': return de
+    case 'fr': return fr
+    case 'es': return es
+    case 'it': return it
+    case 'pt': return pt
+    case 'ru': return ru
+    case 'ja': return ja
+    case 'ko': return ko
+    case 'zh': return zh
+    case 'ar': return ar
+    case 'hi': return hi
+    case 'el': return el
+    case 'tr': return tr
+    default: return en
+  }
+}
 
 // Get browser language with fallback
 const getBrowserLanguage = (): Language => {
@@ -69,47 +103,15 @@ const getBrowserLanguage = (): Language => {
 
 export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [currentLanguage, setCurrentLanguage] = useState<Language>(getBrowserLanguage())
-  const [translations, setTranslations] = useState<Record<string, any>>({})
-  const [isLoading, setIsLoading] = useState(true)
+  const [translations, setTranslations] = useState<Record<string, any>>(() => getTranslations(getBrowserLanguage()))
+  const [isLoading, setIsLoading] = useState(false)
 
-  // Load translations when language changes
+  // Update translations when language changes
   useEffect(() => {
-    const loadLanguage = async () => {
-      setIsLoading(true)
-      try {
-        const newTranslations = await loadTranslation(currentLanguage)
-        setTranslations(newTranslations)
-      } catch (error) {
-        console.error('Failed to load translations:', error)
-        // Set empty translations as fallback
-        setTranslations({})
-      } finally {
-        setIsLoading(false)
-      }
-    }
-
-    loadLanguage()
+    setIsLoading(true)
+    setTranslations(getTranslations(currentLanguage))
+    setIsLoading(false)
   }, [currentLanguage])
-
-  // Preload common languages on mount for better UX
-  useEffect(() => {
-    // Preload English and the user's browser language if different
-    const languagesToPreload: Language[] = ['en']
-    const browserLang = getBrowserLanguage()
-    if (browserLang !== 'en') {
-      languagesToPreload.push(browserLang)
-    }
-    
-    // Also preload German as it's commonly used
-    if (!languagesToPreload.includes('de')) {
-      languagesToPreload.push('de')
-    }
-    
-    // Preload in the background without blocking the UI
-    preloadTranslations(languagesToPreload).catch(error => {
-      console.warn('Failed to preload translations:', error)
-    })
-  }, [])
 
   const setLanguage = (language: Language) => {
     setCurrentLanguage(language)
