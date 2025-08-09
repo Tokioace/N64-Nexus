@@ -684,6 +684,20 @@ const pt = {
   'browserRedirect.troubleshoot': 'O redirecionamento automático não está funcionando?',
   'browserRedirect.manualInstructions': 'Clique em "Redirecionar Agora" ou copie a URL da barra de endereços.',
 
+  // Safari Redirect
+  'auth.safariRedirectSuccess': '🎉 Você retornou com sucesso ao Safari! Seu registro foi confirmado.',
+  'safari.redirectTitle': 'Voltar ao Safari',
+  'safari.redirectMessage': 'Abra o link no Safari para completar seu registro.',
+  'safari.openInSafari': 'Abrir no Safari',
+  'safari.copyURL': 'Copiar URL',
+  'safari.copied': 'Copiado!',
+  'safari.manualStepsTitle': 'Passos manuais:',
+  'safari.step1': 'Copie a URL acima',
+  'safari.step2': 'Abra o Safari',
+  'safari.step3': 'Cole a URL na barra de endereços',
+  'safari.manualInstructions': 'Por favor abra o Safari manualmente e cole a URL.',
+
+
   'chat.title': 'Chat da Comunidade',
   'chat.onlineUsers': 'usuários online',
   'chat.chats': 'Chats',

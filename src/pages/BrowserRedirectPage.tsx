@@ -28,22 +28,53 @@ const BrowserRedirectPage: React.FC = () => {
     const countdownInterval = setInterval(() => {
       setCountdown(prev => {
         if (prev <= 1) {
-          clearInterval(countdownInterval)
-          // Try to redirect to preferred browser
-          redirectToPreferredBrowser(targetURL, preferredBrowser || undefined)
+          // Validate URL before redirecting
+          try {
+            const url = new URL(targetURL)
+            const currentOrigin = window.location.origin
+            
+            if (url.origin === currentOrigin) {
+              // Try to redirect to preferred browser
+              redirectToPreferredBrowser(targetURL, preferredBrowser || undefined)
+            } else {
+              console.warn('Redirect to external URL blocked for security:', targetURL)
+              window.location.href = '/'
+            }
+          } catch (error) {
+            console.error('Invalid URL:', targetURL, error)
+            window.location.href = '/'
+          }
           return 0
         }
         return prev - 1
       })
     }, 1000)
 
-    return () => clearInterval(countdownInterval)
+    // Cleanup interval on unmount or when dependencies change
+    return () => {
+      clearInterval(countdownInterval)
+    }
   }, [searchParams])
 
   const handleManualRedirect = () => {
     const targetURL = searchParams.get('target')
     if (targetURL) {
-      window.location.href = targetURL
+      try {
+        // Validate URL to prevent open redirect attacks
+        const url = new URL(targetURL)
+        const currentOrigin = window.location.origin
+        
+        // Only allow redirects to the same origin
+        if (url.origin === currentOrigin) {
+          window.location.href = targetURL
+        } else {
+          console.warn('Redirect to external URL blocked for security:', targetURL)
+          window.location.href = '/'
+        }
+      } catch (error) {
+        console.error('Invalid URL:', targetURL, error)
+        window.location.href = '/'
+      }
     }
   }
 

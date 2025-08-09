@@ -160,7 +160,13 @@ const HomePage: React.FC = () => {
       const type = searchParams.get('type')
       const safariRedirect = searchParams.get('safari_redirect')
 
-      if (registration === 'success' && tokenHash && type === 'email') {
+      // Validate parameters to prevent malicious input
+      if (registration === 'success' && 
+          tokenHash && 
+          typeof tokenHash === 'string' && 
+          tokenHash.length > 10 && 
+          tokenHash.length < 200 &&
+          type === 'email') {
         try {
           // Verify the email confirmation token
           const { data, error } = await supabase.auth.verifyOtp({
@@ -224,8 +230,9 @@ const HomePage: React.FC = () => {
             // If this was a Safari redirect, show special message
             if (safariRedirect === 'true') {
               // Show Safari-specific success message
+              const message = t('auth.safariRedirectSuccess')
               setTimeout(() => {
-                alert(t('auth.safariRedirectSuccess'))
+                alert(message)
               }, 500)
             }
           }

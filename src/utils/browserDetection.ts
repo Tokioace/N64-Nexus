@@ -15,6 +15,17 @@ export interface BrowserInfo {
  * Detect current browser information
  */
 export function detectBrowser(): BrowserInfo {
+  // Check if we're in a browser environment
+  if (typeof navigator === 'undefined' || typeof navigator.userAgent === 'undefined') {
+    return {
+      name: 'unknown',
+      version: 'unknown',
+      isMobile: false,
+      isIOS: false,
+      isAndroid: false
+    }
+  }
+
   const userAgent = navigator.userAgent.toLowerCase()
   
   let name = 'unknown'
@@ -68,14 +79,19 @@ export function generateBrowserSpecificURL(baseURL: string, browserInfo: Browser
 
 /**
  * Create deep links for different browsers
+ * Note: Deep links are unreliable, so we primarily use regular URLs
  */
 export function createDeepLinks(targetURL: string): Record<string, string> {
   const encodedURL = encodeURIComponent(targetURL)
   
   return {
-    safari: `x-safari-https://${targetURL.replace('https://', '')}`,
-    chrome: `googlechrome://${targetURL}`,
+    // Safari doesn't have reliable deep links, use regular URL
+    safari: targetURL,
+    // Chrome deep link (may not work on all systems)
+    chrome: `googlechrome://${targetURL.replace('https://', '')}`,
+    // Firefox deep link (limited support)
     firefox: `firefox://open-url?url=${encodedURL}`,
+    // Edge deep link (limited support)
     edge: `microsoft-edge:${targetURL}`,
     // Fallback to regular URL
     default: targetURL
@@ -98,7 +114,9 @@ export function generateSmartRedirectURL(baseURL: string): string {
   }
   
   // For other browsers, create an intermediate redirect page
-  const redirectURL = new URL(window.location.origin + '/browser-redirect')
+  // Get origin safely (works in both browser and server environments)
+  const origin = typeof window !== 'undefined' ? window.location.origin : new URL(baseURL).origin
+  const redirectURL = new URL(origin + '/browser-redirect')
   redirectURL.searchParams.set('target', urlWithBrowserInfo)
   redirectURL.searchParams.set('browser', browserInfo.name)
   

@@ -60,6 +60,9 @@ class AuthService {
       const baseRedirectURL = `${window.location.origin}/?registration=success`
       const smartRedirectURL = generateSmartRedirectURL(baseRedirectURL)
 
+      // Detect browser info once to avoid double calls
+      const browserInfo = detectBrowser()
+
       // Registriere Benutzer in Supabase Auth
       const { data: authData, error: authError } = await supabase.auth.signUp({
         email: data.email,
@@ -75,8 +78,8 @@ class AuthService {
             privacy_accepted: data.privacyAccepted,
             copyright_acknowledged: data.copyrightAcknowledged,
             // Store browser info for later use
-            preferred_browser: detectBrowser().name,
-            browser_version: detectBrowser().version
+            preferred_browser: browserInfo.name,
+            browser_version: browserInfo.version
           }
         }
       })
