@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import { supabase } from '../lib/supabase'
 import { useLanguage } from '../contexts/LanguageContext'
-import { CheckCircle, XCircle, Loader2 } from 'lucide-react'
+import { CheckCircle, XCircle, Loader2, Gamepad2 } from 'lucide-react'
 
 const EmailConfirmPage: React.FC = () => {
   const [searchParams] = useSearchParams()
@@ -10,6 +10,7 @@ const EmailConfirmPage: React.FC = () => {
   const { t } = useLanguage()
   const [status, setStatus] = useState<'loading' | 'success' | 'error'>('loading')
   const [message, setMessage] = useState('')
+  const [username, setUsername] = useState('')
 
   useEffect(() => {
     const handleEmailConfirmation = async () => {
@@ -40,19 +41,22 @@ const EmailConfirmPage: React.FC = () => {
           // Check if profile already exists
           const { data: existingProfile } = await supabase
             .from('profiles')
-            .select('id')
+            .select('id, username')
             .eq('id', data.user.id)
             .single()
+
+          let userUsername = 'User'
 
           if (!existingProfile) {
             // Create profile for confirmed user
             const userData = data.user.user_metadata
+            userUsername = userData.username || 'User'
             
             const { error: profileError } = await supabase
               .from('profiles')
               .insert({
                 id: data.user.id,
-                username: userData.username || 'User',
+                username: userUsername,
                 level: 1,
                 xp: 0,
                 region: userData.region || 'PAL',
@@ -73,20 +77,18 @@ const EmailConfirmPage: React.FC = () => {
               setMessage('Fehler beim Erstellen des Profils')
               return
             }
+          } else {
+            userUsername = existingProfile.username
           }
 
+          setUsername(userUsername)
           setStatus('success')
-          setMessage('E-Mail erfolgreich bestätigt! Sie werden weitergeleitet...')
+          setMessage('E-Mail erfolgreich bestätigt! Sie werden zur Startseite weitergeleitet...')
           
-          // Redirect to login page after 3 seconds
+          // Redirect to home page after 4 seconds
           setTimeout(() => {
-            navigate('/auth', { 
-              state: { 
-                message: 'E-Mail bestätigt! Sie können sich jetzt anmelden.',
-                showLogin: true 
-              }
-            })
-          }, 3000)
+            navigate('/', { replace: true })
+          }, 4000)
         } else {
           setStatus('error')
           setMessage('E-Mail-Bestätigung fehlgeschlagen')
@@ -102,8 +104,8 @@ const EmailConfirmPage: React.FC = () => {
   }, [searchParams, navigate])
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center p-4">
-      <div className="bg-slate-800 rounded-xl shadow-2xl p-8 max-w-md w-full text-center">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900 flex items-center justify-center p-4">
+      <div className="bg-slate-800/90 backdrop-blur-sm rounded-xl shadow-2xl p-8 max-w-md w-full text-center border border-slate-700">
         <div className="mb-6">
           {status === 'loading' && (
             <>
@@ -119,17 +121,34 @@ const EmailConfirmPage: React.FC = () => {
           
           {status === 'success' && (
             <>
-              <CheckCircle className="w-16 h-16 text-green-400 mx-auto mb-4" />
-              <h1 className="text-2xl font-bold text-slate-100 mb-2">
-                Bestätigung erfolgreich!
+              <div className="inline-flex items-center justify-center w-16 h-16 bg-green-600 rounded-full mb-4">
+                <CheckCircle className="w-8 h-8 text-white" />
+              </div>
+              <h1 className="text-3xl font-bold text-slate-100 mb-2">
+                {t('auth.registrationSucceeded')}
               </h1>
-              <p className="text-slate-400 mb-4">
+              <h2 className="text-xl text-blue-400 mb-4">
+                {t('auth.welcomeToCommunity')}, <span className="font-bold">{username}</span>!
+              </h2>
+              <p className="text-slate-300 mb-6">
                 {message}
               </p>
-              <div className="bg-green-600/20 border border-green-600/30 rounded-lg p-4">
-                <p className="text-green-200 text-sm">
-                  Ihr Konto wurde erfolgreich aktiviert. Sie können sich jetzt anmelden.
-                </p>
+              <div className="bg-gradient-to-r from-green-600/20 to-blue-600/20 border border-green-600/30 rounded-lg p-6 mb-4">
+                <div className="flex items-center justify-center mb-3">
+                  <Gamepad2 className="w-6 h-6 text-green-400 mr-2" />
+                  <p className="text-green-200 font-medium">
+                    Ihr Konto wurde erfolgreich aktiviert!
+                  </p>
+                </div>
+                                 <p className="text-slate-300 text-sm mb-3">
+                   {t('auth.checkOutEvents')} und werden Sie Teil der Community.
+                 </p>
+                <button
+                  onClick={() => navigate('/events')}
+                  className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors text-sm"
+                >
+                  Events entdecken
+                </button>
               </div>
             </>
           )}
