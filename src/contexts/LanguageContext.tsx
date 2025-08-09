@@ -1,5 +1,21 @@
 import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react'
 
+// Import all translations statically - this ensures they're bundled
+import de from '../translations/de'
+import en from '../translations/en'
+import fr from '../translations/fr'
+import it from '../translations/it'
+import es from '../translations/es'
+import el from '../translations/el'
+import tr from '../translations/tr'
+import zh from '../translations/zh'
+import ja from '../translations/ja'
+import ru from '../translations/ru'
+import pt from '../translations/pt'
+import hi from '../translations/hi'
+import ar from '../translations/ar'
+import ko from '../translations/ko'
+
 // Define Language type
 export type Language = 'de' | 'en' | 'fr' | 'it' | 'es' | 'el' | 'tr' | 'zh' | 'ja' | 'ru' | 'pt' | 'hi' | 'ar' | 'ko'
 
@@ -51,36 +67,33 @@ const isRTLLanguage = (language: Language): boolean => {
   return language === 'ar'
 }
 
-// Translation cache
-const translationCache: Partial<Record<Language, Record<string, string>>> = {}
+// Static translations object - all bundled but accessed on demand
+const allTranslations: Record<Language, Record<string, string>> = {
+  de,
+  en,
+  fr,
+  it,
+  es,
+  el,
+  tr,
+  zh,
+  ja,
+  ru,
+  pt,
+  hi,
+  ar,
+  ko
+}
 
-// Lazy load translations - using import() without file extension to let Vite handle it
-const loadTranslations = async (language: Language): Promise<Record<string, string>> => {
-  if (translationCache[language]) {
-    console.log(`✅ Using cached translations for ${language}`)
-    return translationCache[language]!
+// Get translations for a specific language
+const getTranslations = (language: Language): Record<string, string> => {
+  const translations = allTranslations[language]
+  if (!translations) {
+    console.warn(`⚠️ No translations found for language: ${language}, falling back to English`)
+    return allTranslations.en || {}
   }
-
-  try {
-    console.log(`🔄 Loading translations for ${language}...`)
-    
-    // Use dynamic import without .ts extension - Vite will handle the correct path
-    const translationModule = await import(`../translations/${language}`)
-    
-    translationCache[language] = translationModule.default
-    console.log(`✅ Translations loaded for ${language}:`, Object.keys(translationModule.default).length, 'keys')
-    return translationModule.default
-  } catch (error) {
-    console.error(`❌ Failed to load translations for ${language}:`, error)
-    // Fallback to English
-    if (language !== 'en') {
-      console.log(`🔄 Falling back to English translations...`)
-      return loadTranslations('en')
-    }
-    // If English also fails, return empty object
-    console.error('❌ Even English translations failed to load!')
-    return {}
-  }
+  console.log(`✅ Retrieved translations for ${language}:`, Object.keys(translations).length, 'keys')
+  return translations
 }
 
 interface LanguageProviderProps {
@@ -88,52 +101,28 @@ interface LanguageProviderProps {
 }
 
 export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) => {
-  // Start with English as default instead of German
+  // Start with English as default
   const [currentLanguage, setCurrentLanguage] = useState<Language>('en')
   const [translations, setTranslations] = useState<Record<string, string>>({})
-  const [isLoading, setIsLoading] = useState(true) // Start as true to load initial translations
+  const [isLoading, setIsLoading] = useState(false) // Start as false since we have static imports
 
   console.log('🔄 LanguageProvider rendering with translations:', Object.keys(translations).length, 'keys for', currentLanguage)
 
-  // Load translations when language changes - non-blocking
+  // Load translations when language changes - now synchronous since they're statically imported
   useEffect(() => {
-    let mounted = true
-
-    const loadLanguageTranslations = async () => {
-      if (mounted) {
-        setIsLoading(true)
-      }
-
-      try {
-        console.log(`🔄 Loading translations for ${currentLanguage}...`)
-        const languageTranslations = await loadTranslations(currentLanguage)
-        
-        if (mounted) {
-          setTranslations(languageTranslations)
-          console.log(`✅ Translations set for ${currentLanguage}:`, Object.keys(languageTranslations).length, 'keys')
-          console.log('📝 Sample translations:', Object.entries(languageTranslations).slice(0, 3))
-        }
-      } catch (error) {
-        console.error('Error loading translations:', error)
-        if (mounted) {
-          setTranslations({}) // Fallback to empty translations
-        }
-      } finally {
-        if (mounted) {
-          setIsLoading(false)
-        }
-      }
-    }
-
-    // Start loading translations immediately
-    loadLanguageTranslations()
-
-    return () => {
-      mounted = false
-    }
+    console.log(`🔄 Setting translations for ${currentLanguage}...`)
+    setIsLoading(true)
+    
+    // Get translations synchronously since they're already loaded
+    const languageTranslations = getTranslations(currentLanguage)
+    setTranslations(languageTranslations)
+    console.log(`✅ Translations set for ${currentLanguage}:`, Object.keys(languageTranslations).length, 'keys')
+    console.log('📝 Sample translations:', Object.entries(languageTranslations).slice(0, 3))
+    
+    setIsLoading(false)
   }, [currentLanguage])
 
-  // Load saved language on mount (after English loads first)
+  // Load saved language on mount
   useEffect(() => {
     const savedLanguage = localStorage.getItem('battle64-language') as Language
     if (savedLanguage && savedLanguage !== currentLanguage) {
