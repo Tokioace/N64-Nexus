@@ -217,6 +217,16 @@ const es = {
   'auth.unexpectedError': 'Ocurrió un error inesperado',
   'auth.tryRegisterAgain': 'Intenta registrarte nuevamente o contacta soporte.',
   'auth.goToLogin': 'Ir al Inicio de Sesión',
+
+  // Browser Redirect
+  'browserRedirect.title': 'Redirección del Navegador',
+  'browserRedirect.message': 'Te estamos redirigiendo a tu navegador preferido...',
+  'browserRedirect.detectedBrowser': 'Navegador Detectado',
+  'browserRedirect.version': 'Versión',
+  'browserRedirect.redirectingIn': 'Redirigiendo en {seconds} segundos...',
+  'browserRedirect.redirectNow': 'Redirigir Ahora',
+  'browserRedirect.troubleshoot': '¿La redirección automática no funciona?',
+  'browserRedirect.manualInstructions': 'Haz clic en "Redirigir Ahora" o copia la URL de la barra de direcciones.',
   'auth.enhancedExperienceMessage': 'Inicia sesión para una experiencia mejorada',
 
   // Quiz

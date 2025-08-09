@@ -819,6 +819,17 @@ const zh = {
   'auth.unexpectedError': '发生意外错误',
   'auth.tryRegisterAgain': '请重新注册或联系客服。',
   'auth.goToLogin': '前往登录',
+
+  // Browser Redirect
+  'browserRedirect.title': '浏览器重定向',
+  'browserRedirect.message': '我们正在将您重定向到您偏好的浏览器...',
+  'browserRedirect.detectedBrowser': '检测到的浏览器',
+  'browserRedirect.version': '版本',
+  'browserRedirect.redirectingIn': '{seconds}秒后重定向...',
+  'browserRedirect.redirectNow': '立即重定向',
+  'browserRedirect.troubleshoot': '自动重定向不工作吗？',
+  'browserRedirect.manualInstructions': '点击"立即重定向"或从地址栏复制URL。',
+
   'auth.enhancedExperienceMessage': '登录获得增强体验',
 
   // Chat

@@ -657,6 +657,17 @@ const ru = {
   'auth.unexpectedError': 'Произошла неожиданная ошибка',
   'auth.tryRegisterAgain': 'Попробуйте зарегистрироваться снова или обратитесь в службу поддержки.',
   'auth.goToLogin': 'Перейти к Входу',
+
+  // Browser Redirect
+  'browserRedirect.title': 'Перенаправление Браузера',
+  'browserRedirect.message': 'Мы перенаправляем вас обратно в ваш предпочитаемый браузер...',
+  'browserRedirect.detectedBrowser': 'Обнаруженный Браузер',
+  'browserRedirect.version': 'Версия',
+  'browserRedirect.redirectingIn': 'Перенаправление через {seconds} секунд...',
+  'browserRedirect.redirectNow': 'Перенаправить Сейчас',
+  'browserRedirect.troubleshoot': 'Автоматическое перенаправление не работает?',
+  'browserRedirect.manualInstructions': 'Нажмите "Перенаправить Сейчас" или скопируйте URL из адресной строки.',
+
   'chat.title': 'Community Chat',
   'chat.onlineUsers': 'online users',
   'chat.chats': 'Chats',

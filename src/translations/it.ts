@@ -675,6 +675,17 @@ const it = {
   'auth.unexpectedError': 'Si è verificato un errore imprevisto',
   'auth.tryRegisterAgain': 'Prova a registrarti di nuovo o contatta il supporto.',
   'auth.goToLogin': 'Vai al Login',
+
+  // Browser Redirect
+  'browserRedirect.title': 'Reindirizzamento Browser',
+  'browserRedirect.message': 'Ti stiamo reindirizzando al tuo browser preferito...',
+  'browserRedirect.detectedBrowser': 'Browser Rilevato',
+  'browserRedirect.version': 'Versione',
+  'browserRedirect.redirectingIn': 'Reindirizzamento tra {seconds} secondi...',
+  'browserRedirect.redirectNow': 'Reindirizza Ora',
+  'browserRedirect.troubleshoot': 'Il reindirizzamento automatico non funziona?',
+  'browserRedirect.manualInstructions': 'Clicca su "Reindirizza Ora" o copia l\'URL dalla barra degli indirizzi.',
+
   'chat.title': 'Chat della Comunità',
   'chat.onlineUsers': 'utenti online',
   'chat.chats': 'Chat',

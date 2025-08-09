@@ -673,6 +673,17 @@ const ko = {
   'auth.unexpectedError': '예상치 못한 오류가 발생했습니다',
   'auth.tryRegisterAgain': '다시 가입을 시도하거나 지원팀에 문의하세요.',
   'auth.goToLogin': '로그인으로 이동',
+
+  // Browser Redirect
+  'browserRedirect.title': '브라우저 리디렉션',
+  'browserRedirect.message': '선호하는 브라우저로 리디렉션하고 있습니다...',
+  'browserRedirect.detectedBrowser': '감지된 브라우저',
+  'browserRedirect.version': '버전',
+  'browserRedirect.redirectingIn': '{seconds}초 후 리디렉션...',
+  'browserRedirect.redirectNow': '지금 리디렉션',
+  'browserRedirect.troubleshoot': '자동 리디렉션이 작동하지 않나요?',
+  'browserRedirect.manualInstructions': '"지금 리디렉션"을 클릭하거나 주소창에서 URL을 복사하세요.',
+
   'chat.title': '커뮤니티 채팅',
   'chat.onlineUsers': '온라인 사용자',
   'chat.chats': '채팅',

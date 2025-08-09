@@ -673,6 +673,17 @@ const hi = {
   'auth.unexpectedError': 'एक अप्रत्याशित त्रुटि हुई',
   'auth.tryRegisterAgain': 'फिर से पंजीकरण करने का प्रयास करें या सहायता से संपर्क करें।',
   'auth.goToLogin': 'लॉगिन पर जाएं',
+
+  // Browser Redirect
+  'browserRedirect.title': 'ब्राउज़र रीडायरेक्ट',
+  'browserRedirect.message': 'हम आपको आपके पसंदीदा ब्राउज़र पर रीडायरेक्ट कर रहे हैं...',
+  'browserRedirect.detectedBrowser': 'पहचाना गया ब्राउज़र',
+  'browserRedirect.version': 'संस्करण',
+  'browserRedirect.redirectingIn': '{seconds} सेकंड में रीडायरेक्ट हो रहा है...',
+  'browserRedirect.redirectNow': 'अभी रीडायरेक्ट करें',
+  'browserRedirect.troubleshoot': 'स्वचालित रीडायरेक्ट काम नहीं कर रहा?',
+  'browserRedirect.manualInstructions': '"अभी रीडायरेक्ट करें" पर क्लिक करें या एड्रेस बार से URL कॉपी करें।',
+
   'chat.title': 'कम्युनिटी चैट',
   'chat.onlineUsers': 'ऑनलाइन उपयोगकर्ता',
   'chat.chats': 'चैट्स',

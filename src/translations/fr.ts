@@ -673,6 +673,16 @@ const fr = {
   'auth.unexpectedError': 'Une erreur inattendue s\'est produite',
   'auth.tryRegisterAgain': 'Essayez de vous inscrire à nouveau ou contactez le support.',
   'auth.goToLogin': 'Aller à la Connexion',
+
+  // Browser Redirect
+  'browserRedirect.title': 'Redirection du Navigateur',
+  'browserRedirect.message': 'Nous vous redirigeons vers votre navigateur préféré...',
+  'browserRedirect.detectedBrowser': 'Navigateur Détecté',
+  'browserRedirect.version': 'Version',
+  'browserRedirect.redirectingIn': 'Redirection dans {seconds} secondes...',
+  'browserRedirect.redirectNow': 'Rediriger Maintenant',
+  'browserRedirect.troubleshoot': 'La redirection automatique ne fonctionne pas ?',
+  'browserRedirect.manualInstructions': 'Cliquez sur "Rediriger Maintenant" ou copiez l\'URL de la barre d\'adresse.',
   'chat.title': 'Chat Communautaire',
   'chat.onlineUsers': 'utilisateurs en ligne',
   'chat.chats': 'Chats',

@@ -158,6 +158,7 @@ const HomePage: React.FC = () => {
       const registration = searchParams.get('registration')
       const tokenHash = searchParams.get('token_hash')
       const type = searchParams.get('type')
+      const safariRedirect = searchParams.get('safari_redirect')
 
       if (registration === 'success' && tokenHash && type === 'email') {
         try {
@@ -219,6 +220,14 @@ const HomePage: React.FC = () => {
             
             // Clean up URL parameters
             setSearchParams({})
+            
+            // If this was a Safari redirect, show special message
+            if (safariRedirect === 'true') {
+              // Show Safari-specific success message
+              setTimeout(() => {
+                alert(t('auth.safariRedirectSuccess'))
+              }, 500)
+            }
           }
         } catch (error) {
           logger.error('Email confirmation error:', error)

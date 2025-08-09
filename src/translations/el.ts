@@ -753,6 +753,17 @@ const el = {
   'auth.unexpectedError': 'Προέκυψε ένα απροσδόκητο σφάλμα',
   'auth.tryRegisterAgain': 'Δοκιμάστε να εγγραφείτε ξανά ή επικοινωνήστε με την υποστήριξη.',
   'auth.goToLogin': 'Πηγαίνετε στη Σύνδεση',
+
+  // Browser Redirect
+  'browserRedirect.title': 'Ανακατεύθυνση Περιηγητή',
+  'browserRedirect.message': 'Σας ανακατευθύνουμε στον προτιμώμενο περιηγητή σας...',
+  'browserRedirect.detectedBrowser': 'Εντοπισμένος Περιηγητής',
+  'browserRedirect.version': 'Έκδοση',
+  'browserRedirect.redirectingIn': 'Ανακατεύθυνση σε {seconds} δευτερόλεπτα...',
+  'browserRedirect.redirectNow': 'Ανακατεύθυνση Τώρα',
+  'browserRedirect.troubleshoot': 'Η αυτόματη ανακατεύθυνση δεν λειτουργεί;',
+  'browserRedirect.manualInstructions': 'Κάντε κλικ στο "Ανακατεύθυνση Τώρα" ή αντιγράψτε το URL από τη γραμμή διευθύνσεων.',
+
   'auth.enhancedExperienceMessage': 'Συνδέσου για μια βελτιωμένη εμπειρία',
 
   // Chat

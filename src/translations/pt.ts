@@ -673,6 +673,17 @@ const pt = {
   'auth.unexpectedError': 'Ocorreu um erro inesperado',
   'auth.tryRegisterAgain': 'Tente se registrar novamente ou entre em contato com o suporte.',
   'auth.goToLogin': 'Ir para Login',
+
+  // Browser Redirect
+  'browserRedirect.title': 'Redirecionamento do Navegador',
+  'browserRedirect.message': 'Estamos te redirecionando para o seu navegador preferido...',
+  'browserRedirect.detectedBrowser': 'Navegador Detectado',
+  'browserRedirect.version': 'Versão',
+  'browserRedirect.redirectingIn': 'Redirecionando em {seconds} segundos...',
+  'browserRedirect.redirectNow': 'Redirecionar Agora',
+  'browserRedirect.troubleshoot': 'O redirecionamento automático não está funcionando?',
+  'browserRedirect.manualInstructions': 'Clique em "Redirecionar Agora" ou copie a URL da barra de endereços.',
+
   'chat.title': 'Chat da Comunidade',
   'chat.onlineUsers': 'usuários online',
   'chat.chats': 'Chats',
