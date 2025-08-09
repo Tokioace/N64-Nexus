@@ -336,7 +336,7 @@ const ru = {
   'media.allGames': 'Alle Spiele',
   'media.noEvent': 'Kein Event',
   'media.uploadedBy': 'Hochgeladen von',
-  'media.uploadedOn': 'Hochgeladen am', описанию или тегам', Any%, Glitchless (через запятую)',
+  'media.uploadedOn': 'Загружено',
   'success.uploaded': 'Успешно загружено',
   'validation.allFieldsRequired': 'Все поля обязательны',
   // Additional missing keys

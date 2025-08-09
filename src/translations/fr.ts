@@ -386,7 +386,7 @@ const fr = {
   'media.allGames': 'Alle Spiele',
   'media.noEvent': 'Kein Event',
   'media.uploadedBy': 'Hochgeladen von',
-  'media.uploadedOn': 'Hochgeladen am', description ou tags', Any%, Sans glitch (séparés par des virgules)',
+  'media.uploadedOn': 'Téléchargé le',
   'success.uploaded': 'Téléchargé avec succès',
   'validation.allFieldsRequired': 'Tous les champs sont requis',
   // Additional missing keys
