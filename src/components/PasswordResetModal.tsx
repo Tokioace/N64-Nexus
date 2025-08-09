@@ -9,7 +9,7 @@ interface PasswordResetModalProps {
 }
 
 const PasswordResetModal: React.FC<PasswordResetModalProps> = ({ isOpen, onClose }) => {
-  const { t } = useLanguage()
+  // const { t } = useLanguage() // Keep for future use
   const [email, setEmail] = useState('')
   const [loading, setLoading] = useState(false)
   const [success, setSuccess] = useState(false)

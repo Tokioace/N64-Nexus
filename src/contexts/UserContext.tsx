@@ -1,11 +1,6 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react'
-
-// Import types dynamically to avoid blocking
-type User = any
-type UserRegistrationData = any
-type UserCollection = any
-type PersonalRecord = any
+import { User, UserRegistrationData, UserCollection, PersonalRecord, AuthUser, DatabaseCollection, DatabasePersonalRecord, DatabaseProfile } from '../types'
+import { logger } from '../lib/logger'
 
 interface UserContextType {
   user: User | null
@@ -32,12 +27,13 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
 
-  console.log('🔄 Lightweight UserProvider rendering...')
-
   // Lazy-loaded dependencies
   const [authService, setAuthService] = useState<any>(null)
   const [supabase, setSupabase] = useState<any>(null)
-  const [logger, setLogger] = useState<any>(null)
+  const [, setLoggerInstance] = useState<any>(null)
+  
+  // Use imported logger for initial logging
+  logger.debug('🔄 Lightweight UserProvider rendering...')
   const [dependencies, setDependencies] = useState<boolean>(false)
 
   // Non-blocking initialization with lazy loading
@@ -50,7 +46,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       }
 
       try {
-        console.log('🔄 Lazy-loading auth dependencies...')
+        logger.debug('🔄 Lazy-loading auth dependencies...')
         
         // Dynamically import heavy dependencies
         const [authModule, supabaseModule, loggerModule] = await Promise.all([
@@ -62,47 +58,53 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         if (mounted) {
           setAuthService(authModule.authService)
           setSupabase(supabaseModule.supabase)
-          setLogger(loggerModule.logger)
+                      setLoggerInstance(loggerModule.logger)
           setDependencies(true)
           
-          console.log('✅ Auth dependencies loaded')
+          logger.debug('✅ Auth dependencies loaded')
 
           // Now initialize auth with loaded dependencies
           const session = await authModule.authService.getCurrentSession()
           
           if (session?.user && mounted) {
-            console.log('✅ Session found, loading user...')
+            logger.debug('✅ Session found, loading user...')
             const currentUser = await authModule.authService.getCurrentUser()
             if (currentUser && mounted) {
               setUser(currentUser)
               setIsAuthenticated(true)
-              console.log('✅ User loaded successfully')
+              logger.debug('✅ User loaded successfully')
             }
           } else {
-            console.log('ℹ️ No active session found')
+            logger.info('ℹ️ No active session found')
           }
 
           // Set up auth state listener
           try {
-            const { data } = authModule.authService.onAuthStateChange(async (newUser: any) => {
+            authModule.authService.onAuthStateChange(async (newUser: AuthUser | null) => {
               if (mounted) {
-                console.log('🔄 Auth state changed:', newUser ? 'logged in' : 'logged out')
-                setUser(newUser)
+                logger.info('🔄 Auth state changed:', newUser ? 'logged in' : 'logged out')
+                // Convert AuthUser to User format if needed
+                if (newUser) {
+                  const userProfile = await authModule.authService.getCurrentUser()
+                  setUser(userProfile)
+                } else {
+                  setUser(null)
+                }
                 setIsAuthenticated(!!newUser)
               }
             })
             // Store subscription for cleanup if needed
           } catch (error) {
-            console.warn('⚠️ Auth listener setup error (non-critical):', error)
+            logger.warn('⚠️ Auth listener setup error (non-critical):', error)
           }
         }
       } catch (error) {
-        console.warn('⚠️ Auth initialization error (non-critical):', error)
+        logger.warn('⚠️ Auth initialization error (non-critical):', error)
         // Don't throw - just continue without auth
       } finally {
         if (mounted) {
           setIsLoading(false)
-          console.log('✅ Auth initialization complete')
+          logger.debug('✅ Auth initialization complete')
         }
       }
     }
@@ -118,7 +120,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   // Helper function to check if dependencies are loaded
   const checkDependencies = (methodName: string): boolean => {
     if (!dependencies || !authService || !supabase) {
-      console.warn(`${methodName}: Dependencies not loaded yet`)
+      logger.warn(`${methodName}: Dependencies not loaded yet`)
       return false
     }
     return true
@@ -138,7 +140,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       
       return false
     } catch (error) {
-      console.error('Login error:', error)
+      logger.error('Login error:', error)
       return false
     }
   }
@@ -156,7 +158,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       
       return result // Return the full result object
     } catch (error) {
-      console.error('Registration error:', error)
+      logger.error('Registration error:', error)
       return { success: false, error: 'Registration failed' }
     }
   }
@@ -169,7 +171,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       setUser(null)
       setIsAuthenticated(false)
     } catch (error) {
-      console.error('Logout error:', error)
+      logger.error('Logout error:', error)
       throw error
     }
   }
@@ -189,7 +191,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       
       return false
     } catch (error) {
-      console.error('Delete account error:', error)
+      logger.error('Delete account error:', error)
       return false
     }
   }
@@ -216,7 +218,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         .eq('id', user.id)
 
       if (error) {
-        console.error('Profile update error:', error)
+        logger.error('Profile update error:', error)
         return false
       }
 
@@ -225,7 +227,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       
       return true
     } catch (error) {
-      console.error('Profile update error:', error)
+      logger.error('Profile update error:', error)
       return false
     }
   }
@@ -311,7 +313,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
       setUser({
         ...user,
-        collections: (user.collections || []).filter((c: any) => c.id !== itemId)
+        collections: (user.collections || []).filter((c: UserCollection) => c.id !== itemId)
       })
       
       return true
@@ -403,7 +405,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
       setUser({
         ...user,
-        personalRecords: (user.personalRecords || []).map((r: any) => 
+        personalRecords: (user.personalRecords || []).map((r: PersonalRecord) => 
           r.id === recordId ? { ...r, ...updates } : r
         )
       })
@@ -457,7 +459,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         location: profile.location,
         isPublic: profile.is_public,
         points: profile.points,
-        collections: (collections || []).map((c: any) => ({
+        collections: (collections || []).map((c: DatabaseCollection) => ({
           id: c.id,
           userId: c.user_id,
           gameId: c.game_id,
@@ -470,7 +472,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
           notes: c.notes,
           isWishlist: c.is_wishlist
         })),
-        personalRecords: (personalRecords || []).map((pr: any) => ({
+        personalRecords: (personalRecords || []).map((pr: DatabasePersonalRecord) => ({
           id: pr.id,
           userId: pr.user_id,
           gameId: pr.game_id,
@@ -504,7 +506,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         return []
       }
 
-      return profiles.map((profile: any) => ({
+      return profiles.map((profile: DatabaseProfile) => ({
         id: profile.id,
         username: profile.username,
         email: '',
@@ -522,7 +524,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         personalRecords: []
       }))
     } catch (error) {
-      console.error('Get all users error:', error)
+      logger.error('Get all users error:', error)
       return []
     }
   }

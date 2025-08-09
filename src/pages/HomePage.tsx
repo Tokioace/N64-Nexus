@@ -75,7 +75,7 @@ const SafeComponent: React.FC<{ children: React.ReactNode; fallback?: React.Reac
   name 
 }) => {
   const [hasError, setHasError] = React.useState(false)
-  const [error, setError] = React.useState<Error | null>(null)
+  const [, setError] = React.useState<Error | null>(null)
   
   React.useEffect(() => {
     setHasError(false)
@@ -125,7 +125,7 @@ const SafeComponent: React.FC<{ children: React.ReactNode; fallback?: React.Reac
 const HomePage: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams()
   const { user, isLoading: userLoading } = useUser()
-  const { t, currentLanguage, isLoading: langLoading } = useLanguage()
+  const { t, currentLanguage } = useLanguage()
   const { threads, posts } = useForum()
   const [isDataLoading, setIsDataLoading] = React.useState(true)
   const [registrationSuccess, setRegistrationSuccess] = useState(false)
@@ -311,11 +311,16 @@ const HomePage: React.FC = () => {
           const sortedMarketplace = parsedMarketplace
             .filter(item => item && item.id)
             .map((item: any) => ({
-              ...item,
-              date: item.date ? new Date(item.date) : (item.createdAt ? new Date(item.createdAt) : new Date()),
-              // Ensure seller is properly handled - convert object to string for HomePage compatibility
-              seller: typeof item.seller === 'object' && item.seller?.name ? item.seller.name : item.seller
-            }))
+              id: item.id,
+              title: item.title,
+              description: item.description,
+              price: item.price,
+              condition: item.condition,
+              seller: typeof item.seller === 'object' && item.seller?.name ? item.seller.name : item.seller,
+              imageUrl: item.imageUrl || '',
+              category: item.category || 'general',
+              date: item.date ? new Date(item.date) : (item.createdAt ? new Date(item.createdAt) : new Date())
+            } as MarketplaceItem))
             .sort((a: MarketplaceItem, b: MarketplaceItem) => b.date.getTime() - a.date.getTime())
           setMarketplaceItems(sortedMarketplace)
         } else {

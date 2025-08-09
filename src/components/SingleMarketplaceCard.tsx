@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react'
-import { ShoppingBag, Star, Package } from 'lucide-react'
+import { ShoppingBag } from 'lucide-react'
 import { useLanguage, getLocaleString } from '../contexts/LanguageContext'
 import { useNavigate } from 'react-router-dom'
 // Support both legacy string seller and new object seller formats

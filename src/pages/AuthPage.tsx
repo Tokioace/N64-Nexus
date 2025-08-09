@@ -135,8 +135,9 @@ const AuthPage: React.FC = () => {
       } else {
         setError(result.error || t('auth.registrationFailed'))
       }
-    } catch (error: any) {
-      setError(error?.message || t('auth.errorOccurred'))
+    } catch (error: unknown) {
+      const errorMessage = error instanceof Error ? error.message : t('auth.errorOccurred')
+      setError(errorMessage)
     } finally {
       setLoading(false)
     }
