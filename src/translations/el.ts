@@ -733,6 +733,11 @@ const el = {
   'auth.registerNow': 'Εγγραφή τώρα',
   'auth.alreadyHaveAccount': 'Έχεις ήδη λογαριασμό;',
   'auth.loginHere': 'Σύνδεση εδώ',
+  'auth.processingRegistration': 'Επεξεργασία εγγραφής...',
+  'auth.waitingEmailConfirmation': 'Αναμονή επιβεβαίωσης email...',
+  'auth.registrationSucceeded': 'Επιτυχής εγγραφή!',
+  'auth.welcomeToCommunity': 'Καλώς ήρθες στην Κοινότητα Battle64',
+  'auth.checkOutEvents': 'Δες τις εκδηλώσεις μας',
   'auth.enhancedExperienceMessage': 'Συνδέσου για μια βελτιωμένη εμπειρία',
 
   // Chat

@@ -872,6 +872,11 @@ const ja = {
   'auth.registerNow': '今すぐ登録',
   'auth.alreadyHaveAccount': 'すでにアカウントをお持ちですか？',
   'auth.loginHere': 'こちらでログイン',
+  'auth.processingRegistration': '登録を処理中...',
+  'auth.waitingEmailConfirmation': 'メール確認をお待ちください...',
+  'auth.registrationSucceeded': '登録が成功しました！',
+  'auth.welcomeToCommunity': 'Battle64コミュニティへようこそ',
+  'auth.checkOutEvents': 'イベントをチェックしてください',
   'auth.enhancedExperienceMessage': '拡張された体験のためにサインイン',
 
   // Chat

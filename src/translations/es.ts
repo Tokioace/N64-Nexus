@@ -197,6 +197,11 @@ const es = {
   'auth.registerNow': 'Regístrate ahora',
   'auth.alreadyHaveAccount': '¿Ya tienes una cuenta?',
   'auth.loginHere': 'Inicia sesión aquí',
+  'auth.processingRegistration': 'Procesando registro...',
+  'auth.waitingEmailConfirmation': 'Esperando confirmación por correo...',
+  'auth.registrationSucceeded': '¡Registro exitoso!',
+  'auth.welcomeToCommunity': 'Bienvenido a la Comunidad Battle64',
+  'auth.checkOutEvents': 'Echa un vistazo a nuestros eventos',
   'auth.enhancedExperienceMessage': 'Inicia sesión para una experiencia mejorada',
 
   // Quiz

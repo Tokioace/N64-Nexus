@@ -736,6 +736,11 @@ const ar = {
   'auth.registerNow': 'سجل الآن',
   'auth.alreadyHaveAccount': 'لديك حساب بالفعل؟',
   'auth.loginHere': 'سجل الدخول هنا',
+  'auth.processingRegistration': 'معالجة التسجيل...',
+  'auth.waitingEmailConfirmation': 'في انتظار تأكيد البريد الإلكتروني...',
+  'auth.registrationSucceeded': 'التسجيل ناجح!',
+  'auth.welcomeToCommunity': 'مرحباً بك في مجتمع Battle64',
+  'auth.checkOutEvents': 'تحقق من فعالياتنا',
 
   // Chat system - نظام الدردشة
   'chat.title': 'دردشة المجتمع',

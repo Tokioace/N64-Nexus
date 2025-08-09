@@ -799,6 +799,11 @@ const zh = {
   'auth.registerNow': '立即注册',
   'auth.alreadyHaveAccount': '已有账户？',
   'auth.loginHere': '在这里登录',
+  'auth.processingRegistration': '正在处理注册...',
+  'auth.waitingEmailConfirmation': '等待邮箱确认...',
+  'auth.registrationSucceeded': '注册成功！',
+  'auth.welcomeToCommunity': '欢迎加入Battle64社区',
+  'auth.checkOutEvents': '查看我们的活动',
   'auth.enhancedExperienceMessage': '登录获得增强体验',
 
   // Chat
