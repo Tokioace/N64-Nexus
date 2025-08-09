@@ -235,7 +235,7 @@ const CookieConsent: React.FC<CookieConsentProps> = ({ onAccept, onReject }) => 
             >
               <Settings className="w-4 h-4" />
               <span className="text-sm">
-                {showDetails ? 'Hide Details' : t('cookies.managePreferences')}
+                {showDetails ? t('cookies.hideDetails') : t('cookies.managePreferences')}
               </span>
             </button>
             

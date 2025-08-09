@@ -103,11 +103,11 @@ const PersonalRecordsManager: React.FC<PersonalRecordsProps> = ({ isOwnProfile =
       <div className="flex items-center justify-between">
         <div>
           <h2 className="text-2xl font-bold text-slate-100">
-            {isOwnProfile ? 'Meine Rekorde' : `${user.username}s Rekorde`}
+            {isOwnProfile ? t('records.myRecords') : t('records.userRecords', { username: user.username })}
           </h2>
           <p className="text-slate-400">
-            {user.personalRecords.filter((r: any) => r.verified).length} verifizierte Rekorde, {' '}
-            {user.personalRecords.filter((r: any) => !r.verified).length} ausstehend
+                          {t('records.verifiedCount', { count: user.personalRecords.filter((r: any) => r.verified).length })}, {' '}
+              {t('records.pendingCount', { count: user.personalRecords.filter((r: any) => !r.verified).length })}
           </p>
         </div>
         
