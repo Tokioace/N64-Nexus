@@ -22,6 +22,8 @@ export default defineConfig(({ command, mode }) => {
       // PWA Plugin Configuration
       VitePWA({
         registerType: 'autoUpdate',
+        injectRegister: 'auto',
+        includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'manifest.webmanifest'],
         workbox: {
           globPatterns: ['**/*.{js,css,html,ico,png,svg,webp,jpg,jpeg}'],
           runtimeCaching: [
@@ -60,7 +62,8 @@ export default defineConfig(({ command, mode }) => {
             }
           ]
         },
-        includeAssets: ['favicon.ico', 'apple-touch-icon.png'],
+        filename: 'manifest.webmanifest',
+        manifestFilename: 'manifest.webmanifest',
         manifest: {
           name: 'Battle64 - N64 Community',
           short_name: 'Battle64',

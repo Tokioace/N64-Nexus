@@ -7,6 +7,7 @@ const STATIC_ASSETS = [
   '/',
   '/index.html',
   '/manifest.json',
+  '/manifest.webmanifest',
   '/favicon-32x32.png',
   '/favicon-16x16.png',
   '/apple-touch-icon.png',
@@ -80,6 +81,9 @@ self.addEventListener('fetch', event => {
   if (request.destination === 'document') {
     // HTML pages - Network first, then cache
     event.respondWith(handlePageRequest(request))
+  } else if (url.pathname === '/manifest.webmanifest' || url.pathname.endsWith('.webmanifest')) {
+    // Manifest files - Network first without credentials, then cache
+    event.respondWith(handleManifestRequest(request))
   } else if (API_CACHE_PATTERNS.some(pattern => pattern.test(url.pathname))) {
     // API requests - Cache first, then network
     event.respondWith(handleAPIRequest(request))
@@ -200,6 +204,43 @@ async function handleStaticRequest(request) {
     // Return cached version if available
     return caches.match(request)
   }
+}
+
+// Handle manifest requests specifically to avoid authentication issues
+async function handleManifestRequest(request) {
+  try {
+    // Try network first without credentials
+    const networkResponse = await fetch(request, { credentials: 'omit' })
+    
+    if (networkResponse.ok) {
+      // Cache successful responses
+      const cache = await caches.open(STATIC_CACHE_NAME)
+      cache.put(request, networkResponse.clone())
+      return networkResponse
+    }
+  } catch (error) {
+    console.log('Service Worker: Network request failed for manifest, trying cache:', error)
+  }
+  
+  // Try cache as fallback
+  const cachedResponse = await caches.match(request)
+  if (cachedResponse) {
+    return cachedResponse
+  }
+  
+  // If all else fails, return a basic manifest
+  return new Response(JSON.stringify({
+    name: 'Battle64 - N64 Community',
+    short_name: 'Battle64',
+    start_url: '/',
+    display: 'standalone',
+    background_color: '#0f172a',
+    theme_color: '#1e293b'
+  }), {
+    headers: {
+      'Content-Type': 'application/manifest+json'
+    }
+  })
 }
 
 // Background sync for offline actions
