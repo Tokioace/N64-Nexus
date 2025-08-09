@@ -238,7 +238,7 @@ async function handleManifestRequest(request) {
     theme_color: '#1e293b'
   }), {
     headers: {
-      'Content-Type': 'application/manifest+json'
+      'Content-Type': 'application/json'
     }
   })
 }
