@@ -7,6 +7,7 @@ export interface AuthResult {
   success: boolean
   error?: string
   user?: User | null
+  message?: string
 }
 
 export interface PasswordResetResult {
@@ -59,6 +60,7 @@ class AuthService {
         email: data.email,
         password: data.password,
         options: {
+          emailRedirectTo: `${window.location.origin}/auth/confirm`,
           data: {
             username: data.username,
             region: data.region,
@@ -88,7 +90,25 @@ class AuthService {
         }
       }
 
-      // Erstelle Profil in der profiles-Tabelle
+      // Check if email confirmation is required
+      if (!authData.user.email_confirmed_at) {
+        // Email confirmation required - don't create profile yet
+        if (import.meta.env.DEV) {
+          logger.info('Registration successful, email confirmation required:', { 
+            userId: authData.user.id, 
+            username: data.username,
+            email: data.email
+          })
+        }
+
+        return {
+          success: true,
+          user: null, // No user object until email is confirmed
+          error: 'Registrierung erfolgreich! Bitte bestätigen Sie Ihre E-Mail-Adresse, um Ihr Konto zu aktivieren.'
+        }
+      }
+
+      // If email is already confirmed, create profile
       const { error: profileError } = await supabase
         .from('profiles')
         .insert({
@@ -112,8 +132,6 @@ class AuthService {
         if (import.meta.env.DEV) {
           logger.error('Profile creation error:', profileError)
         }
-        // Versuche den Auth-User zu löschen, da Profil-Erstellung fehlgeschlagen ist
-        await supabase.auth.admin.deleteUser(authData.user.id)
         return {
           success: false,
           error: 'Fehler beim Erstellen des Profils'
@@ -124,7 +142,7 @@ class AuthService {
       const user = await this.convertSupabaseUserToUser(authData.user)
 
       if (import.meta.env.DEV) {
-        logger.info('User registered successfully:', { userId: authData.user.id, username: data.username })
+        logger.info('User registered and confirmed successfully:', { userId: authData.user.id, username: data.username })
       }
 
       return {

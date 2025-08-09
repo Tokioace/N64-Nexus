@@ -12,6 +12,7 @@ import { MapProvider } from './contexts/MapContext'
 import HomePage from './pages/HomePage'
 import HomeScreenRetro from './components/HomeScreenRetro'
 import AuthPage from './pages/AuthPage'
+import EmailConfirmPage from './pages/EmailConfirmPage'
 import TermsPage from './pages/TermsPage'
 import PrivacyPage from './pages/PrivacyPage'
 import AccountDeletionPage from './pages/AccountDeletionPage'
@@ -109,6 +110,7 @@ function App() {
                       <Routes>
                         <Route path="/" element={<HomePage />} />
                         <Route path="/auth" element={<AuthPage />} />
+                        <Route path="/auth/confirm" element={<EmailConfirmPage />} />
                         <Route path="/terms" element={<TermsPage />} />
                         <Route path="/privacy" element={<PrivacyPage />} />
                         <Route path="/account/delete" element={<AccountDeletionPage />} />

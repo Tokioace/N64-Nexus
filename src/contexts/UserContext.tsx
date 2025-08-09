@@ -12,7 +12,7 @@ interface UserContextType {
   isAuthenticated: boolean
   isLoading: boolean
   login: (email: string, password: string) => Promise<boolean>
-  register: (data: UserRegistrationData) => Promise<boolean>
+  register: (data: UserRegistrationData) => Promise<any>
   logout: () => Promise<void>
   deleteAccount: () => Promise<boolean>
   updateProfile: (updates: Partial<User>) => Promise<boolean>
@@ -143,8 +143,8 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     }
   }
 
-  const register = async (data: UserRegistrationData): Promise<boolean> => {
-    if (!checkDependencies('register')) return false
+  const register = async (data: UserRegistrationData): Promise<any> => {
+    if (!checkDependencies('register')) return { success: false, error: 'Service not available' }
 
     try {
       const result = await authService.register(data)
@@ -152,13 +152,12 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       if (result.success && result.user) {
         setUser(result.user)
         setIsAuthenticated(true)
-        return true
       }
       
-      return false
+      return result // Return the full result object
     } catch (error) {
       console.error('Registration error:', error)
-      return false
+      return { success: false, error: 'Registration failed' }
     }
   }
 
