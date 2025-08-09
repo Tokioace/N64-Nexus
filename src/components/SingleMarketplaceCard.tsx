@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { ShoppingBag, Star, Package } from 'lucide-react'
 import { useLanguage, getLocaleString } from '../contexts/LanguageContext'
 import { useNavigate } from 'react-router-dom'
@@ -30,33 +30,77 @@ const SingleMarketplaceCard: React.FC<SingleMarketplaceCardProps> = ({ marketpla
   const touchStartX = useRef<number>(0)
   const touchEndX = useRef<number>(0)
 
+  // 🔧 FIX: Reset currentIndex when marketplaceItems changes or becomes invalid
+  useEffect(() => {
+    if (!marketplaceItems || !Array.isArray(marketplaceItems) || marketplaceItems.length === 0) {
+      setCurrentIndex(0)
+      return
+    }
+    
+    // If currentIndex is out of bounds, reset to 0
+    if (currentIndex >= marketplaceItems.length) {
+      console.log('🔧 SingleMarketplaceCard: Resetting currentIndex from', currentIndex, 'to 0 (items:', marketplaceItems.length, ')')
+      setCurrentIndex(0)
+    }
+  }, [marketplaceItems, currentIndex])
+
+  // 🔧 FIX: Add defensive checks for all array access
+  const isValidIndex = (index: number): boolean => {
+    return marketplaceItems && 
+           Array.isArray(marketplaceItems) && 
+           marketplaceItems.length > 0 && 
+           index >= 0 && 
+           index < marketplaceItems.length &&
+           marketplaceItems[index] &&
+           typeof marketplaceItems[index] === 'object'
+  }
+
   const formatTime = (date: Date) => {
-    return date.toLocaleTimeString(getLocaleString(currentLanguage), {
-      hour: '2-digit',
-      minute: '2-digit'
-    })
+    try {
+      return date.toLocaleTimeString(getLocaleString(currentLanguage), {
+        hour: '2-digit',
+        minute: '2-digit'
+      })
+    } catch (error) {
+      console.warn('Error formatting time:', error)
+      return '--:--'
+    }
   }
 
   const goToNext = () => {
-    if (isFlipping || currentIndex >= marketplaceItems.length - 1) return
+    if (isFlipping || !isValidIndex(currentIndex) || currentIndex >= marketplaceItems.length - 1) return
     
     setFlipDirection('left')
     setIsFlipping(true)
     
     setTimeout(() => {
-      setCurrentIndex(prev => prev + 1)
+      setCurrentIndex(prev => {
+        const nextIndex = prev + 1
+        // Double-check the next index is valid
+        if (isValidIndex(nextIndex)) {
+          return nextIndex
+        }
+        return prev // Stay at current index if next is invalid
+      })
       setIsFlipping(false)
     }, 200)
   }
 
-  const goToPrevious = () => {
+  const goToPrev = () => {
     if (isFlipping || currentIndex <= 0) return
     
     setFlipDirection('right')
     setIsFlipping(true)
     
     setTimeout(() => {
-      setCurrentIndex(prev => prev - 1)
+      setCurrentIndex(prev => {
+        const prevIndex = prev - 1
+        // Double-check the previous index is valid
+        if (isValidIndex(prevIndex)) {
+          return prevIndex
+        }
+        return prev // Stay at current index if previous is invalid
+      })
       setIsFlipping(false)
     }, 200)
   }
@@ -78,33 +122,47 @@ const SingleMarketplaceCard: React.FC<SingleMarketplaceCardProps> = ({ marketpla
 
     if (isLeftSwipe) {
       goToNext()
-    } else if (isRightSwipe) {
-      goToPrevious()
     }
-
-    touchStartX.current = 0
-    touchEndX.current = 0
+    if (isRightSwipe) {
+      goToPrev()
+    }
   }
 
-  const handleCardClick = (item: MarketplaceItem) => {
-    // Navigate to marketplace page and highlight the specific item
-    navigate('/marktplatz', { state: { highlightItemId: item.id } })
-  }
-
-  if (marketplaceItems.length === 0) {
+  // 🔧 FIX: Enhanced validation for empty or invalid data
+  if (!marketplaceItems || !Array.isArray(marketplaceItems) || marketplaceItems.length === 0) {
     return (
       <div className={`${className} flex justify-center`}>
-        <div className="swipeable-card bg-gradient-to-br from-slate-600/20 to-slate-800/20 border-l-4 border-accent-purple">
-          <div className="swipeable-card-header">
-            <div className="flex items-center gap-2">
-              <ShoppingBag className="w-5 h-5 text-accent-purple" />
-              <h3 className="text-responsive-base font-bold text-slate-100">{t('card.marketplace')}</h3>
-            </div>
-          </div>
-          <div className="swipeable-card-content">
-            <div className="flex items-center justify-center h-full text-slate-400 text-responsive-sm">
-              {t('marketplace.noOffersFound')}
-            </div>
+        <div className="simple-tile bg-gradient-to-br from-purple-600/20 to-purple-800/20 border-l-4 border-accent-purple p-6 text-center max-w-md">
+          <ShoppingBag className="w-12 h-12 text-purple-400 mx-auto mb-3" />
+          <h3 className="text-lg font-semibold text-slate-100 mb-2">
+            {t('marketplace.noItems')}
+          </h3>
+          <p className="text-slate-400 text-sm mb-4">
+            {t('marketplace.noItemsDesc')}
+          </p>
+          <button
+            onClick={() => navigate('/marketplace')}
+            className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg transition-colors duration-200"
+          >
+            {t('marketplace.browse')}
+          </button>
+        </div>
+      </div>
+    )
+  }
+
+  // 🔧 FIX: Additional validation before accessing current item
+  if (!isValidIndex(currentIndex)) {
+    console.warn('🚨 SingleMarketplaceCard: Invalid currentIndex:', currentIndex, 'items:', marketplaceItems.length)
+    // Force reset to 0 and return loading state
+    setCurrentIndex(0)
+    return (
+      <div className={`${className} flex justify-center`}>
+        <div className="simple-tile bg-gradient-to-br from-purple-600/20 to-purple-800/20 border-l-4 border-accent-purple p-6 text-center max-w-md">
+          <div className="animate-pulse">
+            <div className="w-12 h-12 bg-purple-600 rounded mx-auto mb-3"></div>
+            <div className="h-4 bg-slate-600 rounded w-3/4 mx-auto mb-2"></div>
+            <div className="h-3 bg-slate-700 rounded w-1/2 mx-auto"></div>
           </div>
         </div>
       </div>
@@ -112,107 +170,114 @@ const SingleMarketplaceCard: React.FC<SingleMarketplaceCardProps> = ({ marketpla
   }
 
   const currentItem = marketplaceItems[currentIndex]
-  const itemImage = currentItem.images?.[0] || currentItem.image
+  const itemImage = currentItem?.images?.[0] || currentItem?.image
 
   return (
     <div className={`${className} flex justify-center`}>
       <div 
-        className="relative book-container"
+        className="swipeable-card bg-gradient-to-br from-purple-600/20 to-purple-800/20 border-l-4 border-accent-purple relative"
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
       >
         <div className="relative overflow-hidden">
+          {/* Flip Animation Overlay */}
           {isFlipping && (
             <div className="absolute inset-0 z-10">
-              {flipDirection === 'left' && currentIndex < marketplaceItems.length - 1 && 
+              {/* 🔧 FIX: Add bounds checking for flip animation */}
+              {flipDirection === 'left' && isValidIndex(currentIndex + 1) && 
                 <div className="swipeable-card bg-gradient-to-br from-purple-600/20 to-purple-800/20 border-l-4 border-accent-purple">
                   <div className="swipeable-card-header">
-                    <div className="flex items-center gap-2">
-                      <ShoppingBag className="w-5 h-5 text-accent-purple" />
-                      <h3 className="text-responsive-base font-bold text-text-primary">{t('card.marketplace')}</h3>
+                    <div className="flex items-start justify-between">
+                      <div className="flex items-center space-x-2">
+                        <ShoppingBag className="w-5 h-5 text-purple-400" />
+                        <span className="text-purple-300 font-medium text-sm">
+                          {t('marketplace.title')}
+                        </span>
+                      </div>
+                      <span className="text-xs text-slate-400">
+                        {formatTime(marketplaceItems[currentIndex + 1].date)}
+                      </span>
                     </div>
-                    <div className="text-xs text-text-muted">
-                      {marketplaceItems[currentIndex + 1].category}
-                    </div>
-                  </div>
-                  <div className="swipeable-card-content">
-                    <div className="p-4 h-full flex flex-col">
+                    <div className="mt-3">
                       <div className="flex-1">
                         {/* Image for next item */}
-                        {(marketplaceItems[currentIndex + 1].images?.[0] || marketplaceItems[currentIndex + 1].image) && (
+                        {(marketplaceItems[currentIndex + 1]?.images?.[0] || marketplaceItems[currentIndex + 1]?.image) && (
                           <div className="w-full h-12 bg-slate-700 rounded mb-2 overflow-hidden">
                             <img 
                               src={marketplaceItems[currentIndex + 1].images?.[0] || marketplaceItems[currentIndex + 1].image} 
-                              alt={marketplaceItems[currentIndex + 1].title}
+                              alt={marketplaceItems[currentIndex + 1]?.title || 'Marketplace item'}
                               className="w-full h-full object-cover"
+                              onError={(e) => {
+                                const target = e.target as HTMLImageElement
+                                target.style.display = 'none'
+                              }}
                             />
                           </div>
                         )}
-                        <h4 className="text-base sm:text-lg font-semibold text-text-primary mb-2 leading-tight">
-                          {marketplaceItems[currentIndex + 1].title}
+                        <h4 className="text-slate-100 font-semibold text-sm mb-1 line-clamp-2">
+                          {marketplaceItems[currentIndex + 1]?.title || 'Unknown Item'}
                         </h4>
-                        <p className="text-sm text-text-secondary mb-3 line-clamp-2">
-                          {marketplaceItems[currentIndex + 1].description}
+                        <p className="text-slate-300 text-xs mb-2 line-clamp-2">
+                          {marketplaceItems[currentIndex + 1]?.description || ''}
                         </p>
-                        <div className="text-xl font-bold text-accent-purple mb-2">
-                          €{marketplaceItems[currentIndex + 1].price.toFixed(2)}
-                        </div>
-                        <div className="text-sm text-text-muted mb-2">
-                          {marketplaceItems[currentIndex + 1].condition}
-                        </div>
-                      </div>
-                      <div className="border-t border-slate-600/30 pt-3 mt-auto">
-                        <div className="flex items-center justify-between text-sm text-text-muted">
-                          <span>{marketplaceItems[currentIndex + 1].seller}</span>
-                          <span className="font-medium">{formatTime(marketplaceItems[currentIndex + 1].date)}</span>
+                        <div className="flex items-center justify-between">
+                          <span className="text-purple-300 font-bold text-sm">
+                            €{marketplaceItems[currentIndex + 1]?.price?.toFixed(2) || '0.00'}
+                          </span>
+                          <span className="text-xs text-slate-400">
+                            {marketplaceItems[currentIndex + 1]?.condition || 'Unknown'}
+                          </span>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
               }
-              {flipDirection === 'right' && currentIndex > 0 && 
+              
+              {flipDirection === 'right' && isValidIndex(currentIndex - 1) && 
                 <div className="swipeable-card bg-gradient-to-br from-purple-600/20 to-purple-800/20 border-l-4 border-accent-purple">
                   <div className="swipeable-card-header">
-                    <div className="flex items-center gap-2">
-                      <ShoppingBag className="w-5 h-5 text-accent-purple" />
-                      <h3 className="text-responsive-base font-bold text-text-primary">{t('card.marketplace')}</h3>
+                    <div className="flex items-start justify-between">
+                      <div className="flex items-center space-x-2">
+                        <ShoppingBag className="w-5 h-5 text-purple-400" />
+                        <span className="text-purple-300 font-medium text-sm">
+                          {t('marketplace.title')}
+                        </span>
+                      </div>
+                      <span className="text-xs text-slate-400">
+                        {formatTime(marketplaceItems[currentIndex - 1].date)}
+                      </span>
                     </div>
-                    <div className="text-xs text-text-muted">
-                      {marketplaceItems[currentIndex - 1].category}
-                    </div>
-                  </div>
-                  <div className="swipeable-card-content">
-                    <div className="p-4 h-full flex flex-col">
+                    <div className="mt-3">
                       <div className="flex-1">
                         {/* Image for previous item */}
-                        {(marketplaceItems[currentIndex - 1].images?.[0] || marketplaceItems[currentIndex - 1].image) && (
+                        {(marketplaceItems[currentIndex - 1]?.images?.[0] || marketplaceItems[currentIndex - 1]?.image) && (
                           <div className="w-full h-12 bg-slate-700 rounded mb-2 overflow-hidden">
                             <img 
                               src={marketplaceItems[currentIndex - 1].images?.[0] || marketplaceItems[currentIndex - 1].image} 
-                              alt={marketplaceItems[currentIndex - 1].title}
+                              alt={marketplaceItems[currentIndex - 1]?.title || 'Marketplace item'}
                               className="w-full h-full object-cover"
+                              onError={(e) => {
+                                const target = e.target as HTMLImageElement
+                                target.style.display = 'none'
+                              }}
                             />
                           </div>
                         )}
-                        <h4 className="text-base sm:text-lg font-semibold text-text-primary mb-2 leading-tight">
-                          {marketplaceItems[currentIndex - 1].title}
+                        <h4 className="text-slate-100 font-semibold text-sm mb-1 line-clamp-2">
+                          {marketplaceItems[currentIndex - 1]?.title || 'Unknown Item'}
                         </h4>
-                        <p className="text-sm text-text-secondary mb-3 line-clamp-2">
-                          {marketplaceItems[currentIndex - 1].description}
+                        <p className="text-slate-300 text-xs mb-2 line-clamp-2">
+                          {marketplaceItems[currentIndex - 1]?.description || ''}
                         </p>
-                        <div className="text-xl font-bold text-accent-purple mb-2">
-                          €{marketplaceItems[currentIndex - 1].price.toFixed(2)}
-                        </div>
-                        <div className="text-sm text-text-muted mb-2">
-                          {marketplaceItems[currentIndex - 1].condition}
-                        </div>
-                      </div>
-                      <div className="border-t border-slate-600/30 pt-3 mt-auto">
-                        <div className="flex items-center justify-between text-sm text-text-muted">
-                          <span>{marketplaceItems[currentIndex - 1].seller}</span>
-                          <span className="font-medium">{formatTime(marketplaceItems[currentIndex - 1].date)}</span>
+                        <div className="flex items-center justify-between">
+                          <span className="text-purple-300 font-bold text-sm">
+                            €{marketplaceItems[currentIndex - 1]?.price?.toFixed(2) || '0.00'}
+                          </span>
+                          <span className="text-xs text-slate-400">
+                            {marketplaceItems[currentIndex - 1]?.condition || 'Unknown'}
+                          </span>
                         </div>
                       </div>
                     </div>
@@ -221,117 +286,111 @@ const SingleMarketplaceCard: React.FC<SingleMarketplaceCardProps> = ({ marketpla
               }
             </div>
           )}
-          
-          <div 
-            className={`relative z-20 transition-transform duration-200 ease-out cursor-pointer hover:scale-105 ${
-              isFlipping 
-                ? flipDirection === 'left' 
-                  ? 'transform -translate-x-full opacity-0' 
-                  : 'transform translate-x-full opacity-0'
-                : 'transform translate-x-0 opacity-100'
-            }`}
-            onClick={() => handleCardClick(currentItem)}
-          >
-            <div className="swipeable-card bg-gradient-to-br from-purple-600/20 to-purple-800/20 border-l-4 border-accent-purple relative">
-              <div className="swipeable-card-header">
-                <div className="flex items-center gap-2">
-                  <ShoppingBag className="w-5 h-5 text-accent-purple" />
-                  <h3 className="text-responsive-base font-bold text-text-primary">{t('card.marketplace')}</h3>
-                </div>
-                <div className="text-xs text-text-muted">
-                  {currentItem.category}
-                </div>
+
+          {/* Main Card Content */}
+          <div className="swipeable-card-header">
+            <div className="flex items-start justify-between">
+              <div className="flex items-center space-x-2">
+                <ShoppingBag className="w-5 h-5 text-purple-400" />
+                <span className="text-purple-300 font-medium text-sm">
+                  {t('marketplace.title')}
+                </span>
               </div>
-              
-              {/* Meta symbols in corner */}
-              <div className="absolute bottom-3 right-3 flex items-center gap-1">
-                <div className="text-slate-400" title={currentItem.condition}>
-                  <Package className="w-4 h-4" />
-                </div>
-                <div className="text-slate-400" title={currentItem.seller}>
-                  <Star className="w-4 h-4" />
-                </div>
-              </div>
-              <div className="swipeable-card-content">
-                <div className="p-4 h-full flex flex-col">
-                  <div className="flex-1">
-                    {/* Display actual image */}
-                    {itemImage && (
-                      <div className="w-full h-12 bg-slate-700 rounded mb-2 overflow-hidden">
-                        <img 
-                          src={itemImage} 
-                          alt={currentItem.title}
-                          className="w-full h-full object-cover"
-                          onError={(e) => {
-                            // Hide image if it fails to load
-                            const target = e.target as HTMLImageElement
-                            target.parentElement!.style.display = 'none'
-                          }}
-                        />
-                      </div>
-                    )}
-                    <h4 className="text-base sm:text-lg font-semibold text-text-primary mb-2 leading-tight">
-                      {currentItem.title}
-                    </h4>
-                    <p className="text-sm text-text-secondary mb-3 line-clamp-2">
-                      {currentItem.description}
-                    </p>
-                    <div className="text-xl font-bold text-accent-purple mb-2">
-                      €{currentItem.price.toFixed(2)}
-                    </div>
-                    <div className="text-sm text-text-muted mb-2">
+              <span className="text-xs text-slate-400">
+                {formatTime(currentItem.date)}
+              </span>
+            </div>
+            
+            <div className="mt-3">
+              <div className="flex-1">
+                {/* Item Image */}
+                {itemImage && (
+                  <div className="w-full h-32 bg-slate-700 rounded mb-3 overflow-hidden">
+                    <img 
+                      src={itemImage} 
+                      alt={currentItem.title}
+                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-200"
+                      onError={(e) => {
+                        const target = e.target as HTMLImageElement
+                        target.style.display = 'none'
+                      }}
+                    />
+                  </div>
+                )}
+                
+                <h4 className="text-slate-100 font-semibold text-base mb-2 line-clamp-2">
+                  {currentItem.title}
+                </h4>
+                
+                <p className="text-slate-300 text-sm mb-3 line-clamp-3">
+                  {currentItem.description}
+                </p>
+                
+                <div className="flex items-center justify-between mb-3">
+                  <span className="text-purple-300 font-bold text-lg">
+                    €{currentItem.price.toFixed(2)}
+                  </span>
+                  <div className="flex items-center space-x-2">
+                    <span className="text-xs text-slate-400 bg-slate-700 px-2 py-1 rounded">
                       {currentItem.condition}
-                    </div>
+                    </span>
+                    <span className="text-xs text-slate-400 bg-slate-700 px-2 py-1 rounded">
+                      {currentItem.category}
+                    </span>
                   </div>
-                  <div className="border-t border-slate-600/30 pt-3 mt-auto">
-                    <div className="flex items-center justify-between text-sm text-text-muted">
-                      <span>{currentItem.seller}</span>
-                      <span className="font-medium">{formatTime(currentItem.date)}</span>
+                </div>
+                
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center space-x-2">
+                    <div className="w-6 h-6 bg-purple-600 rounded-full flex items-center justify-center">
+                      <span className="text-white text-xs font-bold">
+                        {currentItem.seller.charAt(0).toUpperCase()}
+                      </span>
                     </div>
+                    <span className="text-slate-300 text-sm">
+                      {currentItem.seller}
+                    </span>
                   </div>
+                  
+                  <button
+                    onClick={() => navigate('/marketplace')}
+                    className="bg-purple-600 hover:bg-purple-700 text-white px-3 py-1 rounded text-xs transition-colors duration-200"
+                  >
+                    {t('common.viewMore')}
+                  </button>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        
-        <div className="absolute top-1/2 -translate-y-1/2 left-2 right-2 flex justify-between pointer-events-none z-30">
+
+        {/* Navigation Controls */}
+        <div className="flex items-center justify-between mt-4 px-4">
           <button
-            onClick={goToPrevious}
+            onClick={goToPrev}
             disabled={isFlipping || currentIndex <= 0}
             className={`pointer-events-auto p-2 rounded-full bg-slate-700/80 hover:bg-slate-600/80 text-slate-300 hover:text-white transition-all duration-200 ${
               currentIndex <= 0 ? 'opacity-30 cursor-not-allowed' : 'opacity-70 hover:opacity-100'
             }`}
-            aria-label={t('aria.previousCard')}
+            aria-label={t('aria.prevCard')}
           >
-            <span className="text-lg">‹</span>
+            <svg className="w-4 h-4 transform rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
           </button>
           
           <button
             onClick={goToNext}
-            disabled={isFlipping || currentIndex >= marketplaceItems.length - 1}
+            disabled={isFlipping || !isValidIndex(currentIndex) || currentIndex >= marketplaceItems.length - 1}
             className={`pointer-events-auto p-2 rounded-full bg-slate-700/80 hover:bg-slate-600/80 text-slate-300 hover:text-white transition-all duration-200 ${
               currentIndex >= marketplaceItems.length - 1 ? 'opacity-30 cursor-not-allowed' : 'opacity-70 hover:opacity-100'
             }`}
             aria-label={t('aria.nextCard')}
           >
-            <span className="text-lg">›</span>
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
           </button>
-        </div>
-        
-        <div className="flex justify-center mt-2 gap-1">
-          {marketplaceItems.map((_, index) => (
-            <div
-              key={index}
-              className={`w-2 h-2 rounded-full transition-colors duration-200 ${
-                index === currentIndex 
-                  ? 'bg-purple-400' 
-                  : index < currentIndex
-                  ? 'bg-slate-500'
-                  : 'bg-slate-600'
-              }`}
-            />
-          ))}
         </div>
         
         <div className="text-center mt-1 text-xs text-slate-400">
