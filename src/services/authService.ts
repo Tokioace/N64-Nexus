@@ -38,7 +38,7 @@ class AuthService {
       if (!data.termsAccepted || !data.privacyAccepted || !data.copyrightAcknowledged || !data.ageConfirmed) {
         return {
           success: false,
-          error: 'Alle rechtlichen Vereinbarungen müssen akzeptiert werden'
+          error: 'All legal agreements must be accepted'
         }
       }
 
@@ -52,7 +52,7 @@ class AuthService {
       if (existingProfile) {
         return {
           success: false,
-          error: 'Username bereits vergeben'
+          error: 'Username already taken'
         }
       }
 
@@ -97,7 +97,7 @@ class AuthService {
       if (!authData.user) {
         return {
           success: false,
-          error: 'Registrierung fehlgeschlagen'
+          error: 'Registration failed'
         }
       }
 
@@ -115,7 +115,7 @@ class AuthService {
         return {
           success: true,
           user: null, // No user object until email is confirmed
-          error: 'Registrierung erfolgreich! Bitte bestätigen Sie Ihre E-Mail-Adresse, um Ihr Konto zu aktivieren.'
+          error: 'Registration successful! Please confirm your email address to activate your account.'
         }
       }
 
@@ -145,7 +145,7 @@ class AuthService {
         }
         return {
           success: false,
-          error: 'Fehler beim Erstellen des Profils'
+          error: 'Error creating profile'
         }
       }
 
@@ -166,7 +166,7 @@ class AuthService {
       }
       return {
         success: false,
-        error: 'Unerwarteter Fehler bei der Registrierung'
+        error: 'Unexpected error during registration'
       }
     }
   }
@@ -194,7 +194,7 @@ class AuthService {
       if (!data.user) {
         return {
           success: false,
-          error: 'Login fehlgeschlagen'
+          error: 'Login failed'
         }
       }
 
@@ -214,7 +214,7 @@ class AuthService {
       }
       return {
         success: false,
-        error: 'Unerwarteter Fehler beim Login'
+        error: 'Unexpected error during login'
       }
     }
   }
@@ -275,7 +275,7 @@ class AuthService {
       }
       return {
         success: false,
-        error: 'Unerwarteter Fehler beim Passwort-Reset'
+        error: 'Unexpected error during password reset'
       }
     }
   }
@@ -312,7 +312,7 @@ class AuthService {
       }
       return {
         success: false,
-        error: 'Unerwarteter Fehler beim Passwort-Update'
+        error: 'Unexpected error during password update'
       }
     }
   }
@@ -327,7 +327,7 @@ class AuthService {
       if (!user) {
         return {
           success: false,
-          error: 'Kein angemeldeter Benutzer gefunden'
+          error: 'No logged in user found'
         }
       }
 
@@ -342,7 +342,7 @@ class AuthService {
         }
         return {
           success: false,
-          error: 'Fehler beim Löschen des Kontos: ' + error.message
+          error: 'Account deletion error: ' + error.message
         }
       }
 
@@ -362,7 +362,7 @@ class AuthService {
       }
       return {
         success: false,
-        error: 'Unerwarteter Fehler beim Löschen des Kontos'
+        error: 'Unexpected error during account deletion'
       }
     }
   }
@@ -504,15 +504,15 @@ class AuthService {
   private getErrorMessage(error: AuthError): string {
     switch (error.message) {
       case 'Invalid login credentials':
-        return 'Ungültige Anmeldedaten'
+        return 'Invalid login credentials'
       case 'User already registered':
         return 'E-Mail bereits registriert'
       case 'Password should be at least 6 characters':
-        return 'Passwort muss mindestens 6 Zeichen lang sein'
+        return 'Password must be at least 6 characters long'
       case 'Email not confirmed':
         return 'E-Mail noch nicht bestätigt'
       case 'Invalid email':
-        return 'Ungültige E-Mail-Adresse'
+        return 'Invalid email address'
       default:
         return error.message
     }
