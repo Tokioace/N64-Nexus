@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useUser } from '../contexts/UserContext'
 import { useLanguage } from '../contexts/LanguageContext'
-import { useNavigate, Link } from 'react-router-dom'
+import { useNavigate, Link, useLocation } from 'react-router-dom'
 import { UserRegistrationData } from '../types'
 import { User, Mail, Lock, Gamepad2, Globe, Eye, EyeOff, Calendar, AlertCircle } from 'lucide-react'
 import PasswordResetModal from '../components/PasswordResetModal'
@@ -10,7 +10,8 @@ const AuthPage: React.FC = () => {
   const { login, register, isAuthenticated } = useUser()
   const { t } = useLanguage()
   const navigate = useNavigate()
-  const [isLogin, setIsLogin] = useState(true)
+  const location = useLocation()
+  const [isLogin, setIsLogin] = useState(!location.state?.showLogin)
   const [showPassword, setShowPassword] = useState(false)
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
   const [loading, setLoading] = useState(false)
@@ -38,12 +39,17 @@ const AuthPage: React.FC = () => {
     ageConfirmed: false
   })
 
-  // Redirect if already authenticated
+  // Handle location state and redirect if already authenticated
   React.useEffect(() => {
     if (isAuthenticated) {
       navigate('/')
     }
-  }, [isAuthenticated, navigate])
+    
+    // Handle messages from email confirmation
+    if (location.state?.message) {
+      setError(`✅ ${location.state.message}`)
+    }
+  }, [isAuthenticated, navigate, location.state])
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -114,14 +120,24 @@ const AuthPage: React.FC = () => {
     }
 
     try {
-      const success = await register(registrationData)
-      if (success) {
-        navigate('/')
+      const result = await register(registrationData)
+      if (result.success) {
+        if (result.user) {
+          // User is immediately confirmed and logged in
+          navigate('/')
+        } else {
+          // Email confirmation required
+          setError('') // Clear any previous errors
+          setError(result.error || 'Registrierung erfolgreich! Bitte bestätigen Sie Ihre E-Mail-Adresse.')
+          // Show success message instead of error
+          const successMessage = result.error || 'Registrierung erfolgreich! Bitte bestätigen Sie Ihre E-Mail-Adresse.'
+          setError(`✅ ${successMessage}`)
+        }
       } else {
-        setError(t('auth.registrationFailed'))
+        setError(result.error || t('auth.registrationFailed'))
       }
-    } catch {
-      setError(t('auth.errorOccurred'))
+    } catch (error: any) {
+      setError(error?.message || t('auth.errorOccurred'))
     } finally {
       setLoading(false)
     }

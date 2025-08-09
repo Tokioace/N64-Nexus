@@ -2,18 +2,24 @@ import React, { useState, useRef, useEffect } from 'react'
 import { ShoppingBag, Star, Package } from 'lucide-react'
 import { useLanguage, getLocaleString } from '../contexts/LanguageContext'
 import { useNavigate } from 'react-router-dom'
-
+// Support both legacy string seller and new object seller formats
 interface MarketplaceItem {
   id: string
   title: string
   description: string
   price: number
   condition: string
-  seller: string
+  seller: string | {
+    id: string
+    name: string
+    rating: number
+    verified: boolean
+  }
   date: Date
-  image?: string
-  images?: string[]
   category: string
+  images?: string[]
+  image?: string
+  createdAt?: string
 }
 
 interface SingleMarketplaceCardProps {
@@ -344,11 +350,17 @@ const SingleMarketplaceCard: React.FC<SingleMarketplaceCardProps> = ({ marketpla
                   <div className="flex items-center space-x-2">
                     <div className="w-6 h-6 bg-purple-600 rounded-full flex items-center justify-center">
                       <span className="text-white text-xs font-bold">
-                        {currentItem.seller.charAt(0).toUpperCase()}
+                        {typeof currentItem.seller === 'string' 
+                          ? currentItem.seller.charAt(0).toUpperCase()
+                          : currentItem.seller.name.charAt(0).toUpperCase()
+                        }
                       </span>
                     </div>
                     <span className="text-slate-300 text-sm">
-                      {currentItem.seller}
+                      {typeof currentItem.seller === 'string' 
+                        ? currentItem.seller
+                        : currentItem.seller.name
+                      }
                     </span>
                   </div>
                   

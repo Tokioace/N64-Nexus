@@ -4,28 +4,7 @@ import { logger } from '../lib/logger';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useLocation } from 'react-router-dom';
 import { Search, Plus, Package, Clock, Star, Grid, List, Eye, MessageCircle, Heart, ShoppingCart } from 'lucide-react';
-
-interface MarketplaceOffer {
-  id: string;
-  title: string;
-  description: string;
-  price: number;
-  currency: string;
-  condition: 'mint' | 'very-good' | 'good' | 'fair';
-  images: string[];
-  seller: {
-    id: string;
-    name: string;
-    rating: number;
-    verified: boolean;
-  };
-  category: string;
-  createdAt: string;
-  views: number;
-  likes: number;
-  comments: number;
-  isActive: boolean;
-}
+import { MarketplaceItem as MarketplaceOffer } from '../types';
 
 interface CreateOfferModalProps {
   isOpen: boolean;
@@ -207,6 +186,9 @@ const MarketplacePage: React.FC = () => {
 
   // Load marketplace data from localStorage and handle highlighting
   useEffect(() => {
+    let highlightTimeout: NodeJS.Timeout | null = null;
+    let clearHighlightTimeout: NodeJS.Timeout | null = null;
+
     const loadMarketplaceData = () => {
       try {
         const savedMarketplace = localStorage.getItem('marketplace_items');
@@ -302,7 +284,7 @@ const MarketplacePage: React.FC = () => {
     if (location.state?.highlightItemId) {
       setHighlightedItemId(location.state.highlightItemId);
       // Auto-scroll to the highlighted item after a short delay
-      setTimeout(() => {
+      highlightTimeout = setTimeout(() => {
         const element = document.getElementById(`marketplace-${location.state.highlightItemId}`);
         if (element) {
           element.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -310,10 +292,20 @@ const MarketplacePage: React.FC = () => {
       }, 500);
       
       // Clear the highlight after a few seconds
-      setTimeout(() => {
+      clearHighlightTimeout = setTimeout(() => {
         setHighlightedItemId(null);
       }, 3000);
     }
+
+    // Cleanup function to clear timeouts
+    return () => {
+      if (highlightTimeout) {
+        clearTimeout(highlightTimeout);
+      }
+      if (clearHighlightTimeout) {
+        clearTimeout(clearHighlightTimeout);
+      }
+    };
   }, [location.state]);
 
   const handleCreateOffer = (offerData: Omit<MarketplaceOffer, 'id' | 'createdAt' | 'views' | 'likes' | 'comments' | 'seller'>) => {
