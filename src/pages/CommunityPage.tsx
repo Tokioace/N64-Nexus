@@ -136,7 +136,7 @@ const CommunityPage: React.FC = () => {
             >
               <option value="all">{t('community.allPlatforms')}</option>
               <option value="N64">N64</option>
-              <option value="PC">PC</option>
+              <option value="PC">{t('platform.pc')}</option>
             </select>
 
             <select
@@ -145,8 +145,8 @@ const CommunityPage: React.FC = () => {
               className="px-3 py-2 bg-slate-700 border border-slate-600 rounded-lg text-slate-100 focus:outline-none focus:ring-2 focus:ring-blue-500 text-responsive-sm"
             >
               <option value="all">{t('community.allRegions')}</option>
-              <option value="PAL">PAL</option>
-              <option value="NTSC">NTSC</option>
+              <option value="PAL">{t('region.pal')}</option>
+              <option value="NTSC">{t('region.ntsc')}</option>
             </select>
 
             <select

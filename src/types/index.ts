@@ -24,6 +24,152 @@ export interface User {
   copyrightAcknowledged?: boolean
 }
 
+// Authentication types
+export interface AuthUser {
+  id: string
+  email: string
+  username?: string
+  user_metadata?: {
+    username?: string
+    level?: number
+    xp?: number
+    region?: 'PAL' | 'NTSC'
+    platform?: 'N64' | 'PC'
+  }
+  app_metadata?: Record<string, unknown>
+  created_at?: string
+  updated_at?: string
+}
+
+export interface AuthSession {
+  access_token: string
+  refresh_token: string
+  expires_in: number
+  token_type: string
+  user: AuthUser
+}
+
+export interface AuthResponse {
+  user: AuthUser | null
+  session: AuthSession | null
+  error?: AuthError | null
+}
+
+export interface AuthError {
+  message: string
+  status?: number
+  code?: string
+}
+
+// API Response types
+export interface ApiResponse<T = unknown> {
+  data: T | null
+  error: ApiError | null
+  count?: number
+  status?: number
+}
+
+export interface ApiError {
+  message: string
+  details?: string
+  hint?: string
+  code?: string
+}
+
+// Database collection types
+export interface DatabaseCollection {
+  id: string
+  user_id: string
+  game_id: string
+  game_name: string
+  platform: 'N64' | 'PC'
+  region: 'PAL' | 'NTSC'
+  condition: 'mint' | 'very-good' | 'good' | 'fair' | 'poor'
+  completeness: 'complete' | 'cart-only' | 'box-only'
+  acquisition_date: string
+  notes?: string
+  image_url?: string
+  is_wishlist: boolean
+  created_at: string
+  updated_at: string
+}
+
+export interface DatabasePersonalRecord {
+  id: string
+  user_id: string
+  game_id: string
+  game_name: string
+  category: string
+  time?: string
+  score?: number
+  platform: 'N64' | 'PC'
+  region: 'PAL' | 'NTSC'
+  achieved_date: string
+  verified: boolean
+  media_url?: string
+  notes?: string
+  created_at: string
+  updated_at: string
+}
+
+export interface DatabaseProfile {
+  id: string
+  username: string
+  email: string
+  level: number
+  xp: number
+  region: 'PAL' | 'NTSC'
+  platform: 'N64' | 'PC'
+  join_date: string
+  avatar?: string
+  bio?: string
+  location?: string
+  is_public: boolean
+  birth_date?: string
+  terms_accepted?: boolean
+  privacy_accepted?: boolean
+  copyright_acknowledged?: boolean
+  points?: UserPoints
+  created_at: string
+  updated_at: string
+}
+
+// Marketplace types
+export interface MarketplaceItemData {
+  id: string
+  title: string
+  description: string
+  price: number
+  currency: string
+  condition: string
+  seller: string | { name: string }
+  imageUrl: string
+  createdAt: string
+  date?: string
+  game: string
+  platform: string
+  region: string
+  category?: string
+}
+
+// Event system types
+export interface EventData {
+  id: string
+  title: string
+  description: string
+  startDate: string
+  endDate: string
+  game: string
+  category: string
+  platform: 'N64' | 'PC'
+  region: 'PAL' | 'NTSC'
+  status: 'upcoming' | 'live' | 'completed'
+  participants: number
+  maxParticipants?: number
+  created_at: string
+  updated_at: string
+}
+
 export interface UserRegistrationData {
   username: string
   email: string
@@ -649,6 +795,48 @@ export interface LegalContextType {
   
   loading: boolean
   error: string | null
+}
+
+// Marketplace Types
+export interface MarketplaceSeller {
+  id: string
+  name: string
+  rating: number
+  verified: boolean
+}
+
+export interface MarketplaceItem {
+  id: string
+  title: string
+  description: string
+  price: number
+  currency: string
+  condition: 'mint' | 'very-good' | 'good' | 'fair'
+  images: string[]
+  seller: MarketplaceSeller
+  category: string
+  createdAt: string
+  views: number
+  likes: number
+  comments: number
+  isActive: boolean
+  // Legacy compatibility - for components that expect string seller
+  date?: Date
+}
+
+// Legacy marketplace item interface for backward compatibility
+export interface LegacyMarketplaceItem {
+  id: string
+  title: string
+  description: string
+  price: number
+  condition: string
+  seller: string
+  date: Date
+  category: string
+  images?: string[]
+  image?: string
+  createdAt?: string
 }
 
 // Upload Security Types

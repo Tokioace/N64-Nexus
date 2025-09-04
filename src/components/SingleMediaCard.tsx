@@ -172,8 +172,8 @@ const SingleMediaCard: React.FC<SingleMediaCardProps> = ({ mediaItems, className
                       <h3 className="text-responsive-base font-bold text-text-primary">{t('card.media')}</h3>
                     </div>
                     <div className="text-xs text-text-muted">
-                      <span className={getTypeColor(mediaItems[currentIndex + 1].type)}>
-                        {getTypeTranslation(mediaItems[currentIndex + 1].type)}
+                      <span className={getTypeColor(mediaItems[currentIndex + 1]?.type || 'speedrun')}>
+                        {getTypeTranslation(mediaItems[currentIndex + 1]?.type || 'speedrun')}
                       </span>
                     </div>
                   </div>
@@ -181,25 +181,25 @@ const SingleMediaCard: React.FC<SingleMediaCardProps> = ({ mediaItems, className
                     <div className="p-4 h-full flex flex-col">
                       <div className="flex-1">
                         <h4 className="text-base sm:text-lg font-semibold text-text-primary mb-2 leading-tight">
-                          {mediaItems[currentIndex + 1].title}
+                          {mediaItems[currentIndex + 1]?.title || t('common.unknownMedia')}
                         </h4>
                         <p className="text-sm text-text-secondary mb-3 line-clamp-2">
-                          {mediaItems[currentIndex + 1].description}
+                                                      {mediaItems[currentIndex + 1]?.description || t('common.noDescription')}
                         </p>
                         <div className="text-sm text-text-muted mb-2">
-                          {mediaItems[currentIndex + 1].game}
+                                                      {mediaItems[currentIndex + 1]?.game || t('common.unknownGame')}
                         </div>
                         <InteractionBar 
                           contentType="media"
-                          contentId={mediaItems[currentIndex + 1].id}
+                          contentId={mediaItems[currentIndex + 1]?.id || ''}
                           showComments={false}
                           compact={true}
                         />
                       </div>
                       <div className="border-t border-slate-600/30 pt-3 mt-auto">
                         <div className="flex items-center justify-between text-sm text-text-muted">
-                          <span>{mediaItems[currentIndex + 1].uploader}</span>
-                          <span className="font-medium">{formatTime(mediaItems[currentIndex + 1].date)}</span>
+                          <span>{mediaItems[currentIndex + 1]?.uploader || t('common.unknownUser')}</span>
+                          <span className="font-medium">{mediaItems[currentIndex + 1]?.date ? formatTime(mediaItems[currentIndex + 1].date) : '--:--'}</span>
                         </div>
                       </div>
                     </div>
@@ -214,8 +214,8 @@ const SingleMediaCard: React.FC<SingleMediaCardProps> = ({ mediaItems, className
                       <h3 className="text-responsive-base font-bold text-text-primary">{t('card.media')}</h3>
                     </div>
                     <div className="text-xs text-text-muted">
-                      <span className={getTypeColor(mediaItems[currentIndex - 1].type)}>
-                        {getTypeTranslation(mediaItems[currentIndex - 1].type)}
+                      <span className={getTypeColor(mediaItems[currentIndex - 1]?.type || 'speedrun')}>
+                        {getTypeTranslation(mediaItems[currentIndex - 1]?.type || 'speedrun')}
                       </span>
                     </div>
                   </div>
@@ -223,25 +223,25 @@ const SingleMediaCard: React.FC<SingleMediaCardProps> = ({ mediaItems, className
                     <div className="p-4 h-full flex flex-col">
                       <div className="flex-1">
                         <h4 className="text-base sm:text-lg font-semibold text-text-primary mb-2 leading-tight">
-                          {mediaItems[currentIndex - 1].title}
+                          {mediaItems[currentIndex - 1]?.title || t('common.unknownMedia')}
                         </h4>
                         <p className="text-sm text-text-secondary mb-3 line-clamp-2">
-                          {mediaItems[currentIndex - 1].description}
+                                                      {mediaItems[currentIndex - 1]?.description || t('common.noDescription')}
                         </p>
                         <div className="text-sm text-text-muted mb-2">
-                          {mediaItems[currentIndex - 1].game}
+                          {mediaItems[currentIndex - 1]?.game || 'Unknown Game'}
                         </div>
                         <InteractionBar 
                           contentType="media"
-                          contentId={mediaItems[currentIndex - 1].id}
+                          contentId={mediaItems[currentIndex - 1]?.id || ''}
                           showComments={false}
                           compact={true}
                         />
                       </div>
                       <div className="border-t border-slate-600/30 pt-3 mt-auto">
                         <div className="flex items-center justify-between text-sm text-text-muted">
-                          <span>{mediaItems[currentIndex - 1].uploader}</span>
-                          <span className="font-medium">{formatTime(mediaItems[currentIndex - 1].date)}</span>
+                          <span>{mediaItems[currentIndex - 1]?.uploader || t('common.unknown')}</span>
+                          <span className="font-medium">{mediaItems[currentIndex - 1]?.date ? formatTime(mediaItems[currentIndex - 1].date) : '--:--'}</span>
                         </div>
                       </div>
                     </div>

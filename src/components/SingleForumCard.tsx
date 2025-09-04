@@ -130,9 +130,9 @@ const SingleForumCard: React.FC<SingleForumCardProps> = ({ forumThreads, classNa
                 <span className="text-cyan-400 break-words">Letzte Antwort von {thread.lastPostAuthor || 'Unbekannt'}:</span>
                 <br />
                 <span className="break-words">
-                  {thread.lastPostContent.length > 60 
+                  {thread.lastPostContent && thread.lastPostContent.length > 60 
                     ? `${thread.lastPostContent.substring(0, 60)}...` 
-                    : thread.lastPostContent
+                    : thread.lastPostContent || 'Kein Inhalt verfügbar'
                   }
                 </span>
               </div>

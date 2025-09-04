@@ -16,6 +16,7 @@ import {
 } from '../services/dbService'
 import { Database } from '../lib/supabase'
 import { logger } from '../lib/logger'
+import { useLanguage } from '../contexts/LanguageContext'
 
 type Tables = Database['public']['Tables']
 

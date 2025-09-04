@@ -1,12 +1,15 @@
 import { supabase } from '../lib/supabase'
 import { logger } from '../lib/logger'
+import { generateSmartRedirectURL, detectBrowser } from '../utils/browserDetection'
 import type { User as SupabaseUser, AuthError } from '@supabase/supabase-js'
 import type { User, UserRegistrationData } from '../types'
+import { useLanguage } from '../contexts/LanguageContext'
 
 export interface AuthResult {
   success: boolean
   error?: string
   user?: User | null
+  message?: string
 }
 
 export interface PasswordResetResult {
@@ -36,7 +39,7 @@ class AuthService {
       if (!data.termsAccepted || !data.privacyAccepted || !data.copyrightAcknowledged || !data.ageConfirmed) {
         return {
           success: false,
-          error: 'Alle rechtlichen Vereinbarungen müssen akzeptiert werden'
+          error: 'All legal agreements must be accepted'
         }
       }
 
@@ -50,15 +53,23 @@ class AuthService {
       if (existingProfile) {
         return {
           success: false,
-          error: 'Username bereits vergeben'
+          error: 'Username already taken'
         }
       }
+
+      // Generate browser-aware redirect URL
+      const baseRedirectURL = `${window.location.origin}/?registration=success`
+      const smartRedirectURL = generateSmartRedirectURL(baseRedirectURL)
+
+      // Detect browser info once to avoid double calls
+      const browserInfo = detectBrowser()
 
       // Registriere Benutzer in Supabase Auth
       const { data: authData, error: authError } = await supabase.auth.signUp({
         email: data.email,
         password: data.password,
         options: {
+          emailRedirectTo: smartRedirectURL,
           data: {
             username: data.username,
             region: data.region,
@@ -66,7 +77,10 @@ class AuthService {
             birth_date: data.birthDate,
             terms_accepted: data.termsAccepted,
             privacy_accepted: data.privacyAccepted,
-            copyright_acknowledged: data.copyrightAcknowledged
+            copyright_acknowledged: data.copyrightAcknowledged,
+            // Store browser info for later use
+            preferred_browser: browserInfo.name,
+            browser_version: browserInfo.version
           }
         }
       })
@@ -84,11 +98,29 @@ class AuthService {
       if (!authData.user) {
         return {
           success: false,
-          error: 'Registrierung fehlgeschlagen'
+          error: 'Registration failed'
         }
       }
 
-      // Erstelle Profil in der profiles-Tabelle
+      // Check if email confirmation is required
+      if (!authData.user.email_confirmed_at) {
+        // Email confirmation required - don't create profile yet
+        if (import.meta.env.DEV) {
+          logger.info('Registration successful, email confirmation required:', { 
+            userId: authData.user.id, 
+            username: data.username,
+            email: data.email
+          })
+        }
+
+        return {
+          success: true,
+          user: null, // No user object until email is confirmed
+          error: 'Registration successful! Please confirm your email address to activate your account.'
+        }
+      }
+
+      // If email is already confirmed, create profile
       const { error: profileError } = await supabase
         .from('profiles')
         .insert({
@@ -112,11 +144,9 @@ class AuthService {
         if (import.meta.env.DEV) {
           logger.error('Profile creation error:', profileError)
         }
-        // Versuche den Auth-User zu löschen, da Profil-Erstellung fehlgeschlagen ist
-        await supabase.auth.admin.deleteUser(authData.user.id)
         return {
           success: false,
-          error: 'Fehler beim Erstellen des Profils'
+          error: 'Error creating profile'
         }
       }
 
@@ -124,7 +154,7 @@ class AuthService {
       const user = await this.convertSupabaseUserToUser(authData.user)
 
       if (import.meta.env.DEV) {
-        logger.info('User registered successfully:', { userId: authData.user.id, username: data.username })
+        logger.info('User registered and confirmed successfully:', { userId: authData.user.id, username: data.username })
       }
 
       return {
@@ -137,7 +167,7 @@ class AuthService {
       }
       return {
         success: false,
-        error: 'Unerwarteter Fehler bei der Registrierung'
+        error: 'Unexpected error during registration'
       }
     }
   }
@@ -165,7 +195,7 @@ class AuthService {
       if (!data.user) {
         return {
           success: false,
-          error: 'Login fehlgeschlagen'
+          error: 'Login failed'
         }
       }
 
@@ -185,7 +215,7 @@ class AuthService {
       }
       return {
         success: false,
-        error: 'Unerwarteter Fehler beim Login'
+        error: 'Unexpected error during login'
       }
     }
   }
@@ -246,7 +276,7 @@ class AuthService {
       }
       return {
         success: false,
-        error: 'Unerwarteter Fehler beim Passwort-Reset'
+        error: 'Unexpected error during password reset'
       }
     }
   }
@@ -283,7 +313,7 @@ class AuthService {
       }
       return {
         success: false,
-        error: 'Unerwarteter Fehler beim Passwort-Update'
+        error: 'Unexpected error during password update'
       }
     }
   }
@@ -298,7 +328,7 @@ class AuthService {
       if (!user) {
         return {
           success: false,
-          error: 'Kein angemeldeter Benutzer gefunden'
+          error: 'No logged in user found'
         }
       }
 
@@ -313,7 +343,7 @@ class AuthService {
         }
         return {
           success: false,
-          error: 'Fehler beim Löschen des Kontos: ' + error.message
+          error: 'Account deletion error: ' + error.message
         }
       }
 
@@ -333,7 +363,7 @@ class AuthService {
       }
       return {
         success: false,
-        error: 'Unerwarteter Fehler beim Löschen des Kontos'
+        error: 'Unexpected error during account deletion'
       }
     }
   }
@@ -475,15 +505,15 @@ class AuthService {
   private getErrorMessage(error: AuthError): string {
     switch (error.message) {
       case 'Invalid login credentials':
-        return 'Ungültige Anmeldedaten'
+        return 'Invalid login credentials'
       case 'User already registered':
         return 'E-Mail bereits registriert'
       case 'Password should be at least 6 characters':
-        return 'Passwort muss mindestens 6 Zeichen lang sein'
+        return 'Password must be at least 6 characters long'
       case 'Email not confirmed':
         return 'E-Mail noch nicht bestätigt'
       case 'Invalid email':
-        return 'Ungültige E-Mail-Adresse'
+        return 'Invalid email address'
       default:
         return error.message
     }

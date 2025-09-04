@@ -2,7 +2,6 @@
 import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react'
 import { GameEvent, EventParticipation, EventContextType, RaceSubmissionData } from '../types'
 import { useLanguage } from './LanguageContext'
-import { safeLocalStorage, safeJSONStorage } from '../utils/storage'
 import { logger } from '../lib/logger'
 
 const EventContext = createContext<EventContextType | undefined>(undefined)
@@ -24,7 +23,7 @@ const fileToBase64 = (file: File): Promise<string> => {
 }
 
 // Function to get event data with translations
-const getEventData = (t: (key: any) => string): GameEvent[] => [
+const getEventData = (t: (key: string) => string): GameEvent[] => [
   {
     id: 'mk64-luigis-raceway',
     title: t('events.mk64LuigisRaceway.title'),
@@ -283,9 +282,9 @@ export const EventProvider: React.FC<{ children: ReactNode }> = ({ children }) =
 
   // Load data from localStorage on mount
   useEffect(() => {
-    const savedEvents = safeLocalStorage.getItem(STORAGE_KEY_EVENTS)
-    const savedUserParticipations = safeLocalStorage.getItem(STORAGE_KEY_USER_PARTICIPATIONS)
-    const savedAllSubmissions = safeLocalStorage.getItem(STORAGE_KEY_ALL_SUBMISSIONS)
+    const savedEvents = localStorage.getItem(STORAGE_KEY_EVENTS)
+    const savedUserParticipations = localStorage.getItem(STORAGE_KEY_USER_PARTICIPATIONS)
+    const savedAllSubmissions = localStorage.getItem(STORAGE_KEY_ALL_SUBMISSIONS)
     
     if (savedEvents) {
       try {
@@ -337,17 +336,17 @@ export const EventProvider: React.FC<{ children: ReactNode }> = ({ children }) =
 
   // Save events to localStorage whenever events array changes
   useEffect(() => {
-    safeJSONStorage.set(STORAGE_KEY_EVENTS, events)
+    localStorage.setItem(STORAGE_KEY_EVENTS, JSON.stringify(events))
   }, [events])
 
   // Save user participations to localStorage whenever they change
   useEffect(() => {
-    safeJSONStorage.set(STORAGE_KEY_USER_PARTICIPATIONS, userParticipations)
+    localStorage.setItem(STORAGE_KEY_USER_PARTICIPATIONS, JSON.stringify(userParticipations))
   }, [userParticipations])
 
   // Save all submissions to localStorage whenever they change
   useEffect(() => {
-    safeJSONStorage.set(STORAGE_KEY_ALL_SUBMISSIONS, allEventSubmissions)
+    localStorage.setItem(STORAGE_KEY_ALL_SUBMISSIONS, JSON.stringify(allEventSubmissions))
   }, [allEventSubmissions])
 
   // Update events when language changes

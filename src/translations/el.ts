@@ -17,7 +17,37 @@ const el = {
   'nav.newsfeed': 'Ροή Νέων',
   'nav.community': 'Κοινότητα',
   'nav.map': 'Battle64 Map',
-
+  // Accessibility
+  'a11y.skipToMain': 'Μετάβαση στο κυρίως περιεχόμενο',
+  'a11y.skipToNav': 'Μετάβαση στην πλοήγηση',
+  'a11y.skipToSearch': 'Μετάβαση στην αναζήτηση',
+  'a11y.newPage': 'Νέα σελίδα φορτώθηκε',
+  'a11y.loading': 'Φόρτωση περιεχομένου',
+  'a11y.error': 'Προέκυψε σφάλμα',
+  'a11y.success': 'Η ενέργεια ολοκληρώθηκε επιτυχώς',
+  // Common fallback texts
+  'common.unknown': 'Άγνωστο',
+  'common.unknownGame': 'Άγνωστο Παιχνίδι',
+  'common.unknownCategory': 'Άγνωστη Κατηγορία',
+  'common.unknownItem': 'Άγνωστο Αντικείμενο',
+  'common.unknownMedia': 'Άγνωστα Μέσα',
+  'common.unknownUser': 'Άγνωστος Χρήστης',
+  'common.noDescription': 'Δεν υπάρχει διαθέσιμη περιγραφή',
+  'common.noDataAvailable': 'Δεν υπάρχουν διαθέσιμα δεδομένα',
+  'common.userLocation': 'Τοποθεσία χρήστη',
+  'common.marketplaceItem': 'Αντικείμενο αγοράς',
+  'common.verified': 'Επαληθευμένο',
+  'common.unverified': 'Μη επαληθευμένο',
+  'common.pending': 'Εκκρεμεί',
+  'common.approved': 'Εγκεκριμένο',
+  'common.rejected': 'Απορρίφθηκε',
+  'common.draft': 'Πρόχειρο',
+  'common.published': 'Δημοσιευμένο',
+  'common.archived': 'Αρχειοθετημένο',
+  // Account deletion
+  'account.deletion.confirmText': 'Παρακαλώ πληκτρολογήστε \"DELETE\" για επιβεβαίωση',
+  'account.deletion.placeholder': 'ΔΙΑΓΡΑΦΗ',
+  'account.deletion.typeDelete': 'Πληκτρολογήστε \"DELETE\" για επιβεβαίωση:',
   // Home Screen
   'home.subtitle': 'Η Κοινότητα N64 για τους Millennials',
   'home.welcome': 'Καλώς ήρθες πίσω',
@@ -34,13 +64,12 @@ const el = {
   'home.fanart.subtitle': 'Δημιουργικότητα',
   'home.newsfeed.subtitle': 'Ενημερώσεις',
   'home.map.subtitle': 'Τοπικές Μάχες',
-
   // Battle64 Map
   'map.title': 'Battle64 Map',
   'map.subtitle': 'Πραγματικές Μάχες & Γεω-Αντιστοίχιση',
   'map.hostEvent': 'Διοργάνωση Τοπικής Μάχης 4 Παικτών',
   'map.selectGame': 'Επιλογή Παιχνιδιού',
-  'map.chooseGame': 'Διαλέξτε ένα παιχνίδι...',
+  'map.chooseGame': 'Διαλέξτε ένα παιχνίδι',
   'map.eventTitle': 'Τίτλος Εκδήλωσης',
   'map.eventTitlePlaceholder': 'Τουρνουά Αγώνων Σαββατοκύριακου',
   'map.description': 'Περιγραφή',
@@ -113,15 +142,14 @@ const el = {
   'event.type.speedrun': 'Συνεδρία Speedrun',
   'event.type.meetup': 'Συνάντηση',
   'event.category': 'Κατηγορία εκδήλωσης',
-
   // Common
   'common.welcome': 'Καλώς ήρθες',
-  'common.loading': 'Φόρτωση...',
+  'common.loading': 'Φόρτωση',
   'common.error': 'Σφάλμα',
   'common.save': 'Αποθήκευση',
   'common.cancel': 'Ακύρωση',
   'common.upload': 'Ανέβασμα',
-  'common.uploading': 'Ανεβαίνει...',
+  'common.uploading': 'Ανεβαίνει',
   'common.remove': 'Αφαίρεση',
   'common.delete': 'Διαγραφή',
   'common.edit': 'Επεξεργασία',
@@ -147,7 +175,6 @@ const el = {
   'common.ok': 'Εντάξει',
   'common.retry': 'Επανάληψη',
   'common.note': 'Σημείωση',
-
   // Authentication
   'auth.login': 'Σύνδεση',
   'auth.logout': 'Αποσύνδεση',
@@ -161,7 +188,6 @@ const el = {
   'auth.loginRequiredMessage': 'Πρέπει να είσαι συνδεδεμένος για να δεις αυτή τη σελίδα.',
   'auth.loginRequiredForEvents': 'Παρακαλώ συνδέσου για να συμμετάσχεις στις εκδηλώσεις!',
   'auth.loginRequiredForImageUpload': 'Πρέπει να είσαι συνδεδεμένος για να ανεβάσεις εικόνες',
-
   // Quiz
   'quiz.title': 'Κουίζ N64',
   'quiz.start': 'Έναρξη Κουίζ',
@@ -179,7 +205,6 @@ const el = {
   'quiz.category': 'Κατηγορία',
   'quiz.restart': 'Επανεκκίνηση',
   'quiz.wrong': 'Λάθος!',
-
   // Events
   'events.title': 'Εκδηλώσεις',
   'events.subtitle': 'Τουρνουά, Προκλήσεις και Εκδηλώσεις Κοινότητας',
@@ -202,7 +227,6 @@ const el = {
   'events.game': 'Παιχνίδι',
   'events.track': 'Πίστα',
   'events.time': 'Χρόνος',
-
   // Forum
   'forum.title': 'Φόρουμ',
   'forum.subtitle': 'Συζητήσεις Κοινότητας',
@@ -211,14 +235,13 @@ const el = {
   'forum.threads': 'Νήματα',
   'forum.posts': 'Δημοσιεύσεις',
   'forum.mostActive': 'Πιο Ενεργό',
-  'forum.loading': 'Φόρτωση...',
+  'forum.loading': 'Φόρτωση',
   'forum.communityNexus': 'Κέντρο Κοινότητας',
   'forum.discussWithCommunity': 'Συζήτησε με την κοινότητα',
   'forum.createThread': 'Δημιουργία νήματος',
   'forum.newThread': 'Νέο νήμα',
   'forum.reply': 'Απάντηση',
   'forum.backToForum': 'Πίσω στο Φόρουμ',
-
   // Language selector
   'language.german': 'Γερμανικά',
   'language.english': 'Αγγλικά',
@@ -234,7 +257,6 @@ const el = {
   'language.hindi': 'Χίντι',
   'language.arabic': 'Αραβικά',
   'language.korean': 'Κορεατικά',
-
   // Error messages
   'error.generic': 'Προέκυψε ένα σφάλμα',
   'error.networkError': 'Σφάλμα δικτύου',
@@ -246,7 +268,6 @@ const el = {
   'error.goHome': 'Πήγαινε στην Αρχική',
   'error.contactSupport': 'Επικοινώνησε με την Υποστήριξη',
   'error.somethingWentWrong': 'Κάτι πήγε στραβά',
-
   // News
   'news.title': 'Νέα',
   'news.subtitle': 'Τελευταίες ενημερώσεις και ανακοινώσεις',
@@ -268,7 +289,7 @@ const el = {
   'news.noResults': 'Δεν υπάρχουν αποτελέσματα',
   'news.noResultsDescription': 'Δεν βρέθηκαν νέα',
   'news.pagination': 'Σελίδα {current} από {total}',
-  'news.search.placeholder': 'Αναζήτηση ειδήσεων...',
+  'news.search.placeholder': 'Αναζήτηση ειδήσεων',
   'news.filter.all': 'Όλα',
   'news.filter.events': 'Εκδηλώσεις',
   'news.filter.winners': 'Νικητές',
@@ -292,7 +313,6 @@ const el = {
   'news.type.general': 'Γενικά',
   'news.eventWinnerLabel': 'Νικητής Εκδήλωσης',
   'news.noNewsAvailable': 'Δεν υπάρχουν διαθέσιμα νέα',
-
   // Achievements
   'achievement.speedrunMaster': 'Μάστερ Speedrun',
   'achievement.speedrunMasterDesc': 'Κυριάρχησε στην τέχνη του speedrunning',
@@ -310,7 +330,6 @@ const el = {
   'achievement.unlocked': 'Ξεκλειδώθηκε',
   'achievement.unlockedOn': 'Ξεκλειδώθηκε στις',
   'achievement.notUnlocked': 'Δεν έχει ξεκλειδωθεί ακόμα',
-
   // Profile
   'profile.title': 'Προφίλ',
   'profile.level': 'Επίπεδο',
@@ -332,7 +351,6 @@ const el = {
   'profile.activityHistory': 'Ιστορικό Δραστηριότητας',
   'profile.achievedOn': 'Επιτεύχθηκε στις',
   'profile.medals.title': 'Μετάλλια',
-
   // Media
   'media.upload': 'Ανέβασμα',
   'media.uploadMethod': 'Μέθοδος Ανεβάσματος',
@@ -361,48 +379,18 @@ const el = {
   'media.livestream': 'Livestream',
   'media.type': 'Τύπος Μέσου',
   'media.error': 'Σφάλμα μέσου',
-
-  // Placeholders
-  'placeholder.speedrunTitle': 'π.χ. Mario 64 120 Αστέρων Speedrun',
-  'placeholder.speedrunUrl': 'https://twitch.tv/το-κανάλι-σας',
-  'placeholder.speedrunGame': 'π.χ. Super Mario 64',
-  'placeholder.mediaSearch': 'Αναζήτηση με τίτλο, περιγραφή ή ετικέτες...',
-  'placeholder.mediaUrl': 'https://youtube.com/watch?v=...',
-  'placeholder.mediaDescription': 'Περίγραψε το επίτευγμά σου...',
-  'placeholder.mediaTags': 'Παγκόσμιο ρεκόρ, Any%, Glitchless (χωρισμένα με κόμμα)',
-  'placeholder.threadTitle': 'Δώσε έναν τίτλο στο νήμα σου...',
-  'placeholder.threadContent': 'Γράψε τη δημοσίευσή σου...',
-  'placeholder.replyContent': 'Γράψε την απάντησή σου...',
-  'placeholder.marketplacePrice': 'Εισάγετε τιμή...',
-  'placeholder.searchGames': 'Αναζήτηση παιχνιδιών...',
-  'placeholder.searchPlayers': 'Αναζήτηση παικτών...',
-  'placeholder.notes': 'Προσθήκη σημειώσεων...',
-  'placeholder.additionalInfo': 'Επιπλέον πληροφορίες...',
-  'placeholder.password': 'Εισάγετε κωδικό πρόσβασης...',
-  'placeholder.raceTime': 'Εισάγετε χρόνο (π.χ. 1:23:45)...',
-  'placeholder.livestreamUrl': 'https://twitch.tv/το-κανάλι-σας...',
-  'placeholder.setupController': 'Περιγράψτε τη ρύθμιση του χειριστηρίου...',
-  'placeholder.gameName': 'Εισάγετε όνομα παιχνιδιού...',
-  'placeholder.category': 'Επιλέξτε κατηγορία...',
-  'placeholder.time': 'Εισάγετε χρόνο...',
-  'placeholder.score': 'Εισάγετε σκορ...',
-  'placeholder.proofUrl': 'Εισάγετε URL απόδειξης...',
-  'placeholder.recordNotes': 'Σημειώσεις ρεκόρ...',
-
-  // Success messages
+  // Placeholders περιγραφή ή ετικέτες', Any%, Glitchless (χωρισμένα με κόμμα)',  // Success messages
   'success.uploaded': 'Ανέβηκε με επιτυχία',
-
   // Validation
   'validation.allFieldsRequired': 'Όλα τα πεδία είναι υποχρεωτικά',
   'validation.titleTooLong': 'Ο τίτλος είναι πολύ μεγάλος',
   'validation.contentTooLong': 'Το περιεχόμενο είναι πολύ μεγάλο',
   'validation.contentRequired': 'Το περιεχόμενο είναι υποχρεωτικό',
   'validation.postTooLong': 'Η δημοσίευση είναι πολύ μεγάλη',
-
   // Marketplace
   'marketplace.subtitle': 'Εμπόριο & Ανταλλαγές N64',
   'marketplace.createOffer': 'Δημιουργία Προσφοράς',
-  'marketplace.searchPlaceholder': 'Αναζήτηση αντικειμένων...',
+  'marketplace.searchPlaceholder': 'Αναζήτηση αντικειμένων',
   'marketplace.category': 'Κατηγορία',
   'marketplace.allCategories': 'Όλες οι Κατηγορίες',
   'marketplace.categoryGames': 'Παιχνίδια',
@@ -425,14 +413,13 @@ const el = {
   'marketplace.conditionPoor': 'Κακή',
   'marketplace.publishOffer': 'Δημοσίευση Προσφοράς',
   'marketplace.title': 'Τίτλος',
-  'marketplace.titlePlaceholder': 'Εισάγετε όνομα αντικειμένου...',
+  'marketplace.titlePlaceholder': 'Εισάγετε όνομα αντικειμένου',
   'marketplace.description': 'Περιγραφή',
-  'marketplace.descriptionPlaceholder': 'Περιγράψτε το αντικείμενό σας...',
+  'marketplace.descriptionPlaceholder': 'Περιγράψτε το αντικείμενό σας',
   'marketplace.price': 'Τιμή',
   'marketplace.condition': 'Κατάσταση',
   'marketplace.conditionNew': 'Καινούργιο',
   'marketplace.conditionLikeNew': 'Σαν Καινούργιο',
-
   // Minigames
   'minigames.title': 'Μίνι Παιχνίδια',
   'minigames.subtitle': 'Διασκεδαστικά μίνι παιχνίδια εμπνευσμένα από το N64',
@@ -472,11 +459,11 @@ const el = {
   'minigames.correctAnswers': 'Σωστές απαντήσεις',
   'minigames.cheatCode': 'Cheat Code',
   'minigames.completed': 'Ολοκληρώθηκε',
-  'minigames.typeCheatCode': 'Εισάγετε cheat code...',
-  'minigames.sound.mario64': '"Wahoo!" - Ήχος άλματος Mario',
-  'minigames.sound.zelda': '"Hey! Listen!" - Ήχος Navi',
-  'minigames.sound.goldeneye': '"Pew Pew" - Σιωπηλός πυροβολισμός',
-  'minigames.sound.mariokart': '"Here we go!" - Έναρξη αγώνα',
+  'minigames.typeCheatCode': 'Εισάγετε cheat code',
+  'minigames.sound.mario64': '\"Wahoo!\" - Ήχος άλματος Mario',
+  'minigames.sound.zelda': '\"Hey! Listen!\" - Ήχος Navi',
+  'minigames.sound.goldeneye': '\"Pew Pew\" - Σιωπηλός πυροβολισμός',
+  'minigames.sound.mariokart': '\"Here we go!\" - Έναρξη αγώνα',
   'minigames.sound': 'Ήχος',
   'minigames.whichGame': 'Από ποιο παιχνίδι είναι αυτός ο ήχος;',
   'minigames.you': 'Εσύ',
@@ -484,8 +471,8 @@ const el = {
   'minigames.readyForDuel': 'Έτοιμος για μονομαχία;',
   'minigames.startDuel': 'Έναρξη μονομαχίας',
   'minigames.result': 'Αποτέλεσμα',
-  'minigames.opponentAnswering': 'απαντά...',
-  'minigames.gameLoading': 'Φόρτωση παιχνιδιού...',
+  'minigames.opponentAnswering': 'απαντά',
+  'minigames.gameLoading': 'Φόρτωση παιχνιδιού',
   'minigames.gameEnded': 'Το παιχνίδι τελείωσε',
   'minigames.yourScore': 'Η βαθμολογία σου',
   'minigames.allCategories': 'Όλες οι Κατηγορίες',
@@ -497,7 +484,6 @@ const el = {
   'minigames.hard': 'Δύσκολο',
   'minigames.backToMenu': 'Πίσω στο Μενού',
   'minigames.highScore': 'Υψηλή Βαθμολογία',
-
   // Fan Art
   'fanart.artworksFound': 'έργα τέχνης βρέθηκαν',
   'fanart.ratings': 'αξιολογήσεις',
@@ -509,17 +495,16 @@ const el = {
   'fanart.chooseImage': 'Επιλογή Εικόνας',
   'fanart.imageFormats': 'Υποστηριζόμενες μορφές: JPG, PNG, GIF',
   'fanart.artworkTitle': 'Τίτλος Έργου Τέχνης',
-  'fanart.titlePlaceholder': 'Δώσε έναν τίτλο στο έργο τέχνης σου...',
+  'fanart.titlePlaceholder': 'Δώσε έναν τίτλο στο έργο τέχνης σου',
   'fanart.selectGame': 'Επιλογή Παιχνιδιού',
-  'fanart.chooseGame': 'Επίλεξε ένα παιχνίδι...',
+  'fanart.chooseGame': 'Επίλεξε ένα παιχνίδι',
   'fanart.tags': 'Ετικέτες',
-  'fanart.tagsPlaceholder': 'Προσθήκη ετικετών...',
+  'fanart.tagsPlaceholder': 'Προσθήκη ετικετών',
   'fanart.tagsHint': 'Χωρισμένες με κόμματα',
-  'fanart.uploading': 'Ανέβασμα...',
+  'fanart.uploading': 'Ανέβασμα',
   'fanart.allCategories': 'Όλες οι Κατηγορίες',
   'fanart.subtitle': 'Μοιράσου τα έργα τέχνης σου εμπνευσμένα από το N64',
   'fanart.filterBy': 'Φιλτράρισμα κατά',
-
   // Collection
   'collection.gamesCollected': 'Παιχνίδια που Συλλέχθηκαν',
   'collection.completeness': 'Πληρότητα',
@@ -569,7 +554,6 @@ const el = {
   'collection.noGamesYet': 'Δεν υπάρχουν ακόμα παιχνίδια {type}',
   'collection.added': 'Προστέθηκε',
   'collection.acquired': 'Αποκτήθηκε',
-
   // Community
   'community.title': 'Κοινότητα',
   'community.subtitle': 'Ανακάλυψε άλλους λάτρεις του N64',
@@ -587,10 +571,8 @@ const el = {
   'community.noPlayersFound': 'Δεν βρέθηκαν παίκτες',
   'community.tryOtherFilters': 'Δοκίμασε άλλα φίλτρα',
   'community.recentRecord': 'Πρόσφατο Ρεκόρ',
-
   // Time
   'time.remaining': 'απομένει',
-
   // Events (Extended)
   'events.joinSuccess': 'Συμμετοχή στην εκδήλωση με επιτυχία!',
   'events.submissionSuccess': 'Η υποβολή στάλθηκε με επιτυχία!',
@@ -614,7 +596,6 @@ const el = {
   'events.mobile.join': 'Συμμετοχή',
   'events.mobile.board': 'Πίνακας',
   'events.mobile.winner': 'Νικητής',
-  
   // Best Lap Showcase
   'events.bestLap.title': 'Καλύτερος Γύρος',
   'events.bestLap.photoAlt': 'Στιγμιότυπο οθόνης καλύτερου γύρου από {username} με χρόνο {time}',
@@ -651,14 +632,12 @@ const el = {
   'events.raceSubmission': 'Υποβολή Αγώνα',
   'events.raceTime': 'Χρόνος Αγώνα',
   'events.currentEvent': 'Τρέχον Γεγονός',
-
   // Notifications
   'notifications.enabled': 'Ειδοποιήσεις ενεργοποιημένες',
   'notifications.denied': 'Ειδοποιήσεις απορρίφθηκαν',
   'notifications.notSupported': 'Οι ειδοποιήσεις δεν υποστηρίζονται',
   'notifications.disabled': 'Ειδοποιήσεις απενεργοποιημένες',
   'notifications.error': 'Σφάλμα ειδοποιήσεων',
-
   // Common rarities
   'common.common': 'Κοινό',
   'common.uncommon': 'Ασυνήθιστο',
@@ -666,7 +645,6 @@ const el = {
   'common.veryRare': 'Πολύ Σπάνιο',
   'common.ultraRare': 'Εξαιρετικά Σπάνιο',
   'common.hide': 'Απόκρυψη',
-
   // Forum (Extended)
   'forum.categoryNotFound': 'Η κατηγορία δεν βρέθηκε',
   'forum.firstThread': 'Πρώτο Νήμα',
@@ -700,7 +678,6 @@ const el = {
   'forum.thread.goldeneye': 'GoldenEye 007: Facility κάτω από 1:00',
   'forum.thread.collecting': 'Συλλογή N64: Σπάνια Παιχνίδια και Τιμές',
   'forum.thread.paperMario': 'Paper Mario: Συμβουλές Speedrun χωρίς Glitch',
-
   // Categories
   'category.hardware': 'Hardware',
   'category.glitches': 'Glitches',
@@ -712,7 +689,6 @@ const el = {
   'category.challenges': 'Προκλήσεις',
   'category.collecting': 'Συλλογή',
   'category.tips': 'Συμβουλές',
-
   // Authentication (Extended)
   'auth.invalidCredentials': 'Μη έγκυρα διαπιστευτήρια',
   'auth.errorOccurred': 'Προέκυψε ένα σφάλμα',
@@ -722,26 +698,54 @@ const el = {
   'auth.registrationFailed': 'Η εγγραφή απέτυχε',
   'auth.welcomeBack': 'Καλώς Ήρθες Πίσω',
   'auth.createAccount': 'Δημιουργία Λογαριασμού',
-  'auth.emailPlaceholder': 'Εισάγετε email...',
-  'auth.loggingIn': 'Σύνδεση...',
-  'auth.usernamePlaceholder': 'Εισάγετε όνομα χρήστη...',
+  'auth.emailPlaceholder': 'Εισάγετε email',
+  'auth.loggingIn': 'Σύνδεση',
+  'auth.usernamePlaceholder': 'Εισάγετε όνομα χρήστη',
   'auth.platform': 'Πλατφόρμα',
   'auth.region': 'Περιοχή',
-  'auth.registering': 'Εγγραφή...',
+  'auth.registering': 'Εγγραφή',
   'auth.createAccountButton': 'Δημιουργία Λογαριασμού',
   'auth.noAccountYet': 'Δεν έχεις ακόμα λογαριασμό;',
   'auth.registerNow': 'Εγγραφή τώρα',
   'auth.alreadyHaveAccount': 'Έχεις ήδη λογαριασμό;',
   'auth.loginHere': 'Σύνδεση εδώ',
+  'auth.processingRegistration': 'Επεξεργασία εγγραφής',
+  'auth.waitingEmailConfirmation': 'Αναμονή επιβεβαίωσης email',
+  'auth.registrationSucceeded': 'Επιτυχής εγγραφή!',
+  'auth.welcomeToCommunity': 'Καλώς ήρθες στην Κοινότητα Battle64',
+  'auth.checkOutEvents': 'Δες τις εκδηλώσεις μας',
+  'auth.emailConfirmationSent': 'Στείλαμε email επιβεβαίωσης στο {email}.',
+  'auth.clickEmailLink': 'Παρακαλώ κάντε κλικ στον σύνδεσμο στο email για να ολοκληρώσετε την εγγραφή.',
+  'auth.emailBeingConfirmed': 'Επιβεβαίωση email σε εξέλιξη',
+  'auth.pleaseWaitMoment': 'Παρακαλώ περιμένετε λίγο.',
+  'auth.emailConfirmedSuccessfully': 'Το email επιβεβαιώθηκε επιτυχώς! Θα ανακατευθυνθείτε στην αρχική σελίδα',
+  'auth.confirmationFailed': 'Η επιβεβαίωση απέτυχε',
+  'auth.accountActivatedSuccessfully': 'Ο λογαριασμός σας ενεργοποιήθηκε επιτυχώς!',
+  'auth.joinCommunityMessage': 'και γίνετε μέλος της κοινότητας.',
+  'auth.exploreEvents': 'Εξερευνήστε Εκδηλώσεις',
+  'auth.invalidConfirmationLink': 'Μη έγκυρος σύνδεσμος επιβεβαίωσης',
+  'auth.confirmationLinkExpired': 'Η επιβεβαίωση email απέτυχε. Ο σύνδεσμος μπορεί να έχει λήξει.',
+  'auth.emailConfirmationFailed': 'Η επιβεβαίωση email απέτυχε',
+  'auth.unexpectedError': 'Προέκυψε ένα απροσδόκητο σφάλμα',
+  'auth.tryRegisterAgain': 'Δοκιμάστε να εγγραφείτε ξανά ή επικοινωνήστε με την υποστήριξη.',
+  'auth.goToLogin': 'Πηγαίνετε στη Σύνδεση',
+  // Browser Redirect
+  'browserRedirect.title': 'Ανακατεύθυνση Περιηγητή',
+  'browserRedirect.message': 'Σας ανακατευθύνουμε στον προτιμώμενο περιηγητή σας',
+  'browserRedirect.detectedBrowser': 'Εντοπισμένος Περιηγητής',
+  'browserRedirect.version': 'Έκδοση',
+  'browserRedirect.redirectingIn': 'Ανακατεύθυνση σε {seconds} δευτερόλεπτα',
+  'browserRedirect.redirectNow': 'Ανακατεύθυνση Τώρα',
+  'browserRedirect.troubleshoot': 'Η αυτόματη ανακατεύθυνση δεν λειτουργεί;',
+  'browserRedirect.manualInstructions': 'Κάντε κλικ στο \"Ανακατεύθυνση Τώρα\" ή αντιγράψτε το URL από τη γραμμή διευθύνσεων.',
   'auth.enhancedExperienceMessage': 'Συνδέσου για μια βελτιωμένη εμπειρία',
-
   // Chat
   'chat.title': 'Συνομιλία Κοινότητας',
   'chat.onlineUsers': 'χρήστες online',
   'chat.chats': 'Συνομιλίες',
   'chat.newChat': 'Νέα Συνομιλία',
-  'chat.searchUsers': 'Αναζήτηση χρηστών...',
-  'chat.messagePlaceholder': 'Πληκτρολόγησε ένα μήνυμα...',
+  'chat.searchUsers': 'Αναζήτηση χρηστών',
+  'chat.messagePlaceholder': 'Πληκτρολόγησε ένα μήνυμα',
   'chat.joinPrompt': 'Συμμετέχε στη συνομιλία για να συμμετάσχεις!',
   'chat.privateChat': 'Ιδιωτική Συνομιλία',
   'chat.description': 'Συζήτησε παιχνίδια N64 με την κοινότητα',
@@ -755,7 +759,6 @@ const el = {
   'chat.rules.noSpam': 'Όχι spam ή επαναλαμβανόμενα μηνύματα',
   'chat.rules.shareExperience': 'Μοιράσου τις εμπειρίες σου με το N64',
   'chat.rules.noLinks': 'Όχι εξωτερικοί σύνδεσμοι χωρίς άδεια',
-
   // Home (Extended)
   'home.ended': 'Τελείωσε',
   'home.liveEvents': 'Ζωντανές Εκδηλώσεις',
@@ -768,7 +771,6 @@ const el = {
   'home.noTimesSubmitted': 'Δεν έχουν υποβληθεί ακόμα χρόνοι',
   'home.beTheFirst': 'Γίνε ο πρώτος!',
   'home.newsfeed': 'Ροή Νέων',
-
   // Leaderboard
   'leaderboard.pageTitle': 'Πίνακας Κατάταξης',
   'leaderboard.pageSubtitle': 'Οι καλύτεροι παίκτες στην κοινότητα',
@@ -787,7 +789,6 @@ const el = {
   'leaderboard.timeframeMonth': 'Μήνας',
   'leaderboard.regionPlatform': 'Περιοχή/Πλατφόρμα',
   'leaderboard.yourRank': 'Η Κατάταξή Σου',
-
   // Event Leaderboard
   'eventLeaderboard.time': 'Χρόνος',
   'eventLeaderboard.screenshotFrom': 'Screenshot από {username}',
@@ -808,7 +809,6 @@ const el = {
   'eventLeaderboard.view': 'Προβολή',
   'eventLeaderboard.documentation': 'Τεκμηρίωση',
   'eventLeaderboard.viewMedia': 'Προβολή Μέσων',
-
   // Points & Ranking
   'points.total': 'Σύνολο',
   'points.season': 'Σεζόν',
@@ -821,7 +821,6 @@ const el = {
   'rank.current': 'Τρέχουσα',
   'rank.nextRank': 'Επόμενη Κατάταξη',
   'rank.maxRank': 'Μέγιστη κατάταξη επιτεύχθηκε',
-
   // Cool Rank Titles (20 Levels)
   'Pixel Rookie': 'Pixel Αρχάριος',
   'Button Masher': 'Καταστροφέας Κουμπιών',
@@ -843,11 +842,9 @@ const el = {
   'Reality Bender': 'Λυγιστής Πραγματικότητας',
   'Retro Overlord': 'Ρετρό Άρχοντας',
   'Ultimate Gaming Legend': 'Απόλυτος Θρύλος Gaming',
-
   // Medals
   'medal.season': 'Σεζόν',
   'medal.bonusXP': 'Bonus XP',
-
   // Records
   'records.add': 'Προσθήκη Ρεκόρ',
   'records.addFirst': 'Προσθήκη Πρώτου Ρεκόρ',
@@ -855,7 +852,6 @@ const el = {
   'records.time': 'Χρόνος',
   'records.points': 'Πόντοι',
   'records.addButton': 'Προσθήκη Ρεκόρ',
-
   // Labels
   'label.notes': 'Σημειώσεις',
   'label.gameName': 'Όνομα Παιχνιδιού',
@@ -864,7 +860,6 @@ const el = {
   'label.region': 'Περιοχή',
   'label.category': 'Κατηγορία',
   'label.proofUrl': 'URL Απόδειξης',
-
   // UI Elements
   'ui.login': 'Σύνδεση',
   'ui.grid': 'Πλέγμα',
@@ -875,7 +870,6 @@ const el = {
   'ui.ntsc': 'NTSC',
   'ui.newsDetails': 'Λεπτομέρειες',
   'ui.liveChat': 'Ζωντανή Συνομιλία',
-
   // Cards
   'card.fanarts': 'Fan Art',
   'card.forumPosts': 'Δημοσιεύσεις Φόρουμ',
@@ -885,13 +879,11 @@ const el = {
   'card.news': 'Νέα',
   'card.records': 'Ρεκόρ',
   'card.noRecords': 'Δεν υπάρχουν διαθέσιμα ρεκόρ',
-
   // Alt text
   'alt.postAttachment': 'Συνημμένο δημοσίευσης',
   'alt.battle64Mascot': 'Μασκότ Battle64',
   'alt.preview': 'Προεπισκόπηση',
   'alt.uploadPreview': 'Προεπισκόπηση ανεβάσματος',
-
   // Aria labels
   'aria.gridView': 'Προβολή πλέγματος',
   'aria.listView': 'Προβολή λίστας',
@@ -899,24 +891,20 @@ const el = {
   'aria.nextCard': 'Επόμενη κάρτα',
   'aria.toggleMobileMenu': 'Εναλλαγή πλοήγησης κινητού',
   'aria.dismissNews': 'Απόρριψη νέων',
-
   // Image Upload
   'imageUpload.dropHere': 'Άφησε εδώ',
   'imageUpload.uploadImage': 'Ανέβασμα Εικόνας',
   'imageUpload.clickOrDrag': 'Κλικ ή σύρε εδώ',
   'imageUpload.supportedFormats': 'Υποστηριζόμενες μορφές: JPG, PNG, GIF',
-
   // Error (Extended)
   'error.title': 'Σφάλμα',
   'error.threadCreationFailed': 'Η δημιουργία νήματος απέτυχε',
   'error.invalidFile': 'Μη έγκυρο αρχείο',
-
   // Accessibility
   'accessibility.skipToContent': 'Μετάβαση στο κύριο περιεχόμενο',
   'accessibility.skipToNavigation': 'Μετάβαση στην πλοήγηση',
   'accessibility.skippedToContent': 'Μεταβήκατε στο κύριο περιεχόμενο',
   'accessibility.skippedToNavigation': 'Μεταβήκατε στην πλοήγηση',
-
   // Homepage specific translations - Ειδικές μεταφράσεις αρχικής σελίδας
   'home.noLiveEvent': 'Δεν υπάρχει ενεργή ζωντανή εκδήλωση - Η επόμενη εκδήλωση ξεκινά σύντομα!',
   'home.showAllEvents': '📅 Εμφάνιση όλων των εκδηλώσεων',
@@ -929,7 +917,6 @@ const el = {
   'home.clickToViewFull': 'Κάντε κλικ για προβολή σε πλήρες μέγεθος',
   'home.clickToWatch': 'Κάντε κλικ για παρακολούθηση',
   'home.noMediaSubmitted': 'Δεν υπεβλήθησαν μέσα',
-
   // News items - Στοιχεία ειδήσεων
   'news.mariokartRecord': '🏆 Κατερρίφθη το Παγκόσμιο Ρεκόρ Mario Kart 64 Speedrun!',
   'news.mariokartRecordContent': 'Ο SpeedDemon64 έκανε νέο παγκόσμιο ρεκόρ στο Wario Stadium με χρόνο 1:42.33!',
@@ -949,7 +936,6 @@ const el = {
   'news.speedrunCategoryContent': 'Προσθέσαμε μια νέα κατηγορία Any% για το Banjo-Kazooie. Συμμετέχετε τώρα!',
   'news.monthlyChallenge': '🏆 Νικητής Μηνιαίας Πρόκλησης',
   'news.monthlyChallengeContent': 'Συγχαρητήρια στον N64Master που κέρδισε τη Μηνιαία Πρόκληση Οκτωβρίου!',
-
   // Live Events - Mario Kart 64 Luigi's Raceway
   'events.mk64LuigisRaceway.title': '🏁 Mario Kart 64: Πρόκληση Ταχύτητας στο Luigi\'s Raceway',
   'events.mk64LuigisRaceway.description': 'Δείξτε την ταχύτητά σας στην εμβληματική πίστα Luigi\'s Raceway! Ένας μήνας έντονου ανταγωνισμού με στυλ Gran Turismo 7.',
@@ -964,7 +950,6 @@ const el = {
   'events.mk64LuigisRaceway.prize3': '🥉 3η Θέση: 200 Πόντοι Battle64 + Χάλκινο Μετάλλιο',
   'events.mk64LuigisRaceway.prizeTop10': '🏆 Τοπ 10: Πόντοι στυλ F1 (25-18-15-12-10-8-6-4-2-1)',
   'events.mk64LuigisRaceway.prizeParticipation': '🎯 Συμμετοχή: 5 Πόντοι Battle64 για κάθε συμμετέχοντα',
-
   // Live Events - San Francisco Rush Downtown
   'events.sfrDowntown.title': '🏙️ San Francisco Rush: Πρωτάθλημα Αγώνων Downtown',
   'events.sfrDowntown.description': 'Αγωνιστείτε στους δρόμους του Downtown San Francisco! Δράση extreme racing για έναν ολόκληρο μήνα.',
@@ -979,7 +964,6 @@ const el = {
   'events.sfrDowntown.prize3': '🥉 3η Θέση: 200 Πόντοι Battle64 + Αγωνιστής Δρόμου',
   'events.sfrDowntown.prizeTop10': '🏆 Τοπ 10: Πόντοι στυλ F1 (25-18-15-12-10-8-6-4-2-1)',
   'events.sfrDowntown.prizeParticipation': '🎯 Συμμετοχή: 5 Πόντοι Battle64 για κάθε συμμετέχοντα',
-
   // Live Events - Diddy Kong Racing Ancient Lake
   'events.dkrAncientLake.title': '🦍 Diddy Kong Racing: Δοκιμή Χρόνου στο Ancient Lake',
   'events.dkrAncientLake.description': 'Κατακτήστε το μυστηριώδες Ancient Lake! Μια θρυλική διοργάνωση στο κλασικό της Rare για αληθινούς φανς του N64.',
@@ -994,10 +978,8 @@ const el = {
   'events.dkrAncientLake.prize3': '🥉 3η Θέση: 200 Πόντοι Battle64 + Αρχαίος Αγωνιστής',
   'events.dkrAncientLake.prizeTop10': '🏆 Τοπ 10: Πόντοι στυλ F1 (25-18-15-12-10-8-6-4-2-1)',
   'events.dkrAncientLake.prizeParticipation': '🎯 Συμμετοχή: 5 πόντοι Battle64 για κάθε συμμετέχοντα',
-
   // Home Ranking Section
   'home.yourRanking': 'Η Κατάταξή σας',
-
   // Ranking System
   'ranking.globalRank': 'Παγκόσμια Κατάταξη',
   'ranking.totalPoints': 'Συνολικοί Πόντοι',
@@ -1011,72 +993,62 @@ const el = {
   'ranking.achievements': 'Επιτεύγματα',
   'ranking.verifiedRecords': 'Επαληθευμένα Ρεκόρ',
   'ranking.gamesOwned': 'Παιχνίδια σε Κατοχή',
-
   // Profile Ranking
   'profile.ranking': 'Κατάταξη',
   'profile.globalRanking': 'Παγκόσμια Κατάταξη',
   'profile.rankingStats': 'Στατιστικά Κατάταξης',
-
   // FanArt Comments
-  'fanart.addComment': 'Προσθήκη σχολίου...',
-
+  'fanart.addComment': 'Προσθήκη σχολίου',
   // Interaction System
   'interaction.like': 'Μου αρέσει',
   'interaction.unlike': 'Αφαίρεση like',
   'interaction.comments': 'σχόλια',
   'interaction.addComment': 'Προσθήκη σχολίου',
-  'interaction.writeComment': 'Γράψτε ένα σχόλιο...',
+  'interaction.writeComment': 'Γράψτε ένα σχόλιο',
   'interaction.loginToLike': 'Συνδεθείτε για like',
   'interaction.loginToComment': 'Συνδεθείτε για σχόλιο',
   'interaction.viewCount': 'View count',
   'interaction.showComments': 'Show comments',
-
   // Time
   'time.justNow': 'τώρα',
-
   // Media types
   'media.photo': 'Φωτογραφία',
   'media.video': 'Βίντεο',
   'media.noMediaTooltip': 'No media yet – upload your video or screenshot to verify run',
-
   // Event Card specific translations
   'events.likes': 'Μου αρέσει',
-  'events.views': 'Προβολές', 
+  'events.views': 'Προβολές',
   'events.comments': 'Σχόλια',
-
   // PWA Installation Prompt
   'pwa.installTitle': 'Εγκατάσταση Battle64',
   'pwa.installDescription': 'Αποκτήστε την πλήρη εμπειρία εφαρμογής με offline πρόσβαση και γρήγορη φόρτωση!',
   'pwa.install': 'Εγκατάσταση Εφαρμογής',
   'pwa.gotIt': 'Κατάλαβα!',
   'pwa.iosStep1': 'Πατήστε το κουμπί Κοινοποίηση',
-  'pwa.iosStep2': 'Στη συνέχεια "Προσθήκη στην Αρχική Οθόνη"',
+  'pwa.iosStep2': 'Στη συνέχεια \"Προσθήκη στην Αρχική Οθόνη\"',
   'common.later': 'Αργότερα',
-
   // Offline Functionality
   'offline.workingOffline': 'Λειτουργία εκτός σύνδεσης',
   'offline.backOnline': 'Επιστροφή online!',
   'offline.cachedDataAvailable': 'Διαθέσιμα δεδομένα cache',
   'offline.cachedData': 'Δεδομένα cache',
-
   // Enhanced Chat
   'chat.communityChat': 'Συνομιλία Κοινότητας',
   'chat.activeUsers': 'ενεργοί χρήστες',
-  'chat.loading': 'Φόρτωση μηνυμάτων...',
+  'chat.loading': 'Φόρτωση μηνυμάτων',
   'chat.noMessages': 'Δεν υπάρχουν μηνύματα ακόμα',
   'chat.startConversation': 'Γίνετε ο πρώτος που θα ξεκινήσει τη συνομιλία!',
-  'chat.typeMessage': 'Πληκτρολογήστε ένα μήνυμα...',
+  'chat.typeMessage': 'Πληκτρολογήστε ένα μήνυμα',
   'chat.emoji': 'Προσθήκη emoji',
   'chat.scrollToBottom': 'Μετάβαση στο τέλος',
   'chat.errorLoading': 'Σφάλμα φόρτωσης μηνυμάτων',
   'time.today': 'Σήμερα',
   'time.yesterday': 'Χθες',
-
   // Realtime Events
   'events.nowLive': 'Το event είναι τώρα live!',
   'realtime.connected': 'Ζωντανή σύνδεση ενεργή',
   'realtime.disconnected': 'Ζωντανή σύνδεση διακόπηκε',
-  'realtime.reconnecting': 'Επανασύνδεση...',
+  'realtime.reconnecting': 'Επανασύνδεση',
   'realtime.newUpdate': 'Νέες ζωντανές ενημερώσεις διαθέσιμες',
   'realtime.leaderboard.updated': 'Πίνακας κατάταξης ενημερώθηκε',
   'realtime.points.updated': 'Πόντοι ενημερώθηκαν',
@@ -1084,7 +1056,6 @@ const el = {
   'realtime.participant.left': 'Συμμετέχων έφυγε',
   'realtime.event.started': 'Event ξεκίνησε',
   'realtime.event.finished': 'Event τελείωσε',
-
   // PWA Installation
   'pwa.install.button': 'Εγκατάσταση Εφαρμογής',
   'pwa.install.banner.title': 'Εγκατάσταση Battle64 ως Εφαρμογή',
@@ -1093,9 +1064,8 @@ const el = {
   'pwa.install.modal.description': 'Εγκαταστήστε το Battle64 για εμπειρία εγγενούς εφαρμογής με offline πρόσβαση και push ειδοποιήσεις.',
   'pwa.install.ios.title': 'Προσθήκη στην Αρχική Οθόνη',
   'pwa.install.ios.step1': 'Πατήστε το κουμπί Κοινοποίηση στο κάτω μέρος του browser',
-  'pwa.install.ios.step2': 'Κάντε scroll προς τα κάτω και επιλέξτε "Προσθήκη στην αρχική οθόνη"',
-  'pwa.install.ios.step3': 'Πατήστε "Προσθήκη" για εγκατάσταση της εφαρμογής',
-
+  'pwa.install.ios.step2': 'Κάντε scroll προς τα κάτω και επιλέξτε \"Προσθήκη στην αρχική οθόνη\"',
+  'pwa.install.ios.step3': 'Πατήστε \"Προσθήκη\" για εγκατάσταση της εφαρμογής',
   // Battle Map
   'battleMap.title': 'Χάρτης Battle64',
   'battleMap.liveEvents': 'Ζωντανά Events',
@@ -1111,15 +1081,13 @@ const el = {
   'battleMap.yourLocation': 'Η Τοποθεσία σας',
   'battleMap.noEvents': 'Δεν υπάρχουν ζωντανά events κοντά',
   'battleMap.participantCount': 'Συμμετέχοντες',
-
   // Live Leaderboard
   'leaderboard.live': 'Ζωντανός Πίνακας Κατάταξης',
-  'leaderboard.updating': 'Ενημέρωση...',
+  'leaderboard.updating': 'Ενημέρωση',
   'leaderboard.lastUpdate': 'Τελευταία Ενημέρωση',
   'leaderboard.points.live': 'Ζωντανοί Πόντοι',
   'leaderboard.rank.changed': 'Κατάταξη Άλλαξε',
   'leaderboard.newRecord': 'Νέο Ρεκόρ!',
-
   // GDPR Realtime
   'gdpr.realtime.title': 'Ζωντανές Λειτουργίες',
   'gdpr.realtime.description': 'Ενεργοποίηση ζωντανών ενημερώσεων για πίνακες κατάταξης, events και chat',
@@ -1129,13 +1097,11 @@ const el = {
   'gdpr.location.description': 'Κοινοποιήστε την τοποθεσία σας για τοπικά events και κοντινούς συμμετέχοντες',
   'gdpr.location.enable': 'Ενεργοποίηση Τοποθεσίας',
   'gdpr.location.disable': 'Απενεργοποίηση Τοποθεσίας',
-
   // Offline Mode
   'offline.title': 'Λειτουργία Offline',
   'offline.description': 'Είστε offline. Κάποιες λειτουργίες είναι περιορισμένες.',
   'offline.cached': 'Εμφάνιση περιεχομένου cache',
   'offline.retry': 'Επανάληψη',
-
   // Common - New additions
   'common.understood': 'Κατανοητό',
   'common.success': 'Επιτυχία',
@@ -1143,11 +1109,9 @@ const el = {
   'settings.privacy.title': 'Ρυθμίσεις Απορρήτου',
   'settings.notifications.title': 'Ρυθμίσεις Ειδοποιήσεων',
   'settings.notifications.description': 'Διαχείριση προτιμήσεων ειδοποιήσεων',
-
   // GDPR Notice
   'gdpr.notice.title': 'Ειδοποίηση Απορρήτου',
   'gdpr.notice.description': 'Σεβόμαστε την ιδιωτικότητά σας και ακολουθούμε τις οδηγίες GDPR για την προστασία δεδομένων',
-
   // Νομικοί Όροι και Συμμόρφωση
   'legal.ageVerification': 'Επαλήθευση Ηλικίας',
   'legal.birthDate': 'Ημερομηνία Γέννησης',
@@ -1165,7 +1129,6 @@ const el = {
   'legal.adultOnlyPlatform': 'Το Battle64 είναι μόνο για χρήστες 18 ετών και άνω',
   'legal.readTerms': 'Διαβάστε τους Όρους Υπηρεσίας',
   'legal.readPrivacy': 'Διαβάστε την Πολιτική Απορρήτου',
-  
   // Περιεχόμενο Όρων Υπηρεσίας
   'terms.title': 'Όροι Υπηρεσίας',
   'terms.lastUpdated': 'Τελευταία ενημέρωση: {date}',
@@ -1185,7 +1148,6 @@ const el = {
   'terms.section7.content': 'Το Battle64 δεν συνδέεται με τη Nintendo. Μην ανεβάζετε λογότυπα Nintendo, πρωτότυπα εξώφυλλα N64 ή ROM.',
   'terms.section8.title': '8. Τερματισμός Λογαριασμού',
   'terms.section8.content': 'Διατηρούμε το δικαίωμα να τερματίσουμε λογαριασμούς για παραβίαση των Όρων Υπηρεσίας χωρίς προηγούμενη ειδοποίηση.',
-  
   // Περιεχόμενο Πολιτικής Απορρήτου
   'privacy.title': 'Πολιτική Απορρήτου',
   'privacy.lastUpdated': 'Τελευταία ενημέρωση: {date}',
@@ -1203,7 +1165,6 @@ const el = {
   'privacy.section6.content': 'Διατηρούμε τα δεδομένα σας όσο ο λογαριασμός σας είναι ενεργός. Οι διαγραμμένοι λογαριασμοί έχουν όλα τα δεδομένα διαγραμμένα μόνιμα.',
   'privacy.section7.title': '7. Επικοινωνία',
   'privacy.section7.content': 'Για ερωτήσεις απορρήτου, επικοινωνήστε μαζί μας στο privacy@battle64.com',
-  
   // Συγκατάθεση Cookies
   'cookies.title': 'Συγκατάθεση Cookies',
   'cookies.description': 'Χρησιμοποιούμε cookies για να βελτιώσουμε την εμπειρία σας. Παρακαλώ επιλέξτε τις προτιμήσεις σας.',
@@ -1219,7 +1180,6 @@ const el = {
   'cookies.acceptSelected': 'Αποδοχή Επιλεγμένων',
   'cookies.rejectAll': 'Απόρριψη Όλων',
   'cookies.managePreferences': 'Διαχείριση Προτιμήσεων Cookies',
-  
   // Αναφορές και Διαμεσολάβηση
   'report.title': 'Αναφορά Περιεχομένου',
   'report.reason': 'Λόγος αναφοράς',
@@ -1235,13 +1195,11 @@ const el = {
   'report.success': 'Το περιεχόμενο αναφέρθηκε με επιτυχία',
   'report.error': 'Αποτυχία υποβολής αναφοράς',
   'report.alreadyReported': 'Έχετε ήδη αναφέρει αυτό το περιεχόμενο',
-  
   // Διαμεσολάβηση Περιεχομένου
   'moderation.contentHidden': 'Αυτό το περιεχόμενο έχει κρυφτεί λόγω πολλαπλών αναφορών',
   'moderation.underReview': 'Αυτό το περιεχόμενο είναι υπό εξέταση',
   'moderation.removed': 'Αυτό το περιεχόμενο αφαιρέθηκε από διαμεσολαβητές',
   'moderation.appealProcess': 'Εάν πιστεύετε ότι αυτό είναι λάθος, επικοινωνήστε με την υποστήριξη',
-  
   // Πίνακας Ελέγχου Διαχειριστή
   'admin.dashboard': 'Πίνακας Ελέγχου Διαχειριστή',
   'admin.reports': 'Αναφορές',
@@ -1262,17 +1220,15 @@ const el = {
   'admin.actionReason': 'Λόγος Ενέργειας',
   'admin.actionNotes': 'Επιπλέον Σημειώσεις',
   'admin.confirmAction': 'Επιβεβαίωση Ενέργειας',
-  
   // Διαγραφή Λογαριασμού (GDPR)
   'account.delete': 'Διαγραφή Λογαριασμού',
   'account.deleteWarning': 'Είστε βέβαιοι ότι θέλετε να διαγράψετε τον λογαριασμό σας; Όλο το περιεχόμενό σας θα διαγραφεί μόνιμα.',
-  'account.deleteConfirmation': 'Πληκτρολογήστε "DELETE" για επιβεβαίωση διαγραφής λογαριασμού',
+  'account.deleteConfirmation': 'Πληκτρολογήστε \"DELETE\" για επιβεβαίωση διαγραφής λογαριασμού',
   'account.deleteSuccess': 'Ο λογαριασμός διαγράφηκε με επιτυχία',
   'account.deleteError': 'Αποτυχία διαγραφής λογαριασμού',
   'account.dataExport': 'Εξαγωγή των Δεδομένων μου',
   'account.dataExportDescription': 'Κατεβάστε όλα τα δεδομένα σας σε μορφή JSON',
   'account.dataExportSuccess': 'Ζητήθηκε εξαγωγή δεδομένων. Θα λάβετε email με τα δεδομένα σας.',
-  
   // Ασφάλεια Ανεβάσματος
   'upload.rightsConfirmation': 'Επιβεβαίωση Δικαιωμάτων Περιεχομένου',
   'upload.confirmRights': 'Επιβεβαιώνω ότι κατέχω τα δικαιώματα αυτού του περιεχομένου και δεν θα παραβιάσω κανένα copyright',
@@ -1281,13 +1237,183 @@ const el = {
   'upload.nsfwDetected': 'Εντοπίστηκε δυνητικά ακατάλληλο περιεχόμενο',
   'upload.manualReview': 'Αυτό το ανέβασμα θα εξεταστεί χειροκίνητα πριν τη δημοσίευση',
   'upload.approvalPending': 'Το ανέβασμα περιμένει έγκριση',
-  
   // Σύνδεσμοι Υποσέλιδου
   'footer.terms': 'Όροι',
   'footer.privacy': 'Απόρρητο',
   'footer.contact': 'Επικοινωνία',
   'footer.imprint': 'Νομικές Πληροφορίες',
-  'footer.copyright': '© 2024 Battle64. Δεν συνδέεται με τη Nintendo.'
+  'footer.copyright': '© 2024 Battle64. Δεν συνδέεται με τη Nintendo.',
+  // Additional missing translations
+  'platform.pc': 'PC',
+  'region.pal': 'PAL',
+  'region.ntsc': 'NTSC',
+  'currency.eur': 'EUR',
+  'currency.usd': 'USD',
+  'currency.gbp': 'GBP',
+  // Equalized translation keys - added 2025-08-09
+  'account.deletion.confirmDelete': 'ΔΙΑΓΡΑΦΗ',
+  'account.deletion.dataWillBeDeleted': 'Τα ακόλουθα δεδομένα θα διαγραφούν οριστικά:',
+  'account.deletion.errorConfirmText': 'Παρακαλώ πληκτρολογήστε \"ΔΙΑΓΡΑΦΗ\" για επιβεβαίωση',
+  'account.deletion.errorGeneric': 'Σφάλμα κατά τη διαγραφή του λογαριασμού',
+  'account.deletion.errorUnexpected': 'Απροσδόκητο σφάλμα κατά τη διαγραφή του λογαριασμού',
+  'account.deletion.forumPosts': 'Αναρτήσεις και σχόλια φόρουμ',
+  'account.deletion.gameCollection': 'Η συλλογή παιχνιδιών σας',
+  'account.deletion.gdprNotice': 'Ειδοποίηση GDPR',
+  'account.deletion.gdprText': 'Μετά τη διαγραφή, όλα τα προσωπικά σας δεδομένα θα αφαιρεθούν πλήρως από τα συστήματά μας σύμφωνα με τον Γενικό Κανονισμό Προστασίας Δεδομένων.',
+  'account.deletion.profileData': 'Το προφίλ σας και όλα τα προσωπικά δεδομένα',
+  'account.deletion.recordsAchievements': 'Όλα τα ρεκόρ και τα επιτεύγματά σας',
+  'account.deletion.title': 'Διαγραφή λογαριασμού',
+  'account.deletion.warning': 'Αυτή η ενέργεια δεν μπορεί να αναιρεθεί!',
+  'account.deletionPage.cannotUndo': 'account.deletionPage.cannotUndo',
+  'account.deletionPage.contentActivity': 'account.deletionPage.contentActivity',
+  'account.deletionPage.contentActivityItems': 'account.deletionPage.contentActivityItems',
+  'account.deletionPage.continueWithDeletion': 'account.deletionPage.continueWithDeletion',
+  'account.deletionPage.exportDataFirst': 'account.deletionPage.exportDataFirst',
+  'account.deletionPage.finalConfirmation': 'account.deletionPage.finalConfirmation',
+  'account.deletionPage.personalData': 'account.deletionPage.personalData',
+  'account.deletionPage.personalDataItems': 'account.deletionPage.personalDataItems',
+  'account.deletionPage.pleaseTypeDelete': 'account.deletionPage.pleaseTypeDelete',
+  'account.deletionPage.typeDeleteConfirm': 'account.deletionPage.typeDeleteConfirm',
+  'account.deletionPage.warning': 'account.deletionPage.warning',
+  'account.deletionPage.whatWillBeDeleted': 'account.deletionPage.whatWillBeDeleted',
+  'admin.appHealth': 'admin.appHealth',
+  'admin.health.cache': 'admin.health.cache',
+  'admin.health.errors': 'admin.health.Σφάλμαs',
+  'admin.health.sessions': 'admin.health.sessions',
+  'admin.health.uptime': 'admin.health.uptime',
+  'admin.illegalContent': 'admin.illegalContent',
+  'admin.moderationOverview': 'admin.moderationOverview',
+  'admin.newBugs': 'admin.newBugs',
+  'admin.noReport': 'admin.noReport',
+  'admin.none': 'admin.none',
+  'admin.subtitle': 'admin.subtitle',
+  'admin.tasks': 'admin.tasks',
+  'admin.tasks.autoDone': 'admin.tasks.autoDone',
+  'admin.tasks.bugsFixed': 'admin.tasks.bugsFixed',
+  'admin.tasks.pending': 'admin.tasks.pending',
+  'admin.tasks.problematic': 'admin.tasks.problematic',
+  'admin.title': 'admin.title',
+  'admin.totalViolations': 'admin.totalViolations',
+  'admin.usersBanned': 'admin.usersBanned',
+  'admin.usersWarned': 'admin.usersWarned',
+  'auth.safariRedirectSuccess': 'auth.safariRedirectSuccess',
+  'error.accessDenied': 'Απαγορεύεται η πρόσβαση',
+  'error.imagePreviewFailed': 'Σφάλμα.imagePreviewFailed',
+  'error.moderationBlocked': 'Σφάλμα.moderationBlocked',
+  'error.timeout': 'Λήξη χρονικού ορίου αιτήματος',
+  'error.uploadFailed': 'Σφάλμα.uploadFailed',
+  'error.validationError': 'Σφάλμα επικύρωσης',
+  'imageUpload.noPreview': 'imageUpload.noPreview',
+  'loading.content': 'Φόρτωση περιεχομένου',
+  'loading.data': 'Φόρτωση δεδομένων',
+  'loading.general': 'Φόρτωση',
+  'loading.image': 'Φόρτωση εικόνας',
+  'loading.page': 'Φόρτωση σελίδας',
+  'loading.video': 'Φόρτωση βίντεο',
+  'map.battleDashboard': 'map.battleDashboard',
+  'map.liveBattles': 'map.liveBattles',
+  'map.resetView': 'map.resetView',
+  'map.smartMatchmaking': 'map.smartMatchmaking',
+  'password.reset.checkSpam': 'password.reset.checkSpam',
+  'password.reset.emailLabel': 'password.reset.emailLabel',
+  'password.reset.emailPlaceholder': 'password.reset.emailPlaceholder',
+  'password.reset.emailSent': 'password.reset.emailSent',
+  'password.reset.errorUnexpected': 'password.reset.ΣφάλμαUnexpected',
+  'password.reset.errorUnknown': 'password.reset.ΣφάλμαUnknown',
+  'password.reset.instructions': 'password.reset.instructions',
+  'password.reset.sendButton': 'password.reset.sendButton',
+  'password.reset.sending': 'password.reset.sending',
+  'password.reset.successMessage': 'password.reset.successMessage',
+  'password.reset.title': 'password.reset.title',
+  'password.reset.understood': 'password.reset.understood',
+  'safari.copied': 'safari.copied',
+  'safari.copyURL': 'safari.copyURL',
+  'safari.manualInstructions': 'safari.manualInstructions',
+  'safari.manualStepsTitle': 'safari.manualStepsTitle',
+  'safari.openInSafari': 'safari.openInSafari',
+  'safari.redirectMessage': 'safari.redirectMessage',
+  'safari.redirectTitle': 'safari.redirectTitle',
+  'safari.step1': 'safari.step1',
+  'safari.step2': 'safari.step2',
+  'safari.step3': 'safari.step3',
+  'status.completed': 'Ολοκληρώθηκε',
+  'status.connected': 'Συνδεδεμένος',
+  'status.connecting': 'Σύνδεση',
+  'status.disconnected': 'Αποσυνδεδεμένος',
+  'status.failed': 'Αποτυχία',
+  'status.inProgress': 'Σε εξέλιξη',
+  'status.offline': 'Αποσυνδεδεμένος',
+  'status.online': 'Συνδεδεμένος',
+  'status.synced': 'Συγχρονισμένο',
+  'status.syncing': 'Συγχρονισμός',
+  'time.ago': 'time.ago',
+  'time.always': 'time.always',
+  'time.elapsed': 'time.elapsed',
+  'time.lastMonth': 'time.lastMonth',
+  'time.lastWeek': 'time.lastWeek',
+  'time.lastYear': 'time.lastYear',
+  'time.never': 'time.never',
+  'time.now': 'time.now',
+  'time.thisMonth': 'time.thisMonth',
+  'time.thisWeek': 'time.thisWeek',
+  'time.thisYear': 'time.thisYear',
+  'time.tomorrow': 'time.tomorrow',
+  'units.bytes': 'units.bytes',
+  'units.days': 'units.days',
+  'units.gb': 'units.gb',
+  'units.hours': 'units.hours',
+  'units.kb': 'units.kb',
+  'units.mb': 'units.mb',
+  'units.minutes': 'units.minutes',
+  'units.months': 'units.months',
+  'units.seconds': 'units.seconds',
+  'units.weeks': 'units.weeks',
+  'units.years': 'units.years',
+  'validation.emptyFile': 'validation.emptyFile',
+  'validation.imageFilesOnly': 'validation.imageFilesOnly',
+  'validation.imageTooLarge': 'validation.imageTooLarge',
+  'validation.supportedFormats': 'validation.supportedFormats',
+  'validation.unsupportedFormat': 'validation.unsupportedFormat',
+  // Legal & Privacy translation keys - added 2025-08-09
+  'cookies.alwaysActive': 'Πάντα Ενεργό',
+  'account.deletionPage.gdprCompliant': 'Διαγραφή λογαριασμού συμβατή με GDPR',
+  'account.deletionPage.gdprInformation': 'Πληροφορίες GDPR',
+  'account.deletionPage.rightsUnderGdpr': 'Τα Δικαιώματά σας υπό το GDPR',
+  'account.deletionPage.rightToErasure': 'Δικαίωμα Διαγραφής:',
+  'account.deletionPage.rightToErasureText': 'Έχετε το δικαίωμα να διαγραφούν τα προσωπικά σας δεδομένα σύμφωνα με το Άρθρο 17 του GDPR.',
+  'account.deletionPage.dataRetention': 'Διατήρηση Δεδομένων:',
+  'account.deletionPage.dataRetentionText': 'Μετά τη διαγραφή, τα δεδομένα σας θα αφαιρεθούν οριστικά από τα συστήματά μας εντός 30 ημερών.',
+  'account.deletionPage.backupRemoval': 'Αφαίρεση Αντιγράφων Ασφαλείας:',
+  'account.deletionPage.backupRemovalText': 'Τα δεδομένα σας θα αφαιρεθούν επίσης από όλα τα αντίγραφα ασφαλείας κατά τον επόμενο κύκλο αντιγράφων ασφαλείας.',
+  'account.deletionPage.legalObligations': 'Νομικές Υποχρεώσεις:',
+  'account.deletionPage.legalObligationsText': 'Ορισμένα δεδομένα μπορεί να διατηρηθούν εάν απαιτείται από το νόμο (π.χ. χρηματοοικονομικά αρχεία για φορολογικούς σκοπούς).',
+  // Final hardcoded text fixes - added 2025-08-09
+  'account.deletionPage.deleting': 'Διαγραφή',
+  'account.deletionPage.deleteAccountPermanently': 'Διαγραφή λογαριασμού οριστικά',
+  // Nintendo-specific translation keys - added 2025-08-09
+  'terms.nintendoCopyrightNotice': 'Ειδοποίηση Πνευματικών Δικαιωμάτων Nintendo:',
+  'terms.nintendoFullDisclaimer': 'Το Battle64 είναι μια ανεξάρτητη κοινότητα retro gaming και δεν συνδέεται, δεν εγκρίνεται ή δεν χρηματοδοτείται από την Nintendo Co., Ltd. Το Nintendo 64, N64, και όλοι οι σχετικοί χαρακτήρες, ονόματα, σήματα, εμβλήματα και εικόνες είναι εμπορικά σήματα της Nintendo. Όλα τα άλλα εμπορικά σήματα είναι ιδιοκτησία των αντίστοιχων κατόχων τους.',
+  'marketplace.n64ControllerTitle': 'Χειριστήριο N64 - Αυθεντικό Nintendo',
+  'marketplace.n64ControllerDescription': 'Επίσημο χειριστήριο Nintendo σε πολύ καλή κατάσταση',
+  'marketplace.n64ControllerDescriptionDE': 'Αυθεντικό χειριστήριο N64 σε καλή κατάσταση. Όλα τα κουμπιά λειτουργούν τέλεια.',
+  'upload.video': 'Ανεβάστε ένα βίντεο του αγώνα σας',
+  'upload.screenshot': 'Ανεβάστε ένα στιγμιότυπο του χρόνου τερματισμού σας',
+  'cookies.showDetails': 'Εμφάνιση Λεπτομερειών',
+  'cookies.hideDetails': 'Απόκρυψη Λεπτομερειών',
+  'records.pendingCount': '{count} εκκρεμείς',
+  'records.verifiedCount': '{count} επαληθευμένα αρχεία',
+  'records.userRecords': 'Αρχεία του {username}',
+  'records.myRecords': 'Τα Αρχεία Μου',
+  'marketplace.goldeneye.description': 'Πλήρες παιχνίδι με κουτί, εγχειρίδιο και κασέτα',
+  'marketplace.goldeneye.title': 'GoldenEye 007 - Πλήρες στο κουτί',
+  'marketplace.mario64.description': 'Αυθεντική κασέτα σε άριστη κατάσταση με εγχειρίδιο',
+  'marketplace.mario64.title': 'Super Mario 64 - Άριστη κατάσταση',
+  'fanart.banjo.adventure': 'Περιπέτεια Banjo & Kazooie',
+  'fanart.zelda.battle': 'Επική μάχη Link εναντίον Ganondorf',
+  'fanart.mario.castle': 'Ο Μάριο στο κάστρο της Πιτς',
+  'forum.untitledThread': 'Νήμα χωρίς τίτλο',
+  'error.invalidDataFormat': 'Μη έγκυρη μορφή δεδομένων',
+  'common.user': 'Χρήστης'
 }
 
 export default el

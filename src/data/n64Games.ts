@@ -706,7 +706,7 @@ export const getRarityLabel = (rarity: N64Game['rarity'], t?: (key: any) => stri
     case 'rare': return t('common.rare');
     case 'very-rare': return t('common.veryRare');
     case 'ultra-rare': return t('common.ultraRare');
-    default: return t('common.unknown') || 'Unknown';
+    default: return t('common.unknown') || t('common.unknown');
   }
 };
 

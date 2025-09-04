@@ -1,61 +1,137 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react'
-import { User, UserContextType, UserRegistrationData, UserCollection, PersonalRecord } from '../types'
-import { authService } from '../services/authService'
-import { supabase } from '../lib/supabase'
+import { User, UserRegistrationData, UserCollection, PersonalRecord, AuthUser, DatabaseCollection, DatabasePersonalRecord, DatabaseProfile } from '../types'
 import { logger } from '../lib/logger'
+import { useLanguage } from '../contexts/LanguageContext'
+
+interface UserContextType {
+  user: User | null
+  isAuthenticated: boolean
+  isLoading: boolean
+  login: (email: string, password: string) => Promise<boolean>
+  register: (data: UserRegistrationData) => Promise<any>
+  logout: () => Promise<void>
+  deleteAccount: () => Promise<boolean>
+  updateProfile: (updates: Partial<User>) => Promise<boolean>
+  addXP: (amount: number) => Promise<void>
+  addToCollection: (item: Omit<UserCollection, 'id' | 'userId'>) => Promise<boolean>
+  removeFromCollection: (itemId: string) => Promise<boolean>
+  addPersonalRecord: (record: Omit<PersonalRecord, 'id' | 'userId'>) => Promise<boolean>
+  updatePersonalRecord: (recordId: string, updates: Partial<PersonalRecord>) => Promise<boolean>
+  getUserProfile: (userId: string) => Promise<User | null>
+  getAllUsers: () => Promise<User[]>
+}
 
 const UserContext = createContext<UserContextType | undefined>(undefined)
 
 export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+  const { t } = useLanguage()
+
   const [user, setUser] = useState<User | null>(null)
   const [isAuthenticated, setIsAuthenticated] = useState(false)
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(false)
 
-  // Initialisierung und Auth State Listener
+  // Lazy-loaded dependencies
+  const [authService, setAuthService] = useState<any>(null)
+  const [supabase, setSupabase] = useState<any>(null)
+  const [, setLoggerInstance] = useState<any>(null)
+  
+  // Use imported logger for initial logging
+  logger.debug('🔄 Lightweight UserProvider rendering...')
+  const [dependencies, setDependencies] = useState<boolean>(false)
+
+  // Non-blocking initialization with lazy loading
   useEffect(() => {
     let mounted = true
 
     const initializeAuth = async () => {
+      if (mounted) {
+        setIsLoading(true)
+      }
+
       try {
-        // Prüfe aktuelle Session
-        const session = await authService.getCurrentSession()
+        logger.debug('🔄 Lazy-loading auth dependencies...')
         
-        if (session?.user && mounted) {
-          const currentUser = await authService.getCurrentUser()
-          if (currentUser && mounted) {
-            setUser(currentUser)
-            setIsAuthenticated(true)
+        // Dynamically import heavy dependencies
+        const [authModule, supabaseModule, loggerModule] = await Promise.all([
+          import('../services/authService'),
+          import('../lib/supabase'),
+          import('../lib/logger')
+        ])
+
+        if (mounted) {
+          setAuthService(authModule.authService)
+          setSupabase(supabaseModule.supabase)
+                      setLoggerInstance(loggerModule.logger)
+          setDependencies(true)
+          
+          logger.debug('✅ Auth dependencies loaded')
+
+          // Now initialize auth with loaded dependencies
+          const session = await authModule.authService.getCurrentSession()
+          
+          if (session?.user && mounted) {
+            logger.debug('✅ Session found, loading user...')
+            const currentUser = await authModule.authService.getCurrentUser()
+            if (currentUser && mounted) {
+              setUser(currentUser)
+              setIsAuthenticated(true)
+              logger.debug('✅ User loaded successfully')
+            }
+          } else {
+            logger.info('ℹ️ No active session found')
+          }
+
+          // Set up auth state listener
+          try {
+            authModule.authService.onAuthStateChange(async (newUser: AuthUser | null) => {
+              if (mounted) {
+                logger.info('🔄 Auth state changed:', newUser ? 'logged in' : 'logged out')
+                // Convert AuthUser to User format if needed
+                if (newUser) {
+                  const userProfile = await authModule.authService.getCurrentUser()
+                  setUser(userProfile)
+                } else {
+                  setUser(null)
+                }
+                setIsAuthenticated(!!newUser)
+              }
+            })
+            // Store subscription for cleanup if needed
+          } catch (error) {
+            logger.warn('⚠️ Auth listener setup error (non-critical):', error)
           }
         }
       } catch (error) {
-        if (import.meta.env.DEV) {
-          logger.error('Auth initialization error:', error)
-        }
+        logger.warn('⚠️ Auth initialization error (non-critical):', error)
+        // Don't throw - just continue without auth
       } finally {
         if (mounted) {
           setIsLoading(false)
+          logger.debug('✅ Auth initialization complete')
         }
       }
     }
 
-    // Auth State Change Listener
-    const { data: { subscription } } = authService.onAuthStateChange(async (newUser) => {
-      if (mounted) {
-        setUser(newUser)
-        setIsAuthenticated(!!newUser)
-      }
-    })
-
+    // Start lazy initialization
     initializeAuth()
 
     return () => {
       mounted = false
-      subscription.unsubscribe()
     }
   }, [])
 
+  // Helper function to check if dependencies are loaded
+  const checkDependencies = (methodName: string): boolean => {
+    if (!dependencies || !authService || !supabase) {
+      logger.warn(`${methodName}: Dependencies not loaded yet`)
+      return false
+    }
+    return true
+  }
+
   const login = async (email: string, password: string): Promise<boolean> => {
+    if (!checkDependencies('login')) return false
+
     try {
       const result = await authService.login(email, password)
       
@@ -67,74 +143,66 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       
       return false
     } catch (error) {
-      if (import.meta.env.DEV) {
-        logger.error('Login error in context:', error)
-      }
+      logger.error('Login error:', error)
       return false
     }
   }
 
-  const register = async (data: UserRegistrationData): Promise<boolean> => {
+  const register = async (data: UserRegistrationData): Promise<any> => {
+    if (!checkDependencies('register')) return { success: false, error: 'Service not available' }
+
     try {
       const result = await authService.register(data)
       
       if (result.success && result.user) {
         setUser(result.user)
         setIsAuthenticated(true)
-        return true
       }
       
-      return false
+      return result // Return the full result object
     } catch (error) {
-      if (import.meta.env.DEV) {
-        logger.error('Registration error in context:', error)
-      }
-      return false
+      logger.error('Registration error:', error)
+      return { success: false, error: 'Registration failed' }
     }
   }
 
   const logout = async (): Promise<void> => {
+    if (!checkDependencies('logout')) return
+
     try {
       await authService.logout()
       setUser(null)
       setIsAuthenticated(false)
     } catch (error) {
-      if (import.meta.env.DEV) {
-        logger.error('Logout error in context:', error)
-      }
+      logger.error('Logout error:', error)
       throw error
     }
   }
 
   const deleteAccount = async (): Promise<boolean> => {
+    if (!checkDependencies('deleteAccount')) return false
+
     try {
       const result = await authService.deleteAccount()
       
       if (result.success) {
-        // Clear user state immediately
         setUser(null)
         setIsAuthenticated(false)
-        
-        // Clear any stored data
         localStorage.removeItem('battle64_cookie_consent')
-        
         return true
       }
       
       return false
     } catch (error) {
-      if (import.meta.env.DEV) {
-        logger.error('Delete account error in context:', error)
-      }
+      logger.error('Delete account error:', error)
       return false
     }
   }
 
   const updateProfile = async (updates: Partial<User>): Promise<boolean> => {
-    if (!user) return false
+    if (!user || !checkDependencies('updateProfile')) return false
 
     try {
-      // Update Profile in Supabase
       const { error } = await supabase
         .from('profiles')
         .update({
@@ -147,26 +215,22 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
           bio: updates.bio,
           location: updates.location,
           is_public: updates.isPublic,
+          points: updates.points,
           updated_at: new Date().toISOString()
         })
         .eq('id', user.id)
 
       if (error) {
-        if (import.meta.env.DEV) {
-          logger.error('Profile update error:', error)
-        }
+        logger.error('Profile update error:', error)
         return false
       }
 
-      // Update lokalen State
       const updatedUser = { ...user, ...updates }
       setUser(updatedUser)
       
       return true
     } catch (error) {
-      if (import.meta.env.DEV) {
-        logger.error('Profile update error:', error)
-      }
+      logger.error('Profile update error:', error)
       return false
     }
   }
@@ -184,7 +248,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   }
 
   const addToCollection = async (item: Omit<UserCollection, 'id' | 'userId'>): Promise<boolean> => {
-    if (!user) return false
+    if (!user || !checkDependencies('addToCollection')) return false
 
     try {
       const { data, error } = await supabase
@@ -205,13 +269,10 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         .single()
 
       if (error) {
-        if (import.meta.env.DEV) {
-          logger.error('Add to collection error:', error)
-        }
+        console.error('Add to collection error:', error)
         return false
       }
 
-      // Update lokalen State
       const newItem: UserCollection = {
         id: data.id,
         userId: data.user_id,
@@ -228,20 +289,18 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
       setUser({
         ...user,
-        collections: [...user.collections, newItem]
+        collections: [...(user.collections || []), newItem]
       })
       
       return true
     } catch (error) {
-      if (import.meta.env.DEV) {
-        logger.error('Add to collection error:', error)
-      }
+      console.error('Add to collection error:', error)
       return false
     }
   }
 
   const removeFromCollection = async (itemId: string): Promise<boolean> => {
-    if (!user) return false
+    if (!user || !checkDependencies('removeFromCollection')) return false
 
     try {
       const { error } = await supabase
@@ -251,29 +310,24 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         .eq('user_id', user.id)
 
       if (error) {
-        if (import.meta.env.DEV) {
-          logger.error('Remove from collection error:', error)
-        }
+        console.error('Remove from collection error:', error)
         return false
       }
 
-      // Update lokalen State
       setUser({
         ...user,
-        collections: user.collections.filter(c => c.id !== itemId)
+        collections: (user.collections || []).filter((c: UserCollection) => c.id !== itemId)
       })
       
       return true
     } catch (error) {
-      if (import.meta.env.DEV) {
-        logger.error('Remove from collection error:', error)
-      }
+      console.error('Remove from collection error:', error)
       return false
     }
   }
 
   const addPersonalRecord = async (record: Omit<PersonalRecord, 'id' | 'userId'>): Promise<boolean> => {
-    if (!user) return false
+    if (!user || !checkDependencies('addPersonalRecord')) return false
 
     try {
       const { data, error } = await supabase
@@ -294,13 +348,10 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         .single()
 
       if (error) {
-        if (import.meta.env.DEV) {
-          logger.error('Add personal record error:', error)
-        }
+        console.error('Add personal record error:', error)
         return false
       }
 
-      // Update lokalen State
       const newRecord: PersonalRecord = {
         id: data.id,
         userId: data.user_id,
@@ -317,23 +368,20 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
       setUser({
         ...user,
-        personalRecords: [...user.personalRecords, newRecord]
+        personalRecords: [...(user.personalRecords || []), newRecord]
       })
 
-      // Award XP for new personal record
       await addXP(50)
       
       return true
     } catch (error) {
-      if (import.meta.env.DEV) {
-        logger.error('Add personal record error:', error)
-      }
+      console.error('Add personal record error:', error)
       return false
     }
   }
 
   const updatePersonalRecord = async (recordId: string, updates: Partial<PersonalRecord>): Promise<boolean> => {
-    if (!user) return false
+    if (!user || !checkDependencies('updatePersonalRecord')) return false
 
     try {
       const { error } = await supabase
@@ -354,32 +402,28 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         .eq('user_id', user.id)
 
       if (error) {
-        if (import.meta.env.DEV) {
-          logger.error('Update personal record error:', error)
-        }
+        console.error('Update personal record error:', error)
         return false
       }
 
-      // Update lokalen State
       setUser({
         ...user,
-        personalRecords: user.personalRecords.map(r => 
+        personalRecords: (user.personalRecords || []).map((r: PersonalRecord) => 
           r.id === recordId ? { ...r, ...updates } : r
         )
       })
       
       return true
     } catch (error) {
-      if (import.meta.env.DEV) {
-        logger.error('Update personal record error:', error)
-      }
+      console.error('Update personal record error:', error)
       return false
     }
   }
 
   const getUserProfile = async (userId: string): Promise<User | null> => {
+    if (!checkDependencies('getUserProfile')) return null
+
     try {
-      // Hole Profil-Daten
       const { data: profile, error: profileError } = await supabase
         .from('profiles')
         .select('*')
@@ -390,19 +434,16 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         return null
       }
 
-      // Hole Collections
       const { data: collections = [] } = await supabase
         .from('collections')
         .select('*')
         .eq('user_id', userId)
 
-      // Hole Personal Records
       const { data: personalRecords = [] } = await supabase
         .from('personal_records')
         .select('*')
         .eq('user_id', userId)
 
-      // Hole Auth User Info (für E-Mail und Join Date)
       const { data: { user: authUser } } = await supabase.auth.getUser()
       const email = authUser?.id === userId ? authUser.email : ''
       const joinDate = authUser?.id === userId ? new Date(authUser.created_at) : new Date(profile.created_at)
@@ -420,7 +461,8 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         bio: profile.bio,
         location: profile.location,
         isPublic: profile.is_public,
-        collections: (collections || []).map(c => ({
+        points: profile.points,
+        collections: (collections || []).map((c: DatabaseCollection) => ({
           id: c.id,
           userId: c.user_id,
           gameId: c.game_id,
@@ -433,7 +475,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
           notes: c.notes,
           isWishlist: c.is_wishlist
         })),
-        personalRecords: (personalRecords || []).map(pr => ({
+        personalRecords: (personalRecords || []).map((pr: DatabasePersonalRecord) => ({
           id: pr.id,
           userId: pr.user_id,
           gameId: pr.game_id,
@@ -448,14 +490,14 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         }))
       }
     } catch (error) {
-      if (import.meta.env.DEV) {
-        logger.error('Get user profile error:', error)
-      }
+      console.error('Get user profile error:', error)
       return null
     }
   }
 
   const getAllUsers = async (): Promise<User[]> => {
+    if (!checkDependencies('getAllUsers')) return []
+
     try {
       const { data: profiles, error } = await supabase
         .from('profiles')
@@ -463,17 +505,14 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         .eq('is_public', true)
 
       if (error) {
-        if (import.meta.env.DEV) {
-          logger.error('Get all users error:', error)
-        }
+        console.error('Get all users error:', error)
         return []
       }
 
-      // Konvertiere zu User-Format (ohne Collections und Personal Records für Performance)
-      return profiles.map(profile => ({
+      return profiles.map((profile: DatabaseProfile) => ({
         id: profile.id,
         username: profile.username,
-        email: '', // E-Mail nicht öffentlich
+        email: '',
         level: profile.level,
         xp: profile.xp,
         region: profile.region,
@@ -483,13 +522,12 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         bio: profile.bio,
         location: profile.location,
         isPublic: profile.is_public,
-        collections: [], // Leer für Performance
-        personalRecords: [] // Leer für Performance
+        points: profile.points,
+        collections: [],
+        personalRecords: []
       }))
     } catch (error) {
-      if (import.meta.env.DEV) {
-        logger.error('Get all users error:', error)
-      }
+      logger.error('Get all users error:', error)
       return []
     }
   }

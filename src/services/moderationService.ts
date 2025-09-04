@@ -1,6 +1,7 @@
 import { supabase } from '../lib/supabase'
 import { logger } from '../lib/logger'
 import { MODERATION_API_URL } from '../config'
+import { useLanguage } from '../contexts/LanguageContext'
 
 export type ViolationType = 'insult' | 'hate' | 'spam' | 'phishing' | 'nsfw' | 'violence' | 'copyright'
 

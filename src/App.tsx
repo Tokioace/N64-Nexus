@@ -12,12 +12,15 @@ import { MapProvider } from './contexts/MapContext'
 import HomePage from './pages/HomePage'
 import HomeScreenRetro from './components/HomeScreenRetro'
 import AuthPage from './pages/AuthPage'
+import EmailConfirmPage from './pages/EmailConfirmPage'
+import BrowserRedirectPage from './pages/BrowserRedirectPage'
 import TermsPage from './pages/TermsPage'
 import PrivacyPage from './pages/PrivacyPage'
 import AccountDeletionPage from './pages/AccountDeletionPage'
 import QuizResultPage from './pages/QuizResultPage'
 import TypographyShowcase from './components/TypographyShowcase'
 import ErrorBoundary from './components/ErrorBoundary'
+import AccessibilityEnhancements from './components/AccessibilityEnhancements'
 import Layout from './components/Layout'
 import PWAInstallPrompt from './components/PWAInstallPrompt'
 import OfflineIndicator from './components/OfflineIndicator'
@@ -66,7 +69,7 @@ function AdminRoute() {
 }
 
 function App() {
-  const [cookiePreferences, setCookiePreferences] = useState<CookiePreferences | null>(null)
+  const [, setCookiePreferences] = useState<CookiePreferences | null>(null)
 
   useEffect(() => {
     bugMonitorService.init()
@@ -100,6 +103,7 @@ function App() {
                     <ForumProvider>
                       <MapProvider>
                         <Layout>
+                          <AccessibilityEnhancements />
                           <PWAInstallPrompt />
                           <OfflineIndicator />
                           <CookieConsent 
@@ -109,6 +113,8 @@ function App() {
                       <Routes>
                         <Route path="/" element={<HomePage />} />
                         <Route path="/auth" element={<AuthPage />} />
+                        <Route path="/auth/confirm" element={<EmailConfirmPage />} />
+                        <Route path="/browser-redirect" element={<BrowserRedirectPage />} />
                         <Route path="/terms" element={<TermsPage />} />
                         <Route path="/privacy" element={<PrivacyPage />} />
                         <Route path="/account/delete" element={<AccountDeletionPage />} />

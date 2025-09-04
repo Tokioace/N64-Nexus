@@ -1,31 +1,9 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState, useEffect } from 'react'
 import { logger } from '../lib/logger';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useLocation } from 'react-router-dom';
 import { Search, Plus, Package, Clock, Star, Grid, List, Eye, MessageCircle, Heart, ShoppingCart } from 'lucide-react';
-
-interface MarketplaceOffer {
-  id: string;
-  title: string;
-  description: string;
-  price: number;
-  currency: string;
-  condition: 'mint' | 'very-good' | 'good' | 'fair';
-  images: string[];
-  seller: {
-    id: string;
-    name: string;
-    rating: number;
-    verified: boolean;
-  };
-  category: string;
-  createdAt: string;
-  views: number;
-  likes: number;
-  comments: number;
-  isActive: boolean;
-}
+import { MarketplaceItem as MarketplaceOffer, MarketplaceItemData } from '../types';
 
 interface CreateOfferModalProps {
   isOpen: boolean;
@@ -131,9 +109,9 @@ const CreateOfferModal: React.FC<CreateOfferModalProps> = ({ isOpen, onClose, on
                     onChange={(e) => setFormData(prev => ({ ...prev, currency: e.target.value }))}
                     className="px-2 sm:px-4 py-2 sm:py-3 bg-slate-700 border border-slate-600 rounded-r-lg text-slate-100 focus:outline-none focus:ring-2 focus:ring-blue-500 text-responsive-sm"
                   >
-                    <option value="EUR">EUR</option>
-                    <option value="USD">USD</option>
-                    <option value="GBP">GBP</option>
+                    <option value="EUR">{t('currency.eur')}</option>
+                    <option value="USD">{t('currency.usd')}</option>
+                    <option value="GBP">{t('currency.gbp')}</option>
                   </select>
                 </div>
               </div>
@@ -207,17 +185,20 @@ const MarketplacePage: React.FC = () => {
 
   // Load marketplace data from localStorage and handle highlighting
   useEffect(() => {
+    let highlightTimeout: NodeJS.Timeout | null = null;
+    let clearHighlightTimeout: NodeJS.Timeout | null = null;
+
     const loadMarketplaceData = () => {
       try {
         const savedMarketplace = localStorage.getItem('marketplace_items');
         if (savedMarketplace) {
           const parsedMarketplace = JSON.parse(savedMarketplace);
           const sortedMarketplace = parsedMarketplace
-            .map((item: any) => ({
+            .map((item: MarketplaceItemData) => ({
               ...item,
               createdAt: item.createdAt || new Date().toISOString()
             }))
-            .sort((a: any, b: any) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+            .sort((a: MarketplaceItemData, b: MarketplaceItemData) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
           setOffers(sortedMarketplace);
         } else {
           // Use mock data and save to localStorage
@@ -245,8 +226,8 @@ const MarketplacePage: React.FC = () => {
             },
             {
               id: '2',
-              title: 'N64 Controller - Original Nintendo',
-              description: 'Originaler N64 Controller in gutem Zustand. Alle Knöpfe funktionieren einwandfrei.',
+              title: t('marketplace.n64ControllerTitle'),
+              description: t('marketplace.n64ControllerDescriptionDE'),
               price: 25.00,
               currency: 'EUR',
               condition: 'good',
@@ -302,7 +283,7 @@ const MarketplacePage: React.FC = () => {
     if (location.state?.highlightItemId) {
       setHighlightedItemId(location.state.highlightItemId);
       // Auto-scroll to the highlighted item after a short delay
-      setTimeout(() => {
+      highlightTimeout = setTimeout(() => {
         const element = document.getElementById(`marketplace-${location.state.highlightItemId}`);
         if (element) {
           element.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -310,10 +291,20 @@ const MarketplacePage: React.FC = () => {
       }, 500);
       
       // Clear the highlight after a few seconds
-      setTimeout(() => {
+      clearHighlightTimeout = setTimeout(() => {
         setHighlightedItemId(null);
       }, 3000);
     }
+
+    // Cleanup function to clear timeouts
+    return () => {
+      if (highlightTimeout) {
+        clearTimeout(highlightTimeout);
+      }
+      if (clearHighlightTimeout) {
+        clearTimeout(clearHighlightTimeout);
+      }
+    };
   }, [location.state]);
 
   const handleCreateOffer = (offerData: Omit<MarketplaceOffer, 'id' | 'createdAt' | 'views' | 'likes' | 'comments' | 'seller'>) => {

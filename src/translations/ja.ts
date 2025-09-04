@@ -17,7 +17,37 @@ const ja = {
   'nav.newsfeed': 'ニュースフィード',
   'nav.community': 'コミュニティ',
   'nav.map': 'Battle64 Map',
-
+  // Accessibility
+  'a11y.skipToMain': 'メインコンテンツにスキップ',
+  'a11y.skipToNav': 'ナビゲーションにスキップ',
+  'a11y.skipToSearch': '検索にスキップ',
+  'a11y.newPage': '新しいページが読み込まれました',
+  'a11y.loading': 'コンテンツを読み込み中',
+  'a11y.error': 'エラーが発生しました',
+  'a11y.success': 'アクションが正常に完了しました',
+  // Common fallback texts
+  'common.unknown': '不明',
+  'common.unknownGame': '不明なゲーム',
+  'common.unknownCategory': '不明なカテゴリ',
+  'common.unknownItem': '不明なアイテム',
+  'common.unknownMedia': '不明なメディア',
+  'common.unknownUser': '不明なユーザー',
+  'common.noDescription': '説明がありません',
+  'common.noDataAvailable': 'データがありません',
+  'common.userLocation': 'ユーザーの場所',
+  'common.marketplaceItem': 'マーケットプレイスアイテム',
+  'common.verified': '認証済み',
+  'common.unverified': '未認証',
+  'common.pending': '保留中',
+  'common.approved': '承認済み',
+  'common.rejected': '拒否済み',
+  'common.draft': '下書き',
+  'common.published': '公開済み',
+  'common.archived': 'アーカイブ済み',
+  // Account deletion
+  'account.deletion.confirmText': '確認のため\"DELETE\"と入力してください',
+  'account.deletion.placeholder': '削除',
+  'account.deletion.typeDelete': '確認のため\"DELETE\"と入力してください:',
   // Home Screen
   'home.subtitle': 'ミレニアル世代のためのN64コミュニティ',
   'home.welcome': 'おかえりなさい',
@@ -34,13 +64,12 @@ const ja = {
   'home.fanart.subtitle': '創造性',
   'home.newsfeed.subtitle': 'アップデート',
   'home.map.subtitle': 'ローカルバトル',
-
   // Battle64 Map
   'map.title': 'Battle64 Map',
   'map.subtitle': 'リアルワールドバトル＆ジオマッチング',
   'map.hostEvent': 'ローカル4プレイヤーバトルを主催',
   'map.selectGame': 'ゲームを選択',
-  'map.chooseGame': 'ゲームを選択してください...',
+  'map.chooseGame': 'ゲームを選択してください',
   'map.eventTitle': 'イベントタイトル',
   'map.eventTitlePlaceholder': 'ウィークエンドレーシングトーナメント',
   'map.description': '説明',
@@ -113,15 +142,14 @@ const ja = {
   'event.type.speedrun': 'スピードランセッション',
   'event.type.meetup': 'ミートアップ',
   'event.category': 'イベントカテゴリー',
-
   // Common
   'common.welcome': 'ようこそ',
-  'common.loading': '読み込み中...',
+  'common.loading': '読み込み中',
   'common.error': 'エラー',
   'common.save': '保存',
   'common.cancel': 'キャンセル',
   'common.upload': 'アップロード',
-  'common.uploading': 'アップロード中...',
+  'common.uploading': 'アップロード中',
   'common.remove': '削除',
   'common.delete': '削除',
   'common.edit': '編集',
@@ -147,7 +175,6 @@ const ja = {
   'common.ok': 'OK',
   'common.retry': '再試行',
   'common.note': '注記',
-
   // Authentication
   'auth.login': 'ログイン',
   'auth.logout': 'ログアウト',
@@ -161,7 +188,6 @@ const ja = {
   'auth.loginRequiredMessage': 'このページを表示するにはログインが必要です。',
   'auth.loginRequiredForEvents': 'イベントに参加するにはログインしてください！',
   'auth.loginRequiredForImageUpload': '画像をアップロードするにはログインが必要です',
-
   // Quiz
   'quiz.title': 'N64クイズ',
   'quiz.start': 'クイズ開始',
@@ -179,7 +205,6 @@ const ja = {
   'quiz.category': 'カテゴリー',
   'quiz.restart': '再開',
   'quiz.wrong': '間違い！',
-
   // Events
   'events.title': 'イベント',
   'events.subtitle': 'トーナメント、チャレンジ、コミュニティイベント',
@@ -202,7 +227,6 @@ const ja = {
   'events.game': 'ゲーム',
   'events.track': 'トラック',
   'events.time': '時間',
-
   // Forum
   'forum.title': 'フォーラム',
   'forum.subtitle': 'コミュニティディスカッション',
@@ -211,14 +235,13 @@ const ja = {
   'forum.threads': 'スレッド',
   'forum.posts': '投稿',
   'forum.mostActive': '最もアクティブ',
-  'forum.loading': '読み込み中...',
+  'forum.loading': '読み込み中',
   'forum.communityNexus': 'コミュニティネクサス',
   'forum.discussWithCommunity': 'コミュニティと議論',
   'forum.createThread': 'スレッド作成',
   'forum.newThread': '新しいスレッド',
   'forum.reply': '返信',
   'forum.backToForum': 'フォーラムに戻る',
-
   // Language selector
   'language.german': 'ドイツ語',
   'language.english': '英語',
@@ -234,7 +257,6 @@ const ja = {
   'language.hindi': 'ヒンディー語',
   'language.arabic': 'アラビア語',
   'language.korean': '韓国語',
-
   // Error messages
   'error.generic': 'エラーが発生しました',
   'error.networkError': 'ネットワークエラー',
@@ -246,7 +268,6 @@ const ja = {
   'error.goHome': 'ホームに戻る',
   'error.contactSupport': 'サポートに連絡',
   'error.somethingWentWrong': '何かがうまくいきませんでした',
-
   // News
   'news.title': 'ニュース',
   'news.subtitle': '最新のアップデートとお知らせ',
@@ -268,7 +289,7 @@ const ja = {
   'news.noResults': '結果なし',
   'news.noResultsDescription': 'ニュースが見つかりません',
   'news.pagination': 'ページ {current} / {total}',
-  'news.search.placeholder': 'ニュースを検索...',
+  'news.search.placeholder': 'ニュースを検索',
   'news.filter.all': 'すべて',
   'news.filter.events': 'イベント',
   'news.filter.winners': '勝者',
@@ -292,7 +313,6 @@ const ja = {
   'news.type.eventAnnouncement': 'イベント発表',
   'news.type.general': '一般',
   'news.eventWinnerLabel': 'イベント勝者',
-
   // Achievements
   'achievement.speedrunMaster': 'スピードランマスター',
   'achievement.speedrunMasterDesc': 'スピードランの技術をマスターする',
@@ -310,7 +330,6 @@ const ja = {
   'achievement.unlocked': 'アンロック済み',
   'achievement.unlockedOn': 'アンロック日',
   'achievement.notUnlocked': 'まだアンロックされていません',
-
   // Profile
   'profile.title': 'プロフィール',
   'profile.level': 'レベル',
@@ -332,7 +351,6 @@ const ja = {
   'profile.activityHistory': 'アクティビティ履歴',
   'profile.achievedOn': '達成日',
   'profile.medals.title': 'メダル',
-
   // Media
   'media.upload': 'アップロード',
   'media.uploadMethod': 'アップロード方法',
@@ -361,48 +379,18 @@ const ja = {
   'media.livestream': 'ライブストリーム',
   'media.type': 'メディアタイプ',
   'media.error': 'メディアエラー',
-
-  // Placeholders
-  'placeholder.speedrunTitle': '例：マリオ64 120スタースピードラン',
-  'placeholder.speedrunUrl': 'https://twitch.tv/あなたのチャンネル',
-  'placeholder.speedrunGame': '例：スーパーマリオ64',
-  'placeholder.mediaSearch': 'タイトル、説明、またはタグで検索...',
-  'placeholder.mediaUrl': 'https://youtube.com/watch?v=...',
-  'placeholder.mediaDescription': 'あなたの実績を説明してください...',
-  'placeholder.mediaTags': '世界記録、Any%、グリッチなし（カンマ区切り）',
-  'placeholder.marketplacePrice': '価格を入力...',
-  'placeholder.threadTitle': 'スレッドにタイトルを付けてください...',
-  'placeholder.threadContent': '投稿を書いてください...',
-  'placeholder.replyContent': '返信を書いてください...',
-  'placeholder.searchGames': 'ゲームを検索...',
-  'placeholder.searchPlayers': 'プレイヤーを検索...',
-  'placeholder.notes': '注記を追加...',
-  'placeholder.additionalInfo': '追加情報...',
-  'placeholder.password': 'パスワードを入力...',
-  'placeholder.raceTime': '時間を入力（例：1:23:45）...',
-  'placeholder.livestreamUrl': 'https://twitch.tv/あなたのチャンネル...',
-  'placeholder.setupController': 'コントローラーの設定を説明してください...',
-  'placeholder.gameName': 'ゲーム名を入力...',
-  'placeholder.category': 'カテゴリーを選択...',
-  'placeholder.time': '時間を入力...',
-  'placeholder.score': 'スコアを入力...',
-  'placeholder.proofUrl': '証明URLを入力...',
-  'placeholder.recordNotes': '記録の注記...',
-
-  // Success messages
+  // Placeholders  // Success messages
   'success.uploaded': 'アップロードに成功しました',
-
   // Validation
   'validation.allFieldsRequired': 'すべてのフィールドが必要です',
   'validation.titleTooLong': 'タイトルが長すぎます',
   'validation.contentTooLong': 'コンテンツが長すぎます',
   'validation.contentRequired': 'コンテンツが必要です',
   'validation.postTooLong': '投稿が長すぎます',
-
   // Marketplace
   'marketplace.subtitle': 'N64取引・交換市場',
   'marketplace.createOffer': 'オファー作成',
-  'marketplace.searchPlaceholder': 'アイテムを検索...',
+  'marketplace.searchPlaceholder': 'アイテムを検索',
   'marketplace.category': 'カテゴリー',
   'marketplace.allCategories': 'すべてのカテゴリー',
   'marketplace.categoryGames': 'ゲーム',
@@ -427,12 +415,11 @@ const ja = {
   'marketplace.conditionPoor': '悪い',
   'marketplace.publishOffer': 'オファーを公開',
   'marketplace.title': 'タイトル',
-  'marketplace.titlePlaceholder': 'アイテム名を入力...',
+  'marketplace.titlePlaceholder': 'アイテム名を入力',
   'marketplace.description': '説明',
-  'marketplace.descriptionPlaceholder': 'あなたのアイテムを説明してください...',
+  'marketplace.descriptionPlaceholder': 'あなたのアイテムを説明してください',
   'marketplace.price': '価格',
   'marketplace.condition': 'コンディション',
-
   // Minigames
   'minigames.title': 'ミニゲーム',
   'minigames.subtitle': '楽しいN64インスパイアミニゲーム',
@@ -472,11 +459,11 @@ const ja = {
   'minigames.correctAnswers': '正解数',
   'minigames.cheatCode': 'チートコード',
   'minigames.completed': '完了',
-  'minigames.typeCheatCode': 'チートコードを入力...',
-  'minigames.sound.mario64': '"ワッホー！" - マリオのジャンプ音',
-  'minigames.sound.zelda': '"ヘイ！リッスン！" - ナビの音',
-  'minigames.sound.goldeneye': '"ピューピュー" - サイレンサー付きショット',
-  'minigames.sound.mariokart': '"ヒア・ウィー・ゴー！" - レース開始',
+  'minigames.typeCheatCode': 'チートコードを入力',
+  'minigames.sound.mario64': '\"ワッホー！\" - マリオのジャンプ音',
+  'minigames.sound.zelda': '\"ヘイ！リッスン！\" - ナビの音',
+  'minigames.sound.goldeneye': '\"ピューピュー\" - サイレンサー付きショット',
+  'minigames.sound.mariokart': '\"ヒア・ウィー・ゴー！\" - レース開始',
   'minigames.sound': 'サウンド',
   'minigames.whichGame': 'このサウンドはどのゲームから？',
   'minigames.you': 'あなた',
@@ -484,8 +471,8 @@ const ja = {
   'minigames.readyForDuel': '決闘の準備はできていますか？',
   'minigames.startDuel': '決闘開始',
   'minigames.result': '結果',
-  'minigames.opponentAnswering': '回答中...',
-  'minigames.gameLoading': 'ゲーム読み込み中...',
+  'minigames.opponentAnswering': '回答中',
+  'minigames.gameLoading': 'ゲーム読み込み中',
   'minigames.gameEnded': 'ゲーム終了',
   'minigames.yourScore': 'あなたのスコア',
   'minigames.allCategories': 'すべてのカテゴリー',
@@ -497,7 +484,6 @@ const ja = {
   'minigames.hard': '難しい',
   'minigames.backToMenu': 'メニューに戻る',
   'minigames.highScore': 'ハイスコア',
-
   // ARIA and accessibility
   'aria.gridView': 'グリッド表示',
   'aria.listView': 'リスト表示',
@@ -505,7 +491,6 @@ const ja = {
   'aria.nextCard': '次のカード',
   'aria.toggleMobileMenu': 'モバイルナビゲーションの切り替え',
   'aria.dismissNews': 'ニュースを閉じる',
-
   // Fan Art
   'fanart.artworksFound': '作品が見つかりました',
   'fanart.ratings': '評価',
@@ -517,22 +502,20 @@ const ja = {
   'fanart.chooseImage': '画像を選択',
   'fanart.imageFormats': 'サポート形式：JPG、PNG、GIF',
   'fanart.artworkTitle': '作品タイトル',
-  'fanart.titlePlaceholder': '作品にタイトルを付けてください...',
+  'fanart.titlePlaceholder': '作品にタイトルを付けてください',
   'fanart.selectGame': 'ゲームを選択',
-  'fanart.chooseGame': 'ゲームを選択してください...',
+  'fanart.chooseGame': 'ゲームを選択してください',
   'fanart.tags': 'タグ',
-  'fanart.tagsPlaceholder': 'タグを追加...',
+  'fanart.tagsPlaceholder': 'タグを追加',
   'fanart.tagsHint': 'カンマで区切る',
-  'fanart.uploading': 'アップロード中...',
+  'fanart.uploading': 'アップロード中',
   'fanart.allCategories': 'すべてのカテゴリー',
   'fanart.subtitle': 'N64インスパイア作品を共有',
   'fanart.filterBy': 'フィルター',
-
   // Error handling
   'error.title': 'エラー',
   'error.threadCreationFailed': 'スレッド作成に失敗しました',
   'error.invalidFile': '無効なファイル',
-
   // Forum specific
   'forum.categoryNotFound': 'カテゴリーが見つかりません',
   'forum.firstThread': '最初のスレッド',
@@ -566,7 +549,6 @@ const ja = {
   'forum.thread.goldeneye': 'ゴールデンアイ007：ファシリティ1分以下',
   'forum.thread.collecting': 'N64コレクション：レアゲームと価格',
   'forum.thread.paperMario': 'ペーパーマリオ：グリッチなしスピードランのコツ',
-
   // Categories
   'category.hardware': 'ハードウェア',
   'category.glitches': 'グリッチ',
@@ -578,7 +560,6 @@ const ja = {
   'category.challenges': 'チャレンジ',
   'category.collecting': 'コレクション',
   'category.tips': 'ヒント',
-
   // UI elements
   'ui.login': 'ログイン',
   'ui.grid': 'グリッド',
@@ -589,13 +570,11 @@ const ja = {
   'ui.ntsc': 'NTSC',
   'ui.newsDetails': '詳細',
   'ui.liveChat': 'ライブチャット',
-
   // Alt text
   'alt.postAttachment': '投稿の添付ファイル',
   'alt.battle64Mascot': 'Battle64マスコット',
   'alt.preview': 'プレビュー',
   'alt.uploadPreview': 'アップロードプレビュー',
-
   // Community
   'community.title': 'コミュニティ',
   'community.subtitle': '他のN64愛好家を発見',
@@ -613,7 +592,6 @@ const ja = {
   'community.noPlayersFound': 'プレイヤーが見つかりません',
   'community.tryOtherFilters': '他のフィルターを試してください',
   'community.recentRecord': '最近の記録',
-
   // Home page
   'home.ended': '終了',
   'home.liveEvents': 'ライブイベント',
@@ -626,7 +604,6 @@ const ja = {
   'home.newsfeed': 'ニュースフィード',
   'home.footer.retro': 'レトロゲーミング',
   'home.footer.n64': 'ニンテンドー64コミュニティ',
-
   // Leaderboard
   'leaderboard.pageTitle': 'リーダーボード',
   'leaderboard.pageSubtitle': 'コミュニティのベストプレイヤー',
@@ -645,7 +622,6 @@ const ja = {
   'leaderboard.timeframeMonth': '月間',
   'leaderboard.regionPlatform': '地域/プラットフォーム',
   'leaderboard.yourRank': 'あなたのランク',
-
   // Events status and details
   'events.status.live': 'ライブ',
   'events.status.completed': '完了',
@@ -672,7 +648,6 @@ const ja = {
   'events.mobile.join': '参加',
   'events.mobile.board': 'ボード',
   'events.mobile.winner': '勝者',
-  
   // Best Lap Showcase
   'events.bestLap.title': 'ベストラップ',
   'events.bestLap.photoAlt': '{username}による{time}のベストラップのスクリーンショット',
@@ -706,7 +681,6 @@ const ja = {
   'events.livestreamSubmissionDesc': 'ライブストリーム送信',
   'events.raceSubmission': 'レース送信',
   'events.raceTime': 'レースタイム',
-
   // Event Leaderboard
   'eventLeaderboard.time': 'タイム',
   'eventLeaderboard.screenshotFrom': '{username}からのスクリーンショット',
@@ -727,14 +701,12 @@ const ja = {
   'eventLeaderboard.view': '表示',
   'eventLeaderboard.documentation': 'ドキュメント',
   'eventLeaderboard.viewMedia': 'メディアを表示',
-
   // Notifications
   'notifications.enabled': '通知が有効',
   'notifications.denied': '通知が拒否されました',
   'notifications.notSupported': '通知はサポートされていません',
   'notifications.disabled': '通知が無効',
   'notifications.error': '通知エラー',
-
   // Common terms
   'common.common': '一般',
   'common.uncommon': '珍しい',
@@ -742,10 +714,8 @@ const ja = {
   'common.veryRare': '非常にレア',
   'common.ultraRare': 'ウルトラレア',
   'common.hide': '非表示',
-
   // Time
   'time.remaining': '残り',
-
   // Points and ranking
   'points.total': '合計',
   'points.season': 'シーズン',
@@ -758,7 +728,6 @@ const ja = {
   'rank.current': '現在',
   'rank.nextRank': '次のランク',
   'rank.maxRank': '最高ランクに到達',
-
   // Cool Rank Titles (20 Levels)
   'Pixel Rookie': 'ピクセルルーキー',
   'Button Masher': 'ボタン連打マスター',
@@ -780,11 +749,9 @@ const ja = {
   'Reality Bender': '現実改変者',
   'Retro Overlord': 'レトロオーバーロード',
   'Ultimate Gaming Legend': '究極ゲーミング伝説',
-
   // Medal system
   'medal.season': 'シーズン',
   'medal.bonusXP': 'ボーナスXP',
-
   // Records
   'records.add': '記録を追加',
   'records.addFirst': '最初の記録を追加',
@@ -792,7 +759,6 @@ const ja = {
   'records.time': 'タイム',
   'records.points': 'ポイント',
   'records.addButton': '記録を追加',
-
   // Labels
   'label.notes': '注記',
   'label.gameName': 'ゲーム名',
@@ -801,7 +767,6 @@ const ja = {
   'label.region': '地域',
   'label.category': 'カテゴリー',
   'label.proofUrl': '証明URL',
-
   // Collection
   'collection.gamesCollected': '収集したゲーム',
   'collection.completeness': '完成度',
@@ -851,7 +816,6 @@ const ja = {
   'collection.noGamesYet': 'まだ{type}ゲームはありません',
   'collection.added': '追加済み',
   'collection.acquired': '取得済み',
-
   // Authentication extended
   'auth.invalidCredentials': '無効な資格情報',
   'auth.errorOccurred': 'エラーが発生しました',
@@ -861,26 +825,54 @@ const ja = {
   'auth.registrationFailed': '登録に失敗しました',
   'auth.welcomeBack': 'おかえりなさい',
   'auth.createAccount': 'アカウント作成',
-  'auth.emailPlaceholder': 'メールを入力...',
-  'auth.loggingIn': 'ログイン中...',
-  'auth.usernamePlaceholder': 'ユーザー名を入力...',
+  'auth.emailPlaceholder': 'メールを入力',
+  'auth.loggingIn': 'ログイン中',
+  'auth.usernamePlaceholder': 'ユーザー名を入力',
   'auth.platform': 'プラットフォーム',
   'auth.region': '地域',
-  'auth.registering': '登録中...',
+  'auth.registering': '登録中',
   'auth.createAccountButton': 'アカウント作成',
   'auth.noAccountYet': 'まだアカウントをお持ちでないですか？',
   'auth.registerNow': '今すぐ登録',
   'auth.alreadyHaveAccount': 'すでにアカウントをお持ちですか？',
   'auth.loginHere': 'こちらでログイン',
+  'auth.processingRegistration': '登録を処理中',
+  'auth.waitingEmailConfirmation': 'メール確認をお待ちください',
+  'auth.registrationSucceeded': '登録が成功しました！',
+  'auth.welcomeToCommunity': 'Battle64コミュニティへようこそ',
+  'auth.checkOutEvents': 'イベントをチェックしてください',
+  'auth.emailConfirmationSent': '{email}に確認メールを送信しました。',
+  'auth.clickEmailLink': 'メール内のリンクをクリックして登録を完了してください。',
+  'auth.emailBeingConfirmed': 'メール確認中',
+  'auth.pleaseWaitMoment': '少々お待ちください。',
+  'auth.emailConfirmedSuccessfully': 'メール確認が成功しました！ホームページにリダイレクトされます',
+  'auth.confirmationFailed': '確認に失敗しました',
+  'auth.accountActivatedSuccessfully': 'アカウントが正常にアクティベートされました！',
+  'auth.joinCommunityMessage': 'コミュニティに参加しましょう。',
+  'auth.exploreEvents': 'イベントを探索',
+  'auth.invalidConfirmationLink': '無効な確認リンク',
+  'auth.confirmationLinkExpired': 'メール確認に失敗しました。リンクが期限切れの可能性があります。',
+  'auth.emailConfirmationFailed': 'メール確認に失敗しました',
+  'auth.unexpectedError': '予期しないエラーが発生しました',
+  'auth.tryRegisterAgain': '再度登録を試すか、サポートにお問い合わせください。',
+  'auth.goToLogin': 'ログインへ',
+  // Browser Redirect
+  'browserRedirect.title': 'ブラウザリダイレクト',
+  'browserRedirect.message': 'お好みのブラウザにリダイレクトしています',
+  'browserRedirect.detectedBrowser': '検出されたブラウザ',
+  'browserRedirect.version': 'バージョン',
+  'browserRedirect.redirectingIn': '{seconds}秒後にリダイレクトします',
+  'browserRedirect.redirectNow': '今すぐリダイレクト',
+  'browserRedirect.troubleshoot': '自動リダイレクトが機能しませんか？',
+  'browserRedirect.manualInstructions': '「今すぐリダイレクト」をクリックするか、アドレスバーからURLをコピーしてください。',
   'auth.enhancedExperienceMessage': '拡張された体験のためにサインイン',
-
   // Chat
   'chat.title': 'コミュニティチャット',
   'chat.onlineUsers': 'オンラインユーザー',
   'chat.chats': 'チャット',
   'chat.newChat': '新しいチャット',
-  'chat.searchUsers': 'ユーザーを検索...',
-  'chat.messagePlaceholder': 'メッセージを入力...',
+  'chat.searchUsers': 'ユーザーを検索',
+  'chat.messagePlaceholder': 'メッセージを入力',
   'chat.joinPrompt': 'チャットに参加して参加しよう！',
   'chat.privateChat': 'プライベートチャット',
   'chat.description': 'コミュニティとN64ゲームについて議論',
@@ -894,7 +886,6 @@ const ja = {
   'chat.rules.noSpam': 'スパムや重複メッセージは禁止',
   'chat.rules.shareExperience': 'N64体験を共有する',
   'chat.rules.noLinks': '許可なく外部リンクは禁止',
-
   // Cards
   'card.fanarts': 'ファンアート',
   'card.forumPosts': 'フォーラム投稿',
@@ -904,19 +895,16 @@ const ja = {
   'card.news': 'ニュース',
   'card.records': '記録',
   'card.noRecords': '利用可能な記録がありません',
-
   // Image upload
   'imageUpload.dropHere': 'ここにドロップ',
   'imageUpload.uploadImage': '画像をアップロード',
   'imageUpload.clickOrDrag': 'クリックまたはドラッグ',
   'imageUpload.supportedFormats': 'サポート形式：JPG、PNG、GIF',
-
   // Accessibility
   'accessibility.skipToContent': 'メインコンテンツにスキップ',
   'accessibility.skipToNavigation': 'ナビゲーションにスキップ',
   'accessibility.skippedToContent': 'メインコンテンツにスキップしました',
   'accessibility.skippedToNavigation': 'ナビゲーションにスキップしました',
-
   // Homepage specific translations - ホームページ専用翻訳
   'home.noLiveEvent': 'アクティブなライブイベントがありません - 次のイベントが間もなく開始します！',
   'home.showAllEvents': '📅 すべてのイベントを表示',
@@ -929,7 +917,6 @@ const ja = {
   'home.clickToViewFull': 'クリックしてフルサイズで表示',
   'home.clickToWatch': 'クリックして視聴',
   'home.noMediaSubmitted': 'メディアが投稿されていません',
-
   // News items - ニュースアイテム
   'news.mariokartRecord': '🏆 Mario Kart 64 スピードラン世界記録更新！',
   'news.mariokartRecordContent': 'SpeedDemon64がワリオスタジアムで1:42.33の新世界記録を樹立しました！',
@@ -949,7 +936,6 @@ const ja = {
   'news.speedrunCategoryContent': 'Banjo-Kazooieの新しいAny%カテゴリーを追加しました。今すぐ参加！',
   'news.monthlyChallenge': '🏆 月間チャレンジ優勝者',
   'news.monthlyChallengeContent': 'N64Masterさん、10月の月間チャレンジ優勝おめでとうございます！',
-
   // Live Events - Mario Kart 64 Luigi's Raceway
   'events.mk64LuigisRaceway.title': '🏁 マリオカート64：ルイージサーキット スピードランチャレンジ',
   'events.mk64LuigisRaceway.description': '伝説的なルイージサーキットであなたのスピードを見せつけよう！グランツーリスモ7スタイルの1ヶ月間の激しい競争。',
@@ -964,7 +950,6 @@ const ja = {
   'events.mk64LuigisRaceway.prize3': '🥉 3位：Battle64ポイント200 + 銅メダル',
   'events.mk64LuigisRaceway.prizeTop10': '🏆 トップ10：F1スタイルポイント (25-18-15-12-10-8-6-4-2-1)',
   'events.mk64LuigisRaceway.prizeParticipation': '🎯 参加賞：全参加者にBattle64ポイント5',
-
   // Live Events - San Francisco Rush Downtown
   'events.sfrDowntown.title': '🏙️ サンフランシスコラッシュ：ダウンタウンレーシングチャンピオンシップ',
   'events.sfrDowntown.description': 'サンフランシスコのダウンタウンの街を駆け抜けろ！1ヶ月間のエクストリームレーシングアクション。',
@@ -979,7 +964,6 @@ const ja = {
   'events.sfrDowntown.prize3': '🥉 3位：Battle64ポイント200 + ストリートレーサー',
   'events.sfrDowntown.prizeTop10': '🏆 トップ10：F1スタイルポイント (25-18-15-12-10-8-6-4-2-1)',
   'events.sfrDowntown.prizeParticipation': '🎯 参加賞：全参加者にBattle64ポイント5',
-
   // Live Events - Diddy Kong Racing Ancient Lake
   'events.dkrAncientLake.title': '🦍 ディディーコングレーシング：エンシェントレイク タイムアタック',
   'events.dkrAncientLake.description': '神秘的なエンシェントレイクを征服せよ！真のN64ファンのためのレア社クラシックでの伝説的な競争。',
@@ -994,10 +978,8 @@ const ja = {
   'events.dkrAncientLake.prize3': '🥉 3位：Battle64ポイント200 + エンシェントレーサー',
   'events.dkrAncientLake.prizeTop10': '🏆 トップ10：F1スタイルポイント (25-18-15-12-10-8-6-4-2-1)',
   'events.dkrAncientLake.prizeParticipation': '🎯 参加賞：全参加者にBattle64ポイント5',
-
   // Home Ranking Section
   'home.yourRanking': 'あなたのランキング',
-
   // Ranking System
   'ranking.globalRank': 'グローバルランク',
   'ranking.totalPoints': '総ポイント',
@@ -1011,39 +993,32 @@ const ja = {
   'ranking.achievements': '実績',
   'ranking.verifiedRecords': '認証済み記録',
   'ranking.gamesOwned': '所有ゲーム',
-
   // Profile Ranking
   'profile.ranking': 'ランキング',
   'profile.globalRanking': 'グローバルランキング',
   'profile.rankingStats': 'ランキング統計',
-
   // FanArt Comments
-  'fanart.addComment': 'コメントを追加...',
-
+  'fanart.addComment': 'コメントを追加',
   // Interaction System
   'interaction.like': 'いいね',
   'interaction.unlike': 'いいねを取り消す',
   'interaction.comments': 'コメント',
   'interaction.addComment': 'コメントを追加',
-  'interaction.writeComment': 'コメントを書く...',
+  'interaction.writeComment': 'コメントを書く',
   'interaction.loginToLike': 'いいねするにはログイン',
   'interaction.loginToComment': 'コメントするにはログイン',
   'interaction.viewCount': 'View count',
   'interaction.showComments': 'Show comments',
-
   // Time
   'time.justNow': 'たった今',
-
   // Media types
   'media.photo': '写真',
   'media.video': '動画',
   'media.noMediaTooltip': 'No media yet – upload your video or screenshot to verify run',
-
   // Event Card specific translations
   'events.likes': 'いいね',
-  'events.views': '閲覧数', 
+  'events.views': '閲覧数',
   'events.comments': 'コメント',
-
   // PWA Installation Prompt
   'pwa.installTitle': 'Battle64をインストール',
   'pwa.installDescription': 'オフラインアクセスと高速読み込みで完全なアプリ体験を！',
@@ -1052,31 +1027,28 @@ const ja = {
   'pwa.iosStep1': '共有ボタンをタップ',
   'pwa.iosStep2': '「ホーム画面に追加」をタップ',
   'common.later': '後で',
-
   // Offline Functionality
   'offline.workingOffline': 'オフラインで動作中',
   'offline.backOnline': 'オンラインに復帰！',
   'offline.cachedDataAvailable': 'キャッシュデータが利用可能',
   'offline.cachedData': 'キャッシュデータ',
-
   // Enhanced Chat
   'chat.communityChat': 'コミュニティチャット',
   'chat.activeUsers': 'アクティブユーザー',
-  'chat.loading': 'メッセージを読み込み中...',
+  'chat.loading': 'メッセージを読み込み中',
   'chat.noMessages': 'まだメッセージがありません',
   'chat.startConversation': '最初に会話を始めましょう！',
-  'chat.typeMessage': 'メッセージを入力...',
+  'chat.typeMessage': 'メッセージを入力',
   'chat.emoji': '絵文字を追加',
   'chat.scrollToBottom': '下へスクロール',
   'chat.errorLoading': 'メッセージの読み込みエラー',
   'time.today': '今日',
   'time.yesterday': '昨日',
-
   // Realtime Events
   'events.nowLive': 'イベントがライブ中です！',
   'realtime.connected': 'ライブ接続がアクティブ',
   'realtime.disconnected': 'ライブ接続が中断されました',
-  'realtime.reconnecting': '再接続中...',
+  'realtime.reconnecting': '再接続中',
   'realtime.newUpdate': '新しいライブアップデートが利用可能',
   'realtime.leaderboard.updated': 'リーダーボードが更新されました',
   'realtime.points.updated': 'ポイントが更新されました',
@@ -1084,7 +1056,6 @@ const ja = {
   'realtime.participant.left': '参加者が退出しました',
   'realtime.event.started': 'イベントが開始されました',
   'realtime.event.finished': 'イベントが終了しました',
-
   // PWA Installation
   'pwa.install.button': 'アプリをインストール',
   'pwa.install.banner.title': 'Battle64をアプリとしてインストール',
@@ -1095,7 +1066,6 @@ const ja = {
   'pwa.install.ios.step1': 'ブラウザ下部の共有ボタンをタップ',
   'pwa.install.ios.step2': '下にスクロールして「ホーム画面に追加」を選択',
   'pwa.install.ios.step3': '「追加」をタップしてアプリをインストール',
-
   // Battle Map
   'battleMap.title': 'Battle64マップ',
   'battleMap.liveEvents': 'ライブイベント',
@@ -1111,15 +1081,13 @@ const ja = {
   'battleMap.yourLocation': 'あなたの位置',
   'battleMap.noEvents': '近くにライブイベントがありません',
   'battleMap.participantCount': '参加者',
-
   // Live Leaderboard
   'leaderboard.live': 'ライブリーダーボード',
-  'leaderboard.updating': '更新中...',
+  'leaderboard.updating': '更新中',
   'leaderboard.lastUpdate': '最終更新',
   'leaderboard.points.live': 'ライブポイント',
   'leaderboard.rank.changed': 'ランクが変更されました',
   'leaderboard.newRecord': '新記録！',
-
   // GDPR Realtime
   'gdpr.realtime.title': 'ライブ機能',
   'gdpr.realtime.description': 'リーダーボード、イベント、チャットのライブアップデートを有効にする',
@@ -1129,13 +1097,11 @@ const ja = {
   'gdpr.location.description': 'ローカルイベントと近くの参加者のために位置情報を共有',
   'gdpr.location.enable': '位置情報を有効にする',
   'gdpr.location.disable': '位置情報を無効にする',
-
   // Offline Mode
   'offline.title': 'オフラインモード',
   'offline.description': 'オフラインです。一部の機能が制限されています。',
   'offline.cached': 'キャッシュされたコンテンツを表示',
   'offline.retry': '再試行',
-
   // Common - New additions
   'common.understood': '理解しました',
   'common.success': '成功',
@@ -1143,11 +1109,9 @@ const ja = {
   'settings.privacy.title': 'プライバシー設定',
   'settings.notifications.title': '通知設定',
   'settings.notifications.description': '通知設定を管理',
-
   // GDPR Notice
   'gdpr.notice.title': 'プライバシー通知',
   'gdpr.notice.description': 'プライバシーを尊重し、データ保護のためGDPRガイドラインに従います',
-
   // 法的条項とコンプライアンス
   'legal.ageVerification': '年齢認証',
   'legal.birthDate': '生年月日',
@@ -1165,7 +1129,6 @@ const ja = {
   'legal.adultOnlyPlatform': 'Battle64は18歳以上のユーザー専用です',
   'legal.readTerms': '利用規約を読む',
   'legal.readPrivacy': 'プライバシーポリシーを読む',
-  
   // 利用規約の内容
   'terms.title': '利用規約',
   'terms.lastUpdated': '最終更新：{date}',
@@ -1185,7 +1148,6 @@ const ja = {
   'terms.section7.content': 'Battle64は任天堂とは関係ありません。任天堂のロゴ、オリジナルのN64カバー、ROMをアップロードしないでください。',
   'terms.section8.title': '8. アカウント終了',
   'terms.section8.content': '利用規約違反により、事前通知なしにアカウントを終了する権利を留保します。',
-  
   // プライバシーポリシーの内容
   'privacy.title': 'プライバシーポリシー',
   'privacy.lastUpdated': '最終更新：{date}',
@@ -1203,7 +1165,6 @@ const ja = {
   'privacy.section6.content': 'アカウントがアクティブな間、データを保持します。削除されたアカウントはすべてのデータが永久に削除されます。',
   'privacy.section7.title': '7. お問い合わせ',
   'privacy.section7.content': 'プライバシーに関するご質問は、privacy@battle64.comまでご連絡ください',
-  
   // クッキー同意
   'cookies.title': 'クッキー同意',
   'cookies.description': '体験向上のためクッキーを使用します。設定を選択してください。',
@@ -1219,7 +1180,6 @@ const ja = {
   'cookies.acceptSelected': '選択したものを承諾',
   'cookies.rejectAll': 'すべて拒否',
   'cookies.managePreferences': 'クッキー設定を管理',
-  
   // 報告とモデレーション
   'report.title': 'コンテンツを報告',
   'report.reason': '報告理由',
@@ -1235,13 +1195,11 @@ const ja = {
   'report.success': 'コンテンツの報告が成功しました',
   'report.error': '報告の送信に失敗しました',
   'report.alreadyReported': 'このコンテンツは既に報告済みです',
-  
   // コンテンツモデレーション
   'moderation.contentHidden': '複数の報告により、このコンテンツは非表示になりました',
   'moderation.underReview': 'このコンテンツは審査中です',
   'moderation.removed': 'このコンテンツはモデレーターによって削除されました',
   'moderation.appealProcess': 'これが間違いだと思われる場合は、サポートにお問い合わせください',
-  
   // 管理者ダッシュボード
   'admin.dashboard': '管理者ダッシュボード',
   'admin.reports': '報告',
@@ -1262,7 +1220,6 @@ const ja = {
   'admin.actionReason': 'アクションの理由',
   'admin.actionNotes': '追加メモ',
   'admin.confirmAction': 'アクションを確認',
-  
   // アカウント削除（GDPR）
   'account.delete': 'アカウントを削除',
   'account.deleteWarning': 'アカウントを削除してもよろしいですか？すべてのコンテンツが永久に削除されます。',
@@ -1272,7 +1229,6 @@ const ja = {
   'account.dataExport': 'データをエクスポート',
   'account.dataExportDescription': 'すべてのデータをJSON形式でダウンロード',
   'account.dataExportSuccess': 'データエクスポートが要求されました。データを含むメールが届きます。',
-  
   // アップロードセキュリティ
   'upload.rightsConfirmation': 'コンテンツ権利の確認',
   'upload.confirmRights': 'このコンテンツの権利を所有し、著作権を侵害しないことを確認します',
@@ -1281,13 +1237,183 @@ const ja = {
   'upload.nsfwDetected': '不適切な可能性のあるコンテンツが検出されました',
   'upload.manualReview': 'このアップロードは公開前に手動で審査されます',
   'upload.approvalPending': 'アップロードの承認待ち',
-  
   // フッターリンク
   'footer.terms': '規約',
   'footer.privacy': 'プライバシー',
   'footer.contact': 'お問い合わせ',
   'footer.imprint': '法的表示',
-  'footer.copyright': '© 2024 Battle64. 任天堂とは関係ありません。'
+  'footer.copyright': '© 2024 Battle64. 任天堂とは関係ありません。',
+  // Additional missing translations
+  'platform.pc': 'PC',
+  'region.pal': 'PAL',
+  'region.ntsc': 'NTSC',
+  'currency.eur': 'EUR',
+  'currency.usd': 'USD',
+  'currency.gbp': 'GBP',
+  // Equalized translation keys - added 2025-08-09
+  'account.deletion.confirmDelete': '削除',
+  'account.deletion.dataWillBeDeleted': '以下のデータが永久に削除されます：',
+  'account.deletion.errorConfirmText': '確認のため「削除」と入力してください',
+  'account.deletion.errorGeneric': 'アカウント削除エラー',
+  'account.deletion.errorUnexpected': 'アカウント削除中に予期しないエラー',
+  'account.deletion.forumPosts': 'フォーラムの投稿とコメント',
+  'account.deletion.gameCollection': 'あなたのゲームコレクション',
+  'account.deletion.gdprNotice': 'GDPR通知',
+  'account.deletion.gdprText': '削除後、あなたの個人データはすべて一般データ保護規則に従って当社のシステムから完全に削除されます。',
+  'account.deletion.profileData': 'あなたのプロフィールとすべての個人データ',
+  'account.deletion.recordsAchievements': 'あなたのすべての記録と実績',
+  'account.deletion.title': 'アカウントを削除',
+  'account.deletion.warning': 'この操作は元に戻せません！',
+  'account.deletionPage.cannotUndo': 'account.deletionPage.cannotUndo',
+  'account.deletionPage.contentActivity': 'account.deletionPage.contentActivity',
+  'account.deletionPage.contentActivityItems': 'account.deletionPage.contentActivityItems',
+  'account.deletionPage.continueWithDeletion': 'account.deletionPage.continueWithDeletion',
+  'account.deletionPage.exportDataFirst': 'account.deletionPage.exportDataFirst',
+  'account.deletionPage.finalConfirmation': 'account.deletionPage.finalConfirmation',
+  'account.deletionPage.personalData': 'account.deletionPage.personalData',
+  'account.deletionPage.personalDataItems': 'account.deletionPage.personalDataItems',
+  'account.deletionPage.pleaseTypeDelete': 'account.deletionPage.pleaseTypeDelete',
+  'account.deletionPage.typeDeleteConfirm': 'account.deletionPage.typeDeleteConfirm',
+  'account.deletionPage.warning': 'account.deletionPage.warning',
+  'account.deletionPage.whatWillBeDeleted': 'account.deletionPage.whatWillBeDeleted',
+  'admin.appHealth': 'admin.appHealth',
+  'admin.health.cache': 'admin.health.cache',
+  'admin.health.errors': 'admin.health.エラーs',
+  'admin.health.sessions': 'admin.health.sessions',
+  'admin.health.uptime': 'admin.health.uptime',
+  'admin.illegalContent': 'admin.illegalContent',
+  'admin.moderationOverview': 'admin.moderationOverview',
+  'admin.newBugs': 'admin.newBugs',
+  'admin.noReport': 'admin.noReport',
+  'admin.none': 'admin.none',
+  'admin.subtitle': 'admin.subtitle',
+  'admin.tasks': 'admin.tasks',
+  'admin.tasks.autoDone': 'admin.tasks.autoDone',
+  'admin.tasks.bugsFixed': 'admin.tasks.bugsFixed',
+  'admin.tasks.pending': 'admin.tasks.pending',
+  'admin.tasks.problematic': 'admin.tasks.problematic',
+  'admin.title': 'admin.title',
+  'admin.totalViolations': 'admin.totalViolations',
+  'admin.usersBanned': 'admin.usersBanned',
+  'admin.usersWarned': 'admin.usersWarned',
+  'auth.safariRedirectSuccess': 'auth.safariRedirectSuccess',
+  'error.accessDenied': 'アクセス拒否',
+  'error.imagePreviewFailed': 'エラー.imagePreviewFailed',
+  'error.moderationBlocked': 'エラー.moderationBlocked',
+  'error.timeout': 'リクエストタイムアウト',
+  'error.uploadFailed': 'エラー.uploadFailed',
+  'error.validationError': '検証エラー',
+  'imageUpload.noPreview': 'imageUpload.noPreview',
+  'loading.content': 'コンテンツを読み込み中',
+  'loading.data': 'データを読み込み中',
+  'loading.general': '読み込み中',
+  'loading.image': '画像を読み込み中',
+  'loading.page': 'ページを読み込み中',
+  'loading.video': 'ビデオを読み込み中',
+  'map.battleDashboard': 'map.battleDashboard',
+  'map.liveBattles': 'map.liveBattles',
+  'map.resetView': 'map.resetView',
+  'map.smartMatchmaking': 'map.smartMatchmaking',
+  'password.reset.checkSpam': 'password.reset.checkSpam',
+  'password.reset.emailLabel': 'password.reset.emailLabel',
+  'password.reset.emailPlaceholder': 'password.reset.emailPlaceholder',
+  'password.reset.emailSent': 'password.reset.emailSent',
+  'password.reset.errorUnexpected': 'password.reset.エラーUnexpected',
+  'password.reset.errorUnknown': 'password.reset.エラーUnknown',
+  'password.reset.instructions': 'password.reset.instructions',
+  'password.reset.sendButton': 'password.reset.sendButton',
+  'password.reset.sending': 'password.reset.sending',
+  'password.reset.successMessage': 'password.reset.successMessage',
+  'password.reset.title': 'password.reset.title',
+  'password.reset.understood': 'password.reset.understood',
+  'safari.copied': 'safari.copied',
+  'safari.copyURL': 'safari.copyURL',
+  'safari.manualInstructions': 'safari.manualInstructions',
+  'safari.manualStepsTitle': 'safari.manualStepsTitle',
+  'safari.openInSafari': 'safari.openInSafari',
+  'safari.redirectMessage': 'safari.redirectMessage',
+  'safari.redirectTitle': 'safari.redirectTitle',
+  'safari.step1': 'safari.step1',
+  'safari.step2': 'safari.step2',
+  'safari.step3': 'safari.step3',
+  'status.completed': '完了',
+  'status.connected': '接続済み',
+  'status.connecting': '接続中',
+  'status.disconnected': '切断済み',
+  'status.failed': '失敗',
+  'status.inProgress': '進行中',
+  'status.offline': 'オフライン',
+  'status.online': 'オンライン',
+  'status.synced': '同期完了',
+  'status.syncing': '同期中',
+  'time.ago': 'time.ago',
+  'time.always': 'time.always',
+  'time.elapsed': 'time.elapsed',
+  'time.lastMonth': 'time.lastMonth',
+  'time.lastWeek': 'time.lastWeek',
+  'time.lastYear': 'time.lastYear',
+  'time.never': 'time.never',
+  'time.now': 'time.now',
+  'time.thisMonth': 'time.thisMonth',
+  'time.thisWeek': 'time.thisWeek',
+  'time.thisYear': 'time.thisYear',
+  'time.tomorrow': 'time.tomorrow',
+  'units.bytes': 'units.bytes',
+  'units.days': 'units.days',
+  'units.gb': 'units.gb',
+  'units.hours': 'units.hours',
+  'units.kb': 'units.kb',
+  'units.mb': 'units.mb',
+  'units.minutes': 'units.minutes',
+  'units.months': 'units.months',
+  'units.seconds': 'units.seconds',
+  'units.weeks': 'units.weeks',
+  'units.years': 'units.years',
+  'validation.emptyFile': 'validation.emptyFile',
+  'validation.imageFilesOnly': 'validation.imageFilesOnly',
+  'validation.imageTooLarge': 'validation.imageTooLarge',
+  'validation.supportedFormats': 'validation.supportedFormats',
+  'validation.unsupportedFormat': 'validation.unsupportedFormat',
+  // Legal & Privacy translation keys - added 2025-08-09
+  'cookies.alwaysActive': '常にアクティブ',
+  'account.deletionPage.gdprCompliant': 'GDPR準拠のアカウント削除',
+  'account.deletionPage.gdprInformation': 'GDPR情報',
+  'account.deletionPage.rightsUnderGdpr': 'GDPRに基づくあなたの権利',
+  'account.deletionPage.rightToErasure': '削除する権利：',
+  'account.deletionPage.rightToErasureText': 'GDPR第17条に基づき、あなたの個人データを削除する権利があります。',
+  'account.deletionPage.dataRetention': 'データ保持：',
+  'account.deletionPage.dataRetentionText': '削除後、あなたのデータは30日以内に当社のシステムから永久に削除されます。',
+  'account.deletionPage.backupRemoval': 'バックアップ削除：',
+  'account.deletionPage.backupRemovalText': 'あなたのデータは次のバックアップサイクル中にすべてのバックアップからも削除されます。',
+  'account.deletionPage.legalObligations': '法的義務：',
+  'account.deletionPage.legalObligationsText': '法律で義務付けられている場合、一部のデータが保持される場合があります（例：税務目的の財務記録）。',
+  // Final hardcoded text fixes - added 2025-08-09
+  'account.deletionPage.deleting': '削除中',
+  'account.deletionPage.deleteAccountPermanently': 'アカウントを永久削除',
+  // Nintendo-specific translation keys - added 2025-08-09
+  'terms.nintendoCopyrightNotice': '任天堂著作権通知：',
+  'terms.nintendoFullDisclaimer': 'Battle64は独立したレトロゲームコミュニティであり、任天堂株式会社との関連、承認、スポンサーシップはありません。Nintendo 64、N64、および関連するすべてのキャラクター、名前、マーク、エンブレム、画像は任天堂の商標です。その他すべての商標は、それぞれの所有者の財産です。',
+  'marketplace.n64ControllerTitle': 'N64コントローラー - 任天堂純正',
+  'marketplace.n64ControllerDescription': '任天堂純正コントローラー、状態良好',
+  'marketplace.n64ControllerDescriptionDE': 'オリジナルN64コントローラー、良好な状態。すべてのボタンが完璧に動作します。',
+  'upload.video': 'レースのビデオをアップロード',
+  'upload.screenshot': 'フィニッシュタイムのスクリーンショットをアップロード',
+  'cookies.showDetails': '詳細を表示',
+  'cookies.hideDetails': '詳細を隠す',
+  'records.pendingCount': '{count}件保留中',
+  'records.verifiedCount': '{count}件の検証済み記録',
+  'records.userRecords': '{username}の記録',
+  'records.myRecords': '私の記録',
+  'marketplace.goldeneye.description': '箱、説明書、カートリッジ付きの完全版ゲーム',
+  'marketplace.goldeneye.title': 'ゴールデンアイ007 - 箱付き完品',
+  'marketplace.mario64.description': '説明書付きの完璧な状態のオリジナルカートリッジ',
+  'marketplace.mario64.title': 'スーパーマリオ64 - 完璧な状態',
+  'fanart.banjo.adventure': 'バンジョーとカズーイの冒険',
+  'fanart.zelda.battle': 'リンク対ガノンドロフ壮大な戦い',
+  'fanart.mario.castle': 'ピーチ城のマリオ',
+  'forum.untitledThread': 'タイトルなしのスレッド',
+  'error.invalidDataFormat': '無効なデータ形式',
+  'common.user': 'ユーザー'
 }
 
 export default ja

@@ -26,10 +26,10 @@ const PasswordResetModal: React.FC<PasswordResetModalProps> = ({ isOpen, onClose
       if (result.success) {
         setSuccess(true)
       } else {
-        setError(result.error || 'Unbekannter Fehler')
+        setError(result.error || t('password.reset.errorUnknown'))
       }
     } catch {
-      setError('Unerwarteter Fehler beim Passwort-Reset')
+      setError(t('password.reset.errorUnexpected'))
     } finally {
       setLoading(false)
     }
@@ -50,7 +50,7 @@ const PasswordResetModal: React.FC<PasswordResetModalProps> = ({ isOpen, onClose
         {/* Header */}
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-xl font-bold text-slate-100">
-            {success ? 'E-Mail gesendet' : 'Passwort zurücksetzen'}
+            {success ? t('password.reset.emailSent') : t('password.reset.title')}
           </h2>
           <button
             onClick={handleClose}
@@ -67,23 +67,23 @@ const PasswordResetModal: React.FC<PasswordResetModalProps> = ({ isOpen, onClose
               <CheckCircle className="w-8 h-8 text-white" />
             </div>
             <p className="text-slate-300 mb-6">
-              Wir haben dir eine E-Mail mit Anweisungen zum Zurücksetzen deines Passworts gesendet.
+              {t('password.reset.successMessage')}
             </p>
             <p className="text-sm text-slate-400 mb-6">
-              Bitte überprüfe auch deinen Spam-Ordner, falls du die E-Mail nicht erhältst.
+              {t('password.reset.checkSpam')}
             </p>
             <button
               onClick={handleClose}
               className="w-full py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors"
             >
-              Verstanden
+              {t('password.reset.understood')}
             </button>
           </div>
         ) : (
           /* Form */
           <form onSubmit={handleSubmit}>
             <p className="text-slate-300 mb-6 text-sm">
-              Gib deine E-Mail-Adresse ein und wir senden dir einen Link zum Zurücksetzen deines Passworts.
+              {t('password.reset.instructions')}
             </p>
 
             {/* Error Message */}
@@ -97,7 +97,7 @@ const PasswordResetModal: React.FC<PasswordResetModalProps> = ({ isOpen, onClose
             {/* Email Input */}
             <div className="mb-6">
               <label className="block text-sm font-medium text-slate-300 mb-2">
-                E-Mail-Adresse
+                {t('password.reset.emailLabel')}
               </label>
               <div className="relative">
                 <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-slate-400" />
@@ -107,7 +107,7 @@ const PasswordResetModal: React.FC<PasswordResetModalProps> = ({ isOpen, onClose
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="w-full pl-10 pr-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-slate-100 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  placeholder="deine@email.com"
+                  placeholder={t('password.reset.emailPlaceholder')}
                 />
               </div>
             </div>
@@ -119,14 +119,14 @@ const PasswordResetModal: React.FC<PasswordResetModalProps> = ({ isOpen, onClose
                 onClick={handleClose}
                 className="flex-1 py-2 bg-slate-600 hover:bg-slate-700 text-slate-200 font-medium rounded-lg transition-colors"
               >
-                Abbrechen
+                {t('common.cancel')}
               </button>
               <button
                 type="submit"
                 disabled={loading}
                 className="flex-1 py-2 bg-blue-600 hover:bg-blue-700 disabled:bg-slate-600 disabled:cursor-not-allowed text-white font-medium rounded-lg transition-colors"
               >
-                {loading ? 'Wird gesendet...' : 'E-Mail senden'}
+                {loading ? t('password.reset.sending') : t('password.reset.sendButton')}
               </button>
             </div>
           </form>

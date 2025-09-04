@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useMap } from '../contexts/MapContext'
 import { useUser } from '../contexts/UserContext'
+import { useLanguage } from '../contexts/LanguageContext'
 
 import { 
   Play, 
@@ -26,6 +27,7 @@ interface LiveBattleViewerProps {
 const LiveBattleViewer: React.FC<LiveBattleViewerProps> = ({ isOpen, onClose, battleId }) => {
   const { user } = useUser()
   const { liveBattles, joinAsSpectator } = useMap()
+  const { t } = useLanguage()
   const [selectedBattle, setSelectedBattle] = useState<string | null>(battleId || null)
   const [isFullscreen, setIsFullscreen] = useState(false)
   const [isMuted, setIsMuted] = useState(false)
@@ -393,7 +395,7 @@ const LiveBattleViewer: React.FC<LiveBattleViewerProps> = ({ isOpen, onClose, ba
                           value={newMessage}
                           onChange={(e) => setNewMessage(e.target.value)}
                           onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
-                          placeholder="Type a message..."
+                          placeholder={t('chat.typeMessage')}
                           className="flex-1 bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-white text-sm focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
                         />
                         <button

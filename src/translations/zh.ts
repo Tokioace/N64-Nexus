@@ -17,7 +17,37 @@ const zh = {
   'nav.newsfeed': '新闻动态',
   'nav.community': '社区',
   'nav.map': 'Battle64 Map',
-
+  // Accessibility
+  'a11y.skipToMain': '跳转到主要内容',
+  'a11y.skipToNav': '跳转到导航',
+  'a11y.skipToSearch': '跳转到搜索',
+  'a11y.newPage': '新页面已加载',
+  'a11y.loading': '正在加载内容',
+  'a11y.error': '发生错误',
+  'a11y.success': '操作成功完成',
+  // Common fallback texts
+  'common.unknown': '未知',
+  'common.unknownGame': '未知游戏',
+  'common.unknownCategory': '未知类别',
+  'common.unknownItem': '未知物品',
+  'common.unknownMedia': '未知媒体',
+  'common.unknownUser': '未知用户',
+  'common.noDescription': '无可用描述',
+  'common.noDataAvailable': '无可用数据',
+  'common.userLocation': '用户位置',
+  'common.marketplaceItem': '市场物品',
+  'common.verified': '已验证',
+  'common.unverified': '未验证',
+  'common.pending': '待处理',
+  'common.approved': '已批准',
+  'common.rejected': '已拒绝',
+  'common.draft': '草稿',
+  'common.published': '已发布',
+  'common.archived': '已存档',
+  // Account deletion
+  'account.deletion.confirmText': '请输入\"DELETE\"确认',
+  'account.deletion.placeholder': '删除',
+  'account.deletion.typeDelete': '请输入\"DELETE\"确认:',
   // Home Screen
   'home.subtitle': '千禧一代的N64社区',
   'home.welcome': '欢迎回来',
@@ -34,13 +64,12 @@ const zh = {
   'home.fanart.subtitle': '创意',
   'home.newsfeed.subtitle': '更新',
   'home.map.subtitle': '本地对战',
-
   // Battle64 Map
   'map.title': 'Battle64 Map',
   'map.subtitle': '真实世界对战与地理匹配',
   'map.hostEvent': '举办本地4人对战',
   'map.selectGame': '选择游戏',
-  'map.chooseGame': '选择一个游戏...',
+  'map.chooseGame': '选择一个游戏',
   'map.eventTitle': '活动标题',
   'map.eventTitlePlaceholder': '周末赛车锦标赛',
   'map.description': '描述',
@@ -113,15 +142,14 @@ const zh = {
   'event.type.speedrun': '速通会话',
   'event.type.meetup': '聚会',
   'event.category': '活动类别',
-
   // Common
   'common.welcome': '欢迎',
-  'common.loading': '加载中...',
+  'common.loading': '加载中',
   'common.error': '错误',
   'common.save': '保存',
   'common.cancel': '取消',
   'common.upload': '上传',
-  'common.uploading': '上传中...',
+  'common.uploading': '上传中',
   'common.remove': '移除',
   'common.delete': '删除',
   'common.edit': '编辑',
@@ -147,7 +175,6 @@ const zh = {
   'common.ok': '确定',
   'common.retry': '重试',
   'common.note': '注意',
-
   // Authentication
   'auth.login': '登录',
   'auth.logout': '登出',
@@ -161,7 +188,6 @@ const zh = {
   'auth.loginRequiredMessage': '您必须登录才能查看此页面。',
   'auth.loginRequiredForEvents': '请登录参加活动！',
   'auth.loginRequiredForImageUpload': '您必须登录才能上传图片',
-
   // Quiz
   'quiz.title': 'N64测验',
   'quiz.start': '开始测验',
@@ -179,7 +205,6 @@ const zh = {
   'quiz.category': '类别',
   'quiz.restart': '重新开始',
   'quiz.wrong': '错误！',
-
   // Events
   'events.title': '活动',
   'events.subtitle': '锦标赛、挑战和社区活动',
@@ -202,7 +227,6 @@ const zh = {
   'events.game': '游戏',
   'events.track': '赛道',
   'events.time': '时间',
-
   // Forum
   'forum.title': '论坛',
   'forum.subtitle': '社区讨论',
@@ -211,14 +235,13 @@ const zh = {
   'forum.threads': '主题',
   'forum.posts': '帖子',
   'forum.mostActive': '最活跃',
-  'forum.loading': '加载中...',
+  'forum.loading': '加载中',
   'forum.communityNexus': '社区中心',
   'forum.discussWithCommunity': '与社区讨论',
   'forum.createThread': '创建主题',
   'forum.newThread': '新主题',
   'forum.reply': '回复',
   'forum.backToForum': '返回论坛',
-
   // Language selector
   'language.german': '德语',
   'language.english': '英语',
@@ -234,7 +257,6 @@ const zh = {
   'language.hindi': '印地语',
   'language.arabic': '阿拉伯语',
   'language.korean': '韩语',
-
   // Error messages
   'error.generic': '发生错误',
   'error.networkError': '网络错误',
@@ -246,7 +268,6 @@ const zh = {
   'error.goHome': '回到首页',
   'error.contactSupport': '联系支持',
   'error.somethingWentWrong': '出了点问题',
-
   // News
   'news.title': '新闻',
   'news.subtitle': '最新更新和公告',
@@ -268,7 +289,7 @@ const zh = {
   'news.noResults': '无结果',
   'news.noResultsDescription': '未找到新闻',
   'news.pagination': '第{current}页，共{total}页',
-  'news.search.placeholder': '搜索新闻...',
+  'news.search.placeholder': '搜索新闻',
   'news.filter.all': '全部',
   'news.filter.events': '活动',
   'news.filter.winners': '获胜者',
@@ -292,7 +313,6 @@ const zh = {
   'news.type.eventAnnouncement': '活动公告',
   'news.type.general': '一般',
   'news.eventWinnerLabel': '活动获胜者',
-
   // Achievements
   'achievement.speedrunMaster': '速通大师',
   'achievement.speedrunMasterDesc': '掌握速通艺术',
@@ -310,7 +330,6 @@ const zh = {
   'achievement.unlocked': '已解锁',
   'achievement.unlockedOn': '解锁于',
   'achievement.notUnlocked': '尚未解锁',
-
   // Profile
   'profile.level': '等级',
   'profile.joinDate': '加入日期',
@@ -332,7 +351,6 @@ const zh = {
   'profile.activityHistory': '活动历史',
   'profile.achievedOn': '获得于',
   'profile.medals.title': '奖章',
-
   // Media
   'media.upload': '上传',
   'media.uploadMethod': '上传方式',
@@ -361,48 +379,19 @@ const zh = {
   'media.livestream': '直播',
   'media.type': '媒体类型',
   'media.error': '媒体错误',
-
   // Placeholders
-  'placeholder.speedrunTitle': '例：马里奥64 120星速通',
-  'placeholder.speedrunUrl': 'https://twitch.tv/你的频道',
-  'placeholder.speedrunGame': '例：超级马里奥64',
-  'placeholder.mediaSearch': '按标题、描述或标签搜索...',
-  'placeholder.mediaUrl': 'https://youtube.com/watch?v=...',
-  'placeholder.mediaDescription': '描述你的成就...',
-  'placeholder.mediaTags': '世界纪录，Any%，无Bug（用逗号分隔）',
-  'placeholder.threadTitle': '给你的主题起个标题...',
-  'placeholder.threadContent': '写下你的帖子...',
-  'placeholder.replyContent': '写下你的回复...',
-  'placeholder.marketplacePrice': '输入价格...',
-  'placeholder.searchGames': '搜索游戏...',
-  'placeholder.searchPlayers': '搜索玩家...',
-  'placeholder.notes': '添加备注...',
-  'placeholder.additionalInfo': '附加信息...',
-  'placeholder.password': '输入密码...',
-  'placeholder.raceTime': '输入时间（例：1:23:45）...',
-  'placeholder.livestreamUrl': 'https://twitch.tv/你的频道...',
-  'placeholder.setupController': '描述控制器设置...',
-  'placeholder.category': '选择类别...',
-  'placeholder.time': '输入时间...',
-  'placeholder.score': '输入分数...',
-  'placeholder.proofUrl': '输入证明URL...',
-  'placeholder.recordNotes': '记录备注...',
-  'placeholder.gameName': '输入游戏名称...',
-
   // Success messages
   'success.uploaded': '上传成功',
-
   // Validation
   'validation.allFieldsRequired': '所有字段都是必需的',
   'validation.titleTooLong': '标题太长',
   'validation.contentTooLong': '内容太长',
   'validation.contentRequired': '内容必填',
   'validation.postTooLong': '帖子太长',
-
   // Marketplace
   'marketplace.subtitle': 'N64交易和交换',
   'marketplace.createOffer': '创建报价',
-  'marketplace.searchPlaceholder': '搜索商品...',
+  'marketplace.searchPlaceholder': '搜索商品',
   'marketplace.category': '类别',
   'marketplace.allCategories': '所有类别',
   'marketplace.categoryGames': '游戏',
@@ -427,12 +416,11 @@ const zh = {
   'marketplace.conditionLikeNew': '如新',
   'marketplace.publishOffer': '发布报价',
   'marketplace.title': '标题',
-  'marketplace.titlePlaceholder': '输入商品名称...',
+  'marketplace.titlePlaceholder': '输入商品名称',
   'marketplace.description': '描述',
-  'marketplace.descriptionPlaceholder': '描述你的商品...',
+  'marketplace.descriptionPlaceholder': '描述你的商品',
   'marketplace.price': '价格',
   'marketplace.condition': '状况',
-
   // Minigames
   'minigames.memoryMatch.title': '记忆匹配',
   'minigames.memoryMatch.description': '测试你的记忆力',
@@ -458,11 +446,11 @@ const zh = {
   'minigames.correctAnswers': '正确答案',
   'minigames.cheatCode': '秘籍',
   'minigames.completed': '已完成',
-  'minigames.typeCheatCode': '输入秘籍...',
-  'minigames.sound.mario64': '"Wahoo!" - 马里奥跳跃声',
-  'minigames.sound.zelda': '"Hey! Listen!" - 纳薇声音',
-  'minigames.sound.goldeneye': '"Pew Pew" - 消音射击',
-  'minigames.sound.mariokart': '"Here we go!" - 比赛开始',
+  'minigames.typeCheatCode': '输入秘籍',
+  'minigames.sound.mario64': '\"Wahoo!\" - 马里奥跳跃声',
+  'minigames.sound.zelda': '\"Hey! Listen!\" - 纳薇声音',
+  'minigames.sound.goldeneye': '\"Pew Pew\" - 消音射击',
+  'minigames.sound.mariokart': '\"Here we go!\" - 比赛开始',
   'minigames.sound': '声音',
   'minigames.whichGame': '这个声音来自哪个游戏？',
   'minigames.you': '你',
@@ -470,8 +458,8 @@ const zh = {
   'minigames.readyForDuel': '准备决斗？',
   'minigames.startDuel': '开始决斗',
   'minigames.result': '结果',
-  'minigames.opponentAnswering': '正在回答...',
-  'minigames.gameLoading': '游戏加载中...',
+  'minigames.opponentAnswering': '正在回答',
+  'minigames.gameLoading': '游戏加载中',
   'minigames.gameEnded': '游戏结束',
   'minigames.yourScore': '你的分数',
   'minigames.title': '小游戏',
@@ -497,7 +485,6 @@ const zh = {
   'minigames.hard': '困难',
   'minigames.backToMenu': '返回菜单',
   'minigames.highScore': '最高分',
-
   // Aria labels
   'aria.gridView': '网格视图',
   'aria.listView': '列表视图',
@@ -505,7 +492,6 @@ const zh = {
   'aria.nextCard': '下一张卡片',
   'aria.toggleMobileMenu': '切换移动导航',
   'aria.dismissNews': '关闭新闻',
-
   // Fan Art
   'fanart.artworksFound': '找到作品',
   'fanart.ratings': '评分',
@@ -517,17 +503,16 @@ const zh = {
   'fanart.chooseImage': '选择图片',
   'fanart.imageFormats': '支持格式：JPG、PNG、GIF',
   'fanart.artworkTitle': '作品标题',
-  'fanart.titlePlaceholder': '给你的作品起个标题...',
+  'fanart.titlePlaceholder': '给你的作品起个标题',
   'fanart.selectGame': '选择游戏',
-  'fanart.chooseGame': '选择一个游戏...',
+  'fanart.chooseGame': '选择一个游戏',
   'fanart.tags': '标签',
-  'fanart.tagsPlaceholder': '添加标签...',
+  'fanart.tagsPlaceholder': '添加标签',
   'fanart.tagsHint': '用逗号分隔',
-  'fanart.uploading': '上传中...',
+  'fanart.uploading': '上传中',
   'fanart.allCategories': '所有类别',
   'fanart.subtitle': '分享你的N64启发艺术作品',
   'fanart.filterBy': '筛选',
-
   // Forum extended
   'forum.categoryNotFound': '未找到类别',
   'forum.firstThread': '第一个主题',
@@ -561,7 +546,6 @@ const zh = {
   'forum.thread.goldeneye': '黄金眼007：设施1分钟以下',
   'forum.thread.collecting': 'N64收藏：稀有游戏和价格',
   'forum.thread.paperMario': '纸片马里奥：无Bug速通技巧',
-
   // Categories
   'category.hardware': '硬件',
   'category.glitches': 'Bug',
@@ -573,7 +557,6 @@ const zh = {
   'category.challenges': '挑战',
   'category.collecting': '收藏',
   'category.tips': '技巧',
-
   // UI Elements
   'ui.login': '登录',
   'ui.grid': '网格',
@@ -584,13 +567,11 @@ const zh = {
   'ui.ntsc': 'NTSC',
   'ui.newsDetails': '详情',
   'ui.liveChat': '实时聊天',
-
   // Alt text
   'alt.postAttachment': '帖子附件',
   'alt.battle64Mascot': 'Battle64吉祥物',
   'alt.preview': '预览',
   'alt.uploadPreview': '上传预览',
-
   // Community
   'community.members': '成员',
   'community.title': '社区',
@@ -608,7 +589,6 @@ const zh = {
   'community.noPlayersFound': '未找到玩家',
   'community.tryOtherFilters': '尝试其他筛选',
   'community.recentRecord': '最近记录',
-
   // Home extended
   'home.ended': '已结束',
   'home.liveEvents': '直播活动',
@@ -621,7 +601,6 @@ const zh = {
   'home.newsfeed': '新闻动态',
   'home.footer.retro': '复古游戏',
   'home.footer.n64': '任天堂64社区',
-
   // Leaderboard
   'leaderboard.pageTitle': '排行榜',
   'leaderboard.pageSubtitle': '社区最佳玩家',
@@ -640,7 +619,6 @@ const zh = {
   'leaderboard.timeframeMonth': '月度',
   'leaderboard.regionPlatform': '地区/平台',
   'leaderboard.yourRank': '你的排名',
-
   // Events extended
   'events.status.live': '直播',
   'events.status.completed': '已完成',
@@ -667,7 +645,6 @@ const zh = {
   'events.mobile.join': '加入',
   'events.mobile.board': '排行榜',
   'events.mobile.winner': '获胜者',
-  
   // Best Lap Showcase
   'events.bestLap.title': '最佳圈速',
   'events.bestLap.photoAlt': '{username}以{time}成绩创造的最佳圈速截图',
@@ -701,17 +678,14 @@ const zh = {
   'events.livestreamSubmissionDesc': '直播提交',
   'events.raceSubmission': '比赛提交',
   'events.raceTime': '比赛时间',
-
   // Time
   'time.remaining': '剩余',
-
   // Notifications
   'notifications.enabled': '通知已启用',
   'notifications.denied': '通知被拒绝',
   'notifications.notSupported': '不支持通知',
   'notifications.disabled': '通知已禁用',
   'notifications.error': '通知错误',
-
   // Common extended
   'common.common': '普通',
   'common.uncommon': '不常见',
@@ -719,7 +693,6 @@ const zh = {
   'common.veryRare': '非常稀有',
   'common.ultraRare': '超稀有',
   'common.hide': '隐藏',
-
   // Collection
   'collection.gamesCollected': '收集的游戏',
   'collection.completeness': '完整度',
@@ -769,7 +742,6 @@ const zh = {
   'collection.noGamesYet': '还没有{type}游戏',
   'collection.added': '已添加',
   'collection.acquired': '已获得',
-
   // Labels
   'label.notes': '备注',
   'label.gameName': '游戏名称',
@@ -778,7 +750,6 @@ const zh = {
   'label.region': '地区',
   'label.category': '类别',
   'label.proofUrl': '证明URL',
-
   // Authentication extended
   'auth.invalidCredentials': '无效凭据',
   'auth.errorOccurred': '发生错误',
@@ -788,26 +759,54 @@ const zh = {
   'auth.registrationFailed': '注册失败',
   'auth.welcomeBack': '欢迎回来',
   'auth.createAccount': '创建账户',
-  'auth.emailPlaceholder': '输入邮箱...',
-  'auth.loggingIn': '登录中...',
-  'auth.usernamePlaceholder': '输入用户名...',
+  'auth.emailPlaceholder': '输入邮箱',
+  'auth.loggingIn': '登录中',
+  'auth.usernamePlaceholder': '输入用户名',
   'auth.platform': '平台',
   'auth.region': '地区',
-  'auth.registering': '注册中...',
+  'auth.registering': '注册中',
   'auth.createAccountButton': '创建账户',
   'auth.noAccountYet': '还没有账户？',
   'auth.registerNow': '立即注册',
   'auth.alreadyHaveAccount': '已有账户？',
   'auth.loginHere': '在这里登录',
+  'auth.processingRegistration': '正在处理注册',
+  'auth.waitingEmailConfirmation': '等待邮箱确认',
+  'auth.registrationSucceeded': '注册成功！',
+  'auth.welcomeToCommunity': '欢迎加入Battle64社区',
+  'auth.checkOutEvents': '查看我们的活动',
+  'auth.emailConfirmationSent': '我们已向{email}发送确认邮件。',
+  'auth.clickEmailLink': '请点击邮件中的链接完成注册。',
+  'auth.emailBeingConfirmed': '正在确认邮箱',
+  'auth.pleaseWaitMoment': '请稍等片刻。',
+  'auth.emailConfirmedSuccessfully': '邮箱确认成功！您将被重定向到首页',
+  'auth.confirmationFailed': '确认失败',
+  'auth.accountActivatedSuccessfully': '您的账户已成功激活！',
+  'auth.joinCommunityMessage': '并加入我们的社区。',
+  'auth.exploreEvents': '探索活动',
+  'auth.invalidConfirmationLink': '无效的确认链接',
+  'auth.confirmationLinkExpired': '邮箱确认失败。链接可能已过期。',
+  'auth.emailConfirmationFailed': '邮箱确认失败',
+  'auth.unexpectedError': '发生意外错误',
+  'auth.tryRegisterAgain': '请重新注册或联系客服。',
+  'auth.goToLogin': '前往登录',
+  // Browser Redirect
+  'browserRedirect.title': '浏览器重定向',
+  'browserRedirect.message': '我们正在将您重定向到您偏好的浏览器',
+  'browserRedirect.detectedBrowser': '检测到的浏览器',
+  'browserRedirect.version': '版本',
+  'browserRedirect.redirectingIn': '{seconds}秒后重定向',
+  'browserRedirect.redirectNow': '立即重定向',
+  'browserRedirect.troubleshoot': '自动重定向不工作吗？',
+  'browserRedirect.manualInstructions': '点击\"立即重定向\"或从地址栏复制URL。',
   'auth.enhancedExperienceMessage': '登录获得增强体验',
-
   // Chat
   'chat.title': '社区聊天',
   'chat.onlineUsers': '在线用户',
   'chat.chats': '聊天',
   'chat.newChat': '新聊天',
-  'chat.searchUsers': '搜索用户...',
-  'chat.messagePlaceholder': '输入消息...',
+  'chat.searchUsers': '搜索用户',
+  'chat.messagePlaceholder': '输入消息',
   'chat.joinPrompt': '加入聊天参与！',
   'chat.privateChat': '私人聊天',
   'chat.description': '与社区讨论N64游戏',
@@ -821,7 +820,6 @@ const zh = {
   'chat.rules.noSpam': '禁止垃圾信息或重复消息',
   'chat.rules.shareExperience': '分享你的N64体验',
   'chat.rules.noLinks': '未经许可禁止外部链接',
-
   // Points and ranks
   'points.total': '总计',
   'points.season': '赛季',
@@ -834,7 +832,6 @@ const zh = {
   'rank.current': '当前',
   'rank.nextRank': '下一级别',
   'rank.maxRank': '已达到最高级别',
-
   // Cool Rank Titles (20 Levels)
   'Pixel Rookie': '像素新手',
   'Button Masher': '按键狂魔',
@@ -856,11 +853,9 @@ const zh = {
   'Reality Bender': '现实扭曲者',
   'Retro Overlord': '复古霸主',
   'Ultimate Gaming Legend': '终极游戏传奇',
-
   // Medal
   'medal.season': '赛季',
   'medal.bonusXP': '奖励经验',
-
   // Records
   'records.add': '添加记录',
   'records.addFirst': '添加第一个记录',
@@ -868,7 +863,6 @@ const zh = {
   'records.time': '时间',
   'records.points': '积分',
   'records.addButton': '添加记录',
-
   // Cards
   'card.fanarts': '粉丝艺术',
   'card.forumPosts': '论坛帖子',
@@ -878,7 +872,6 @@ const zh = {
   'card.news': '新闻',
   'card.records': '记录',
   'card.noRecords': '无可用记录',
-
   // Event Leaderboard
   'eventLeaderboard.time': '时间',
   'eventLeaderboard.screenshotFrom': '{username}的截图',
@@ -899,24 +892,20 @@ const zh = {
   'eventLeaderboard.view': '查看',
   'eventLeaderboard.documentation': '文档',
   'eventLeaderboard.viewMedia': '查看媒体',
-
   // Image Upload
   'imageUpload.dropHere': '放到这里',
   'imageUpload.uploadImage': '上传图片',
   'imageUpload.clickOrDrag': '点击或拖拽到这里',
   'imageUpload.supportedFormats': '支持格式：JPG、PNG、GIF',
-
   // Error extended
   'error.title': '错误',
   'error.threadCreationFailed': '主题创建失败',
   'error.invalidFile': '无效文件',
-
   // Accessibility keys
   'accessibility.skipToContent': '跳转到主要内容',
   'accessibility.skipToNavigation': '跳转到导航',
   'accessibility.skippedToContent': '已跳转到主要内容',
   'accessibility.skippedToNavigation': '已跳转到导航',
-
   // Homepage specific translations - 主页专用翻译
   'home.noLiveEvent': '没有活跃的直播活动 - 下一个活动即将开始！',
   'home.showAllEvents': '📅 显示所有活动',
@@ -929,7 +918,6 @@ const zh = {
   'home.clickToViewFull': '点击查看完整尺寸',
   'home.clickToWatch': '点击观看',
   'home.noMediaSubmitted': '未提交媒体',
-
   // News items - 新闻项目
   'news.mariokartRecord': '🏆 Mario Kart 64 竞速世界纪录被打破！',
   'news.mariokartRecordContent': 'SpeedDemon64在瓦里奥体育场创造了1:42.33的新世界纪录！',
@@ -949,7 +937,6 @@ const zh = {
   'news.speedrunCategoryContent': '我们为Banjo-Kazooie添加了新的Any%类别。现在加入！',
   'news.monthlyChallenge': '🏆 月度挑战获胜者',
   'news.monthlyChallengeContent': '祝贺N64Master赢得10月月度挑战！',
-
   // Live Events - Mario Kart 64 Luigi's Raceway
   'events.mk64LuigisRaceway.title': '🏁 马里奥赛车64：路易吉赛道速通挑战',
   'events.mk64LuigisRaceway.description': '在标志性的路易吉赛道上展示你的速度！为期一个月的激烈竞争，Gran Turismo 7风格。',
@@ -964,7 +951,6 @@ const zh = {
   'events.mk64LuigisRaceway.prize3': '🥉 第3名：200 Battle64积分 + 铜牌',
   'events.mk64LuigisRaceway.prizeTop10': '🏆 前10名：F1风格积分 (25-18-15-12-10-8-6-4-2-1)',
   'events.mk64LuigisRaceway.prizeParticipation': '🎯 参与奖：每位参与者5 Battle64积分',
-
   // Live Events - San Francisco Rush Downtown
   'events.sfrDowntown.title': '🏙️ 旧金山极速：市中心赛车锦标赛',
   'events.sfrDowntown.description': '在旧金山市中心的街道上飞驰！为期一个月的极限赛车行动。',
@@ -979,7 +965,6 @@ const zh = {
   'events.sfrDowntown.prize3': '🥉 第3名：200 Battle64积分 + 街头车手',
   'events.sfrDowntown.prizeTop10': '🏆 前10名：F1风格积分 (25-18-15-12-10-8-6-4-2-1)',
   'events.sfrDowntown.prizeParticipation': '🎯 参与奖：每位参与者5 Battle64积分',
-
   // Live Events - Diddy Kong Racing Ancient Lake
   'events.dkrAncientLake.title': '🦍 迪迪刚赛车：古老湖泊计时赛',
   'events.dkrAncientLake.description': '征服神秘的古老湖泊！在Rare经典游戏中为真正的N64粉丝举办的传奇竞赛。',
@@ -994,10 +979,8 @@ const zh = {
   'events.dkrAncientLake.prize3': '🥉 第3名：200 Battle64积分 + 古代车手',
   'events.dkrAncientLake.prizeTop10': '🏆 前10名：F1风格积分 (25-18-15-12-10-8-6-4-2-1)',
   'events.dkrAncientLake.prizeParticipation': '🎯 参与奖：每位参与者5 Battle64积分',
-
   // Home Ranking Section
   'home.yourRanking': '您的排名',
-
   // Ranking System
   'ranking.globalRank': '全球排名',
   'ranking.totalPoints': '总积分',
@@ -1011,72 +994,62 @@ const zh = {
   'ranking.achievements': '成就',
   'ranking.verifiedRecords': '已验证记录',
   'ranking.gamesOwned': '拥有游戏',
-
   // Profile Ranking
   'profile.ranking': '排名',
   'profile.globalRanking': '全球排名',
   'profile.rankingStats': '排名统计',
-
   // FanArt Comments
-  'fanart.addComment': '添加评论...',
-
+  'fanart.addComment': '添加评论',
   // Interaction System
   'interaction.like': '点赞',
   'interaction.unlike': '取消点赞',
   'interaction.comments': '评论',
   'interaction.addComment': '添加评论',
-  'interaction.writeComment': '写评论...',
+  'interaction.writeComment': '写评论',
   'interaction.loginToLike': '登录以点赞',
   'interaction.loginToComment': '登录以评论',
   'interaction.viewCount': 'View count',
   'interaction.showComments': 'Show comments',
-
   // Time
   'time.justNow': '刚刚',
-
   // Media types
   'media.photo': '照片',
   'media.video': '视频',
   'media.noMediaTooltip': 'No media yet – upload your video or screenshot to verify run',
-
   // Event Card specific translations
   'events.likes': '点赞',
-  'events.views': '浏览量', 
+  'events.views': '浏览量',
   'events.comments': '评论',
-
   // PWA Installation Prompt
   'pwa.installTitle': '安装 Battle64',
   'pwa.installDescription': '获得完整的应用体验，支持离线访问和快速加载！',
   'pwa.install': '安装应用',
   'pwa.gotIt': '知道了！',
   'pwa.iosStep1': '点击分享按钮',
-  'pwa.iosStep2': '然后点击"添加到主屏幕"',
+  'pwa.iosStep2': '然后点击\"添加到主屏幕\"',
   'common.later': '稍后',
-
   // Offline Functionality
   'offline.workingOffline': '离线工作中',
   'offline.backOnline': '重新上线！',
   'offline.cachedDataAvailable': '缓存数据可用',
   'offline.cachedData': '缓存数据',
-
   // Enhanced Chat
   'chat.communityChat': '社区聊天',
   'chat.activeUsers': '活跃用户',
-  'chat.loading': '加载消息中...',
+  'chat.loading': '加载消息中',
   'chat.noMessages': '还没有消息',
   'chat.startConversation': '成为第一个开始对话的人！',
-  'chat.typeMessage': '输入消息...',
+  'chat.typeMessage': '输入消息',
   'chat.emoji': '添加表情',
   'chat.scrollToBottom': '滚动到底部',
   'chat.errorLoading': '消息加载错误',
   'time.today': '今天',
   'time.yesterday': '昨天',
-
   // Realtime Events
   'events.nowLive': '活动正在直播！',
   'realtime.connected': '实时连接已激活',
   'realtime.disconnected': '实时连接中断',
-  'realtime.reconnecting': '重新连接中...',
+  'realtime.reconnecting': '重新连接中',
   'realtime.newUpdate': '有新的实时更新可用',
   'realtime.leaderboard.updated': '排行榜已更新',
   'realtime.points.updated': '积分已更新',
@@ -1084,7 +1057,6 @@ const zh = {
   'realtime.participant.left': '参与者离开',
   'realtime.event.started': '活动开始',
   'realtime.event.finished': '活动结束',
-
   // PWA Installation
   'pwa.install.button': '安装应用',
   'pwa.install.banner.title': '将Battle64安装为应用',
@@ -1093,9 +1065,8 @@ const zh = {
   'pwa.install.modal.description': '安装Battle64以获得原生应用体验，支持离线访问和推送通知。',
   'pwa.install.ios.title': '添加到主屏幕',
   'pwa.install.ios.step1': '点击浏览器底部的分享按钮',
-  'pwa.install.ios.step2': '向下滚动并选择"添加到主屏幕"',
-  'pwa.install.ios.step3': '点击"添加"安装应用',
-
+  'pwa.install.ios.step2': '向下滚动并选择\"添加到主屏幕\"',
+  'pwa.install.ios.step3': '点击\"添加\"安装应用',
   // Battle Map
   'battleMap.title': 'Battle64地图',
   'battleMap.liveEvents': '实时活动',
@@ -1111,15 +1082,13 @@ const zh = {
   'battleMap.yourLocation': '您的位置',
   'battleMap.noEvents': '附近没有实时活动',
   'battleMap.participantCount': '参与者',
-
   // Live Leaderboard
   'leaderboard.live': '实时排行榜',
-  'leaderboard.updating': '更新中...',
+  'leaderboard.updating': '更新中',
   'leaderboard.lastUpdate': '最后更新',
   'leaderboard.points.live': '实时积分',
   'leaderboard.rank.changed': '排名变更',
   'leaderboard.newRecord': '新纪录！',
-
   // GDPR Realtime
   'gdpr.realtime.title': '实时功能',
   'gdpr.realtime.description': '启用排行榜、活动和聊天的实时更新',
@@ -1129,13 +1098,11 @@ const zh = {
   'gdpr.location.description': '分享您的位置以查看本地活动和附近参与者',
   'gdpr.location.enable': '启用位置',
   'gdpr.location.disable': '禁用位置',
-
   // Offline Mode
   'offline.title': '离线模式',
   'offline.description': '您处于离线状态。某些功能受限。',
   'offline.cached': '显示缓存内容',
   'offline.retry': '重试',
-
   // Common - New additions
   'common.understood': '明白了',
   'common.success': '成功',
@@ -1143,11 +1110,9 @@ const zh = {
   'settings.privacy.title': '隐私设置',
   'settings.notifications.title': '通知设置',
   'settings.notifications.description': '管理您的通知偏好',
-
   // GDPR Notice
   'gdpr.notice.title': '隐私声明',
   'gdpr.notice.description': '我们尊重您的隐私并遵循GDPR数据保护准则',
-
   // 法律条款和合规性
   'legal.ageVerification': '年龄验证',
   'legal.birthDate': '出生日期',
@@ -1165,7 +1130,6 @@ const zh = {
   'legal.adultOnlyPlatform': 'Battle64仅限18岁及以上用户使用',
   'legal.readTerms': '阅读服务条款',
   'legal.readPrivacy': '阅读隐私政策',
-  
   // 服务条款内容
   'terms.title': '服务条款',
   'terms.lastUpdated': '最后更新：{date}',
@@ -1185,7 +1149,6 @@ const zh = {
   'terms.section7.content': 'Battle64与任天堂无关联。请勿上传任天堂标志、原版N64封面或ROM文件。',
   'terms.section8.title': '8. 账户终止',
   'terms.section8.content': '我们保留因违反服务条款而终止账户的权利，恕不另行通知。',
-  
   // 隐私政策内容
   'privacy.title': '隐私政策',
   'privacy.lastUpdated': '最后更新：{date}',
@@ -1203,7 +1166,6 @@ const zh = {
   'privacy.section6.content': '我们在您的账户处于活跃状态期间保留您的数据。删除的账户将永久删除所有数据。',
   'privacy.section7.title': '7. 联系方式',
   'privacy.section7.content': '如有隐私问题，请通过privacy@battle64.com联系我们',
-  
   // Cookie同意
   'cookies.title': 'Cookie同意',
   'cookies.description': '我们使用Cookie来改善您的体验。请选择您的偏好。',
@@ -1219,7 +1181,6 @@ const zh = {
   'cookies.acceptSelected': '接受选定的',
   'cookies.rejectAll': '拒绝全部',
   'cookies.managePreferences': '管理Cookie偏好',
-  
   // 举报和审核
   'report.title': '举报内容',
   'report.reason': '举报原因',
@@ -1235,13 +1196,11 @@ const zh = {
   'report.success': '内容举报成功',
   'report.error': '举报提交失败',
   'report.alreadyReported': '您已经举报过此内容',
-  
   // 内容审核
   'moderation.contentHidden': '此内容因多次举报而被隐藏',
   'moderation.underReview': '此内容正在审核中',
   'moderation.removed': '此内容已被管理员删除',
   'moderation.appealProcess': '如果您认为这是错误的，请联系客服',
-  
   // 管理员面板
   'admin.dashboard': '管理员面板',
   'admin.reports': '举报',
@@ -1262,17 +1221,15 @@ const zh = {
   'admin.actionReason': '行动原因',
   'admin.actionNotes': '附加说明',
   'admin.confirmAction': '确认行动',
-  
   // 账户删除（GDPR）
   'account.delete': '删除账户',
   'account.deleteWarning': '您确定要删除您的账户吗？您的所有内容将被永久删除。',
-  'account.deleteConfirmation': '输入"DELETE"以确认账户删除',
+  'account.deleteConfirmation': '输入\"DELETE\"以确认账户删除',
   'account.deleteSuccess': '账户删除成功',
   'account.deleteError': '账户删除失败',
   'account.dataExport': '导出我的数据',
   'account.dataExportDescription': '以JSON格式下载您的所有数据',
   'account.dataExportSuccess': '数据导出请求已提交。您将收到包含您数据的邮件。',
-  
   // 上传安全
   'upload.rightsConfirmation': '内容权利确认',
   'upload.confirmRights': '我确认拥有此内容的权利，并且不会侵犯任何版权',
@@ -1281,13 +1238,183 @@ const zh = {
   'upload.nsfwDetected': '检测到潜在不当内容',
   'upload.manualReview': '此上传将在发布前进行人工审核',
   'upload.approvalPending': '上传等待审批',
-  
   // 页脚链接
   'footer.terms': '条款',
   'footer.privacy': '隐私',
   'footer.contact': '联系',
   'footer.imprint': '版权声明',
-  'footer.copyright': '© 2024 Battle64. 与任天堂无关联。'
+  'footer.copyright': '© 2024 Battle64. 与任天堂无关联。',
+  // Additional missing translations
+  'platform.pc': '电脑',
+  'region.pal': 'PAL',
+  'region.ntsc': 'NTSC',
+  'currency.eur': 'EUR',
+  'currency.usd': 'USD',
+  'currency.gbp': 'GBP',
+  // Equalized translation keys - added 2025-08-09
+  'account.deletion.confirmDelete': '删除',
+  'account.deletion.dataWillBeDeleted': '以下数据将被永久删除：',
+  'account.deletion.errorConfirmText': '请输入\"删除\"以确认',
+  'account.deletion.errorGeneric': '删除账户时出错',
+  'account.deletion.errorUnexpected': '删除账户时发生意外错误',
+  'account.deletion.forumPosts': '论坛帖子和评论',
+  'account.deletion.gameCollection': '您的游戏收藏',
+  'account.deletion.gdprNotice': 'GDPR通知',
+  'account.deletion.gdprText': '删除后，您的所有个人数据将根据《通用数据保护条例》从我们的系统中完全删除。',
+  'account.deletion.profileData': '您的个人资料和所有个人数据',
+  'account.deletion.recordsAchievements': '您的所有记录和成就',
+  'account.deletion.title': '删除账户',
+  'account.deletion.warning': '此操作无法撤消！',
+  'account.deletionPage.cannotUndo': 'account.deletionPage.cannotUndo',
+  'account.deletionPage.contentActivity': 'account.deletionPage.contentActivity',
+  'account.deletionPage.contentActivityItems': 'account.deletionPage.contentActivityItems',
+  'account.deletionPage.continueWithDeletion': 'account.deletionPage.continueWithDeletion',
+  'account.deletionPage.exportDataFirst': 'account.deletionPage.exportDataFirst',
+  'account.deletionPage.finalConfirmation': 'account.deletionPage.finalConfirmation',
+  'account.deletionPage.personalData': 'account.deletionPage.personalData',
+  'account.deletionPage.personalDataItems': 'account.deletionPage.personalDataItems',
+  'account.deletionPage.pleaseTypeDelete': 'account.deletionPage.pleaseTypeDelete',
+  'account.deletionPage.typeDeleteConfirm': 'account.deletionPage.typeDeleteConfirm',
+  'account.deletionPage.warning': 'account.deletionPage.warning',
+  'account.deletionPage.whatWillBeDeleted': 'account.deletionPage.whatWillBeDeleted',
+  'admin.appHealth': 'admin.appHealth',
+  'admin.health.cache': 'admin.health.cache',
+  'admin.health.errors': 'admin.health.错误s',
+  'admin.health.sessions': 'admin.health.sessions',
+  'admin.health.uptime': 'admin.health.uptime',
+  'admin.illegalContent': 'admin.illegalContent',
+  'admin.moderationOverview': 'admin.moderationOverview',
+  'admin.newBugs': 'admin.newBugs',
+  'admin.noReport': 'admin.noReport',
+  'admin.none': 'admin.none',
+  'admin.subtitle': 'admin.subtitle',
+  'admin.tasks': 'admin.tasks',
+  'admin.tasks.autoDone': 'admin.tasks.autoDone',
+  'admin.tasks.bugsFixed': 'admin.tasks.bugsFixed',
+  'admin.tasks.pending': 'admin.tasks.pending',
+  'admin.tasks.problematic': 'admin.tasks.problematic',
+  'admin.title': 'admin.title',
+  'admin.totalViolations': 'admin.totalViolations',
+  'admin.usersBanned': 'admin.usersBanned',
+  'admin.usersWarned': 'admin.usersWarned',
+  'auth.safariRedirectSuccess': 'auth.safariRedirectSuccess',
+  'error.accessDenied': '访问被拒绝',
+  'error.imagePreviewFailed': '错误.imagePreviewFailed',
+  'error.moderationBlocked': '错误.moderationBlocked',
+  'error.timeout': '请求超时',
+  'error.uploadFailed': '错误.uploadFailed',
+  'error.validationError': '验证错误',
+  'imageUpload.noPreview': 'imageUpload.noPreview',
+  'loading.content': '加载内容中',
+  'loading.data': '加载数据中',
+  'loading.general': '加载中',
+  'loading.image': '加载图片中',
+  'loading.page': '加载页面中',
+  'loading.video': '加载视频中',
+  'map.battleDashboard': 'map.battleDashboard',
+  'map.liveBattles': 'map.liveBattles',
+  'map.resetView': 'map.resetView',
+  'map.smartMatchmaking': 'map.smartMatchmaking',
+  'password.reset.checkSpam': 'password.reset.checkSpam',
+  'password.reset.emailLabel': 'password.reset.emailLabel',
+  'password.reset.emailPlaceholder': 'password.reset.emailPlaceholder',
+  'password.reset.emailSent': 'password.reset.emailSent',
+  'password.reset.errorUnexpected': 'password.reset.错误Unexpected',
+  'password.reset.errorUnknown': 'password.reset.错误Unknown',
+  'password.reset.instructions': 'password.reset.instructions',
+  'password.reset.sendButton': 'password.reset.sendButton',
+  'password.reset.sending': 'password.reset.sending',
+  'password.reset.successMessage': 'password.reset.successMessage',
+  'password.reset.title': 'password.reset.title',
+  'password.reset.understood': 'password.reset.understood',
+  'safari.copied': 'safari.copied',
+  'safari.copyURL': 'safari.copyURL',
+  'safari.manualInstructions': 'safari.manualInstructions',
+  'safari.manualStepsTitle': 'safari.manualStepsTitle',
+  'safari.openInSafari': 'safari.openInSafari',
+  'safari.redirectMessage': 'safari.redirectMessage',
+  'safari.redirectTitle': 'safari.redirectTitle',
+  'safari.step1': 'safari.step1',
+  'safari.step2': 'safari.step2',
+  'safari.step3': 'safari.step3',
+  'status.completed': '已完成',
+  'status.connected': '已连接',
+  'status.connecting': '连接中',
+  'status.disconnected': '已断开',
+  'status.failed': '失败',
+  'status.inProgress': '进行中',
+  'status.offline': '离线',
+  'status.online': '在线',
+  'status.synced': '已同步',
+  'status.syncing': '同步中',
+  'time.ago': 'time.ago',
+  'time.always': 'time.always',
+  'time.elapsed': 'time.elapsed',
+  'time.lastMonth': 'time.lastMonth',
+  'time.lastWeek': 'time.lastWeek',
+  'time.lastYear': 'time.lastYear',
+  'time.never': 'time.never',
+  'time.now': 'time.now',
+  'time.thisMonth': 'time.thisMonth',
+  'time.thisWeek': 'time.thisWeek',
+  'time.thisYear': 'time.thisYear',
+  'time.tomorrow': 'time.tomorrow',
+  'units.bytes': 'units.bytes',
+  'units.days': 'units.days',
+  'units.gb': 'units.gb',
+  'units.hours': 'units.hours',
+  'units.kb': 'units.kb',
+  'units.mb': 'units.mb',
+  'units.minutes': 'units.minutes',
+  'units.months': 'units.months',
+  'units.seconds': 'units.seconds',
+  'units.weeks': 'units.weeks',
+  'units.years': 'units.years',
+  'validation.emptyFile': 'validation.emptyFile',
+  'validation.imageFilesOnly': 'validation.imageFilesOnly',
+  'validation.imageTooLarge': 'validation.imageTooLarge',
+  'validation.supportedFormats': 'validation.supportedFormats',
+  'validation.unsupportedFormat': 'validation.unsupportedFormat',
+  // Legal & Privacy translation keys - added 2025-08-09
+  'cookies.alwaysActive': '始终激活',
+  'account.deletionPage.gdprCompliant': '符合GDPR的账户删除',
+  'account.deletionPage.gdprInformation': 'GDPR信息',
+  'account.deletionPage.rightsUnderGdpr': '您在GDPR下的权利',
+  'account.deletionPage.rightToErasure': '删除权：',
+  'account.deletionPage.rightToErasureText': '根据GDPR第17条，您有权删除您的个人数据。',
+  'account.deletionPage.dataRetention': '数据保留：',
+  'account.deletionPage.dataRetentionText': '删除后，您的数据将在30天内从我们的系统中永久删除。',
+  'account.deletionPage.backupRemoval': '备份删除：',
+  'account.deletionPage.backupRemovalText': '您的数据也将在下一个备份周期中从所有备份中删除。',
+  'account.deletionPage.legalObligations': '法律义务：',
+  'account.deletionPage.legalObligationsText': '如果法律要求，某些数据可能会被保留（例如，用于税务目的的财务记录）。',
+  // Final hardcoded text fixes - added 2025-08-09
+  'account.deletionPage.deleting': '删除中',
+  'account.deletionPage.deleteAccountPermanently': '永久删除账户',
+  // Nintendo-specific translation keys - added 2025-08-09
+  'terms.nintendoCopyrightNotice': 'Nintendo版权声明：',
+  'terms.nintendoFullDisclaimer': 'Battle64是一个独立的复古游戏社区，与任天堂株式会社没有关联，也未得到其认可或赞助。Nintendo 64、N64以及所有相关角色、名称、标识、徽章和图像都是任天堂的商标。所有其他商标均为其各自所有者的财产。',
+  'marketplace.n64ControllerTitle': 'N64手柄 - 任天堂原装',
+  'marketplace.n64ControllerDescription': '任天堂官方手柄，状况很好',
+  'marketplace.n64ControllerDescriptionDE': '原装N64手柄，状况良好。所有按键都完美工作。',
+  'upload.video': '上传你的比赛视频',
+  'upload.screenshot': '上传你的完成时间截图',
+  'cookies.showDetails': '显示详情',
+  'cookies.hideDetails': '隐藏详情',
+  'records.pendingCount': '{count}个待处理',
+  'records.verifiedCount': '{count}个已验证记录',
+  'records.userRecords': '{username}的记录',
+  'records.myRecords': '我的记录',
+  'marketplace.goldeneye.description': '包含盒子、说明书和卡带的完整游戏',
+  'marketplace.goldeneye.title': '黄金眼007 - 完整盒装',
+  'marketplace.mario64.description': '带说明书的完美状态原版卡带',
+  'marketplace.mario64.title': '超级马里奥64 - 完美状态',
+  'fanart.banjo.adventure': '班卓熊和卡祖伊历险记',
+  'fanart.zelda.battle': '林克对战加农多夫史诗战斗',
+  'fanart.mario.castle': '桃花公主城堡中的马里奥',
+  'forum.untitledThread': '无标题主题',
+  'error.invalidDataFormat': '无效的数据格式',
+  'common.user': '用户'
 }
 
 export default zh

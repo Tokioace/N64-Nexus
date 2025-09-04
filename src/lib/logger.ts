@@ -5,7 +5,25 @@
 
 import { isLoggingEnabled, isDevelopment, isDebugMode } from '@/utils/env';
 
-type LogLevel = 'log' | 'warn' | 'error' | 'debug';
+// type LogLevel = 'log' | 'warn' | 'error' | 'debug' | 'info'; // For future use
+
+// Define what can be logged - more flexible to handle errors properly
+type LoggableValue = string | number | boolean | null | undefined | Error | object | unknown;
+type LogArgs = LoggableValue[];
+
+/**
+ * Convert unknown values to loggable format
+ */
+const formatLogValue = (value: unknown): LoggableValue => {
+  if (value instanceof Error) {
+    return {
+      name: value.name,
+      message: value.message,
+      stack: value.stack
+    };
+  }
+  return value;
+};
 
 /**
  * Check if logging should be enabled based on environment configuration
@@ -24,18 +42,18 @@ const shouldDebug = (): boolean => {
 /**
  * Log function that respects environment configuration
  */
-export const log = (...args: any[]) => {
+export const log = (...args: LogArgs): void => {
   if (shouldLog()) {
-    console.log(...args);
+    console.log(...args.map(formatLogValue));
   }
 };
 
 /**
  * Warning function that respects environment configuration
  */
-export const warn = (...args: any[]) => {
+export const warn = (...args: LogArgs): void => {
   if (shouldLog()) {
-    console.warn(...args);
+    console.warn(...args.map(formatLogValue));
   }
 };
 
@@ -43,18 +61,27 @@ export const warn = (...args: any[]) => {
  * Error function that always outputs (critical for debugging)
  * Only respects environment in development, always shows in staging/prod for critical errors
  */
-export const error = (...args: any[]) => {
+export const error = (...args: LogArgs): void => {
   if (shouldLog() || !isDevelopment()) {
-    console.error(...args);
+    console.error(...args.map(formatLogValue));
   }
 };
 
 /**
  * Debug function that only outputs in debug mode
  */
-export const debug = (...args: any[]) => {
+export const debug = (...args: LogArgs): void => {
   if (shouldDebug()) {
-    console.debug(...args);
+    console.debug(...args.map(formatLogValue));
+  }
+};
+
+/**
+ * Info function for informational messages
+ */
+export const info = (...args: LogArgs): void => {
+  if (shouldLog()) {
+    console.info(...args.map(formatLogValue));
   }
 };
 
@@ -62,29 +89,29 @@ export const debug = (...args: any[]) => {
  * Generic logger function with level support
  */
 export const logger = {
-  log: (...args: any[]) => {
+  log: (...args: LogArgs): void => {
     if (shouldLog()) {
-      console.log(...args);
+      console.log(...args.map(formatLogValue));
     }
   },
-  warn: (...args: any[]) => {
+  warn: (...args: LogArgs): void => {
     if (shouldLog()) {
-      console.warn(...args);
+      console.warn(...args.map(formatLogValue));
     }
   },
-  error: (...args: any[]) => {
+  error: (...args: LogArgs): void => {
     if (shouldLog() || !isDevelopment()) {
-      console.error(...args);
+      console.error(...args.map(formatLogValue));
     }
   },
-  debug: (...args: any[]) => {
+  debug: (...args: LogArgs): void => {
     if (shouldDebug()) {
-      console.debug(...args);
+      console.debug(...args.map(formatLogValue));
     }
   },
-  info: (...args: any[]) => {
+  info: (...args: LogArgs): void => {
     if (shouldLog()) {
-      console.info(...args);
+      console.info(...args.map(formatLogValue));
     }
   }
 };

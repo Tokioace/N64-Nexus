@@ -1,21 +1,23 @@
 import React, { useState } from 'react'
 import { useUser } from '../contexts/UserContext'
 import { useLanguage } from '../contexts/LanguageContext'
-import { useNavigate, Link } from 'react-router-dom'
+import { useNavigate, Link, useLocation } from 'react-router-dom'
 import { UserRegistrationData } from '../types'
-import { User, Mail, Lock, Gamepad2, Globe, Eye, EyeOff, Calendar, AlertCircle } from 'lucide-react'
+import { User, Mail, Lock, Gamepad2, Globe, Eye, EyeOff, Calendar, AlertCircle, Loader2 } from 'lucide-react'
 import PasswordResetModal from '../components/PasswordResetModal'
 
 const AuthPage: React.FC = () => {
   const { login, register, isAuthenticated } = useUser()
   const { t } = useLanguage()
   const navigate = useNavigate()
-  const [isLogin, setIsLogin] = useState(true)
+  const location = useLocation()
+  const [isLogin, setIsLogin] = useState(!location.state?.showLogin)
   const [showPassword, setShowPassword] = useState(false)
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   const [showPasswordReset, setShowPasswordReset] = useState(false)
+  const [registrationPending, setRegistrationPending] = useState(false) // New state for email verification pending
 
   // Login form state
   const [loginData, setLoginData] = useState({
@@ -38,12 +40,17 @@ const AuthPage: React.FC = () => {
     ageConfirmed: false
   })
 
-  // Redirect if already authenticated
+  // Handle location state and redirect if already authenticated
   React.useEffect(() => {
     if (isAuthenticated) {
       navigate('/')
     }
-  }, [isAuthenticated, navigate])
+    
+    // Handle messages from email confirmation
+    if (location.state?.message) {
+      setError(`✅ ${location.state.message}`)
+    }
+  }, [isAuthenticated, navigate, location.state])
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -68,6 +75,7 @@ const AuthPage: React.FC = () => {
     e.preventDefault()
     setLoading(true)
     setError('')
+    setRegistrationPending(false)
 
     // Age verification
     if (!registrationData.birthDate) {
@@ -114,14 +122,22 @@ const AuthPage: React.FC = () => {
     }
 
     try {
-      const success = await register(registrationData)
-      if (success) {
-        navigate('/')
+      const result = await register(registrationData)
+      if (result.success) {
+        if (result.user) {
+          // User is immediately confirmed and logged in
+          navigate('/')
+        } else {
+          // Email confirmation required - show pending state
+          setRegistrationPending(true)
+          setError('') // Clear any previous errors
+        }
       } else {
-        setError(t('auth.registrationFailed'))
+        setError(result.error || t('auth.registrationFailed'))
       }
-    } catch {
-      setError(t('auth.errorOccurred'))
+    } catch (error: unknown) {
+      const errorMessage = error instanceof Error ? error.message : t('auth.errorOccurred')
+      setError(errorMessage)
     } finally {
       setLoading(false)
     }
@@ -173,9 +189,26 @@ const AuthPage: React.FC = () => {
           </div>
 
           {/* Error Message */}
-          {error && (
+          {error && !registrationPending && (
             <div className="mb-4 p-3 bg-red-600/20 border border-red-600/30 rounded-lg text-red-400 text-sm">
               {error}
+            </div>
+          )}
+
+          {/* Registration Pending Message */}
+          {registrationPending && !isLogin && (
+            <div className="mb-4 p-4 bg-blue-600/20 border border-blue-600/30 rounded-lg">
+              <div className="flex items-center space-x-3">
+                <Loader2 className="w-5 h-5 text-blue-400 animate-spin flex-shrink-0" />
+                <div>
+                  <p className="text-blue-200 font-medium text-sm mb-1">
+                    {t('auth.waitingEmailConfirmation')}
+                  </p>
+                  <p className="text-blue-300 text-xs">
+                    {t('auth.emailConfirmationSent').replace('{email}', registrationData.email)} {t('auth.clickEmailLink')}
+                  </p>
+                </div>
+              </div>
             </div>
           )}
 
@@ -321,7 +354,7 @@ const AuthPage: React.FC = () => {
                       className="w-full pl-10 pr-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-slate-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent appearance-none"
                     >
                       <option value="N64">N64</option>
-                      <option value="PC">PC</option>
+                      <option value="PC">{t('platform.pc')}</option>
                     </select>
                   </div>
                 </div>
@@ -337,8 +370,8 @@ const AuthPage: React.FC = () => {
                       onChange={(e) => setRegistrationData({ ...registrationData, region: e.target.value as 'PAL' | 'NTSC' })}
                       className="w-full pl-10 pr-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-slate-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent appearance-none"
                     >
-                      <option value="PAL">PAL</option>
-                      <option value="NTSC">NTSC</option>
+                      <option value="PAL">{t('region.pal')}</option>
+                      <option value="NTSC">{t('region.ntsc')}</option>
                     </select>
                   </div>
                 </div>
@@ -470,10 +503,22 @@ const AuthPage: React.FC = () => {
 
               <button
                 type="submit"
-                disabled={loading}
-                className="w-full py-3 bg-blue-600 hover:bg-blue-700 disabled:bg-slate-600 disabled:cursor-not-allowed text-white font-medium rounded-lg transition-colors"
+                disabled={loading || registrationPending}
+                className="w-full py-3 bg-blue-600 hover:bg-blue-700 disabled:bg-slate-600 disabled:cursor-not-allowed text-white font-medium rounded-lg transition-colors flex items-center justify-center"
               >
-                {loading ? t('auth.registering') : t('auth.createAccountButton')}
+                {loading ? (
+                  <>
+                    <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                    {t('auth.processingRegistration')}
+                  </>
+                ) : registrationPending ? (
+                  <>
+                    <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                    {t('auth.waitingEmailConfirmation')}
+                  </>
+                ) : (
+                  t('auth.createAccountButton')
+                )}
               </button>
             </form>
           )}
