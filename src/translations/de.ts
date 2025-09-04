@@ -385,7 +385,7 @@ const de = {
   'media.allGames': 'Alle Spiele',
   'media.noEvent': 'Kein Event',
   'media.uploadedBy': 'Hochgeladen von',
-  'media.uploadedOn': 'Hochgeladen am', Beschreibung oder Tags', Any%, Glitchless (kommagetrennt)',
+  'media.uploadedOn': 'Hochgeladen am',
   'success.uploaded': 'Erfolgreich hochgeladen',
   'validation.allFieldsRequired': 'Alle Felder sind erforderlich',
   // Additional missing keys

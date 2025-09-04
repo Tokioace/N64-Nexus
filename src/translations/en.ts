@@ -517,7 +517,7 @@ const en = {
   'media.allGames': 'Alle Spiele',
   'media.noEvent': 'Kein Event',
   'media.uploadedBy': 'Hochgeladen von',
-  'media.uploadedOn': 'Hochgeladen am', description or tags', Any%, Glitchless (comma separated)',
+  'media.uploadedOn': 'Uploaded on',
   'success.uploaded': 'Successfully uploaded',
   'validation.allFieldsRequired': 'All fields are required',
   // Additional missing keys

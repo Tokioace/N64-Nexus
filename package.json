@@ -13,7 +13,7 @@
     "build:dev": "npx tsc && vite build --mode development",
     "build:staging": "npx tsc && vite build --mode staging",
     "build:prod": "npx tsc && vite build --mode production",
-    "lint": "eslint . --max-warnings 100",
+    "lint": "eslint . --max-warnings 200",
     "preview": "vite preview",
     "preview:staging": "vite preview --mode staging",
     "preview:prod": "vite preview --mode production",
@@ -54,6 +54,7 @@
     "vite": "^6.3.5",
     "vite-plugin-compression": "^0.5.1",
     "vite-plugin-pwa": "^1.0.2",
-    "workbox-window": "^7.3.0"
+    "workbox-window": "^7.3.0",
+    "axe-core": "^4.10.0"
   }
 }

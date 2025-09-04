@@ -345,7 +345,7 @@ const pt = {
   'media.allGames': 'Todos os Jogos',
   'media.noEvent': 'Nenhum Evento',
   'media.uploadedBy': 'Carregado por',
-  'media.uploadedOn': 'Carregado em', descrição ou tags', Any%, Glitchless (separados por vírgula)',
+  'media.uploadedOn': 'Carregado em',
   'success.uploaded': 'Carregado com sucesso',
   'validation.allFieldsRequired': 'Todos os campos são obrigatórios',
   // Additional missing keys
