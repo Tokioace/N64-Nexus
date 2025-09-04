@@ -345,7 +345,7 @@ const it = {
   'media.allGames': 'Tutti i Giochi',
   'media.noEvent': 'Nessun Evento',
   'media.uploadedBy': 'Caricato da',
-  'media.uploadedOn': 'Caricato il', descrizione o tag', Any%, Glitchless (separati da virgola)',
+  'media.uploadedOn': 'Caricato il',
   'success.uploaded': 'Caricato con successo',
   'validation.allFieldsRequired': 'Tutti i campi sono obbligatori',
   // Additional missing keys

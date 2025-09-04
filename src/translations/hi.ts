@@ -345,7 +345,7 @@ const hi = {
   'media.allGames': 'सभी गेम्स',
   'media.noEvent': 'कोई इवेंट नहीं',
   'media.uploadedBy': 'द्वारा अपलोड किया गया',
-  'media.uploadedOn': 'को अपलोड किया गया', विवरण या टैग्स से खोजें', Any%, Glitchless (कॉमा से अलग करें)',
+  'media.uploadedOn': 'अपलोड तिथि',
   'success.uploaded': 'सफलतापूर्वक अपलोड हुआ',
   'validation.allFieldsRequired': 'सभी फील्ड आवश्यक हैं',
   // Marketplace

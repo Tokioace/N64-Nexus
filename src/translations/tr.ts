@@ -345,7 +345,7 @@ const tr = {
   'media.allGames': 'Tüm Oyunlar',
   'media.noEvent': 'Etkinlik Yok',
   'media.uploadedBy': 'Yükleyen',
-  'media.uploadedOn': 'Yüklenme Tarihi', açıklama veya etiketlere göre ara', Any%, Glitchsiz (virgülle ayrılmış)',
+  'media.uploadedOn': 'Yüklenme Tarihi',
   'success.uploaded': 'Başarıyla yüklendi',
   'validation.allFieldsRequired': 'Tüm alanlar gereklidir',
   // Marketplace
