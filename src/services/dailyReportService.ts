@@ -1,6 +1,6 @@
 import { supabase } from '../lib/supabase'
 import { DISCORD_WEBHOOK_URL, TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID } from '../config'
-import { useLanguage } from '../contexts/LanguageContext'
+// Note: Do not use React hooks inside services. Language-specific messages are generated below without hooks.
 
 export interface DailyReportSummary {
   totalViolations: number
@@ -12,7 +12,6 @@ export interface DailyReportSummary {
 }
 
 async function fetchCounts() {
-  const { t } = useLanguage()
 
   const [violations, warnings, bans, bugs] = await Promise.all([
     supabase.from('content_flags').select('*', { count: 'exact', head: true }),

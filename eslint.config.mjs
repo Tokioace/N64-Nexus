@@ -27,4 +27,11 @@ export default tseslint.config(
       '@typescript-eslint/no-explicit-any': 'warn',
     },
   },
+  {
+    files: ['src/translations/*.ts'],
+    rules: {
+      // Translation text may contain escaped quotes; do not enforce this stylistic rule here
+      'no-useless-escape': 'off',
+    },
+  },
 )
